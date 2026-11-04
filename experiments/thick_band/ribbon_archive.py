@@ -16,7 +16,24 @@ import os
 from pathlib import Path
 import re
 import tempfile
-import fcntl
+from contextlib import contextmanager
+
+@contextmanager
+def _writer_lock(path):
+    with path.open('a+b') as lock:
+        if os.name == 'nt':
+            import msvcrt
+            lock.seek(0); lock.write(b'0'); lock.flush(); lock.seek(0)
+            msvcrt.locking(lock.fileno(), msvcrt.LK_LOCK, 1)
+            try:
+                yield
+            finally:
+                lock.seek(0)
+                msvcrt.locking(lock.fileno(), msvcrt.LK_UNLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            yield
 
 import numpy as np
 
@@ -43,11 +60,12 @@ def _atomic(path, write):
             out.flush()
             os.fsync(out.fileno())
         os.replace(name, path)
-        directory = os.open(path.parent, os.O_RDONLY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        if os.name != 'nt':
+            directory = os.open(path.parent, os.O_RDONLY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
     finally:
         if os.path.exists(name):
             os.unlink(name)
@@ -131,8 +149,7 @@ class RibbonArchive:
                      compatibility_key=key, context=context, width=float(width),
                      height=float(height), bbox=[*lo.tolist(), *hi.tolist()],
                      labels=list(LABELS), **metadata)
-        with (self.directory / '.lock').open('a+b') as lock:
-            fcntl.flock(lock, fcntl.LOCK_EX)
+        with _writer_lock(self.directory / '.lock'):
             entries = self.entries()
             peers = [e for e in entries if e['compatibility_key'] == key]
             if any(e['width'] <= width and e['height'] <= height for e in peers):
