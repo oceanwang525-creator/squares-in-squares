@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import pytest
-from ftmc_hour import Evidence, parser, schedule, strict_layout
+from ftmc_hour import Evidence, configure_cuda, parser, schedule, strict_layout
 
 
 def test_schedule_replay_and_coverage():
@@ -83,3 +83,73 @@ def test_first_six_mutation_visits_cover_all_amplitudes_each_target():
                     if schedule(i, n)["amplitude"] == amplitude} == {
                         "angle", "shear", "slide", "taper"}
         assert len({schedule(i, n)["mode"] for i in range(6)}) == 4
+
+
+class FakeCuda:
+    def __init__(self, name="NVIDIA A100-SXM4-80GB", available=True):
+        self.name = name
+        self.available = available
+        self.fractions = []
+
+    def is_available(self):
+        return self.available
+
+    def get_device_name(self):
+        assert self.available
+        return self.name
+
+    def set_per_process_memory_fraction(self, fraction):
+        self.fractions.append(fraction)
+
+
+def test_gpu_defaults_preserve_a100_and_no_allocator_cap():
+    args = parser().parse_args([])
+    assert args.gpu_name == "A100" and args.cuda_memory_fraction is None
+    cuda = FakeCuda()
+    assert configure_cuda(cuda) == cuda.name
+    assert cuda.fractions == []
+
+
+@pytest.mark.parametrize("name", ["RTX 4070 SUPER", "NVIDIA GeForce RTX 4070 SUPER",
+                                  "NVIDIA RTX 4070 SUPER", "GeForce RTX 4070 SUPER"])
+def test_explicit_desktop_gpu_and_optional_memory_cap(name):
+    args = parser().parse_args(["--gpu-name", "RTX 4070 SUPER",
+                                "--cuda-memory-fraction", ".06"])
+    cuda = FakeCuda(name)
+    assert configure_cuda(cuda, args.gpu_name, args.cuda_memory_fraction) == name
+    assert cuda.fractions == [.06]
+
+
+@pytest.mark.parametrize("name,required", [
+    ("NVIDIA GeForce RTX 4070 SUPER", "A100"),
+    ("NVIDIA A100-SXM4-80GB", "RTX 4070 SUPER"),
+    ("NVIDIA GeForce RTX 4070", "RTX 4070 SUPER"),
+    ("NVIDIA GeForce RTX 4070 SUPER Ti", "RTX 4070 SUPER"),
+])
+def test_gpu_mismatch_never_sets_memory_cap(name, required):
+    cuda = FakeCuda(name)
+    with pytest.raises(RuntimeError):
+        configure_cuda(cuda, required, .06)
+    assert cuda.fractions == []
+
+
+def test_missing_cuda_never_falls_back_to_cpu():
+    cuda = FakeCuda(available=False)
+    with pytest.raises(RuntimeError, match="CPU fallback is disabled"):
+        configure_cuda(cuda, "RTX 4070 SUPER", .06)
+    assert cuda.fractions == []
+
+
+@pytest.mark.parametrize("fraction", [0, -.1, 1.01, float("nan"), float("inf")])
+def test_bad_cuda_memory_fraction(fraction):
+    cuda = FakeCuda()
+    with pytest.raises(ValueError, match="memory fraction"):
+        configure_cuda(cuda, memory_fraction=fraction)
+    assert cuda.fractions == []
+
+
+def test_gpu_override_allowlist():
+    with pytest.raises(ValueError, match="unsupported GPU"):
+        configure_cuda(FakeCuda(), "RTX 4090")
+    with pytest.raises(SystemExit):
+        parser().parse_args(["--gpu-name", "RTX 4090"])

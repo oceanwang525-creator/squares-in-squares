@@ -87,6 +87,26 @@ class Evidence:
         os.replace(tmp, path)
 
 
+def configure_cuda(cuda, gpu_name="A100", memory_fraction=None):
+    """Validate the explicitly allowlisted device before any warm allocations."""
+    if gpu_name not in ("A100", "RTX 4070 SUPER"):
+        raise ValueError("unsupported GPU override")
+    if memory_fraction is not None and not (
+            np.isfinite(memory_fraction) and 0 < memory_fraction <= 1):
+        raise ValueError("CUDA memory fraction must be finite and in (0, 1]")
+    if not cuda.is_available():
+        raise RuntimeError("this search requires CUDA; CPU fallback is disabled")
+    actual = cuda.get_device_name()
+    # NVIDIA prefixes vary by driver; match the full model, not a loose substring.
+    matches = ("A100" in actual if gpu_name == "A100" else
+               actual.removeprefix("NVIDIA ").removeprefix("GeForce ") == gpu_name)
+    if not matches:
+        raise RuntimeError(f"this search requires {gpu_name}; actual GPU is {actual}")
+    if memory_fraction is not None:
+        cuda.set_per_process_memory_fraction(memory_fraction)
+    return actual
+
+
 def run(args):
     import torch
     from band_polish import extent
@@ -106,8 +126,7 @@ def run(args):
         int(x) for x in args.targets.split(",")))
     if not targets or any(str(n) not in raw for n in targets):
         raise ValueError("targets must have immutable baseline references")
-    if not torch.cuda.is_available() or "A100" not in torch.cuda.get_device_name():
-        raise RuntimeError("this search requires an A100")
+    configure_cuda(torch.cuda, args.gpu_name, args.cuda_memory_fraction)
     torch.set_num_threads(2)
     torch.set_default_dtype(torch.float64)
     # Force context creation and kernel initialization before the timed search.
@@ -294,6 +313,10 @@ def parser():
     p.add_argument("--baseline", default=str(D/"baseline.json"))
     p.add_argument("--output", default=str(D/"ftmc-results"))
     p.add_argument("--seconds", type=float, default=float(os.getenv("FTMC_SECONDS", "3600")))
+    p.add_argument("--gpu-name", choices=("A100", "RTX 4070 SUPER"), default="A100",
+                   help="explicit required GPU model; no CPU fallback")
+    p.add_argument("--cuda-memory-fraction", type=float, default=None,
+                   help="optional CUDA allocator fraction in (0, 1], set before warmup")
     p.add_argument("--targets", default="", help="comma-separated subset; default all baseline keys")
     p.add_argument("--target-seconds", type=float, default=38.)
     p.add_argument("--checkpoint-seconds", type=float, default=30.)
