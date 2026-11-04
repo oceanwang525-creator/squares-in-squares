@@ -13,6 +13,7 @@ from gensane_polish import quench,unit_feasible
 from gensane_recovery import recover
 from ftmc_moves import split,mutate
 from core_refill import refill
+from ribbon_archive import RibbonArchive
 D=Path(__file__).resolve().parent;O=D/"ftmc-results";O.mkdir(exist_ok=True)
 torch.set_num_threads(2)
 def log(event,**k):
@@ -25,6 +26,7 @@ def main():
     start=time.monotonic();end=start+float(os.getenv("FTMC_SECONDS","420"))
     torch.set_default_dtype(torch.float64)
     log("hardware",gpu=torch.cuda.get_device_name(),budget=end-start)
+    archive=RibbonArchive(O/"ribbon-archive")
     for n in [911,973,908]:
         q0=np.array(raw[str(n)],dtype=np.float64)
         reference=extent(q0)
@@ -35,6 +37,9 @@ def main():
         if not bool(ok[0]):raise ValueError("baseline float repair")
         q=safe[0].numpy();side=float(sL[0])
         core,u=split(q)
+        archive_args=dict(structural_identity=f"baseline-{n}-core-order-v1",
+                          outer_bounds=[0,0,reference,reference])
+        archive.offer_components(core,**archive_args,contact_metadata={"source":"baseline"})
         identity=refill(core,side,side,len(u),hints=u[:,:2],candidate_cap=6000,time_limit=12)
         log("identity",n=n,diagnostics=identity.diagnostics,
             passed=identity.x is not None,reference_L=reference)
@@ -66,6 +71,7 @@ def main():
                 log("core_rejected",n=n,lane=lane,side=float(cL[0]),work=work)
                 continue
             c=x[0].cpu().numpy()
+            archive.offer_components(c,**archive_args,contact_metadata={"stage":"core","lane":lane})
             filled=refill(c,work,work,n-len(c),hints=h,candidate_cap=6000,time_limit=10)
             log("refill",n=n,lane=lane,meta=meta,diagnostics=filled.diagnostics)
             if filled.x is None:continue
@@ -82,6 +88,9 @@ def main():
                  iterations=6,position_trust=.02,angle_trust=.001,
                  target=reference-1e-8)
             if r["x"] is not None and r["L"]<extent(candidate):candidate=r["x"]
+            # Refill keeps core rows first, and LP preserves row identities.
+            archive.offer_components(candidate[:len(core)],**archive_args,
+                contact_metadata={"stage":"post-LP","lane":lane})
             L=extent(candidate);screen=sat_check(candidate)[0]
             np.savez_compressed(O/f"n{n}-lane{lane}.npz",x=candidate,L=L,
                 reference_L=reference,meta=json.dumps(meta))
