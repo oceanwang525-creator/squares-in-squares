@@ -1,5 +1,5 @@
 """Idempotent detached runtime job, independent timeout and durable evidence."""
-import argparse,fcntl,json,os,signal,subprocess,sys,time,tarfile,hashlib
+import threading,argparse,fcntl,json,os,signal,subprocess,sys,time,tarfile,hashlib
 from pathlib import Path
 
 def atomic(path, data):
@@ -17,6 +17,15 @@ def launch(root,mode,seconds):
     row=dict(supervisor_pid=proc.pid,created=time.time(),mode=mode,seconds=seconds)
     atomic(marker,row)
     return row
+def pack_evidence(root,mode,name):
+    root=Path(root);bundle=root/name;tmp=root/(name+".tmp")
+    with tarfile.open(tmp,"w:gz") as f:
+        for item in ("started.json","pid.json","heartbeat.json","done.json","job.log"):
+            if (root/item).exists():f.add(root/item,arcname=mode+"/"+item)
+        if mode=="pilot" and (root.parent/"ftmc-results").exists():
+            f.add(root.parent/"ftmc-results",arcname="ftmc-results")
+    os.replace(tmp,bundle)
+
 def supervise(root,mode,seconds):
     root=Path(root);signal.signal(signal.SIGHUP,signal.SIG_IGN)
     with (root/"job.log").open("ab",buffering=0) as out:
@@ -25,7 +34,9 @@ def supervise(root,mode,seconds):
         job=subprocess.Popen(cmd,cwd=root.parent,env=env,stdin=subprocess.DEVNULL,
             stdout=out,stderr=subprocess.STDOUT,start_new_session=True)
         atomic(root/"pid.json",dict(pid=job.pid,started=time.time(),mode=mode))
-        deadline=time.monotonic()+seconds+30
+        deadline=time.monotonic()+seconds+120
+        next_snapshot=time.monotonic()+120
+        snapshot=None
         killed=False
         while job.poll() is None:
             atomic(root/"heartbeat.json",dict(pid=job.pid,time=time.time(),alive=True))
@@ -34,16 +45,15 @@ def supervise(root,mode,seconds):
                 try:job.wait(timeout=5)
                 except subprocess.TimeoutExpired:os.killpg(job.pid,signal.SIGKILL)
                 break
+            if mode=="pilot" and time.monotonic()>next_snapshot and (snapshot is None or not snapshot.is_alive()):
+                snapshot=threading.Thread(target=pack_evidence,args=(root,mode,"checkpoint.tar.gz"),daemon=True)
+                snapshot.start();next_snapshot=time.monotonic()+120
             time.sleep(.5)
         code=job.wait()
+        if snapshot is not None:snapshot.join(timeout=15)
     atomic(root/"done.json",dict(exitcode=code,watchdog_fired=killed,finished=time.time()))
-    bundle=root/"evidence.tar.gz";tmp=root/"evidence.tmp"
-    with tarfile.open(tmp,"w:gz") as f:
-        for name in ("started.json","pid.json","heartbeat.json","done.json","job.log"):
-            if (root/name).exists():f.add(root/name,arcname=mode+"/"+name)
-        if mode=="pilot" and (root.parent/"ftmc-results").exists():
-            f.add(root.parent/"ftmc-results",arcname="ftmc-results")
-    os.replace(tmp,bundle)
+    pack_evidence(root,mode,"evidence.tar.gz")
+
 def smoke(root):
     import torch
     root=Path(root)

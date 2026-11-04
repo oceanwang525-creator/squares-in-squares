@@ -35,7 +35,7 @@ def test_supervisor_timeout_no_gpu(tmp_path):
     # Real detached subprocess fixture validates independent TTL and durable tar.
     root=tmp_path/"root";root.mkdir()
     (tmp_path/"ftmc_pilot.py").write_text("import time;time.sleep(60)")
-    d.supervise(root,"pilot",-29.9)
+    d.supervise(root,"pilot",-119.9)
     row=json.loads((root/"done.json").read_text())
     assert row["watchdog_fired"] and row["exitcode"]!=0
     assert (root/"evidence.tar.gz").exists()
