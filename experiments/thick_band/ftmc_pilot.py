@@ -7,7 +7,7 @@ import os,time,json,tarfile,traceback
 from pathlib import Path
 import numpy as np
 import torch
-from band_relax import canonicalize
+from band_relax import canonicalize,half_extent
 from band_polish import extent,sat_check
 from gensane_polish import quench,unit_feasible
 from gensane_recovery import recover
@@ -54,7 +54,14 @@ def main():
             x=torch.tensor(np.ascontiguousarray(c)[None],device="cuda")
             t0=time.monotonic()
             x,qi=quench(x,[work],steps=900,seconds=min(10,end-time.monotonic()-10),clearance=2e-10)
+            anchor=x.detach().mean(dim=1)[:,:2]
             x,cL,valid=unit_feasible(x,clearance=2e-10,max_expand=1.01)
+            # Full-layout canonicalization would move the isolated band into
+            # a corner and invalidate all refill hints. Restore its position.
+            x[:,:,:2]+=anchor[:,None,:]-x.mean(dim=1)[:,None,:2]
+            hh=half_extent(x)[:,:,None]
+            valid &= ((x[:,:,:2]-hh)>=0).all(dim=(1,2))
+            valid &= ((x[:,:,:2]+hh)<=work).all(dim=(1,2))
             if not bool(valid[0]) or float(cL[0])>work:
                 log("core_rejected",n=n,lane=lane,side=float(cL[0]),work=work)
                 continue
