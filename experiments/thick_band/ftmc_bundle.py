@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT="ftmc_pilot.py"
 REQUIRED={"ftmc_pilot.py","band_geometry.py","band_relax.py","band_polish.py",
 "gensane_polish.py","gensane_recovery.py","ftmc_moves.py","core_refill.py",
-"ribbon_archive.py","baseline.json"}
+"ribbon_archive.py","ftmc_detached.py","baseline.json"}
 def validate(directory, names):
     directory=Path(directory); names=set(names)
     missing=REQUIRED-names
