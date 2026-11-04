@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from itertools import product
 import math
+import time
 import numpy as np
 from scipy.optimize import linprog
 from scipy.sparse import coo_matrix
@@ -93,7 +94,9 @@ class Result:
     history: list = field(default_factory=list)
     accepted: int = 0
 
-def _lp(q, upper, position_trust, angle_trust, clearance, axes):
+def _lp(q, upper, position_trust, angle_trust, clearance, axes, *,
+        time_limit=5., method="highs", diagnostics=None):
+    started=time.monotonic()
     n = len(q); free = angle_trust > 0
     stride = 3 if free else 2
     nv = stride*n+3
@@ -148,9 +151,13 @@ def _lp(q, upper, position_trust, angle_trust, clearance, axes):
     bounds.extend([(None,None),(None,None),(1.,upper)])
     objective=np.zeros(nv);objective[-1]=1.
     A=coo_matrix((vv,(rr,cc)),shape=(len(rhs),nv)).tocsr()
-    res=linprog(objective,A_ub=A,b_ub=rhs,bounds=bounds,method="highs",
+    res=linprog(objective,A_ub=A,b_ub=rhs,bounds=bounds,method=method,
                 options={"primal_feasibility_tolerance":1e-9,
-                         "dual_feasibility_tolerance":1e-9})
+                         "dual_feasibility_tolerance":1e-9, "time_limit":max(.01,time_limit)})
+    if diagnostics is not None:
+        diagnostics.append(dict(rows=A.shape[0],cols=A.shape[1],nnz=A.nnz,
+            seconds=time.monotonic()-started,status=int(res.status),
+            message=str(res.message),iterations=int(res.nit),method=method,free_angles=free))
     if not res.success or not np.isfinite(res.x).all():
         return None,str(res.message)
     out=q.copy()
