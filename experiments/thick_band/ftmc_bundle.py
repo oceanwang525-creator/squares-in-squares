@@ -23,7 +23,7 @@ def validate(directory, names):
                     local=directory/(module+".py")
                     if local.exists() and local.name not in names:
                         raise ValueError("missing local dependency "+local.name+" imported by "+name)
-                    if not local.exists() and importlib.util.find_spec(module) is None:
+                    if not local.exists() and module not in {'numpy','scipy','torch'} and importlib.util.find_spec(module) is None:
                         raise ValueError("unavailable external dependency "+module)
     baseline=json.loads((directory/"baseline.json").read_text())
     for n in (911,973,908):
@@ -32,7 +32,7 @@ def validate(directory, names):
     return {n:hashlib.sha256((directory/n).read_bytes()).hexdigest() for n in sorted(names)}
 def build(directory, destination):
     hashes=validate(directory,REQUIRED)
-    manifest={"version":1,"entrypoint":ROOT,"sha256":hashes}
+    manifest={"version":1,"entrypoint":ROOT,"external_dependencies":["numpy","scipy","torch"],"sha256":hashes}
     with tarfile.open(destination,"w:gz") as out:
         for name in sorted(REQUIRED):out.add(Path(directory)/name,arcname=name)
         import io
