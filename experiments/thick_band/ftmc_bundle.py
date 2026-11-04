@@ -23,7 +23,7 @@ def validate(directory, names):
                     local=directory/(module+".py")
                     if local.exists() and local.name not in names:
                         raise ValueError("missing local dependency "+local.name+" imported by "+name)
-                    if not local.exists() and module not in {'numpy','scipy','torch','mpmath'} and importlib.util.find_spec(module) is None:
+                    if not local.exists() and module not in {'numpy','scipy','torch','mpmath'} and module not in sys.stdlib_module_names and importlib.util.find_spec(module) is None:
                         raise ValueError("unavailable external dependency "+module)
     baseline=json.loads((directory/"baseline.json").read_text())
     for n in (911,973,908):
