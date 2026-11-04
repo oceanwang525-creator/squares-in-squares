@@ -53,6 +53,9 @@ def local_ruin(source, L, target, *, seed=0, remove_count=10,
     Candidate centers stay within that window or the removed-center bounding
     rectangle. Angles include nearby originals, upright, and seeded angles;
     centers include original hints, a half-unit grid and seeded samples.
+    Generation uses at most 35% of the overall cooperative time budget and
+    at most min(attempt_cap, 20*candidate_cap) trials; the remaining budget
+    is reserved for graph/MILP. Generation limits retain admitted candidates.
     Cooperative wall-time budget covers geometry/MILP; final full-pair SAT
     runs even after budget expiration, never skipped. No optimality claim.
     Input is copied and never mutated. Source count and target are explicit,
@@ -121,12 +124,19 @@ def local_ruin(source, L, target, *, seed=0, remove_count=10,
     rng = np.random.default_rng(seed)
     angles = np.unique(np.r_[0., q[removed, 2], rng.uniform(-np.pi/4, np.pi/4, 3)])
     obstacle_tree = cKDTree(outside[:, :2]) if len(outside) else None
+    generation_deadline = min(start + .35*time_limit, deadline)
+    generation_attempt_cap = min(attempt_cap, 20*candidate_cap)
+    meta.update(generation_budget_hit=False, generation_attempt_cap=generation_attempt_cap)
     candidates = []; seen = set()
     def add(row):
-        if time.monotonic() >= deadline:
+        now = time.monotonic()
+        if now >= deadline:
             meta['timed_out'] = True
             return False
-        if meta['attempts'] >= attempt_cap:
+        if now >= generation_deadline:
+            meta['generation_budget_hit'] = True
+            return False
+        if meta['attempts'] >= generation_attempt_cap:
             meta['attempt_cap_hit'] = True
             return False
         if len(candidates) >= candidate_cap:
@@ -144,12 +154,14 @@ def local_ruin(source, L, target, *, seed=0, remove_count=10,
         if _clear(row, outside[ids]):
             candidates.append(row)
         return True
+    stop = False
     for row in q[removed]:
         if not add(row):
+            stop = True
             break
     # Include exact global lattice phase to preserve contact-compatible candidates.
-    stop = False
     for x in np.arange(.5, L, .5):
+        if stop: break
         if x < low[0] or x > high[0]:
             continue
         for y in np.arange(.5, L, .5):

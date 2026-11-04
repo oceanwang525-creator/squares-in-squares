@@ -1,4 +1,6 @@
 import unittest
+from unittest.mock import patch
+from itertools import count
 import numpy as np
 from local_ruin import local_ruin, _clear
 from band_polish import sat_check
@@ -38,6 +40,25 @@ class LocalRuinTests(unittest.TestCase):
         self.assertIsNotNone(r['x'], r['meta'])
         self.assertEqual(len(r['x']), 1)
         np.testing.assert_array_equal(source, [[1.,1.,.2]])
+
+    def test_low_admission_generation_budget_keeps_hint_for_milp(self):
+        source = np.array([[.8,.8,.2], [3.5,3.5,0.]])
+        hint = source[0].copy()
+        # Deterministic clock and very low admission: only the removed hint
+        # survives obstacle screening. Sampling must stop early, not consume
+        # the overall deadline and throw the feasible hint away.
+        ticks = count()
+        with patch('local_ruin.time.monotonic', side_effect=lambda: next(ticks)*.002), \
+             patch('local_ruin._clear', side_effect=lambda row, others: np.array_equal(row, hint)):
+            r = local_ruin(source, 4., 2, time_limit=1., attempt_cap=100000,
+                           candidate_cap=600)
+        self.assertTrue(r['meta']['generation_budget_hit'])
+        self.assertFalse(r['meta']['timed_out'])
+        self.assertEqual(r['meta']['candidates'], 1)
+        self.assertIsNotNone(r['meta']['milp_status'])
+        self.assertEqual(r['meta']['reason'], 'ok')
+        self.assertEqual(r['x'].shape, (2,3))
+        self.assertTrue(sat_check(r['x'])[0])
 
     def test_impossible_never_returns_wrong_count(self):
         r = local_ruin([[.5,.5,0]], 1., 2, attempt_cap=20)
