@@ -24,9 +24,9 @@ def schedule(lane, n):
     modes = ("angle", "shear", "slide", "taper")
     amplitudes = (1e-4, 3e-4, .001, .003, .01, .03)
     slacks = (.002, .005, .015, .03, .05)
-    return dict(seed=n*1000003+lane, mode=modes[lane % 4],
-                amplitude=amplitudes[(lane//4) % len(amplitudes)],
-                slack=slacks[(lane//4) % len(slacks)])
+    return dict(seed=n*1000003+lane, mode=modes[(lane+lane//6+n) % 4],
+                amplitude=amplitudes[(lane+n) % len(amplitudes)],
+                slack=slacks[(lane+2*n) % len(slacks)])
 
 
 def strict_layout(q, n):
@@ -128,7 +128,7 @@ def run(args):
         passed, reason = strict_layout(q, n)
         if not passed:
             raise ValueError(f"baseline screen {n}: {reason}")
-        states[n] = dict(q=q, side=float(side[0]), lane=0, gate=None)
+        states[n] = dict(q=q, side=float(side[0]), lane=0, mutation_lane=0, gate=None)
     archive = RibbonArchive(Path(args.output)/"ribbon-archive")
     start = time.monotonic()
     end = start+args.seconds
@@ -146,7 +146,7 @@ def run(args):
                 outer_bounds=[0, 0, refs[n], refs[n]],
                 contact_metadata=dict(stage=stage, label="local_gadget_proxy"))
 
-    def polish(q, n, deadline, meta):
+    def polish(q, n, deadline, meta, core_count=None, topology=None):
         # Save refill/recreation output even when no time is left for polishing.
         out.save(q, n, refs.get(n), stage="full_seed", **meta)
         budget = remaining(deadline, 10)
@@ -168,9 +168,15 @@ def run(args):
             if r["x"] is not None:
                 out.save(r["x"], n, refs[n], stage="recovery", **meta)
                 candidate = r["x"]
-        core, _ = split(candidate)
-        # Full result may change component roles; do not compare incompatible topology.
-        offer(core, n, f"post-{meta['operator']}-{meta['generation']}", "post-LP")
+        if core_count is not None and topology is not None:
+            # Refill places the core first; quench and recovery preserve row IDs.
+            # Never re-split by angle: that would change membership after polishing.
+            offer(candidate[:core_count], n, topology, "post-LP-fixed-core-rows")
+        else:
+            # Ruin changes row membership. Keep its proxies separately labeled.
+            core, _ = split(candidate)
+            offer(core, n, f"insertion-membership-{meta['generation']}",
+                  "post-LP-incompatible-membership")
 
     try:
         while time.monotonic() < end-.5:
@@ -220,7 +226,9 @@ def run(args):
                             else:
                                 out.reject("insertion_"+r["meta"]["reason"], **imeta)
                     elif s["gate"]:
-                        params = schedule(lane, n)
+                        mutation_lane = s["mutation_lane"]
+                        s["mutation_lane"] += 1
+                        params = schedule(mutation_lane, n)
                         work = side+params.pop("slack")
                         c, hints, mutation = mutate(q, side, **params)
                         c[:, :2] += (work-side)/2
@@ -255,7 +263,8 @@ def run(args):
                         if filled.x is None:
                             out.reject("refill_no_solution", n=n, **meta)
                         else:
-                            polish(filled.x, n, deadline, meta)
+                            polish(filled.x, n, deadline, meta, core_count=len(c),
+                                   topology=topology)
                     else:
                         out.reject("identity_gate_failed", n=n, **meta)
                 except Exception:

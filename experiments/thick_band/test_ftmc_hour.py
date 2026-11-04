@@ -71,3 +71,15 @@ def test_default_hour_and_interface(monkeypatch):
     a = parser().parse_args(["--seconds", "2", "--targets", "908,909",
                              "--target-seconds", "1", "--checkpoint-seconds", ".5"])
     assert a.seconds == 2 and a.target_seconds == 1
+
+
+def test_first_six_mutation_visits_cover_all_amplitudes_each_target():
+    expected = {1e-4, 3e-4, .001, .003, .01, .03}
+    for n in [908, 909, 910, 911, 971, 972, 973, 1001]:
+        assert {schedule(i, n)["amplitude"] for i in range(6)} == expected
+        # Across subsequent blocks, the same amplitude explores every mode.
+        for amplitude in expected:
+            assert {schedule(i, n)["mode"] for i in range(24)
+                    if schedule(i, n)["amplitude"] == amplitude} == {
+                        "angle", "shear", "slide", "taper"}
+        assert len({schedule(i, n)["mode"] for i in range(6)}) == 4
