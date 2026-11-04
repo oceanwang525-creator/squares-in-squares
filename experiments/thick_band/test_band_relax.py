@@ -1,6 +1,7 @@
 import math
 import subprocess
 import sys
+from pathlib import Path
 import numpy as np
 import pytest
 import torch
@@ -141,7 +142,7 @@ def test_nan_and_single_square():
         relax(x.numpy(),[1],device="cpu")
 
 def test_main_driver_refuses_cpu(tmp_path):
-    r=subprocess.run([sys.executable,"run_relax.py","unused.npz",
+    r=subprocess.run([sys.executable,str(Path(__file__).with_name("run_relax.py")),"unused.npz",
                       "--output",str(tmp_path/"out.npz"),"--device","cpu"],capture_output=True,text=True)
     assert r.returncode!=0 and "requires CUDA" in r.stderr
 
@@ -151,3 +152,22 @@ def test_initial_checkpoint_written(tmp_path):
             checkpoint=lambda r:checkpoints.append(r))
     assert len(checkpoints)==2
     assert all(z["float_valid"].all() for z in checkpoints)
+
+def test_zero_clearance_still_strict_and_expansion_cap():
+    cfg=Config(clearance=0,max_expand=1.5,overlap_tol=1e-5)
+    x=tensor([[[.5,.5,.123],[1.42,.51,-.081]]])
+    y,L,usable=expand_to_separate(x,cfg)
+    assert usable.item()
+    _,overlap,wall=validate(y,L,cfg)
+    assert overlap.item()<=0 and wall.item()<=0
+    # A cap of exactly one cannot permit even an outward-rounded expansion.
+    _,_,usable=expand_to_separate(x,Config(clearance=0,max_expand=1))
+    assert not usable.item()
+
+def test_canonical_bounds_roundoff_stress():
+    from band_relax import canonicalize
+    rng=np.random.default_rng(230)
+    for _ in range(20):
+        x=tensor(rng.normal(size=(4,3,3))*10)
+        y,L=canonicalize(x)
+        assert (validate(y,L)[2]<=0).all()

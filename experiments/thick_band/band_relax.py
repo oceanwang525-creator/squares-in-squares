@@ -72,8 +72,15 @@ def canonicalize(x):
     h = half_extent(y)
     low = (y[..., :2] - h[..., None]).amin(dim=1)
     high = (y[..., :2] + h[..., None]).amax(dim=1)
+    # A bounding box reconstructed by subtraction can be one ulp too tight.
+    # Put the layout strictly inside a padded box; never mask this with tolerance.
+    magnitude = torch.maximum(low.abs().amax(-1), high.abs().amax(-1))
+    pad = 64 * torch.finfo(DTYPE).eps * (1 + magnitude)
     y[..., :2] -= low[:, None, :]
-    return y, (high-low).amax(dim=-1)
+    y[..., :2] += pad[:, None, None]
+    side = (high-low).amax(dim=-1) + 2*pad
+    side = torch.nextafter(side, torch.full_like(side, torch.inf))
+    return y, side
 
 def all_pair_tiles(x, cfg):
     """Enumerate every unordered pair, without a B*N*N allocation."""
@@ -150,13 +157,22 @@ def expand_to_separate(x, cfg):
             mask=torch.arange(i0,i1,device=x.device)[:,None] >= torch.arange(j0,j1,device=x.device)[None,:]
             factor.masked_fill_(mask[None],1.0)
         scale[b0:b1]=torch.maximum(scale[b0:b1],factor.amax(dim=(1,2)))
-    usable=scale <= cfg.max_expand
+    # Round outward, including when clearance=0. The cap applies to the
+    # actual applied factor, not its downward-rounded predecessor.
+    scale = torch.nextafter(
+        scale * (1 + 64*torch.finfo(DTYPE).eps),
+        torch.full_like(scale, torch.inf))
+    usable=torch.isfinite(scale) & (scale <= cfg.max_expand)
     out=x.clone()
     # Use the true required factor only when bounded. Unusable candidates remain
     # unexpanded and are later rejected; never return giant poisoned coordinates.
     factor=torch.where(usable,scale,torch.ones_like(scale))
     out[...,:2] *= factor[:,None,None]
     out,lengths=canonicalize(out)
+    _, overlap, wall = validate(out, lengths, cfg)
+    # Strict post-transform verification is independent of any caller-selected
+    # screening tolerance. Even tiny positive residuals make this unusable.
+    usable &= torch.isfinite(out).all(dim=(1,2)) & (overlap <= 0) & (wall <= 0)
     return out,lengths,usable
 
 def repair(x0, lengths, cfg, deadline):

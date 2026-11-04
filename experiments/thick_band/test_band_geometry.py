@@ -34,6 +34,8 @@ class GeometryTests(unittest.TestCase):
 
     def test_svg_oracle(self):
         # Source-authored coordinates are a test oracle, never generation input.
+        if not Path("/home/kit/squares/tools/parse_svg_packing.py").exists():
+            self.skipTest("external SVG dataset unavailable")
         sys.path.insert(0,"/home/kit/squares/tools")
         from parse_svg_packing import parse_svg
         for spec,n in [(stenlund(),66),(wainwright(),19)]:
@@ -67,6 +69,26 @@ class GeometryTests(unittest.TestCase):
         self.assertTrue(validate(p,spec.side)["inside"])
         self.assertEqual(validate(p,spec.side)["overlap_pairs"],0)
         self.assertEqual(len(high_precision_rows(spec)),len(p))
+
+    def test_gap_fill_and_repair(self):
+        from band_geometry import greedy_fill_upright, augment_to_target
+        p,s=generate(stenlund())
+        removed=p[-1].copy()
+        q,added=greedy_fill_upright(p[:-1],s,66)
+        self.assertEqual(len(q),66)
+        self.assertEqual(validate(q,s.side)["overlap_pairs"],0)
+        q,meta=augment_to_target(p[:-1],s,66)
+        self.assertEqual(meta["feasible_added_count"],1)
+        self.assertFalse(meta["requires_repair"])
+        s=BandSpec(30.65685424949238,3,39,offset=(-.25,-.25))
+        p,s=generate(s)
+        q,meta=augment_to_target(p,s,909)
+        self.assertEqual(q.shape,(909,3))
+        np.testing.assert_array_equal(q[:907],p)
+        self.assertTrue(meta["requires_repair"])
+        self.assertTrue(validate(q,s.side)["inside"])
+        self.assertFalse(meta["certified"])
+        self.assertLess(max(r["max_penetration"] for r in meta["insertions"]),.28)
 
     def test_lazy_enumerator(self):
         specs=enumerate_specs(10.,widths=(3,),offsets=((0.,0.),),

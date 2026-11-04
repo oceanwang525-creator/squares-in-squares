@@ -29,3 +29,9 @@ Baseline control rows must preserve original decimal strings for final merges.
 Do not mistake float64 screening, lower loss, or changed parser behavior for a
 verified gain. Pin pandas to the successful reference version when reproducing
 serialization checks; certification artifacts document the parser mismatch.
+
+The generator now exposes augment_to_target. It greedily fills actual upright
+vacancies first, then explicitly inserts low-conflict overlapping squares only
+for bounded remaining deficits. requires_repair in metadata must be respected;
+exact count is not a validity certificate. Independent n909 topology starts at
+907 cells; its two endpoint insertions have depth about 0.271 before repair.
