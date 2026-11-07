@@ -28,3 +28,7 @@ cuda/algos
 cuda/algos_test
 algos-benchmark/
 algos-sweep/
+
+cuda/families_cli
+cuda/gemini_packing
+cuda/gemini_seeded

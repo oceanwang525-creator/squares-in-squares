@@ -6,19 +6,19 @@ ARCH ?= $(if $(DETECTED_CC),sm_$(DETECTED_CC),sm_89)
 NVCCFLAGS ?= -O3 -std=c++17
 CXXFLAGS ?= -O3 -std=c++17 -pthread
 PROGRAMS = algos algos_test packing seeded selftest globaltest seeded_test certifier families_cli
-.PHONY: all check clean
+.PHONY: all check clean experimental
 all: $(PROGRAMS)
 algos_test: tests/algos_test.cu algos.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
 algos: algos.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
-packing: packing.cu families.hpp
+packing: packing.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
-seeded: seeded.cu families.hpp
+seeded: seeded.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
-selftest globaltest: %: tests/%.cu packing.cu families.hpp
+selftest globaltest: %: tests/%.cu packing.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
-seeded_test: tests/seeded_test.cu seeded.cu families.hpp
+seeded_test: tests/seeded_test.cu seeded.cu
 	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
 certifier: certifier.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
@@ -30,4 +30,10 @@ check: all
 	./globaltest
 	./seeded_test
 clean:
-	rm -f $(PROGRAMS)
+	rm -f $(PROGRAMS) gemini_packing gemini_seeded
+
+experimental: gemini_packing gemini_seeded
+gemini_packing: experimental/gemini_packing.cu families.hpp
+	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
+gemini_seeded: experimental/gemini_seeded.cu families.hpp
+	$(NVCC) $(NVCCFLAGS) -arch=$(ARCH) $< -o $@
