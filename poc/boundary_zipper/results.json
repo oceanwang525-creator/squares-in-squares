@@ -1,0 +1,266 @@
+{
+  "baseline": "/home/kit/out/public-20261104/merged-material-candidate.csv",
+  "targets": [
+    908,
+    910,
+    972
+  ],
+  "trials": [
+    {
+      "removed": 305,
+      "frozen": 602,
+      "candidates": 3278,
+      "edges": 50262,
+      "target_refill": 306,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.61836792
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 305,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 6.228878319030628,
+      "reason": "no_plus_one_solution",
+      "n": 908,
+      "donor": 907,
+      "variant": 0
+    },
+    {
+      "removed": 305,
+      "frozen": 602,
+      "candidates": 3234,
+      "edges": 48790,
+      "target_refill": 306,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.61836792
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 305,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 6.559293828962836,
+      "reason": "no_plus_one_solution",
+      "n": 908,
+      "donor": 907,
+      "variant": 1
+    },
+    {
+      "removed": 309,
+      "frozen": 600,
+      "candidates": 3161,
+      "edges": 47017,
+      "target_refill": 310,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.65685425
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 309,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 5.8365078620263375,
+      "reason": "no_plus_one_solution",
+      "n": 910,
+      "donor": 909,
+      "variant": 0
+    },
+    {
+      "removed": 304,
+      "frozen": 605,
+      "candidates": 3039,
+      "edges": 43674,
+      "target_refill": 305,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.65685425
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 304,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 5.271014785976149,
+      "reason": "no_plus_one_solution",
+      "n": 910,
+      "donor": 909,
+      "variant": 1
+    },
+    {
+      "removed": 317,
+      "frozen": 654,
+      "candidates": 3399,
+      "edges": 54662,
+      "target_refill": 318,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.67877988
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 317,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 6.309201884025242,
+      "reason": "no_plus_one_solution",
+      "n": 972,
+      "donor": 971,
+      "variant": 0
+    },
+    {
+      "removed": 318,
+      "frozen": 653,
+      "candidates": 3368,
+      "edges": 54245,
+      "target_refill": 319,
+      "residues": [
+        0.41421356,
+        0.5,
+        0.67877988
+      ],
+      "cap_hit": false,
+      "all_four_extrema_free": true,
+      "boundary_connected": true,
+      "identity_candidates_retained": 318,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed": 6.168045242025983,
+      "reason": "no_plus_one_solution",
+      "n": 972,
+      "donor": 971,
+      "variant": 1
+    }
+  ],
+  "summary": {
+    "908": {
+      "output_kind": "constructive_grid_fallback",
+      "augmentation_succeeded": false,
+      "exact_count": 908,
+      "baseline": {
+        "literal": {
+          "ok": true,
+          "L": "30.63702955961203500000000000000000000000000000000000"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "30.63702955961203500000000000000000000000000000000000"
+        }
+      },
+      "output": {
+        "literal": {
+          "ok": true,
+          "L": "31.00000000000000000000000000000000000000000000000000"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "31.00000000000000000000000000000000000000000000000000"
+        }
+      },
+      "comparison": {
+        "literal": {
+          "delta_L": "0.36297044038796500000000000000000000000000000000000",
+          "strict_win": false
+        },
+        "pandas": {
+          "delta_L": "0.36297044038796500000000000000000000000000000000000",
+          "strict_win": false
+        }
+      },
+      "verified_win": false
+    },
+    "910": {
+      "output_kind": "constructive_grid_fallback",
+      "augmentation_succeeded": false,
+      "exact_count": 910,
+      "baseline": {
+        "literal": {
+          "ok": true,
+          "L": "30.69096012064609301099087714033620383408805471054880"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "30.69096012064609301099087714033620383408805471054880"
+        }
+      },
+      "output": {
+        "literal": {
+          "ok": true,
+          "L": "31.00000000000000000000000000000000000000000000000000"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "31.00000000000000000000000000000000000000000000000000"
+        }
+      },
+      "comparison": {
+        "literal": {
+          "delta_L": "0.30903987935390698900912285966379616591194528945120",
+          "strict_win": false
+        },
+        "pandas": {
+          "delta_L": "0.30903987935390698900912285966379616591194528945120",
+          "strict_win": false
+        }
+      },
+      "verified_win": false
+    },
+    "972": {
+      "output_kind": "constructive_grid_fallback",
+      "augmentation_succeeded": false,
+      "exact_count": 972,
+      "baseline": {
+        "literal": {
+          "ok": true,
+          "L": "31.69238815542838555961566082107349804168366869287818"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "31.69238815542838555961566082107349804168366869287818"
+        }
+      },
+      "output": {
+        "literal": {
+          "ok": true,
+          "L": "32.00000000000000000000000000000000000000000000000000"
+        },
+        "pandas": {
+          "ok": true,
+          "L": "32.00000000000000000000000000000000000000000000000000"
+        }
+      },
+      "comparison": {
+        "literal": {
+          "delta_L": "0.30761184457161444038433917892650195831633130712182",
+          "strict_win": false
+        },
+        "pandas": {
+          "delta_L": "0.30761184457161444038433917892650195831633130712182",
+          "strict_win": false
+        }
+      },
+      "verified_win": false
+    }
+  },
+  "elapsed_seconds": 52.06120211700909,
+  "search_budget_seconds": 70.0,
+  "pandas_version": "3.1.0",
+  "note": "Partial CSV only. Missing n not scored. No GPU, C++ check, submission or git operations.",
+  "search_pandas_version": "3.1.0",
+  "mpmath_version": "1.4.1",
+  "reference_recertification_seconds": 17.04169239400653,
+  "reference_certification": true
+}
