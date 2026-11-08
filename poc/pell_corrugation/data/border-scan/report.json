@@ -1,0 +1,23 @@
+{
+  "baseline_score": 22.25406709809781,
+  "merged_scores": {
+    "literal": 22.254062083924335,
+    "pandas": 22.254062083924335
+  },
+  "delta": {
+    "literal": -5.014173474648942e-06,
+    "pandas": -5.014173474648942e-06
+  },
+  "wins": [
+    739,
+    794,
+    851,
+    910
+  ],
+  "seconds": 1989.06871175766,
+  "pandas_version": "3.1.0",
+  "counts": {
+    "screened": 423357
+  },
+  "coverage": "All w with n0<=1000 attempted; upright L borders t<=k, four extreme-prefix deletion orders and four partial-border prefix orders, count<=1000; only shortlist polished. No arbitrary-subset exhaustive claim."
+}

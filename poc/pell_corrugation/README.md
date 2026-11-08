@@ -9,3 +9,5 @@ python3 poc/pell_corrugation/poc/pell_corrugation.py --help
 ```
 
 [Measured report](docs/pell_corrugation.md). Saved CSVs and results are in `data/`.
+
+The completed CPU border scan improves the public23 merge at n=739, 794, 851 and 910. Whole-portfolio official score is **22.254062083924335**, down from 22.25406709809781. All 1000 groups pass literal CSV and actual pandas 3.1.0 round-trip certification, independently checked by C++. See [border scan](docs/border_scan.md).
