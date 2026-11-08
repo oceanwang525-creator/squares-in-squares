@@ -1,0 +1,80 @@
+{
+  "elapsed_seconds": 78.6089632080002,
+  "incumbent_972_L": "31.69238815542838555961566082107349804168366869287818",
+  "public_971_L": "31.67877987534328000000000000000000000000000000000000",
+  "portfolio_971_L": "31.70710678118654800000000000000000000000000000000000",
+  "structure": {
+    "upright_count": 739,
+    "tilted_count": 233,
+    "column_lengths": [
+      13,
+      13,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      21,
+      13,
+      13,
+      13
+    ]
+  },
+  "targets": {
+    "971": {
+      "target_n": 971,
+      "deleted_count": 1,
+      "column_index": 0,
+      "column_length": 13,
+      "end": "min",
+      "deleted_indices": [
+        219
+      ],
+      "initial_L": 31.692388155428386,
+      "polished_L": 31.692388155428386,
+      "iterations_run": 5,
+      "accepted_steps": 0,
+      "candidates_tested": 26
+    },
+    "970": {
+      "target_n": 970,
+      "deleted_count": 2,
+      "column_index": 0,
+      "column_length": 13,
+      "end": "min",
+      "deleted_indices": [
+        219,
+        220
+      ],
+      "initial_L": 31.692388155428386,
+      "polished_L": 31.692388155428386,
+      "iterations_run": 5,
+      "accepted_steps": 0,
+      "candidates_tested": 26
+    }
+  },
+  "certificates": {
+    "970": {
+      "literal": {
+        "ok": false,
+        "error": "n=970: infeasible: Squares 76 and 759 overlap (float check)"
+      },
+      "actual_pandas": {
+        "ok": false,
+        "error": "n=970: infeasible: Squares 76 and 759 overlap (float check)"
+      }
+    },
+    "971": {
+      "literal": {
+        "ok": false,
+        "error": "n=971: infeasible: Squares 76 and 760 overlap (float check)"
+      },
+      "actual_pandas": {
+        "ok": false,
+        "error": "n=971: infeasible: Squares 76 and 760 overlap (float check)"
+      }
+    }
+  }
+}

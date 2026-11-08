@@ -1,0 +1,53 @@
+{
+  "908": {
+    "family": "slope_band_dual_pocket",
+    "target_n": 908,
+    "total_squares": 908,
+    "upright_squares": 708,
+    "tilted_squares": 200,
+    "pockets": 2,
+    "squares_per_pocket": 100,
+    "column_profile": [
+      5,
+      7,
+      8,
+      8,
+      9,
+      8,
+      8,
+      9,
+      9,
+      8,
+      8,
+      8,
+      5
+    ],
+    "symmetry_offset": [
+      2.0,
+      -3.0
+    ],
+    "symmetry_valid": true,
+    "symmetry_residual": 9.016403887135545e-11,
+    "L": 30.637029559612035,
+    "baseline_L": 30.70710678118655,
+    "gain_vs_baseline": -0.07007722157451468,
+    "certified_L": "30.637029559612035",
+    "sat_ok": true,
+    "sat_min_gap": "2.5000446158e-11"
+  },
+  "968": {
+    "family": "slope_band_dual_pocket_composite",
+    "target_n": 968,
+    "core_squares": 908,
+    "border_squares": 60,
+    "total_squares": 968,
+    "upright_squares": 768,
+    "tilted_squares": 200,
+    "L": 31.637029659612036,
+    "baseline_L": 31.70710678118655,
+    "gain_vs_baseline": -0.07007712157451351,
+    "certified_L": "31.637029659612036",
+    "sat_ok": true,
+    "sat_min_gap": "2.5000446158e-11"
+  }
+}
