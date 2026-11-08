@@ -1,0 +1,635 @@
+{
+  "elapsed_seconds": 237.69987316699917,
+  "pandas_version": "3.1.0",
+  "pell17_family_cores": [
+    {
+      "family": "pell17_corrugated_band",
+      "w": 9,
+      "l": 21,
+      "a": [
+        15,
+        14
+      ],
+      "b": [
+        6,
+        6
+      ],
+      "D": 17,
+      "slack_45": 0.020815280171307293,
+      "k0": 21,
+      "n0": 456,
+      "L45": 21.86396103067893,
+      "L_corrugated": 21.862433095369656,
+      "corrugation_gain": -0.0015279353092729764
+    },
+    {
+      "family": "pell17_corrugated_band",
+      "w": 13,
+      "l": 25,
+      "a": [
+        18,
+        17
+      ],
+      "b": [
+        9,
+        9
+      ],
+      "D": 17,
+      "slack_45": 0.020815280171307293,
+      "k0": 27,
+      "n0": 739,
+      "L45": 27.692388155425117,
+      "L_corrugated": 27.690921182134062,
+      "corrugation_gain": -0.0014669732910554956
+    }
+  ],
+  "comparisons": {
+    "543": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 23,
+        "k_core": 23,
+        "t_border": 0,
+        "w": 16,
+        "l": 16,
+        "a": [
+          12,
+          11
+        ],
+        "b": [
+          11,
+          12
+        ],
+        "D": 0,
+        "L45": 23.81370849898476,
+        "count": 543
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "23.81370854461217400000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "23.81370854461217500000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "24.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1862914553878260000000000000",
+        "actual_pandas": "-0.1862914553878250000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "544": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 23,
+        "k_core": 23,
+        "t_border": 0,
+        "w": 4,
+        "l": 28,
+        "a": [
+          20,
+          20
+        ],
+        "b": [
+          3,
+          3
+        ],
+        "D": 34,
+        "L45": 23.82842712474619,
+        "count": 544,
+        "pell17_corrugated_alternative": {
+          "kind": "pell17_corrugated_band_l_border",
+          "k_total": 23,
+          "k_core": 21,
+          "t_border": 2,
+          "w": 9,
+          "l": 21,
+          "a": [
+            15,
+            14
+          ],
+          "b": [
+            6,
+            6
+          ],
+          "D": 17,
+          "L45": 23.86396103067893,
+          "L_polished": 23.862433007753296,
+          "corrugation_gain_vs_45": -0.0015280229256333655
+        }
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "23.82842717040304600000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "23.82842717040304600000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "24.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1715728295969540000000000000",
+        "actual_pandas": "-0.1715728295969540000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "545": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 23,
+        "k_core": 20,
+        "t_border": 3,
+        "w": 14,
+        "l": 14,
+        "a": [
+          10,
+          10
+        ],
+        "b": [
+          10,
+          10
+        ],
+        "D": 0,
+        "L45": 23.899494936611664,
+        "count": 545
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "23.89949498241065100000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "23.89949498241065100000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "24.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1005050175893490000000000000",
+        "actual_pandas": "-0.1005050175893490000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "591": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 24,
+        "k_core": 23,
+        "t_border": 1,
+        "w": 4,
+        "l": 28,
+        "a": [
+          20,
+          20
+        ],
+        "b": [
+          3,
+          3
+        ],
+        "D": 34,
+        "L45": 24.82842712474619,
+        "count": 591,
+        "pell17_corrugated_alternative": {
+          "kind": "pell17_corrugated_band_l_border",
+          "k_total": 24,
+          "k_core": 21,
+          "t_border": 3,
+          "w": 9,
+          "l": 21,
+          "a": [
+            15,
+            14
+          ],
+          "b": [
+            6,
+            6
+          ],
+          "D": 17,
+          "L45": 24.86396103067893,
+          "L_polished": 24.862432989583777,
+          "corrugation_gain_vs_45": -0.001528041095152588
+        }
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "24.82842717240304600000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "24.82842717240304600000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "25.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1715728275969540000000000000",
+        "actual_pandas": "-0.1715728275969540000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "592": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 24,
+        "k_core": 24,
+        "t_border": 0,
+        "w": 14,
+        "l": 21,
+        "a": [
+          14,
+          14
+        ],
+        "b": [
+          9,
+          9
+        ],
+        "D": 10,
+        "L45": 24.899494936611664,
+        "count": 592
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "24.89949498441065100000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "24.89949498441065100000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "25.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1005050155893490000000000000",
+        "actual_pandas": "-0.1005050155893490000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "593": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 24,
+        "k_core": 24,
+        "t_border": 0,
+        "w": 14,
+        "l": 21,
+        "a": [
+          14,
+          14
+        ],
+        "b": [
+          9,
+          9
+        ],
+        "D": 10,
+        "L45": 24.899494936611664,
+        "count": 593
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "24.89949498441065300000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "24.89949498441065300000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "25.00000000000000000000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.1005050155893470000000000000",
+        "actual_pandas": "-0.1005050155893470000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": null,
+      "delta_vs_public_incumbent": null,
+      "improves_public_incumbent": false
+    },
+    "908": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 30,
+        "k_core": 29,
+        "t_border": 1,
+        "w": 20,
+        "l": 20,
+        "a": [
+          15,
+          14
+        ],
+        "b": [
+          14,
+          15
+        ],
+        "D": 0,
+        "L45": 30.64213562373095,
+        "count": 908
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "30.64213568301522100000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "30.64213568301522100000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "30.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.06497109817132700000000000000",
+        "actual_pandas": "-0.06497109817132700000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": "30.63702955961203500000000000000000000000000000000000",
+      "delta_vs_public_incumbent": {
+        "literal": "0.005106123403186000000000000000",
+        "actual_pandas": "0.005106123403186000000000000000"
+      },
+      "improves_public_incumbent": false
+    },
+    "909": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 30,
+        "k_core": 29,
+        "t_border": 1,
+        "w": 8,
+        "l": 32,
+        "a": [
+          23,
+          23
+        ],
+        "b": [
+          6,
+          6
+        ],
+        "D": 34,
+        "L45": 30.65685424949238,
+        "count": 909
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "30.65685430880608700000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "30.65685430880608700000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "30.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.05025247238046100000000000000",
+        "actual_pandas": "-0.05025247238046100000000000000"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": "30.65685424949258200000000000000000000000000000000000",
+      "delta_vs_public_incumbent": {
+        "literal": "5.931350500000000000000000000E-8",
+        "actual_pandas": "5.931350500000000000000000000E-8"
+      },
+      "improves_public_incumbent": false
+    },
+    "910": {
+      "construction": {
+        "kind": "pell17_corrugated_band_l_border",
+        "k_total": 30,
+        "k_core": 27,
+        "t_border": 3,
+        "w": 13,
+        "l": 25,
+        "a": [
+          18,
+          17
+        ],
+        "b": [
+          9,
+          9
+        ],
+        "D": 17,
+        "L45": 30.692388155425117,
+        "L_polished": 30.69092107418828,
+        "corrugation_gain_vs_45": -0.00146708123683581,
+        "count": 910
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "30.69092107418828100723564591975988495430653455035650"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "30.69092107418828100723564591825988495438895591627239"
+        }
+      },
+      "portfolio_baseline_L": "30.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.01618570699826699276435408024",
+        "actual_pandas": "-0.01618570699826699276435408174"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": "30.69096012064609301099087714033620383408805471054880",
+      "delta_vs_public_incumbent": {
+        "literal": "-0.00003904645781200375523122057632",
+        "actual_pandas": "-0.00003904645781200375523122207632"
+      },
+      "improves_public_incumbent": true
+    },
+    "911": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 30,
+        "k_core": 30,
+        "t_border": 0,
+        "w": 1,
+        "l": 42,
+        "a": [
+          29,
+          29
+        ],
+        "b": [
+          0,
+          0
+        ],
+        "D": 58,
+        "L45": 30.707106781186546,
+        "count": 911
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "30.70710684060075600000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "30.70710684060075600000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "30.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "5.941420800000000000000000000E-8",
+        "actual_pandas": "5.941420800000000000000000000E-8"
+      },
+      "improves_portfolio_baseline": false,
+      "public_target_incumbent_L": "30.70710678118672700000000000000000000000000000000000",
+      "delta_vs_public_incumbent": {
+        "literal": "5.941402900000000000000000000E-8",
+        "actual_pandas": "5.941402900000000000000000000E-8"
+      },
+      "improves_public_incumbent": false
+    },
+    "971": {
+      "construction": {
+        "kind": "pell17_corrugated_band_l_border",
+        "k_total": 31,
+        "k_core": 27,
+        "t_border": 4,
+        "w": 13,
+        "l": 25,
+        "a": [
+          18,
+          17
+        ],
+        "b": [
+          9,
+          9
+        ],
+        "D": 17,
+        "L45": 31.692388155425117,
+        "L_polished": 31.690921202134216,
+        "corrugation_gain_vs_45": -0.001466953290901074,
+        "count": 971
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "31.69092120213421650355834018653474642899802858180494"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "31.69092120213421650355834018653474642899802858180494"
+        }
+      },
+      "portfolio_baseline_L": "31.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "-0.01618557905233149644165981347",
+        "actual_pandas": "-0.01618557905233149644165981347"
+      },
+      "improves_portfolio_baseline": true,
+      "public_target_incumbent_L": "31.67877987534328000000000000000000000000000000000000",
+      "delta_vs_public_incumbent": {
+        "literal": "0.01214132679093650355834018653",
+        "actual_pandas": "0.01214132679093650355834018653"
+      },
+      "improves_public_incumbent": false
+    },
+    "972": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 31,
+        "k_core": 31,
+        "t_border": 0,
+        "w": 1,
+        "l": 43,
+        "a": [
+          30,
+          30
+        ],
+        "b": [
+          0,
+          0
+        ],
+        "D": 60,
+        "L45": 31.707106781186546,
+        "count": 972
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "31.70710684260075900000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "31.70710684260075900000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "31.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "6.141421100000000000000000000E-8",
+        "actual_pandas": "6.141421100000000000000000000E-8"
+      },
+      "improves_portfolio_baseline": false,
+      "public_target_incumbent_L": "31.69238815542838555961566082107349804168366869287818",
+      "delta_vs_public_incumbent": {
+        "literal": "0.01471868717237344038433917893",
+        "actual_pandas": "0.01471868717237344038433917893"
+      },
+      "improves_public_incumbent": false
+    },
+    "973": {
+      "construction": {
+        "kind": "staircase_band_l_border",
+        "k_total": 31,
+        "k_core": 31,
+        "t_border": 0,
+        "w": 1,
+        "l": 43,
+        "a": [
+          30,
+          30
+        ],
+        "b": [
+          0,
+          0
+        ],
+        "D": 60,
+        "L45": 31.707106781186546,
+        "count": 973
+      },
+      "certificates": {
+        "literal": {
+          "ok": true,
+          "L": "31.70710684260075900000000000000000000000000000000000"
+        },
+        "actual_pandas": {
+          "ok": true,
+          "L": "31.70710684260075900000000000000000000000000000000000"
+        }
+      },
+      "portfolio_baseline_L": "31.70710678118654800000000000000000000000000000000000",
+      "delta_vs_portfolio_baseline": {
+        "literal": "6.141421100000000000000000000E-8",
+        "actual_pandas": "6.141421100000000000000000000E-8"
+      },
+      "improves_portfolio_baseline": false,
+      "public_target_incumbent_L": "31.70710678118685000000000000000000000000000000000000",
+      "delta_vs_public_incumbent": {
+        "literal": "6.141390900000000000000000000E-8",
+        "actual_pandas": "6.141390900000000000000000000E-8"
+      },
+      "improves_public_incumbent": false
+    }
+  },
+  "portfolio_baseline_wins": 10,
+  "public_incumbent_wins": 1
+}
