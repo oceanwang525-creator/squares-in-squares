@@ -30,6 +30,18 @@ Synthetic out-of-phase pinch-column corrugated staircase-band generator with asy
 | $34$ | $8$ | `(5, 6)` | `(23, 22)` | $32$ | $821$ | $29$ | `29.156854` | $1$ | $880$ |
 | $58$ | $1$ | `(0, 1)` | `(30, 29)` | $42$ | $943$ | $31$ | `31.207107` | $0$ | $943$ |
 
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 117 | 11.32842700 | 11.00000000 | +0.32842700 | Falsified |
+| 431 | 21.27817500 | 21.00000000 | +0.27817500 | Falsified |
+| 831 | 29.27817500 | 29.00000000 | +0.27817500 | Falsified |
+| 521 | 23.32842700 | 23.00000000 | +0.32842700 | Falsified |
+| 821 | 29.15685400 | 29.00000000 | +0.15685400 | Falsified |
+| 880 | 30.15685400 | 30.00000000 | +0.15685400 | Falsified |
+| 943 | 31.20710700 | 31.00000000 | +0.20710700 | Falsified |
+
 ## Usage
 
 ```sh

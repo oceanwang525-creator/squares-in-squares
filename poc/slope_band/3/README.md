@@ -16,10 +16,17 @@ The dual-pocket symmetric composite eliminates this diagonal dilation constraint
    - 13-column profile: $(5, 7, 8, 8, 9, 8, 8, 9, 9, 8, 8, 8, 5)$ totaling 100 squares per pocket.
 2. **Discrete Transposition Symmetry:** The two 100-square blocks are linked by exact transposition symmetry with integer offsets:
    $$\begin{pmatrix} x_2 \\ y_2 \\ \theta_2 \end{pmatrix} = \begin{pmatrix} y_1 - 3.0 \\ x_1 + 2.0 \\ -\theta_1 \end{pmatrix}$$
-3. **Solid Central Diagonal Corridor:** Upright squares ($0^\circ$) run continuously along the main diagonal from SW to NE, achieving $100\%$ corridor density (708 upright squares for $n = 908$, container side $L = 30.637030$).
+3. **Solid Central Diagonal Corridor:** Upright squares ($0^\circ$) run continuously along the main diagonal from SW to NE, achieving $100\%$ corridor density (708 upright squares for $n = 908$, container side $L = 30.637030$). Matching the incumbent at $L = 30.63702956$ is a tie ($\Delta L = 0.0$), not a win.
 4. **Upright L-Border Composite Wrapping ($n = 968$):** Wrapping the dual-pocket core with 60 border squares (30 East and 30 North) yields $n = 968$ with container side:
    $$L_{968} = L_{908} + 1.0 + \text{margin} = 31.637031$$
-   Beats the portfolio baseline ($L = 31.707107$) by **$\Delta L = -0.070076$** with zero boundary jamming.
+   Against our certified incumbent in `merged.csv` ($L = 31.61836792$), candidate $L$ is larger by $\Delta L = +0.018663$ (Falsified).
+
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 908 | 30.63702956 | 30.63702956 | 0.00000000 | Tie |
+| 968 | 31.63703056 | 31.61836792 | +0.01866264 | Falsified |
 
 ---
 

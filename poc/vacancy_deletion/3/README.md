@@ -14,6 +14,13 @@ The certified public incumbent at $n = 972$ is an uncorrugated $(w = 13, t = 4)$
 
 Deleting $m \in \{1, 2\}$ squares eliminates the longitudinal jamming condition along the target column, allowing adjacent columns to shift into the cavity and relaxing the boundary through a 4-sign-piece container shrink LP to target $n = 971$ and $n = 970$.
 
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 970 | 31.69238816 | 31.65685425 | +0.03553391 | Falsified |
+| 971 | 31.69238816 | 31.67877988 | +0.01360828 | Falsified |
+
 ### Usage
 
 Run from the repository root after installing the shared baseline package:

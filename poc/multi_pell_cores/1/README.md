@@ -41,11 +41,31 @@ For any symmetric odd $D$ and strip width $w$ with end staircases $b_1 = b_2 = b
 
 ### High-Value Core Findings
 - **$D=51, w=3$ Core ($n_0 = 907$)**:
-  The uncorrugated algebraic side length $L_{45} = 30.621320344$ is strictly smaller than the public incumbent for $n=908$ ($L = 30.6370295596$).
+  The uncorrugated algebraic side length $L_{45} = 30.621320344$ is strictly smaller than the public incumbent for $n=908$ ($L = 30.6370295596$), but when compared against the exact certified incumbent for $n=907$ ($L = 30.61836792$), candidate $L$ is larger by $\Delta L = +0.002952$ (Falsified).
 - **$D=3, w=20$ Core ($n_0 = 906$)**:
   Yields $L_{45} = 30.642135624$, directly adjacent to the high-deficit target cluster $908-911$.
 - **$D=27, w=6$ Wrapped Core ($n_0 = 494, t=8 \implies n = 910$)**:
   Provides an independent alternative composite route to $n = 910$.
+
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 19 | 4.91274642 | 4.88561808 | +0.02712834 | Falsified |
+| 37 | 6.62132034 | 6.59861961 | +0.02270073 | Falsified |
+| 104 | 10.74264069 | 10.70710678 | +0.03553391 | Falsified |
+| 205 | 14.86396103 | 14.82445115 | +0.03950988 | Falsified |
+| 257 | 16.57106781 | 16.53553391 | +0.03553390 | Falsified |
+| 406 | 20.69238815 | 20.65685425 | +0.03553390 | Falsified |
+| 589 | 24.81370850 | 24.77817459 | +0.03553391 | Falsified |
+| 906 | 30.64213562 | 30.59137815 | +0.05075747 | Falsified |
+| 269 | 16.91421356 | 16.90151358 | +0.01269998 | Falsified |
+| 328 | 18.62132034 | 18.61436894 | +0.00695140 | Falsified |
+| 494 | 22.74264069 | 22.73609617 | +0.00654452 | Falsified |
+| 694 | 26.86396103 | 26.82804674 | +0.03591429 | Falsified |
+| 787 | 28.57106781 | 28.53553391 | +0.03553390 | Falsified |
+| 807 | 28.91421356 | 28.87055786 | +0.04365570 | Falsified |
+| 907 | 30.62132034 | 30.61836792 | +0.00295242 | Falsified |
 
 ## Usage
 

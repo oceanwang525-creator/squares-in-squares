@@ -5,8 +5,17 @@ Tests vacancy collapse by deleting 1–2 squares directly from diagonal band col
 
 **Result: Falsification Gate Failed ($\Delta L > 0$).**
 - Target $n=909$: polished $L \approx 30.690921$, incumbent $L = 30.65685425$ ($\Delta L = +0.034067$).
+- Target $n=908$: polished $L \approx 30.690921$, incumbent $L = 30.63702956$ ($\Delta L = +0.053891$).
 - Target $n=971$: polished $L \approx 31.690921$, incumbent $L = 31.67877988$ ($\Delta L = +0.012141$).
 - **Geometric Blocker**: In the uniform 25-column Pell-17 core, deleting a square from column $c$ relieves longitudinal jamming for that single column, but the other 24 intact columns still span rigidly between flank staircases $a_1$ and $a_2$. The container side $L$ is held by the intact columns, preventing the flank staircases from collapsing inward.
+
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 908 | 30.69092100 | 30.63702956 | +0.05389144 | Falsified |
+| 909 | 30.69092100 | 30.65685425 | +0.03406675 | Falsified |
+| 971 | 31.69092100 | 31.67877988 | +0.01214112 | Falsified |
 
 ## Code Structure
 - `poc/band_vacancy.py`: Core deletion generator, vacancy collapse seeding, L-border wrapper, and 4-sign-piece LP evaluation.

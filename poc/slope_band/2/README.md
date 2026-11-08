@@ -4,6 +4,12 @@ Continuous variable-slope band optimizer centered around $\theta = 24.1004^\circ
 
 Implements the 4-sign-piece epigraph LP formulation to prevent stall at the non-differentiable $r=0$ Separating Axis Theorem (SAT) support kink, supporting heterogeneous angular degrees of freedom (free tilted band squares vs pinned $\theta = 0$ upright squares).
 
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 908 | 30.63702956 | 30.63702956 | 0.00000000 | Tie |
+
 ## Structure
 
 - `poc/variable_slope_optimizer.py`: Core LP polisher, 4-sign-piece epigraph constraints, SAT clearance checker, and pocket layout builder.

@@ -11,6 +11,12 @@ This yields a direct transverse inflation saving of $\Delta L_{\text{adv}} = \sq
 
 Integer Cartesian steps of $\Delta x = 2, \Delta y = 1$ advance exactly along the band tangent $\mathbf{t} = (2/\sqrt{5}, 1/\sqrt{5})$ with step length $\sqrt{5} \approx 2.236068$ and zero normal displacement ($\Delta \mathbf{r} \cdot \mathbf{n} = 0$). Commensurate band lengths match continued fraction convergents of $\sqrt{5}$ ($38/17$, $9/4$), with residual vernier mismatch absorbed by 4-sign-piece epigraph LP relaxation.
 
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 908 | 30.63702956 | 30.63702956 | 0.00000000 | Tie |
+
 ## Structure
 
 - `poc/slope_band.py`: Generator, periodic $2 \times 1$ tooth staircase builder, asymmetric corner buffers, 4-sign-piece LP relaxation, and falsification gate test.

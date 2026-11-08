@@ -20,7 +20,15 @@ Investigates semi-convergent Pell cores where $\ell = w + \lceil D/\sqrt{2} \rce
 | Nominal $L_{45}$ | $9.328427$ | $29.656854$ | $27.692388$ |
 | HiGHS LP Status at $L_{45}+0.15$ | **Infeasible** | **Infeasible** | Optimal |
 | Corrugation Gain $\Delta L$ | N/A ($+0.1815$ with dilation) | N/A (Jammed) | **$-0.001467$** |
-| Gate Outcome | **FALSIFIED** | **FALSIFIED** | **CERTIFIED WIN** ($n=910$) |
+| Gate Outcome | **FALSIFIED** | **FALSIFIED** | **TIE / INCUMBENT ROUTE** ($n=910$) |
+
+## Incumbent Comparison Ledger (merged.csv)
+
+| Target n | Candidate L | Our Incumbent L (merged.csv) | Delta L | Gate Status |
+|:---|---:|---:|---:|:---|
+| 78 | 9.32842700 | 9.00000000 | +0.32842700 | Falsified |
+| 878 | 29.65685400 | 30.00000000 | -0.34314600 | Falsified (LP Infeasible) |
+| 910 | 30.69092107 | 30.69092107 | 0.00000000 | Tie |
 
 ## Why Negative Slack Fails
 
