@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.6000 -0.6000 14.2000 14.2000" width="800" height="800">
+  <title>n=155, L=13.000000 (144 upright, 11 tilted)</title>
+  <desc>Packing solution of 155 unit squares in container of side 13.000000. Upright: 144, Tilted: 11.</desc>
+  <rect x="-0.6000" y="-0.6000" width="14.2000" height="14.2000" fill="#f8fafc" />
+  <rect x="0.0000" y="0.0000" width="13.0000" height="13.0000" fill="#ffffff" />
+  <!-- Container Grid & Backing -->
+  <!-- Unit Squares -->
+  <g id="squares">
+    <polygon points="1.9726,6.4502 0.9775,6.5498 1.0770,7.5448 2.0721,7.4453" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.9676,6.3507 1.9726,6.4502 2.0721,7.4453 3.0671,7.3458" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.9627,6.2512 2.9676,6.3507 3.0671,7.3458 4.0622,7.2463" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.9577,6.1517 3.9627,6.2512 4.0622,7.2463 5.0572,7.1468" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.9527,6.0522 4.9577,6.1517 5.0572,7.1468 6.0522,7.0473" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.9478,5.9527 5.9527,6.0522 6.0522,7.0473 7.0473,6.9478" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.9428,5.8532 6.9478,5.9527 7.0473,6.9478 8.0423,6.8483" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.9378,5.7537 7.9428,5.8532 8.0423,6.8483 9.0373,6.7488" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.9329,5.6542 8.9378,5.7537 9.0373,6.7488 10.0324,6.6493" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.9279,5.5547 9.9329,5.6542 10.0324,6.6493 11.0274,6.5498" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.9230,5.4552 10.9279,5.5547 11.0274,6.5498 12.0225,6.4502" fill="#ff6b6b" stroke="#780000" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,0.0000 0.0000,0.0000 0.0000,1.0000 1.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,12.0000 12.0000,12.0000 12.0000,13.0000 13.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,12.0000 0.0000,12.0000 0.0000,13.0000 1.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,0.0000 12.0000,0.0000 12.0000,1.0000 13.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,1.0000 0.0000,1.0000 0.0000,2.0000 1.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,11.0000 12.0000,11.0000 12.0000,12.0000 13.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,11.0000 0.0000,11.0000 0.0000,12.0000 1.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,1.0000 12.0000,1.0000 12.0000,2.0000 13.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,2.0000 0.0000,2.0000 0.0000,3.0000 1.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,10.0000 12.0000,10.0000 12.0000,11.0000 13.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,10.0000 0.0000,10.0000 0.0000,11.0000 1.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,2.0000 12.0000,2.0000 12.0000,3.0000 13.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,3.0000 0.0000,3.0000 0.0000,4.0000 1.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,9.0000 12.0000,9.0000 12.0000,10.0000 13.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,9.0000 0.0000,9.0000 0.0000,10.0000 1.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,3.0000 12.0000,3.0000 12.0000,4.0000 13.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,4.0000 0.0000,4.0000 0.0000,5.0000 1.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,8.0000 12.0000,8.0000 12.0000,9.0000 13.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,8.0000 0.0000,8.0000 0.0000,9.0000 1.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,4.0000 12.0000,4.0000 12.0000,5.0000 13.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,5.0000 0.0000,5.0000 0.0000,6.0000 1.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,7.0000 12.0000,7.0000 12.0000,8.0000 13.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="1.0000,7.0000 0.0000,7.0000 0.0000,8.0000 1.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="13.0000,5.0000 12.0000,5.0000 12.0000,6.0000 13.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,0.0000 1.0000,0.0000 1.0000,1.0000 2.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,12.0000 11.0000,12.0000 11.0000,13.0000 12.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,12.0000 1.0000,12.0000 1.0000,13.0000 2.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,0.0000 11.0000,0.0000 11.0000,1.0000 12.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,1.0000 1.0000,1.0000 1.0000,2.0000 2.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,11.0000 11.0000,11.0000 11.0000,12.0000 12.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,11.0000 1.0000,11.0000 1.0000,12.0000 2.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,1.0000 11.0000,1.0000 11.0000,2.0000 12.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,2.0000 1.0000,2.0000 1.0000,3.0000 2.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,10.0000 11.0000,10.0000 11.0000,11.0000 12.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,10.0000 1.0000,10.0000 1.0000,11.0000 2.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,2.0000 11.0000,2.0000 11.0000,3.0000 12.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,3.0000 1.0000,3.0000 1.0000,4.0000 2.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,9.0000 11.0000,9.0000 11.0000,10.0000 12.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,9.0000 1.0000,9.0000 1.0000,10.0000 2.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,3.0000 11.0000,3.0000 11.0000,4.0000 12.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,4.0000 1.0000,4.0000 1.0000,5.0000 2.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,8.0000 11.0000,8.0000 11.0000,9.0000 12.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,8.0000 1.0000,8.0000 1.0000,9.0000 2.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,4.0000 11.0000,4.0000 11.0000,5.0000 12.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="2.0000,5.0000 1.0000,5.0000 1.0000,6.0000 2.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="12.0000,7.0000 11.0000,7.0000 11.0000,8.0000 12.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,0.0000 2.0000,0.0000 2.0000,1.0000 3.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,12.0000 10.0000,12.0000 10.0000,13.0000 11.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,12.0000 2.0000,12.0000 2.0000,13.0000 3.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,0.0000 10.0000,0.0000 10.0000,1.0000 11.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,1.0000 2.0000,1.0000 2.0000,2.0000 3.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,11.0000 10.0000,11.0000 10.0000,12.0000 11.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,11.0000 2.0000,11.0000 2.0000,12.0000 3.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,1.0000 10.0000,1.0000 10.0000,2.0000 11.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,2.0000 2.0000,2.0000 2.0000,3.0000 3.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,10.0000 10.0000,10.0000 10.0000,11.0000 11.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,10.0000 2.0000,10.0000 2.0000,11.0000 3.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,2.0000 10.0000,2.0000 10.0000,3.0000 11.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,3.0000 2.0000,3.0000 2.0000,4.0000 3.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,9.0000 10.0000,9.0000 10.0000,10.0000 11.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,9.0000 2.0000,9.0000 2.0000,10.0000 3.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,3.0000 10.0000,3.0000 10.0000,4.0000 11.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,4.0000 2.0000,4.0000 2.0000,5.0000 3.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,8.0000 10.0000,8.0000 10.0000,9.0000 11.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,8.0000 2.0000,8.0000 2.0000,9.0000 3.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,4.0000 10.0000,4.0000 10.0000,5.0000 11.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="3.0000,5.0000 2.0000,5.0000 2.0000,6.0000 3.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="11.0000,7.0000 10.0000,7.0000 10.0000,8.0000 11.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,0.0000 3.0000,0.0000 3.0000,1.0000 4.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,12.0000 9.0000,12.0000 9.0000,13.0000 10.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,12.0000 3.0000,12.0000 3.0000,13.0000 4.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,0.0000 9.0000,0.0000 9.0000,1.0000 10.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,1.0000 3.0000,1.0000 3.0000,2.0000 4.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,11.0000 9.0000,11.0000 9.0000,12.0000 10.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,11.0000 3.0000,11.0000 3.0000,12.0000 4.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,1.0000 9.0000,1.0000 9.0000,2.0000 10.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,2.0000 3.0000,2.0000 3.0000,3.0000 4.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,10.0000 9.0000,10.0000 9.0000,11.0000 10.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,10.0000 3.0000,10.0000 3.0000,11.0000 4.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,2.0000 9.0000,2.0000 9.0000,3.0000 10.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,3.0000 3.0000,3.0000 3.0000,4.0000 4.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,9.0000 9.0000,9.0000 9.0000,10.0000 10.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,9.0000 3.0000,9.0000 3.0000,10.0000 4.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,3.0000 9.0000,3.0000 9.0000,4.0000 10.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,4.0000 3.0000,4.0000 3.0000,5.0000 4.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,8.0000 9.0000,8.0000 9.0000,9.0000 10.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,8.0000 3.0000,8.0000 3.0000,9.0000 4.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,4.0000 9.0000,4.0000 9.0000,5.0000 10.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="4.0000,5.0000 3.0000,5.0000 3.0000,6.0000 4.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="10.0000,7.0000 9.0000,7.0000 9.0000,8.0000 10.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,0.0000 4.0000,0.0000 4.0000,1.0000 5.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,12.0000 8.0000,12.0000 8.0000,13.0000 9.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,12.0000 4.0000,12.0000 4.0000,13.0000 5.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,0.0000 8.0000,0.0000 8.0000,1.0000 9.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,1.0000 4.0000,1.0000 4.0000,2.0000 5.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,11.0000 8.0000,11.0000 8.0000,12.0000 9.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,11.0000 4.0000,11.0000 4.0000,12.0000 5.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,1.0000 8.0000,1.0000 8.0000,2.0000 9.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,2.0000 4.0000,2.0000 4.0000,3.0000 5.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,10.0000 8.0000,10.0000 8.0000,11.0000 9.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,10.0000 4.0000,10.0000 4.0000,11.0000 5.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,2.0000 8.0000,2.0000 8.0000,3.0000 9.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,3.0000 4.0000,3.0000 4.0000,4.0000 5.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,9.0000 8.0000,9.0000 8.0000,10.0000 9.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,9.0000 4.0000,9.0000 4.0000,10.0000 5.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,3.0000 8.0000,3.0000 8.0000,4.0000 9.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,4.0000 4.0000,4.0000 4.0000,5.0000 5.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,8.0000 8.0000,8.0000 8.0000,9.0000 9.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,8.0000 4.0000,8.0000 4.0000,9.0000 5.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,4.0000 8.0000,4.0000 8.0000,5.0000 9.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="5.0000,5.0000 4.0000,5.0000 4.0000,6.0000 5.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="9.0000,7.0000 8.0000,7.0000 8.0000,8.0000 9.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,0.0000 5.0000,0.0000 5.0000,1.0000 6.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,12.0000 7.0000,12.0000 7.0000,13.0000 8.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,12.0000 5.0000,12.0000 5.0000,13.0000 6.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,0.0000 7.0000,0.0000 7.0000,1.0000 8.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,1.0000 5.0000,1.0000 5.0000,2.0000 6.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,11.0000 7.0000,11.0000 7.0000,12.0000 8.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,11.0000 5.0000,11.0000 5.0000,12.0000 6.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,1.0000 7.0000,1.0000 7.0000,2.0000 8.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,2.0000 5.0000,2.0000 5.0000,3.0000 6.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,10.0000 7.0000,10.0000 7.0000,11.0000 8.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,10.0000 5.0000,10.0000 5.0000,11.0000 6.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,2.0000 7.0000,2.0000 7.0000,3.0000 8.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,3.0000 5.0000,3.0000 5.0000,4.0000 6.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,9.0000 7.0000,9.0000 7.0000,10.0000 8.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,9.0000 5.0000,9.0000 5.0000,10.0000 6.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,3.0000 7.0000,3.0000 7.0000,4.0000 8.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,4.0000 5.0000,4.0000 5.0000,5.0000 6.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,8.0000 7.0000,8.0000 7.0000,9.0000 8.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,8.0000 5.0000,8.0000 5.0000,9.0000 6.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,4.0000 7.0000,4.0000 7.0000,5.0000 8.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="6.0000,5.0000 5.0000,5.0000 5.0000,6.0000 6.0000,6.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="8.0000,7.0000 7.0000,7.0000 7.0000,8.0000 8.0000,8.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,0.0000 6.0000,0.0000 6.0000,1.0000 7.0000,1.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,12.0000 6.0000,12.0000 6.0000,13.0000 7.0000,13.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,1.0000 6.0000,1.0000 6.0000,2.0000 7.0000,2.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,11.0000 6.0000,11.0000 6.0000,12.0000 7.0000,12.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,2.0000 6.0000,2.0000 6.0000,3.0000 7.0000,3.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,10.0000 6.0000,10.0000 6.0000,11.0000 7.0000,11.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,3.0000 6.0000,3.0000 6.0000,4.0000 7.0000,4.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,9.0000 6.0000,9.0000 6.0000,10.0000 7.0000,10.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,4.0000 6.0000,4.0000 6.0000,5.0000 7.0000,5.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+    <polygon points="7.0000,8.0000 6.0000,8.0000 6.0000,9.0000 7.0000,9.0000" fill="#a0c4ff" stroke="#1d3557" stroke-width="0.0234" stroke-linejoin="round" />
+  </g>
+  <!-- Orientation Indicators -->
+  <g id="orientations">
+    <circle cx="1.5248" cy="6.9975" r="0.0650" fill="#1e293b" />
+    <line x1="1.5248" y1="6.9975" x2="1.8731" y2="6.9627" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="1.8731,6.9627 1.7691,7.0284 1.7582,6.9189" fill="#1e293b" />
+    <circle cx="2.5199" cy="6.8980" r="0.0650" fill="#1e293b" />
+    <line x1="2.5199" y1="6.8980" x2="2.8681" y2="6.8632" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="2.8681,6.8632 2.7641,6.9289 2.7532,6.8194" fill="#1e293b" />
+    <circle cx="3.5149" cy="6.7985" r="0.0650" fill="#1e293b" />
+    <line x1="3.5149" y1="6.7985" x2="3.8632" y2="6.7637" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="3.8632,6.7637 3.7592,6.8294 3.7482,6.7199" fill="#1e293b" />
+    <circle cx="4.5099" cy="6.6990" r="0.0650" fill="#1e293b" />
+    <line x1="4.5099" y1="6.6990" x2="4.8582" y2="6.6642" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="4.8582,6.6642 4.7542,6.7299 4.7433,6.6204" fill="#1e293b" />
+    <circle cx="5.5050" cy="6.5995" r="0.0650" fill="#1e293b" />
+    <line x1="5.5050" y1="6.5995" x2="5.8532" y2="6.5647" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="5.8532,6.5647 5.7492,6.6304 5.7383,6.5209" fill="#1e293b" />
+    <circle cx="6.5000" cy="6.5000" r="0.0650" fill="#1e293b" />
+    <line x1="6.5000" y1="6.5000" x2="6.8483" y2="6.4652" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="6.8483,6.4652 6.7443,6.5308 6.7333,6.4214" fill="#1e293b" />
+    <circle cx="7.4950" cy="6.4005" r="0.0650" fill="#1e293b" />
+    <line x1="7.4950" y1="6.4005" x2="7.8433" y2="6.3657" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="7.8433,6.3657 7.7393,6.4313 7.7284,6.3219" fill="#1e293b" />
+    <circle cx="8.4901" cy="6.3010" r="0.0650" fill="#1e293b" />
+    <line x1="8.4901" y1="6.3010" x2="8.8383" y2="6.2662" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="8.8383,6.2662 8.7344,6.3318 8.7234,6.2224" fill="#1e293b" />
+    <circle cx="9.4851" cy="6.2015" r="0.0650" fill="#1e293b" />
+    <line x1="9.4851" y1="6.2015" x2="9.8334" y2="6.1667" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="9.8334,6.1667 9.7294,6.2323 9.7184,6.1229" fill="#1e293b" />
+    <circle cx="10.4801" cy="6.1020" r="0.0650" fill="#1e293b" />
+    <line x1="10.4801" y1="6.1020" x2="10.8284" y2="6.0672" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="10.8284,6.0672 10.7244,6.1328 10.7135,6.0234" fill="#1e293b" />
+    <circle cx="11.4752" cy="6.0025" r="0.0650" fill="#1e293b" />
+    <line x1="11.4752" y1="6.0025" x2="11.8234" y2="5.9677" stroke="#1e293b" stroke-width="0.0350" stroke-linecap="round" />
+    <polygon points="11.8234,5.9677 11.7195,6.0333 11.7085,5.9239" fill="#1e293b" />
+  </g>
+  <!-- Outer Container Walls [0, L] x [0, L] -->
+  <rect x="0.0000" y="0.0000" width="13.0000" height="13.0000" fill="none" stroke="#111827" stroke-width="0.0455" stroke-linecap="square" />
+  <!-- Title: Idea 1 Best Tilted: n=155 (L=13.000000) -->
+</svg>

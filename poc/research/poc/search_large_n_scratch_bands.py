@@ -1,13 +1,20 @@
-"""From-scratch thick tilted band and cross-band packing generator for large n (Idea 1).
+"""From-scratch thick tilted band and staircase band packing generator for large n (Idea 1).
 
-Constructs corner-to-corner thick tilted band and orthogonal cross-band packings for
-the top 40 excess targets (n in [100, 1000]) from scratch. Treats tilt angle theta in [0, pi/2],
-band width w, and offset as free continuous variables, filling triangular corner domains
-with aligned upright unit-square grids.
-
-For candidates within 1e-3 of incumbent L (and for top candidates), polishes with
-4-sign-piece epigraph LP relaxation, recording best L, incumbent L, delta L, and
-optimal parameters for each target in poc/research/data/large_n_scratch_band_results.json.
+Constructs true corner-to-corner thick tilted band packings for excess targets
+(n in [100, 1000]) without integer-grid fallbacks.
+1. Places a central diagonal band of width w in 1..4 (and w=5 where appropriate)
+   at angle theta in [arctan(1/2), pi/4, arctan(2/3), arctan(3/4)] and continuous offsets,
+   then packs upright unit squares along the two triangular flanks using dense
+   staircase boundary tucking (checking SAT contact against the band rather than crude bounding boxes).
+   For theta = pi/4, exact closed-form Göbel staircase band parameters are also evaluated.
+2. Enforces hard assertions:
+   - Packing must contain at least w * k tilted squares (k = floor(sqrt(n))).
+   - Container side L must be strictly less than ceil(sqrt(n)).
+   - If the construction cannot place n squares with L < ceil(sqrt(n)), marks the target
+     as FAILED (cannot achieve L < ceil(sqrt(n))) instead of substituting an integer grid.
+3. Sanity-tested on n=290 to confirm L <= 17.55.
+4. Polishes real candidates with 4-sign-piece epigraph LP relaxation and saves results
+   to poc/research/data/large_n_scratch_band_results.json.
 """
 from __future__ import annotations
 
@@ -34,6 +41,14 @@ DEFAULT_OUTPUT_PATH = DATA_DIR / "large_n_scratch_band_results.json"
 
 SIGNS: tuple[tuple[float, float], ...] = tuple(product((-1.0, 1.0), repeat=2))
 S2 = math.sqrt(2.0)
+INV_S2 = 1.0 / S2
+
+STANDARD_THETAS: list[float] = [
+    math.atan(0.5),          # arctan(1/2) ~ 26.565 deg
+    math.pi / 4.0,           # pi/4 = 45.000 deg
+    math.atan(2.0 / 3.0),    # arctan(2/3) ~ 33.690 deg
+    math.atan(3.0 / 4.0),    # arctan(3/4) ~ 36.870 deg
+]
 
 
 # ---------------------------------------------------------------------------
@@ -96,7 +111,7 @@ def sat_check(q: np.ndarray, clearance: float = -1e-7) -> tuple[bool, float]:
 def sat_check_upright_against_tilted(
     xu: float, yu: float, tilted_arr: np.ndarray, clearance: float = -1e-7
 ) -> bool:
-    """Vectorized SAT check for an upright square against all tilted squares."""
+    """Vectorized exact SAT check for an upright unit square against all tilted squares."""
     if len(tilted_arr) == 0:
         return True
     xt = tilted_arr[:, 0]
@@ -317,7 +332,7 @@ def polish_lp(
 
 
 # ---------------------------------------------------------------------------
-# Band and Corner Domain Layout Generation
+# True Tilted Band Placement & Dense Staircase Boundary Tucking
 # ---------------------------------------------------------------------------
 
 def generate_scratch_band(
@@ -326,102 +341,156 @@ def generate_scratch_band(
     w: int,
     v_off: float = 0.0,
     u_off: float = 0.0,
-    stagger: float = 0.0,
-    cross_band: bool = False,
-    grid_align: str = "corners",
-) -> np.ndarray:
-    """Generate corner-to-corner thick tilted band with upright triangular corner grids from scratch."""
+    trim: int = 0,
+) -> tuple[np.ndarray, int]:
+    """Place central diagonal band of width w at angle theta and tuck upright squares on flanks."""
     xc, yc = L / 2.0, L / 2.0
     cos_t, sin_t = math.cos(theta), math.sin(theta)
     h_t = 0.5 * (abs(cos_t) + abs(sin_t))
     max_c = int(math.ceil(L * 1.5))
 
-    tilted_list: list[list[float]] = []
+    tilted: list[list[float]] = []
+    for s_idx in range(w):
+        vs = (s_idx - (w - 1) / 2.0) * 1.0 + v_off
+        valid_c: list[int] = []
+        for c in range(-max_c, max_c + 1):
+            uc = c * 1.0 + u_off
+            x = xc + uc * cos_t - vs * sin_t
+            y = yc + uc * sin_t + vs * cos_t
+            if h_t - 1e-6 <= x <= L - h_t + 1e-6 and h_t - 1e-6 <= y <= L - h_t + 1e-6:
+                valid_c.append(c)
+        if trim > 0 and len(valid_c) > 2 * trim:
+            valid_c = valid_c[trim : -trim]
+        for c in valid_c:
+            uc = c * 1.0 + u_off
+            x = xc + uc * cos_t - vs * sin_t
+            y = yc + uc * sin_t + vs * cos_t
+            tilted.append([x, y, theta])
 
-    def add_band(th, cos_val, sin_val, h_val, v_shift, u_shift):
-        for s in range(w):
-            vs = (s - (w - 1) / 2.0) * 1.0 + v_shift
-            for c in range(-max_c, max_c + 1):
-                uc = c * 1.0 + u_shift + (s % 2) * stagger
-                x = xc + uc * cos_val - vs * sin_val
-                y = yc + uc * sin_val + vs * cos_val
-                if h_val - 1e-6 <= x <= L - h_val + 1e-6 and h_val - 1e-6 <= y <= L - h_val + 1e-6:
-                    tilted_list.append([x, y, th])
+    if not tilted:
+        return np.zeros((0, 3)), 0
+    tilted_arr = np.array(tilted, dtype=np.float64)
+    n_tilted = len(tilted)
 
-    # Primary diagonal band
-    add_band(theta, cos_t, sin_t, h_t, v_off, u_off)
+    k_L = int(math.ceil(L))
 
-    # Orthogonal cross-band layout
-    if cross_band:
-        th_cross = theta + math.pi / 2.0
-        cos_c, sin_c = math.cos(th_cross), math.sin(th_cross)
-        h_c = 0.5 * (abs(cos_c) + abs(sin_c))
-        for s in range(w):
-            vs = (s - (w - 1) / 2.0) * 1.0 - v_off
-            for c in range(-max_c, max_c + 1):
-                uc = c * 1.0 - u_off + (s % 2) * stagger
-                x = xc + uc * cos_c - vs * sin_c
-                y = yc + uc * sin_c + vs * cos_c
-                if h_c - 1e-6 <= x <= L - h_c + 1e-6 and h_c - 1e-6 <= y <= L - h_c + 1e-6:
-                    cand = [x, y, th_cross]
-                    conflict = False
-                    for existing in tilted_list:
-                        dx = existing[0] - x
-                        dy = existing[1] - y
-                        if dx * dx + dy * dy < 2.0:
-                            th_e = existing[2]
-                            diff_e = abs(dx * math.cos(th_e) + dy * math.sin(th_e))
-                            diff_c = abs(dx * cos_c + dy * sin_c)
-                            if diff_e < 1.0 - 1e-7 and diff_c < 1.0 - 1e-7:
-                                conflict = True
-                                break
-                    if not conflict:
-                        tilted_list.append(cand)
+    # Flank 1: North-West triangular flank (above the band: v > v_off)
+    nw: list[list[float]] = []
+    for i in range(k_L):
+        xu = 0.5 + i
+        if xu > L - 0.5:
+            break
+        for j in range(k_L):
+            yu = L - 0.5 - j
+            if yu < 0.5:
+                break
+            v = -(xu - xc) * sin_t + (yu - yc) * cos_t
+            if v > v_off and sat_check_upright_against_tilted(xu, yu, tilted_arr):
+                nw.append([xu, yu, 0.0])
 
-    tilted_arr = np.array(tilted_list, dtype=np.float64) if tilted_list else np.zeros((0, 3))
-    k = int(math.ceil(L))
-    upright_candidates: list[list[float]] = []
-    placed_keys: set[tuple[int, int]] = set()
+    # Flank 2: South-East triangular flank (below the band: v < v_off)
+    se: list[list[float]] = []
+    for i in range(k_L):
+        xu = L - 0.5 - i
+        if xu < 0.5:
+            break
+        for j in range(k_L):
+            yu = 0.5 + j
+            if yu > L - 0.5:
+                break
+            v = -(xu - xc) * sin_t + (yu - yc) * cos_t
+            if v < v_off and sat_check_upright_against_tilted(xu, yu, tilted_arr):
+                se.append([xu, yu, 0.0])
 
-    def try_add_upright(xu: float, yu: float):
-        if not (0.5 - 1e-6 <= xu <= L - 0.5 + 1e-6 and 0.5 - 1e-6 <= yu <= L - 0.5 + 1e-6):
-            return
-        gx = int(round(xu * 100))
-        gy = int(round(yu * 100))
-        for kx, ky in placed_keys:
-            if abs(kx - gx) < 99 and abs(ky - gy) < 99:
-                return
-        if not sat_check_upright_against_tilted(xu, yu, tilted_arr, clearance=-1e-7):
-            return
-        placed_keys.add((gx, gy))
-        upright_candidates.append([xu, yu, 0.0])
+    # Combine flanks and eliminate any mutual overlap
+    upright: list[list[float]] = list(nw)
+    for p in se:
+        col = False
+        for ex in upright:
+            if abs(ex[0] - p[0]) < 1.0 - 1e-6 and abs(ex[1] - p[1]) < 1.0 - 1e-6:
+                col = True
+                break
+        if not col:
+            upright.append(p)
 
-    if grid_align == "corners":
-        # Fill triangular corner domains anchored to the outer container boundaries
-        # NW triangular domain (top-left)
-        # SE triangular domain (bottom-right)
-        # SW and NE outer corners
-        for i in range(k + 1):
-            for j in range(k + 1):
-                try_add_upright(0.5 + i, L - 0.5 - j)  # NW
-                try_add_upright(L - 0.5 - i, 0.5 + j)  # SE
-                try_add_upright(0.5 + i, 0.5 + j)      # SW
-                try_add_upright(L - 0.5 - i, L - 0.5 - j)  # NE
-    elif grid_align == "origin":
-        for i in range(k + 1):
-            for j in range(k + 1):
-                try_add_upright(0.5 + i, 0.5 + j)
+    # Dense staircase boundary tucking: corner & serration tucks
+    for pt in [
+        (0.5, 0.5), (L - 0.5, L - 0.5),
+        (1.5, 0.5), (0.5, 1.5),
+        (L - 1.5, L - 0.5), (L - 0.5, L - 1.5),
+        (1.5, 1.5), (L - 1.5, L - 1.5),
+    ]:
+        if 0.5 <= pt[0] <= L - 0.5 and 0.5 <= pt[1] <= L - 0.5:
+            col = False
+            for ex in upright:
+                if abs(ex[0] - pt[0]) < 1.0 - 1e-6 and abs(ex[1] - pt[1]) < 1.0 - 1e-6:
+                    col = True
+                    break
+            if not col and sat_check_upright_against_tilted(pt[0], pt[1], tilted_arr):
+                upright.append([pt[0], pt[1], 0.0])
 
-    upright_arr = np.array(upright_candidates, dtype=np.float64) if upright_candidates else np.zeros((0, 3))
-    if len(tilted_arr) == 0:
-        return upright_arr
-    if len(upright_arr) == 0:
-        return tilted_arr
-    return np.vstack([tilted_arr, upright_arr])
+    upright_arr = np.array(upright, dtype=np.float64) if upright else np.zeros((0, 3))
+    total_arr = np.vstack([tilted_arr, upright_arr]) if len(upright_arr) > 0 else tilted_arr
+    return total_arr, n_tilted
 
 
-def prune_to_n(q: np.ndarray, target_n: int) -> np.ndarray:
-    """Select exactly target_n squares that minimize the unconstrained bounding extent."""
+def generate_gobel_staircase(
+    target_n: int,
+    L: float,
+    w: int,
+    a1: int,
+    a2: int,
+    b1: int,
+    b2: int,
+) -> tuple[np.ndarray | None, int]:
+    """Exact analytical Göbel 4-corner staircase band layout for theta = pi/4."""
+    corners: list[list[float]] = []
+    lim = int(math.floor(L - 1.0))
+    for i in range(min(lim + 1, a1)):
+        for j in range(min(lim + 1, a1 - i)):
+            corners.append([0.5 + i, 0.5 + j, 0.0])
+    for i in range(min(lim + 1, a2)):
+        for j in range(min(lim + 1, a2 - i)):
+            corners.append([L - 0.5 - i, L - 0.5 - j, 0.0])
+    cx1 = max(0, int(math.floor(L - a2)))
+    cy1 = max(0, int(math.floor(L - a1)))
+    cx2, cy2 = cy1, cx1
+    for i in range(min(cx1, b1)):
+        for j in range(min(cy1, b1 - i)):
+            corners.append([0.5 + i, L - 0.5 - j, 0.0])
+    for i in range(min(cx2, b2)):
+        for j in range(min(cy2, b2 - i)):
+            corners.append([L - 0.5 - i, 0.5 + j, 0.0])
+
+    u_start = (a1 + 1.0) * INV_S2 + 0.5
+    tilted: list[list[float]] = []
+    for k in range(w):
+        u = u_start + k * 1.0
+        v_lo = -min(u - 1.0, S2 * L - u - 1.0)
+        v_hi = min(u - 1.0, S2 * L - u - 1.0)
+        if b1 > 0:
+            v_hi = min(v_hi, (L - b1 - 1.0) * INV_S2 - 0.5)
+        if b2 > 0:
+            v_lo = max(v_lo, -(L - b2 - 1.0) * INV_S2 + 0.5)
+        if v_hi >= v_lo:
+            cnt = int(math.floor((v_hi - v_lo) / 1.0)) + 1
+            span = (cnt - 1) * 1.0
+            v0 = 0.5 * (v_lo + v_hi) - 0.5 * span
+            for m in range(cnt):
+                v = v0 + m * 1.0
+                x = (u - v) * INV_S2
+                y = (u + v) * INV_S2
+                tilted.append([x, y, math.pi / 4.0])
+
+    tot = len(corners) + len(tilted)
+    if tot < target_n:
+        return None, 0
+    q = np.array(corners + tilted, dtype=np.float64)
+    return q, len(tilted)
+
+
+def prune_to_n(q: np.ndarray, target_n: int, min_tilted: int = 0) -> np.ndarray:
+    """Select exactly target_n squares that minimize bounding extent, preserving at least min_tilted tilted squares."""
     if len(q) <= target_n:
         return normalize_box(q)
 
@@ -429,9 +498,10 @@ def prune_to_n(q: np.ndarray, target_n: int) -> np.ndarray:
     while len(current) > target_n:
         center = np.mean(current[:, :2], axis=0)
         dist_sq = np.sum((current[:, :2] - center) ** 2, axis=1)
-        outer_candidates = np.argsort(-dist_sq)[: min(10, len(current))]
+        outer_candidates = np.argsort(-dist_sq)
 
-        best_idx = outer_candidates[0]
+        tilted_count = int(np.sum(np.abs(current[:, 2]) > 1e-4))
+        best_idx = None
         best_L = float("inf")
         c = np.abs(np.cos(current[:, 2]))
         s = np.abs(np.sin(current[:, 2]))
@@ -439,7 +509,11 @@ def prune_to_n(q: np.ndarray, target_n: int) -> np.ndarray:
         lo = current[:, :2] - h[:, None]
         hi = current[:, :2] + h[:, None]
 
-        for idx in outer_candidates:
+        for idx in outer_candidates[: min(15, len(current))]:
+            is_tilted = abs(current[idx, 2]) > 1e-4
+            if is_tilted and tilted_count <= min_tilted:
+                continue
+
             mask = np.ones(len(current), dtype=bool)
             mask[idx] = False
             cur_lo = np.min(lo[mask], axis=0)
@@ -448,6 +522,15 @@ def prune_to_n(q: np.ndarray, target_n: int) -> np.ndarray:
             if cur_extent < best_L:
                 best_L = cur_extent
                 best_idx = idx
+
+        if best_idx is None:
+            for idx in outer_candidates:
+                is_tilted = abs(current[idx, 2]) > 1e-4
+                if not (is_tilted and tilted_count <= min_tilted):
+                    best_idx = idx
+                    break
+        if best_idx is None:
+            best_idx = outer_candidates[0]
 
         current = np.delete(current, best_idx, axis=0)
 
@@ -469,132 +552,148 @@ class TargetResult:
     family: str
     optimal_parameters: dict[str, Any]
     layout: list[dict[str, float]] = field(default_factory=list)
+    status: str = "SUCCESS"
 
 
 def search_target(
     target_n: int,
     incumbent_L: float,
-    theta_grid: Sequence[float],
-    widths: Sequence[int],
-    offsets: Sequence[float],
+    theta_grid: Sequence[float] = STANDARD_THETAS,
+    widths: Sequence[int] = (1, 2, 3, 4, 5),
+    offsets: Sequence[float] = (-0.2, 0.0, 0.2),
 ) -> TargetResult:
-    """Search continuous tilt angle theta in [0, pi/2], band width w, and offset for target n."""
-    best_candidate: np.ndarray | None = None
-    best_unpolished_L = float("inf")
-    best_params: dict[str, Any] = {}
-
+    """Search tilted band layouts for target n without integer-grid fallbacks."""
     k = int(math.floor(math.sqrt(target_n)))
     k_ceil = int(math.ceil(math.sqrt(target_n)))
 
-    trial_Ls = [
-        incumbent_L,
-        float(k_ceil),
-    ]
+    best_candidate: np.ndarray | None = None
+    best_unpolished_L = float("inf")
+    best_params: dict[str, Any] = {}
+    best_w = 0
 
-    # Grid search across theta, width, offset, and single vs cross architectures
-    for L_trial in trial_Ls:
-        for w in widths:
-            for theta in theta_grid:
-                for v_off in offsets:
-                    for cross in (False, True):
-                        seed = generate_scratch_band(
-                            L=L_trial,
-                            theta=theta,
-                            w=w,
-                            v_off=v_off,
-                            u_off=0.0,
-                            cross_band=cross,
-                            grid_align="corners",
-                        )
-                        if len(seed) >= target_n:
-                            pruned = prune_to_n(seed, target_n)
+    # 1. Exact Göbel 4-corner staircase band search (theta = pi/4)
+    for w in widths:
+        min_tilted_req = w * k
+        for a1 in range(max(1, k - 5), k + 5):
+            for a2 in range(max(1, k - 6), a1 + 1):
+                L_cand = 0.5 * (a1 + a2) + 1.0 + w * INV_S2
+                if L_cand >= k_ceil or L_cand >= best_unpolished_L:
+                    continue
+                for b1 in range(0, 9):
+                    for b2 in range(0, b1 + 1):
+                        q_raw, n_t_raw = generate_gobel_staircase(target_n, L_cand, w, a1, a2, b1, b2)
+                        if q_raw is not None and len(q_raw) >= target_n and n_t_raw >= min_tilted_req:
+                            pruned = prune_to_n(q_raw, target_n, min_tilted=min_tilted_req)
                             valid, _ = sat_check(pruned, clearance=-1e-7)
                             if valid:
                                 L_ext = extent(pruned)
-                                if L_ext < best_unpolished_L:
+                                n_t_pruned = int(np.sum(np.abs(pruned[:, 2]) > 1e-4))
+                                if n_t_pruned >= min_tilted_req and L_ext < best_unpolished_L and L_ext < k_ceil:
                                     best_unpolished_L = L_ext
                                     best_candidate = pruned.copy()
+                                    best_w = w
                                     best_params = {
-                                        "theta": theta,
+                                        "theta": math.pi / 4.0,
+                                        "theta_deg": 45.0,
                                         "w": w,
-                                        "v_off": v_off,
-                                        "u_off": 0.0,
-                                        "cross_band": cross,
-                                        "L_trial": L_trial,
+                                        "a1": a1,
+                                        "a2": a2,
+                                        "b1": b1,
+                                        "b2": b2,
+                                        "family": "gobel_staircase_band",
+                                        "n_tilted": n_t_pruned,
+                                        "n_upright": len(pruned) - n_t_pruned,
                                     }
 
-    # Continuous local refinement around best parameters
-    if best_params:
-        base_th = best_params["theta"]
-        base_v = best_params["v_off"]
-        w = best_params["w"]
-        cross = best_params["cross_band"]
-        L_trial = best_params["L_trial"]
+    # 2. Continuous diagonal band + staircase tucking search across requested thetas
+    trial_Ls = [incumbent_L, float(k_ceil) - 0.05, float(k_ceil) - 0.20]
+    for L_trial in trial_Ls:
+        if L_trial >= k_ceil or L_trial >= best_unpolished_L:
+            continue
+        for w in [w_val for w_val in widths if w_val <= 4]:
+            min_tilted_req = w * k
+            for theta in theta_grid:
+                for v_off in offsets:
+                    for u_off in (-0.1, 0.0, 0.1):
+                        for trim in (0, 1, 2):
+                            q_raw, n_t_raw = generate_scratch_band(
+                                L=L_trial,
+                                theta=theta,
+                                w=w,
+                                v_off=v_off,
+                                u_off=u_off,
+                                trim=trim,
+                            )
+                            if len(q_raw) >= target_n and n_t_raw >= min_tilted_req:
+                                pruned = prune_to_n(q_raw, target_n, min_tilted=min_tilted_req)
+                                valid, _ = sat_check(pruned, clearance=-1e-7)
+                                if valid:
+                                    L_ext = extent(pruned)
+                                    n_t_pruned = int(np.sum(np.abs(pruned[:, 2]) > 1e-4))
+                                    if n_t_pruned >= min_tilted_req and L_ext < best_unpolished_L and L_ext < k_ceil:
+                                        best_unpolished_L = L_ext
+                                        best_candidate = pruned.copy()
+                                        best_w = w
+                                        best_params = {
+                                            "theta": theta,
+                                            "theta_deg": float(math.degrees(theta)),
+                                            "w": w,
+                                            "v_off": v_off,
+                                            "u_off": u_off,
+                                            "trim": trim,
+                                            "family": "tilted_staircase_band",
+                                            "n_tilted": n_t_pruned,
+                                            "n_upright": len(pruned) - n_t_pruned,
+                                        }
 
-        for d_th in (-0.02, 0.02):
-            new_th = max(0.01, min(math.pi / 2.0 - 0.01, base_th + d_th))
-            for d_v in (-0.05, 0.05):
-                seed = generate_scratch_band(
-                    L=L_trial,
-                    theta=new_th,
-                    w=w,
-                    v_off=base_v + d_v,
-                    u_off=0.0,
-                    cross_band=cross,
-                    grid_align="corners",
-                )
-                if len(seed) >= target_n:
-                    pruned = prune_to_n(seed, target_n)
-                    valid, _ = sat_check(pruned, clearance=-1e-7)
-                    if valid:
-                        L_ext = extent(pruned)
-                        if L_ext < best_unpolished_L:
-                            best_unpolished_L = L_ext
-                            best_candidate = pruned.copy()
-                            best_params.update({"theta": new_th, "v_off": base_v + d_v})
+    # Hard assertion check: If no candidate achieved L < ceil(sqrt(n)), mark as FAILED
+    if best_candidate is None or best_unpolished_L >= k_ceil:
+        return TargetResult(
+            target_n=target_n,
+            incumbent_L=incumbent_L,
+            unpolished_L=float("inf"),
+            best_L=float("inf"),
+            delta_L=float("inf"),
+            within_1e3=False,
+            family="none",
+            optimal_parameters={
+                "status": "FAILED",
+                "reason": f"cannot achieve L < ceil(sqrt(n)) ({k_ceil})",
+            },
+            layout=[],
+            status=f"FAILED (cannot achieve L < ceil(sqrt(n)))",
+        )
 
-    # Fallback to upright grid if no candidate found
-    if best_candidate is None:
-        grid_sq = []
-        for i in range(k_ceil):
-            for j in range(k_ceil):
-                if len(grid_sq) < target_n:
-                    grid_sq.append([0.5 + i, 0.5 + j, 0.0])
-        best_candidate = np.array(grid_sq)
-        best_unpolished_L = float(k_ceil)
-        best_params = {
-            "theta": 0.0,
-            "w": 0,
-            "v_off": 0.0,
-            "u_off": 0.0,
-            "cross_band": False,
-        }
+    # Validate assertions on unpolished candidate
+    n_t_cand = int(np.sum(np.abs(best_candidate[:, 2]) > 1e-4))
+    assert n_t_cand >= best_w * k, (
+        f"Target {target_n}: candidate has {n_t_cand} tilted squares, expected >= {best_w * k}"
+    )
+    assert best_unpolished_L < k_ceil, (
+        f"Target {target_n}: candidate L={best_unpolished_L} >= ceil(sqrt(n))={k_ceil}"
+    )
 
-    # LP Polishing: polish if within 1e-3 of incumbent L or to find best side
-    polished_q = best_candidate.copy()
-    polished_L = best_unpolished_L
-    should_polish = (best_unpolished_L <= incumbent_L + 1e-3) or (best_unpolished_L - incumbent_L < 0.5)
+    # LP Polishing using 4-sign-piece epigraph relaxation
+    polished_q, polished_L = polish_lp(best_candidate, max_iters=15)
+    valid, _ = sat_check(polished_q, clearance=-1e-7)
+    if not valid or polished_L >= best_unpolished_L:
+        polished_q = best_candidate
+        polished_L = best_unpolished_L
 
-    if should_polish:
-        polished_q, polished_L = polish_lp(best_candidate, max_iters=15)
+    # Assertions on final polished packing
+    n_t_final = int(np.sum(np.abs(polished_q[:, 2]) > 1e-4))
+    assert n_t_final >= best_w * k, (
+        f"Target {target_n}: final packing has {n_t_final} tilted squares, expected >= {best_w * k}"
+    )
+    assert polished_L < k_ceil, (
+        f"Target {target_n}: final polished L={polished_L} >= ceil(sqrt(n))={k_ceil}"
+    )
 
     delta = polished_L - incumbent_L
     within_1e3 = delta <= 1e-3
 
-    n_tilted = int(np.sum(np.abs(polished_q[:, 2]) > 1e-4))
-    n_upright = len(polished_q) - n_tilted
-
-    optimal_params = {
-        "theta": float(best_params.get("theta", 0.0)),
-        "theta_deg": float(math.degrees(best_params.get("theta", 0.0))),
-        "w": int(best_params.get("w", 0)),
-        "v_off": float(best_params.get("v_off", 0.0)),
-        "u_off": float(best_params.get("u_off", 0.0)),
-        "stagger": float(best_params.get("stagger", 0.0)),
-        "family": "cross_band" if best_params.get("cross_band") else "tilted_band",
-        "n_tilted": n_tilted,
-        "n_upright": n_upright,
-    }
+    best_params["n_tilted"] = n_t_final
+    best_params["n_upright"] = len(polished_q) - n_t_final
 
     layout = [
         {
@@ -613,9 +712,10 @@ def search_target(
         best_L=polished_L,
         delta_L=delta,
         within_1e3=within_1e3,
-        family=optimal_params["family"],
-        optimal_parameters=optimal_params,
+        family=best_params["family"],
+        optimal_parameters=best_params,
         layout=layout,
+        status="SUCCESS",
     )
 
 
@@ -634,7 +734,6 @@ def load_or_compute_top40(
         if len(targets) >= 40:
             return targets[:40]
 
-    # Compute top 40 targets with n in [100, 1000]
     if not merged_path.exists():
         raise FileNotFoundError(f"Missing {merged_path}")
     with open(merged_path) as f:
@@ -673,7 +772,7 @@ def run_all(
     output_file: Path | None = None,
     max_targets: int | None = None,
 ) -> dict[str, Any]:
-    """Run from-scratch thick tilted and cross-band search across top 40 targets."""
+    """Run tilted band and staircase search across top 40 targets with LP polishing."""
     t0 = time.time()
     t_path = targets_file or DEFAULT_TARGETS_PATH
     out_path = output_file or DEFAULT_OUTPUT_PATH
@@ -683,66 +782,88 @@ def run_all(
     if max_targets is not None:
         targets_list = targets_list[:max_targets]
 
-    # Continuous angle grid spanning [0, pi/2]: key rational slopes + uniform angles
-    key_thetas = [
-        math.pi / 4.0,           # 45.00 deg
-        math.atan(0.5),          # 26.57 deg (1:2 rational slope)
-        math.atan(2.0),          # 63.43 deg (2:1 rational slope)
-        math.atan(1.0 / 3.0),    # 18.43 deg (1:3 rational slope)
-        math.atan(3.0),          # 71.57 deg (3:1 rational slope)
-        math.atan(2.0 / 3.0),    # 33.69 deg (2:3 rational slope)
-        math.atan(1.5),          # 56.31 deg (3:2 rational slope)
-        math.atan(3.0 / 4.0),    # 36.87 deg (3:4 Pell/Cantrell slope)
-        math.atan(4.0 / 3.0),    # 53.13 deg (4:3 Pell/Cantrell slope)
-        math.atan(1.0 / 10.0),   # 5.71 deg (1:k asymptotic slope)
-    ]
-    uniform_thetas = np.linspace(0.10, math.pi / 2.0 - 0.10, 10).tolist()
-    theta_grid = sorted(set(round(th, 6) for th in key_thetas + uniform_thetas))
+    # Sanity-test on n=290 to confirm L <= 17.55
+    print("Running sanity test on n=290...")
+    res_290 = search_target(
+        target_n=290,
+        incumbent_L=17.53553390593285,
+        theta_grid=STANDARD_THETAS,
+        widths=[1, 2, 3, 4, 5],
+        offsets=[-0.2, 0.0, 0.2],
+    )
+    assert res_290.status == "SUCCESS", f"Sanity test on n=290 failed: status={res_290.status}"
+    assert res_290.best_L <= 17.55 + 1e-6, f"Sanity test on n=290 failed: L={res_290.best_L} > 17.55"
+    assert res_290.optimal_parameters["n_tilted"] >= res_290.optimal_parameters["w"] * 17
+    print(f"Sanity test PASSED: n=290 L={res_290.best_L:.6f} <= 17.55 (n_tilted={res_290.optimal_parameters['n_tilted']})")
 
-    offsets = [-0.25, 0.0, 0.25]
     all_results: dict[str, Any] = {}
+    success_count = 0
+    failed_count = 0
 
     for idx, target in enumerate(targets_list, 1):
         target_n = int(target["n"])
         inc_L = float(target["L"])
 
-        k = int(math.floor(math.sqrt(target_n)))
-        widths = [1, 2, 3]
-
+        t_start = time.time()
         res = search_target(
             target_n=target_n,
             incumbent_L=inc_L,
-            theta_grid=theta_grid,
-            widths=widths,
-            offsets=offsets,
+            theta_grid=STANDARD_THETAS,
+            widths=[1, 2, 3, 4, 5],
+            offsets=[-0.2, 0.0, 0.2],
         )
+        t_elapsed = time.time() - t_start
 
-        all_results[str(target_n)] = {
-            "target_n": res.target_n,
-            "incumbent_L": res.incumbent_L,
-            "unpolished_L": res.unpolished_L,
-            "best_L": res.best_L,
-            "delta_L": res.delta_L,
-            "within_1e-3": res.within_1e3,
-            "family": res.family,
-            "optimal_parameters": res.optimal_parameters,
-            "layout": res.layout,
-        }
+        if res.status == "SUCCESS":
+            success_count += 1
+            all_results[str(target_n)] = {
+                "target_n": res.target_n,
+                "status": "SUCCESS",
+                "incumbent_L": res.incumbent_L,
+                "unpolished_L": res.unpolished_L,
+                "best_L": res.best_L,
+                "delta_L": res.delta_L,
+                "within_1e3": res.within_1e3,
+                "family": res.family,
+                "optimal_parameters": res.optimal_parameters,
+                "layout": res.layout,
+            }
+            print(f"[{idx:2d}/{len(targets_list)}] n={target_n:3d}: SUCCESS L={res.best_L:.6f} (inc={inc_L:.6f}, delta={res.delta_L:+.6f}) in {t_elapsed:.2f}s")
+        else:
+            failed_count += 1
+            all_results[str(target_n)] = {
+                "target_n": res.target_n,
+                "status": res.status,
+                "incumbent_L": res.incumbent_L,
+                "unpolished_L": None,
+                "best_L": None,
+                "delta_L": None,
+                "within_1e3": False,
+                "family": "none",
+                "optimal_parameters": res.optimal_parameters,
+                "layout": [],
+            }
+            print(f"[{idx:2d}/{len(targets_list)}] n={target_n:3d}: {res.status} in {t_elapsed:.2f}s")
 
     elapsed = time.time() - t0
-    within_count = sum(1 for r in all_results.values() if r["within_1e-3"])
-    improved_count = sum(1 for r in all_results.values() if r["delta_L"] < -1e-9)
+    within_count = sum(1 for r in all_results.values() if r.get("within_1e3"))
+    improved_count = sum(1 for r in all_results.values() if r.get("delta_L") is not None and r["delta_L"] < -1e-9)
 
     summary = {
         "elapsed_seconds": elapsed,
         "total_targets": len(targets_list),
-        "within_1e-3_count": within_count,
+        "success_count": success_count,
+        "failed_count": failed_count,
+        "within_1e3_count": within_count,
         "improved_count": improved_count,
         "targets": all_results,
     }
 
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
+
+    print(f"\nExecution finished in {elapsed:.2f}s. Saved to {out_path}.")
+    print(f"Success: {success_count}/{len(targets_list)}, Failed: {failed_count}/{len(targets_list)}, Within 1e-3: {within_count}")
 
     return summary
 

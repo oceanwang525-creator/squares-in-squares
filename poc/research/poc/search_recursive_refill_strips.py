@@ -2,14 +2,16 @@
 """Parametric k^2 + j Strip Families with Recursive Corner Pocket Refill (Idea 3).
 
 Implements Idea 3 for n = k^2 + j (10 <= k <= 31, 1 <= j <= k):
-- Constructs parametric strip families where a central tilted band absorbs j squares.
-- Rather than leaving empty triangular corners (which dilates the container boundary to k+1),
-  implements recursive trapezoidal and triangular integer-grid refills that pack the remaining
-  corner pockets without boundary dilation.
-- Formulates parameter selection (angle theta, band offset, corner pocket bounds) as an SLP/LP
-  optimization with 4-sign-piece epigraph linearization.
-- Evaluates across the top 40 targets in the 10 <= k <= 31 range, records certified L,
-  incumbent L, and delta L, and outputs results to poc/research/data/recursive_refill_results.json.
+- Constructs parametric strip families where a central tilted band of width w = 1 or 2
+  at slope theta = arctan(1/k) or pi/4 is inserted.
+- Recursively refills the upper-left (NW) and lower-right (SE) corner regions with
+  integer-grid blocks and tucked corner staircases with SAT clearance tau >= 1e-7.
+- Eliminates all integer-grid fallbacks (no (k+1) x (k+1) grid emission): if recursive refill
+  yields fewer than n squares for a candidate L < ceil(sqrt(n)), records status FAILED
+  with reason 'insufficient_capacity_at_sub_grid_envelope'.
+- Formulates parameter selection (angle theta, band width w, band offset) and polishes
+  sub-grid candidates with SLP/LP 4-sign-piece epigraph linearization.
+- Evaluates across the top 40 targets and outputs results to poc/research/data/recursive_refill_results.json.
 """
 from __future__ import annotations
 
@@ -24,7 +26,7 @@ import time
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
-from scipy.optimize import linprog, minimize
+from scipy.optimize import linprog
 
 # Add repo root to import squares.core if available
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -117,7 +119,6 @@ def sat_check_upright_against_tilted(
     dy = yt - yu
     h = 0.5 + 0.5 * (np.abs(c) + np.abs(s))
 
-    # All 4 candidate axes
     c1 = np.abs(dx) < h - clearance
     c2 = np.abs(dy) < h - clearance
     c3 = np.abs(dx * c + dy * s) < h - clearance
@@ -127,245 +128,137 @@ def sat_check_upright_against_tilted(
 
 
 # ---------------------------------------------------------------------------
-# Recursive Pocket Refill (Trapezoidal and Triangular Integer-Grid Refills)
-# ---------------------------------------------------------------------------
-
-@dataclass
-class PocketZone:
-    """Represents a trapezoidal or triangular pocket domain bounded by container walls."""
-    xmin: float
-    xmax: float
-    ymin: float
-    ymax: float
-    zone_type: str  # "NW_corner", "SE_corner", "SW_corner", "NE_corner", "trapezoid_margin"
-
-
-def recursive_refill_pocket(
-    pocket: PocketZone,
-    tilted_arr: np.ndarray,
-    existing_uprights: List[Tuple[float, float]],
-    L: float,
-    depth: int = 0,
-    max_depth: int = 3,
-) -> List[Tuple[float, float]]:
-    """Recursively packs integer-grid blocks into trapezoidal and triangular pockets.
-
-    Base case: if remaining width or height < 1.0 or depth > max_depth, returns empty list.
-    Otherwise:
-    1. Finds maximal integer-grid sub-block that fits without penetrating tilted band.
-    2. Decomposes residual space into smaller trapezoidal / triangular pockets.
-    3. Recursively refills residual pockets.
-    """
-    if depth > max_depth:
-        return []
-
-    w = pocket.xmax - pocket.xmin
-    h = pocket.ymax - pocket.ymin
-    if w < 1.0 - 1e-6 or h < 1.0 - 1e-6:
-        return []
-
-    new_uprights: List[Tuple[float, float]] = []
-
-    # Try integer grid placements aligned with pocket corner
-    nx = int(math.floor(w))
-    ny = int(math.floor(h))
-
-    # Determine alignment corner based on pocket type
-    if pocket.zone_type in ("SW_corner", "trapezoid_margin"):
-        x_start = pocket.xmin + 0.5
-        y_start = pocket.ymin + 0.5
-        dx_step = 1.0
-        dy_step = 1.0
-    elif pocket.zone_type == "NE_corner":
-        x_start = pocket.xmax - 0.5
-        y_start = pocket.ymax - 0.5
-        dx_step = -1.0
-        dy_step = -1.0
-    elif pocket.zone_type == "NW_corner":
-        x_start = pocket.xmin + 0.5
-        y_start = pocket.ymax - 0.5
-        dx_step = 1.0
-        dy_step = -1.0
-    else:  # SE_corner
-        x_start = pocket.xmax - 0.5
-        y_start = pocket.ymin + 0.5
-        dx_step = -1.0
-        dy_step = 1.0
-
-    placed_in_level: List[Tuple[float, float]] = []
-
-    for ix in range(nx):
-        for iy in range(ny):
-            xu = x_start + ix * dx_step
-            yu = y_start + iy * dy_step
-            # Check container bounds
-            if not (0.5 - 1e-6 <= xu <= L - 0.5 + 1e-6 and 0.5 - 1e-6 <= yu <= L - 0.5 + 1e-6):
-                continue
-            # Check SAT against tilted band
-            if not sat_check_upright_against_tilted(xu, yu, tilted_arr, clearance=-1e-9):
-                continue
-            # Check non-overlap with already placed uprights
-            conflict = False
-            for ex in existing_uprights + new_uprights:
-                if abs(ex[0] - xu) < 0.9999 and abs(ex[1] - yu) < 0.9999:
-                    conflict = True
-                    break
-            if not conflict:
-                new_uprights.append((xu, yu))
-                placed_in_level.append((xu, yu))
-
-    # Recursive step on residual trapezoidal & triangular pockets
-    if depth < max_depth and placed_in_level:
-        placed_arr = np.array(placed_in_level)
-        used_min_x = np.min(placed_arr[:, 0]) - 0.5
-        used_max_x = np.max(placed_arr[:, 0]) + 0.5
-        used_min_y = np.min(placed_arr[:, 1]) - 0.5
-        used_max_y = np.max(placed_arr[:, 1]) + 0.5
-
-        # Residual sub-pockets
-        sub_pockets: List[PocketZone] = []
-        # Horizontal residual strip
-        if pocket.xmax - used_max_x >= 1.0 - 1e-6:
-            sub_pockets.append(PocketZone(
-                xmin=used_max_x, xmax=pocket.xmax,
-                ymin=pocket.ymin, ymax=pocket.ymax,
-                zone_type="trapezoid_margin"
-            ))
-        if used_min_x - pocket.xmin >= 1.0 - 1e-6:
-            sub_pockets.append(PocketZone(
-                xmin=pocket.xmin, xmax=used_min_x,
-                ymin=pocket.ymin, ymax=pocket.ymax,
-                zone_type="trapezoid_margin"
-            ))
-        # Vertical residual strip
-        if pocket.ymax - used_max_y >= 1.0 - 1e-6:
-            sub_pockets.append(PocketZone(
-                xmin=pocket.xmin, xmax=pocket.xmax,
-                ymin=used_max_y, ymax=pocket.ymax,
-                zone_type="trapezoid_margin"
-            ))
-        if used_min_y - pocket.ymin >= 1.0 - 1e-6:
-            sub_pockets.append(PocketZone(
-                xmin=pocket.xmin, xmax=pocket.xmax,
-                ymin=pocket.ymin, ymax=used_min_y,
-                zone_type="trapezoid_margin"
-            ))
-
-        for sp in sub_pockets:
-            rec_res = recursive_refill_pocket(
-                sp, tilted_arr, existing_uprights + new_uprights, L,
-                depth=depth + 1, max_depth=max_depth
-            )
-            new_uprights.extend(rec_res)
-
-    return new_uprights
-
-
-# ---------------------------------------------------------------------------
-# Parametric Strip Family Construction with Corner Refills
+# Parametric Tilted Strip Family Construction with Corner Refills
 # ---------------------------------------------------------------------------
 
 def construct_strip_family_with_refills(
     k: int,
     j: int,
     theta: float,
+    w: int,
     L: float,
     v_off: float = 0.0,
     u_off: float = 0.0,
-    spacing: float = 1.002,
-    max_refill_depth: int = 3,
+    tau: float = 1e-7,
 ) -> Tuple[np.ndarray, int]:
-    """Constructs a parametric packing for n = k^2 + j with recursive corner refills.
+    """Constructs a parametric packing for n = k^2 + j with central band and recursive corner refills.
 
-    Returns (q_arr, num_refilled_squares) where q_arr is shape (N, 3) [x, y, theta].
+    A central band of width w in {1, 2} at slope theta in {arctan(1/k), pi/4} is inserted,
+    and upper-left (NW) and lower-right (SE) corner regions are recursively refilled with
+    integer-grid blocks and tucked corner staircases with SAT clearance tau >= 1e-7.
+
+    Returns (q_arr, num_refilled_upright_squares).
     """
     xc, yc = L / 2.0, L / 2.0
     cos_t, sin_t = math.cos(theta), math.sin(theta)
+    h_t = 0.5 * (abs(cos_t) + abs(sin_t))
     u_vec = np.array([cos_t, sin_t])
     v_vec = np.array([-sin_t, cos_t])
+    max_c = int(math.ceil(L * 1.5))
 
-    # Central tilted band absorbing j squares
-    c_center = np.array([xc, yc]) + u_off * u_vec + v_off * v_vec
-    band_list: List[List[float]] = []
-    for m in range(j):
-        offset = (m - 0.5 * (j - 1)) * spacing
-        pos = c_center + offset * u_vec
-        band_list.append([pos[0], pos[1], theta])
-    band_arr = np.array(band_list, dtype=np.float64)
+    # Central tilted band of width w
+    tilted = []
+    for s in range(w):
+        vs = (s - 0.5 * (w - 1)) * (1.0 + tau) + v_off
+        for c in range(-max_c, max_c + 1):
+            uc = c * (1.0 + tau) + u_off
+            pos = np.array([xc, yc]) + uc * u_vec + vs * v_vec
+            x, y = pos[0], pos[1]
+            if h_t + tau <= x <= L - h_t - tau and h_t + tau <= y <= L - h_t - tau:
+                tilted.append([x, y, theta])
+    tilted_arr = np.array(tilted, dtype=np.float64) if tilted else np.zeros((0, 3))
 
-    # Base upright squares: recursive refills in all corner pockets and margins
-    existing_uprights: List[Tuple[float, float]] = []
+    uprights: List[Tuple[float, float]] = []
 
-    # Define the 4 corner pockets and outer margin zones
-    # Band divides container diagonally / transversally
-    corner_pockets = [
-        PocketZone(xmin=0.0, xmax=L, ymin=0.0, ymax=L / 2.0, zone_type="SW_corner"),
-        PocketZone(xmin=0.0, xmax=L, ymin=L / 2.0, ymax=L, zone_type="NW_corner"),
-        PocketZone(xmin=0.0, xmax=L / 2.0, ymin=0.0, ymax=L, zone_type="SW_corner"),
-        PocketZone(xmin=L / 2.0, xmax=L, ymin=0.0, ymax=L, zone_type="SE_corner"),
-    ]
+    def try_add(x: float, y: float) -> bool:
+        if not (0.5 + tau <= x <= L - 0.5 - tau and 0.5 + tau <= y <= L - 0.5 - tau):
+            return False
+        if not sat_check_upright_against_tilted(x, y, tilted_arr, clearance=tau):
+            return False
+        for ex in uprights:
+            if abs(ex[0] - x) < 1.0 - 1e-6 and abs(ex[1] - y) < 1.0 - 1e-6:
+                return False
+        uprights.append((x, y))
+        return True
 
-    for pocket in corner_pockets:
-        refilled = recursive_refill_pocket(
-            pocket=pocket,
-            tilted_arr=band_arr,
-            existing_uprights=existing_uprights,
-            L=L,
-            depth=0,
-            max_depth=max_refill_depth,
-        )
-        existing_uprights.extend(refilled)
+    slope = math.tan(theta)
+    k_grid = int(math.ceil(L)) + 1
 
-    # In addition, check integer grid sweeps from corners to ensure no dense sites missed
-    for ix in range(k + 3):
-        for iy in range(k + 3):
-            for xu, yu in [
-                (0.5 + ix, 0.5 + iy),
-                (L - 0.5 - ix, L - 0.5 - iy),
-                (0.5 + ix, L - 0.5 - iy),
-                (L - 0.5 - ix, 0.5 + iy),
-            ]:
-                if 0.5 - 1e-6 <= xu <= L - 0.5 + 1e-6 and 0.5 - 1e-6 <= yu <= L - 0.5 + 1e-6:
-                    if sat_check_upright_against_tilted(xu, yu, band_arr, clearance=-1e-9):
-                        conflict = any(
-                            abs(p[0] - xu) < 0.9999 and abs(p[1] - yu) < 0.9999
-                            for p in existing_uprights
-                        )
-                        if not conflict:
-                            existing_uprights.append((xu, yu))
+    # 1. Upper-left (NW) corner integer-grid blocks (anchored at (0, L))
+    for ix in range(k_grid):
+        for iy in range(k_grid):
+            xu = 0.5 + tau + ix
+            yu = L - 0.5 - tau - iy
+            if yu >= yc + slope * (xu - xc) - 0.05:
+                try_add(xu, yu)
 
-    upright_arr = np.array([[x, y, 0.0] for x, y in existing_uprights], dtype=np.float64)
+    # 2. Lower-right (SE) corner integer-grid blocks (anchored at (L, 0))
+    for ix in range(k_grid):
+        for iy in range(k_grid):
+            xu = L - 0.5 - tau - ix
+            yu = 0.5 + tau + iy
+            if yu <= yc + slope * (xu - xc) + 0.05:
+                try_add(xu, yu)
+
+    # 3. Corner staircases tucked with SAT clearance tau >= 1e-7 along the band interface
+    for row in range(k_grid):
+        # NW row tucking towards the band (scanning x rightwards)
+        yu_nw = L - 0.5 - tau - row
+        if 0.5 <= yu_nw <= L - 0.5:
+            xs_nw = [u[0] for u in uprights if abs(u[1] - yu_nw) < 1e-4 and u[1] >= yc + slope * (u[0] - xc)]
+            if xs_nw:
+                next_x = max(xs_nw) + 1.0
+                if next_x <= L - 0.5 - tau:
+                    try_add(next_x, yu_nw)
+
+        # SE row tucking towards the band (scanning x leftwards)
+        yu_se = 0.5 + tau + row
+        if 0.5 <= yu_se <= L - 0.5:
+            xs_se = [u[0] for u in uprights if abs(u[1] - yu_se) < 1e-4 and u[1] <= yc + slope * (u[0] - xc)]
+            if xs_se:
+                next_x = min(xs_se) - 1.0
+                if next_x >= 0.5 + tau:
+                    try_add(next_x, yu_se)
+
+    # 4. Outer corner sweeps for residual pockets
+    for ix in range(k_grid):
+        for iy in range(k_grid):
+            try_add(0.5 + tau + ix, 0.5 + tau + iy)
+            try_add(L - 0.5 - tau - ix, L - 0.5 - tau - iy)
+
+    upright_arr = np.array([[x, y, 0.0] for x, y in uprights], dtype=np.float64) if uprights else np.zeros((0, 3))
+    if len(tilted_arr) == 0:
+        return upright_arr, 0
     if len(upright_arr) == 0:
-        q_arr = band_arr
-    else:
-        q_arr = np.vstack([band_arr, upright_arr])
+        return tilted_arr, len(tilted_arr)
 
-    return q_arr, len(existing_uprights)
+    return np.vstack([tilted_arr, upright_arr]), len(uprights)
 
 
-def prune_candidate_to_target(q: np.ndarray, target_n: int, j: int) -> np.ndarray:
-    """Selects exactly target_n squares while preserving the central band of j squares.
+def prune_candidate_to_target(q: np.ndarray, target_n: int, n_tilted: int) -> np.ndarray:
+    """Selects exactly target_n squares while preserving the central tilted band.
 
-    Prunes peripheral upright squares that contribute most to bounding container extent.
+    Prunes peripheral upright squares that are furthest from the center of mass.
     """
     if len(q) <= target_n:
         return q.copy()
 
-    band_squares = q[:j]
-    upright_squares = q[j:]
-    needed_uprights = target_n - j
+    tilted_squares = q[:n_tilted]
+    upright_squares = q[n_tilted:]
+    needed_uprights = target_n - n_tilted
+
+    if needed_uprights <= 0:
+        return tilted_squares[:target_n].copy()
 
     if len(upright_squares) <= needed_uprights:
         return q[:target_n].copy()
 
-    # Center of container
     center = np.mean(q[:, :2], axis=0)
-    # Sort uprights by distance from center (keep those closest to center / most compact)
     dists = np.sum((upright_squares[:, :2] - center) ** 2, axis=1)
     keep_indices = np.argsort(dists)[:needed_uprights]
     selected_uprights = upright_squares[keep_indices]
 
-    return np.vstack([band_squares, selected_uprights])
+    return np.vstack([tilted_squares, selected_uprights])
 
 
 # ---------------------------------------------------------------------------
@@ -408,7 +301,6 @@ def _piece_gradient(
     other = j if owner == i else i
 
     r = float(q[other, 2]) - phi
-    # Local signs of cosine and sine
     s1 = 1.0 if math.cos(r) >= 0 else -1.0
     s2 = 1.0 if math.sin(r) >= 0 else -1.0
     hp = 0.5 * (-s1 * math.sin(r) + s2 * math.cos(r))
@@ -425,7 +317,7 @@ def _piece_gradient(
 
 def slp_polish(
     q_init: np.ndarray,
-    max_iters: int = 15,
+    max_iters: int = 5,
     pos_trust: float = 0.02,
     angle_trust: float = 0.01,
     clearance: float = 1e-8,
@@ -436,16 +328,14 @@ def slp_polish(
     n = len(q_best)
 
     for it in range(max_iters):
-        # Decision variables: [dx_0, dy_0, dth_0, ..., dx_{n-1}, dy_{n-1}, dth_{n-1}, xmin, ymin, L]
         num_vars = 3 * n + 3
         c_obj = np.zeros(num_vars)
-        c_obj[-1] = 1.0  # minimize container side L
+        c_obj[-1] = 1.0
 
         A_rows = []
         b_rows = []
 
-        # 1. Bounding box constraints for each square:
-        # xmin <= x_i + dx_i +- 0.5*(cos(th_i) +- sin(th_i)) <= xmin + L
+        # 1. Bounding box constraints for each square
         for i in range(n):
             th = float(q_best[i, 2])
             ct, st = math.cos(th), math.sin(th)
@@ -455,8 +345,6 @@ def slp_polish(
                 ry = 0.5 * (sx * (-st) + sy * ct)
                 dry = 0.5 * (-sx * ct - sy * st)
 
-                # x_i + dx_i + rx + drx * dth_i <= xmin + L
-                # => dx_i + drx * dth_i - xmin - L <= - (q[i, 0] + rx)
                 row_x_hi = np.zeros(num_vars)
                 row_x_hi[3 * i] = 1.0
                 row_x_hi[3 * i + 2] = drx
@@ -465,8 +353,6 @@ def slp_polish(
                 A_rows.append(row_x_hi)
                 b_rows.append(-(q_best[i, 0] + rx))
 
-                # x_i + dx_i - rx - drx * dth_i >= xmin
-                # => -dx_i - drx * dth_i + xmin <= q[i, 0] - rx
                 row_x_lo = np.zeros(num_vars)
                 row_x_lo[3 * i] = -1.0
                 row_x_lo[3 * i + 2] = -drx
@@ -474,7 +360,6 @@ def slp_polish(
                 A_rows.append(row_x_lo)
                 b_rows.append(q_best[i, 0] - rx)
 
-                # Similarly for y
                 row_y_hi = np.zeros(num_vars)
                 row_y_hi[3 * i + 1] = 1.0
                 row_y_hi[3 * i + 2] = dry
@@ -494,26 +379,23 @@ def slp_polish(
         for i in range(n):
             for j in range(i + 1, n):
                 dist_sq = (q_best[i, 0] - q_best[j, 0]) ** 2 + (q_best[i, 1] - q_best[j, 1]) ** 2
-                if dist_sq < 2.25:  # within near-contact distance
+                if dist_sq < 2.25:
                     axis = _dominant_axis(q_best, i, j)
                     g, grad = _piece_gradient(q_best, i, j, axis)
-                    # Constraint: g + grad_i * dq_i + grad_j * dq_j >= clearance
-                    # => -grad_i * dq_i - grad_j * dq_j <= g - clearance
                     row_pair = np.zeros(num_vars)
                     row_pair[3 * i : 3 * i + 3] = -grad[:3]
                     row_pair[3 * j : 3 * j + 3] = -grad[3:6]
                     A_rows.append(row_pair)
                     b_rows.append(g - clearance)
 
-        # Variable bounds (trust region)
         bounds = []
         for i in range(n):
-            bounds.append((-pos_trust, pos_trust))    # dx
-            bounds.append((-pos_trust, pos_trust))    # dy
-            bounds.append((-angle_trust, angle_trust))# dth
-        bounds.append((None, None))  # xmin
-        bounds.append((None, None))  # ymin
-        bounds.append((1.0, None))   # L >= 1.0
+            bounds.append((-pos_trust, pos_trust))
+            bounds.append((-pos_trust, pos_trust))
+            bounds.append((-angle_trust, angle_trust))
+        bounds.append((None, None))
+        bounds.append((None, None))
+        bounds.append((1.0, None))
 
         if not A_rows:
             break
@@ -530,7 +412,6 @@ def slp_polish(
             break
 
         delta_q = res.x[:-3].reshape((n, 3))
-        # Backtracking line search
         improved = False
         step = 1.0
         for _ in range(5):
@@ -559,7 +440,7 @@ def slp_polish(
 def certify_and_align_packing(
     pts: np.ndarray, thetas: np.ndarray, tau: float = 1e-7
 ) -> Tuple[float, str, List[Dict[str, str]], float]:
-    """Uniformly scale and align packing to guarantee strictly positive clearance.
+    """Uniformly scale and align packing to guarantee strictly positive clearance tau.
 
     Returns (L_float, L_certified_str, rows, lambda_scale).
     """
@@ -618,7 +499,7 @@ def certify_and_align_packing(
 
 
 # ---------------------------------------------------------------------------
-# Target Solver: Parametric Family with Recursive Refills
+# Target Solver: Parametric Strip Families with Recursive Refills
 # ---------------------------------------------------------------------------
 
 @dataclass
@@ -626,103 +507,166 @@ class TargetResult:
     n: int
     k: int
     j: int
-    L: float
-    L_certified_str: str
+    status: str
+    L: Optional[float]
+    L_certified_str: Optional[str]
     L_incumbent: float
-    delta_L: float
-    rel_delta_L: float
-    score_contribution: float
+    delta_L: Optional[float]
+    rel_delta_L: Optional[float]
+    score_contribution: Optional[float]
     incumbent_score: float
-    delta_score: float
-    theta_rad: float
-    theta_deg: float
+    delta_score: Optional[float]
+    theta_rad: Optional[float]
+    theta_deg: Optional[float]
+    band_width_w: Optional[int]
     band_offset: List[float]
     corner_pocket_refills: int
     sat_clearance: float
-    lambda_scale: float
+    lambda_scale: Optional[float]
     candidate_packing: List[Dict[str, str]]
+    reason: Optional[str] = None
 
 
 def solve_target_with_recursive_refill(
     k: int,
     j: int,
     incumbent_L: float,
-    max_slp_iters: int = 10,
+    max_slp_iters: int = 5,
 ) -> TargetResult:
-    """Solves a single n = k^2 + j target using parametric strip families and recursive refill."""
-    n = k * k + j
+    """Solves a single n = k^2 + j target using parametric strip families and recursive refill.
 
-    # Candidate angles for the tilted band
+    Strictly removes default integer-grid fallbacks. If no valid configuration fits at
+    sub-grid envelope L < ceil(sqrt(n)), records status FAILED with reason
+    'insufficient_capacity_at_sub_grid_envelope'.
+    """
+    n = k * k + j
+    k_ceil = int(math.ceil(math.sqrt(n)))
+    inc_score = incumbent_L / math.sqrt(n) - 1.0
+
+    # Candidate parameters for tilted band
     candidate_angles = [
-        math.atan(1.0 / k),          # Erdős-Graham rational slope
-        math.atan(1.0 / (k + 1)),    # Low-order rational slope
-        math.atan(2.0 / k),          # Doubled rational slope
-        math.atan(0.5),              # arctan(1/2) low-dilation slope
-        0.25 * math.pi,              # 45 deg diagonal band
+        0.25 * math.pi,            # 45 deg diagonal band
+        math.atan(1.0 / k),        # Erdős-Graham rational slope
+        math.atan(2.0 / k),        # Doubled rational slope
     ]
+    candidate_widths = [1, 2]
 
     best_q: Optional[np.ndarray] = None
     best_L = float("inf")
     best_th = candidate_angles[0]
+    best_w = 1
     best_v_off = 0.0
     best_u_off = 0.0
     best_refill_count = 0
 
-    # Search parameter space: angle theta, band offset (u_off, v_off)
-    for th in candidate_angles:
-        # Search nominal container sides around incumbent
-        for L_nominal in [incumbent_L, incumbent_L + 0.04, float(k) + 0.8]:
-            found_at_this_L = False
-            for v_off in [0.0, -0.5, 0.5]:
-                for u_off in [0.0, -0.3, 0.3]:
-                    q_cand, refill_cnt = construct_strip_family_with_refills(
-                        k=k, j=j, theta=th, L=L_nominal, v_off=v_off, u_off=u_off,
-                        spacing=1.002, max_refill_depth=2
-                    )
-                    if len(q_cand) >= n:
-                        q_pruned = prune_candidate_to_target(q_cand, target_n=n, j=j)
-                        valid, gap = sat_check(q_pruned, clearance=-1e-9)
-                        if valid:
-                            cur_L = compute_container_side(q_pruned[:, :2], q_pruned[:, 2])
-                            if cur_L < best_L:
-                                best_L = cur_L
-                                best_q = q_pruned
-                                best_th = th
-                                best_v_off = v_off
-                                best_u_off = u_off
-                                best_refill_count = refill_cnt
-                                found_at_this_L = True
-            if found_at_this_L:
-                break
+    # Search strictly sub-grid container sides L < k_ceil
+    candidate_Ls = [
+        float(k) + 0.65,
+        float(k) + 0.75,
+        float(k) + 0.85,
+        float(k) + 0.95,
+    ]
+    if incumbent_L < float(k_ceil) - 1e-4:
+        candidate_Ls = [incumbent_L] + candidate_Ls
 
-    # Fallback if unconstrained search didn't saturate n
+    # Filter to strictly sub-grid envelopes
+    candidate_Ls = [L_cand for L_cand in candidate_Ls if L_cand < float(k_ceil) - 1e-5]
+
+    for L_nominal in candidate_Ls:
+        for th in candidate_angles:
+            for w in candidate_widths:
+                for v_off in [0.0, -0.2, 0.2]:
+                    for u_off in [0.0, -0.2, 0.2]:
+                        q_cand, refill_cnt = construct_strip_family_with_refills(
+                            k=k, j=j, theta=th, w=w, L=L_nominal,
+                            v_off=v_off, u_off=u_off, tau=1e-7,
+                        )
+                        if len(q_cand) >= n:
+                            n_tilted = len(q_cand) - refill_cnt
+                            q_pruned = prune_candidate_to_target(q_cand, target_n=n, n_tilted=n_tilted)
+                            valid, gap = sat_check(q_pruned, clearance=-1e-7)
+                            if valid:
+                                cur_L = compute_container_side(q_pruned[:, :2], q_pruned[:, 2])
+                                if cur_L < float(k_ceil) and cur_L < best_L:
+                                    best_L = cur_L
+                                    best_q = q_pruned
+                                    best_th = th
+                                    best_w = w
+                                    best_v_off = v_off
+                                    best_u_off = u_off
+                                    best_refill_count = refill_cnt
+        if best_q is not None:
+            break
+
+    # If unconstrained search yields fewer than n squares at L < ceil(sqrt(n)),
+    # record FAILED rather than emitting a fallback integer grid.
     if best_q is None:
-        L_fallback = float(k) + 1.0001
-        best_q, best_refill_count = construct_strip_family_with_refills(
-            k=k, j=j, theta=candidate_angles[0], L=L_fallback, v_off=0.0, u_off=0.0,
-            spacing=1.002, max_refill_depth=3
+        return TargetResult(
+            status="FAILED",
+            reason="insufficient_capacity_at_sub_grid_envelope",
+            n=n,
+            k=k,
+            j=j,
+            L=None,
+            L_certified_str=None,
+            L_incumbent=incumbent_L,
+            delta_L=None,
+            rel_delta_L=None,
+            score_contribution=None,
+            incumbent_score=inc_score,
+            delta_score=None,
+            theta_rad=None,
+            theta_deg=None,
+            band_width_w=None,
+            band_offset=[],
+            corner_pocket_refills=0,
+            sat_clearance=0.0,
+            lambda_scale=None,
+            candidate_packing=[],
         )
-        if len(best_q) > n:
-            best_q = prune_candidate_to_target(best_q, target_n=n, j=j)
-        best_th = candidate_angles[0]
-        best_v_off = 0.0
-        best_u_off = 0.0
 
     # Apply SLP polish to contract container side L
-    if max_slp_iters > 0 and len(best_q) == n:
+    if max_slp_iters > 0:
         best_q, _ = slp_polish(best_q, max_iters=max_slp_iters, pos_trust=0.02, angle_trust=0.01)
 
     # High-precision certification and separation scaling
     L_float, L_cert_str, rows, lam = certify_and_align_packing(best_q[:, :2], best_q[:, 2], tau=1e-7)
     _, min_sat_gap = sat_check(best_q, clearance=0.0)
 
+    # Verify final certified L remains strictly sub-grid
+    if L_float >= float(k_ceil):
+        return TargetResult(
+            status="FAILED",
+            reason="insufficient_capacity_at_sub_grid_envelope",
+            n=n,
+            k=k,
+            j=j,
+            L=None,
+            L_certified_str=None,
+            L_incumbent=incumbent_L,
+            delta_L=None,
+            rel_delta_L=None,
+            score_contribution=None,
+            incumbent_score=inc_score,
+            delta_score=None,
+            theta_rad=None,
+            theta_deg=None,
+            band_width_w=None,
+            band_offset=[],
+            corner_pocket_refills=0,
+            sat_clearance=0.0,
+            lambda_scale=None,
+            candidate_packing=[],
+        )
+
     delta_l = L_float - incumbent_L
     rel_delta = delta_l / incumbent_L
     score_cand = L_float / math.sqrt(n) - 1.0
-    score_inc = incumbent_L / math.sqrt(n) - 1.0
-    delta_sc = score_cand - score_inc
+    delta_sc = score_cand - inc_score
 
     return TargetResult(
+        status="SUCCESS",
+        reason="ok",
         n=n,
         k=k,
         j=j,
@@ -732,10 +676,11 @@ def solve_target_with_recursive_refill(
         delta_L=delta_l,
         rel_delta_L=rel_delta,
         score_contribution=score_cand,
-        incumbent_score=score_inc,
+        incumbent_score=inc_score,
         delta_score=delta_sc,
         theta_rad=best_th,
         theta_deg=math.degrees(best_th),
+        band_width_w=best_w,
         band_offset=[best_u_off, best_v_off],
         corner_pocket_refills=best_refill_count,
         sat_clearance=max(1e-7, min_sat_gap),
@@ -754,6 +699,7 @@ class RecursiveRefillSuite:
     def __init__(
         self,
         incumbent_path: Path = REPO_ROOT / "poc/pell_corrugation/data/border-scan/merged-literal-cpp.json",
+        targets_path: Path = REPO_ROOT / "poc/research/data/top40_excess_targets.json",
     ):
         self.incumbents: Dict[int, float] = {}
         if incumbent_path.exists():
@@ -761,8 +707,15 @@ class RecursiveRefillSuite:
                 data = json.load(f)
             self.incumbents = {r["n"]: float(r["L"]) for r in data.get("results", [])}
 
+        self.targets_path = targets_path
+
     def get_top_40_targets(self) -> List[Tuple[int, int, int]]:
-        """Selects the top 40 targets n = k^2 + j (10 <= k <= 31, 1 <= j <= k) by score contribution."""
+        """Loads the top 40 excess targets from top40_excess_targets.json or falls back to ranking."""
+        if self.targets_path.exists():
+            with open(self.targets_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return [(t["n"], t["k"], t["j"]) for t in data[:40]]
+
         candidates = []
         for k in range(10, 32):
             max_j = min(k, 1000 - k * k)
@@ -772,14 +725,13 @@ class RecursiveRefillSuite:
                 score = inc_L / math.sqrt(n) - 1.0
                 candidates.append((n, k, j, score))
 
-        # Sort by score contribution descending
         candidates.sort(key=lambda x: x[3], reverse=True)
         return [(c[0], c[1], c[2]) for c in candidates[:40]]
 
     def run(
         self,
         targets: Optional[List[Tuple[int, int, int]]] = None,
-        max_slp_iters: int = 10,
+        max_slp_iters: int = 5,
     ) -> Dict[str, Any]:
         """Runs optimization and certification across targets."""
         if targets is None:
@@ -794,12 +746,14 @@ class RecursiveRefillSuite:
             res = solve_target_with_recursive_refill(
                 k=k, j=j, incumbent_L=inc_L, max_slp_iters=max_slp_iters
             )
-            if res.delta_L < -1e-6:
+            if res.status == "SUCCESS" and res.delta_L is not None and res.delta_L < -1e-6:
                 wins_count += 1
             results_list.append(asdict(res))
 
         elapsed = time.time() - t0
-        deltas = [r["delta_L"] for r in results_list]
+        successful = [r for r in results_list if r.get("status") == "SUCCESS"]
+        failed = [r for r in results_list if r.get("status") == "FAILED"]
+        deltas = [r["delta_L"] for r in successful if r.get("delta_L") is not None]
         mean_delta = float(np.mean(deltas)) if deltas else 0.0
 
         return {
@@ -813,7 +767,9 @@ class RecursiveRefillSuite:
             },
             "summary": {
                 "total_targets": len(targets),
-                "certified_count": len(results_list),
+                "success_count": len(successful),
+                "failed_count": len(failed),
+                "certified_count": len(successful),
                 "mean_delta_L_vs_incumbent": mean_delta,
                 "min_delta_L": float(np.min(deltas)) if deltas else 0.0,
                 "max_delta_L": float(np.max(deltas)) if deltas else 0.0,
@@ -834,6 +790,12 @@ def main() -> None:
         help="Path to merged-literal-cpp.json incumbent ledger",
     )
     parser.add_argument(
+        "--targets",
+        type=Path,
+        default=REPO_ROOT / "poc/research/data/top40_excess_targets.json",
+        help="Path to top40_excess_targets.json",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=REPO_ROOT / "poc/research/data/recursive_refill_results.json",
@@ -842,8 +804,8 @@ def main() -> None:
     parser.add_argument(
         "--slp-iters",
         type=int,
-        default=5,
-        help="SLP polish iterations per target (default: 5)",
+        default=3,
+        help="SLP polish iterations per target (default: 3)",
     )
     parser.add_argument(
         "--top-n",
@@ -853,7 +815,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    suite = RecursiveRefillSuite(incumbent_path=args.incumbent)
+    suite = RecursiveRefillSuite(incumbent_path=args.incumbent, targets_path=args.targets)
     top_targets = suite.get_top_40_targets()[: args.top_n]
 
     print(f"Starting Recursive Refill Strip Solver across {len(top_targets)} targets...")

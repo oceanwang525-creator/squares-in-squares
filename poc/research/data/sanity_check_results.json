@@ -1,0 +1,224 @@
+{
+  "hard_validation_check": {
+    "rule": "Reject if abs(L - ceil(sqrt(n))) <= 1e-5 or zero tilted squares (all angles == 0). Status: FAILED, reason: integer_grid_fallback.",
+    "synthetic_controls": [
+      {
+        "test_n": 100,
+        "test_L": 10.0,
+        "expected_status": "FAILED",
+        "expected_reason": "integer_grid_fallback",
+        "validation_result": {
+          "passed": false,
+          "status": "FAILED",
+          "reason": "integer_grid_fallback"
+        },
+        "matches_expected": true
+      },
+      {
+        "test_n": 289,
+        "test_L": 17.000005,
+        "expected_status": "FAILED",
+        "expected_reason": "integer_grid_fallback",
+        "validation_result": {
+          "passed": false,
+          "status": "FAILED",
+          "reason": "integer_grid_fallback"
+        },
+        "matches_expected": true
+      },
+      {
+        "test_n": 147,
+        "test_L": 12.656854,
+        "expected_status": "PASSED",
+        "expected_reason": "ok",
+        "validation_result": {
+          "passed": true,
+          "status": "PASSED",
+          "reason": "ok"
+        },
+        "matches_expected": true
+      }
+    ]
+  },
+  "k_j_classification": {
+    "formula": "k = floor(sqrt(n)), j = n - k^2 (0 <= j <= 2k)",
+    "range": [
+      100,
+      1000
+    ],
+    "total_tested": 901,
+    "all_valid": true,
+    "confirmed_183": {
+      "n": 183,
+      "k": 13,
+      "j": 14,
+      "k_squared": 169,
+      "reconstructed": 183,
+      "two_k": 26,
+      "condition_j_le_2k": true
+    }
+  },
+  "incumbent_measurements": {
+    "147": {
+      "n": 147,
+      "exact_L": 12.656854249492426,
+      "ceil_sqrt_n": 13,
+      "tilted_square_count": 64,
+      "upright_square_count": 83,
+      "unique_tilted_angles": [
+        0.785398
+      ],
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok"
+      }
+    },
+    "232": {
+      "n": 232,
+      "exact_L": 15.76165620477883,
+      "ceil_sqrt_n": 16,
+      "tilted_square_count": 89,
+      "upright_square_count": 143,
+      "unique_tilted_angles": [
+        0.000661,
+        0.001215,
+        0.002084,
+        1.01344,
+        1.068875,
+        1.075722,
+        1.076542,
+        1.082403,
+        1.08247,
+        1.082483,
+        1.08308,
+        1.092833,
+        1.09659,
+        1.103712,
+        1.10377,
+        1.103782,
+        1.104006,
+        1.104726,
+        1.126446,
+        1.539223,
+        1.551285,
+        1.566746,
+        1.569158,
+        1.57012,
+        1.570489,
+        1.570511,
+        1.570536
+      ],
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok"
+      }
+    },
+    "290": {
+      "n": 290,
+      "exact_L": 17.53553390593285,
+      "ceil_sqrt_n": 18,
+      "tilted_square_count": 50,
+      "upright_square_count": 240,
+      "unique_tilted_angles": [
+        0.785398
+      ],
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok"
+      }
+    },
+    "739": {
+      "n": 739,
+      "exact_L": 27.69092118214214,
+      "ceil_sqrt_n": 28,
+      "tilted_square_count": 331,
+      "upright_square_count": 408,
+      "unique_tilted_angles": [
+        -0.00125,
+        -0.000655,
+        -0.000625,
+        -0.000384,
+        -0.000113,
+        0.01125,
+        0.782373,
+        0.782377,
+        0.78238,
+        0.782381,
+        0.782393,
+        0.782427,
+        0.782746,
+        0.783055,
+        0.783324,
+        0.783913,
+        0.784055,
+        0.786375,
+        0.786428,
+        0.786767,
+        0.787169,
+        0.787531,
+        0.787593,
+        0.787624,
+        0.787874,
+        0.787927,
+        0.787948,
+        0.788052,
+        0.788072,
+        0.788255,
+        0.78838,
+        0.788397,
+        0.788416,
+        0.78842,
+        0.788568,
+        0.788655,
+        0.789143
+      ],
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok"
+      }
+    }
+  },
+  "generator_verification": {
+    "n_290": {
+      "n": 290,
+      "architecture": "grid_tilted_bands",
+      "incumbent_L": 17.53553390593285,
+      "generated_L": 17.535533905932738,
+      "delta_L": 1.1368683772161603e-13,
+      "reproduced_within_1e_2": true
+    },
+    "n_739": {
+      "n": 739,
+      "architecture": "symmetric_odd_d_corrugated_core (D=17, w=13)",
+      "incumbent_L": 27.69092118214214,
+      "generated_nominal_L": 27.692388155425117,
+      "generated_measured_L": 27.692388155425117,
+      "delta_L_nominal": 0.0014669732829766247,
+      "reproduced_within_1e_2": true
+    }
+  },
+  "comparison_table": [
+    {
+      "n": 290,
+      "architecture": "grid_tilted_bands (5x5 45-deg dual blocks + Cartesian corner blocks)",
+      "incumbent_L": 17.535534,
+      "generated_L": 17.535534,
+      "abs_delta_L": 0.0,
+      "reproduced_within_1e_2": true,
+      "validation_status": "PASSED"
+    },
+    {
+      "n": 739,
+      "architecture": "symmetric_odd_d_corrugated_core (Pell-17 D=17, w=13 full core)",
+      "incumbent_L": 27.690921,
+      "generated_L": 27.692388,
+      "abs_delta_L": 0.001467,
+      "reproduced_within_1e_2": true,
+      "validation_status": "PASSED"
+    }
+  ]
+}

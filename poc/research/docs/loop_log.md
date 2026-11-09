@@ -101,6 +101,21 @@ Record of attempts and variants explored to beat incumbent packings in `poc/pell
 - **Colab A100 Execution Pipeline Scaffolding**:
   - Implemented GPU batch screening and 4-sign-piece epigraph LP runner in `poc/research/poc/colab_runner.py` and `colab_a100_search.ipynb` with automated self-termination teardown (`google.colab.runtime.unassign()`) and local 50-digit verification.
 
+### Attempt 7: Re-Engineered Non-Fallback Search & Visual Verification on Top 40
+- **Hard Validation Check**:
+  Implemented hard check in `poc/research/poc/sanity_check_tilted.py` rejecting any packing with $|L - \lceil\sqrt{n}\rceil| \le 10^{-5}$ or zero tilted squares as `status: FAILED, reason: integer_grid_fallback`.
+- **Classification Fix**:
+  Verified $k = \lfloor\sqrt{n}\rfloor, j = n - k^2$ with $0 \le j \le 2k$ across all $n \in [100, 1000]$ (e.g. $n = 183 = 13^2 + 14$, $k=13, j=14 \le 26$).
+- **Sanity Verification on Known Incumbents**:
+  Verified in `poc/research/data/sanity_check_results.json`:
+  - $n=290$: reproduced exact incumbent $L = 17.535534$ ($|\Delta L| < 10^{-12} \le 10^{-2}$).
+  - $n=739$: reproduced Pell-17 $L_0 = 27.692388$ ($|\Delta L| \approx 1.47 \times 10^{-3} \le 10^{-2}$).
+- **Visual Vector Plots**:
+  Generated standalone SVG vector plots in `poc/research/docs/plots/` using `poc/research/poc/plot_packing_svg.py` for incumbents ($n=147, 290, 739$), Idea 1 ($n=155$), and Idea 3 ($n=132, 156$).
+- **Rerun of Top 40 Targets**:
+  - **Idea 1 (Scratch Tilted Bands, Bo 2)**: 37 targets produced real sub-grid tilted packings ($L < \lceil\sqrt{n}\rceil$), 3 marked `FAILED (sub-grid capacity)` ($n \in \{110, 132, 183\}$), 9 matched incumbent records exactly ($\Delta L = 0.0$ on $n \in \{125, 201, 290, 325, 401, 442, 485, 530, 577\}$). Zero strict improvements ($\Delta L < 0$).
+  - **Idea 3 (Recursive Corner Refill, Kai 2)**: 22 targets produced real sub-grid tilted packings, 18 marked `FAILED (insufficient_capacity_at_sub_grid_envelope)`. Zero strict improvements ($\Delta L < 0$).
+
 ---
 
 ## Winning Candidate Summary
