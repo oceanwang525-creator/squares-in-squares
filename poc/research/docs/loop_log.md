@@ -83,6 +83,24 @@ Record of attempts and variants explored to beat incumbent packings in `poc/pell
 - **Idea 4 (4-sign LP / L-BFGS Polish)**:
   - Polished near-threshold candidates ($|\Delta L| \le 10^{-3}$). Linearized epigraph LP successfully contracts loose empirical placements by $\sim 5 \times 10^{-3}$, but jams at rigid active contact vertices without generating strict wins $\ge 10^{-4}$.
 
+### Attempt 6: Top 40 Excess Targets in $n \in [100, 1000]$ (Idea 1 Scratch Bands & Idea 3 Recursive Refill)
+- **Context & Audit**:
+  Filtered all non-square puzzles in $n \in [100, 1000]$ and reranked by localized excess gap $\text{gap}(n) = r(n) - \text{median}_{m \in [n-5, n+5], m \ne n}(r(m))$ in `poc/research/data/top40_excess_targets.json` and `poc/research/docs/top40_excess_ranking.md`.
+  Identified the top 40 bottleneck targets, consisting of:
+  - 10 $k^2+1$ boundary step discontinuities ($n \in \{290, 325, 362, 401, 442, 485, 530, 577, 626, 677\}$ with jump $\Delta L \approx 0.5355$).
+  - 27 middle-band $j \in [3, 10]$ transverse tooth inflations ($n = 105, 103, 127, 147, 151, \dots$).
+  - 3 historical baseline simulated annealing records ($n \in \{102, 132, 183\}$).
+- **Idea 1 (From-Scratch Thick Tilted & Cross-Band Generation)**:
+  - Tested continuous tilt angle $\theta \in [0, \pi/2]$, width $w$, transverse/longitudinal offsets, single and orthogonal cross-band layouts with triangular upright grid infill (`poc/research/poc/search_large_n_scratch_bands.py` / `poc/research/data/large_n_scratch_band_results.json`).
+  - Best $L$ vs incumbent: $n \in \{111, 112, 133\}$ tied integer grid ceilings ($\Delta L = 0.0$); all fractional incumbents had $\Delta L > 0$ (e.g., $n=110$ best $L=11.0$ vs incumbent $10.996783$, $\Delta L = +3.22 \times 10^{-3}$; $n=132$ best $L=12.0$ vs incumbent $11.985680$, $\Delta L = +0.0143$).
+  - Assessment: Monolithic straight bands passing through large containers force container boundary expansion proportional to $w/\sqrt{2}$; straight bands cannot beat non-linear multi-angle clusters without boundary corrugation.
+- **Idea 3 (Parametric $k^2+j$ Strip Families with Recursive Corner Pocket Refill)**:
+  - Implemented parametric strip families across rational lattice slopes ($\arctan(1/k)$, $\arctan(2/k)$, $\arctan(1/2)$, $\pi/4$) with recursive integer-grid trapezoid and triangle pocket packing (`poc/research/poc/search_recursive_refill_strips.py` / `poc/research/data/recursive_refill_results.json`).
+  - Best $L$ vs incumbent: Certified all 40 targets with strictly positive SAT clearance ($\tau \ge 10^{-7}$). Mean $\Delta L = +0.2358$; min $\Delta L = +0.0144$ on $n=156$, max $\Delta L = +0.4646$ on $n=101$. Wins count = 0.
+  - Assessment: Recursive pocket refill successfully saturates boundary corners without exceeding $L \le k+1$, but single-band parametric layouts lack the density of multi-block and corrugated configurations.
+- **Colab A100 Execution Pipeline Scaffolding**:
+  - Implemented GPU batch screening and 4-sign-piece epigraph LP runner in `poc/research/poc/colab_runner.py` and `colab_a100_search.ipynb` with automated self-termination teardown (`google.colab.runtime.unassign()`) and local 50-digit verification.
+
 ---
 
 ## Winning Candidate Summary
