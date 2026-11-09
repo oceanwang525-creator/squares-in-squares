@@ -1,0 +1,170 @@
+{
+  "total_targets": 8,
+  "validation_rule": "reject if abs(L - ceil(sqrt(n))) <= 1e-5 or zero tilted squares (all angles == 0) -> FAILED, integer_grid_fallback",
+  "all_targets_passed_validation": true,
+  "total_runtime_sec": 22.407,
+  "stream_jsonl": "outputs/smoke_test_colab_stream.jsonl",
+  "stream_csv": "outputs/smoke_test_colab_submission.csv",
+  "targets": {
+    "626": {
+      "target_n": 626,
+      "best_L": 25.50378211384917,
+      "incumbent_L": 25.520815280171426,
+      "delta_L": -0.017033166322256932,
+      "winning_flag": false,
+      "runtime_sec": 2.453,
+      "family": "scratch_th0.785_w2",
+      "sat_ok": false,
+      "min_gap": -0.0007138306097380642,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 58,
+        "total_squares": 626,
+        "grid_L": 26.0,
+        "grid_L_diff": 0.4962178861508306
+      }
+    },
+    "634": {
+      "target_n": 634,
+      "best_L": 25.690073614864442,
+      "incumbent_L": 25.70710678118679,
+      "delta_L": -0.017033166322349302,
+      "winning_flag": false,
+      "runtime_sec": 2.517,
+      "family": "scratch_th0.644_w2",
+      "sat_ok": false,
+      "min_gap": -8.20526791289744e-07,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 60,
+        "total_squares": 634,
+        "grid_L": 26.0,
+        "grid_L_diff": 0.30992638513555804
+      }
+    },
+    "677": {
+      "target_n": 677,
+      "best_L": 26.503890623381082,
+      "incumbent_L": 26.520815280171654,
+      "delta_L": -0.016924656790571646,
+      "winning_flag": false,
+      "runtime_sec": 2.513,
+      "family": "scratch_th0.785_w2",
+      "sat_ok": false,
+      "min_gap": -0.0006662966042079166,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 62,
+        "total_squares": 677,
+        "grid_L": 27.0,
+        "grid_L_diff": 0.49610937661891796
+      }
+    },
+    "730": {
+      "target_n": 730,
+      "best_L": 27.503991710674896,
+      "incumbent_L": 27.520815280171753,
+      "delta_L": -0.01682356949685726,
+      "winning_flag": false,
+      "runtime_sec": 2.913,
+      "family": "scratch_th0.785_w2",
+      "sat_ok": false,
+      "min_gap": -0.0006246950471637813,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 66,
+        "total_squares": 730,
+        "grid_L": 28.0,
+        "grid_L_diff": 0.4960082893251041
+      }
+    },
+    "738": {
+      "target_n": 738,
+      "best_L": 27.67409584266573,
+      "incumbent_L": 27.690919412162657,
+      "delta_L": -0.016823569496928314,
+      "winning_flag": false,
+      "runtime_sec": 2.796,
+      "family": "scratch_th0.644_w2",
+      "sat_ok": false,
+      "min_gap": -0.0006246950471635593,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 66,
+        "total_squares": 738,
+        "grid_L": 28.0,
+        "grid_L_diff": 0.32590415733427136
+      }
+    },
+    "785": {
+      "target_n": 785,
+      "best_L": 28.50408605759279,
+      "incumbent_L": 28.520815280174215,
+      "delta_L": -0.016729222581425063,
+      "winning_flag": false,
+      "runtime_sec": 2.934,
+      "family": "scratch_th0.785_w2",
+      "sat_ok": false,
+      "min_gap": -0.0006246950471637813,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 66,
+        "total_squares": 785,
+        "grid_L": 29.0,
+        "grid_L_diff": 0.4959139424072099
+      }
+    },
+    "794": {
+      "target_n": 794,
+      "best_L": 28.67419196454774,
+      "incumbent_L": 28.69092118712923,
+      "delta_L": -0.01672922258148901,
+      "winning_flag": false,
+      "runtime_sec": 2.882,
+      "family": "scratch_th0.785_w2",
+      "sat_ok": false,
+      "min_gap": -0.0005879810316915535,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 70,
+        "total_squares": 794,
+        "grid_L": 29.0,
+        "grid_L_diff": 0.32580803545225834
+      }
+    },
+    "851": {
+      "target_n": 851,
+      "best_L": 29.67428099000461,
+      "incumbent_L": 29.690921995881716,
+      "delta_L": -0.01664100587710493,
+      "winning_flag": false,
+      "runtime_sec": 3.399,
+      "family": "scratch_th0.644_w2",
+      "sat_ok": false,
+      "min_gap": -0.0005879810316907763,
+      "validation": {
+        "passed": true,
+        "status": "PASSED",
+        "reason": "ok",
+        "tilted_count": 70,
+        "total_squares": 851,
+        "grid_L": 30.0,
+        "grid_L_diff": 0.32571900999538883
+      }
+    }
+  }
+}
