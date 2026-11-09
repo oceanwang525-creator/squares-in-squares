@@ -1,0 +1,385 @@
+{
+  "timestamp": "2026-11-08 20:53:00 UTC",
+  "solver": "structural_transplant_and_defect_solver_idea2",
+  "total_targets_evaluated": 13,
+  "total_improved": 0,
+  "results": {
+    "543": {
+      "target_n": 543,
+      "incumbent_L": "23.80242871693314201293497742354555801398185004233018",
+      "incumbent_score": 0.021459985726099973,
+      "best_candidate_L": "23.80242871693314201293497742354555801398185004233018",
+      "best_candidate_L_float": 23.802428716933143,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 544,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.0214370225329863
+      },
+      "all_candidates": [
+        {
+          "donor_n": 542,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0217676694408948
+        },
+        {
+          "donor_n": 544,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0214370225329863
+        }
+      ]
+    },
+    "544": {
+      "target_n": 544,
+      "incumbent_L": "23.82380056801543255961566084581971735919185135605473",
+      "incumbent_score": 0.021437022532986294,
+      "best_candidate_L": "23.82380056801543255961566084581971735919185135605473",
+      "best_candidate_L_float": 23.823800568015432,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 545,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.0211272855824238
+      },
+      "all_candidates": [
+        {
+          "donor_n": 543,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0214599857261
+        },
+        {
+          "donor_n": 545,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0211272855824238
+        }
+      ]
+    },
+    "545": {
+      "target_n": 545,
+      "incumbent_L": "23.83845650795592491923132169163706471766550357769302",
+      "incumbent_score": 0.021127285582423827,
+      "best_candidate_L": "23.83845650795592491923132169163706471766550357769302",
+      "best_candidate_L_float": 23.838456507955925,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 546,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.020713779956173
+      },
+      "all_candidates": [
+        {
+          "donor_n": 544,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0214370225329863
+        },
+        {
+          "donor_n": 546,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.020713779956173
+        }
+      ]
+    },
+    "591": {
+      "target_n": 591,
+      "incumbent_L": "24.81693351254982065961566084581950158979534386400839",
+      "incumbent_score": 0.02083223817033142,
+      "best_candidate_L": "24.81693351254982065961566084581950158979534386400839",
+      "best_candidate_L_float": 24.81693351254982,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 592,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.0202897678478697
+      },
+      "all_candidates": [
+        {
+          "donor_n": 590,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0208391065891727
+        },
+        {
+          "donor_n": 592,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0202897678478697
+        }
+      ]
+    },
+    "592": {
+      "target_n": 592,
+      "incumbent_L": "24.82472147964676646923132169163963010308195645811009",
+      "incumbent_score": 0.020289767847869955,
+      "best_candidate_L": "24.82472147964676646923132169163963010308195645811009",
+      "best_candidate_L_float": 24.824721479646765,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 593,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.020330329237601
+      },
+      "all_candidates": [
+        {
+          "donor_n": 591,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0208322381703314
+        },
+        {
+          "donor_n": 593,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.020330329237601
+        }
+      ]
+    },
+    "593": {
+      "target_n": 593,
+      "incumbent_L": "24.84666719284362746923132169163831087176026481732180",
+      "incumbent_score": 0.02033032923760092,
+      "best_candidate_L": "24.84666719284362746923132169163831087176026481732180",
+      "best_candidate_L_float": 24.84666719284363,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 594,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.019902141406661
+      },
+      "all_candidates": [
+        {
+          "donor_n": 592,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0202897678478697
+        },
+        {
+          "donor_n": 594,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.019902141406661
+        }
+      ]
+    },
+    "908": {
+      "target_n": 908,
+      "incumbent_L": "30.63702955961203500000000000000000000000000000000000",
+      "incumbent_score": 0.016725535844596573,
+      "best_candidate_L": "30.63702955961203500000000000000000000000000000000000",
+      "best_candidate_L_float": 30.637029559612035,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 907,
+        "donor_type": "n-1",
+        "donor_normalized_side": 1.0166662199772964
+      },
+      "all_candidates": [
+        {
+          "donor_n": 907,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0166662199772964
+        },
+        {
+          "donor_n": 909,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0168236704364089
+        }
+      ]
+    },
+    "909": {
+      "target_n": 909,
+      "incumbent_L": "30.65685424949258231923132169163970048778021020408988",
+      "incumbent_score": 0.016823670436408866,
+      "best_candidate_L": "30.65685424949258231923132169163970048778021020408988",
+      "best_candidate_L_float": 30.656854249492582,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 908,
+        "donor_type": "n-1",
+        "donor_normalized_side": 1.0167255358445966
+      },
+      "all_candidates": [
+        {
+          "donor_n": 908,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0167255358445966
+        },
+        {
+          "donor_n": 910,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0173941267822657
+        }
+      ]
+    },
+    "910": {
+      "target_n": 910,
+      "incumbent_L": "30.69092107418828100723564591975988495430653455035650",
+      "incumbent_score": 0.017394126782265484,
+      "best_candidate_L": "30.69092107418828100723564591975988495430653455035650",
+      "best_candidate_L_float": 30.69092107418828,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 909,
+        "donor_type": "n-1",
+        "donor_normalized_side": 1.0168236704364089
+      },
+      "all_candidates": [
+        {
+          "donor_n": 909,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0168236704364089
+        },
+        {
+          "donor_n": 911,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0173718357163695
+        }
+      ]
+    },
+    "911": {
+      "target_n": 911,
+      "incumbent_L": "30.70710678118672500000000000000000000000000000000000",
+      "incumbent_score": 0.017371835716369466,
+      "best_candidate_L": "30.70710678118672500000000000000000000000000000000000",
+      "best_candidate_L_float": 30.707106781186724,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 912,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.0168139130883311
+      },
+      "all_candidates": [
+        {
+          "donor_n": 910,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0173941267822657
+        },
+        {
+          "donor_n": 912,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0168139130883311
+        }
+      ]
+    },
+    "971": {
+      "target_n": 971,
+      "incumbent_L": "31.67877987534327806923132169163724933296724983230613",
+      "incumbent_score": 0.01662042572460032,
+      "best_candidate_L": "31.67877987534327806923132169163724933296724983230613",
+      "best_candidate_L_float": 31.678779875343277,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 970,
+        "donor_type": "n-1",
+        "donor_normalized_side": 1.0164403324629223
+      },
+      "all_candidates": [
+        {
+          "donor_n": 970,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0164403324629223
+        },
+        {
+          "donor_n": 972,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0165338240443713
+        }
+      ]
+    },
+    "972": {
+      "target_n": 972,
+      "incumbent_L": "31.69238815542838555961566082107349804168366869287818",
+      "incumbent_score": 0.016533824044371315,
+      "best_candidate_L": "31.69238815542838555961566082107349804168366869287818",
+      "best_candidate_L_float": 31.692388155428386,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 973,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.016483176310401
+      },
+      "all_candidates": [
+        {
+          "donor_n": 971,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0166204257246003
+        },
+        {
+          "donor_n": 973,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.016483176310401
+        }
+      ]
+    },
+    "973": {
+      "target_n": 973,
+      "incumbent_L": "31.70710678118685400000000000000000000000000000000000",
+      "incumbent_score": 0.01648317631040097,
+      "best_candidate_L": "31.70710678118685400000000000000000000000000000000000",
+      "best_candidate_L_float": 31.707106781186855,
+      "delta_L": "0.00000000000000000000000000000000000000000000000000",
+      "delta_L_float": 0.0,
+      "improved": false,
+      "valid": true,
+      "min_clearance": 5e-09,
+      "best_donor": {
+        "donor_n": 974,
+        "donor_type": "n+1",
+        "donor_normalized_side": 1.0159612336950843
+      },
+      "all_candidates": [
+        {
+          "donor_n": 972,
+          "donor_type": "n-1",
+          "donor_normalized_side": 1.0165338240443713
+        },
+        {
+          "donor_n": 974,
+          "donor_type": "n+1",
+          "donor_normalized_side": 1.0159612336950843
+        }
+      ]
+    }
+  }
+}

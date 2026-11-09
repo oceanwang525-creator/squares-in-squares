@@ -66,6 +66,23 @@ Record of attempts and variants explored to beat incumbent packings in `poc/pell
   - Portfolio score $\Delta$: **$-5.370000000003074 \times 10^{-12}$**
   - Accepted: 1000 / 1000 on both literal CSV and pandas 3.1.0 round-trip.
 
+### Attempt 5: Four-Idea Exploration on Top 50 Worst Offenders ($n \le 86$)
+- **Context & Audit**:
+  Ranked all 1000 puzzles by score contribution $L/\sqrt{n}-1$ and neighbor gaps $\Delta L_{\text{left}}, \Delta L_{\text{right}}$ in `poc/research/data/top50_worst_offenders.json` and `poc/research/docs/top50_ranking.md`.
+  The top 50 worst offenders are concentrated in small $n \in [2, 86]$ ($n = k^2 + j$), where 18 are proved optimal/rigid grids ($n \in \{2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 19, 21, 22, 31, 32, 43, 57\}$) and 32 have theoretical deficit gaps.
+- **Idea 1 (Scratch Tilted & Cross-Band Constructions)**:
+  - Built scratch corner-to-corner thick tilted band packings (`poc/research/poc/tilted_band_scratch.py`) across $\theta \in [0, \pi/2]$, widths $w \in [1, 4]$, and continuous offsets on targets $n \in \{5..70\}$.
+  - Best $L$ vs incumbent: $n=27$ achieved unpolished $L=5.712107$, polished $L=5.707107$ ($\Delta L = +4.41 \times 10^{-8}$ vs incumbent $5.70710678$).
+  - Assessment: Reproduces known tight packing to $4.4 \times 10^{-8}$, but no candidate beat incumbent ($\Delta L > 0$).
+- **Idea 2 (Transplantation & Defect Solver)**:
+  - Implemented donor transplant solver (`poc/research/poc/transplant_solver.py` / `poc/research/data/transplant_results.json`) inserting squares into slack pockets ($n-1 \to n$) or deleting least-constrained squares ($n+1 \to n$) followed by 4-sign-piece SLP relaxation.
+  - Best $L$ vs incumbent: $\Delta L = 0.0$ (retained incumbent fallback). Inserting into rigid boundaries causes box expansion; deleting squares creates cavities locked by exterior contacts.
+- **Idea 3 (Asymptotic Families for $k^2+j$)**:
+  - Implemented Erdős-Graham / Chung-Graham parametric solver (`poc/research/poc/erdos_graham_parametric.py` / `poc/research/data/erdos_graham_results.json`) across all 55 $(k, j)$ pairs ($k \le 10, j \le k$).
+  - Best $L$ vs incumbent: Mean $\Delta L = +0.1908$ across all 55 pairs, minimum $\Delta L = +1.0 \times 10^{-7}$ (ties at $n=2$ and $j=k$, strictly worse for intermediate $j < k$). Monolithic strip insertion without recursive refill leaves triangular dead space bounded by $L \le k+1$.
+- **Idea 4 (4-sign LP / L-BFGS Polish)**:
+  - Polished near-threshold candidates ($|\Delta L| \le 10^{-3}$). Linearized epigraph LP successfully contracts loose empirical placements by $\sim 5 \times 10^{-3}$, but jams at rigid active contact vertices without generating strict wins $\ge 10^{-4}$.
+
 ---
 
 ## Winning Candidate Summary
