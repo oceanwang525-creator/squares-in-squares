@@ -118,6 +118,50 @@ Record of attempts and variants explored to beat incumbent packings in `poc/pell
 
 ---
 
+### Attempt 8: Multi-Seed Basin Hopping & Mixed Relaxation on Closest Misses ($n \in \{295, 106, 151, 234\}$)
+- **Target Selection**:
+  The 4 closest scratch-band misses from the Top 40 excess targets in $n \in [100, 1000]$:
+  1. $n=295$ ($k=17, j=6$): Incumbent $L = 17.70423279$, candidate scratch band $L = 17.70710678$ ($\Delta L = +0.002874$).
+  2. $n=106$ ($k=10, j=6$): Incumbent $L = 10.82290804$, candidate scratch band $L = 10.82842712$ ($\Delta L = +0.005519$).
+  3. $n=151$ ($k=12, j=7$): Incumbent $L = 12.82287566$, candidate scratch band $L = 12.82842712$ ($\Delta L = +0.005551$).
+  4. $n=234$ ($k=15, j=9$): Incumbent $L = 15.82287566$, candidate scratch band $L = 15.82842712$ ($\Delta L = +0.005551$).
+- **Methodology**:
+  - Base Seed 1: Scratch tilted band from `poc/research/data/large_n_scratch_band_results.json`.
+  - Base Seed 2: Incumbent layout from `poc/pell_corrugation/data/border-scan/merged.csv`.
+  - Perturbation: Contact graph analysis identified 5–15 tightest contact squares per layout ($\sigma_x \approx 0.05, \sigma_\theta \approx 0.03$).
+  - Optimization: Smooth penalty L-BFGS for feasibility repair, followed by exact 4-sign-piece epigraph LP contraction.
+  - Mixed structures: Hybridized rational slope bands ($\theta \approx 24.3^\circ, \arctan(1/2), \arctan(2/3)$) with diagonal bands, staircase boundary tucking, and corner blocks.
+  - Trials: 30 random kick seeds per base seed / method.
+- **Results per Target**:
+  - **$n=295$** (`poc/research/data/relax_n295_results.json`, 120 trials):
+    - Seed 1 (Scratch band): best $L = 17.70725216$
+    - Seed 2 (Incumbent 160-sq $45^\circ$ band): best $L = 17.70423295$ ($\Delta L = +1.6 \times 10^{-7}$)
+    - Mixed corner blocks: best $L = 17.81154108$
+    - Mixed dual angle: best $L = \infty$ (infeasible)
+    - Beat Incumbent: **False** (incumbent held).
+  - **$n=106$** (`poc/research/data/relax_n106_results.json`, 180 trials):
+    - Seed 1 (Scratch band): best $L = 10.82842712$
+    - Seed 2 (Incumbent variable-slope band): best $L = 10.82290804$
+    - Mixed hybrid $\arctan(1/2)$: best $L = 10.82395262$
+    - Mixed hybrid $\arctan(2/3)$: best $L = 10.82297810$ ($\Delta L = +7.00 \times 10^{-5}$)
+    - Mixed dual rational: best $L = 10.82394489$
+    - Mixed corner notch tucking: best $L = 10.82741966$
+    - Beat Incumbent: **False** (incumbent held).
+  - **$n=151$** (`poc/research/data/relax_n151_results.json`, 90 trials):
+    - Seed 1 (Scratch band): best $L = 12.82842712$
+    - Seed 2 (Incumbent dual-angle band): best $L = 12.82287566$
+    - Mixed dual angle variations: best $L = \infty$ (infeasible)
+    - Beat Incumbent: **False** (incumbent held).
+  - **$n=234$** (`poc/research/data/relax_n234_results.json`, 90 trials):
+    - Seed 1 (Scratch band): best $L = 15.82842712$
+    - Seed 2 (Incumbent rational band): best $L = 15.82287566$
+    - Seed 3 (Mixed rational + staircase): improved from $15.82328709$ to best $L = 15.82291487$ ($\Delta L = +3.92 \times 10^{-5}$)
+    - Beat Incumbent: **False** (incumbent held).
+- **Assessment**:
+  The incumbent contact graphs at $n \in \{295, 106, 151, 234\}$ are rigidly interlocked at their global or near-global optima. Basin hopping perturbations of up to 15 squares restored contact feasibility via smooth L-BFGS and contracted via epigraph LP, but in each case converged to the exact incumbent limit or slightly loose perturbed variations without discovering a superior contact graph topology ($\Delta L < 0$).
+
+---
+
 ## Winning Candidate Summary
 
 | Target $n$ | Incumbent $L$ | New Certified $L$ | $\Delta L$ | Literal Cert | Pandas 3.1.0 Cert | Construction Idea |
