@@ -1,0 +1,15 @@
+51 35 runs; inc L 7.690355937288499 ceil 8
+   ('random', 'None', 0.0) feasible 6 / 9 best 8.000004 median 8.002855
+   ('perturbed', '0.05', 0.0) feasible 9 / 9 best 7.690629 median 7.690981
+   ('perturbed', '0.15', 0.03) feasible 9 / 9 best 7.690825 median 7.691450
+   ('perturbed', '0.3', 0.0) feasible 8 / 8 best 7.996723 median 8.165194
+68 59 runs; inc L 8.798795237218291 ceil 9
+   ('random', 'None', 0.0) feasible 6 / 15 best 9.006724 median 9.137741
+   ('perturbed', '0.05', 0.0) feasible 15 / 15 best 8.799225 median 8.806139
+   ('perturbed', '0.15', 0.03) feasible 15 / 15 best 8.802623 median 8.828795
+   ('perturbed', '0.3', 0.0) feasible 13 / 14 best 9.000006 median 9.014616
+86 60 runs; inc L 9.82053540749675 ceil 10
+   ('random', 'None', 0.0) feasible 11 / 15 best 10.002489 median 10.324207
+   ('perturbed', '0.05', 0.0) feasible 15 / 15 best 9.820848 median 9.822371
+   ('perturbed', '0.15', 0.03) feasible 15 / 15 best 9.823075 median 9.838973
+   ('perturbed', '0.3', 0.0) feasible 11 / 15 best 10.000106 median 10.086942
