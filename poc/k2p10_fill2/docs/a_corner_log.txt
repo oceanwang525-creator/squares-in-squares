@@ -1,0 +1,13 @@
+corner squares 65
+plain 0 E 0.03506 maxdepth 0.0285 wall 0.0269 pairs 411 8
+plain 1 E 0.04217 maxdepth 0.0342 wall 0.0335 pairs 695 17
+plain 2 E 0.03982 maxdepth 0.0339 wall 0.0326 pairs 774 25
+tilt45 0 E 0.12162 maxdepth 0.0540 wall 0.0539 pairs 826 38
+tilt45 1 E 0.12577 maxdepth 0.0694 wall 0.0764 pairs 638 56
+tilt45 2 E 0.09160 maxdepth 0.0541 wall 0.0491 pairs 768 66
+tiltpq 0 E 0.05855 maxdepth 0.0453 wall 0.0440 pairs 607 80
+tiltpq 1 E 0.06377 maxdepth 0.0427 wall 0.0425 pairs 592 93
+tiltpq 2 E 0.10252 maxdepth 0.0546 wall 0.0357 pairs 630 107
+jitter 0 E 0.04843 maxdepth 0.0455 wall 0.0260 pairs 482 120
+jitter 1 E 0.03909 maxdepth 0.0300 wall 0.0264 pairs 485 135
+jitter 2 E 0.05128 maxdepth 0.0476 wall 0.0256 pairs 582 145
