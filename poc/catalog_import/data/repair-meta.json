@@ -1,0 +1,100 @@
+{
+  "130": {
+    "L": "11.90243064598224553840566386497796923581346493640902",
+    "source": "packing/witnesses/known-best/n-130.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 11.902430645982266
+  },
+  "172": {
+    "L": "13.61468985328621541529270003697956801202696990966067",
+    "source": "packing/witnesses/known-best/n-172.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 13.614689853286215
+  },
+  "199": {
+    "L": "14.61468985328757576041402806420114767177304840087526",
+    "source": "packing/witnesses/known-best/n-199.yaml",
+    "method": "decimal-dilation",
+    "growth": "1.0000000000001",
+    "claimed_L": 14.614689853286215
+  },
+  "268": {
+    "L": "16.87246989783621235608469381581871416453259044303391",
+    "source": "packing/witnesses/known-best/n-268.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 16.87246989783621
+  },
+  "270": {
+    "L": "16.92814860334285295125833446864212391673892773877926",
+    "source": "packing/witnesses/known-best/n-270.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 16.928148603342855
+  },
+  "303": {
+    "L": "17.90178927315648940843529940591440854152243041838606",
+    "source": "packing/witnesses/known-best/n-303.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 17.901789273156492
+  },
+  "304": {
+    "L": "17.92094409334193354654693915211900096898784425932913",
+    "source": "packing/witnesses/known-best/n-304.yaml",
+    "method": "decimal-dilation",
+    "growth": "1.0000000000001",
+    "claimed_L": 17.920944093340243
+  },
+  "307": {
+    "L": "17.97923096038736233009179021467262600351896268162213",
+    "source": "packing/witnesses/known-best/n-307.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 17.979230960387362
+  },
+  "175": {
+    "L": "13.76405005154444949333480963105103000998497009277344",
+    "source": "packing/witnesses/known-best/n-175.yaml",
+    "method": "decimal-dilation",
+    "growth": "1.0000000000001",
+    "claimed_L": 13.764050051543174
+  },
+  "204": {
+    "L": "14.80436138365323883725466203031828626990318298339844",
+    "source": "packing/witnesses/known-best/n-204.yaml",
+    "method": "decimal-dilation",
+    "growth": "1.0000000000001",
+    "claimed_L": 14.804361383651859
+  },
+  "232": {
+    "L": "15.76140964488172383509822515563811749040245819088514",
+    "source": "packing/witnesses/known-best/n-232.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 15.761409644881724
+  },
+  "260": {
+    "L": "16.63352095088753379661375472642148496413230895896094",
+    "source": "packing/witnesses/known-best/n-260.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 16.633520950888535
+  },
+  "293": {
+    "L": "17.62306521206236431531522157456493005156517028808594",
+    "source": "packing/witnesses/known-best/n-293.yaml",
+    "method": "decimal-dilation",
+    "growth": "1.0000000000001",
+    "claimed_L": 17.623065212060702
+  },
+  "299": {
+    "L": "17.80100443425529503498884044852182550880613708112604",
+    "source": "packing/witnesses/known-best/n-299.yaml",
+    "method": "decimal-dilation",
+    "growth": "1",
+    "claimed_L": 17.801004434255294
+  }
+}
