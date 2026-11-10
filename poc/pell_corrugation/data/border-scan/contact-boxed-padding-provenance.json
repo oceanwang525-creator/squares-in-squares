@@ -1,0 +1,1514 @@
+{
+  "score": 22.20434258797071,
+  "sha256": "3d1178afdf0490342a1d9d0fa05df2c541a581cd73a6b23efe73057d4374805f",
+  "additional_wins": {
+    "109": "boxed-in",
+    "172": "boxed-in",
+    "175": "boxed-in",
+    "179": "boxed-in",
+    "260": "boxed-in",
+    "293": "boxed-in",
+    "303": "boxed-in",
+    "307": "boxed-in",
+    "335": "boxed-in",
+    "339": "boxed-in",
+    "341": "boxed-in",
+    "376": "boxed-in",
+    "377": "boxed-in",
+    "382": "boxed-in",
+    "416": "boxed-in",
+    "417": "boxed-in",
+    "418": "boxed-in",
+    "452": "boxed-in",
+    "458": "boxed-in",
+    "460": "boxed-in",
+    "464": "boxed-in",
+    "465": "boxed-in",
+    "497": "boxed-in",
+    "505": "padding",
+    "548": "boxed-in",
+    "551": "boxed-in",
+    "553": "boxed-in",
+    "595": "boxed-in",
+    "596": "boxed-in",
+    "597": "boxed-in",
+    "598": "boxed-in",
+    "600": "boxed-in",
+    "631": "boxed-in",
+    "637": "boxed-in",
+    "647": "boxed-in",
+    "648": "boxed-in",
+    "650": "boxed-in",
+    "652": "boxed-in",
+    "682": "boxed-in",
+    "700": "boxed-in",
+    "702": "boxed-in",
+    "703": "boxed-in",
+    "706": "boxed-in",
+    "707": "boxed-in",
+    "734": "padding",
+    "742": "boxed-in",
+    "746": "boxed-in",
+    "747": "boxed-in",
+    "750": "boxed-in",
+    "751": "boxed-in",
+    "754": "boxed-in",
+    "761": "boxed-in",
+    "796": "boxed-in",
+    "799": "boxed-in",
+    "800": "boxed-in",
+    "801": "boxed-in",
+    "803": "boxed-in",
+    "813": "boxed-in",
+    "815": "boxed-in",
+    "816": "boxed-in",
+    "851": "boxed-in",
+    "852": "boxed-in",
+    "866": "boxed-in",
+    "869": "boxed-in",
+    "875": "boxed-in",
+    "912": "boxed-in",
+    "919": "boxed-in",
+    "924": "boxed-in",
+    "965": "boxed-in",
+    "968": "boxed-in",
+    "976": "boxed-in",
+    "978": "boxed-in",
+    "982": "boxed-in",
+    "986": "boxed-in",
+    "988": "boxed-in",
+    "373": "padding",
+    "403": "padding",
+    "404": "padding",
+    "414": "padding",
+    "442": "padding",
+    "443": "padding",
+    "444": "padding",
+    "445": "padding",
+    "461": "padding",
+    "485": "padding",
+    "486": "padding",
+    "496": "padding",
+    "577": "padding",
+    "578": "padding",
+    "580": "padding",
+    "628": "padding",
+    "629": "padding",
+    "630": "padding",
+    "633": "padding",
+    "653": "padding",
+    "679": "padding",
+    "680": "padding",
+    "681": "padding",
+    "691": "padding",
+    "694": "padding",
+    "739": "padding",
+    "741": "padding",
+    "745": "padding",
+    "758": "padding",
+    "785": "padding",
+    "793": "padding",
+    "842": "padding",
+    "846": "padding",
+    "850": "padding",
+    "902": "padding",
+    "903": "padding",
+    "906": "padding",
+    "962": "padding",
+    "983": "padding"
+  },
+  "certificates": {
+    "literal-cpp": {
+      "score": 22.204342587970736,
+      "max_n": 1000,
+      "accepted": 1000,
+      "missing": 0,
+      "rejected": 0,
+      "seconds": 13.403194311,
+      "threads": 3,
+      "roundtrip": false
+    },
+    "literal-cpp-roundtrip": {
+      "score": 22.204342587970743,
+      "max_n": 1000,
+      "accepted": 1000,
+      "missing": 0,
+      "rejected": 0,
+      "seconds": 14.781479529,
+      "threads": 3,
+      "roundtrip": true
+    },
+    "literal-official": {
+      "score": 22.20434258797071,
+      "max_n": 1000,
+      "accepted": 1000,
+      "missing": 0,
+      "rejected": 0
+    },
+    "pandas-cpp": {
+      "score": 22.204342587970743,
+      "max_n": 1000,
+      "accepted": 1000,
+      "missing": 0,
+      "rejected": 0,
+      "seconds": 13.91794258,
+      "threads": 3,
+      "roundtrip": false
+    },
+    "pandas-official": {
+      "score": 22.204342587970714,
+      "max_n": 1000,
+      "accepted": 1000,
+      "missing": 0,
+      "rejected": 0
+    }
+  },
+  "submission_id": 58211437,
+  "sources": [
+    "https://www.kaggle.com/code/sigmaborov/squares-in-squares-certified-contact-polish",
+    "https://www.kaggle.com/datasets/jazivxt/boxed-in",
+    "portfolio 2753fe0"
+  ],
+  "contact_wins": {
+    "109": {
+      "old_L": "10.94929212607965215003095790224918459898617584258318",
+      "new_L": "10.94928958094351355135748653368192811681183960019665",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "130": {
+      "old_L": "11.90243064602795400000000000000000000000000000000000",
+      "new_L": "11.90243064598214195915511899386269731726924420363519",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "172": {
+      "old_L": "13.61793569843190200000000000000000000000000000000000",
+      "new_L": "13.61793569838156351919976400081102963136906231316083",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "175": {
+      "old_L": "13.76405904794514559888601522574802515919145662337542",
+      "new_L": "13.76405005154346860332975366391258745863326338909894",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "179": {
+      "old_L": "13.88379549051091120000000000000000000000000000000000",
+      "new_L": "13.88138082349205857962485938144733189504247760171344",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "204": {
+      "old_L": "14.80441543007015348500298196343649692607868928462267",
+      "new_L": "14.80379898404972775729236799320852787354966406479690",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "232": {
+      "old_L": "15.76147645877466329783551534093888335519295651465654",
+      "new_L": "15.76140964487721256923132169163975125717671769602074",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "260": {
+      "old_L": "16.63361463596716007899878065900978185709391254931688",
+      "new_L": "16.63352095030017244161209750689731547458757347216038",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "268": {
+      "old_L": "16.87253438721025189260853950345975249547336716204882",
+      "new_L": "16.87246989783387717635683940024834480967118433439583",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "293": {
+      "old_L": "17.62308186328582660435408798749179482001636642962694",
+      "new_L": "17.62306521206094712741427085339864724845775357649735",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "299": {
+      "old_L": "17.80104489039985226073777263566810802331019658595324",
+      "new_L": "17.80100443425201038383544964389053747721358006010548",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "303": {
+      "old_L": "17.90185919334139822994587093463181304286990780383348",
+      "new_L": "17.90181041857366261996712818553878904766789753335824",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "304": {
+      "old_L": "17.92096097471915335870019349018278376206581015139818",
+      "new_L": "17.92094409334049370000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "307": {
+      "old_L": "17.97924969361138670570291183478123700260373946849046",
+      "new_L": "17.97923096038417744037160915617198457411905751152424",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "327": {
+      "old_L": "18.58378219038015470000000000000000000000000000000000",
+      "new_L": "18.58378219015206931025310061127139744279316007670576",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "335": {
+      "old_L": "18.80369543531198937524578917878070919059770359392151",
+      "new_L": "18.79816892009369172858882345373119735268196244270746",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "337": {
+      "old_L": "18.85839176763629484132236085401539061918624201324593",
+      "new_L": "18.85372898154541062920754530380639596508856515639401",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "339": {
+      "old_L": "18.90626490420969070132288544217047387974162120372057",
+      "new_L": "18.90619820769012585160187856519587761578580341831358",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "341": {
+      "old_L": "18.94276864928183126568095248076772918466303963214159",
+      "new_L": "18.94268281725518328191880816363181640717813346638950",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "344": {
+      "old_L": "18.99256754491503099999999999999799999999999999866667",
+      "new_L": "18.99256754482119183388128124508071256691699294383685",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "370": {
+      "old_L": "19.75752681033113046782271845502876317368645686656237",
+      "new_L": "19.75749920304762439377843606340877963260383521498846",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "371": {
+      "old_L": "19.77632852959395284655051377997736494762648362666368",
+      "new_L": "19.77630338260306638486145002459992943412870912977694",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "372": {
+      "old_L": "19.79609574179242333446788589500602521687343673343204",
+      "new_L": "19.79609478777142531939819678618637634742759719108762",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "375": {
+      "old_L": "19.86040520342926439361053167577744877898880970829789",
+      "new_L": "19.86017582022966662923116124614346032041938197924929",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "376": {
+      "old_L": "19.87605265289714281807392596279626673094753641635180",
+      "new_L": "19.87600595203256915317075576714518665742121143163853",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "377": {
+      "old_L": "19.90094473991615703754308769335423789925698656588793",
+      "new_L": "19.90089035764968929546901923469877233648259556448039",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "378": {
+      "old_L": "19.92689890035872090961566084580415254956593057920782",
+      "new_L": "19.92592523659503859560876970550762487511839531607212",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "379": {
+      "old_L": "19.94276865012637347142162768109940884642128366976976",
+      "new_L": "19.94268281725524103860878162213467900481118092549293",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "382": {
+      "old_L": "19.98674291121826248155171300568966330502007622271776",
+      "new_L": "19.98658171338870535863099691272353397186995118566434",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "405": {
+      "old_L": "20.63398250233201169038433915150822844582113984925735",
+      "new_L": "20.63398250210199997090466031228274760609619645928030",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "410": {
+      "old_L": "20.77375341099475106895694891055047740852916819815778",
+      "new_L": "20.77212664481271292178870848542210839414526682300861",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "412": {
+      "old_L": "20.79712181322795484322054414549896250719029922038317",
+      "new_L": "20.79661491008174047396175612502575476947931941515778",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "413": {
+      "old_L": "20.82392843569234746923132169163963010308195645811009",
+      "new_L": "20.82287570353531431535918603994347489197823290754228",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "415": {
+      "old_L": "20.86096743311424918148158768049782452180807013064623",
+      "new_L": "20.86087313241191505317998074255789694845117405824228",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "416": {
+      "old_L": "20.87786043093119325454925531149186213042412418872118",
+      "new_L": "20.87779945685913861442955809475259888870791275969668",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "417": {
+      "old_L": "20.89719625087924483013904756179002220051188487559557",
+      "new_L": "20.89714304382713169973357936292671177988647863462135",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "418": {
+      "old_L": "20.92013417588175258827077024337270927389909047633410",
+      "new_L": "20.92010024877200536923132169163801087176026481688103",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "419": {
+      "old_L": "20.94276865122638421240303615578071116942737717181444",
+      "new_L": "20.93849281551309491854063811201951727734002128820623",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "421": {
+      "old_L": "20.97465094088381033555155746883613687714387197047472",
+      "new_L": "20.97457611583828157324066985823103868115283358704732",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "446": {
+      "old_L": "21.62308186767791859506577126781579067937855143100023",
+      "new_L": "21.62306521206145802961566084581966447449359761005749",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "452": {
+      "old_L": "21.77632853179395656494493495047848341528151649981737",
+      "new_L": "21.77630338260327678178870848542080531691833641957395",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "453": {
+      "old_L": "21.79609574179038000961566084581977985919185135606515",
+      "new_L": "21.79140411927079187009250894561129935929360118161139",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "454": {
+      "old_L": "21.80369543531202211923132169163738087140116525069151",
+      "new_L": "21.80226743732185682173047639602981469629178986498729",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "456": {
+      "old_L": "21.84710385467681646215005387690055727034632582217455",
+      "new_L": "21.84666719284807395468381864003060232285033166451031",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "457": {
+      "old_L": "21.85993518221610190775298435683637876536522526293993",
+      "new_L": "21.85983133619394700000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "458": {
+      "old_L": "21.87786043203119689010330547462856998208735603839159",
+      "new_L": "21.87779945686005851442955809475280824425343466189678",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "459": {
+      "old_L": "21.90399971454691053364287826044076723519538063555956",
+      "new_L": "21.90361663036215494274621873799235888978122050422455",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "460": {
+      "old_L": "21.91721122654595243331070514303249296972353477030993",
+      "new_L": "21.91718147780608478486145002457840443197411166545908",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "462": {
+      "old_L": "21.96142494268734146923132169163499164043857317189504",
+      "new_L": "21.95454211204360265923132169163678894826899608563633",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "463": {
+      "old_L": "21.96855514441336557183236272266108084807914075495983",
+      "new_L": "21.96854540757615377185048261402549316352764343963987",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "464": {
+      "old_L": "21.98389126528660519607599647118334473816503304988146",
+      "new_L": "21.98344887770120650199242823688809154201305975869445",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "465": {
+      "old_L": "21.99065771998894376963008491232542951365758199244738",
+      "new_L": "21.99055734049161416573417585641313932334768114854322",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "490": {
+      "old_L": "22.63709157611762284978063385354474235100497025996447",
+      "new_L": "22.63702940256668254732132976847686776069174894295776",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "491": {
+      "old_L": "22.69238815542739476923132169140515586386007197764811",
+      "new_L": "22.68765441559898955276531229420694039958899979117558",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "497": {
+      "old_L": "22.79712181543202997149127783105271305430505890399218",
+      "new_L": "22.79709138505010773513174276037335712035284330011434",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "498": {
+      "old_L": "22.80918132453663429163574570823769249727774877101183",
+      "new_L": "22.80369543531652868023583703421377390496389828953804",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "500": {
+      "old_L": "22.85060495331426318352986419517855471857257700578146",
+      "new_L": "22.85022129736012566175425278386318767300620397199389",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "501": {
+      "old_L": "22.86130838763620388262119861311205681886349339038134",
+      "new_L": "22.86123719999342248999999999999864712219035677355411",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "502": {
+      "old_L": "22.87771818872550629803370868531331439044151920825243",
+      "new_L": "22.87769881837493280218822297435871082671028846862478",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "503": {
+      "old_L": "22.89824364096498531390179738856436363554721748040413",
+      "new_L": "22.89824363936707249870054623514549804196152564851525",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "504": {
+      "old_L": "22.91513577029051661923039574875521950796731928930052",
+      "new_L": "22.91513576238052048539111333237815702770290549994048",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "507": {
+      "old_L": "22.97014073878040792920754530380639596508856515639401",
+      "new_L": "22.96817404705946916019070201892596148225268959177511",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "508": {
+      "old_L": "22.97959415391553721422623938197560278240416664630175",
+      "new_L": "22.97923373905368793081175063070078862733242014790123",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "532": {
+      "old_L": "23.56400176672623649999999999999974999999999999991667",
+      "new_L": "23.56251121070563884808656578241104566510214731106798",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "535": {
+      "old_L": "23.63709157721760161633892992627536955296818632632494",
+      "new_L": "23.63702940226136257524578917878045919059770359383818",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "539": {
+      "old_L": "23.73209477674804409720711683151606052888382691890001",
+      "new_L": "23.73203728711829717425011318398471407615388969404854",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "541": {
+      "old_L": "23.77375341113531024434609527920609029498572180510029",
+      "new_L": "23.77375341099492911062184020244089876988627746686157",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "542": {
+      "old_L": "23.78766424663327911923132169163476164007947360734322",
+      "new_L": "23.78766424620228686711264090471263550914338894138086",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "543": {
+      "old_L": "23.80242871693314201293497742354555801398185004233018",
+      "new_L": "23.79883366636256111412320237985092159935542078086217",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "544": {
+      "old_L": "23.82380056801543255961566084581971735919185135605473",
+      "new_L": "23.81053055985836604450593235200932545872622796179859",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "545": {
+      "old_L": "23.83845650795592491923132169163706471766550357769302",
+      "new_L": "23.82966226401172736923132169163963010308195645811009",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "546": {
+      "old_L": "23.85062719798347432850714718854945317616511601954699",
+      "new_L": "23.85054860328213551923132169163951471838370271210243",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "547": {
+      "old_L": "23.86091148658990407232095664058491024661634583026171",
+      "new_L": "23.86087302566077687942883092559046998459493563428908",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "548": {
+      "old_L": "23.87286718897756545884887701136634063914243597537279",
+      "new_L": "23.87270319325613936725742661037703949123843581005948",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "549": {
+      "old_L": "23.89811904491304161923132169148650971120171015041393",
+      "new_L": "23.89740906266111599955742875642657979351797933261570",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "551": {
+      "old_L": "23.92649769586542011156471120303379507276986259967089",
+      "new_L": "23.92643693980602367881010907551921777979380778307820",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "553": {
+      "old_L": "23.96260359061949380885156842824201817165885586291552",
+      "new_L": "23.96256969200354639598574201335589671869441512662466",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "555": {
+      "old_L": "23.98527568380959648063327326250170776692524003763214",
+      "new_L": "23.98527568186736975848609351899321366337321362123773",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "556": {
+      "old_L": "23.99604146286105807456892159423844645971257705241442",
+      "new_L": "23.99596239027902913239667170191719223942259635955383",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "579": {
+      "old_L": "24.56344800213625550961566084548312774389010098280636",
+      "new_L": "24.56251121070588730236374965849853839889526621631204",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "582": {
+      "old_L": "24.63402035711142291114294843312748639618803281337023",
+      "new_L": "24.63398250210209745752672870924757923031153094466065",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "587": {
+      "old_L": "24.75034230489159531848420564559276613181282300502062",
+      "new_L": "24.75023332698272880174172208057548312095180650332388",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "590": {
+      "old_L": "24.79609574327478948689843958516066704717443108247402",
+      "new_L": "24.79605741444789798488535744556227777812299600624059",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "591": {
+      "old_L": "24.80946783902584574736946479989185831982467789202929",
+      "new_L": "24.80293420687319422334303427495170072754284430697480",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "592": {
+      "old_L": "24.82472147964676646923132169163963010308195645811009",
+      "new_L": "24.81312120407924529396175612502594553887582690714279",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "593": {
+      "old_L": "24.84666719284362746923132169163831087176026481732180",
+      "new_L": "24.83046743821840751923132169163759548706201107034260",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "594": {
+      "old_L": "24.85717249727451311923132169090093200574544018804991",
+      "new_L": "24.84906987601623960509728705878122029371202830046609",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "595": {
+      "old_L": "24.86238292656698476091908781571149233968753833323717",
+      "new_L": "24.86220470838550394289029309402182615863588382293605",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "596": {
+      "old_L": "24.87786043533120424405177680826639630140562076121569",
+      "new_L": "24.87779945686021120027029273577415550178744693103928",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "597": {
+      "old_L": "24.89704855702819706731305648507793355502003562802140",
+      "new_L": "24.89692585352256409582470245057225968834938712342068",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "598": {
+      "old_L": "24.90809170573340974999999999999780749999999999794958",
+      "new_L": "24.90667195263212518281700021583129479532641788947382",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "599": {
+      "old_L": "24.92466494950835980450410077624567861676041502505541",
+      "new_L": "24.92459293820372580961566084482512408692252734606266",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "600": {
+      "old_L": "24.93901265627030857591462656985825674382795114070177",
+      "new_L": "24.93895147949929564051535474539418695506548086165304",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "601": {
+      "old_L": "24.95708077220086773601658053367557954516087193042040",
+      "new_L": "24.95698702756339541562180537601412084384117024774959",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "602": {
+      "old_L": "24.97579545572559117662638212218818329961696710196989",
+      "new_L": "24.97170441327160138606589236150825500427690957997256",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "604": {
+      "old_L": "24.99336943761877571130318537173664594774891156703234",
+      "new_L": "24.99329893271606732045544744334468899654389602422052",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "631": {
+      "old_L": "25.60879790098457715709805811998833746656600851565599",
+      "new_L": "25.60871257844823400000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "632": {
+      "old_L": "25.64271262352352112884547389315414989141572732478380",
+      "new_L": "25.63956000038775016923132169163972587247846395005531",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "637": {
+      "old_L": "25.74476895452726437589405678041387659504835028201342",
+      "new_L": "25.74473529060529369038433915417205014949225698062053",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "638": {
+      "old_L": "25.76384341451899919667703892089960504563350696116686",
+      "new_L": "25.76356193201614218409758555492099741320377599909472",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "640": {
+      "old_L": "25.79223130326946142094439872183286865947593469172716",
+      "new_L": "25.79213710103829746499999999999732187499999999740488",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "641": {
+      "old_L": "25.80956166201701446383491714842151054654095787554979",
+      "new_L": "25.80677704307581265923132169163935433368544896605341",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "642": {
+      "old_L": "25.83307297239741470591962137889402724272145101641678",
+      "new_L": "25.82624984630382841359877559829869098970687133808556",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "643": {
+      "old_L": "25.84703937872308549999999999999824866062427219110459",
+      "new_L": "25.83447585570361642486145002460056943448780869595895",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "645": {
+      "old_L": "25.87031812251975364740446552983030849778887781162520",
+      "new_L": "25.86461307210322131175425278386149805698625858478503",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "646": {
+      "old_L": "25.88439826828451577072472354901222502121527213603258",
+      "new_L": "25.88432309708509877355364058301222923975552646490504",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "647": {
+      "old_L": "25.88997110866633887480509487177826599690888542681932",
+      "new_L": "25.88996823633302553795895460976247812115608649957782",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "648": {
+      "old_L": "25.90754607376070640001952264386275714969087857753038",
+      "new_L": "25.90748602059626896923132168793587774820938342754384",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "649": {
+      "old_L": "25.91719405232154717828434337123510999845166224986315",
+      "new_L": "25.91490009929607776243266106164987462407496278776085",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "650": {
+      "old_L": "25.93296800914926226564497079296600645648140925914049",
+      "new_L": "25.93281378888324549603340770840147238084785828209491",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "651": {
+      "old_L": "25.95512541013133175320099327310074954766605515033007",
+      "new_L": "25.94891026965617889734992541526405147342989418162182",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "652": {
+      "old_L": "25.96642186216035004662119513030305029133160132914782",
+      "new_L": "25.96638851823126114403954126112730858411890173519734",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "654": {
+      "old_L": "25.99177330151510258808347303416397267028514761477709",
+      "new_L": "25.99162050147569511923132169162002779237873697386968",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "655": {
+      "old_L": "25.99966779498326418084395080798643107300449628382921",
+      "new_L": "25.99957299066574238267704708236805457147994558199181",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "682": {
+      "old_L": "26.60879790208458434536578743889734255390067119151354",
+      "new_L": "26.60871257844826100000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "683": {
+      "old_L": "26.63729393070220546627773928749505216728721279650927",
+      "new_L": "26.63702940255101357085453263316565728068228001311628",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "684": {
+      "old_L": "26.64271262462353542254056152360774945009325165301561",
+      "new_L": "26.64265064189839532164496600635145109567263110090196",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "685": {
+      "old_L": "26.68707090923699993741970609706370964886446017771959",
+      "new_L": "26.68414360636415076621826658017463060901552340886505",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "689": {
+      "old_L": "26.74571983128034212089262348088780640864570159465075",
+      "new_L": "26.74562504813297696669529352530691018446264949823248",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "690": {
+      "old_L": "26.77311243042061993438391952482291458181862253695726",
+      "new_L": "26.77131590690392527338136207508229999436505929520805",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "692": {
+      "old_L": "26.80242871693317599999999999999899999999999999933333",
+      "new_L": "26.79419973503000035850536063818529159894171091150842",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "695": {
+      "old_L": "26.84563830212157169474601589032047854743723291903734",
+      "new_L": "26.84487921172817509759880664370711281589819809200635",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "696": {
+      "old_L": "26.85626193722827929320053003126034241176967043429613",
+      "new_L": "26.85620062579758829752607602176399296348580049958134",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "698": {
+      "old_L": "26.88110922607328024434609527920609029498572180510029",
+      "new_L": "26.88110474090479920923132168621398698563560824379634",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "699": {
+      "old_L": "26.88997110976633540493178672337037937722925562411547",
+      "new_L": "26.88996823633303545294766931880420787843186368102796",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "700": {
+      "old_L": "26.90333279420578460401299417670273328440089244395494",
+      "new_L": "26.90321629952288261814243394638668545351193798595685",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "701": {
+      "old_L": "26.91621336551442875349134774554116233957756776362658",
+      "new_L": "26.91607896479213646460570870125312624685553228196204",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "702": {
+      "old_L": "26.92881359401143815342986408412073728868563193827868",
+      "new_L": "26.92281185456915302178184839052494429715213554396526",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "703": {
+      "old_L": "26.94736536679617144830398026700279956457961816340685",
+      "new_L": "26.94732787333702385641983407129313673529541145265970",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "705": {
+      "old_L": "26.98393990777220975961566084581795812787015971477534",
+      "new_L": "26.97726359681459086923132169163907048742111063790037",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "706": {
+      "old_L": "26.98840640990900269029306849377647381515998858958483",
+      "new_L": "26.98820810920297630396175612502594053887582690714523",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "707": {
+      "old_L": "26.99823222162689337752854293883686409571964759379625",
+      "new_L": "26.99743325611395943815547718556456022912301609321862",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "735": {
+      "old_L": "27.60879790318458442820615844626175316989247221499681",
+      "new_L": "27.60871257844834600000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "736": {
+      "old_L": "27.63702955953702300000000000000000000000000000000000",
+      "new_L": "27.63702940280462649999996299102774984990394487853989",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "737": {
+      "old_L": "27.63889191690652721923132169163970048778021020408988",
+      "new_L": "27.63889181534244603714260468558389910074101506396266",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "738": {
+      "old_L": "27.68408426659358039118555440127877886880014557391405",
+      "new_L": "27.67938124878597763396175612502338015345937402672571",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "740": {
+      "old_L": "27.70710678118681300000000000000000000000000000000001",
+      "new_L": "27.70699380672834037923132169163716048706201106963823",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "742": {
+      "old_L": "27.74201791423543254969979551249892324449319858103991",
+      "new_L": "27.74194725077514663525176146610436550520633237122801",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "743": {
+      "old_L": "27.75748341652131648580452942658720674125998628118108",
+      "new_L": "27.75409745292825391131988149085337324879735780929899",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "744": {
+      "old_L": "27.76017758091895639193642965070196737542573828250170",
+      "new_L": "27.76000623468640446923132169163801087176026481688103",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "746": {
+      "old_L": "27.79904357903157946872647806602074638249177951365709",
+      "new_L": "27.79903358948947303847090493662523839414423931589550",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "747": {
+      "old_L": "27.82287569012305845530449205371681387077842373400927",
+      "new_L": "27.81754369361050398264472170802700629107702218580130",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "748": {
+      "old_L": "27.82804673672059771923132169135372047844361826890770",
+      "new_L": "27.82804673644571471923132169163716048706201106963823",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "749": {
+      "old_L": "27.84604589055756765961566084581840158979534386323672",
+      "new_L": "27.84338751462305258217920080971986922481960660695821",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "750": {
+      "old_L": "27.85771135252513417029176282513347473468456882983446",
+      "new_L": "27.85763668009300014412769720320553314069715722974871",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "751": {
+      "old_L": "27.86424008616910855961199900976410503972147125750780",
+      "new_L": "27.86414067382510461300383013605790199717842379565126",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "752": {
+      "old_L": "27.88235815841888561135128484780310031965200323611498",
+      "new_L": "27.88091392883102438741883681838377926434413404519029",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "753": {
+      "old_L": "27.88997111086634614591319519805168170023534912616014",
+      "new_L": "27.88996823633305787218986862324585372457263800114637",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "754": {
+      "old_L": "27.90762448699978054646918154135804002180520910769701",
+      "new_L": "27.90753151558199155840540673687262836620432829776877",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "755": {
+      "old_L": "27.91653906932140087547058936208859962571801153225910",
+      "new_L": "27.91653890013253547034527658040794851131705628328640",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "756": {
+      "old_L": "27.92500665319740560206622818073540770456020254641771",
+      "new_L": "27.92455570252889467942883092554804190485430807296372",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "757": {
+      "old_L": "27.93822527355674414737370180309722802065666277913889",
+      "new_L": "27.93192239560975644923132165067003152983037846596686",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "759": {
+      "old_L": "27.97094919719903231541263687320864050889213103801012",
+      "new_L": "27.97049590662872453703449766419838743261533089680032",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "760": {
+      "old_L": "27.99062691783708234906585039886585714406181801523539",
+      "new_L": "27.98547511331902707337748997651172522290284879950394",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "761": {
+      "old_L": "27.99335663435849310393830543519655407180835027247667",
+      "new_L": "27.99328330329938285396175612502531053851672734095572",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "788": {
+      "old_L": "28.57142857142886161923132169163951471838370271210243",
+      "new_L": "28.56327292017279182963941079333298168859513267474681",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "790": {
+      "old_L": "28.60879790428460938004228354403224443558428902179003",
+      "new_L": "28.60871257844862800000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "791": {
+      "old_L": "28.63702955956202700000000000000000000000000000000000",
+      "new_L": "28.63702940280646000000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "792": {
+      "old_L": "28.63702955956202700000000000000000000000000000000000",
+      "new_L": "28.63702940274837649999996299102774984990394487853989",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "794": {
+      "old_L": "28.68442484022443862161496249685299630982626695185900",
+      "new_L": "28.68414360635928676213238305888832965788085965168494",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "795": {
+      "old_L": "28.70406642713712548843186632696600213421334046870470",
+      "new_L": "28.70399649102876064923132169163759548706201107034260",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "796": {
+      "old_L": "28.72163906992570688576487293319772220456798095256090",
+      "new_L": "28.72154000226475675648250399860063892950340392892000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "797": {
+      "old_L": "28.73397992493563239164601555986067182857368607074022",
+      "new_L": "28.73397986843071006514641508584193301655474626140258",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "798": {
+      "old_L": "28.74571983348033873385968633984433040495787281543016",
+      "new_L": "28.74560273777409172404521894057192347639380132815760",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "799": {
+      "old_L": "28.76005629155100305278460909308435589082364458590746",
+      "new_L": "28.75985794887520615234809580742522741509203674487890",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "800": {
+      "old_L": "28.77941631560204913575794557489828662255604285746813",
+      "new_L": "28.77928834183010530058244416451794080643218199245014",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "801": {
+      "old_L": "28.78121891549955373752990120950201458072115201503038",
+      "new_L": "28.78113652136906572706895336576025263072406327039294",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "802": {
+      "old_L": "28.80136761332972725327431079422879633966658730059862",
+      "new_L": "28.80112777257537876867579070010644678420087394112733",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "803": {
+      "old_L": "28.82041602675893488514079515683263821301807183772326",
+      "new_L": "28.82037605027629404162498863154197510669938589093320",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "805": {
+      "old_L": "28.84510431354456741810458241248582567095581907778978",
+      "new_L": "28.84501449748947246798199190921901701064360265347060",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "806": {
+      "old_L": "28.85849920584030695880300571021237487912003416568041",
+      "new_L": "28.85827595733410463178870848542253916354177431529087",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "807": {
+      "old_L": "28.87023793798295474965332944039531071211968082934618",
+      "new_L": "28.87012489895437300000000000000000000000000000000000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "808": {
+      "old_L": "28.87403652895133777695021423115306902218435425311327",
+      "new_L": "28.87358485720265669113553093378780374964777796393790",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "809": {
+      "old_L": "28.88997111196634978146724536118838955189858097583055",
+      "new_L": "28.88996823633306918775553120670792622963048743346239",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "810": {
+      "old_L": "28.90692625228330228722248653338411371842224994692850",
+      "new_L": "28.90687487952676554198173450185169535246499037347864",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "811": {
+      "old_L": "28.91653901121871086600340023186810929997151279011592",
+      "new_L": "28.91653890013255035391670839413471604435658208576149",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "813": {
+      "old_L": "28.93141642487666768325084200030872239040036220103502",
+      "new_L": "28.93130639642801736923132169163568740983508066514180",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "814": {
+      "old_L": "28.95467063880920142747968705210226403323758859187365",
+      "new_L": "28.94481625920200199986863690245841448152441149297803",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "815": {
+      "old_L": "28.96616506548739734661781463076479781193484086543322",
+      "new_L": "28.96598353776278603918376891597310059298883478792377",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "816": {
+      "old_L": "28.97831771112036017180934451831220144413236994296312",
+      "new_L": "28.97816338192927269478906157829505769667362694686518",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "817": {
+      "old_L": "28.99348752120070804487002008587026580244128126651049",
+      "new_L": "28.99320130998640941015237421866730214165389351986769",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "818": {
+      "old_L": "28.99873621343866998334610088905449742924247402697802",
+      "new_L": "28.99865286653327116332549486626917993219380452405922",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "845": {
+      "old_L": "29.57142857142874604452224588570545017879698806073818",
+      "new_L": "29.56327292017021515273740949898237712280044714110370",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "848": {
+      "old_L": "29.62308187647793346864345594982026454999868292361498",
+      "new_L": "29.62306521206169902961566084581966447449359761005749",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "849": {
+      "old_L": "29.63702955958703000000000000000000000000000000000000",
+      "new_L": "29.63702940275671299999999999995099999999999977133333",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "851": {
+      "old_L": "29.68442484132444936259637097153429863283236045390368",
+      "new_L": "29.68414360636483719221137543424357333397414118651255",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "852": {
+      "old_L": "29.69964396416208953443629782187329624321137089282274",
+      "new_L": "29.69959630313060367052603405912103380049397384766011",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "855": {
+      "old_L": "29.73397992603562892177270741145278520889405626803637",
+      "new_L": "29.73397986843632675405589825429812328790579929295866",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "856": {
+      "old_L": "29.74580720764828204707181847910035799031902570277452",
+      "new_L": "29.74561953814986744910918995098241501594880931616507",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "858": {
+      "old_L": "29.78114095277472418781821376088103647816751617938280",
+      "new_L": "29.78113652136366608082232280995602777494775255743001",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "859": {
+      "old_L": "29.79223130757008879798621664436453215785149950534105",
+      "new_L": "29.79213710444574899999999999999099999999999998200000",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "860": {
+      "old_L": "29.80243949118967218818524679280201894471247214823961",
+      "new_L": "29.80242871693924863178870848542031993222008267291026",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "862": {
+      "old_L": "29.83672927425509087575888217402919622145418543368578",
+      "new_L": "29.83656364855200757923132169163106933188995112376208",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "863": {
+      "old_L": "29.84429725142424511923132169158242702082763189985128",
+      "new_L": "29.84428840718184647772522760459023097080749681016621",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "864": {
+      "old_L": "29.85200810068482675059577787779474533635948318988085",
+      "new_L": "29.85193125701981020961566084581874774389010510127319",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "865": {
+      "old_L": "29.86938940399922906786007851254183265155006665736437",
+      "new_L": "29.86729835971267544032852482516558995751813917608657",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "866": {
+      "old_L": "29.87917820795517312333593552553523409187619108706713",
+      "new_L": "29.87906456876540878177202440654532808563844945426800",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "867": {
+      "old_L": "29.88496109697171265784208956661771594554011244326830",
+      "new_L": "29.88486809945014200082010318272859545399898363019580",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "868": {
+      "old_L": "29.89933334409391445222641260359708326177496928721666",
+      "new_L": "29.89921043597007033699091727142076524181819603970033",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "869": {
+      "old_L": "29.91228935126005906787720221018389565870165824890137",
+      "new_L": "29.91221013114470200123108708804823164588415222639995",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "870": {
+      "old_L": "29.92480793224406808078243927839778848465357441455126",
+      "new_L": "29.92479145196866572814113081981598630783514755628012",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "872": {
+      "old_L": "29.94088858863690072565960350603475603747938293963671",
+      "new_L": "29.94088540958080392923132168976362392205467544175316",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "873": {
+      "old_L": "29.96548821855797954804361965530645761646155733615160",
+      "new_L": "29.95716319563434784509163247181188356848298021697729",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "874": {
+      "old_L": "29.97296338957796440176815268019439031377260107547045",
+      "new_L": "29.97291740304613201923132169163571279453333441110722",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "875": {
+      "old_L": "29.98896035044664190081396243359179720755491871386766",
+      "new_L": "29.98892698926718142289045079162560646101750363644427",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "876": {
+      "old_L": "29.99765587036494623250546674997352170066733378916979",
+      "new_L": "29.99757179991745705744517078765680940394437730712567",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "904": {
+      "old_L": "30.56362574043079206923132169163694933296724983168536",
+      "new_L": "30.56327292017023003923132169163386433224905069576723",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "905": {
+      "old_L": "30.58378219046080700000000000000000000000000000000000",
+      "new_L": "30.58378219015221148893789606041668642667931142532617",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "907": {
+      "old_L": "30.61836791826978646923132169163963010308195645811009",
+      "new_L": "30.61836606485048883592419745656862496538982815811330",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "908": {
+      "old_L": "30.63702955961203500000000000000000000000000000000000",
+      "new_L": "30.63702940277091157085453263316565728068228001311628",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "910": {
+      "old_L": "30.67942565596993487878463541251861101955000776797533",
+      "new_L": "30.67915401763672943313630006558439782503471394545280",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "911": {
+      "old_L": "30.69563207695554313365470485708286219050933141261339",
+      "new_L": "30.69562217094861120614168542166288109464853201487058",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "912": {
+      "old_L": "30.70345851311854112170959042460438581656489986926317",
+      "new_L": "30.70326029696815630073476944050640083940309281629714",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "913": {
+      "old_L": "30.72166661391980672477272983345031320823181886225939",
+      "new_L": "30.72154000225944730717758495659614153792347042202924",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "914": {
+      "old_L": "30.73401737943458022110606401300358925254840869456530",
+      "new_L": "30.73389353926239901923132169147796894144610301142441",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "915": {
+      "old_L": "30.74571983568034955768146582189004334395576734095812",
+      "new_L": "30.74511922250560538740815750465545415083340976835688",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "916": {
+      "old_L": "30.75218977639706570000000000000000000000000000000000",
+      "new_L": "30.75218977222865499568613440352681827530541218127905",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "917": {
+      "old_L": "30.76602607043946843918376891597285059298883478842119",
+      "new_L": "30.76602543910060382587863829239935721509598281895676",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "918": {
+      "old_L": "30.78680273476375003757045584196205822991032619029284",
+      "new_L": "30.78672796586099999999999949999999999983333333333338",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "919": {
+      "old_L": "30.79672051469214776083596342148851476849813479930162",
+      "new_L": "30.79650560583413397672231850892048576520597104376334",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "920": {
+      "old_L": "30.80542003209182731949298382052792519691063511490343",
+      "new_L": "30.80542003147215712639699514103756997304583396480656",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "921": {
+      "old_L": "30.82597760578188209863287597700676201384339947253466",
+      "new_L": "30.82226696738384651471308645314697243786146315787823",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "922": {
+      "old_L": "30.83474267734086418071127903006711790112603921443224",
+      "new_L": "30.83471959897958573221847228319238625792091566177428",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "923": {
+      "old_L": "30.84733780514363098221428957090850531130854506045580",
+      "new_L": "30.84724691909157569999999999986679405214541666486103",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "924": {
+      "old_L": "30.85554762642590982739383599353644171969790477305651",
+      "new_L": "30.85538574008932305551115123125782191851208898042275",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "925": {
+      "old_L": "30.86321837316950898175795253708386667312879581004381",
+      "new_L": "30.86313986616010338076867830301645689164227969851471",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "926": {
+      "old_L": "30.88095976597106782644092995981921490056265611201525",
+      "new_L": "30.88043478046367023479036874792280844933314021316641",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "927": {
+      "old_L": "30.88723399990300279886219422254001187866379041224718",
+      "new_L": "30.88709761793609285486145002459993943412870912976943",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "928": {
+      "old_L": "30.89292628907274399903169240788614047232840675860643",
+      "new_L": "30.89273665341431037690617300678305273127006898972774",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "929": {
+      "old_L": "30.90875853773070766710536646515450343031261581927538",
+      "new_L": "30.90855625271749250923132169163951471838370271210243",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "930": {
+      "old_L": "30.91746912203587886923132169163779317923158816099717",
+      "new_L": "30.91745532776161840876497406022595246062125788905503",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "931": {
+      "old_L": "30.93283760312638256909333049439817093780079615467850",
+      "new_L": "30.93259138362270441959188445798679948558342539902180",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "932": {
+      "old_L": "30.94088858973680488523063730754714129034255165606737",
+      "new_L": "30.94088540957425607462714486301184243395671515742088",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "933": {
+      "old_L": "30.95332501540383470493878554918865120271220803260803",
+      "new_L": "30.95032151683197438352986419517818178136444811467257",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "934": {
+      "old_L": "30.97286061026309786608190784962246766554017085582018",
+      "new_L": "30.96414752874380836923132168236286466487727185194202",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "935": {
+      "old_L": "30.98017748518017102948311781718260249363083858042955",
+      "new_L": "30.97988246121498653235304390486705128657943868091344",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "936": {
+      "old_L": "30.99775328129557906389390923296289770405564922839403",
+      "new_L": "30.99751120511772944032852482516558995751813917608657",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "965": {
+      "old_L": "31.56362565232548407649417708096688172304983115570411",
+      "new_L": "31.56209144462016548486145002460048904978955494998666",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "966": {
+      "old_L": "31.58378219048080600000000000000000000000000000000000",
+      "new_L": "31.58378219015222709571700547975052058088080185569984",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "968": {
+      "old_L": "31.60879790758458831228132163149169286953110713511705",
+      "new_L": "31.60871257845109861062266354383572713996276663098368",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "969": {
+      "old_L": "31.63398250264510723473043443338620640460766511739776",
+      "new_L": "31.63398250210213338429190910655393965801648619127664",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "970": {
+      "old_L": "31.63914927246702082880586887059237710673187393695116",
+      "new_L": "31.63898849274486706757204830803756840080065610049491",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "971": {
+      "old_L": "31.67877987534327806923132169163724933296724983230613",
+      "new_L": "31.67679531338976418381134219193338611140470381892832",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "972": {
+      "old_L": "31.68741498649972489341716369581902768004511017352343",
+      "new_L": "31.68406096829729743178870848212704682446956303470412",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "973": {
+      "old_L": "31.69716011490264859420358797281735974138427991420031",
+      "new_L": "31.69673121995696553200768269716211253971483380962807",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "975": {
+      "old_L": "31.72166661501985654560460902162688512362365145236254",
+      "new_L": "31.72154000226546872640509650040172205686729537017454",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "976": {
+      "old_L": "31.73397992823561132388505364732012026252050418406725",
+      "new_L": "31.73397986843988633178870848542119570161659016611848",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "977": {
+      "old_L": "31.74573236212018109804035682630640735624183434993029",
+      "new_L": "31.74561942204770940923132169162684163900217489325470",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "978": {
+      "old_L": "31.76005599412636341448012943233791816055600065737963",
+      "new_L": "31.75985794922895088901955616424561481185119450111444",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "979": {
+      "old_L": "31.77441079959809067713050603349545748527210120710137",
+      "new_L": "31.77425452425757321923132169163838125645851856330159",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "980": {
+      "old_L": "31.79040603464236949560939039516327397905115503817797",
+      "new_L": "31.79017951580324851923132169163283894755079694709257",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "981": {
+      "old_L": "31.79649633098487747388351715160936805659730453044176",
+      "new_L": "31.79640564459806984539585778658899216773475509528687",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "982": {
+      "old_L": "31.81053945876278441573881947774060035110504738483413",
+      "new_L": "31.81053945759775653655835083693319028643620466014906",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "984": {
+      "old_L": "31.83668517395067551689309298668106862351123709231615",
+      "new_L": "31.83614438858677246923132169163370164043857316870973",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "985": {
+      "old_L": "31.84486003331242421095902735972416053300548810511827",
+      "new_L": "31.84483196817897186843961601655717510892948043048345",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "986": {
+      "old_L": "31.85936196102381448046836994736352721702132839709520",
+      "new_L": "31.85929399677882436923132169163963010308195645811009",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "987": {
+      "old_L": "31.86630526508366147711534673847566523363639134913683",
+      "new_L": "31.86603417523723571366780012233350137422327584640552",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "988": {
+      "old_L": "31.87585418839976037838552082037679724635381717234850",
+      "new_L": "31.87558663161891304351447744512471590129993582096260",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "989": {
+      "old_L": "31.88914570066521814280852354928086356267158407717943",
+      "new_L": "31.88895516292707170820409215983313071025896143672306",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "990": {
+      "old_L": "31.89534627347367645612906593699520385598589200526476",
+      "new_L": "31.89523361636361419999999997304086221303959604898398",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "991": {
+      "old_L": "31.90206673348554702789285145714259783744637388736010",
+      "new_L": "31.90196377445985075285060497844275183475939725576244",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "992": {
+      "old_L": "31.91998346140380235236131848091229987757851216730124",
+      "new_L": "31.91995742375908306923132169163972587247846395005531",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "993": {
+      "old_L": "31.92480808534158141300188021860506637494836468249559",
+      "new_L": "31.92479146268798738268227338285363158020154438687644",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "994": {
+      "old_L": "31.94088859083679786264365000336695743499149102717638",
+      "new_L": "31.94088540957426802675193588487440369599372844238461",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "995": {
+      "old_L": "31.95449977485853573527912666607520009165455121546984",
+      "new_L": "31.95139255393067218924200100533961959176678046236141",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "996": {
+      "old_L": "31.95949679765504710066258234890668177285988349467516",
+      "new_L": "31.95547433039715056996406352035406677571397691905898",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "997": {
+      "old_L": "31.97989013673683237696987015086236283423204440623522",
+      "new_L": "31.97361917044237758708624330565493670089775472062694",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    },
+    "998": {
+      "old_L": "31.98590378890165441524386303884242011008609551936388",
+      "new_L": "31.98581301036639391923041586746775158991191041742633",
+      "source": "sigmaborov/squares-in-squares-certified-contact-polish V18"
+    }
+  }
+}
