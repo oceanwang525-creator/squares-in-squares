@@ -1,0 +1,122 @@
+{
+  "420": {
+    "best": {
+      "config": {
+        "a": 5,
+        "b": 4,
+        "p": 1,
+        "q": 0,
+        "d": 8.26551724137931,
+        "family": "corner"
+      },
+      "capacity": 422,
+      "L_measured": "21.53107554482758857517674374150140626726076073395601",
+      "L_roundtrip": "21.53107554482758848076867830836024340268858777390356",
+      "incumbent_L": "20.96129301997122212179114584340315500626086004934217",
+      "L_over_incumbent": 0.5697825248563646,
+      "score_contribution": 0.050608909742881014,
+      "incumbent_contribution": 0.022806369364274826,
+      "delta": 0.02780254037860619,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_best_n420.csv"
+    },
+    "tilted": {
+      "config": {
+        "a": 9,
+        "b": 3,
+        "p": 3,
+        "q": 2,
+        "d": 6.4241379310344815,
+        "family": "corner"
+      },
+      "capacity": 420,
+      "L_measured": "22.00087071469295498309521436922128655311364010198571",
+      "L_roundtrip": "22.00087071469295639541643953629512063994468765061994",
+      "incumbent_L": "20.96129301997122212179114584340315500626086004934217",
+      "L_over_incumbent": 1.0395776947217321,
+      "score_contribution": 0.07353256677000508,
+      "incumbent_contribution": 0.022806369364274826,
+      "delta": 0.050726197405730256,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_tilted_n420.csv"
+    }
+  },
+  "650": {
+    "best": {
+      "config": {
+        "a": 6,
+        "b": 5,
+        "p": 1,
+        "q": 0,
+        "d": 10.45,
+        "family": "corner"
+      },
+      "capacity": 653,
+      "L_measured": "26.90005180000000152319025988446576936540529198395601",
+      "L_roundtrip": "26.90005180000000051923132169163973722599051236440250",
+      "incumbent_L": "25.93296800914926226564497079296600645648140925914049",
+      "L_over_incumbent": 0.9670837908507366,
+      "score_contribution": 0.055106838806590064,
+      "incumbent_contribution": 0.017174691723303992,
+      "delta": 0.03793214708328607,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_best_n650.csv"
+    },
+    "tilted": {
+      "config": {
+        "a": 11,
+        "b": 5,
+        "p": 1,
+        "q": 3,
+        "d": 7.4931034482758605,
+        "family": "corner"
+      },
+      "capacity": 657,
+      "L_measured": "27.00291374600450837442979467036660123858849928655066",
+      "L_roundtrip": "27.00291374600450795605790257429806138443252560923840",
+      "incumbent_L": "25.93296800914926226564497079296600645648140925914049",
+      "L_over_incumbent": 1.0699457368552459,
+      "score_contribution": 0.05914141626722946,
+      "incumbent_contribution": 0.017174691723303992,
+      "delta": 0.04196672454392547,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_tilted_n650.csv"
+    }
+  },
+  "930": {
+    "best": {
+      "config": {
+        "a": 8,
+        "b": 7,
+        "p": 1,
+        "q": 0,
+        "d": 11.844827586206897,
+        "family": "corner"
+      },
+      "capacity": 930,
+      "L_measured": "31.68971655172414060331484693789883001146242089020601",
+      "L_roundtrip": "31.68971655172414051923132169163973722599051236440250",
+      "incumbent_L": "30.91746912203587886923132169163779317923158816099717",
+      "L_over_incumbent": 0.7722474296882602,
+      "score_contribution": 0.039146742164552606,
+      "incumbent_contribution": 0.013823751364187009,
+      "delta": 0.025322990800365597,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_best_n930.csv"
+    },
+    "tilted": {
+      "config": {
+        "a": 11,
+        "b": 5,
+        "p": 4,
+        "q": 1,
+        "d": 10.062068965517241,
+        "family": "corner"
+      },
+      "capacity": 946,
+      "L_measured": "32.00844536190378815518344902931649589951773539517671",
+      "L_roundtrip": "32.00844536190378844347319914445475745818793529208733",
+      "incumbent_L": "30.91746912203587886923132169163779317923158816099717",
+      "L_over_incumbent": 1.09097623986791,
+      "score_contribution": 0.04959827158077723,
+      "incumbent_contribution": 0.013823751364187009,
+      "delta": 0.03577452021659022,
+      "csv": "poc/wildcard_pinwheel/data/pinwheel_tilted_n930.csv"
+    }
+  }
+}

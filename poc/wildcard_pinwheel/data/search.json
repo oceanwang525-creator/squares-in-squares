@@ -1,0 +1,26 @@
+{
+  "scanned_configs": 31405,
+  "targets": {
+    "420": {
+      "capacity_matched_configs": 17027,
+      "min_L_overall": 21.53103448275862,
+      "min_L_tilted": 22.000829099785243,
+      "grid_L": 21.0,
+      "incumbent_L": 20.961293019971222
+    },
+    "650": {
+      "capacity_matched_configs": 13201,
+      "min_L_overall": 26.9,
+      "min_L_tilted": 27.00286200519156,
+      "grid_L": 26.0,
+      "incumbent_L": 25.932968009149263
+    },
+    "930": {
+      "capacity_matched_configs": 8336,
+      "min_L_overall": 31.689655172413794,
+      "min_L_tilted": 32.008383557814795,
+      "grid_L": 31.0,
+      "incumbent_L": 30.91746912203588
+    }
+  }
+}
