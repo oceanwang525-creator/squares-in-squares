@@ -1,0 +1,249 @@
+{
+  "portfolio": "poc/pell_corrugation/data/border-scan/merged.csv",
+  "incumbent_source": "poc/pell_corrugation/data/border-scan/merged-literal-official.json",
+  "targets": {
+    "645": {
+      "incumbent_L": "25.87031812251975364740446552983030849778887781162520",
+      "incumbent_score": "0.018642781306359906629174834864409541417837045175129",
+      "candidate_csv": "composite-645.csv",
+      "candidate_rows": 645,
+      "candidate_capacity": 645,
+      "capacity_match": true,
+      "below_incumbent": {
+        "donor_n": 697,
+        "capacity": 644,
+        "total_capacity": 644,
+        "side": "25.869769660605005",
+        "crop_width": "25.869769560604997",
+        "crop_height": "25.869769560605004",
+        "crop_cut": [
+          0,
+          26,
+          1,
+          27
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          0,
+          25
+        ],
+        "grid_top": [
+          25,
+          0
+        ],
+        "grid_capacity": 0
+      },
+      "capacity_composite": {
+        "donor_n": 698,
+        "capacity": 645,
+        "total_capacity": 645,
+        "side": "25.881109326069282",
+        "crop_width": "25.881109226069281",
+        "crop_height": "25.881109226069281",
+        "crop_cut": [
+          0,
+          26,
+          0,
+          26
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          0,
+          25
+        ],
+        "grid_top": [
+          25,
+          0
+        ],
+        "grid_capacity": 0
+      },
+      "measured_side_from_rows": "25.881109226069281",
+      "certification": {
+        "literal_L": "25.88110922606928005961566084581980832075793593806084",
+        "pandas_L": "25.88110922606928005961566084581980832075793593806084",
+        "pandas_path": "composite-645.pandas.csv",
+        "pandas_version": "3.1.0",
+        "literal_ok": true,
+        "pandas_ok": true,
+        "same_decimal": true
+      },
+      "measured_L": "25.88110922606928005961566084581980832075793593806084",
+      "measured_score": "0.019067680593682001442078264998695438918586127957572",
+      "delta_L": "0.01079110354952641221119531598949982296905812643564",
+      "delta_score": "0.00042489928732209481290343013428589750074908278244285",
+      "strict_win": false,
+      "shortfall": 1,
+      "prior_capacity": 640,
+      "capacity_deviation": 4
+    },
+    "925": {
+      "incumbent_L": "30.86321837316950898175795253708386667312879581004381",
+      "incumbent_score": "0.014776369106632788959522588787209527948941657403992",
+      "candidate_csv": "composite-925.csv",
+      "candidate_rows": 925,
+      "candidate_capacity": 925,
+      "capacity_match": true,
+      "below_incumbent": {
+        "donor_n": 986,
+        "capacity": 923,
+        "total_capacity": 923,
+        "side": "30.859362059923814",
+        "crop_width": "30.859361959923813",
+        "crop_height": "30.859361959923813",
+        "crop_cut": [
+          0,
+          31,
+          0,
+          31
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          0,
+          30
+        ],
+        "grid_top": [
+          30,
+          0
+        ],
+        "grid_capacity": 0
+      },
+      "capacity_composite": {
+        "donor_n": 988,
+        "capacity": 925,
+        "total_capacity": 925,
+        "side": "30.875854287299759",
+        "crop_width": "30.875854187299758",
+        "crop_height": "30.875854187299758",
+        "crop_cut": [
+          0,
+          31,
+          0,
+          31
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          0,
+          30
+        ],
+        "grid_top": [
+          30,
+          0
+        ],
+        "grid_capacity": 0
+      },
+      "measured_side_from_rows": "30.875854187299762",
+      "certification": {
+        "literal_L": "30.87585418729976029554514981301238663036201614886522",
+        "pandas_L": "30.87585418729976200000000000000000000000000000000000",
+        "pandas_path": "composite-925.pandas.csv",
+        "pandas_version": "3.1.0",
+        "literal_ok": true,
+        "pandas_ok": true,
+        "same_decimal": false
+      },
+      "measured_L": "30.87585418729976029554514981301238663036201614886522",
+      "measured_score": "0.015191832115991196957080520388326252934667345589074",
+      "delta_L": "0.01263581413025131378719727592851995723322033882141",
+      "delta_score": "0.00041546300935840799755793160111672498572568818508254",
+      "strict_win": false,
+      "shortfall": 2,
+      "prior_capacity": 920,
+      "capacity_deviation": 3
+    },
+    "987": {
+      "incumbent_L": "31.86630526508366147711534673847566523363639134913683",
+      "incumbent_score": "0.014315672227108291233459535270159314899374806491894",
+      "candidate_csv": "composite-987.csv",
+      "candidate_rows": 987,
+      "candidate_capacity": 987,
+      "capacity_match": true,
+      "below_incumbent": {
+        "donor_n": 999,
+        "capacity": 484,
+        "total_capacity": 961,
+        "side": "31.000000100000001",
+        "crop_width": "22",
+        "crop_height": "22",
+        "crop_cut": [
+          0,
+          22,
+          0,
+          22
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          9,
+          31
+        ],
+        "grid_top": [
+          22,
+          9
+        ],
+        "grid_capacity": 477
+      },
+      "capacity_composite": {
+        "donor_n": 988,
+        "capacity": 956,
+        "total_capacity": 987,
+        "side": "31.875854288399761",
+        "crop_width": "30.875854187299758",
+        "crop_height": "31.87585418839976",
+        "crop_cut": [
+          0,
+          31,
+          0,
+          32
+        ],
+        "orientation": "identity",
+        "grid_right": [
+          1,
+          31
+        ],
+        "grid_top": [
+          30,
+          0
+        ],
+        "grid_capacity": 31
+      },
+      "measured_side_from_rows": "31.875854287299759",
+      "certification": {
+        "literal_L": "31.87585428729975900403701846625347367262293118983507",
+        "pandas_L": "31.87585428729976000000000000000000000000000000000000",
+        "pandas_path": "composite-987.pandas.csv",
+        "pandas_version": "3.1.0",
+        "literal_ok": true,
+        "pandas_ok": true,
+        "same_decimal": false
+      },
+      "measured_L": "31.87585428729975900403701846625347367262293118983507",
+      "measured_score": "0.014619620953126595306093786522435737357125392508287",
+      "delta_L": "0.00954902221609752692167172777780843898653984069824",
+      "delta_score": "0.00030394872601830407263425125227642245775058601639270",
+      "strict_win": false,
+      "shortfall": 26,
+      "prior_capacity": 961,
+      "capacity_deviation": 0
+    }
+  },
+  "prior_capacity": {
+    "645": 640,
+    "925": 920,
+    "987": 961
+  },
+  "pandas_version": "3.1.0",
+  "elapsed_seconds": 302.95691424999677,
+  "summary": {
+    "wins": 0,
+    "note": "Every target emits a certified composite, but all candidate sides exceed the incumbent. The donor slice is a negative result.",
+    "measured_below_incumbent_capacity": {
+      "645": 644,
+      "925": 923,
+      "987": 961
+    },
+    "prior_below_incumbent_capacity": {
+      "645": 640,
+      "925": 920,
+      "987": 961
+    }
+  }
+}
