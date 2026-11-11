@@ -1,0 +1,15 @@
+built 158
+{
+  "score": 22.199718022945788,
+  "max_n": 1000,
+  "accepted": 1000,
+  "missing": 0,
+  "rejected": 0
+}
+{
+  "score": 22.199718022945788,
+  "max_n": 1000,
+  "accepted": 1000,
+  "missing": 0,
+  "rejected": 0
+}
