@@ -6,15 +6,16 @@ strict official-metric improvement.
 
 Measured result:
 
-- literal official score: `22.173718748064`
-- pandas round-trip official score: `22.173718748064`
+- literal official score: `22.173715450253`
+- pandas round-trip official score: `22.173715450253`
 - accepted puzzles: `1000/1000`
-- strict wins: **27**
+- strict wins: **28**
 - strict regressions: **0**
-- net score gain: **0.000105534542740**
+- net score gain: **0.000108832354417**
 
 | n | this `L` | team baseline `L` |
 | ---: | ---: | ---: |
+| 370 | 19.756683828751 | 19.756747263425 |
 | 502 | 22.877637090605 | 22.877638427742 |
 | 505 | 22.930439920239 | 22.930439981526 |
 | 595 | 24.861685491745 | 24.861925350012 |
