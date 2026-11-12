@@ -1,0 +1,4 @@
+rational void-fill scan: tasks=20408, win n=0, estimated mass 0
+free-angle GA: best 898 (T1=36 bound, T2=0.71, w=5, gap=0.005)
+fine 250k scan around optimum: best 900 = plain 30x30 grid at L=30.6609126
+n=911 needs 911 squares: from-scratch staircase-band family cannot reach it.

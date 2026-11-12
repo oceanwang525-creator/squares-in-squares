@@ -1,0 +1,7 @@
+n=911 delta=1e-4, 8 ladders x 8 replicas x 40 rounds x 10k moves
+  n=911 seed=1 fail L=30.695522171 E=2.09e-08
+  ... all 8 seeds: E=2.09e-08, status fail
+n=911 delta=1e-5
+  n=911 seed=6 fail L=30.695612171 E=1.96e-10
+  ... all 8 seeds: E=1.96e-10, status fail
+wins 0
