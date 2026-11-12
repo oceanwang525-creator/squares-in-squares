@@ -1,0 +1,73 @@
+{
+  "rounds": [
+    {
+      "file": "free_slp_600_1000_r14_t5e-4_report.json",
+      "wins": 14,
+      "group_gain": -3.8092238696663117e-08,
+      "largest_n": 970,
+      "largest_delta": -2.3737669607726275e-08
+    },
+    {
+      "file": "free_slp_600_1000_r15_t5e-4_report.json",
+      "wins": 11,
+      "group_gain": -2.4378635998800746e-08,
+      "largest_n": 970,
+      "largest_delta": -9.137597345443282e-09
+    },
+    {
+      "file": "free_slp_600_1000_r16_t2e-4_report.json",
+      "wins": 10,
+      "group_gain": -1.2797052306723344e-08,
+      "largest_n": 645,
+      "largest_delta": -4.561314881357248e-09
+    },
+    {
+      "file": "free_slp_600_1000_r17_t1e-4_report.json",
+      "wins": 10,
+      "group_gain": -1.450538889002928e-08,
+      "largest_n": 645,
+      "largest_delta": -4.523268870570973e-09
+    },
+    {
+      "file": "free_slp_600_1000_r18_t5e-5_report.json",
+      "wins": 8,
+      "group_gain": -1.8178361926857178e-08,
+      "largest_n": 809,
+      "largest_delta": -6.648800621178452e-09
+    },
+    {
+      "file": "free_slp_600_1000_r19_t2e-5_report.json",
+      "wins": 10,
+      "group_gain": -1.5689163745946644e-08,
+      "largest_n": 645,
+      "largest_delta": -6.809617758563036e-09
+    },
+    {
+      "file": "free_slp_600_1000_r20_t1e-5_report.json",
+      "wins": 8,
+      "group_gain": -1.3784408281480864e-08,
+      "largest_n": 645,
+      "largest_delta": -6.475605829336928e-09
+    }
+  ],
+  "distinct_n": [
+    637,
+    642,
+    645,
+    695,
+    791,
+    809,
+    810,
+    868,
+    908,
+    910,
+    912,
+    936,
+    969,
+    970,
+    978,
+    997
+  ],
+  "distinct_win_count": 16,
+  "total_group_gain": -1.3742524984650117e-07
+}
