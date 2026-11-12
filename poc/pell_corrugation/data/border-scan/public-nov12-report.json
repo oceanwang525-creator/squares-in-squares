@@ -1,0 +1,19 @@
+{
+  "previous_score": 22.199718022945788,
+  "team_merge_score": 22.19906754760468,
+  "score_literal": 22.178843629051656,
+  "score_pandas": 22.178843629051656,
+  "reduction_vs_team": 0.020223918553029,
+  "reduction_vs_previous": 0.020874393894132,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "public_wins": 188,
+  "team_rows_kept": 188,
+  "public_rows_kept": 190,
+  "ties": 622,
+  "sha256": "4516c499130da19ac9b0c1ec01de2b65f59bfd10c47d82029b6c2882295ab2c9",
+  "poc": "poc/fresh_public_sources_nov12",
+  "provenance": "docs/wins.json in the POC plus team merge e6f7b69"
+}
