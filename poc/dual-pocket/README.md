@@ -4,7 +4,7 @@ This POC contributes a complete 1,000-puzzle packing built from exact local
 coordinates. It strictly improves 154 `L` values over
 `poc/pell_corrugation/data/border-scan/merged.csv`. It also has 47 microscopic
 regressions totalling `4.47e-10` score, so the net official improvement is
-`0.0103186393619` (`22.199718022946` -> `22.189399383584`).
+`0.0103186718464` (`22.199718022946` -> `22.189399351099`).
 
 The largest gains are:
 
@@ -32,6 +32,7 @@ The fixed-revision `sqk` corner SLP further tightens `n=910` and `n=687`.
 The coordinated `n=969` layout also clears the baseline by a strict export-sized
 margin, bringing the final strict-win count to 154.
 Corner SLP on the next gap band tightens `n=587` and `n=694`.
+The following band additionally tightens `n=593`, `n=921`, and `n=981`.
 
 Run from the repository root after following the shared baseline setup:
 
