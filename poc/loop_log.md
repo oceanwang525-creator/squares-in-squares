@@ -463,3 +463,27 @@ The other 34 local witnesses and the frozen baseline gave 0 candidates.
 - SHA256: `42421d82d582a6f05e738d13e830ef328161a39f469d00896f58ee521b29cdb5`.
 - POC: `poc/sigmaborov_contact_polish`; report in
   `poc/sigmaborov_contact_polish/docs/results.md`.
+
+## Loop 15 - fixed-angle LP re-run after later merges
+
+**Idea.** Newly imported rows (kernels, team unions, tiny pass) have never been
+through the unbounded fixed-angle box-side LP. The file changed at more than
+150 `n` since Loop 6, so re-run the same whole-portfolio LP (3 SLP rounds,
+exact literal + pandas gate).
+
+**Measured result (win).** One new strict win:
+
+- n=740 `27.70664651748958335 -> 27.70664651341567700` (ΔL `4.07e-9`, gain
+  `1.4976e-10`), literal and pandas identical.
+
+Status counts: 997 `no-gain`, 1 `certify-fail`, 1 `lp-infeasible`, 1 `WIN`.
+The LP cost about two minutes for all 1000 groups.
+
+- Literal score: **22.17399590592608**, 1000/1000 accepted.
+- Pandas transport score: **22.173995905926084**, 1000/1000 accepted.
+- Certified reduction: **1.4975977578826128e-10**.
+- SHA256: `3950c42c66bfde7bba8b5dd9991d3b5551e1e5f7518ca10ecb0229663a2cf3b0`.
+- POC: `poc/alln_fixed_lp`; reports `docs/rerun-*.json`.
+
+**Operational note.** Re-run this LP after every large merge; it is cheap and
+matches only the newly imported rows.

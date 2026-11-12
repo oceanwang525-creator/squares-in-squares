@@ -33,6 +33,24 @@ The merged portfolio scores **22.176502968074328** on both transports, with
 Status counts over the 1000 groups: 995 `no-gain`, 3 `certify-fail` (sub-margin
 LP solutions correctly rejected by the exact gate), 2 `WIN`.
 
+## Re-run after later merges
+
+The LP was re-run after the portfolio changed at more than 150 `n` (kernels,
+team unions, tiny pass). One new strict win appeared:
+
+| n | score gain | old L | new certified L |
+|---:|---:|---:|---:|
+| 740 | `1.4976e-10` | `27.70664651748958334836405277717157056590630524887299` | `27.70664651341567700080631671034723147254915673394862` |
+
+Status counts on the re-run: 997 `no-gain`, 1 `certify-fail`, 1
+`lp-infeasible`, 1 `WIN`. The portfolio then scored
+**22.17399590592608** (literal) / **22.173995905926084** (pandas), 1000/1000
+each. Reports: `docs/rerun-scan.json`, `docs/rerun-wins.json`,
+`docs/rerun-literal-official.json`, `docs/rerun-pandas-official.json`.
+
+**Operational note.** Re-run this LP after every large merge; newly imported
+rows have not been through it, and the cost is about two minutes.
+
 ## Why the other 995 are saturated
 
 For a locally optimised packing, the LP side comes back a constant margin
