@@ -69,6 +69,18 @@ n=864: 29.851920533231 -> 29.851920522479
 n=915: 30.745116621029 -> 30.745116012882
 ```
 
+Corner SLP on gap ranks 193–240 adds:
+
+```text
+n=595: 24.861925377827 -> 24.861738389512
+n=869: 29.912162992669 -> 29.912161657170
+n=644: 25.847855736064 -> 25.847855697239
+n=651: 25.948909294217 -> 25.948909259722
+```
+
+The result was merged per puzzle with the latest parallel portfolio, preserving
+its concurrent `n=687` improvement.
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -101,6 +113,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0103246402873`.
+improvement remains `0.0104003378114`.
 
 No Kaggle submission is performed.
