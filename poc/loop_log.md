@@ -934,3 +934,35 @@ n=791 `28.7285` vs `28.6341`, n=968 `31.6213` vs `31.6087`).
 `1.088e-4` over the stale reports. Target 22.0999 remains `0.0738` away, and the
 remaining gap is private Kaggle search quality; no public construction source
 beats the tracked union.
+
+## Loop 35 - hard-square annealing with swap and row-shift moves
+
+**Idea.** Every search so far has been a descent method (LP, SLP, Adam, L-BFGS):
+once the contact graph jams, no gradient can change the topology. This loop uses
+a stochastic hard-square search instead. State = (x, y, theta) for all squares;
+energy = squared SAT penetration + 5x squared wall violation. Moves:
+
+1. single-square random translation+rotation (local);
+2. **swap** two random squares' positions and orientations (topology change);
+3. **row shift**: translate every square on one side of a random horizontal or
+   vertical cut (fault-line move).
+
+Metropolis acceptance with a geometric temperature schedule. Compression is a
+continuation: scale the incumbent to `L - delta`, anneal at fixed `L` until the
+energy reaches zero, accept and repeat. Test first on n=911 (largest gap,
+30.695622 -> frontier 30.660913), 32 independent chains, exact official
+certification as the final oracle.
+
+**Result (negative).** Implemented in numba (`/tmp/opencode/hs_sa.py`):
+squared-SAT penetration energy, single translation+rotation moves, square
+swaps, and fault-line row shifts, Metropolis with a geometric temperature
+schedule, adaptive compression (`scale to L-delta`, anneal, accept only if
+`E < 1e-18`, otherwise halve `delta` and restore).
+
+On n=911 (target frontier side 30.6609126), 8 chains x 150k-200k moves:
+**every chain fails at the first `delta = 1e-4` step** and restores the
+incumbent exactly (`E = 0`, `L = 30.695622171`). The best energy never reaches
+the feasibility threshold; swaps and row shifts do not open a feasible basin.
+The same happens at n=367 with `delta = 1e-3`. So the jam is not merely an
+artefact of LP/descent linearisation: it survives a stochastic search with
+topology-changing moves. 0 wins, score unchanged.
