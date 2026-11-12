@@ -44,6 +44,13 @@ The synchronized portfolio also contains a strict `n=969` win
 (`31.633982502102 -> 31.633982501359`), bringing the final comparison count to
 154 wins.
 
+Corner SLP on gap ranks 49–96 adds:
+
+```text
+n=587: 24.749891763444 -> 24.749495082532
+n=694: 26.827240193605 -> 26.827195821962
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -76,6 +83,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0103005745458`.
+improvement remains `0.0103186393619`.
 
 No Kaggle submission is performed.
