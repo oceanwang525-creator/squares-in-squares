@@ -360,3 +360,83 @@ the incumbent in both literal and pandas transport with no dilation:
 **Lesson.** Once public kernels consume our portfolio, each of their re-runs is
 a free polish pass over hundreds of `n`. Re-list kernels at least every 30
 minutes and merge per `n`.
+
+## Loop 11 - whole-portfolio free-angle SLP
+
+**Idea.** The fixed-angle LP only moves centres. Add each square's rotation as
+an LP variable, linearising extents and pair radii to first order in the angle,
+with a shrinking trust region, rebuilt contact set and six SLP rounds. This is
+the strongest local test left: every square can translate and rotate at once,
+unlike the earlier one-square coordinate descent.
+
+**Why it might work.** The portfolio was assembled from many sources with
+different polish pipelines; a joint angle step could relieve a contact pattern
+that no single-square move can.
+
+**Measured result (negative).** 1000/1000 groups return an SLP side equal to
+the incumbent (status `no-gain`); no group is strictly below, so nothing was
+emitted. Top-gap probe (971, 911, 910, 972, 793, 634, 791, 908, 969, 803) was
+also 0/10 in 9 seconds; the full run took about four minutes.
+
+- `merged.csv` unchanged at SHA256
+  `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
+- POC: `poc/free_angle_slp`; report in `poc/free_angle_slp/docs/results.md`,
+  per-`n` status in `docs/scan.json`.
+
+**Conclusion.** The tracked packings are local optima in the full `(x, y, θ)`
+space. With Loop 6 (no translational slack) and `leader_poc_k2p4` (n=328 strict
+free-angle local optimum), the remaining leader gap is structural: it needs
+different contact topologies or constructions, not more polishing.
+
+## Loop 12 - harvest watcher and systematic source discovery
+
+**Idea.** Automate one harvest cycle (newest kernel outputs, live feed, team
+push) and pair it with systematic GitHub/Kaggle search for repositories that
+publish exact certificates per bound. The n=269 win came from exactly such a
+per-bound repo, so the search is worth repeating as new ones appear.
+
+**Measured result (negative).** The first cycle after Loop 10:
+kernels newer than `09:33:56` = 1 (`saamhm`, 0 candidates); live feed
+(`at 01:38-08:00`) = 0 candidates above `1e-12`; `origin/main` unchanged.
+Discovery scan of twelve new sources:
+
+- `BuddenPing/square-packing-certificates` (n=105,146,153,207,261,272,302),
+  `lollipoll/couzo-five-exact-certificates`,
+  `SidG2k1/square-packing-refinements` (14 exact refinements at ~`1e-13`),
+  `ebdeleeuw/square-packing-n70`, nine Kaggle-competition repos, and the
+  `samanyu1808/sis-final-packings` dataset: **0 candidates**.
+- The only scanner hits were `EvanOman/.../spheres.json` sphere coordinates,
+  rejected as not square packings.
+
+The refinement repos improve *published* sides by ~`1e-13`, but the tracked
+portfolio already matches or beats every reference they refine.
+
+- `merged.csv` unchanged at SHA256
+  `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
+- POC: `poc/harvest_watch`; report in `poc/harvest_watch/docs/results.md`.
+
+## Loop 13 - tiny pass re-run on the current portfolio
+
+**Idea.** The team's `tiny_pass.py` (deletion from n+k and upright border wraps
+followed by deletion) added only `2.49e-10` when it ran on the November 12
+intermediate file. The tracked file has since changed at more than 200 `n`, so
+re-run the same pass against the current incumbent.
+
+**Measured result (win).** 8 strict wins, all literal and pandas identical:
+
+- largest: n=904 `wrap-845-t1`, `30.563136023802043 -> 30.563136023765352`
+  (dL `3.669e-11`, the only win above `1e-13`);
+- deletions at the flat pairs n=442, 577, 627, 678, 492 (dL `1e-17`..`6.5e-14`);
+- wraps at n=732 (`wrap-679-t1`) and n=964 (`wrap-679-t5`).
+
+Wrap candidates at 442, 530, 577, 678, 786, 843, 902, 963 all returned
+`no gain` (wrapped side `1e-13` above the incumbent).
+
+- Literal score: **22.173995906837433**, 1000/1000 accepted.
+- Pandas transport score: **22.173995906837433**, 1000/1000 accepted.
+- Certified reduction: **1.2292409126146337e-12**.
+- SHA256: `308fc61effc296bebefa57617d095b5b81055e425541fbb25d9b55296c25d302`.
+- POC: `poc/tiny_pass_rerun`; report in `poc/tiny_pass_rerun/docs/results.md`.
+
+**Note.** Dust by construction, but the pass is nearly free and every strict win
+is legitimate; re-run it whenever the file changes at the flat pairs.
