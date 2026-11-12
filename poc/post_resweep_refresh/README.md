@@ -64,3 +64,8 @@ python poc/post_resweep_refresh/poc/merge_refresh.py \
 
 Only anonymous Kaggle output endpoints are used; nothing is submitted.
 Public authors retain credit.
+
+## Later update
+
+The Loop 3 external witness refresh (`poc/external_witness_refresh`) added
+seven wins and moved the tracked score to **22.17659599299808**.

@@ -91,3 +91,30 @@ CSVs from Loop 1 gave zero candidates.
 - SHA256: `aa4fa2ae4fb4ee27f5230d3349eee839536b2efb0351c41d0f54e1c13cb75353`.
 - POC: `poc/post_resweep_refresh`; report in
   `poc/post_resweep_refresh/docs/results.md`.
+
+## Loop 3 - refresh external GitHub witness banks
+
+**Idea.** The team resweep `public_resweep_other` mined four external GitHub
+packing banks as of 2026-11-10. `jlevy/squares` gained commits on 2026-11-11
+and 2026-11-12 with new `de-winter-*` and `ozden-*` witness/certificate
+directories. Re-clone the banks at current HEAD, harvest the new rational
+corner/center-basis witnesses, `.cert` files, `.npz` banks, and generic
+JSON/CSV layouts, then certify strict per-`n` candidates against the tracked
+incumbent. Repair any float64-transport overlap by minimal uniform dilation.
+
+**Why it might work.** These are exact witnesses from independent packing
+researchers, not re-polished versions of our own rows. The resweep commit
+predates the newest de Winter/Ozden witnesses by one to two days.
+
+**Measured result (win).** Seven strict wins, all from new `jlevy/squares`
+witnesses: `n=132` (gain `8.383e-4`), 156 (`1.692e-4`), 157 (`5.345e-4`),
+180 (`1.025e-4`), 237 (`5.715e-4`), 268 (`1.238e-10`), 269 (`3.164e-5`).
+`n=132` and `n=157` needed a `1e-14` dilation to survive pandas float64
+transport; the first unrepaired merge was rejected 998/1000.
+
+- Literal score: **22.17659599299808**, 1000/1000 accepted.
+- Pandas transport score: **22.17659599299808**, 1000/1000 accepted.
+- Certified reduction: **0.002247635825722413**.
+- SHA256: `f18356d4f428ea90791ae6a1f26b0ef4c2e864a6ea3c9d04008eec664dd7ee03`.
+- POC: `poc/external_witness_refresh`; report in
+  `poc/external_witness_refresh/docs/results.md`.

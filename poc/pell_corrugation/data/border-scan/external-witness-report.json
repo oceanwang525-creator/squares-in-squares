@@ -1,0 +1,15 @@
+{
+  "previous_score": 22.178843628823806,
+  "score_literal": 22.17659599299808,
+  "score_pandas": 22.17659599299808,
+  "reduction": 0.002247635825722413,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 7,
+  "win_n": [132, 156, 157, 180, 237, 268, 269],
+  "sha256": "f18356d4f428ea90791ae6a1f26b0ef4c2e864a6ea3c9d04008eec664dd7ee03",
+  "poc": "poc/external_witness_refresh",
+  "provenance": "docs/wins.json in the POC"
+}

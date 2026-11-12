@@ -12,10 +12,12 @@ python3 poc/pell_corrugation/poc/pell_corrugation.py --help
 
 The completed CPU border scan improves the public23 merge at n=739, 794, 851 and 910. Whole-portfolio official score is **22.254062083924335**, down from 22.25406709809781. All 1000 groups pass literal CSV and actual pandas 3.1.0 round-trip certification, independently checked by C++. See [border scan](docs/border_scan.md).
 
-The current tracked portfolio is **22.178843628823806** after the November 12
-public-output import unioned with team merge `e6f7b69`, followed by the
-post-resweep refresh (`n=487`, `n=733`). Both literal and pandas transport
-certify 1000/1000. See
+The current tracked portfolio is **22.17659599299808** after the November 12
+public-output import unioned with team merge `e6f7b69`, the post-resweep
+refresh (`n=487`, `n=733`), and seven new external witnesses
+(`n=132,156,157,180,237,268,269`). Both literal and pandas transport certify
+1000/1000. See
 [fresh public outputs](../fresh_public_sources_nov12/README.md),
-[post-resweep refresh](../post_resweep_refresh/README.md), and
-[measured results](../post_resweep_refresh/docs/results.md).
+[post-resweep refresh](../post_resweep_refresh/README.md),
+[external witness refresh](../external_witness_refresh/README.md), and
+[measured results](../external_witness_refresh/docs/results.md).
