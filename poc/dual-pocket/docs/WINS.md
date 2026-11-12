@@ -1,8 +1,8 @@
 # Strict wins
 
-- literal official score: `22.173890453429483`
-- pandas-roundtrip official score: `22.173890453429483`
-- baseline official score: `22.173995906838663`
+- literal official score: `22.173890453428253`
+- pandas-roundtrip official score: `22.173890453428253`
+- baseline official score: `22.173995906837433`
 - strict wins: **25**
 - tiny regressions: **0**
 - regression score: **0.000000000000000e+00**

@@ -1,13 +1,13 @@
 # Dual-pocket certified union
 
 This POC joins the aligned local pool with the upstream team portfolio at
-`22.173995906839`. It keeps exactly the rows where the local packing has a
+`22.173995906837`. It keeps exactly the rows where the local packing has a
 strict official-metric improvement.
 
 Measured result:
 
-- literal official score: `22.173890453429`
-- pandas round-trip official score: `22.173890453429`
+- literal official score: `22.173890453428`
+- pandas round-trip official score: `22.173890453428`
 - accepted puzzles: `1000/1000`
 - strict wins: **25**
 - strict regressions: **0**

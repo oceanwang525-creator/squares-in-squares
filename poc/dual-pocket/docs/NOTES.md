@@ -5,12 +5,12 @@
 `data/submission.csv` is the per-puzzle union of:
 
 - upstream team baseline `poc/pell_corrugation/data/border-scan/merged.csv`,
-  officially `22.173995906838663`;
+  officially `22.173995906837433`;
 - the aligned local exact-coordinate pool.
 
 The union keeps a local row only when the official metric gives a strictly
 smaller `L`. It has 25 wins, no regressions, and scores
-`22.173890453429` in both literal and pandas-round-trip certification.
+`22.173890453428` in both literal and pandas-round-trip certification.
 
 The source coordinates come from repeated support/corner SLP passes on the
 local portfolio. The dominant gains in this contribution are:
