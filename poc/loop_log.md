@@ -1007,3 +1007,17 @@ representative.
 needs 911 at this side, so the frontier packing is 11 squares denser than any
 staircase-band configuration. 0 wins, `merged.csv` unchanged. POC:
 `poc/free_band_ga`.
+
+## Loop 39 - exact set-packing LNS at the n=911 frontier side (negative)
+
+**Idea.** Discretise the frontier box `L=30.6609125615235` into unit-square
+candidates (0.5 grid, 8 orientations, 27,967 candidates; 1,954,325 exact SAT
+conflict edges) and solve a maximum independent set with **exact MILP windows**
+(`scipy.optimize.milp`, HiGHS) over a large-neighbourhood search. Seed: the
+30x30 grid (900). Any >=911 selection is certified with the official metric.
+
+**Measured (negative).** 400 windows of 5x5 and 150 windows of 8x8: the best
+count is **900** in both cases; no window MILP ever adds a square. The grid is a
+local optimum under exact set packing in 8x8 windows. The frontier's 911-square
+packing needs a coordinated global pattern. 0 wins, `merged.csv` unchanged.
+POC: `poc/setpack_lns`.
