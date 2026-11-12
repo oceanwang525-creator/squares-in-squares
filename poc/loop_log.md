@@ -440,3 +440,26 @@ Wrap candidates at 442, 530, 577, 678, 786, 843, 902, 963 all returned
 
 **Note.** Dust by construction, but the pass is nearly free and every strict win
 is legitimate; re-run it whenever the file changes at the flat pairs.
+
+## Loop 14 - sigmaborov contact-polish kernel
+
+**Idea.** A new public kernel (`sigmaborov/squares-in-squares-certified-contact-polish`,
+first seen 10:12 UTC) publishes a contact-polish of the frozen public baseline:
+a 40 MB submission plus `local_witnesses.json` with 37 per-`n` witnesses. Its
+public score (`22.2043`) is far worse than the tracked file, but per-`n` polish
+can still win.
+
+**Measured result (win).** 3 strict wins, all literal and pandas identical:
+
+- n=694 `26.825233542153100 -> 26.825233532081742` (gain `3.822e-10`)
+- n=551 `23.925171829038760 -> 23.925171823365849` (gain `2.416e-10`)
+- n=504 `22.911415008793174 -> 22.911415005703776` (gain `1.376e-10`)
+
+The other 34 local witnesses and the frozen baseline gave 0 candidates.
+
+- Literal score: **22.17399590607584**, 1000/1000 accepted.
+- Pandas transport score: **22.17399590607584**, 1000/1000 accepted.
+- Certified reduction: **7.615905611345757e-10**.
+- SHA256: `42421d82d582a6f05e738d13e830ef328161a39f469d00896f58ee521b29cdb5`.
+- POC: `poc/sigmaborov_contact_polish`; report in
+  `poc/sigmaborov_contact_polish/docs/results.md`.

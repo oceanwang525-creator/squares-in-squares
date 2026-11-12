@@ -1,0 +1,16 @@
+{
+  "previous_score": 22.173995906837433,
+  "score_literal": 22.17399590607584,
+  "score_pandas": 22.17399590607584,
+  "reduction": 7.615905611345757e-10,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 3,
+  "win_n": [504, 551, 694],
+  "sha256": "42421d82d582a6f05e738d13e830ef328161a39f469d00896f58ee521b29cdb5",
+  "poc": "poc/sigmaborov_contact_polish",
+  "source": "sigmaborov/squares-in-squares-certified-contact-polish",
+  "provenance": "docs/wins.json in the POC"
+}
