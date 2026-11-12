@@ -40,6 +40,10 @@ n=910: 30.679151422149 -> 30.679150788214
 n=687: 26.725053394441 -> 26.725053393193
 ```
 
+The synchronized portfolio also contains a strict `n=969` win
+(`31.633982502102 -> 31.633982501359`), bringing the final comparison count to
+154 wins.
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -70,7 +74,7 @@ donor corpus or claim that all strict-win rows are new constructions. It
 contributes the complete certified union, the reproducible comparison gate,
 and the dual-pocket search findings.
 
-The strict Decimal comparison finds 153 wins and 47 tiny regressions. The
+The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
 improvement remains `0.0103005745458`.
 
