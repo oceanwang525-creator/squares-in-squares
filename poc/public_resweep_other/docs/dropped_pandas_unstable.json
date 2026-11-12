@@ -1,0 +1,1478 @@
+{
+ "40": {
+  "our_L": "6.82842712474619800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "6.82842712474619767461692388971573354829765942394478",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ]
+  ]
+ },
+ "55": {
+  "our_L": "7.94577100750392000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "7.94577100750391992479847475251549622746724860251720",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ]
+  ]
+ },
+ "85": {
+  "our_L": "9.74264068711930400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "9.74264068711929457359312880706300670939904884008790",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "9.74264068711928514640506617262909432313542249732370",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n85.cert"
+   ],
+   [
+    "9.74264068711928523383147304382285771874773567709096",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-085.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "88": {
+  "our_L": "9.88245103048125600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "9.88245103048125570186831214724352885728166599670944",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ]
+  ]
+ },
+ "101": {
+  "our_L": "10.53553390593276830000000000000000000000000000000000",
+  "candidates": [
+   [
+    "10.53553390593274027867965644036536832611206856190160",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "10.53553390593273771735956086985163304199432095989494",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-101.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "102": {
+  "our_L": "10.60582869643158800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "10.60582869643157836038467761767087931009972118089140",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n102.cert"
+   ],
+   [
+    "10.60582869643157845644296362140380014303135167494499",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-102.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "106": {
+  "our_L": "10.82290804413285800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "10.82290804413285737809248107617755598443694333000080",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "10.82290804413284755508620884517947674080956449375693",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n106.cert"
+   ]
+  ]
+ },
+ "107": {
+  "our_L": "10.84666719284350021860826256677264053580931743902340",
+  "candidates": [
+   [
+    "10.84666719284349962970897410637651585178126288673281",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ]
+  ]
+ },
+ "108": {
+  "our_L": "10.90482101232036900000000000000000000000000000000000",
+  "candidates": [
+   [
+    "10.90482101232035642894757097620002176864156807644984",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n108.cert"
+   ],
+   [
+    "10.90482101232035652799479061730236110861352884491382",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-108.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "110": {
+  "our_L": "10.99678339663160170339733218489762820745658482973221",
+  "candidates": [
+   [
+    "10.99678339663160163638614289954819536274626795655576",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ]
+  ]
+ },
+ "122": {
+  "our_L": "11.53553390593274800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.53553390593273762210957714958357257000000000000000",
+    "ext/evand-square-packing/search/regularize/lists/certs/n-122.cert.gz"
+   ],
+   [
+    "11.53553390593273772735956086985163375741856150611418",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-122.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "123": {
+  "our_L": "11.59137814549770803783157609905458873594203907486275",
+  "candidates": [
+   [
+    "11.59137814549769815943495046115083535846941346132002",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n123.cert"
+   ],
+   [
+    "11.59137814549769826534873085699000998037775761846999",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-123.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "124": {
+  "our_L": "11.65685424949239000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.65685424949238019520675489683879242084722999643159",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n124.cert"
+   ],
+   [
+    "11.65685424949238030177529739176380957623940702323537",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-124.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "125": {
+  "our_L": "11.70710678118655800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.70710678118654763147191217396548290413218099865984",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-125.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "126": {
+  "our_L": "11.74264068711929600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.74264068711928514640506617263983687639613491100000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n126.cert"
+   ]
+  ]
+ },
+ "127": {
+  "our_L": "11.81087878758919100000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.81087878758919065051115469718095001236710800111038",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "11.81087878758917983952533940800397749550540002497951",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n127.cert"
+   ],
+   [
+    "11.81087878758917994763304619601702470712877704862015",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-127.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "128": {
+  "our_L": "11.82509196821369800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.82509196821369785434950155812260930753334443558005",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "11.82509196821368702914928242475344317692340189673940",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n128.cert"
+   ],
+   [
+    "11.82509196821368713740020210689032103602602444978919",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-128.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "129": {
+  "our_L": "11.87001385040448371201105367989773701209570690845127",
+  "candidates": [
+   [
+    "11.87001385040447396720148506071149989740264366640920",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "11.87001385040446434446015340078059399896698232427922",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-129.yaml"
+   ]
+  ]
+ },
+ "131": {
+  "our_L": "11.94965958803589215858151052002755089563110880977691",
+  "candidates": [
+   [
+    "11.94965958803586039661453101233766894249287830772062",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n131.cert"
+   ],
+   [
+    "11.94965958803586050611003192673747715623947243808795",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-131.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "132": {
+  "our_L": "11.98568019884583300000000000000000000000000000000000",
+  "candidates": [
+   [
+    "11.98568019884582153116659748022813487660926619747270",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "11.98568019884580881140248501891487004782409695707350",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n132.cert"
+   ],
+   [
+    "11.98568019884580892125917715057097756318164769735229",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-132.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "146": {
+  "our_L": "12.58378219015187200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "12.58378219015187192606469874893715374250859707681146",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "12.58378219015186034228250859707681146000000000000000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n146.cert"
+   ]
+  ]
+ },
+ "149": {
+  "our_L": "12.70710678118655800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "12.70710678118654752451791542991671451000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-149.cert"
+   ],
+   [
+    "12.70710678118654764147191217396548361955642154487909",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-149.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "150": {
+  "our_L": "12.77817459305203400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "12.77817459305202276840928916097079881295448473920247",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n150.cert"
+   ],
+   [
+    "12.77817459305202288619103391367357554248449308655170",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-150.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "151": {
+  "our_L": "12.82287565553230800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "12.82287565553230711824469216567024853903663337495317",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "12.82287565553229529525080905910719587809775941255221",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n151.cert"
+   ],
+   [
+    "12.82287565553229541347956443214259162387991569977267",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-151.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "152": {
+  "our_L": "12.83071880097662113974488576889266647825177750827269",
+  "candidates": [
+   [
+    "12.83071880097660995486551645541307941613752982300000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n152.cert"
+   ]
+  ]
+ },
+ "153": {
+  "our_L": "12.87001385040447600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "12.87001385040446434446015458778197903941351677029456",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n153.cert"
+   ],
+   [
+    "12.87001385040446446316029190482524593566307352941772",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-153.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "155": {
+  "our_L": "12.95226094465057622715899136623342204846930969561092",
+  "candidates": [
+   [
+    "12.95226094465056403513765705142977485307726547800000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n155.cert"
+   ]
+  ]
+ },
+ "156": {
+  "our_L": "12.97916585383429121812496955869460475447034129085227",
+  "candidates": [
+   [
+    "12.97916585383429015436036251100974923593025074701669",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "12.97916585383427645383609038030831523870608110813357",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n156.cert"
+   ]
+  ]
+ },
+ "170": {
+  "our_L": "13.53553390593275000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.53553390593273762212957714958357257000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-170.cert"
+   ],
+   [
+    "13.53553390593273774735956086985138518826704259855017",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-170.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "171": {
+  "our_L": "13.57142857142858400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.57142857142857142857142982857142857142857142857143",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n171.cert"
+   ],
+   [
+    "13.57142857142857155428571428571429470819002400961337",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-171.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "173": {
+  "our_L": "13.65685424949239200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.65685424949238019533332343933371612000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-173.cert"
+   ],
+   [
+    "13.65685424949238032177529739176381100708788811567386",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-173.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "174": {
+  "our_L": "13.70710678118656000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.70710678118654752452791542991671451000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-174.cert"
+   ],
+   [
+    "13.70710678118654765147191217396548433498066209109833",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-174.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "177": {
+  "our_L": "13.82297973416946200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.82297973416944860009365438123689285629240662900795",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n177.cert"
+   ]
+  ]
+ },
+ "178": {
+  "our_L": "13.84666719284350300000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.84666719284348978307178126288673281000000000000000",
+    "ext/evand-square-packing/search/regularize/lists/certs/n-178.cert.gz"
+   ],
+   [
+    "13.84666719284348991140998651939490702025026589968397",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-178.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "183": {
+  "our_L": "13.99958017873627800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "13.99958017873626542215627254083952656884034489527220",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "13.99958017873625250194147509579611467269668699500000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n183.cert"
+   ]
+  ]
+ },
+ "198": {
+  "our_L": "14.57142857142858600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.57142857142857142857142992857142862072448979591837",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n198.cert"
+   ],
+   [
+    "14.57142857142857156428571428571429542361426455583261",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-198.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "200": {
+  "our_L": "14.65685424949242040000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.65685424949238019520675489685244925976620510487000",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "14.65685424949238019534332343933371612000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-200.cert"
+   ],
+   [
+    "14.65685424949238033177529739176381172251212866189311",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-200.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "202": {
+  "our_L": "14.72792206135787000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.72792206135785557649441913146556421344020020350232",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-202.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "203": {
+  "our_L": "14.77817459305203600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.77817459305202276854706972908385966000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-203.cert"
+   ],
+   [
+    "14.77817459305202290619103391367023754133297417895679",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-203.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "206": {
+  "our_L": "14.86015866339193326317350121929835160519212362554270",
+  "candidates": [
+   [
+    "14.86015866339191913333252861297344669900991708405430",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "14.86015866339190323669166290334862235964640998926302",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n206.cert"
+   ],
+   [
+    "14.86015866339190337529323567710900125055314933676717",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-206.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "207": {
+  "our_L": "14.88096037155559400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.88096037155559347579587273421851478550117863891995",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "14.88096037155557959469669296301940131455247403784946",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n207.cert"
+   ]
+  ]
+ },
+ "208": {
+  "our_L": "14.92451877202937000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.92451877202935588593257048528383635137708705546164",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n208.cert"
+   ],
+   [
+    "14.92451877202935602516383368680537581661589552528853",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-208.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "211": {
+  "our_L": "14.99354962629946400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "14.99354962629944299838005481817809836662615014019600",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "14.99354962629942103878559496463260383551291113700000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n211.cert"
+   ]
+  ]
+ },
+ "226": {
+  "our_L": "15.53553390593275200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.53553390593273762214957714958357257000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-226.cert"
+   ],
+   [
+    "15.53553390593273776735956086985163661911552369099116",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-226.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "228": {
+  "our_L": "15.60460147572969600000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.60460147572967428457919268890554832011185731349322",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n228.cert"
+   ],
+   [
+    "15.60460147572967443061060284472657193995909285379904",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-228.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "230": {
+  "our_L": "15.68292682926830800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.68292682926829268292683073658536585365853658536585",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n230.cert"
+   ],
+   [
+    "15.68292682926829282975609756097562026079006850790209",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-230.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "231": {
+  "our_L": "15.70710678118656200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.70710678118654752440084583281552715793958837777291",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n231.cert"
+   ],
+   [
+    "15.70710678118654767147191217396548576582914318353682",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-231.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "233": {
+  "our_L": "15.77817459305203800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.77817459305202276855706972908385966000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-233.cert"
+   ],
+   [
+    "15.77817459305202291619103391367023825675721472517604",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-233.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "236": {
+  "our_L": "15.86193439060739050000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.86193439060737562507437001581135556748199626924210",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "15.86193439060735861708517922750242028081971039600000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n236.cert"
+   ]
+  ]
+ },
+ "237": {
+  "our_L": "15.90260363825961200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.90260363825959688002011821790613848873017165100000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n237.cert"
+   ]
+  ]
+ },
+ "238": {
+  "our_L": "15.92410678532154000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "15.92410678532153942762090047615480767163353501252531",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "15.92410678532149465516622755060294831749960461565889",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n238.cert"
+   ],
+   [
+    "15.92410678532149480439237129703258405142525046969916",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-238.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "240": {
+  "our_L": "15.96968533753081972704758882795949775011303852969356",
+  "candidates": [
+   [
+    "15.96968533753080583247571130226342995606051177057416",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "15.96968533753078033589652716405978181909966624182548",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n240.cert"
+   ],
+   [
+    "15.96968533753078048559323084251422057993584576894710",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-240.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "258": {
+  "our_L": "16.56344800213382080565256627357489579224596394819967",
+  "candidates": [
+   [
+    "16.56344800213380566608938072583130527345981382978560",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "16.56344800213378937960018326759619652924301776437632",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n258.cert"
+   ],
+   [
+    "16.56344800213378953523466173258930124633386412401158",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-258.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "262": {
+  "our_L": "16.70710678118656400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "16.70710678118656323166469661646423906791542991671451",
+    "src/alimaadl3lim3d_squares-in-squares-kaggle-safe-blend/submission.csv"
+   ],
+   [
+    "16.70710678118654752455791542991671451000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-262.cert"
+   ],
+   [
+    "16.70710678118654768147191217396548648125338372975607",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-262.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "264": {
+  "our_L": "16.77473513238787820814133629188635415107436616327244",
+  "candidates": [
+   [
+    "16.77473513238786259015660024035959012054646926495604",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "16.77473513238783284260026458732177098000000000000000",
+    "ext/evand-square-packing/search/regularize/lists/certs/n-264.cert.gz"
+   ],
+   [
+    "16.77473513238783300018986855987623236245259793489704",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-264.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "266": {
+  "our_L": "16.82302875075649200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "16.82302875075647597054055500604831994587286432224415",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n266.cert"
+   ]
+  ]
+ },
+ "267": {
+  "our_L": "16.83881526994827800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "16.83881526994826226026609477338518453450153119912004",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n267.cert"
+   ]
+  ]
+ },
+ "268": {
+  "our_L": "16.87246989783387717635683940024834480967118433439583",
+  "candidates": [
+   [
+    "16.87246989783387717635683940024834480967118433439583",
+    "src/kmmmvs_squares-in-squares-private-packings/local_bank.csv"
+   ]
+  ]
+ },
+ "269": {
+  "our_L": "16.90151358218914805829710418676554363923909981124033",
+  "candidates": [
+   [
+    "16.90151358218913219838058756823704866713926623313388",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n269.cert"
+   ],
+   [
+    "16.90151358218913235739413323877016311403768057523068",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-269.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "273": {
+  "our_L": "16.98392596265043850000000000000000000000000000000000",
+  "candidates": [
+   [
+    "16.98392596265042280453277046456723002120399102576648",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "16.98392596265040431593915792662362722545483400496521",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n273.cert"
+   ],
+   [
+    "16.98392596265040447577825771386805531608974826478621",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-273.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "292": {
+  "our_L": "17.59137814549771503783157609905458873594203907486275",
+  "candidates": [
+   [
+    "17.59137814549769815943495106115083535846941346132002",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n292.cert"
+   ]
+  ]
+ },
+ "294": {
+  "our_L": "17.65685424949239800000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.65685424949238019537332343933371612000000000000000",
+    "ext/evand-square-packing/search/exact/batch/certs/n-294.cert"
+   ],
+   [
+    "17.65685424949238036177529739176381386878485030055084",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-294.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "295": {
+  "our_L": "17.70423279073607300000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.70423279073605815104100253669369737668842216816910",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "17.70423279073603035787905231462773164978062954066935",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n295.cert"
+   ],
+   [
+    "17.70423279073603052492137855156476810558115841438580",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-295.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "296": {
+  "our_L": "17.70710678118656400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.70710678118654752440084603281552715793958837777291",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n296.cert"
+   ],
+   [
+    "17.70710678118654769147191217396548719667762427597531",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-296.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "298": {
+  "our_L": "17.77817459305204000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.77817459305202276840928966097079884497825046882805",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n298.cert"
+   ],
+   [
+    "17.77817459305202293619103391367023968760569581761453",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-298.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "299": {
+  "our_L": "17.80100443425201038383544964389053747721358006010548",
+  "candidates": [
+   [
+    "17.80100443425201038380740275848867054773362439666051",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "300": {
+  "our_L": "17.82412338847856000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.82412338847854347089320180735741029178793103462691",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n300.cert"
+   ],
+   [
+    "17.82412338847854363913443569214285674531771613172080",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-300.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "301": {
+  "our_L": "17.84666719284352121860826256677264053580931743902340",
+  "candidates": [
+   [
+    "17.84666719284350584491274288476407246995291907678410",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "17.84666719284348978294331627562501719322872585605329",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n301.cert"
+   ]
+  ]
+ },
+ "302": {
+  "our_L": "17.87001385040448200000000000000000000000000000000000",
+  "candidates": [
+   [
+    "17.87001385040446434447702341463099846331204247768000",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n302.cert"
+   ],
+   [
+    "17.87001385040446451316029190482524951278427626051394",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-302.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "305": {
+  "our_L": "17.95046648213775514414103046901110603848281776867460",
+  "candidates": [
+   [
+    "17.95046648213773815703540420741056985061982093108710",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "17.95046648213771227330906556129300877876166512735016",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-305.yaml"
+   ]
+  ]
+ },
+ "306": {
+  "our_L": "17.96343371749147299702674850585988266507682889797602",
+  "candidates": [
+   [
+    "17.96343371749145590354901440029100446091424654643217",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "17.96343371749142573941590208171854003348145880285442",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n306.cert"
+   ],
+   [
+    "17.96343371749142590904854291326106042110125915818041",
+    "ext/jlevy-squares/packing/witnesses/known-best/n-306.yaml|dilate1e-17"
+   ]
+  ]
+ },
+ "307": {
+  "our_L": "17.97923096038417591871252899341567119721824680270027",
+  "candidates": [
+   [
+    "17.97923096038417643037160915617198257411905751152435",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "308": {
+  "our_L": "17.99714912127095960958768313865518007288525037805778",
+  "candidates": [
+   [
+    "17.99714912127092687167138195298695087860620767975728",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "17.99714912127090873514316075231497802000000000000000",
+    "ext/evand-square-packing/search/packer/candidates/s308_d308_regularized.cert"
+   ]
+  ]
+ },
+ "328": {
+  "our_L": "18.61436893849098671812102148400498831565224351233939",
+  "candidates": [
+   [
+    "18.61436893849096816933005864327080048025945439771612",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "330": {
+  "our_L": "18.69238815542519358886834116491245187713238595863932",
+  "candidates": [
+   [
+    "18.69238815542517687926372606936530616572811110020745",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "334": {
+  "our_L": "18.78694425188349643178870848542281493293828180734755",
+  "candidates": [
+   [
+    "18.78694425188347882999456512846330665395593956740635",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "338": {
+  "our_L": "18.87761534044574297093229440506574173306515593095457",
+  "candidates": [
+   [
+    "18.87761534044572585596645023753752690549271244808617",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "342": {
+  "our_L": "18.96444809496489805592419745656890108874149936363276",
+  "candidates": [
+   [
+    "18.96444809496487842473000132202229925813019744962166",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "367": {
+  "our_L": "19.69238815542520236135681655557629526218398852061376",
+  "candidates": [
+   [
+    "19.69238815542518258535351119905572266837643439947043",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "19.69238815542517307716446627534798465136828562725993",
+    "ext/Minuii_squares-in-squares/best/n367.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "368": {
+  "our_L": "19.69238815542520236135681655557629526218398852061376",
+  "candidates": [
+   [
+    "19.69238815542518258535351119905572266837643439947043",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "19.69238815542517307716446627534798465136828562725993",
+    "ext/Minuii_squares-in-squares/best/n368.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "405": {
+  "our_L": "20.63398250210199997090466031228274760609619645928030",
+  "candidates": [
+   [
+    "20.63398250210199914751416405511719814894866266462244",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "406": {
+  "our_L": "20.65685424949248346923132169163852087176026481763033",
+  "candidates": [
+   [
+    "20.65685424949246356819576324339567553037131800210873",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "407": {
+  "our_L": "20.69238815542519446923132169163963010308195645811009",
+  "candidates": [
+   [
+    "20.69238815542517607716446627534782333711530510459494",
+    "ext/Minuii_squares-in-squares/best/n407.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "408": {
+  "our_L": "20.70710678118664400000000000000000000000000000000000",
+  "candidates": [
+   [
+    "20.70710678118654752546916876138351063541086327561722",
+    "ext/Mishapolk_square-packing-records/certificates/0000-0999/n408.cert"
+   ],
+   [
+    "20.70710678118660512132034355963482096279118549979920",
+    "ext/Minuii_squares-in-squares/best/n408.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "411": {
+  "our_L": "20.78694425188352965703449766420345281839088334798209",
+  "candidates": [
+   [
+    "20.78694425188351085260180007958415579588563134413969",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "421": {
+  "our_L": "20.97457611583828157324066985823103868115283358704732",
+  "candidates": [
+   [
+    "20.97457611583828139925651783071408720644846467794232",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "446": {
+  "our_L": "21.62306521206145802961566084581966447449359761005749",
+  "candidates": [
+   [
+    "21.62306521206145802961566084581966447449359761005749",
+    "src/kmmmvs_squares-in-squares-private-packings/local_bank.csv"
+   ]
+  ]
+ },
+ "447": {
+  "our_L": "21.65685424949247763958120514426026987696639140357728",
+  "candidates": [
+   [
+    "21.65685424949245705080339305965473235330400626415228",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "450": {
+  "our_L": "21.73316600789949532706895336576307955457443156935640",
+  "candidates": [
+   [
+    "21.73316600789947533391021583795653863247577233752540",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "451": {
+  "our_L": "21.75609756097571411923132160030063378091019772398222",
+  "candidates": [
+   [
+    "21.75609756097569362554723847085260771605030278092767",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "487": {
+  "our_L": "22.57142857142872017168534138074186402810849737944483",
+  "candidates": [
+   [
+    "22.57142857142865530236694047664398786628132176649883",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "488": {
+  "our_L": "22.59137814549784761923132169162223779309693610511848",
+  "candidates": [
+   [
+    "22.59137814549782429457192865771273115716710320395948",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "494": {
+  "our_L": "22.73609617450850731923132169163970048778021020408988",
+  "candidates": [
+   [
+    "22.73609617450848527733307970852934763533479274321388",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "495": {
+  "our_L": "22.76547767164556366209681892843606688152782681482355",
+  "candidates": [
+   [
+    "22.76547767164556312908513422526664815189097617583803",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "502": {
+  "our_L": "22.87769881837493280218822297435871082671028846862478",
+  "candidates": [
+   [
+    "22.87769881837493279218822297435871082671028846862478",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "504": {
+  "our_L": "22.91513576238052048539111333237815702770290549994048",
+  "candidates": [
+   [
+    "22.91513576238052047671328464594015634771101498987708",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "533": {
+  "our_L": "23.58378219015206880000000000000000000000000000000000",
+  "candidates": [
+   [
+    "23.58378219015200096104734950557780665992032984110473",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "534": {
+  "our_L": "23.60660171779840576923132169163944433368544896612264",
+  "candidates": [
+   [
+    "23.60660171779838380694067750772947607436456559085364",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "536": {
+  "our_L": "23.65685424949249737942883092559296498531313476872637",
+  "candidates": [
+   [
+    "23.65685424949249578110295256142540526104006296007437",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "538": {
+  "our_L": "23.70710678118666000000000000000000000000000000000000",
+  "candidates": [
+   [
+    "23.70710678118661412132034355963433702003224393180422",
+    "ext/Minuii_squares-in-squares/best/n538.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "554": {
+  "our_L": "23.97618661650379209152162603711921197650667597590413",
+  "candidates": [
+   [
+    "23.97618661650374911374454459893023235389317887358756",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "581": {
+  "our_L": "24.60660171779834396923132169163907048742111063790037",
+  "candidates": [
+   [
+    "24.60660171779832072534830721304458923647085068925437",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "585": {
+  "our_L": "24.70710678118666500000000000000000000000000000000000",
+  "candidates": [
+   [
+    "24.70710678118661712132034355963417570577926340913923",
+    "ext/Minuii_squares-in-squares/best/n585.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "586": {
+  "our_L": "24.70710678118666500000000000000000000000000000000000",
+  "candidates": [
+   [
+    "24.70710678118661712132034355963417570577926340913923",
+    "ext/Minuii_squares-in-squares/best/n586.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "626": {
+  "our_L": "25.52081528017142500000000000000000000000000000000000",
+  "candidates": [
+   [
+    "25.52081528017140053516145236089011076439706674689000",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "25.52081528017138256244584051392304444300060577971054",
+    "src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|dilate3e-15"
+   ]
+  ]
+ },
+ "627": {
+  "our_L": "25.53553390593288031923132169163970048778021020408988",
+  "candidates": [
+   [
+    "25.53553390593285652807112383122615824742846558438838",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "25.53553390593273762200424634605815123242359258969068",
+    "ext/jlevy-squares/packing/resources/web/couzo-index-2026-10-15/source/certificates/best/n627.cert"
+   ],
+   [
+    "25.53553390593281160660171779821004206867648617491480",
+    "ext/Minuii_squares-in-squares/best/n627.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "635": {
+  "our_L": "25.70710678118674300000000000000000000000000000000000",
+  "candidates": [
+   [
+    "25.70710678118667055865372574739072942096598851332300",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "639": {
+  "our_L": "25.78113652136338531923132169163803625645851856284645",
+  "candidates": [
+   [
+    "25.78113652136336052778317405677263101828714114074845",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "678": {
+  "our_L": "26.53553390593288846923132169163801087176026481688103",
+  "candidates": [
+   [
+    "26.53553390593273762200424734605815123242359258969068",
+    "ext/jlevy-squares/packing/resources/web/couzo-index-2026-10-15/source/certificates/best/n678.cert"
+   ],
+   [
+    "26.53553390593281460660171779820988075442350565224981",
+    "ext/Minuii_squares-in-squares/best/n678.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "687": {
+  "our_L": "26.72792206135804576923132169163782510236375732489358",
+  "candidates": [
+   [
+    "26.72792206135801943465697977837094778221970392433558",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "688": {
+  "our_L": "26.72792206135804576923132169163782510236375732489358",
+  "candidates": [
+   [
+    "26.72792206135801943465697977837094778221970392433558",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "693": {
+  "our_L": "26.81201573635046652862722494039154405299717722055429",
+  "candidates": [
+   [
+    "26.81201573635038943253615850251969593687086575851929",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "731": {
+  "our_L": "27.53553390593283615445333448258686054189321808486842",
+  "candidates": [
+   [
+    "27.53553390593273762200424834605815123242359258969068",
+    "ext/jlevy-squares/packing/resources/web/couzo-index-2026-10-15/source/certificates/best/n731.cert"
+   ],
+   [
+    "27.53553390593281760660171779820971944017052512958482",
+    "ext/Minuii_squares-in-squares/best/n731.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "732": {
+  "our_L": "27.53553390593297721923132169163900817959068772801694",
+  "candidates": [
+   [
+    "27.53553390593289888357901645867998783451244847774194",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "733": {
+  "our_L": "27.57142857142876411923132169163900010272285689192057",
+  "candidates": [
+   [
+    "27.57142857142873718284753650839869823254399592579038",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "748": {
+  "our_L": "27.82804673644571471923132169163716048706201106963823",
+  "candidates": [
+   [
+    "27.82804673644571370923132169163716048706201106963823",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "843": {
+  "our_L": "29.53553390593293031923132169163838125645851856330159",
+  "candidates": [
+   [
+    "29.53553390593273762200425034605815123242359258969068",
+    "ext/jlevy-squares/packing/resources/web/couzo-index-2026-10-15/source/certificates/best/n843.cert"
+   ],
+   [
+    "29.53553390593282360660171779820939681166456408425483",
+    "ext/Minuii_squares-in-squares/best/n843.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "847": {
+  "our_L": "29.60660171779850280961566084581098178088762224125371",
+  "candidates": [
+   [
+    "29.60660171779847403489620438827948100800725761359580",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "848": {
+  "our_L": "29.62306521206169902961566084581966447449359761005749",
+  "candidates": [
+   [
+    "29.62306521206169902961566084581966447449359761005749",
+    "src/kmmmvs_squares-in-squares-private-packings/local_bank.csv"
+   ]
+  ]
+ },
+ "854": {
+  "our_L": "29.72792206135802831923132169163863625645851856363799",
+  "candidates": [
+   [
+    "29.72792206135800067498373617135846650152902285406169",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "911": {
+  "our_L": "30.69562217094861120614168542166288109464853201487058",
+  "candidates": [
+   [
+    "30.69562217094861118134418086958029323373422574951377",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "922": {
+  "our_L": "30.83471959897958573221847228319238625792091566177428",
+  "candidates": [
+   [
+    "30.83471959897958459665986990207220325776957910200635",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "932": {
+  "our_L": "30.94088540957425607462714486301184243395671515742088",
+  "candidates": [
+   [
+    "30.94088540957425518555431114606078494918127839974474",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "963": {
+  "our_L": "31.53553390593300651923132169163617317887248859295712",
+  "candidates": [
+   [
+    "31.53553390593296695264609074428824811630874826664618",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ],
+   [
+    "31.53553390593273762200425234605815123242359258969068",
+    "ext/jlevy-squares/packing/resources/web/couzo-index-2026-10-15/source/certificates/best/n963.cert"
+   ],
+   [
+    "31.53553390593282960660171779820907418315860303892485",
+    "ext/Minuii_squares-in-squares/best/n963.npz|dilate3e-15"
+   ]
+  ]
+ },
+ "966": {
+  "our_L": "31.58378219015222709571700547975052058088080185569984",
+  "candidates": [
+   [
+    "31.58378219015222508571700547976052058088079431197781",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "967": {
+  "our_L": "31.59137814549793691923132169163928394898719522007362",
+  "candidates": [
+   [
+    "31.59137814549784685572087547028181644077727726047062",
+    "src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv"
+   ]
+  ]
+ },
+ "969": {
+  "our_L": "31.63398250210213338429190910655393965801648619127664",
+  "candidates": [
+   [
+    "31.63398250210213336956837176448789676979060732883097",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ },
+ "982": {
+  "our_L": "31.81053945759775652576721579387642229937209073364448",
+  "candidates": [
+   [
+    "31.81053945759775651655835083693318928643620466014911",
+    "src/pablodiegoo_unit-square-packing-certified-bounds/submission.csv"
+   ]
+  ]
+ }
+}
