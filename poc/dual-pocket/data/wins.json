@@ -5,8 +5,8 @@
   "baseline_sha256": "98825e99e3553cff9c03b6a95945069f7b5485545e1a9e0e4b0f53363bd77b24",
   "equal": 799,
   "input": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/dual-pocket/data/submission.csv",
-  "input_sha256": "641ad9fa18a0cd310cb827cf74e38de475bc8e13410ffb3f3d5f9426913e80c9",
-  "literal_score": 22.189292658817585,
+  "input_sha256": "b190f1d978eabeb2faa662b8fcc6eb29aee131851b01747845948cc92c5f2b72",
+  "literal_score": 22.189292638658387,
   "loss_score": 4.4659387426937034e-10,
   "losses": 47,
   "losses_detail": [
@@ -340,9 +340,9 @@
       "score_loss": 9.815859832939855e-12
     }
   ],
-  "net_score_gain": 0.01042536412820283,
-  "pandas_score": 22.189292658817585,
-  "win_score_gain": 0.010425364574794519,
+  "net_score_gain": 0.010425384287401585,
+  "pandas_score": 22.189292638658387,
+  "win_score_gain": 0.010425384733994547,
   "wins": 154,
   "wins_detail": [
     {
@@ -1096,10 +1096,10 @@
     },
     {
       "baseline_L": "28.94481601636542301292610525085402315183020331738629",
-      "delta_L": "0.0003832851805482936475744806068",
+      "delta_L": "0.0003838603363388760325630638484",
       "n": 814,
-      "ours_L": "28.94443273118487471927853077024722328590921224951404",
-      "score_gain": 1.3434138626052752e-05
+      "ours_L": "28.94443215602908413689354218700565419719105054138496",
+      "score_gain": 1.3454297826080282e-05
     },
     {
       "baseline_L": "28.96598353685752940272611849961288696034181637496744",

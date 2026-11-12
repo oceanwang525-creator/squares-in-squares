@@ -4,7 +4,7 @@ This POC contributes a complete 1,000-puzzle packing built from exact local
 coordinates. It strictly improves 154 `L` values over
 `poc/pell_corrugation/data/border-scan/merged.csv`. It also has 47 microscopic
 regressions totalling `4.47e-10` score, so the net official improvement is
-`0.0104253641282` (`22.199718022946` -> `22.189292658818`).
+`0.0104253842874` (`22.199718022946` -> `22.189292638658`).
 
 The largest gains are:
 
@@ -40,6 +40,7 @@ parallel baseline to avoid overwriting its `n=687` improvement.
 The following band tightens `n=497`, `n=696`, `n=816`, and `n=925`.
 The next band tightens `n=502`, `n=638`, `n=873`, and `n=934`.
 The following band tightens `n=505`, `n=689`, and `n=756`.
+The final scanned band tightens `n=814`.
 
 Run from the repository root after following the shared baseline setup:
 
