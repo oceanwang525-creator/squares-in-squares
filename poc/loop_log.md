@@ -966,3 +966,20 @@ the feasibility threshold; swaps and row shifts do not open a feasible basin.
 The same happens at n=367 with `delta = 1e-3`. So the jam is not merely an
 artefact of LP/descent linearisation: it survives a stochastic search with
 topology-changing moves. 0 wins, score unchanged.
+
+## Loop 36 - true replica-exchange parallel tempering (negative)
+
+**Idea.** Replace the independent chains of Loop 35 with a real PT ladder:
+8 replicas at geometric temperatures `2e-6..5e-3`, inter-replica state swaps
+with `exp((1/T_i-1/T_j)(E_j-E_i))`, plus a void-targeted relocation move
+(rejection-sample a free unit-square site and move a random square there).
+
+**Measured (negative).** n=911, 8 independent ladders x 8 replicas x 40
+rounds x 10,000 moves (32 processes):
+
+- `delta=1e-4`: every ladder ends at `E=2.09e-8`, exactly the scaled incumbent;
+- `delta=1e-5`: every ladder ends at `E=1.96e-10`, again the seed.
+
+No replica reaches `E<1e-16`; exchanges and void moves never improve the best
+state. Even a `1e-5` compression is unrepairable, so the jam sits far below the
+LP/descent scale. 0 wins, `merged.csv` unchanged. POC: `poc/pt_mc`.
