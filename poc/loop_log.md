@@ -586,3 +586,21 @@ The 17-candidate gate cost 3.8 s at 32 jobs.
 - Certified reduction: **1.7162260727358832e-4**.
 - SHA256: `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
 - POC: `poc/jazivxt_refresh_nov12`; report in `docs/results.md`.
+
+## Loop 20 - post-jazivxt re-runs (negative)
+
+After the 17 jazivxt rows landed, all local searches were re-run on the new
+file with 32 processes:
+
+| search | settings | time | wins |
+|---|---|---:|---:|
+| fixed-angle LP | 12 SLP rounds | 51.7 s | **0** |
+| free-angle SLP | 12 rounds | 11.8 s | **0** |
+| external bank scan (`jlevy` 33,173 files) | tol `1e-12` | 5.4 s | **0** |
+| kernels newer than 11:39 (`nilanjansaha123`, `alexchilton`) | current outputs | - | **0** |
+
+The jazivxt rows are already at the fixed-angle and free-angle LP optima. Live
+feed (`at 03:58-08:00`) and `origin/main` were also unchanged.
+
+- `merged.csv` unchanged at SHA256
+  `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
