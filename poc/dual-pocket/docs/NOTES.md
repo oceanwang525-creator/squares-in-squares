@@ -124,6 +124,14 @@ n=595: 24.861738389512 -> 24.861695596669
 n=740: 27.706484801457 -> 27.706455253054
 ```
 
+Support SLP on gap ranks 241–336 adds ten further strict improvements,
+including:
+
+```text
+n=638: 25.762714542621 -> 25.762130073140
+n=595: 24.861695596669 -> 24.861685595857
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -156,6 +164,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4585e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104339361339`.
+improvement remains `0.0104575919354`.
 
 No Kaggle submission is performed.
