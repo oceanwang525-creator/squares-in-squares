@@ -1,0 +1,400 @@
+{"n": 200, "target": 14.656854249492419, "donor": 14.70710678118659, "priced": 0, "best_price": -5.8471745963591586e-18, "status": "rigid"}
+{"n": 202, "target": 14.72792206135787, "donor": 14.778174593052036, "priced": 0, "best_price": -1.0845883144066711e-17, "status": "rigid"}
+{"n": 206, "target": 14.860158663391934, "donor": 14.880960371555593, "priced": 1, "best_price": -0.00019869488646814189, "reached": 14.87222856666519, "gap": 0.012069903273255633, "deleted": 201, "tried": 1, "recovered": 0.41976383966670866, "status": "above-target"}
+{"n": 201, "target": 14.70710678118659, "donor": 14.72792206135787, "priced": 20, "best_price": -0.002, "reached": 14.707106781192373, "gap": 5.782041512247815e-12, "deleted": 91, "tried": 3, "recovered": 0.9999999997222213, "status": "above-target"}
+{"n": 204, "target": 14.803641533740562, "donor": 14.824451146124108, "priced": 27, "best_price": -1.513812016568689e-05, "reached": 14.82287565562147, "gap": 0.019234121880908006, "deleted": 201, "tried": 3, "recovered": 0.07570974766853833, "status": "above-target"}
+{"n": 205, "target": 14.824451146124108, "donor": 14.860158663391934, "priced": 41, "best_price": -0.00015953192021644178, "reached": 14.839057475372645, "gap": 0.014606329248536554, "deleted": 176, "tried": 3, "recovered": 0.5909452584176798, "status": "above-target"}
+{"n": 203, "target": 14.778174593052036, "donor": 14.803641533740562, "priced": 90, "best_price": -0.00024594588927201526, "reached": 14.796450957957072, "gap": 0.018276364905036147, "deleted": 176, "tried": 3, "recovered": 0.28234941414574766, "status": "above-target"}
+{"n": 211, "target": 14.993549626299464, "donor": 15.0, "priced": 0, "best_price": -1.615485406389371e-18, "status": "rigid"}
+{"n": 212, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 213, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -9.973503504549322e-19, "status": "rigid"}
+{"n": 208, "target": 14.92451877202937, "donor": 14.946223226446483, "priced": 117, "best_price": -0.00015716622696175083, "reached": 14.942912556359676, "gap": 0.018393784330307028, "deleted": 23, "tried": 3, "recovered": 0.15253413069881303, "status": "above-target"}
+{"n": 207, "target": 14.880960371555593, "donor": 14.92451877202937, "priced": 111, "best_price": -2.0569366938149634e-05, "reached": 14.919522376459312, "gap": 0.03856200490371897, "deleted": 151, "tried": 3, "recovered": 0.1147056713679141, "status": "above-target"}
+{"n": 214, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 209, "target": 14.946223226446483, "donor": 14.973001116587652, "priced": 126, "best_price": -0.00019282511555178763, "reached": 14.965647272883341, "gap": 0.01942404643685869, "deleted": 206, "tried": 3, "recovered": 0.2746237162652408, "status": "above-target"}
+{"n": 215, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -3.4537809844185656e-19, "status": "rigid"}
+{"n": 217, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 216, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -1.8969240456943838e-19, "status": "rigid"}
+{"n": 219, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -2.9809370851457695e-19, "status": "rigid"}
+{"n": 210, "target": 14.973001116587652, "donor": 14.993549626299464, "priced": 125, "best_price": -0.00023644329004518972, "reached": 14.987878737156894, "gap": 0.014877620569242467, "deleted": 172, "tried": 3, "recovered": 0.27597568982386017, "status": "above-target"}
+{"n": 218, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -9.426586745125421e-20, "status": "rigid"}
+{"n": 220, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -1.7107834833802308e-18, "status": "rigid"}
+{"n": 221, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 222, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -1.5789838572446673e-18, "status": "rigid"}
+{"n": 223, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -8.802077359824328e-19, "status": "rigid"}
+{"n": 225, "target": 15.0, "donor": 15.535533905932752, "priced": 0, "best_price": -2.666198387723325e-18, "status": "rigid"}
+{"n": 224, "target": 15.0, "donor": 15.0, "priced": 0, "best_price": -2.2322569324910065e-18, "status": "rigid"}
+{"n": 230, "target": 15.682926829268308, "donor": 15.707106781186562, "priced": 0, "best_price": -7.638940674553983e-19, "status": "rigid"}
+{"n": 229, "target": 15.650161513876462, "donor": 15.682926829268308, "priced": 0, "best_price": -3.647507440340882e-18, "status": "rigid"}
+{"n": 232, "target": 15.76140964487721, "donor": 15.778174593052038, "priced": 0, "best_price": -2.9113049069984507e-18, "status": "rigid"}
+{"n": 233, "target": 15.778174593052038, "donor": 15.82287565553231, "priced": 0, "best_price": -6.661338147750939e-18, "status": "rigid"}
+{"n": 226, "target": 15.535533905932752, "donor": 15.563625652325179, "priced": 58, "best_price": -4.218437277498639e-05, "reached": 15.561552812815808, "gap": 0.026018906883056303, "deleted": 29, "tried": 3, "recovered": 0.0737882038522656, "status": "above-target"}
+{"n": 227, "target": 15.563625652325179, "donor": 15.604601475729694, "priced": 102, "best_price": -4.916978731492765e-05, "reached": 15.604120979015972, "gap": 0.040495326690793476, "deleted": 219, "tried": 3, "recovered": 0.011726346752783914, "status": "above-target"}
+{"n": 228, "target": 15.604601475729694, "donor": 15.650161513876462, "priced": 81, "best_price": -8.015727245626553e-05, "reached": 15.645753250526859, "gap": 0.041151774797164364, "deleted": 227, "tried": 3, "recovered": 0.0967572357029724, "status": "above-target"}
+{"n": 235, "target": 15.8266056334286, "donor": 15.861934390607392, "priced": 74, "best_price": -9.083609790056099e-05, "reached": 15.861843629280198, "gap": 0.035237995851598924, "deleted": 54, "tried": 3, "recovered": 0.0025690495347489113, "status": "above-target"}
+{"n": 231, "target": 15.707106781186562, "donor": 15.76140964487721, "priced": 146, "best_price": -7.623617564107552e-05, "reached": 15.75750087146838, "gap": 0.05039409028181829, "deleted": 227, "tried": 3, "recovered": 0.07198098117066028, "status": "above-target"}
+{"n": 234, "target": 15.82287565553231, "donor": 15.8266056334286, "priced": 37, "best_price": -5.187534555096669e-05, "reached": 15.823138087679494, "gap": 0.00026243214718491004, "deleted": 231, "tried": 3, "recovered": 0.9296424390487853, "status": "above-target"}
+{"n": 241, "target": 15.987117095150253, "donor": 16.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 237, "target": 15.893805580572574, "donor": 15.92410678532154, "priced": 111, "best_price": -9.687308849462038e-05, "reached": 15.920891511143235, "gap": 0.027085930570661887, "deleted": 86, "tried": 3, "recovered": 0.10611044032543807, "status": "above-target"}
+{"n": 238, "target": 15.92410678532154, "donor": 15.948443327300515, "priced": 116, "best_price": -0.0001550146477239086, "reached": 15.941704863553538, "gap": 0.017598078231998215, "deleted": 68, "tried": 3, "recovered": 0.27688665681421004, "status": "above-target"}
+{"n": 242, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 243, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -2.1382073066854865e-19, "status": "rigid"}
+{"n": 236, "target": 15.861934390607392, "donor": 15.893805580572574, "priced": 25, "best_price": -0.0005313928988854803, "reached": 15.890507636721216, "gap": 0.02857324611382417, "deleted": 18, "tried": 3, "recovered": 0.10347727383134152, "status": "above-target"}
+{"n": 239, "target": 15.948443327300515, "donor": 15.96968533753082, "priced": 126, "best_price": -7.492064315012499e-05, "reached": 15.966187527300884, "gap": 0.017744200000368693, "deleted": 4, "tried": 3, "recovered": 0.1646647465099982, "status": "above-target"}
+{"n": 244, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.1018771678514104e-18, "status": "rigid"}
+{"n": 245, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 240, "target": 15.96968533753082, "donor": 15.987117095150253, "priced": 130, "best_price": -9.849248800336979e-05, "reached": 15.983621534398317, "gap": 0.013936196867497586, "deleted": 203, "tried": 3, "recovered": 0.20052830174964048, "status": "above-target"}
+{"n": 246, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -2.1338170020357286e-19, "status": "rigid"}
+{"n": 248, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.3448533428945734e-19, "status": "rigid"}
+{"n": 247, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 251, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.2955020288902672e-19, "status": "rigid"}
+{"n": 250, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.4082203282020695e-17, "status": "rigid"}
+{"n": 249, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -3.241255964436843e-19, "status": "rigid"}
+{"n": 252, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -7.978289105148825e-19, "status": "rigid"}
+{"n": 253, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -3.069299074557667e-19, "status": "rigid"}
+{"n": 254, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.9390474990262827e-18, "status": "rigid"}
+{"n": 255, "target": 16.0, "donor": 16.0, "priced": 0, "best_price": -1.2969326854347594e-17, "status": "rigid"}
+{"n": 260, "target": 16.633520950170038, "donor": 16.678779875342972, "priced": 0, "best_price": -1.9334037261509955e-11, "status": "rigid"}
+{"n": 256, "target": 16.0, "donor": 16.53553390593277, "priced": 0, "best_price": -4.107825191113079e-18, "status": "rigid"}
+{"n": 261, "target": 16.678779875342972, "donor": 16.707106781186564, "priced": 0, "best_price": -2.8865798640254073e-18, "status": "rigid"}
+{"n": 258, "target": 16.56344800213382, "donor": 16.591378145497735, "priced": 2, "best_price": -8.849244462921173e-06, "reached": 16.589825287907765, "gap": 0.02637728577394327, "deleted": 88, "tried": 2, "recovered": 0.055597909747112664, "status": "above-target"}
+{"n": 264, "target": 16.774735132387878, "donor": 16.77817459305205, "priced": 0, "best_price": -6.113298691210617e-18, "status": "rigid"}
+{"n": 257, "target": 16.53553390593277, "donor": 16.56344800213382, "priced": 32, "best_price": -3.930799153544552e-05, "reached": 16.56155281281589, "gap": 0.026018906883120252, "deleted": 205, "tried": 3, "recovered": 0.06789362995245095, "status": "above-target"}
+{"n": 262, "target": 16.707106781186564, "donor": 16.733166007899424, "priced": 22, "best_price": -8.268016328435583e-05, "reached": 16.724365708681596, "gap": 0.017258927495031884, "deleted": 188, "tried": 3, "recovered": 0.33770377435970916, "status": "above-target"}
+{"n": 259, "target": 16.591378145497735, "donor": 16.633520950170038, "priced": 186, "best_price": -0.0002745440665102157, "reached": 16.629233348652978, "gap": 0.03785520315524238, "deleted": 71, "tried": 3, "recovered": 0.10173982368757326, "status": "above-target"}
+{"n": 263, "target": 16.733166007899424, "donor": 16.774735132387878, "priced": 96, "best_price": -7.351976576172158e-05, "reached": 16.771360578939706, "gap": 0.038194571040282455, "deleted": 68, "tried": 3, "recovered": 0.08117932455154321, "status": "above-target"}
+{"n": 265, "target": 16.77817459305205, "donor": 16.823028750756492, "priced": 16, "best_price": -1.0121450824667033e-05, "reached": 16.82287566217747, "gap": 0.044701069125419934, "deleted": 227, "tried": 3, "recovered": 0.003413029847336698, "status": "above-target"}
+{"n": 267, "target": 16.838815269948277, "donor": 16.872029849081432, "priced": 39, "best_price": -0.00018284907619040762, "reached": 16.87001385041182, "gap": 0.03119858046354196, "deleted": 139, "tried": 3, "recovered": 0.06069619794159942, "status": "above-target"}
+{"n": 266, "target": 16.823028750756492, "donor": 16.838815269948277, "priced": 38, "best_price": -0.0005535723619746485, "reached": 16.830016150978857, "gap": 0.006987400222364215, "deleted": 237, "tried": 3, "recovered": 0.5573818308218107, "status": "above-target"}
+{"n": 268, "target": 16.872029849081432, "donor": 16.889730073595636, "priced": 47, "best_price": -0.00021322386079033397, "reached": 16.887689737288227, "gap": 0.015659888206794648, "deleted": 102, "tried": 3, "recovered": 0.1152717755513315, "status": "above-target"}
+{"n": 273, "target": 16.98392596265044, "donor": 17.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 275, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -9.073476847614548e-19, "status": "rigid"}
+{"n": 270, "target": 16.92814860333984, "donor": 16.948947733713702, "priced": 124, "best_price": -0.00016531735507564145, "reached": 16.935826756072277, "gap": 0.007678152732438548, "deleted": 244, "tried": 3, "recovered": 0.6308426076271344, "status": "above-target"}
+{"n": 274, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -4.554130790555165e-19, "status": "rigid"}
+{"n": 276, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -4.818840362202807e-19, "status": "rigid"}
+{"n": 279, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -5.21650666530051e-19, "status": "rigid"}
+{"n": 277, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -1.0795987740951312e-18, "status": "rigid"}
+{"n": 271, "target": 16.948947733713702, "donor": 16.96558647483771, "priced": 136, "best_price": -0.00015654966528459745, "reached": 16.96019450610283, "gap": 0.011246772389128523, "deleted": 215, "tried": 3, "recovered": 0.3240610990154737, "status": "above-target"}
+{"n": 272, "target": 16.96558647483771, "donor": 16.98392596265044, "priced": 138, "best_price": -7.677135423121692e-05, "reached": 16.981149611436084, "gap": 0.015563136598373717, "deleted": 259, "tried": 3, "recovered": 0.15138651868060982, "status": "above-target"}
+{"n": 278, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -3.4464276904266705e-19, "status": "rigid"}
+{"n": 269, "target": 16.889730073595636, "donor": 16.92814860333984, "priced": 121, "best_price": -6.0361737500825214e-05, "reached": 16.92365728585736, "gap": 0.03392721226172313, "deleted": 15, "tried": 3, "recovered": 0.1169049808096051, "status": "above-target"}
+{"n": 281, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 280, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -1.2990844930431073e-19, "status": "rigid"}
+{"n": 284, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -7.069910504104143e-19, "status": "rigid"}
+{"n": 285, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -3.8933848534800045e-19, "status": "rigid"}
+{"n": 282, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -4.239033366750599e-19, "status": "rigid"}
+{"n": 283, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -7.6240818187509485e-19, "status": "rigid"}
+{"n": 286, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -4.599860831229805e-19, "status": "rigid"}
+{"n": 287, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -2.960594732333751e-19, "status": "rigid"}
+{"n": 288, "target": 17.0, "donor": 17.0, "priced": 0, "best_price": -3.4278135885301673e-18, "status": "rigid"}
+{"n": 289, "target": 17.0, "donor": 17.53553390593279, "priced": 0, "best_price": -5.551115123125783e-18, "status": "rigid"}
+{"n": 290, "target": 17.53553390593279, "donor": 17.53553390593279, "priced": 0, "best_price": -7.105427357601002e-18, "status": "rigid"}
+{"n": 293, "target": 17.623065212060755, "donor": 17.656854249492397, "priced": 0, "best_price": -4.551914400963142e-18, "status": "rigid"}
+{"n": 295, "target": 17.70423279073607, "donor": 17.707106781186564, "priced": 0, "best_price": -2.7015426932545474e-18, "status": "rigid"}
+{"n": 292, "target": 17.591378145497714, "donor": 17.623065212060755, "priced": 0, "best_price": -4.9500747052041876e-18, "status": "rigid"}
+{"n": 291, "target": 17.53553390593279, "donor": 17.591378145497714, "priced": 2, "best_price": -8.849244462921043e-06, "reached": 17.58982528790935, "gap": 0.05429138197655803, "deleted": 78, "tried": 2, "recovered": 0.02780694303410965, "status": "above-target"}
+{"n": 294, "target": 17.656854249492397, "donor": 17.70423279073607, "priced": 0, "best_price": -1.1864953464169047e-15, "status": "rigid"}
+{"n": 297, "target": 17.74041728754384, "donor": 17.77817459305204, "priced": 0, "best_price": -2.5127255538654676e-18, "status": "rigid"}
+{"n": 301, "target": 17.84666719284352, "donor": 17.870013850404483, "priced": 0, "best_price": -1.835069950550325e-18, "status": "rigid"}
+{"n": 300, "target": 17.82412338847856, "donor": 17.84666719284352, "priced": 10, "best_price": -0.00012805818937603285, "reached": 17.83848018826601, "gap": 0.014356799787449859, "deleted": 261, "tried": 3, "recovered": 0.3631598484874042, "status": "above-target"}
+{"n": 299, "target": 17.80100443425201, "donor": 17.82412338847856, "priced": 12, "best_price": -9.965984102169318e-06, "reached": 17.822875729517705, "gap": 0.021871295265693647, "deleted": 296, "tried": 2, "recovered": 0.05396692898089324, "status": "above-target"}
+{"n": 296, "target": 17.707106781186564, "donor": 17.74041728754384, "priced": 64, "best_price": -0.00010779144353135476, "reached": 17.740243574738727, "gap": 0.03313679355216337, "deleted": 269, "tried": 3, "recovered": 0.005214955403198209, "status": "above-target"}
+{"n": 298, "target": 17.77817459305204, "donor": 17.80100443425201, "priced": 151, "best_price": -0.00012165893629015532, "reached": 17.797204601354526, "gap": 0.01903000830248658, "deleted": 167, "tried": 3, "recovered": 0.16644149489264976, "status": "above-target"}
+{"n": 302, "target": 17.870013850404483, "donor": 17.901789273153195, "priced": 131, "best_price": -0.0001603817024138392, "reached": 17.893574577433863, "gap": 0.0235607270293805, "deleted": 294, "tried": 3, "recovered": 0.258523569750605, "status": "above-target"}
+{"n": 303, "target": 17.901789273153195, "donor": 17.920944093340296, "priced": 94, "best_price": -0.00014950913470045953, "reached": 17.91670035694394, "gap": 0.01491108379074646, "deleted": 90, "tried": 3, "recovered": 0.2215492682730661, "status": "above-target"}
+{"n": 308, "target": 17.997149121270958, "donor": 18.0, "priced": 0, "best_price": -4.996003610813204e-18, "status": "rigid"}
+{"n": 304, "target": 17.920944093340296, "donor": 17.950466482137756, "priced": 142, "best_price": -5.425609287300099e-05, "reached": 17.94802273084526, "gap": 0.027078637504963865, "deleted": 276, "tried": 3, "recovered": 0.08277620450234147, "status": "above-target"}
+{"n": 305, "target": 17.950466482137756, "donor": 17.963433717491473, "priced": 150, "best_price": -4.4761721559244125e-05, "reached": 17.95948001423615, "gap": 0.009013532098393284, "deleted": 1, "tried": 3, "recovered": 0.3048994752910217, "status": "above-target"}
+{"n": 311, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -1.3583905242472505e-19, "status": "rigid"}
+{"n": 309, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -4.787574172030548e-19, "status": "rigid"}
+{"n": 307, "target": 17.979230960384175, "donor": 17.997149121270958, "priced": 150, "best_price": -0.00010003821833836102, "reached": 17.99466469595873, "gap": 0.015433735574553964, "deleted": 58, "tried": 3, "recovered": 0.13865403530680026, "status": "above-target"}
+{"n": 312, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -2.260817795600319e-18, "status": "rigid"}
+{"n": 306, "target": 17.963433717491473, "donor": 17.979230960384175, "priced": 193, "best_price": -7.367002482595396e-05, "reached": 17.976287704172226, "gap": 0.012853986680752882, "deleted": 143, "tried": 3, "recovered": 0.186314550706137, "status": "above-target"}
+{"n": 310, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -1.0259022885776761e-18, "status": "rigid"}
+{"n": 313, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -5.915407053080907e-19, "status": "rigid"}
+{"n": 314, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 316, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 315, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -7.429864786616589e-19, "status": "rigid"}
+{"n": 319, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -4.996003610813206e-19, "status": "rigid"}
+{"n": 317, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -5.4862059026819336e-18, "status": "rigid"}
+{"n": 318, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -5.815337040708795e-18, "status": "rigid"}
+{"n": 320, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -5.433234611572212e-18, "status": "rigid"}
+{"n": 321, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -2.1495257803457323e-18, "status": "rigid"}
+{"n": 323, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -1.021244861640758e-18, "status": "rigid"}
+{"n": 322, "target": 18.0, "donor": 18.0, "priced": 0, "best_price": -1.8950898291878394e-17, "status": "rigid"}
+{"n": 324, "target": 18.0, "donor": 18.535533905932795, "priced": 0, "best_price": -4.979354121445461e-18, "status": "rigid"}
+{"n": 325, "target": 18.535533905932795, "donor": 18.535533905932795, "priced": 0, "best_price": -1.1638809773201291e-17, "status": "rigid"}
+{"n": 330, "target": 18.692388155425192, "donor": 18.707106781186624, "priced": 0, "best_price": -5.10702591327575e-18, "status": "rigid"}
+{"n": 329, "target": 18.656854249492437, "donor": 18.692388155425192, "priced": 0, "best_price": -2.525773270971693e-17, "status": "rigid"}
+{"n": 328, "target": 18.614368938490983, "donor": 18.656854249492437, "priced": 0, "best_price": -7.66053886991358e-18, "status": "rigid"}
+{"n": 326, "target": 18.535533905932795, "donor": 18.583782190151954, "priced": 75, "best_price": -0.00015244352250436783, "reached": 18.581520573190566, "gap": 0.045986667257771785, "deleted": 89, "tried": 3, "recovered": 0.04687455726124069, "status": "above-target"}
+{"n": 333, "target": 18.77263411346726, "donor": 18.786944251883497, "priced": 0, "best_price": -8.052808447390533e-14, "status": "rigid"}
+{"n": 327, "target": 18.583782190151954, "donor": 18.614368938490983, "priced": 85, "best_price": -0.00023435710694297003, "reached": 18.6128618642203, "gap": 0.02907967406834544, "deleted": 1, "tried": 3, "recovered": 0.04927213098886062, "status": "above-target"}
+{"n": 335, "target": 18.79490086642456, "donor": 18.825571499861727, "priced": 45, "best_price": -2.8135549791809177e-05, "reached": 18.823223304715007, "gap": 0.02832243829044856, "deleted": 259, "tried": 3, "recovered": 0.07656167752551292, "status": "above-target"}
+{"n": 332, "target": 18.74041728754386, "donor": 18.77263411346726, "priced": 134, "best_price": -0.00019471567112159667, "reached": 18.759037743951566, "gap": 0.018620456407706598, "deleted": 147, "tried": 3, "recovered": 0.4220269727384102, "status": "above-target"}
+{"n": 331, "target": 18.707106781186624, "donor": 18.74041728754386, "priced": 72, "best_price": -0.00017224524445328494, "reached": 18.740243574739615, "gap": 0.03313679355299115, "deleted": 269, "tried": 3, "recovered": 0.005214955377180641, "status": "above-target"}
+{"n": 336, "target": 18.825571499861727, "donor": 18.853728981363346, "priced": 77, "best_price": -0.00013885819401185948, "reached": 18.846667192851168, "gap": 0.021095692989440806, "deleted": 108, "tried": 3, "recovered": 0.2507961698127131, "status": "above-target"}
+{"n": 339, "target": 18.906198207686685, "donor": 18.926898900356854, "priced": 0, "best_price": -4.36343360088443e-15, "status": "rigid"}
+{"n": 341, "target": 18.94268281725518, "donor": 18.964448094964894, "priced": 176, "best_price": -8.537553805669477e-05, "reached": 18.961196064495514, "gap": 0.018513247240335318, "deleted": 114, "tried": 3, "recovered": 0.14941369059252385, "status": "above-target"}
+{"n": 334, "target": 18.786944251883497, "donor": 18.79490086642456, "priced": 141, "best_price": -0.000243154625235102, "reached": 18.79411131561996, "gap": 0.00716706373646403, "deleted": 16, "tried": 3, "recovered": 0.09923200382813656, "status": "above-target"}
+{"n": 338, "target": 18.877615340445743, "donor": 18.906198207686685, "priced": 111, "best_price": -9.161863655421994e-05, "reached": 18.89994014150045, "gap": 0.022324801054708132, "deleted": 178, "tried": 3, "recovered": 0.2189446612714225, "status": "above-target"}
+{"n": 340, "target": 18.926898900356854, "donor": 18.94268281725518, "priced": 156, "best_price": -0.00036322117783775797, "reached": 18.941730866528395, "gap": 0.014831966171541922, "deleted": 110, "tried": 3, "recovered": 0.06031143808697047, "status": "above-target"}
+{"n": 344, "target": 18.99100099511948, "donor": 19.0, "priced": 0, "best_price": -1.572739312318196e-18, "status": "rigid"}
+{"n": 345, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.0584066276188509e-19, "status": "rigid"}
+{"n": 346, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -6.609908659143625e-19, "status": "rigid"}
+{"n": 343, "target": 18.976290437084018, "donor": 18.99100099511948, "priced": 206, "best_price": -0.00012724520882896912, "reached": 18.988438346921622, "gap": 0.012147909837604942, "deleted": 35, "tried": 3, "recovered": 0.1742046896984542, "status": "above-target"}
+{"n": 347, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.7319479184152442e-17, "status": "rigid"}
+{"n": 342, "target": 18.964448094964894, "donor": 18.976290437084018, "priced": 183, "best_price": -5.118149615687872e-05, "reached": 18.974550131768005, "gap": 0.010102036803111503, "deleted": 62, "tried": 3, "recovered": 0.14695617627884272, "status": "above-target"}
+{"n": 337, "target": 18.853728981363346, "donor": 18.877615340445743, "priced": 80, "best_price": -0.0005194890604586053, "reached": 18.876237045543718, "gap": 0.022508064180371434, "deleted": 235, "tried": 3, "recovered": 0.05770217626181001, "status": "above-target"}
+{"n": 348, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -5.128173018506675e-19, "status": "rigid"}
+{"n": 352, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.072312970125763e-18, "status": "rigid"}
+{"n": 349, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -2.2556912246352387e-18, "status": "rigid"}
+{"n": 350, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.4945799422483398e-18, "status": "rigid"}
+{"n": 353, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.211024057540156e-18, "status": "rigid"}
+{"n": 354, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -3.982029932001056e-19, "status": "rigid"}
+{"n": 355, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.2934005872238764e-18, "status": "rigid"}
+{"n": 351, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -2.261114668763008e-18, "status": "rigid"}
+{"n": 357, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -4.580758768035959e-19, "status": "rigid"}
+{"n": 356, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -3.3007538722277245e-18, "status": "rigid"}
+{"n": 359, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -1.2910045106956743e-18, "status": "rigid"}
+{"n": 360, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -2.2950230539121988e-18, "status": "rigid"}
+{"n": 358, "target": 19.0, "donor": 19.0, "priced": 0, "best_price": -4.039411873429119e-18, "status": "rigid"}
+{"n": 361, "target": 19.0, "donor": 19.535533905932798, "priced": 0, "best_price": -6.981332289369572e-18, "status": "rigid"}
+{"n": 362, "target": 19.535533905932798, "donor": 19.535533905932798, "priced": 0, "best_price": -5.756571508658783e-18, "status": "rigid"}
+{"n": 365, "target": 19.612856387671947, "donor": 19.65685424949244, "priced": 0, "best_price": -8.56388737072651e-18, "status": "rigid"}
+{"n": 363, "target": 19.535533905932798, "donor": 19.571428571428648, "priced": 0, "best_price": -1.9725655470696756e-15, "status": "rigid"}
+{"n": 366, "target": 19.65685424949244, "donor": 19.692388155425203, "priced": 0, "best_price": -2.4832256132612164e-15, "status": "rigid"}
+{"n": 368, "target": 19.692388155425203, "donor": 19.707106781186607, "priced": 0, "best_price": -6.437379080603479e-18, "status": "rigid"}
+{"n": 367, "target": 19.692388155425203, "donor": 19.692388155425203, "priced": 0, "best_price": -2.1300160261560636e-15, "status": "rigid"}
+{"n": 369, "target": 19.707106781186607, "donor": 19.75668382875087, "priced": 4, "best_price": -6.606039545515776e-05, "reached": 19.753225819739548, "gap": 0.046119038552941305, "deleted": 158, "tried": 2, "recovered": 0.0697502005709254, "status": "above-target"}
+{"n": 364, "target": 19.571428571428648, "donor": 19.612856387671947, "priced": 70, "best_price": -0.00023142403253217057, "reached": 19.610102095590655, "gap": 0.03867352416200731, "deleted": 68, "tried": 3, "recovered": 0.06648412422022018, "status": "above-target"}
+{"n": 372, "target": 19.793587786649216, "donor": 19.803695435311965, "priced": 0, "best_price": -2.8799835238812517e-15, "status": "rigid"}
+{"n": 370, "target": 19.75668382875087, "donor": 19.776303382599316, "priced": 4, "best_price": -2.9847388538230405e-05, "reached": 19.77566702161868, "gap": 0.018983192867811027, "deleted": 45, "tried": 2, "recovered": 0.03243503830674861, "status": "above-target"}
+{"n": 371, "target": 19.776303382599316, "donor": 19.793587786649216, "priced": 102, "best_price": -0.0001179968367463696, "reached": 19.788363048436032, "gap": 0.012059665836716249, "deleted": 161, "tried": 3, "recovered": 0.3022804950694008, "status": "above-target"}
+{"n": 373, "target": 19.803695435311965, "donor": 19.82754953705888, "priced": 158, "best_price": -0.0005571893235871647, "reached": 19.819518968656073, "gap": 0.015823533344107688, "deleted": 109, "tried": 3, "recovered": 0.3366535654122741, "status": "above-target"}
+{"n": 378, "target": 19.922431304697056, "donor": 19.94268281725524, "priced": 0, "best_price": -3.318095902173198e-11, "status": "rigid"}
+{"n": 375, "target": 19.860175820229664, "donor": 19.876005938679217, "priced": 220, "best_price": -0.0002310224991106802, "reached": 19.866983860889274, "gap": 0.0068080406596102705, "deleted": 210, "tried": 3, "recovered": 0.5699311612035163, "status": "above-target"}
+{"n": 379, "target": 19.94268281725524, "donor": 19.961350023811146, "priced": 181, "best_price": -6.287403299336227e-05, "reached": 19.95399694335447, "gap": 0.011314126099229327, "deleted": 139, "tried": 3, "recovered": 0.3939036317327854, "status": "above-target"}
+{"n": 374, "target": 19.82754953705888, "donor": 19.860175820229664, "priced": 72, "best_price": -0.0006633989737576391, "reached": 19.85896311564868, "gap": 0.03141357858980243, "deleted": 282, "tried": 3, "recovered": 0.037169559726881955, "status": "above-target"}
+{"n": 380, "target": 19.961350023811146, "donor": 19.974739840459705, "priced": 213, "best_price": -0.00013135047989098225, "reached": 19.97102604287192, "gap": 0.0096760190607732, "deleted": 294, "tried": 3, "recovered": 0.27735985378001593, "status": "above-target"}
+{"n": 377, "target": 19.900890350940433, "donor": 19.922431304697056, "priced": 173, "best_price": -6.694794368963638e-05, "reached": 19.9196884221687, "gap": 0.018798071228268043, "deleted": 371, "tried": 3, "recovered": 0.12733338362570507, "status": "above-target"}
+{"n": 382, "target": 19.986581713384954, "donor": 20.0, "priced": 0, "best_price": -1.8224439949575598e-19, "status": "rigid"}
+{"n": 383, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -2.6645352591003758e-18, "status": "rigid"}
+{"n": 384, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.3481838964696856e-18, "status": "rigid"}
+{"n": 376, "target": 19.876005938679217, "donor": 19.900890350940433, "priced": 83, "best_price": -0.00018098911437570484, "reached": 19.89352056592508, "gap": 0.017514627245862613, "deleted": 242, "tried": 3, "recovered": 0.29616070245063986, "status": "above-target"}
+{"n": 385, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -9.286507081928905e-19, "status": "rigid"}
+{"n": 387, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -3.552713678800502e-18, "status": "rigid"}
+{"n": 386, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -7.595574649308119e-19, "status": "rigid"}
+{"n": 390, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -4.517487301667427e-18, "status": "rigid"}
+{"n": 389, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.268826313857322e-18, "status": "rigid"}
+{"n": 392, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.9706458687096527e-18, "status": "rigid"}
+{"n": 388, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.5776526606089722e-18, "status": "rigid"}
+{"n": 391, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -3.3084646133829665e-18, "status": "rigid"}
+{"n": 393, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -4.224042968629865e-18, "status": "rigid"}
+{"n": 396, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -8.646604559108826e-19, "status": "rigid"}
+{"n": 394, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -5.6651776645323314e-18, "status": "rigid"}
+{"n": 397, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -7.524144604161032e-19, "status": "rigid"}
+{"n": 395, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -9.408559702343316e-19, "status": "rigid"}
+{"n": 398, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.742268004936606e-17, "status": "rigid"}
+{"n": 399, "target": 20.0, "donor": 20.0, "priced": 0, "best_price": -1.419446388109041e-18, "status": "rigid"}
+{"n": 381, "target": 19.974739840459705, "donor": 19.986581713384954, "priced": 207, "best_price": -0.00017779278611085045, "reached": 19.982804376080477, "gap": 0.008064535620771807, "deleted": 142, "tried": 3, "recovered": 0.3189814084580495, "status": "above-target"}
+{"n": 400, "target": 20.0, "donor": 20.5355339059328, "priced": 0, "best_price": -6.557389906833855e-18, "status": "rigid"}
+{"n": 401, "target": 20.5355339059328, "donor": 20.5355339059328, "priced": 0, "best_price": -7.73059235232828e-18, "status": "rigid"}
+{"n": 403, "target": 20.564935730272317, "donor": 20.591378145497792, "priced": 0, "best_price": -2.820323397338059e-15, "status": "rigid"}
+{"n": 405, "target": 20.633982502101997, "donor": 20.656854249492483, "priced": 0, "best_price": -2.677899482425259e-15, "status": "rigid"}
+{"n": 406, "target": 20.656854249492483, "donor": 20.692388155425192, "priced": 0, "best_price": -9.436895709313831e-18, "status": "rigid"}
+{"n": 407, "target": 20.692388155425192, "donor": 20.707106781186646, "priced": 0, "best_price": -2.6780799800008026e-15, "status": "rigid"}
+{"n": 402, "target": 20.5355339059328, "donor": 20.564935730272317, "priced": 81, "best_price": -3.814551950333447e-05, "reached": 20.562020906129675, "gap": 0.02648700019687311, "deleted": 39, "tried": 3, "recovered": 0.09913752660324422, "status": "above-target"}
+{"n": 404, "target": 20.591378145497792, "donor": 20.633982502101997, "priced": 151, "best_price": -0.00013742720073825384, "reached": 20.630883441725558, "gap": 0.039505296227765996, "deleted": 202, "tried": 3, "recovered": 0.07274045716096669, "status": "above-target"}
+{"n": 408, "target": 20.707106781186646, "donor": 20.740417287543885, "priced": 81, "best_price": -0.00017595920207267635, "reached": 20.740241719588948, "gap": 0.03313493840230208, "deleted": 2, "tried": 3, "recovered": 0.0052706480368089875, "status": "above-target"}
+{"n": 410, "target": 20.764282965585927, "donor": 20.776303382599227, "priced": 106, "best_price": -0.0003371438150818074, "reached": 20.76479642937133, "gap": 0.0005134637854027346, "deleted": 58, "tried": 3, "recovered": 0.9572840289288956, "status": "above-target"}
+{"n": 409, "target": 20.740417287543885, "donor": 20.764282965585927, "priced": 127, "best_price": -0.0002181074984540408, "reached": 20.759041086467185, "gap": 0.018623798923300683, "deleted": 63, "tried": 3, "recovered": 0.2196409047967448, "status": "above-target"}
+{"n": 414, "target": 20.840664048103783, "donor": 20.860873025656353, "priced": 198, "best_price": -0.0002218852376777019, "reached": 20.859247025460437, "gap": 0.018582977356654595, "deleted": 20, "tried": 3, "recovered": 0.08045930041172435, "status": "above-target"}
+{"n": 413, "target": 20.822875655532947, "donor": 20.840664048103783, "priced": 112, "best_price": -0.00011114527582117476, "reached": 20.8388153447753, "gap": 0.015939689242351562, "deleted": 413, "tried": 3, "recovered": 0.10392750897094316, "status": "above-target"}
+{"n": 416, "target": 20.87779945685531, "donor": 20.897143043821092, "priced": 232, "best_price": -0.00034793519037228565, "reached": 20.88940685520371, "gap": 0.0116073983483993, "deleted": 304, "tried": 3, "recovered": 0.39993557715369005, "status": "above-target"}
+{"n": 411, "target": 20.776303382599227, "donor": 20.796101823641813, "priced": 107, "best_price": -2.3029771692025096e-05, "reached": 20.795042941997718, "gap": 0.018739559398490258, "deleted": 61, "tried": 3, "recovered": 0.0534830819162717, "status": "above-target"}
+{"n": 412, "target": 20.796101823641813, "donor": 20.822875655532947, "priced": 0, "best_price": -2.933405862659555e-11, "status": "rigid"}
+{"n": 417, "target": 20.897143043821092, "donor": 20.920082122227107, "priced": 112, "best_price": -8.839091376985314e-05, "reached": 20.91596163009119, "gap": 0.018818586270096915, "deleted": 205, "tried": 3, "recovered": 0.17962762335027682, "status": "above-target"}
+{"n": 415, "target": 20.860873025656353, "donor": 20.87779945685531, "priced": 174, "best_price": -0.00021016928274365739, "reached": 20.876237045544535, "gap": 0.015364019888181701, "deleted": 373, "tried": 3, "recovered": 0.09230600901102877, "status": "above-target"}
+{"n": 420, "target": 20.960692680488176, "donor": 20.974560502351636, "priced": 225, "best_price": -5.517329544466013e-05, "reached": 20.969692193299917, "gap": 0.008999512811740829, "deleted": 121, "tried": 3, "recovered": 0.35105073454590063, "status": "above-target"}
+{"n": 419, "target": 20.936103794276274, "donor": 20.960692680488176, "priced": 205, "best_price": -3.482806436071303e-05, "reached": 20.95682227413392, "gap": 0.020718479857645633, "deleted": 112, "tried": 3, "recovered": 0.15740470393419767, "status": "above-target"}
+{"n": 421, "target": 20.974560502351636, "donor": 20.983570193578817, "priced": 214, "best_price": -8.344867373443617e-05, "reached": 20.97724942306524, "gap": 0.002688920713602272, "deleted": 66, "tried": 3, "recovered": 0.7015524010978157, "status": "above-target"}
+{"n": 424, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -0.0, "status": "rigid"}
+{"n": 418, "target": 20.920082122227107, "donor": 20.936103794276274, "priced": 128, "best_price": -0.00014017031419632007, "reached": 20.931164367519923, "gap": 0.01108224529281543, "deleted": 281, "tried": 3, "recovered": 0.3082965836021004, "status": "above-target"}
+{"n": 425, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -6.696865284538945e-18, "status": "rigid"}
+{"n": 426, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -1.6174506712653756e-18, "status": "rigid"}
+{"n": 423, "target": 20.9937284758426, "donor": 21.0, "priced": 0, "best_price": -3.163230547063793e-18, "status": "rigid"}
+{"n": 427, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -6.106226635438361e-18, "status": "rigid"}
+{"n": 422, "target": 20.983570193578817, "donor": 20.9937284758426, "priced": 230, "best_price": -5.948622030489773e-05, "reached": 20.99090100580679, "gap": 0.007330812227973382, "deleted": 413, "tried": 3, "recovered": 0.278341353625441, "status": "above-target"}
+{"n": 428, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -4.684083808656614e-19, "status": "rigid"}
+{"n": 429, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -1.6148030659695758e-19, "status": "rigid"}
+{"n": 430, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -5.369522300624765e-18, "status": "rigid"}
+{"n": 431, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -2.812564995717063e-18, "status": "rigid"}
+{"n": 432, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -2.2264908637713143e-18, "status": "rigid"}
+{"n": 435, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -1.4871803469410082e-18, "status": "rigid"}
+{"n": 434, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -1.7149044946858646e-18, "status": "rigid"}
+{"n": 433, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -3.6606423918181304e-18, "status": "rigid"}
+{"n": 437, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -1.7072061981665579e-18, "status": "rigid"}
+{"n": 436, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -2.761044918317993e-18, "status": "rigid"}
+{"n": 438, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -2.527736432561005e-18, "status": "rigid"}
+{"n": 439, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -6.8494450691300685e-18, "status": "rigid"}
+{"n": 441, "target": 21.0, "donor": 21.53553390593283, "priced": 0, "best_price": -1.4714801579976535e-15, "status": "rigid"}
+{"n": 442, "target": 21.53553390593283, "donor": 21.53553390593283, "priced": 0, "best_price": -1.4288672874348507e-15, "status": "rigid"}
+{"n": 440, "target": 21.0, "donor": 21.0, "priced": 0, "best_price": -5.773159728050815e-18, "status": "rigid"}
+{"n": 446, "target": 21.62306521206146, "donor": 21.656854249492476, "priced": 0, "best_price": -1.0124803168248351e-17, "status": "rigid"}
+{"n": 448, "target": 21.69238815542521, "donor": 21.707106781186614, "priced": 0, "best_price": -3.881370487168276e-18, "status": "rigid"}
+{"n": 444, "target": 21.56493573027233, "donor": 21.59137814549783, "priced": 2, "best_price": -1.863320755408943e-05, "reached": 21.58982528791156, "gap": 0.024889557639227178, "deleted": 20, "tried": 2, "recovered": 0.05872601171374646, "status": "above-target"}
+{"n": 443, "target": 21.53553390593283, "donor": 21.56493573027233, "priced": 87, "best_price": -3.8145519504740334e-05, "reached": 21.562020906129753, "gap": 0.02648700019692285, "deleted": 57, "tried": 3, "recovered": 0.09913752660111715, "status": "above-target"}
+{"n": 450, "target": 21.733166007899495, "donor": 21.756097560975714, "priced": 0, "best_price": -4.333674611579645e-15, "status": "rigid"}
+{"n": 447, "target": 21.656854249492476, "donor": 21.69238815542521, "priced": 0, "best_price": -1.1107774183331175e-15, "status": "rigid"}
+{"n": 455, "target": 21.825061496321265, "donor": 21.846667192843803, "priced": 0, "best_price": -4.133422719472892e-15, "status": "rigid"}
+{"n": 445, "target": 21.59137814549783, "donor": 21.62306521206146, "priced": 52, "best_price": -6.691194730960817e-05, "reached": 21.62243448816482, "gap": 0.031056342666989423, "deleted": 260, "tried": 3, "recovered": 0.019904773935807148, "status": "above-target"}
+{"n": 449, "target": 21.707106781186614, "donor": 21.733166007899495, "priced": 19, "best_price": -8.268018202921343e-05, "reached": 21.724372709118978, "gap": 0.017265927932363923, "deleted": 234, "tried": 3, "recovered": 0.3374351387092714, "status": "above-target"}
+{"n": 452, "target": 21.76324356278876, "donor": 21.783538580085377, "priced": 248, "best_price": -4.213363301251884e-05, "reached": 21.782172870176574, "gap": 0.01892930738781473, "deleted": 395, "tried": 3, "recovered": 0.0672928674483635, "status": "above-target"}
+{"n": 454, "target": 21.796614402252036, "donor": 21.825061496321265, "priced": 45, "best_price": -2.3695277669740146e-05, "reached": 21.824859705984476, "gap": 0.028245303732440163, "deleted": 42, "tried": 3, "recovered": 0.007093530759152421, "status": "above-target"}
+{"n": 451, "target": 21.756097560975714, "donor": 21.76324356278876, "priced": 119, "best_price": -8.66083055533074e-05, "reached": 21.763143374882354, "gap": 0.007045813906639609, "deleted": 10, "tried": 3, "recovered": 0.014020134478833195, "status": "above-target"}
+{"n": 456, "target": 21.846667192843803, "donor": 21.859805270728014, "priced": 214, "best_price": -9.513858494177283e-05, "reached": 21.857177112912275, "gap": 0.010509920068471956, "deleted": 415, "tried": 3, "recovered": 0.2000412723155858, "status": "above-target"}
+{"n": 457, "target": 21.859805270728014, "donor": 21.877799456855364, "priced": 182, "best_price": -0.00020763425044031182, "reached": 21.871813231648318, "gap": 0.012007960920303873, "deleted": 406, "tried": 3, "recovered": 0.33267551889703595, "status": "above-target"}
+{"n": 453, "target": 21.783538580085377, "donor": 21.796614402252036, "priced": 102, "best_price": -0.0003250117097690294, "reached": 21.79459024455582, "gap": 0.011051664470443257, "deleted": 395, "tried": 3, "recovered": 0.1548015620292633, "status": "above-target"}
+{"n": 459, "target": 21.901370030262456, "donor": 21.917181477801602, "priced": 246, "best_price": -0.00017368596838238502, "reached": 21.91057620921602, "gap": 0.00920617895356557, "deleted": 304, "tried": 3, "recovered": 0.4177523006181027, "status": "above-target"}
+{"n": 458, "target": 21.877799456855364, "donor": 21.901370030262456, "priced": 459, "best_price": -0.0001581964927767712, "reached": 21.893063185559775, "gap": 0.015263728704411506, "deleted": 239, "tried": 3, "recovered": 0.35242437929749454, "status": "above-target"}
+{"n": 460, "target": 21.917181477801602, "donor": 21.932001958535977, "priced": 124, "best_price": -3.387133376765159e-05, "reached": 21.92895387618194, "gap": 0.011772398380337279, "deleted": 413, "tried": 3, "recovered": 0.2056669016793849, "status": "above-target"}
+{"n": 462, "target": 21.948753379111633, "donor": 21.96817894523069, "priced": 224, "best_price": -5.760862754527413e-05, "reached": 21.964943036956818, "gap": 0.016189657845185224, "deleted": 187, "tried": 3, "recovered": 0.1665798697468913, "status": "above-target"}
+{"n": 465, "target": 21.990557337183116, "donor": 22.0, "priced": 0, "best_price": -2.253081430184421e-18, "status": "rigid"}
+{"n": 466, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -2.22514223377739e-18, "status": "rigid"}
+{"n": 463, "target": 21.96817894523069, "donor": 21.98339578954427, "priced": 237, "best_price": -4.491750436696013e-05, "reached": 21.981743604898142, "gap": 0.013564659667451906, "deleted": 400, "tried": 3, "recovered": 0.10857603666581978, "status": "above-target"}
+{"n": 467, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.0238165694801737e-18, "status": "rigid"}
+{"n": 470, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -9.658940314238863e-18, "status": "rigid"}
+{"n": 468, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.2778038585308395e-18, "status": "rigid"}
+{"n": 464, "target": 21.98339578954427, "donor": 21.990557337183116, "priced": 278, "best_price": -7.122155192674429e-05, "reached": 21.988355018666184, "gap": 0.0049592291219120455, "deleted": 185, "tried": 3, "recovered": 0.30751991440885973, "status": "above-target"}
+{"n": 471, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -6.232831015439475e-19, "status": "rigid"}
+{"n": 461, "target": 21.932001958535977, "donor": 21.948753379111633, "priced": 192, "best_price": -0.00028121236194642203, "reached": 21.943049446836042, "gap": 0.011047488300064856, "deleted": 14, "tried": 3, "recovered": 0.340504391841249, "status": "above-target"}
+{"n": 472, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.603849737974634e-18, "status": "rigid"}
+{"n": 473, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -7.730441801093754e-19, "status": "rigid"}
+{"n": 469, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.0848390286349036e-18, "status": "rigid"}
+{"n": 474, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -7.549516567451065e-18, "status": "rigid"}
+{"n": 477, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -6.571493509920001e-19, "status": "rigid"}
+{"n": 478, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -3.5060511707804344e-18, "status": "rigid"}
+{"n": 479, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -5.333875500358035e-19, "status": "rigid"}
+{"n": 475, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.0281299621185885e-17, "status": "rigid"}
+{"n": 476, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -3.0750916981377612e-18, "status": "rigid"}
+{"n": 481, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.607817388437086e-18, "status": "rigid"}
+{"n": 480, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -2.289079748447441e-18, "status": "rigid"}
+{"n": 483, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -1.123284471973688e-18, "status": "rigid"}
+{"n": 484, "target": 22.0, "donor": 22.53553390593282, "priced": 0, "best_price": -2.616367134629829e-15, "status": "rigid"}
+{"n": 485, "target": 22.53553390593282, "donor": 22.53553390593282, "priced": 0, "best_price": -2.2362091923870618e-15, "status": "rigid"}
+{"n": 482, "target": 22.0, "donor": 22.0, "priced": 0, "best_price": -3.7192471324942754e-18, "status": "rigid"}
+{"n": 488, "target": 22.591378145497842, "donor": 22.606601717798313, "priced": 0, "best_price": -6.994405055138486e-18, "status": "rigid"}
+{"n": 487, "target": 22.564935730272346, "donor": 22.591378145497842, "priced": 6, "best_price": -0.00017640582306763353, "reached": 22.583782277424685, "gap": 0.018846547152339355, "deleted": 2, "tried": 3, "recovered": 0.28726075165148646, "status": "above-target"}
+{"n": 491, "target": 22.684143606359193, "donor": 22.707106781186653, "priced": 0, "best_price": -6.11791319359247e-18, "status": "rigid"}
+{"n": 492, "target": 22.707106781186653, "donor": 22.707106781186653, "priced": 0, "best_price": -1.4626353137934262e-17, "status": "rigid"}
+{"n": 486, "target": 22.53553390593282, "donor": 22.564935730272346, "priced": 77, "best_price": -3.814551950536312e-05, "reached": 22.562020906131924, "gap": 0.026487000199104216, "deleted": 39, "tried": 3, "recovered": 0.09913752652768759, "status": "above-target"}
+{"n": 495, "target": 22.76208656176055, "donor": 22.764758412951984, "priced": 0, "best_price": -2.78033309262333e-15, "status": "rigid"}
+{"n": 490, "target": 22.63702940175377, "donor": 22.684143606359193, "priced": 57, "best_price": -0.00020290067145135141, "reached": 22.675667914148196, "gap": 0.038638512394424396, "deleted": 267, "tried": 3, "recovered": 0.17989674837939443, "status": "above-target"}
+{"n": 494, "target": 22.736096174508507, "donor": 22.76208656176055, "priced": 105, "best_price": -2.396653677211509e-05, "reached": 22.761214552629475, "gap": 0.025118378120968288, "deleted": 119, "tried": 3, "recovered": 0.0335512173258242, "status": "above-target"}
+{"n": 489, "target": 22.606601717798313, "donor": 22.63702940175377, "priced": 160, "best_price": -0.0002276808940777723, "reached": 22.631113512183592, "gap": 0.024511794385279728, "deleted": 349, "tried": 3, "recovered": 0.1944245766072459, "status": "above-target"}
+{"n": 493, "target": 22.707106781186653, "donor": 22.736096174508507, "priced": 90, "best_price": -0.00021844430709052696, "reached": 22.734482027672694, "gap": 0.027375246486041505, "deleted": 104, "tried": 3, "recovered": 0.055680600759450284, "status": "above-target"}
+{"n": 499, "target": 22.829295067266465, "donor": 22.84844262483375, "priced": 269, "best_price": -9.824743501024786e-05, "reached": 22.84379041514989, "gap": 0.014495347883425325, "deleted": 159, "tried": 3, "recovered": 0.24296621997416976, "status": "above-target"}
+{"n": 497, "target": 22.785578768990376, "donor": 22.799033589484033, "priced": 34, "best_price": -0.0004341303174723336, "reached": 22.798166215618735, "gap": 0.012587446628359089, "deleted": 48, "tried": 3, "recovered": 0.06446565866161358, "status": "above-target"}
+{"n": 498, "target": 22.799033589484033, "donor": 22.829295067266465, "priced": 138, "best_price": -6.765145163833098e-05, "reached": 22.825129841021745, "gap": 0.026096251537712334, "deleted": 79, "tried": 3, "recovered": 0.13764120426192464, "status": "above-target"}
+{"n": 496, "target": 22.764758412951984, "donor": 22.785578768990376, "priced": 194, "best_price": -0.00023567568621678185, "reached": 22.785341520971272, "gap": 0.020583108019287977, "deleted": 31, "tried": 3, "recovered": 0.01139500298009828, "status": "above-target"}
+{"n": 502, "target": 22.8776370893119, "donor": 22.89824363936707, "priced": 246, "best_price": -9.023795684451743e-05, "reached": 22.896506183235395, "gap": 0.018869093923495228, "deleted": 80, "tried": 3, "recovered": 0.0843157213130417, "status": "above-target"}
+{"n": 500, "target": 22.84844262483375, "donor": 22.861237199993422, "priced": 284, "best_price": -0.00012461213505437005, "reached": 22.85613445449301, "gap": 0.007691829659258076, "deleted": 443, "tried": 3, "recovered": 0.39882101880933835, "status": "above-target"}
+{"n": 501, "target": 22.861237199993422, "donor": 22.8776370893119, "priced": 244, "best_price": -0.0002333637684168724, "reached": 22.875580990319254, "gap": 0.014343790325831662, "deleted": 211, "tried": 3, "recovered": 0.12537273592023052, "status": "above-target"}
+{"n": 504, "target": 22.911414563808446, "donor": 22.930439919960286, "priced": 139, "best_price": -0.00019252635845983955, "reached": 22.9239545138723, "gap": 0.012539950063853667, "deleted": 504, "tried": 3, "recovered": 0.34088224347689156, "status": "above-target"}
+{"n": 510, "target": 22.997221435569195, "donor": 23.0, "priced": 0, "best_price": -6.909437863873401e-19, "status": "rigid"}
+{"n": 505, "target": 22.930439919960286, "donor": 22.95211315747415, "priced": 143, "best_price": -0.0001284126773729757, "reached": 22.945071005160926, "gap": 0.014631085200640825, "deleted": 101, "tried": 3, "recovered": 0.32492387483503116, "status": "above-target"}
+{"n": 507, "target": 22.96028445767217, "donor": 22.97896145949664, "priced": 508, "best_price": -8.790978437925424e-05, "reached": 22.975611748975957, "gap": 0.015327291303787405, "deleted": 52, "tried": 3, "recovered": 0.17934947761771694, "status": "above-target"}
+{"n": 508, "target": 22.97896145949664, "donor": 22.989777093070074, "priced": 249, "best_price": -2.9806649882603033e-05, "reached": 22.98897938741463, "gap": 0.010017927917989056, "deleted": 436, "tried": 3, "recovered": 0.07375487067195481, "status": "above-target"}
+{"n": 511, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -9.394194823751324e-19, "status": "rigid"}
+{"n": 512, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -1.9317880628477722e-18, "status": "rigid"}
+{"n": 513, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -1.514745083304522e-18, "status": "rigid"}
+{"n": 514, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -3.0568272291935128e-18, "status": "rigid"}
+{"n": 509, "target": 22.989777093070074, "donor": 22.997221435569195, "priced": 271, "best_price": -5.447347316505029e-05, "reached": 22.992099771770487, "gap": 0.0023226787004126948, "deleted": 327, "tried": 3, "recovered": 0.6879941108718194, "status": "above-target"}
+{"n": 516, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -7.549516567451065e-18, "status": "rigid"}
+{"n": 517, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -8.031672630303394e-19, "status": "rigid"}
+{"n": 503, "target": 22.89824363936707, "donor": 22.911414563808446, "priced": 95, "best_price": -0.00027349155871410244, "reached": 22.906619844402766, "gap": 0.00837620503569525, "deleted": 199, "tried": 3, "recovered": 0.36403818327421544, "status": "above-target"}
+{"n": 515, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -4.7071957496665515e-18, "status": "rigid"}
+{"n": 518, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -4.072585531967547e-18, "status": "rigid"}
+{"n": 519, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -4.170576927287546e-18, "status": "rigid"}
+{"n": 506, "target": 22.95211315747415, "donor": 22.96028445767217, "priced": 226, "best_price": -0.00022726724424470778, "reached": 22.956393843800726, "gap": 0.004280686326573857, "deleted": 296, "tried": 3, "recovered": 0.47613155521908623, "status": "above-target"}
+{"n": 520, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -2.5821495311156625e-19, "status": "rigid"}
+{"n": 522, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -4.503129594161364e-19, "status": "rigid"}
+{"n": 521, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -4.248009544008355e-18, "status": "rigid"}
+{"n": 524, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -1.7393494052460785e-18, "status": "rigid"}
+{"n": 528, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -2.0261570199409106e-18, "status": "rigid"}
+{"n": 523, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -1.3423877953960838e-18, "status": "rigid"}
+{"n": 525, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -9.862109996576015e-19, "status": "rigid"}
+{"n": 527, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -1.5882816784859744e-18, "status": "rigid"}
+{"n": 526, "target": 23.0, "donor": 23.0, "priced": 0, "best_price": -3.3782500606451093e-18, "status": "rigid"}
+{"n": 529, "target": 23.0, "donor": 23.535533905932855, "priced": 0, "best_price": -2.6643684023495226e-15, "status": "rigid"}
+{"n": 530, "target": 23.535533905932855, "donor": 23.535533905932855, "priced": 0, "best_price": -2.5690502822495707e-15, "status": "rigid"}
+{"n": 533, "target": 23.583782190152064, "donor": 23.606601717798405, "priced": 0, "best_price": -3.189726863991264e-17, "status": "rigid"}
+{"n": 537, "target": 23.692388155425235, "donor": 23.70710678118666, "priced": 0, "best_price": -1.0103029524088924e-17, "status": "rigid"}
+{"n": 532, "target": 23.56238461960601, "donor": 23.583782190152064, "priced": 0, "best_price": -5.374357982707942e-13, "status": "rigid"}
+{"n": 539, "target": 23.732037287059768, "donor": 23.756097560975718, "priced": 0, "best_price": -2.744225693677734e-15, "status": "rigid"}
+{"n": 536, "target": 23.656854249492497, "donor": 23.692388155425235, "priced": 0, "best_price": -4.16410004989905e-15, "status": "rigid"}
+{"n": 531, "target": 23.535533905932855, "donor": 23.56238461960601, "priced": 92, "best_price": -2.346552834662118e-05, "reached": 23.561636343027626, "gap": 0.02610243709477089, "deleted": 438, "tried": 3, "recovered": 0.027868033136598875, "status": "above-target"}
+{"n": 535, "target": 23.634070746805634, "donor": 23.656854249492497, "priced": 0, "best_price": -2.7374907003805618e-17, "status": "rigid"}
+{"n": 534, "target": 23.606601717798405, "donor": 23.634070746805634, "priced": 176, "best_price": -0.00016241430573468553, "reached": 23.629835559044718, "gap": 0.023233841246312892, "deleted": 94, "tried": 3, "recovered": 0.15418046847601297, "status": "above-target"}
+{"n": 538, "target": 23.70710678118666, "donor": 23.732037287059768, "priced": 195, "best_price": -0.00027321919836323247, "reached": 23.731097788812566, "gap": 0.02399100762590578, "deleted": 391, "tried": 3, "recovered": 0.03768468445783997, "status": "above-target"}
+{"n": 544, "target": 23.799033589484036, "donor": 23.825172336094965, "priced": 274, "best_price": -6.285186217340144e-05, "reached": 23.821342482124372, "gap": 0.022308892640335642, "deleted": 405, "tried": 3, "recovered": 0.1465201842919317, "status": "above-target"}
+{"n": 541, "target": 23.761536401700766, "donor": 23.783170961876806, "priced": 7, "best_price": -2.3898854638892686e-06, "reached": 23.783070081534767, "gap": 0.021533679834000452, "deleted": 44, "tried": 3, "recovered": 0.0046629254867293175, "status": "above-target"}
+{"n": 543, "target": 23.790689465905672, "donor": 23.799033589484036, "priced": 34, "best_price": -0.00044292645572400937, "reached": 23.795403818950657, "gap": 0.004714353044985131, "deleted": 447, "tried": 3, "recovered": 0.4350092013007866, "status": "above-target"}
+{"n": 542, "target": 23.783170961876806, "donor": 23.790689465905672, "priced": 249, "best_price": -8.596338752514209e-05, "reached": 23.787046261711556, "gap": 0.003875299834749768, "deleted": 88, "tried": 3, "recovered": 0.48456503848753973, "status": "above-target"}
+{"n": 540, "target": 23.756097560975718, "donor": 23.761536401700766, "priced": 166, "best_price": -0.00016054603216484473, "reached": 23.757483416248586, "gap": 0.001385855272868497, "deleted": 120, "tried": 3, "recovered": 0.7451928925798552, "status": "above-target"}
+{"n": 547, "target": 23.860873025656396, "donor": 23.872518481545647, "priced": 320, "best_price": -9.496731508193095e-05, "reached": 23.871476537723538, "gap": 0.010603512067142162, "deleted": 423, "tried": 3, "recovered": 0.08947213677318609, "status": "above-target"}
+{"n": 545, "target": 23.825172336094965, "donor": 23.84835104406037, "priced": 282, "best_price": -0.00011385344764652485, "reached": 23.847039319479034, "gap": 0.02186698338406856, "deleted": 282, "tried": 3, "recovered": 0.056591790331568935, "status": "above-target"}
+{"n": 549, "target": 23.893580138051384, "donor": 23.91117476609491, "priced": 233, "best_price": -0.00010312265018982079, "reached": 23.909254422250218, "gap": 0.015674284198833988, "deleted": 466, "tried": 3, "recovered": 0.10914375910311894, "status": "above-target"}
+{"n": 546, "target": 23.84835104406037, "donor": 23.860873025656396, "priced": 217, "best_price": -0.00022192572701093508, "reached": 23.85924432972344, "gap": 0.010893285663069463, "deleted": 321, "tried": 3, "recovered": 0.13006694830747936, "status": "above-target"}
+{"n": 551, "target": 23.925171445716334, "donor": 23.939867891957988, "priced": 82, "best_price": -0.00022538407543893263, "reached": 23.931080515680613, "gap": 0.005909069964278757, "deleted": 551, "tried": 3, "recovered": 0.5979252489264589, "status": "above-target"}
+{"n": 550, "target": 23.91117476609491, "donor": 23.925171445716334, "priced": 266, "best_price": -4.683070214577001e-05, "reached": 23.91825911193804, "gap": 0.007084345843129114, "deleted": 321, "tried": 3, "recovered": 0.4938552546215911, "status": "above-target"}
+{"n": 548, "target": 23.872518481545647, "donor": 23.893580138051384, "priced": 258, "best_price": -0.00022429710892317052, "reached": 23.890721196637486, "gap": 0.018202715091838684, "deleted": 54, "tried": 3, "recovered": 0.13574152693635852, "status": "above-target"}
+{"n": 556, "target": 23.9959623902743, "donor": 24.0, "priced": 0, "best_price": -6.217248937900877e-18, "status": "rigid"}
+{"n": 557, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -3.34952051009286e-18, "status": "rigid"}
+{"n": 558, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.30889451324229e-18, "status": "rigid"}
+{"n": 553, "target": 23.96147529650855, "donor": 23.97618661650379, "priced": 241, "best_price": -3.227015393194436e-05, "reached": 23.974107938535436, "gap": 0.012632642026886742, "deleted": 446, "tried": 3, "recovered": 0.1412978555986319, "status": "above-target"}
+{"n": 554, "target": 23.97618661650379, "donor": 23.98526332145616, "priced": 282, "best_price": -8.191589706854207e-05, "reached": 23.981649532971563, "gap": 0.005462916467774193, "deleted": 54, "tried": 3, "recovered": 0.39813880737112173, "status": "above-target"}
+{"n": 559, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.301769885804105e-18, "status": "rigid"}
+{"n": 561, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.8813615914164907e-18, "status": "rigid"}
+{"n": 555, "target": 23.98526332145616, "donor": 23.9959623902743, "priced": 270, "best_price": -5.441579591863225e-05, "reached": 23.989511079717598, "gap": 0.004247758261438861, "deleted": 253, "tried": 3, "recovered": 0.6029786952826757, "status": "above-target"}
+{"n": 560, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.2245371171912868e-17, "status": "rigid"}
+{"n": 562, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -3.4545537162574234e-18, "status": "rigid"}
+{"n": 563, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.0602629885170245e-17, "status": "rigid"}
+{"n": 565, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.1477444306979824e-18, "status": "rigid"}
+{"n": 564, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.6035414255692872e-18, "status": "rigid"}
+{"n": 552, "target": 23.939867891957988, "donor": 23.96147529650855, "priced": 149, "best_price": -0.00011067166442812574, "reached": 23.958441175324694, "gap": 0.01857328336670605, "deleted": 131, "tried": 3, "recovered": 0.14042043674220653, "status": "above-target"}
+{"n": 568, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -8.017449493266231e-19, "status": "rigid"}
+{"n": 567, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -5.208697443619287e-19, "status": "rigid"}
+{"n": 569, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.7971698411122418e-18, "status": "rigid"}
+{"n": 572, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.285323967778473e-17, "status": "rigid"}
+{"n": 566, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.169937125357726e-18, "status": "rigid"}
+{"n": 570, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.02089797246125e-18, "status": "rigid"}
+{"n": 571, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -3.506071055179792e-18, "status": "rigid"}
+{"n": 576, "target": 24.0, "donor": 24.53553390593285, "priced": 0, "best_price": -2.595793031176968e-15, "status": "rigid"}
+{"n": 577, "target": 24.53553390593285, "donor": 24.53553390593285, "priced": 0, "best_price": -2.3769815942862808e-15, "status": "rigid"}
+{"n": 573, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -2.641998083754394e-18, "status": "rigid"}
+{"n": 574, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.2091470243586838e-17, "status": "rigid"}
+{"n": 575, "target": 24.0, "donor": 24.0, "priced": 0, "best_price": -1.0419271128795077e-17, "status": "rigid"}
+{"n": 583, "target": 24.6568542494925, "donor": 24.677669529663838, "priced": 0, "best_price": -3.206468676938481e-11, "status": "rigid"}
+{"n": 584, "target": 24.677669529663838, "donor": 24.707106781186667, "priced": 0, "best_price": -1.787014980436655e-15, "status": "rigid"}
+{"n": 585, "target": 24.707106781186667, "donor": 24.707106781186667, "priced": 0, "best_price": -1.788885301385418e-15, "status": "rigid"}
+{"n": 579, "target": 24.562384619606025, "donor": 24.58378219015207, "priced": 0, "best_price": -3.365993955384594e-16, "status": "rigid"}
+{"n": 580, "target": 24.58378219015207, "donor": 24.60660171779834, "priced": 0, "best_price": -5.335322803540091e-15, "status": "rigid"}
+{"n": 578, "target": 24.53553390593285, "donor": 24.562384619606025, "priced": 97, "best_price": -2.3465528346583633e-05, "reached": 24.56164377572182, "gap": 0.0261098697889679, "deleted": 438, "tried": 3, "recovered": 0.027591217619878938, "status": "above-target"}
+{"n": 582, "target": 24.633982502102096, "donor": 24.6568542494925, "priced": 0, "best_price": -1.0619777661563948e-17, "status": "rigid"}
+{"n": 588, "target": 24.757483416237665, "donor": 24.764758412952016, "priced": 0, "best_price": -2.735303203463656e-15, "status": "rigid"}
+{"n": 581, "target": 24.60660171779834, "donor": 24.633982502102096, "priced": 172, "best_price": -0.0001353784764127385, "reached": 24.630883796999505, "gap": 0.02428207920116421, "deleted": 338, "tried": 3, "recovered": 0.11317079409467622, "status": "above-target"}
+{"n": 591, "target": 24.79903358948409, "donor": 24.79903358948414, "priced": 0, "best_price": -3.0726532449569445e-15, "status": "rigid"}
+{"n": 586, "target": 24.707106781186667, "donor": 24.749152176736686, "priced": 252, "best_price": -0.00017602699356530468, "reached": 24.741524587738, "gap": 0.034417806551331864, "deleted": 239, "tried": 3, "recovered": 0.18141318208347618, "status": "above-target"}
+{"n": 590, "target": 24.784148397576935, "donor": 24.79903358948409, "priced": 36, "best_price": -0.0004331391728984723, "reached": 24.794472170616665, "gap": 0.010323773039729645, "deleted": 412, "tried": 3, "recovered": 0.3064400442988265, "status": "above-target"}
+{"n": 593, "target": 24.82693425568941, "donor": 24.848525769397412, "priced": 321, "best_price": -6.704564483628428e-05, "reached": 24.845850079269333, "gap": 0.01891582357992405, "deleted": 546, "tried": 3, "recovered": 0.12392323040729347, "status": "above-target"}
+{"n": 589, "target": 24.764758412952016, "donor": 24.784148397576935, "priced": 235, "best_price": -0.00023489925883635868, "reached": 24.781136521374123, "gap": 0.016378108422106408, "deleted": 184, "tried": 3, "recovered": 0.1553315415702664, "status": "above-target"}
+{"n": 592, "target": 24.79903358948414, "donor": 24.82693425568941, "priced": 255, "best_price": -0.0001469496412109016, "reached": 24.82407927031494, "gap": 0.025045680830800165, "deleted": 538, "tried": 3, "recovered": 0.1023267814992196, "status": "above-target"}
+{"n": 587, "target": 24.749152176736686, "donor": 24.757483416237665, "priced": 10, "best_price": -0.00036398131007114377, "reached": 24.75704749924031, "gap": 0.007895322503625124, "deleted": 55, "tried": 3, "recovered": 0.052323186400148713, "status": "above-target"}
+{"n": 595, "target": 24.861685483765434, "donor": 24.87779945685549, "priced": 214, "best_price": -0.00021146501588075516, "reached": 24.872428226551826, "gap": 0.01074274278639109, "deleted": 389, "tried": 3, "recovered": 0.33332749618282204, "status": "above-target"}
+{"n": 596, "target": 24.87779945685549, "donor": 24.894313290739078, "priced": 349, "best_price": -0.00014035634671194256, "reached": 24.889551485267276, "gap": 0.011752028411784465, "deleted": 596, "tried": 3, "recovered": 0.2883525113168617, "status": "above-target"}
+{"n": 598, "target": 24.90315986818893, "donor": 24.923742501821128, "priced": 224, "best_price": -0.00023826379167695677, "reached": 24.91750830911544, "gap": 0.01434844092651133, "deleted": 170, "tried": 3, "recovered": 0.3028860551613084, "status": "above-target"}
+{"n": 594, "target": 24.848525769397412, "donor": 24.861685483765434, "priced": 167, "best_price": -3.957488419741629e-05, "reached": 24.860873135863148, "gap": 0.012347366465736087, "deleted": 525, "tried": 3, "recovered": 0.06172990382377294, "status": "above-target"}
+{"n": 597, "target": 24.894313290739078, "donor": 24.90315986818893, "priced": 171, "best_price": -0.00018854548863359382, "reached": 24.900773002023175, "gap": 0.0064597112840978355, "deleted": 54, "tried": 3, "recovered": 0.2698067336531169, "status": "above-target"}
+{"n": 599, "target": 24.923742501821128, "donor": 24.933016934087238, "priced": 98, "best_price": -7.481448267798236e-05, "reached": 24.930826820521638, "gap": 0.007084318700510295, "deleted": 284, "tried": 3, "recovered": 0.2361452973895799, "status": "above-target"}

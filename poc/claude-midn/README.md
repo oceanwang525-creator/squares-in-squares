@@ -5,17 +5,21 @@ Scope: only puzzles `200 <= n <= 599`. Nothing outside that range is touched, an
 
 ## Result
 
-**19 strict per-puzzle wins, all dust-scale. Net official gain `1.776e-08`.**
+**18 strict per-puzzle wins, all dust-scale. Net official gain `1.765e-08`.**
 
 | file | literal | pandas | accepted |
 |---|---|---|---|
-| incumbent `merged.csv` | `22.17371545025265` | `22.173715450252654` | 1000 / 1000 both |
-| incumbent + `data/changed-rows.csv` | `22.173715432491502` | `22.173715432491502` | 1000 / 1000 both |
+| incumbent `merged.csv` (upstream `cd17a65`) | `22.173715450068453` | `22.173715450068453` | 1000 / 1000 both |
+| incumbent + `data/changed-rows.csv` | `22.173715432420227` | `22.173715432420227` | 1000 / 1000 both |
 
-All 19 changed n are inside 200..599, each strictly lower in both transports;
-the other 981 n are identical to the incumbent, so there are zero regressions.
+All 18 changed n are inside 200..599, each strictly lower in both transports;
+the other 982 n are identical to the incumbent, so there are zero regressions.
 The team target of about 22.0999 is not approached: every structural experiment
 below is negative. Certification output: [docs/VERIFICATION.md](docs/VERIFICATION.md).
+
+The first certification (commit `ad02213`) was against the earlier incumbent
+(`22.17371545025265`) and had 19 wins. The team union then landed in
+`merged.csv`; against it `n = 591` is a tie and was dropped.
 
 No Kaggle submission, no push, no PR.
 
@@ -78,7 +82,7 @@ solutions violate rows by up to `7e-8`, which is larger than the slack being
 looked for. Scaling the variables to the trust radius brings the residual down
 to `~1e-15`.
 
-## Baseline (re-computed, not trusted)
+## Baseline at the start of the session (re-computed, not trusted)
 
 | file | literal | pandas | accepted |
 |---|---|---|---|
@@ -100,29 +104,28 @@ So the starting point for 200..599 is the incumbent plus those 11 PR #5 groups.
 
 | n | old L | new L | delta L |
 |---:|---|---|---:|
-| 420 | `20.960692680882025503961` | `20.960692680488174763961` | `-3.939e-10` |
-| 421 | `20.974560502964873519231` | `20.974560502351638548647` | `-6.132e-10` |
-| 459 | `21.901370072390414074045` | `21.901370030262454700043` | `-4.213e-08` |
-| 463 | `21.968178945644091088868` | `21.968178945230692461067` | `-4.134e-10` |
-| 464 | `21.983395789748513076626` | `21.983395789544272921416` | `-2.042e-10` |
+| 420 | `20.960692680591730626777` | `20.960692680488174763961` | `-1.036e-10` |
+| 421 | `20.974560502818374996088` | `20.974560502351638548647` | `-4.667e-10` |
+| 459 | `21.901370072222965069434` | `21.901370030262454700043` | `-4.196e-08` |
+| 463 | `21.968178945339402117991` | `21.968178945230692461067` | `-1.087e-10` |
+| 464 | `21.983395789594238762050` | `21.983395789544272921416` | `-4.997e-11` |
 | 502 | `22.877637090604511299999` | `22.877637089311898899999` | `-1.293e-09` |
 | 504 | `22.911414563909498676200` | `22.911414563808444325479` | `-1.011e-10` |
 | 505 | `22.930439920239041704899` | `22.930439919960285577931` | `-2.788e-10` |
-| 507 | `22.960284706110326554312` | `22.960284457672172867332` | `-2.484e-07` |
-| 508 | `22.978961490296103984861` | `22.978961459496640921883` | `-3.080e-08` |
-| 510 | `22.997221435782866603961` | `22.997221435569194771458` | `-2.137e-10` |
+| 507 | `22.960284705359482093341` | `22.960284457672172867332` | `-2.477e-07` |
+| 508 | `22.978961490130026086423` | `22.978961459496640921883` | `-3.063e-08` |
+| 510 | `22.997221435621395046091` | `22.997221435569194771458` | `-5.220e-11` |
 | 535 | `23.634070747577996192439` | `23.634070746805632391496` | `-7.724e-10` |
-| 546 | `23.848351044076715481660` | `23.848351044060371299200` | `-1.634e-11` |
-| 550 | `23.911174766546628436602` | `23.911174766094907768823` | `-4.517e-10` |
+| 546 | `23.848351044066986167335` | `23.848351044060371299200` | `-6.615e-12` |
+| 550 | `23.911174766213658738933` | `23.911174766094907768823` | `-1.188e-10` |
 | 551 | `23.925171448345933951272` | `23.925171445716330829415` | `-2.630e-09` |
-| 591 | `24.799033589484139981049` | `24.799033589484087571347` | `-5.241e-14` |
 | 595 | `24.861685491745497705738` | `24.861685483765431617721` | `-7.980e-09` |
 | 598 | `24.903159935190023649999` | `24.903159868188931349456` | `-6.700e-08` |
 | 599 | `24.923742501833048676855` | `24.923742501821128106319` | `-1.192e-11` |
 
 Where it comes from:
 
-- 11 groups start from the PR #5 round 3 rows that were not yet in `merged.csv`;
+- 11 groups started from the PR #5 round 3 rows (since merged upstream);
   most were then lowered further by the two tools below, so the table shows the
   final value.
 - `tight_lp.py` finds 14 groups with translational slack between `7e-12`
@@ -163,9 +166,21 @@ Two of these are stronger statements than what was logged before:
   into a better packing of another `n` in 200..599 by cutting, peeling,
   wrapping, deleting or re-filling uprights.
 
-### Whole-range deletion screen (status)
+### Whole-range deletion screen
 
-Still running at the time of this commit (k = 1, top 3 priced deletions, 40 SLP steps per candidate); results are added in a follow-up commit.
+`delete_screen.py`, all 400 targets, k = 1, every square of the `n+1` packing
+priced, the 3 best spatially distinct deletions compressed for 40 SLP steps.
+Report: `data/scans/delete_screen.jsonl`.
+
+- **0 wins.**
+- 245 donors are rigid: no single deletion gives a first-order drop.
+- 155 compress but stop above the incumbent, median `+0.017`. Closest:
+  `n = 201` (`+6e-12`, lands exactly on the incumbent's constant), `234`
+  (`+2.6e-4`; `+1.2e-4` after 400 steps), `410` (`+5.1e-4`), `540` (`+1.4e-3`),
+  `509` (`+2.3e-3`), `421` (`+2.7e-3`).
+
+Only `k = 1` and 40 steps were screened. `k >= 2` and deeper runs on the
+closest targets are untested, apart from the 400-step run on `234`.
 
 ## What the gap looks like
 
