@@ -90,6 +90,15 @@ n=816: 28.978163188659 -> 28.978163145807
 n=925: 30.862335749762 -> 30.862335634477
 ```
 
+The following corner-SLP band adds:
+
+```text
+n=502: 22.877638427742 -> 22.877638188979
+n=638: 25.763086098967 -> 25.762714542621
+n=873: 29.957161972499 -> 29.957161697504
+n=934: 30.964145685768 -> 30.964144894529
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -122,6 +131,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104003448374`.
+improvement remains `0.0104151007477`.
 
 No Kaggle submission is performed.
