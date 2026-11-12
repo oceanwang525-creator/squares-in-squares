@@ -113,6 +113,10 @@ The final corner-SLP band adds:
 n=814: 28.944432731185 -> 28.944432156029
 ```
 
+The support-SLP expansion of gap ranks 49–144 adds ten strict improvements,
+including `n=587` and `n=738`, and brings the final comparison count to 156
+wins with 45 tiny regressions.
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -144,7 +148,7 @@ contributes the complete certified union, the reproducible comparison gate,
 and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
-regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104253842874`.
+regressions total `4.4585e-10` score over all 1,000 puzzles; the official net
+improvement remains `0.0104310525749`.
 
 No Kaggle submission is performed.
