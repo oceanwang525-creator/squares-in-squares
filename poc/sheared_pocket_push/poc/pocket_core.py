@@ -48,7 +48,7 @@ def _can_place_sat(
     arr_c: np.ndarray,
     arr_s: np.ndarray,
     L: float,
-    margin: float = 1e-7,
+    margin: float = -1e-9,
 ) -> float:
     """Return min gap (>= 0 feasible; < 0 overlap/wall violation) for placing 1 square."""
     ca = math.cos(ang)
@@ -215,7 +215,7 @@ def fill_end_and_void_pockets(
         best_neg_ang = 0.0
         placed = False
         for ang in cand_angs:
-            gap = float(_can_place_sat(gx, gy, ang, arr_x, arr_y, arr_c, arr_s, L, 1e-7))
+            gap = float(_can_place_sat(gx, gy, ang, arr_x, arr_y, arr_c, arr_s, L, -1e-9))
             if gap >= 0.0:
                 pts_x.append(gx)
                 pts_y.append(gy)
