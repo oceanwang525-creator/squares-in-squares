@@ -303,3 +303,34 @@ a `1e-13` margin still yields only `n=694`.
 - SHA256: `eec27294fbd9991e5a7d65dc447070f89715869e27399fadd3c7d4ddefc2ef61`.
 - POC: `poc/kernel_refresh_noon`; report in
   `poc/kernel_refresh_noon/docs/results.md`.
+
+## Loop 9 - live tracker and per-bound witness repos
+
+**Idea.** The `s269-upper-bound-1688973007` repository references a live tracker
+(`https://dogaozden.com/math/live/square-packing/`) whose JSON feed publishes
+current per-`n` sides, and the same account publishes one exact-rational
+witness repo per improvement (`kenaznia-doga/s<n>-upper-bound*`). Poll the feed,
+flag every `n` below the incumbent, then clone and certify the matching witness
+repos.
+
+**Why it might work.** This is the same lab that produced the n=269 row we
+imported earlier; the newest repo (`1688973007`, pushed 03:00 UTC) claims
+`16.889730073596`, below both our row and the Kaggle per-puzzle leader entry
+(`16.889730079125`).
+
+**Measured result (win).** The feed scan gives exactly one candidate, `n=269`:
+
+- `16.899469075855046 -> 16.889730073595637` (ΔL `0.009739`, gain
+  `5.9379744775e-4`), literal and pandas identical, no dilation.
+
+Negative checks: the other 291 feed drawings are 5-decimal poses whose apparent
+`~4e-6` gaps are rounding; `s179-upper-bound-13880960371` publishes
+`13.880960371558225`, `3e-12` worse than our `13.880960371555588`; `s237` is
+the same row we already track.
+
+- Literal score: **22.17529852480167**, 1000/1000 accepted.
+- Pandas transport score: **22.175298524801672**, 1000/1000 accepted.
+- Certified reduction: **5.937974477501639e-4**.
+- SHA256: `9195b04515268df0cd53143dd1442fdd63e7f32c0d3a170100665525f353926b`.
+- POC: `poc/live_tracker_watch`; report in
+  `poc/live_tracker_watch/docs/results.md`.

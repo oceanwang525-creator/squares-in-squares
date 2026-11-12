@@ -1,0 +1,17 @@
+{
+  "previous_score": 22.17589232224942,
+  "score_literal": 22.17529852480167,
+  "score_pandas": 22.175298524801672,
+  "reduction": 5.937974477501639e-4,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [269],
+  "sha256": "9195b04515268df0cd53143dd1442fdd63e7f32c0d3a170100665525f353926b",
+  "poc": "poc/live_tracker_watch",
+  "source": "https://dogaozden.com/math/live/square-packing/data/feed.json",
+  "witness": "kenaznia-doga/s269-upper-bound-1688973007",
+  "provenance": "docs/wins.json in the POC"
+}
