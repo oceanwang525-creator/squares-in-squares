@@ -1,0 +1,18 @@
+{
+  "input_sha256": "5a72fd6eadbd3a536c8647274e8503236e2b2bf7261aebd9438de4fa085c274b",
+  "pandas": "3.0.1",
+  "csv_rows": 500500,
+  "lower_side_rows": 152,
+  "literal": {
+    "accepted": 1000,
+    "missing": 0,
+    "rejected": 0,
+    "score": 22.189454012706
+  },
+  "transport": {
+    "accepted": 1000,
+    "missing": 0,
+    "rejected": 0,
+    "score": 22.189454012706
+  }
+}
