@@ -1,0 +1,6 @@
+candidates 8075
+edges 1128770
+status 1 Time limit reached. (HiGHS Status 13)
+selected 305 (required 367)
+gadget m=8: 16 seeds x 3000 steps, no feasible packing
+wins 0

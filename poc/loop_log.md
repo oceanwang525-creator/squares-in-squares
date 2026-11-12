@@ -1021,3 +1021,21 @@ count is **900** in both cases; no window MILP ever adds a square. The grid is a
 local optimum under exact set packing in 8x8 windows. The frontier's 911-square
 packing needs a coordinated global pattern. 0 wins, `merged.csv` unchanged.
 POC: `poc/setpack_lns`.
+
+## Loop 40 - n=367 global set-packing MILP and corner gadget (negative)
+
+**Idea.** At the n=367 frontier side `L=19.6708567970218`, generate candidates
+from the 19x19 grid plus a dense margin band (8,075 candidates, 1,128,770 exact
+conflict edges) and solve the global maximum independent set with HiGHS; in
+parallel test whether n=367 is a lift of an `m x m` corner gadget (`m^2+6`
+squares at side `m+0.6708568`).
+
+**Measured (negative).**
+
+- Global MILP: 300 s time limit, **305 selected** (required 367); no
+  certificate. The frontier box has only ~0.11% slack, so the MIP incumbent
+  stays far from the bound.
+- Gadget m=8 (70 squares at side 8.6708568, density 0.931), 16 seeds x 3000
+  torch steps: **no feasible packing**.
+
+0 wins, `merged.csv` unchanged. POC: `poc/setpack367`.
