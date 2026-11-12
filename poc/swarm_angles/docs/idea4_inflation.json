@@ -1,0 +1,296 @@
+[
+  {
+    "mode": "free",
+    "kind": "inc_shake",
+    "seed": 119,
+    "pen": 0.0006283641700579601,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "inc_shake",
+    "seed": 114,
+    "pen": 0.006355569004315331,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "swirl_frame",
+    "seed": 115,
+    "pen": 0.015805100576870235,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 507,
+    "pen": 0.017774272539588187,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "two_pockets",
+    "seed": 102,
+    "pen": 0.01856091791836123,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "two_pockets",
+    "seed": 112,
+    "pen": 0.018966462942714202,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 502,
+    "pen": 0.02174147283836181,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 508,
+    "pen": 0.0264383606901627,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 511,
+    "pen": 0.026687646552134736,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 513,
+    "pen": 0.027089774504587605,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 500,
+    "pen": 0.02760056502252406,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 520,
+    "pen": 0.028317432938004483,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 509,
+    "pen": 0.028522429994817244,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "diag_shear",
+    "seed": 113,
+    "pen": 0.029254466670046275,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 504,
+    "pen": 0.029924272507078076,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 510,
+    "pen": 0.030091808191944125,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "diag_shear",
+    "seed": 103,
+    "pen": 0.03052885084917778,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "tilted_core",
+    "seed": 111,
+    "pen": 0.030777123993156463,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "two_pockets",
+    "seed": 107,
+    "pen": 0.03083372254670813,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "tilted_core",
+    "seed": 116,
+    "pen": 0.03141504324000077,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 516,
+    "pen": 0.03186489555480421,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 503,
+    "pen": 0.031868274823149245,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 514,
+    "pen": 0.032158526682775856,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 518,
+    "pen": 0.032485799013995176,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "inc_shake",
+    "seed": 104,
+    "pen": 0.03345433849153734,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 505,
+    "pen": 0.0349175851073642,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "inc_shake",
+    "seed": 109,
+    "pen": 0.038215272226041486,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "swirl_frame",
+    "seed": 105,
+    "pen": 0.04250933537221657,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 512,
+    "pen": 0.04591398909213007,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "diag_shear",
+    "seed": 108,
+    "pen": 0.055210593392577945,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 506,
+    "pen": 0.07025357969436308,
+    "lp_L": null
+  },
+  {
+    "mode": "c4",
+    "seed": 501,
+    "pen": 0.07355037800986386,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "diag_shear",
+    "seed": 118,
+    "pen": 0.07549759394976091,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "two_pockets",
+    "seed": 117,
+    "pen": 0.0764556487848389,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 517,
+    "pen": 0.100417175794975,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "swirl_frame",
+    "seed": 120,
+    "pen": 0.10724453829569391,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "swirl_frame",
+    "seed": 100,
+    "pen": 0.11367832678598333,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 519,
+    "pen": 0.11775907813766873,
+    "lp_L": null
+  },
+  {
+    "mode": "free",
+    "kind": "tilted_core",
+    "seed": 106,
+    "pen": 0.11915598253893678,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "tilted_core",
+    "seed": 101,
+    "pen": 0.12440744381981761,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "free",
+    "kind": "swirl_frame",
+    "seed": 110,
+    "pen": 0.12736789717216557,
+    "lp_L": null,
+    "cert_ok": false
+  },
+  {
+    "mode": "c4",
+    "seed": 515,
+    "pen": 0.1745931936789964,
+    "lp_L": null
+  }
+]

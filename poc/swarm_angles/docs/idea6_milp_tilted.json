@@ -1,0 +1,138 @@
+[
+  {
+    "n": 401,
+    "L_ours": 20.5355339059328,
+    "L_front": 20.526135333409,
+    "L_probe": 20.533533905932803,
+    "best_6a": {
+      "kind": "chamfer",
+      "th_deg": 45.0,
+      "shear": 0.0,
+      "shift": [
+        0.0,
+        0.0
+      ],
+      "U": 2.5,
+      "V": 2.5,
+      "d_cut": 5.0,
+      "n_tilt": 25,
+      "fast_up": 376,
+      "fast_cap": 401,
+      "n_up": 376,
+      "cap": 401
+    },
+    "best_6b": {
+      "kind": "two",
+      "params": [
+        3,
+        2,
+        0.393,
+        0.393,
+        2.5,
+        2.5
+      ],
+      "n_tilt": 12,
+      "fast_up": 384,
+      "fast_cap": 396,
+      "n_up": 386,
+      "cap": 398
+    },
+    "deficit": 0,
+    "seconds": 43.0,
+    "polish": {
+      "rpen": 0.00022919850655833685,
+      "lp_ok": false,
+      "lp_L": null
+    }
+  },
+  {
+    "n": 442,
+    "L_ours": 21.53553390593283,
+    "L_front": 21.5229229397321,
+    "L_probe": 21.53353390593283,
+    "best_6a": {
+      "kind": "chamfer",
+      "th_deg": 45.0,
+      "shear": 0.0,
+      "shift": [
+        0.5,
+        0.5
+      ],
+      "U": 2.5,
+      "V": 2.5,
+      "d_cut": 5.0,
+      "n_tilt": 25,
+      "fast_up": 417,
+      "fast_cap": 442,
+      "n_up": 417,
+      "cap": 442
+    },
+    "best_6b": {
+      "kind": "four_c4",
+      "params": [
+        2,
+        2,
+        0.322,
+        5.5,
+        1.5
+      ],
+      "n_tilt": 16,
+      "fast_up": 417,
+      "fast_cap": 433,
+      "n_up": 425,
+      "cap": 441
+    },
+    "deficit": 0,
+    "seconds": 54.2,
+    "polish": {
+      "rpen": 0.00021728750943350583,
+      "lp_ok": false,
+      "lp_L": null
+    }
+  },
+  {
+    "n": 530,
+    "L_ours": 23.535533905932855,
+    "L_front": 23.517304919934,
+    "L_probe": 23.533533905932856,
+    "best_6a": {
+      "kind": "chamfer",
+      "th_deg": 45.0,
+      "shear": 0.0,
+      "shift": [
+        0.5,
+        0.5
+      ],
+      "U": 2.5,
+      "V": 2.5,
+      "d_cut": 5.0,
+      "n_tilt": 25,
+      "fast_up": 505,
+      "fast_cap": 530,
+      "n_up": 505,
+      "cap": 530
+    },
+    "best_6b": {
+      "kind": "four_c4",
+      "params": [
+        2,
+        2,
+        0.322,
+        5.5,
+        1.5
+      ],
+      "n_tilt": 16,
+      "fast_up": 505,
+      "fast_cap": 521,
+      "n_up": 513,
+      "cap": 529
+    },
+    "deficit": 0,
+    "seconds": 90.27,
+    "polish": {
+      "rpen": 0.00018465419287694296,
+      "lp_ok": false,
+      "lp_L": null
+    }
+  }
+]
