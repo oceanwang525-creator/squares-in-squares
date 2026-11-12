@@ -56,3 +56,22 @@ Target: discover strictly lower-$L$, zero-overlap, non-grid packings from scratc
   1. **Seed capacity / geometry gaps before inflation:** `make_sheared_strip` leaves diagonal triangle waste at strip ends, `sw_mode="upright"` wastes a `~0.67`-wide dead corridor around the SW block (`floor(W)` vs `W`) while colliding `west` and `south` at `[p1, W1] x [p2, W2]`, and `complete_to_n` injects/deletes arbitrary void squares instead of choosing exact-capacity `(Kx, Ky, w1, w2)` / diagonal-45° hybrid topologies (critical for `n=367` where `45°`+upright dominates!).
   2. **Uniform dilation & stiff contact network at `a >= 0.985`:** Adam descent on `pen^2` inside fixed `box_L` cannot propagate macroscopic block/grain translations across `367..971` squares (`L_pre_lp -> L_lp1` dropped `0.33..0.50` in a single fixed-angle LP solve, proving huge unexploited slack remained!), while `minimal_feasible_dilation` inflates the entire box because of 1–2 pinned pairs.
   3. **Fixed `n_moves=3` local swaps at `a <= 0.962` cannot fix topological deficits** where an extra square needs a row/column fault-line glide or corner re-tiling.
+
+---
+
+### Idea 2 — Custom Shared-Memory `nvcc` CUDA Physics (`sm_89`) + Elastic-`L` / Cluster Moves + Exact-Capacity Multi-Grain & 45°-Hybrid Seeds
+
+- **Status:** Logged before coding/testing.
+- **Hypothesis:**
+  1. Eliminating the `~7-15` square dead corners/overlaps in seeds via **exact-capacity (`|C - n| <= 3`) non-overlapping geometric pre-screening** across 6 improved topological families (tapered sheared L-pocket with wedge-filled ends & zero SW dead corridor, `45°`-upright diagonal bands / rotated core / corner triangles, 2-tier stepped sheared pockets, clipped pinwheel chiral cores, Pythagorean corner blocks, and clipped symmetric-tilt bicrystals) will start GPU inflation much closer to target density.
+  2. Replacing PyTorch eager kernel launches with a **shared-memory spatial-hash `nvcc` (`sm_89`) CUDA solver** (`sat_lmin.cu`, ~50–100x faster: `B=320` chains × `20k–30k` steps in ~10s) enables:
+     - **Parallel 256-thread void relocation & neighbor angle-snap moves** inside every trajectory block during `a in [0.88, 0.97]`,
+     - **Cluster / grain rigid-translation moves** (summing net SAT forces on orientation clusters & spatial slabs to glide entire `100–500`-square grains in one move instead of stalling in Adam),
+     - **Deflate-reinflate annealing pulses** (`a: 0.88 -> 0.97 -> 0.94 -> 0.99 -> 0.975 -> 1.00`) to melt pinned end-wedges, and
+     - **Direct continuous `(x0, y0, L)` elastic-box compression** (`w_L * L + w_pen * (sum pen^2 + wall^2)`) with ramping penalty `w_pen` + final `float64` all-pairs expansion & top-24 SciPy HiGHS fixed-angle LP + Lip-SLP polish + dual certification.
+- **Planned Verification & Fast Scope (<10 min):**
+  - Unit-test `sat_lmin_cuda` exact SAT energy/gradient & all-pairs `L_cert` against `sat_cuda.py` / finite differences (`pytest`).
+  - Test fast on `n in {367, 910, 971}` first; evaluate both raw seed `L`, GPU `L_cert`, and post-LP/SLP `L_lit`/`L_pd`.
+
+### Results Log (Idea 2)
+*(Pending execution)*

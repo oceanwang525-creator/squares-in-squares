@@ -13,8 +13,10 @@ if str(POC_DIR) not in sys.path:
     sys.path.insert(0, str(POC_DIR))
 
 import polish_and_certify as pc  # noqa: E402
+import run_inflation_v2 as riv2  # noqa: E402
 import sat_cuda as sc_gpu  # noqa: E402
 import seeds  # noqa: E402
+import seeds_v2  # noqa: E402
 
 
 def test_sat_analytical_gradient_matches_finite_difference():
@@ -123,3 +125,33 @@ def test_polish_and_certify_synthetic_5():
     cert = pc.dual_certify(5, p_slp, t_slp)
     assert cert["ok"]
     assert float(cert["L_lit"]) < 2.71
+
+
+def test_seeds_v2_shapes_and_bounds():
+    n = 367
+    L_targets = [19.672, 19.685]
+    pos, th, box_L, meta = seeds_v2.build_seed_batch_v2(n=n, L_targets=L_targets, batch_size=14, rng_seed=42)
+    assert pos.shape == (14, n, 2)
+    assert th.shape == (14, n)
+    assert box_L.shape == (14,)
+    assert len(meta) == 14
+    assert np.all(np.isfinite(pos))
+    assert np.all(np.isfinite(th))
+    for b in range(14):
+        assert np.all(pos[b] >= 0.3)
+        assert np.all(pos[b] <= box_L[b] - 0.3)
+
+
+def test_cuda_v2_synthetic_5_compresses_to_optimum():
+    rng = np.random.default_rng(11)
+    B, N = 24, 5
+    pos0 = rng.uniform(0.6, 2.4, (B, N, 2))
+    th0 = rng.uniform(-0.7, 0.7, (B, N))
+    box_L = np.full(B, 3.0)
+    out = riv2.run_cuda_batch(pos0, th0, box_L, use_elastic_L=1, fast_mode=1, seed=42)
+    bi = int(np.argmin(out["L_cert"]))
+    assert out["L_cert"][bi] < 2.71
+    assert pc.sat_max_penetration(out["pos"][bi], out["th"][bi]) == 0.0
+    cert = pc.dual_certify(5, out["pos"][bi], out["th"][bi])
+    assert cert["ok"]
+    assert float(cert["L_lit"]) < 2.708
