@@ -21,4 +21,4 @@ The public gallery index (https://squares-in-squares-gallery.vercel.app/data/ind
 
 ## Transport
 
-All accepted packings keep the source's decimal strings. The full-file pandas round trip gives the same score as the literal file (22.176602112206332), so no n relies on literal-only digits.
+All public and team packings keep the source's decimal strings. Tiny-pass border squares are placed 5e-14 beyond the old packing's 80-digit extremes and spaced 1 + 2e-14 apart: exactly touching squares with non-binary decimal coordinates are undecidable for the interval metric after the pandas round trip. The full-file pandas round trip gives the same score as the literal file (22.176602111957), so no n relies on literal-only digits.

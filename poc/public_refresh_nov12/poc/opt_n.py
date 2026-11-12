@@ -45,7 +45,7 @@ def work(args):
     rng = np.random.default_rng(seed)
     X = to_box(X); L0 = side(X); Lc = L0; cur = X.copy()
     t_end = time.time() + secs
-    deltas = [3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5]
+    deltas = [3e-2, 1e-2, 3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5]
     tries = 0; acc = 0
     while time.time() < t_end:
         d = deltas[rng.integers(len(deltas))]
