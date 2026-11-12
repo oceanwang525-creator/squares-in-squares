@@ -704,3 +704,19 @@ Scan their current `submission.csv` against the tracked file.
 - Pandas transport: **22.17382428260707**, 1000/1000.
 - SHA256: `94b50fe2c1e271f5f42b4890c2a2145871d5682bb2ee8755caf8499b0d825386`.
 - POC: `poc/areebbb_refresh_nov12`.
+
+## Loop 25 - frontier-engine dissection (negative for coordinates)
+
+**Idea.** `areebbb/sis-frontier-targeted-certified-packing-engine` lists a
+`L_frontier` column that is better than the Oct 29 per-puzzle snapshot (e.g.
+n=973 `31.666638` vs `31.672188`, n=911 `30.660913` vs `30.660916`). Recover
+its sources and the frontier data.
+
+**Finding.** The engine's log names 64 coordinate files (23 notebooks, 81 CSV
+outputs). All were downloaded via the kernel output API and scanned per-n at a
+`1e-12` prefilter: **0 candidate n**. The engine's own certified union is
+`22.177347`, already worse than the tracked `22.173824`. The `22.050884`
+frontier is an all-team per-size envelope that includes private packings; its
+coordinates are in none of the public files. POC: `poc/frontier_nov12`.
+
+New frontier gap table saved at `poc/frontier_nov12/docs/per_n_gap.csv`.
