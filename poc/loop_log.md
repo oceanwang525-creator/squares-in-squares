@@ -279,3 +279,27 @@ and re-certify the union.
 
 **Lesson.** Diff official reports per `n` after every team merge, not just the
 totals, and re-diff again if the team lands another file.
+
+## Loop 8 - midday public kernel refresh
+
+**Idea.** After Loop 5 the kernel list grew to 154 and four kernels produced new
+or changed CSV outputs after the scan: `nilanjansaha123/squares-gpu-seam-dp-soft-rigid-highs`
+and `samanyu1808/sis-submit` (both 07:57 UTC), `grennwolf/...santa-2025`
+(07:29) and the new `seshurajup/1000-puzzles-ensemble-lb-22-2095` (06:56).
+Fetch their current outputs and certify strict per-`n` candidates.
+
+**Measured result (win).** One strict win, `n=694` from
+`grennwolf/submission_improved.csv`:
+
+- `26.827240193605122 -> 26.826047646280325` (ΔL `0.0011925`, gain
+  `4.5268477398e-5`), literal and pandas identical, no dilation.
+
+The other three kernels gave 0 candidates, and the grennwolf file re-scanned at
+a `1e-13` margin still yields only `n=694`.
+
+- Literal score: **22.17589232224942**, 1000/1000 accepted.
+- Pandas transport score: **22.17589232224942**, 1000/1000 accepted.
+- Certified reduction: **4.5268477398062724e-5**.
+- SHA256: `eec27294fbd9991e5a7d65dc447070f89715869e27399fadd3c7d4ddefc2ef61`.
+- POC: `poc/kernel_refresh_noon`; report in
+  `poc/kernel_refresh_noon/docs/results.md`.
