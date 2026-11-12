@@ -360,3 +360,30 @@ the incumbent in both literal and pandas transport with no dilation:
 **Lesson.** Once public kernels consume our portfolio, each of their re-runs is
 a free polish pass over hundreds of `n`. Re-list kernels at least every 30
 minutes and merge per `n`.
+
+## Loop 11 - whole-portfolio free-angle SLP
+
+**Idea.** The fixed-angle LP only moves centres. Add each square's rotation as
+an LP variable, linearising extents and pair radii to first order in the angle,
+with a shrinking trust region, rebuilt contact set and six SLP rounds. This is
+the strongest local test left: every square can translate and rotate at once,
+unlike the earlier one-square coordinate descent.
+
+**Why it might work.** The portfolio was assembled from many sources with
+different polish pipelines; a joint angle step could relieve a contact pattern
+that no single-square move can.
+
+**Measured result (negative).** 1000/1000 groups return an SLP side equal to
+the incumbent (status `no-gain`); no group is strictly below, so nothing was
+emitted. Top-gap probe (971, 911, 910, 972, 793, 634, 791, 908, 969, 803) was
+also 0/10 in 9 seconds; the full run took about four minutes.
+
+- `merged.csv` unchanged at SHA256
+  `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
+- POC: `poc/free_angle_slp`; report in `poc/free_angle_slp/docs/results.md`,
+  per-`n` status in `docs/scan.json`.
+
+**Conclusion.** The tracked packings are local optima in the full `(x, y, θ)`
+space. With Loop 6 (no translational slack) and `leader_poc_k2p4` (n=328 strict
+free-angle local optimum), the remaining leader gap is structural: it needs
+different contact topologies or constructions, not more polishing.
