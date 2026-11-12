@@ -16,7 +16,7 @@ The runner invokes the collaborator's SLP with:
 n=600..1000
 32 workers
 coarse pass: 30 iterations, trust 0.002
-fine pass:   60 iterations, trust 5e-4 -> 1e-5
+fine pass:   60 iterations, trust 5e-4 -> 2e-6
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -26,9 +26,9 @@ portfolio and rescored from scratch.
 ## Measured result
 
 - 55 strict per-`n` wins from the 13-pass coarse schedule
-- 16 additional strict per-`n` wins from the 7-pass fine schedule
-- full literal score: `22.173715210474928`
-- full pandas score: `22.173715210474928`
+- 16 additional strict per-`n` wins from the 9-pass fine schedule
+- full literal score: `22.173715209425440`
+- full pandas score: `22.173715209425440`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
