@@ -3,17 +3,17 @@
   "baseline_report": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/pell_corrugation/data/border-scan/merged-literal-official.json",
   "baseline_score": 22.173824282607068,
   "baseline_sha256": "94b50fe2c1e271f5f42b4890c2a2145871d5682bb2ee8755caf8499b0d825386",
-  "equal": 975,
+  "equal": 973,
   "input": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/dual-pocket/data/submission.csv",
-  "input_sha256": "ba056d541928a30d36225eabf2003e353c9b77f598784d092ffcb62625394f92",
-  "literal_score": 22.173718841807283,
+  "input_sha256": "cda0b9f963f678f7b902e03560abee49187cf31da1d6c4edaa8d6627bca94d6d",
+  "literal_score": 22.173718748064328,
   "loss_score": 0,
   "losses": 0,
   "losses_detail": [],
-  "net_score_gain": 0.0001054407997855833,
-  "pandas_score": 22.173718841807283,
-  "win_score_gain": 0.00010544079978772291,
-  "wins": 25,
+  "net_score_gain": 0.00010553454274031537,
+  "pandas_score": 22.173718748064328,
+  "win_score_gain": 0.000105534542740298,
+  "wins": 27,
   "wins_detail": [
     {
       "baseline_L": "22.87763842774215964058660456976243999938767638812708",
@@ -35,6 +35,13 @@
       "n": 595,
       "ours_L": "24.86168549174549770573872019219118581895084755533003",
       "score_gain": 9.833137693610683e-06
+    },
+    {
+      "baseline_L": "24.90316140504029105961564758866005185412997240625441",
+      "delta_L": "0.000001469850267409615647588674304",
+      "n": 598,
+      "ours_L": "24.90315993519002364999999999998574749999999996595008",
+      "score_gain": 6.010664725709206e-08
     },
     {
       "baseline_L": "26.72505339444142440000000000000000000000000000000000",
@@ -182,6 +189,13 @@
       "n": 989,
       "ours_L": "31.88473791596314209772066610897853452411767737500863",
       "score_gain": 1.4561610569899778e-08
+    },
+    {
+      "baseline_L": "31.95518955477644701923132169163863625645851856363799",
+      "delta_L": "0.000001061543890427368873515614539",
+      "n": 996,
+      "ours_L": "31.95518849323255659186244817602409688973510767499840",
+      "score_gain": 3.3636305317996145e-08
     },
     {
       "baseline_L": "31.97361709834936639950626829255055982468378155208888",

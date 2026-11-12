@@ -6,18 +6,19 @@ strict official-metric improvement.
 
 Measured result:
 
-- literal official score: `22.173718841807`
-- pandas round-trip official score: `22.173718841807`
+- literal official score: `22.173718748064`
+- pandas round-trip official score: `22.173718748064`
 - accepted puzzles: `1000/1000`
-- strict wins: **25**
+- strict wins: **27**
 - strict regressions: **0**
-- net score gain: **0.000105440799786**
+- net score gain: **0.000105534542740**
 
 | n | this `L` | team baseline `L` |
 | ---: | ---: | ---: |
 | 502 | 22.877637090605 | 22.877638427742 |
 | 505 | 22.930439920239 | 22.930439981526 |
 | 595 | 24.861685491745 | 24.861925350012 |
+| 598 | 24.903159935190 | 24.903161405040 |
 | 687 | 26.723271497397 | 26.725053394441 |
 | 689 | 26.745616353856 | 26.745616649926 |
 | 694 | 26.825233511839 | 26.825233517092 |
@@ -39,6 +40,7 @@ Measured result:
 | 978 | 31.759851006258 | 31.759851270820 |
 | 981 | 31.796031613665 | 31.796031627220 |
 | 989 | 31.884737915963 | 31.884738373902 |
+| 996 | 31.955188493233 | 31.955189554776 |
 | 997 | 31.973617014691 | 31.973617098349 |
 
 The full comparison is in [docs/WINS.md](docs/WINS.md). Both literal-decimal
