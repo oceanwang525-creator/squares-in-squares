@@ -9,7 +9,7 @@
 - the aligned local exact-coordinate pool.
 
 The union keeps a local row only when the official metric gives a strictly
-smaller `L`. It has 25 wins, no regressions, and scores
+smaller `L`. It has 26 wins, no regressions, and scores
 `22.173890453173` in both literal and pandas-round-trip certification.
 
 The source coordinates come from repeated support/corner SLP passes on the
