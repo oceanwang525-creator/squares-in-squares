@@ -1,0 +1,19 @@
+{
+  "previous_score": 22.17529852480167,
+  "score_literal": 22.173995906838663,
+  "score_pandas": 22.173995906838663,
+  "reduction": 0.001302617963011434,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 114,
+  "sources": [
+    "prvsiyan/a-square-deal-research-to-verified-packings",
+    "jazivxt/boxed-in-sub",
+    "jonathan1506/50-top-2-6-22-1783-fault-dp-fq-stretch"
+  ],
+  "sha256": "e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92",
+  "poc": "poc/kernel_refresh_morning",
+  "provenance": "docs/wins.json in the POC"
+}

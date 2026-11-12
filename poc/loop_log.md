@@ -334,3 +334,29 @@ the same row we already track.
 - SHA256: `9195b04515268df0cd53143dd1442fdd63e7f32c0d3a170100665525f353926b`.
 - POC: `poc/live_tracker_watch`; report in
   `poc/live_tracker_watch/docs/results.md`.
+
+## Loop 10 - morning public kernel refresh
+
+**Idea.** The public kernels now iterate on top of the merged portfolio: four
+re-ran between 07:29 and 09:09 UTC (`prvsiyan` 08:43, `jazivxt` 08:51 with a
+new public LB `22.1779795658`, `jonathan1506` 09:02, `grennwolf` 07:29).
+Fetch their current outputs and merge every strict per-`n` winner.
+
+**Measured result (win).** **114** strict per-`n` wins, each certified below
+the incumbent in both literal and pandas transport with no dilation:
+
+- largest: n=642 `25.826248643 -> 25.817553669` (gain `3.4316e-4`), n=504
+  `22.915135075 -> 22.911415009`, n=862 and n=922 (gain `1.2e-4` each), n=507
+  `7.0e-5`.
+- sources: `prvsiyan` 104 n, `jonathan1506` 22 n, `jazivxt` 20 n (overlapping).
+
+- Literal score: **22.173995906838663**, 1000/1000 accepted.
+- Pandas transport score: **22.173995906838663**, 1000/1000 accepted.
+- Certified reduction: **0.001302617963011434**.
+- SHA256: `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
+- POC: `poc/kernel_refresh_morning`; report in
+  `poc/kernel_refresh_morning/docs/results.md`.
+
+**Lesson.** Once public kernels consume our portfolio, each of their re-runs is
+a free polish pass over hundreds of `n`. Re-list kernels at least every 30
+minutes and merge per `n`.
