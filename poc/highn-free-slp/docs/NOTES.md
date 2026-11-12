@@ -18,6 +18,36 @@ The following had already failed on the current high-n rows:
 The kink-free corner formulation found 47 wins because it allows a rigid joint
 rotation and then removes dilation slack with a margin-tight fixed-angle LP.
 
+After merging Claude's mid-range work and syncing upstream, the same runner was
+restarted from the current best rows and iterated until convergence. There were
+13 passes in total. The last pass produced 11 accepted groups with a group-level
+gain of `8.073e-10`, so the loop was stopped at the `1e-9` threshold. The
+largest changes came from repeated rotational escapes on `862`, `970`, `936`,
+`912`, and `997`.
+
+## Latest incumbent
+
+The file was re-merged against the upstream PR4/PR5 union. The new upstream
+incumbent is:
+
+```text
+literal 22.173715450068453
+pandas  22.173715450068453
+accepted 1000/1000
+```
+
+The per-puzzle union keeps 55 high-n strict wins and has no regression. The
+final file is:
+
+```text
+literal 22.173715215321167
+pandas  22.173715215321167
+accepted 1000/1000
+```
+
+The exact per-n values and the pandas-round-trip checks are in
+`data/multi-round-gate.json` and `docs/MULTI_ROUND_WINS.md`.
+
 ## Verification
 
 The full merged file was scored with the unchanged official metric on the
@@ -25,8 +55,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173715436104136 1000 0 0
-pandas  22.173715436104136 1000 0 0
+literal 22.173715215321167 1000 0 0
+pandas  22.173715215321167 1000 0 0
 ```
 
 ## Provenance

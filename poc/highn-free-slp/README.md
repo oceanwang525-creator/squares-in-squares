@@ -25,29 +25,31 @@ portfolio and rescored from scratch.
 
 ## Measured result
 
-- 47 strict per-`n` wins in the assigned range
-- score gain at group level: `1.3364579325249855e-8`
-- full literal score: `22.173715436104136`
-- full pandas score: `22.173715436104136`
+- 55 strict per-`n` wins against the latest upstream incumbent
+- 13 passes, stopped after the final pass produced a group gain below `1e-9`
+- full literal score: `22.173715215321167`
+- full pandas score: `22.173715215321167`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
 
 | n | delta `L` |
 | ---: | ---: |
-| 936 | `-1.537e-7` |
-| 862 | `-1.214e-7` |
-| 738 | `-2.405e-8` |
-| 739 | `-2.262e-8` |
-| 997 | `-1.039e-8` |
-| 694 | `-1.077e-8` |
+| 862 | `-4.089e-6` |
+| 970 | `-3.964e-7` |
+| 912 | `-3.584e-7` |
+| 936 | `-2.958e-7` |
+| 997 | `-2.919e-7` |
+| 694 | `-1.684e-7` |
 
 ## Files
 
 - `poc/run.py` - reproducible runner; requires the collaborator POC at
   `poc/claude-midn/poc/free_slp.py`.
-- `data/wins.json` - exact old/new per-n values.
-- `data/changed-rows.csv` - the 47 improved puzzle groups only.
+- `data/multi-round-gate.json` - exact old/new per-n values for all 55 wins.
+- `data/multi-round-rows.csv` - the 55 improved puzzle groups only.
+- `data/round-summary.json` - per-pass win count and group gain.
 - `docs/NOTES.md` - execution and certification details.
+- `docs/MULTI_ROUND_WINS.md` - human-readable per-n comparison.
 
 No complete 500,500-row file is committed.
