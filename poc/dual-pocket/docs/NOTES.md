@@ -33,6 +33,13 @@ The latest coordinated update tightens `n=973`:
 31.696651125563 -> 31.696609281126
 ```
 
+The fixed-revision `sqk` corner SLP then tightens:
+
+```text
+n=910: 30.679151422149 -> 30.679150788214
+n=687: 26.725053394441 -> 26.725053393193
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -65,6 +72,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 153 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0103005534835`.
+improvement remains `0.0103005745458`.
 
 No Kaggle submission is performed.
