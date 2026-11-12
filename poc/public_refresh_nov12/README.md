@@ -1,12 +1,13 @@
 # Public refresh, Nov 12
 
-## Round 2 (on top of the team merged.csv at 22.173824282607068, upstream 79ef22e)
+## Rounds 2 + 3 (on top of the team merged.csv at 22.173824282607068, upstream 79ef22e)
 
-**38 n improved, fast-check score 22.173820984 (−3.3e-6).** `data/submission.csv` is now the round-2 full CSV (round-1 reports moved to `data/round1/`).
+**41 n improved, official score 22.173820983104367 (−3.2995e-6).** `data/submission.csv` is now the round-3 full CSV (round-1 reports moved to `data/round1/`).
 
 | Source | n | Score gain |
 |---|---:|---:|
 | Uniform shrink (`poc/shrink_pass.py`): packings whose every neighbouring pair has a positive SAT gap (1e-12 … 1e-9) are scaled toward their centre by half the safe amount | 36 | about 3e-7 |
+| Round 3: second shrink pass at 80% of the remaining gap (34 n, +6.4e-10) and a tiny deletion/wrap pass on the round-2 file (n = 591, 963, 966) | 3 new | 6.4e-10 |
 | Kaggle notebooks re-run since the last team refresh: jazivxt/boxed-in-sub (n = 370), nilanjansaha123/squares-gpu-seam-dp-soft-rigid-highs (n = 598) | 2 | about 3e-6 |
 
 Every n was certified individually (official per-puzzle evaluator, literal strings and after a pandas 3.1.0 round trip, both strictly below merged.csv). Per-n list with L values: [docs/round2_wins.md](docs/round2_wins.md).
@@ -15,10 +16,10 @@ Every n was certified individually (official per-puzzle evaluator, literal strin
 
 | Transport | Score | Accepted | Missing | Rejected |
 |---|---|---:|---:|---:|
-| Literal `data/submission.csv` | 22.173820983749195 | 1000 | 0 | 0 |
-| After `pd.read_csv(...).to_csv(index=False)` | 22.173820983749195 | 1000 | 0 | 0 |
+| Literal `data/submission.csv` | 22.173820983104367 | 1000 | 0 | 0 |
+| After `pd.read_csv(...).to_csv(index=False)` | 22.173820983104367 | 1000 | 0 | 0 |
 
-All 38 n are strictly lower than merged.csv in both runs (`data/wins_vs_merged.json`); the score drop equals their sum (3.29886e-6). Note: `squares score` applies Kaggle's numeric (float) transport before scoring, while `border-scan/merged-literal-official.json` holds raw-string L values. For 53 untouched n (byte-identical rows) the raw-string reference is 1e-16 … 1e-15 lower than the transported value, so the script lists them as "not strictly better"; against `merged-pandas-official.json` there are 0 differences.
+All 41 n are strictly lower than merged.csv in both runs (`data/wins_vs_merged.json`); the score drop equals their sum (3.29950e-6). Note: `squares score` applies Kaggle's numeric (float) transport before scoring, while `border-scan/merged-literal-official.json` holds raw-string L values. For 52 untouched n (byte-identical rows) the raw-string reference is 1e-16 … 1e-15 lower than the transported value, so the script lists them as "not strictly better"; against `merged-pandas-official.json` there are 0 differences.
 
 945 of 999 non-trivial n have a touching pair (gap < 1e-13), so uniform shrink cannot help them.
 

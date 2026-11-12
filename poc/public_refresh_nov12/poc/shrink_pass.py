@@ -84,7 +84,7 @@ def main():
         b = 'touching(<1e-13)' if gap < 1e-13 else ('<1e-11' if gap < 1e-11 else ('<1e-9' if gap < 1e-9 else '>=1e-9'))
         hist[b] = hist.get(b, 0) + 1
         if gap >= 1e-12 and ratio > 0:
-            delta = 0.5 * ratio
+            delta = float(__import__("os").environ.get("SHRINK_FACTOR", "0.5")) * ratio
             jobs.append((n, shrink(by[n], delta), delta))
     print('min-gap histogram:', hist, '| shrink candidates:', len(jobs), flush=True)
     if survey:
