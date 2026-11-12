@@ -414,3 +414,29 @@ portfolio already matches or beats every reference they refine.
 - `merged.csv` unchanged at SHA256
   `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
 - POC: `poc/harvest_watch`; report in `poc/harvest_watch/docs/results.md`.
+
+## Loop 13 - tiny pass re-run on the current portfolio
+
+**Idea.** The team's `tiny_pass.py` (deletion from n+k and upright border wraps
+followed by deletion) added only `2.49e-10` when it ran on the November 12
+intermediate file. The tracked file has since changed at more than 200 `n`, so
+re-run the same pass against the current incumbent.
+
+**Measured result (win).** 8 strict wins, all literal and pandas identical:
+
+- largest: n=904 `wrap-845-t1`, `30.563136023802043 -> 30.563136023765352`
+  (dL `3.669e-11`, the only win above `1e-13`);
+- deletions at the flat pairs n=442, 577, 627, 678, 492 (dL `1e-17`..`6.5e-14`);
+- wraps at n=732 (`wrap-679-t1`) and n=964 (`wrap-679-t5`).
+
+Wrap candidates at 442, 530, 577, 678, 786, 843, 902, 963 all returned
+`no gain` (wrapped side `1e-13` above the incumbent).
+
+- Literal score: **22.173995906837433**, 1000/1000 accepted.
+- Pandas transport score: **22.173995906837433**, 1000/1000 accepted.
+- Certified reduction: **1.2292409126146337e-12**.
+- SHA256: `308fc61effc296bebefa57617d095b5b81055e425541fbb25d9b55296c25d302`.
+- POC: `poc/tiny_pass_rerun`; report in `poc/tiny_pass_rerun/docs/results.md`.
+
+**Note.** Dust by construction, but the pass is nearly free and every strict win
+is legitimate; re-run it whenever the file changes at the flat pairs.
