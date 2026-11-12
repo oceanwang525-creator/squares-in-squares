@@ -1,0 +1,15 @@
+{
+  "previous_score": 22.173824282918808,
+  "score_literal": 22.173824282917252,
+  "score_pandas": 22.173824282917252,
+  "reduction": 1.554695213290798756474198831e-12,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [740],
+  "sha256": "9c7e3121a506fb6a6c1342cae7beb7b9b4664ff796c3c0d015de94c00c1ac7ca",
+  "poc": "poc/lip_slp",
+  "provenance": "docs/wins.json in the POC; previous score is the expanded top-five union d99e1f6"
+}

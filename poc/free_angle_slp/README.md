@@ -1,4 +1,12 @@
-# Free-angle SLP over the whole portfolio (negative)
+# Free-angle SLP over the whole portfolio (negative; model defective)
+
+> **Correction (Loop 23).** The LP in this POC has two sign defects: the pair
+> row uses `-slack` instead of `slack` (and multiplies the angle gradient by the
+> axis direction), and the wall rows evaluate the tangent at `theta=0` rather
+> than at the current `theta`. The LP is therefore infeasible at a feasible
+> incumbent, so every "0 wins" below is an artefact of the broken model, not
+> evidence about the packings. See `poc/lip_slp` for a conservative, provably
+> safe replacement and the corrected portfolio result.
 
 **Idea.** The fixed-angle LP (`poc/alln_fixed_lp`) only moves centres. Here the
 LP also linearises each square's rotation: variables are all `x`, `y`, `θ` and

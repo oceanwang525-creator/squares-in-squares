@@ -604,3 +604,85 @@ feed (`at 03:58-08:00`) and `origin/main` were also unchanged.
 
 - `merged.csv` unchanged at SHA256
   `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
+
+## Loop 21 - public Kaggle dataset harvest (datasets, not kernels)
+
+**Idea.** The harvest watcher only scans Kaggle *kernels* and the live feed. The
+Kaggle dataset index lists many fresh public packing datasets (some updated
+today) that contain full per-n submissions: `cshara/squares-in-squares-current-best`,
+`prvsiyan/squares-verified-best-of-1105`, `jonathan1506/joegun-squares-packings`,
+`samanyu1808/sis-final-packings`, `busyaprime/...-fq-quenched-packings`,
+`mdmuqtadirfuad/sis-certified-portfolio`, `avazaku/squares-contact-lp-cusp-bounds-465-998`,
+`az05192000gmailcom/squares-in-squares-l-band-packings`,
+`lostdecimal27/squares-in-squares-bank`, and others. Public datasets can be
+fetched anonymously with `kagglehub.dataset_download`. Scan every CSV per `n`,
+certify strict winners with the 32-process gate, and merge.
+
+**Why it could win.** A full best-of submission from another team can be better
+than ours on many `n` even when its total score is worse, exactly like the
+jazivxt refresh (17 wins, `1.72e-4`). Several are newer than the last scan.
+
+**Plan.** (1) fetch all moderate-size datasets; (2) run the existing
+`scan_refresh.py` over every CSV; (3) certify and merge with `merge_witnesses.py
+--jobs 32`; (4) whole-file literal + pandas gate before any overwrite.
+
+## Loop 22 - independent arm-gadget repacking
+
+**Idea.** Cut a large `K^2+D` packing at `x,w` and `y,a` into two upright corner
+blocks and two rectangular arms of size `w x (g-a+w)`. The arms are bounded by
+solid material on all four sides, so shrinking the box from side `L` to `L-d`
+only needs (i) the top-right block shifted by `-d` in `x` and `y`, (ii) the two
+arms repacked in narrower rectangles. The bottom-left block is untouched.
+
+First target: n=971, `a=8`, `g=24`, arms 167/166 squares, current `w=7.664318`,
+leader `L=31.636789` (`w=7.636789`). Test whether the existing arm angles can be
+relaxed into the 0.36%-narrower rectangles with the fixed-angle/ free-angle
+tools, then assemble and certify the whole n=971 file.
+
+**Result (negative).** Nineteen public packing datasets were fetched with
+anonymous `kagglehub`, including a 737 MB private bundle (1,838 files) and a
+60-submission blend bank. `scan_refresh.py` over every submission-shaped CSV and
+`scan_new.py` over the non-CSV witness formats returned **0 candidate n**. The
+`lostdecimal27` bank is the source of the per-puzzle table and reaches the same
+frontier as us but not the private bests: n=908 `30.638533` (ours `30.634071`),
+n=971 `31.678780` (ours `31.664318`), n=972 `31.692388` (ours `31.683990`).
+No CSV was written; `merged.csv` unchanged. POC: `poc/dataset_harvest_nov12`.
+
+## Loop 22 result - arm gadget (negative)
+
+**Measured.** The corner-block/arm decomposition was implemented with a
+rectangular-wall fixed-angle LP, a free-angle feasibility SLP, and a
+Lipschitz-safe SLP. Targets n=973, 972, 911, 910, 908, 969, 971 all failed at
+the private leader side. The 0.05-step shrink continuation reached only 0.06 of
+the required 1.0 arm compression at n=973. Rectangular clipping keeps 140-160 of
+the 167 arm squares, 6-9 short of the target counts.
+
+**Why.** The arms are not rectangle-bounded: seven n=971 arm squares poke
+through holes in the 24x24 corner block (574 squares, not 576), one by 0.336 and
+six by 0.03-0.05. The interface is a corner-point zipper; a flat wall forbids
+the contacts that make the packing dense. POC: `poc/arm_gadget`.
+
+## Loop 23 - corrected free-angle SLP (1 dust win)
+
+**Idea and bug.** The existing `poc/free_angle_slp` pair constraints had the
+wrong sign (`-slack`) and a spurious axis-direction factor on the angle
+gradient, and the wall rows evaluated the tangent at `theta=0`. The LP was
+infeasible even at a feasible incumbent, so its recorded "0 wins" was an
+artefact. The replacement (`poc/lip_slp`) bounds the support growth by
+`LIP*(t_i+t_j)` with `t_i >= |dtheta_i|`, so every accepted step is
+overlap-free by construction.
+
+**Measured (win).** Full 1000-group run at 32 processes, 8 rounds, 426.8 s:
+**1 strict win**, n=740
+`27.706646513415677... -> 27.706646513373385...` (ΔL `4.233e-11`), certified
+reduction `1.554695213290798756474198831e-12`. 999 groups `no-gain`.
+
+- Literal score: **22.173824282917252**, 1000/1000.
+- Pandas transport: **22.173824282917252**, 1000/1000.
+- SHA256: `9c7e3121a506fb6a6c1342cae7beb7b9b4664ff796c3c0d015de94c00c1ac7ca`.
+- The same n=740 candidate was re-merged on top of the newly landed
+  `expanded_union_nov12` team union (`d99e1f6`, score `22.173824282918808`).
+- POC: `poc/lip_slp`; reports in `docs/`.
+
+The portfolio is a local optimum under the corrected safe free-angle model as
+well; only the 4.2e-11 side gain at n=740 was available.
