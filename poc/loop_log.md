@@ -782,3 +782,187 @@ fixed-angle LP, corrected Lipschitz SLP, contact-topology search, cavity
 insertion, periodic strip cells, public-engine basin hopping and from-scratch
 block-split seeds. The remaining 0.013824 is the private all-team frontier
 (22.050884), whose coordinates are not in any public artifact.
+
+## Loop 29 - inversion insertion (negative)
+
+**Idea.** Our `L(n)` is non-monotonic. For 96 pairs, `L(n-1) < frontier(n)`, so a
+packing of `n-1` squares already fits inside the frontier box for `n`; adding
+one square there would match the frontier. The best pair was n=365 from n=364
+(`L=19.5714`, frontier 19.5988) and n=634 from n=633 (slack 0.0255).
+
+**Tested methods (all at the frontier side, 32 processes):**
+- global penalty insertion, all squares free: 900 tasks, 11m22s, 0 wins;
+- cavity insertion (new + 8-20 nearest neighbours free): 1,184 tasks, 0 wins;
+- local depletion + refill (delete 4-10, insert +1, freeze boundary): 2,160
+  tasks, 8m24s, 0 wins;
+- exact fixed-angle wall LP insertion: 544 tasks, 0 wins;
+- diverse-donor insertion from all 121 public n=633 donors below the frontier
+  side: 1,200 tasks, 14m47s, 0 wins. The donors are all the same row.
+
+The neighbouring packings are genuinely jammed; adding a square needs a global
+topology change that none of these local operators finds.
+
+## Loop 30 - thick rational 2:1 band (negative)
+
+**Idea.** A thick band of squares at `atan(1/2)` with edges along the grid's
+2:1 staircase should make the band/grid interface exact, cutting edge waste.
+The old POC only tested width 1.
+
+**Measured.** Built the exact geometry (BL/TR staircase grids + w rows of the
+rotated lattice, greedy SAT placement) and scanned `T1 in 30..71`,
+`T2 in 3..35`, `w in 3..12`, four phases at 32 processes (14m). At
+`L=30.5694` the best count is **895** (need 908); at `L=30.0415` the best is
+870. No parameter set reaches 900 below `L=30.7`. The count-model estimate of
+908 at `L=30.22` overcounted the band by ~35 squares. POC:
+`/tmp/opencode/rational_band.py` (scan-only).
+
+## Loop 31 - David Ellsworth catalogue SVGs (negative)
+
+**Idea.** The public "Squares in Squares" catalogue
+(`kingbird.myphotos.cc/packing/squares_in_squares.html`) hosts exact SVG
+packings for selected large `n`, including 626, 682, 791 and 968, with the
+official parser in `Davidebyzero/packing_squares_in_squares__tools`.
+
+**Measured (negative).** Parsed all four with the supplied 60-digit parser:
+
+| n | catalogue s | our L |
+|---:|---:|---:|
+| 626 | 25.520815280171308 | 25.520815280171426 |
+| 682 | 26.621320343559643 | 26.608712578448260 |
+| 791 | 28.728473348198163 | 28.634070751579 |
+| 968 | 31.621320343559643 | 31.608712578447886 |
+
+All are worse than the tracked rows (626 is numerically identical but not
+strictly lower). The catalogue has no SVG for 908/971.
+
+**Incidental.** The `n=365` row is a 3-row 45-degree diagonal band
+(`v = -0.65, 0.35, 1.35`, pitch 1 in `u`) inside a 19x19-ish upright grid;
+L(365)=19.6129, not 19.5714 (19.5714 is L(364)). The band's ends are the only
+non-periodic part.
+
+## Loop 32 - five new search/construction families (all negative)
+
+**Cluster Monte Carlo (n=911).** 32 chains x 60k moves; connected clusters of
+5-18 squares rigidly translated/rotated, Metropolis at the frontier side, final
+Adam polish. 2m52s, 0 wins.
+
+**Perturb-and-shrink at small delta.** Top 20 `n`, 8 seeds each; collective
+Gaussian perturbation `sigma=0.03` then Adam at `L0-0.002` (a 0.007% shrink).
+160 tasks, 3m30s, 0 wins. Even a 0.002 shrink is inaccessible.
+
+**Cross-n truncation scan.** For every donor `n`, sorted by
+`max(x+e, y+e)`, evaluated every prefix subset `1..n` as a packing of that
+count (1,000,000 subsets, exact prefix extrema). **0 prefixes beat our L(m).**
+
+**Border deletion / cross-K.** Deleting the right+top border of n=969 leaves
+908 squares at `L=30.643565`; 12/30/60-round fixed LP reaches
+`30.64033988291315` and the Lipschitz SLP reports `no-gain`. Still 0.0063 above
+our n=908 (`30.63407075157908`).
+
+**Catalogue exact 968 donor.** `square-968_r1b.svg` parses to 968 squares with
+5e-39 rounding overlaps; a `1e-12` uniform dilation certifies at
+`31.62132034359027`. Extending +3 to n=971 at `31.664318` (0.043 slack, 2.7
+area margin): 99 seeded global-insertion tasks, 2m46s, 0 wins.
+
+**Band-phase scan.** For n=367/366/365/634/791/793/328/911/910, shift the
+entire tilted band along its own `(u,v)` lattice by a 5x5 phase grid and
+re-solve the exact LP. 216 tasks, 49s, 0 wins.
+
+No tracked row changed. POC scripts under `/tmp/opencode/` (scan-only).
+
+## Loop 33 - self-similar corner-gadget lift
+
+**Idea.** For fixed `D = n - K^2`, the frontier has an exactly
+`K`-independent fractional part at large `K` (e.g. `n=908` and `n=969`, both
+`D=8`, frontier `K + 0.6058845085...`). That means the extra `D` squares live
+in a **fixed local corner gadget** of side `m + delta`, and the rest is an
+upright `K x K` grid with its `m x m` corner removed:
+
+    n = K^2 + D = (K^2 - m^2) + (m^2 + D)
+
+So any packing of `m^2 + D` squares in side `m + delta` can be transplanted into
+any larger `K` with the same `D`, giving `K^2 + D` squares in side `K + delta`,
+with no interface constraints (the gadget's bounding box sits entirely in the
+removed corner and touches the grid only along two lines).
+
+Therefore `delta(D) := min_m [ L(m^2+D) - m ]` is a universal upper bound for
+all larger `K`. If the incumbent's small-`m` packings have a better `L - m`
+than its large-`n` rows, the lift is an immediate certified win for every such
+`n`. Test: compute `delta(D)` from the tracked certified rows for all `D`, build
+the lifted packings, and certify them with the official metric.
+
+**Result (negative, but structurally informative).** For the incumbent rows,
+`delta(D) = min_m [L(m^2+D) - m]` is attained at the largest available `m` for
+every `D` (e.g. D=8 at m=31 with 0.63398; D=7 at m=31 with 0.60871), so no
+existing row lifts to a win: our `c` decreases monotonically with `m`. The
+frontier's identical `c=0.6058845085` at n=908 (K=30) and n=969 (K=31) is
+consistent with the frontier's own 908 being a base that lifts to 969, not with
+a small gadget we can reuse.
+
+**Catalogue sweep.** All 190 David Ellsworth catalogue SVGs were downloaded and
+parsed with the supplied 60-digit parser (188 distinct `n`, 17 s at 16
+processes). Every one certifies with a `1e-12` dilation, and **none beats the
+incumbent**: the catalogue is strictly worse at 46 of the parsed `n`
+(including n=682 `26.6213` vs `26.6087`, n=791 `28.7285` vs `28.6341`,
+n=968 `31.6213` vs `31.6087`) and numerically equal at the rest
+(n=626 equal, n=108 equal, etc.). 0 wins.
+
+**Result (negative, complete).** With the valid domain (`a,b <= K`) and the
+area condition `n0 <= (b+c)(a+c)`, the rectangular corner lift has **0
+candidates**: no donor row, grid size or corner shape beats the incumbent.
+
+## Loop 34 - Gobel strips and the full classical catalogue (negative)
+
+**Idea.** The `Squares in Squares` catalogue has extra pages (`Göbel strips`,
+`Göbel squares`, `n^2-n-1`, `rigid`, `analytic minimization`) with 152+ SVGs not
+linked from the main page, plus the explicit Göbel family
+
+    n = (a+1)a + 2 + b,     s = a + 1 + sqrt(2)/2.
+
+Those `n` sit exactly around `K^2+K` (`D ~ K`), a regime where our `c` is also
+~1.707, so the family cannot explain the frontier's small-`D` advantage.
+
+**Measured.** All catalogue pages were downloaded. **344 parsed packings** (188
+distinct `n` from the main page plus the extra Göbel/rigid/analytic SVGs) were
+certified with the official metric (dilation `<=1e-9` where needed) and compared
+per `n` with the incumbent: **0 wins**. Every classical packing is worse than,
+or numerically equal to, the tracked row (e.g. n=682 `26.6213` vs `26.6087`,
+n=791 `28.7285` vs `28.6341`, n=968 `31.6213` vs `31.6087`).
+
+**State.** The newly landed team union re-scores at
+**22.173715450068453** (literal and actual pandas, 1000/1000), an improvement of
+`1.088e-4` over the stale reports. Target 22.0999 remains `0.0738` away, and the
+remaining gap is private Kaggle search quality; no public construction source
+beats the tracked union.
+
+## Loop 35 - hard-square annealing with swap and row-shift moves
+
+**Idea.** Every search so far has been a descent method (LP, SLP, Adam, L-BFGS):
+once the contact graph jams, no gradient can change the topology. This loop uses
+a stochastic hard-square search instead. State = (x, y, theta) for all squares;
+energy = squared SAT penetration + 5x squared wall violation. Moves:
+
+1. single-square random translation+rotation (local);
+2. **swap** two random squares' positions and orientations (topology change);
+3. **row shift**: translate every square on one side of a random horizontal or
+   vertical cut (fault-line move).
+
+Metropolis acceptance with a geometric temperature schedule. Compression is a
+continuation: scale the incumbent to `L - delta`, anneal at fixed `L` until the
+energy reaches zero, accept and repeat. Test first on n=911 (largest gap,
+30.695622 -> frontier 30.660913), 32 independent chains, exact official
+certification as the final oracle.
+
+**Result (negative).** Implemented in numba (`/tmp/opencode/hs_sa.py`):
+squared-SAT penetration energy, single translation+rotation moves, square
+swaps, and fault-line row shifts, Metropolis with a geometric temperature
+schedule, adaptive compression (`scale to L-delta`, anneal, accept only if
+`E < 1e-18`, otherwise halve `delta` and restore).
+
+On n=911 (target frontier side 30.6609126), 8 chains x 150k-200k moves:
+**every chain fails at the first `delta = 1e-4` step** and restores the
+incumbent exactly (`E = 0`, `L = 30.695622171`). The best energy never reaches
+the feasibility threshold; swaps and row shifts do not open a feasible basin.
+The same happens at n=367 with `delta = 1e-3`. So the jam is not merely an
+artefact of LP/descent linearisation: it survives a stochastic search with
+topology-changing moves. 0 wins, score unchanged.
