@@ -966,3 +966,76 @@ the feasibility threshold; swaps and row shifts do not open a feasible basin.
 The same happens at n=367 with `delta = 1e-3`. So the jam is not merely an
 artefact of LP/descent linearisation: it survives a stochastic search with
 topology-changing moves. 0 wins, score unchanged.
+
+## Loop 36 - true replica-exchange parallel tempering (negative)
+
+**Idea.** Replace the independent chains of Loop 35 with a real PT ladder:
+8 replicas at geometric temperatures `2e-6..5e-3`, inter-replica state swaps
+with `exp((1/T_i-1/T_j)(E_j-E_i))`, plus a void-targeted relocation move
+(rejection-sample a free unit-square site and move a random square there).
+
+**Measured (negative).** n=911, 8 independent ladders x 8 replicas x 40
+rounds x 10,000 moves (32 processes):
+
+- `delta=1e-4`: every ladder ends at `E=2.09e-8`, exactly the scaled incumbent;
+- `delta=1e-5`: every ladder ends at `E=1.96e-10`, again the seed.
+
+No replica reaches `E<1e-16`; exchanges and void moves never improve the best
+state. Even a `1e-5` compression is unrepairable, so the jam sits far below the
+LP/descent scale. 0 wins, `merged.csv` unchanged. POC: `poc/pt_mc`.
+
+## Loop 37 - rational-band void filling (negative)
+
+**Idea.** The rational-band Pareto scan counted only grid+band squares; it never
+tried to fill the residual voids. A slope whose voids are >=1 unit wide could
+add 10-20 squares. Ran box-constrained greedy void filling on **20,408**
+rational configs with `C>=880`, `L<30.72` (7 slopes, all `T1/T2/w/phase`),
+32 processes, 5m22s.
+
+**Measured (negative).** **0 wins.** The voids are uniformly `0.96` wide (just
+under a unit square), so the filler inserts nothing; the earlier 2:1 donor is
+representative.
+
+## Loop 38 - free-angle population search at the n=911 frontier side (negative)
+
+**Idea.** Replace the discrete `p:q` slopes with a GA over
+`(theta, T1, T2, w, gap, phase)` using an analytic free-angle digital-staircase
++ tilted-band count, at `L=30.6609126`, then a 250k-sample fine scan.
+
+**Measured (negative).** Best band config: **898** squares. Fine scan best:
+**900** squares, which is the plain 30x30 grid (BL=899, TR=1, band=0). n=911
+needs 911 at this side, so the frontier packing is 11 squares denser than any
+staircase-band configuration. 0 wins, `merged.csv` unchanged. POC:
+`poc/free_band_ga`.
+
+## Loop 39 - exact set-packing LNS at the n=911 frontier side (negative)
+
+**Idea.** Discretise the frontier box `L=30.6609125615235` into unit-square
+candidates (0.5 grid, 8 orientations, 27,967 candidates; 1,954,325 exact SAT
+conflict edges) and solve a maximum independent set with **exact MILP windows**
+(`scipy.optimize.milp`, HiGHS) over a large-neighbourhood search. Seed: the
+30x30 grid (900). Any >=911 selection is certified with the official metric.
+
+**Measured (negative).** 400 windows of 5x5 and 150 windows of 8x8: the best
+count is **900** in both cases; no window MILP ever adds a square. The grid is a
+local optimum under exact set packing in 8x8 windows. The frontier's 911-square
+packing needs a coordinated global pattern. 0 wins, `merged.csv` unchanged.
+POC: `poc/setpack_lns`.
+
+## Loop 40 - n=367 global set-packing MILP and corner gadget (negative)
+
+**Idea.** At the n=367 frontier side `L=19.6708567970218`, generate candidates
+from the 19x19 grid plus a dense margin band (8,075 candidates, 1,128,770 exact
+conflict edges) and solve the global maximum independent set with HiGHS; in
+parallel test whether n=367 is a lift of an `m x m` corner gadget (`m^2+6`
+squares at side `m+0.6708568`).
+
+**Measured (negative).**
+
+- Global MILP: 300 s time limit, **305 selected** (required 367); no
+  certificate. The frontier box has only ~0.11% slack, so the MIP incumbent
+  stays far from the bound.
+- Gadget m=8 (70 squares at side 8.6708568, density 0.931), 16 seeds x 3000
+  torch steps: **no feasible packing**.
+
+0 wins, `merged.csv` unchanged. POC: `poc/setpack367`.

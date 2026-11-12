@@ -1,0 +1,6 @@
+candidates 27967
+edges 1954325
+seed count 900
+W=5, 400 windows: best count 900
+W=8, 150 windows: best count 900
+n=911 requires 911: 0 wins.
