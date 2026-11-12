@@ -1,0 +1,6 @@
+n=65 L=8.535534 off-lattice=25 clusters=[25] tol=-1e-09 rebuilt=65/65
+n=65 L=8.535534 off-lattice=25 clusters=[25] tol=-1e-07 rebuilt=65/65
+n=308 L=17.997149 off-lattice=110 clusters=[110] tol=-1e-09 rebuilt=285/308
+n=308 L=17.997149 off-lattice=110 clusters=[110] tol=-1e-07 rebuilt=285/308
+n=535 L=23.634071 off-lattice=467 clusters=[467] tol=-1e-09 rebuilt=513/535
+n=535 L=23.634071 off-lattice=467 clusters=[467] tol=-1e-07 rebuilt=529/535
