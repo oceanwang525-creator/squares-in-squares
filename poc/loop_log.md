@@ -387,3 +387,30 @@ also 0/10 in 9 seconds; the full run took about four minutes.
 space. With Loop 6 (no translational slack) and `leader_poc_k2p4` (n=328 strict
 free-angle local optimum), the remaining leader gap is structural: it needs
 different contact topologies or constructions, not more polishing.
+
+## Loop 12 - harvest watcher and systematic source discovery
+
+**Idea.** Automate one harvest cycle (newest kernel outputs, live feed, team
+push) and pair it with systematic GitHub/Kaggle search for repositories that
+publish exact certificates per bound. The n=269 win came from exactly such a
+per-bound repo, so the search is worth repeating as new ones appear.
+
+**Measured result (negative).** The first cycle after Loop 10:
+kernels newer than `09:33:56` = 1 (`saamhm`, 0 candidates); live feed
+(`at 01:38-08:00`) = 0 candidates above `1e-12`; `origin/main` unchanged.
+Discovery scan of twelve new sources:
+
+- `BuddenPing/square-packing-certificates` (n=105,146,153,207,261,272,302),
+  `lollipoll/couzo-five-exact-certificates`,
+  `SidG2k1/square-packing-refinements` (14 exact refinements at ~`1e-13`),
+  `ebdeleeuw/square-packing-n70`, nine Kaggle-competition repos, and the
+  `samanyu1808/sis-final-packings` dataset: **0 candidates**.
+- The only scanner hits were `EvanOman/.../spheres.json` sphere coordinates,
+  rejected as not square packings.
+
+The refinement repos improve *published* sides by ~`1e-13`, but the tracked
+portfolio already matches or beats every reference they refine.
+
+- `merged.csv` unchanged at SHA256
+  `e5ef17f711ea2e674eb03b006dfa6b3c018fd3ac5e053cf7166896b0715cda92`.
+- POC: `poc/harvest_watch`; report in `poc/harvest_watch/docs/results.md`.
