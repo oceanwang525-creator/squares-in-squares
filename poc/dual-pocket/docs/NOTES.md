@@ -117,6 +117,13 @@ The support-SLP expansion of gap ranks 49–144 adds ten strict improvements,
 including `n=587` and `n=738`, and brings the final comparison count to 156
 wins with 45 tiny regressions.
 
+Support SLP on gap ranks 145–240 adds nine more strict improvements, including:
+
+```text
+n=595: 24.861738389512 -> 24.861695596669
+n=740: 27.706484801457 -> 27.706455253054
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -149,6 +156,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4585e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104310525749`.
+improvement remains `0.0104339361339`.
 
 No Kaggle submission is performed.
