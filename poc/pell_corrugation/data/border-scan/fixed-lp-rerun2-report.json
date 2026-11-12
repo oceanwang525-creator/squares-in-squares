@@ -1,0 +1,15 @@
+{
+  "previous_score": 22.17399590592608,
+  "score_literal": 22.173995905833525,
+  "score_pandas": 22.173995905833525,
+  "reduction": 9.255648336665216e-11,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [595],
+  "sha256": "71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b",
+  "poc": "poc/alln_fixed_lp",
+  "provenance": "docs/rerun2-wins.json in the POC"
+}

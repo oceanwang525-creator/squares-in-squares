@@ -520,3 +520,23 @@ Tools updated: `poc/alln_fixed_lp/poc/alln_fixed_lp.py`,
 `poc/free_angle_slp/poc/free_angle_slp.py`,
 `poc/external_witness_refresh/poc/merge_witnesses.py`,
 `poc/external_witness_refresh/poc/scan_new.py`. All take `--jobs 32`.
+
+## Loop 17 - deeper fixed-angle LP re-run (12 rounds)
+
+**Idea.** The Loop 16 parallel LP test used 12 SLP rounds instead of the default
+three and found a win that three rounds missed. Re-run at 12 rounds on the
+current file.
+
+**Measured result (win).** One strict win:
+
+- n=595 `24.86192535001240769 -> 24.86192534775471239` (ΔL `2.258e-9`, gain
+  `9.2556e-11`), literal and pandas identical.
+- Status: 999 `no-gain`, 1 `WIN`. Cost: about 15 s at 32 jobs.
+
+- Literal score: **22.173995905833525**, 1000/1000 accepted.
+- Pandas transport score: **22.173995905833525**, 1000/1000 accepted.
+- SHA256: `71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b`.
+- POC: `poc/alln_fixed_lp`; reports `docs/rerun2-*.json`.
+
+**Operational note.** Use 12 rounds (about 15 s at 32 jobs) as the default for
+re-runs; three rounds can stop short of the LP optimum.

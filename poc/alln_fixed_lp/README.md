@@ -79,6 +79,20 @@ python poc/alln_fixed_lp/poc/alln_fixed_lp.py \
 Scripts: `poc/alln_fixed_lp.py`. Requires `numpy`, `scipy` (HiGHS) and the
 shared official metric.
 
+## Deeper SLP re-run (12 rounds)
+
+The re-run at the default three rounds stopped short of the LP optimum at one
+`n`. A 12-round pass (still with no trust region) adds:
+
+| n | score gain | old L | new certified L |
+|---:|---:|---:|---:|
+| 595 | `9.2556e-11` | `24.86192535001240769152874135100165402121368801394200` | `24.86192534775471239436067397042708280851348346952232` |
+
+Status: 999 `no-gain`, 1 `WIN`. Portfolio **22.173995905833525** (both
+transports, 1000/1000). Reports: `docs/rerun2-wins.json`,
+`docs/rerun2-literal-official.json`, `docs/rerun2-pandas-official.json`.
+Rounds 12 costs about 15 s at 32 jobs, so it is the new default for re-runs.
+
 ## Parallel execution (32 threads)
 
 The solver runs one process per `n` with `multiprocessing` (`--jobs`, default
