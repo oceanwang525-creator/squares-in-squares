@@ -48,7 +48,7 @@ PAIR_RADIUS = 1.6
 MARGIN = 1e-9
 
 
-def build_lp(angles, centers):
+def build_lp(angles, centers, rng=None, tie_tol=0.0):
     n = len(angles)
     u = np.column_stack([np.cos(angles), np.sin(angles)])
     v = np.column_stack([-np.sin(angles), np.cos(angles)])
@@ -75,7 +75,12 @@ def build_lp(angles, centers):
             + np.abs(axes @ u[j])
             + np.abs(axes @ v[j])
         )
-        k = int(np.argmax(np.abs(proj) - radii))
+        alpha = np.abs(proj) - radii
+        if rng is not None and tie_tol > 0:
+            near = np.flatnonzero(alpha >= alpha.max() - tie_tol)
+            k = int(near[rng.integers(len(near))]) if len(near) > 1 else int(np.argmax(alpha))
+        else:
+            k = int(np.argmax(alpha))
         a = axes[k] * (1 if proj[k] >= 0 else -1)
         add([2 * i, 2 * i + 1, 2 * j, 2 * j + 1],
             [a[0], a[1], -a[0], -a[1]], -radii[k] - MARGIN)
@@ -92,8 +97,8 @@ def build_lp(angles, centers):
     return A, np.array(rhs), c
 
 
-def solve_lp(angles, centers, time_limit=60.0):
-    A, b, c = build_lp(angles, centers)
+def solve_lp(angles, centers, time_limit=60.0, rng=None, tie_tol=0.0):
+    A, b, c = build_lp(angles, centers, rng=rng, tie_tol=tie_tol)
     n = len(angles)
     res = linprog(c, A_ub=A, b_ub=b, bounds=[(None, None)] * (2 * n) + [(0, None)],
                   method="highs",
@@ -111,11 +116,12 @@ def exact_side(n, centers, angles):
                      (centers[:, 1] + ext).max() - (centers[:, 1] - ext).min()))
 
 
-def refine(n, centers, angles, rounds, time_limit):
+def refine(n, centers, angles, rounds, time_limit, rng=None, tie_tol=0.0):
     cur = centers
     best = None
     for _ in range(rounds):
-        out = solve_lp(angles, cur, time_limit=time_limit)
+        out = solve_lp(angles, cur, time_limit=time_limit, rng=rng,
+                       tie_tol=tie_tol)
         if out is None:
             break
         side, proposed = out
@@ -136,12 +142,13 @@ def to_rows(n, centers, angles):
 
 def run_group(task):
     """Worker: LP + exact literal/pandas certification for one ``n``."""
-    n, rows, ours_literal, rounds, time_limit = task
+    n, rows, ours_literal, rounds, time_limit, seed, tie_tol = task
     ours = Decimal(ours_literal)
     angles = np.array([float(r["angle"]) for r in rows])
     centers = np.array([[float(r["x"]), float(r["y"])] for r in rows])
-    entry = dict(n=n, base_side=exact_side(n, centers, angles))
-    out = refine(n, centers, angles, rounds, time_limit)
+    rng = np.random.default_rng(seed) if seed else None
+    entry = dict(n=n, seed=seed, base_side=exact_side(n, centers, angles))
+    out = refine(n, centers, angles, rounds, time_limit, rng=rng, tie_tol=tie_tol)
     if out is None:
         entry["status"] = "lp-infeasible"
         return n, entry, None
@@ -175,7 +182,7 @@ def run_group(task):
     entry["status"] = "WIN"
     win = dict(old_L=str(ours), new_L=str(max(literal, pandas_l)),
                literal_L=str(literal), pandas_L=str(pandas_l),
-               lp_side=side, rows=cand)
+               lp_side=side, seed=seed, rows=cand)
     return n, entry, win
 
 
@@ -190,6 +197,11 @@ def main() -> None:
     parser.add_argument("--rounds", type=int, default=3)
     parser.add_argument("--time-limit", type=float, default=60.0)
     parser.add_argument("--jobs", type=int, default=32)
+    parser.add_argument("--seeds", type=int, default=1,
+                        help="one task per (n, seed); seed 0 is the deterministic argmax")
+    parser.add_argument("--tie-tol", type=float, default=0.0,
+                        help="randomly choose among separating axes within this "
+                             "margin of the best (requires seeds > 1 to matter)")
     args = parser.parse_args()
 
     report = json.load(open(args.report, encoding="utf-8"))
@@ -204,8 +216,10 @@ def main() -> None:
     if not targets:
         targets = list(range(1, 1001))
     # Expensive groups first so they do not tail the schedule.
-    tasks = [(n, groups[n], str(ours[n]), args.rounds, args.time_limit)
-             for n in sorted(targets, reverse=True)]
+    tasks = [(n, groups[n], str(ours[n]), args.rounds, args.time_limit, seed,
+              args.tie_tol)
+             for n in sorted(targets, reverse=True)
+             for seed in range(max(1, args.seeds))]
 
     wins: dict[int, dict] = {}
     results: list[dict] = []
@@ -217,9 +231,11 @@ def main() -> None:
             results.append(entry)
             done += 1
             if win is not None:
-                wins[n] = win
-                print(f"WIN n={n} old={float(Decimal(win['old_L'])):.9f} "
-                      f"new={float(Decimal(win['new_L'])):.9f}", flush=True)
+                if n not in wins or Decimal(win["new_L"]) < Decimal(wins[n]["new_L"]):
+                    wins[n] = win
+                    print(f"WIN n={n} seed={win.get('seed')} "
+                          f"old={float(Decimal(win['old_L'])):.9f} "
+                          f"new={float(Decimal(win['new_L'])):.9f}", flush=True)
             if done % 100 == 0 or done == len(tasks):
                 rate = done / max(time.time() - t0, 1e-9) * 60.0
                 print(f"{done}/{len(tasks)} groups, {rate:.0f} groups/min, "

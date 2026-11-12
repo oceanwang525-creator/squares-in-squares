@@ -93,6 +93,22 @@ transports, 1000/1000). Reports: `docs/rerun2-wins.json`,
 `docs/rerun2-literal-official.json`, `docs/rerun2-pandas-official.json`.
 Rounds 12 costs about 15 s at 32 jobs, so it is the new default for re-runs.
 
+## Contact-topology search (negative)
+
+The LP fixes one separating axis per nearby pair. When two axes are nearly
+tied, the choice is arbitrary and different choices can lead to different
+contact graphs. `--seeds K --tie-tol T` therefore runs K tasks per `n`,
+choosing randomly among axes within `T` of the best one, and keeps the best
+certified result per `n`.
+
+| run | tasks | time at 32 jobs | wins |
+|---|---:|---:|---:|
+| `--seeds 8 --tie-tol 1e-6 --rounds 12` | 8,000 | 271 s | 0 |
+| `--seeds 4 --tie-tol 1e-3 --rounds 12` | 4,000 | 155 s | 0 |
+
+So the incumbent is also stable under alternative near-tied contact graphs, not
+just under the deterministic argmax graph.
+
 ## Parallel execution (32 threads)
 
 The solver runs one process per `n` with `multiprocessing` (`--jobs`, default

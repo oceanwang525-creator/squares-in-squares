@@ -540,3 +540,28 @@ current file.
 
 **Operational note.** Use 12 rounds (about 15 s at 32 jobs) as the default for
 re-runs; three rounds can stop short of the LP optimum.
+
+## Loop 18 - contact-topology search (seeded tie-breaking)
+
+**Idea.** The fixed-angle LP fixes one separating axis per nearby pair; when two
+axes are nearly tied, the choice is arbitrary. Add a seeded worker per
+`(n, seed)` that picks randomly among axes within a margin of the best, re-runs
+the 12-round SLP, and keeps the best certified result per `n`. This searches
+alternative contact graphs around each incumbent packing, parallelized across
+32 processes.
+
+**Measured result (negative).**
+
+| run | tasks | time at 32 jobs | wins |
+|---|---:|---:|---:|
+| `--seeds 8 --tie-tol 1e-6 --rounds 12` | 8,000 | 271 s | **0** |
+| `--seeds 4 --tie-tol 1e-3 --rounds 12` | 4,000 | 155 s | **0** |
+
+No alternative contact graph produces a certified lower side. Together with
+Loops 6/11/17 (fixed-angle LP at 3/12/20 rounds and free-angle SLP at 6/12
+rounds), the tracked portfolio is a local optimum in centres, angles and
+near-tied contact topologies.
+
+- `merged.csv` unchanged at SHA256
+  `71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b`.
+- POC: `poc/alln_fixed_lp` (`--seeds`, `--tie-tol`).
