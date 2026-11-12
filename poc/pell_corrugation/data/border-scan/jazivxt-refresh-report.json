@@ -1,0 +1,16 @@
+{
+  "previous_score": 22.173995905833525,
+  "score_literal": 22.173824283226253,
+  "score_pandas": 22.173824283226253,
+  "reduction": 1.7162260727358832e-4,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 17,
+  "win_n": [374, 504, 551, 597, 598, 694, 696, 744, 748, 791, 800, 862, 905, 908, 921, 922, 996],
+  "sha256": "76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318",
+  "poc": "poc/jazivxt_refresh_nov12",
+  "source": "jazivxt/boxed-in-sub",
+  "provenance": "docs/wins.json in the POC"
+}

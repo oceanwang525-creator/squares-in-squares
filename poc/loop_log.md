@@ -565,3 +565,24 @@ near-tied contact topologies.
 - `merged.csv` unchanged at SHA256
   `71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b`.
 - POC: `poc/alln_fixed_lp` (`--seeds`, `--tie-tol`).
+
+## Loop 19 - jazivxt refresh (~11:00 UTC)
+
+**Idea.** `jazivxt/boxed-in-sub` re-ran at 10:58 UTC. Its overall score is still
+far above the tracked file, but per-`n` it can beat it. Fetch the current
+submission and merge every strict winner with the 32-process gate.
+
+**Measured result (win).** 17 strict wins, total `1.7162e-4`:
+
+- n=598 `24.906458443 -> 24.903161419` (gain `1.3483e-4`)
+- n=921 `30.821403933 -> 30.821012592` (gain `1.2895e-5`)
+- n=996 `31.955474330 -> 31.955189555` (gain `9.0235e-6`)
+- n=862, 748, 922 (`~5e-6` each), plus 11 wins at `1e-8` scale.
+
+The 17-candidate gate cost 3.8 s at 32 jobs.
+
+- Literal score: **22.173824283226253**, 1000/1000 accepted.
+- Pandas transport score: **22.173824283226253**, 1000/1000 accepted.
+- Certified reduction: **1.7162260727358832e-4**.
+- SHA256: `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
+- POC: `poc/jazivxt_refresh_nov12`; report in `docs/results.md`.
