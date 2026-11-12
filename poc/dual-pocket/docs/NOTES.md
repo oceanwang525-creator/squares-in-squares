@@ -9,18 +9,19 @@
 - the aligned local exact-coordinate pool.
 
 The union keeps a local row only when the official metric gives a strictly
-smaller `L`. It has 14 wins, no regressions, and scores
-`22.173891123045767` in both literal and pandas-round-trip certification.
+smaller `L`. It has 25 wins, no regressions, and scores
+`22.173890453429` in both literal and pandas-round-trip certification.
 
 The source coordinates come from repeated support/corner SLP passes on the
 local portfolio. The dominant gains in this contribution are:
 
 ```text
+n=936: 30.997253040140 -> 30.997240112561
+n=875: 29.988732796344 -> 29.988731548874
+n=738: 27.678650146381 -> 27.678647835553
+n=864: 29.851920062700 -> 29.851918337290
 n=687: 26.725053394441 -> 26.723271497397
 n=747: 27.811200399348 -> 27.810663622416
-n=595: 24.861925350012 -> 24.861685491745
-n=740: 27.706646517490 -> 27.706455038657
-n=934: 30.964145685768 -> 30.964143168755
 ```
 
 ## Contact-SLP workflow
@@ -36,7 +37,9 @@ Each script builds a conservative linear relaxation from the current contact
 graph, moves centers and angles inside a trust region, and exports a candidate
 only after exact feasibility checks. Repeated passes on the hit puzzles are
 material: the first scan changes the geometry, and later passes exploit the
-new contacts.
+new contacts. After scanning all 400 current target rows, six convergence
+rounds were run on the hit set. The largest second-pass gains were at `n=936`,
+`n=738`, and `n=875`.
 
 The local pool was also diffed against the previous certified union. An
 earlier `pool.write_submission()` pass had replaced a few historically better
@@ -73,7 +76,7 @@ unverified dual-pocket candidate was promoted.
   no new candidates.
 - A pool import that retained 167 extra local rows lowered the total score by
   only `9.8e-10` while creating 181 tiny regressions. It was rejected in favor
-  of the strict 14-win union.
+  of the strict per-puzzle union.
 
 ## Provenance and limits
 
