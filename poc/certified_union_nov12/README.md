@@ -1,0 +1,1 @@
+Eleven-source union excluding Atlas, plus the independently certified issue-962 n269 decimal witness. Original authors retain credit. All 1000 puzzles pass unchanged native and official checks, literal and original pandas 3.1.0 transport, with strict per-puzzle nonregression against main dbd248fdb81aca9f1f39b63c726fd22dd07dc270. No metric or tolerance changes.

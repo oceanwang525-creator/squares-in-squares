@@ -1,0 +1,47 @@
+{
+  "run_id": "d66763ac-5468-4271-a901-f848776d1e9b",
+  "directory": "E:\\squares-recovery-nov12\\audit-pandas31-postmerge\\fresh-proof-d66763ac-5468-4271-a901-f848776d1e9b",
+  "final_sha256": "f31f3d374c93ba75a11b6823a6df58e51103db4d138fae3b596e67a1dec0b3e5",
+  "bindings": {
+    "literal-cpp.json": {
+      "input_sha256": "f31f3d374c93ba75a11b6823a6df58e51103db4d138fae3b596e67a1dec0b3e5",
+      "report_sha256": "b19e799d13350d63379ecb9a1f74977d5389297f27fb08e2dd6e70a4f94e9bcc",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    },
+    "roundtrip-cpp.json": {
+      "input_sha256": "f31f3d374c93ba75a11b6823a6df58e51103db4d138fae3b596e67a1dec0b3e5",
+      "report_sha256": "628e1663b910a26229f35c41029351760bcf010c4dc021b70a83549d4911cadb",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    },
+    "pandas-cpp.json": {
+      "input_sha256": "05783417316ade87b61bc46ad6c0d3bb80714179d480d13cd12cd21cd9df5d82",
+      "report_sha256": "5d4c1845b455074b2279c4d59884b9dd2fce8a7ef21e23ae2bed047f023f2e0c",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    }
+  },
+  "source_manifest": {
+    "E:\\squares-recovery-nov12\\repo\\poc\\pell_corrugation\\data\\border-scan\\merged.csv": "762b81eda9d373ca7756157c12d1a01c1e4e1cbc2daeea911ae6e22e93aa3def",
+    "E:\\squares-recovery-nov12\\sources\\wormhole2.csv": "24cacb188a9077fa1cc6120e58edfa6b33d2eea549015bc1ee6d6d67b6f0a0ac",
+    "E:\\squares-recovery-nov12\\repo\\poc\\dual-pocket\\data\\submission.csv": "3573f5bc116674ba899a6c7854f337fc3a2dd9f5f4b467c0923cdd00e19a7f86",
+    "E:\\squares-recovery-nov12\\repo\\poc\\contact_slp_submission189\\data\\submission.csv": "5a72fd6eadbd3a536c8647274e8503236e2b2bf7261aebd9438de4fa085c274b",
+    "E:\\squares-recovery-nov12\\repo\\poc\\public_refresh_nov12\\data\\submission.csv": "3f17827331ab4e2c0b7694eedad54533ac6557830153281137c6c90784f39726",
+    "E:\\squares-recovery-nov12\\sources\\jonathan1506\\submission.csv": "0ff3577f6344122c0ed7ff6dbb60535b08a6ad020b2544b949687ccf97fc2511",
+    "E:\\squares-recovery-nov12\\sources\\jazivxt\\submission.csv": "87b72154e50297d010a63c978bb12aad7749e483c015c0974b892718df51c256",
+    "E:\\squares-recovery-nov12\\sources\\grennwolf\\submission_improved.csv": "23d16a18b7a0273f4b4d94d01c39341af82a219536eed282a8c06009759a52eb",
+    "E:\\squares-recovery-nov12\\sources\\prvsiyan\\embedded_baseline.csv": "3fb67329a4d2683eca9e8dbed1f72f3fdab8ea0720182bcfe4899f025f8b0040",
+    "E:\\squares-recovery-nov12\\sources\\prvsiyan\\submission.csv": "ad91e559d008ee27dbe7b62423fca7e81a4816cb948b09d54eea5049893d9bd8",
+    "E:\\squares-recovery-nov12\\post-merge-main\\poc\\pell_corrugation\\data\\border-scan\\merged.csv": "f18356d4f428ea90791ae6a1f26b0ef4c2e864a6ea3c9d04008eec664dd7ee03"
+  },
+  "official_sha256": "760b7a8fca1cba90579b8fcab6318bec0e1a438dfc31fa424673676e0bb559eb",
+  "score_literal": 22.175937592741963,
+  "score_pandas": 22.175937592741963,
+  "all_1000_zero_rejects": true,
+  "witness269_provenance": {
+    "source": "E:\\squares-in-squares\\poc\\pell_corrugation\\data\\border-scan\\merged.csv",
+    "source_sha256": "7de2a8432ca6380678127734fb611cc5c4f090e151d9e804475b2c7ffb4eef05",
+    "n": 269,
+    "rows": 269,
+    "extracted_sha256": "e776623341e25f0d9b67a10b033f3fd3ca60839328e2e2e7108b9f2abf9f3122",
+    "attribution": "jlevy/squares ozden-s269-issue962 n-269-candidate decimal, via local external_bank_expansion; no dilation"
+  }
+}

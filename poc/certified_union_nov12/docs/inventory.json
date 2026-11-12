@@ -1,0 +1,408 @@
+[
+  {
+    "path": "E:\\squares-recovery-nov12\\repo\\poc\\pell_corrugation\\data\\border-scan\\merged.csv",
+    "bytes": 26196914,
+    "sha256": "762b81eda9d373ca7756157c12d1a01c1e4e1cbc2daeea911ae6e22e93aa3def",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s00",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.199067547604674,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.199067547604674,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.199067547604674,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\wormhole2.csv",
+    "bytes": 30703245,
+    "sha256": "24cacb188a9077fa1cc6120e58edfa6b33d2eea549015bc1ee6d6d67b6f0a0ac",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s01",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.18945443223398,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.18945443223398,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.18945443223398,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\repo\\poc\\dual-pocket\\data\\submission.csv",
+    "bytes": 26075958,
+    "sha256": "3573f5bc116674ba899a6c7854f337fc3a2dd9f5f4b467c0923cdd00e19a7f86",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s02",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.189419230392726,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.189419230392726,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.189419230392726,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\repo\\poc\\contact_slp_submission189\\data\\submission.csv",
+    "bytes": 30701730,
+    "sha256": "5a72fd6eadbd3a536c8647274e8503236e2b2bf7261aebd9438de4fa085c274b",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s03",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.18945401270598,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.18945401270598,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.18945401270598,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\repo\\poc\\public_refresh_nov12\\data\\submission.csv",
+    "bytes": 27797370,
+    "sha256": "3f17827331ab4e2c0b7694eedad54533ac6557830153281137c6c90784f39726",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s04",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.176602112206346,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.176602112206346,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.176602112206346,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\jonathan1506\\submission.csv",
+    "bytes": 24396297,
+    "sha256": "0ff3577f6344122c0ed7ff6dbb60535b08a6ad020b2544b949687ccf97fc2511",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s05",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.179268666686635,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.179268666686635,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.179268666686635,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\jazivxt\\submission.csv",
+    "bytes": 40830283,
+    "sha256": "87b72154e50297d010a63c978bb12aad7749e483c015c0974b892718df51c256",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s06",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.28445175892143,
+        "accepted": 999,
+        "missing": 0,
+        "rejected": 1
+      },
+      {
+        "score": 22.28445175892143,
+        "accepted": 999,
+        "missing": 0,
+        "rejected": 1
+      },
+      {
+        "score": 22.28445175892143,
+        "accepted": 999,
+        "missing": 0,
+        "rejected": 1
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\grennwolf\\submission_improved.csv",
+    "bytes": 32446722,
+    "sha256": "23d16a18b7a0273f4b4d94d01c39341af82a219536eed282a8c06009759a52eb",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s07",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.19253005359591,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.19253005359591,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.19253005359591,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\prvsiyan\\embedded_baseline.csv",
+    "bytes": 428199,
+    "sha256": "3fb67329a4d2683eca9e8dbed1f72f3fdab8ea0720182bcfe4899f025f8b0040",
+    "fields": [
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s08",
+    "groups": 8,
+    "rows": 6348,
+    "cpp": [
+      {
+        "score": 28.892759396775656,
+        "accepted": 8,
+        "missing": 992,
+        "rejected": 0
+      },
+      {
+        "score": 28.892759396775656,
+        "accepted": 8,
+        "missing": 992,
+        "rejected": 0
+      },
+      {
+        "score": 28.892759396775656,
+        "accepted": 8,
+        "missing": 992,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\sources\\prvsiyan\\submission.csv",
+    "bytes": 25427246,
+    "sha256": "ad91e559d008ee27dbe7b62423fca7e81a4816cb948b09d54eea5049893d9bd8",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s09",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.17886926504061,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.17886926504061,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.17886926504061,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  },
+  {
+    "path": "E:\\squares-recovery-nov12\\post-merge-main\\poc\\pell_corrugation\\data\\border-scan\\merged.csv",
+    "bytes": 26486560,
+    "sha256": "f18356d4f428ea90791ae6a1f26b0ef4c2e864a6ea3c9d04008eec664dd7ee03",
+    "fields": [
+      "id",
+      "n",
+      "square_id",
+      "x",
+      "y",
+      "angle"
+    ],
+    "status": "screened",
+    "label": "s10",
+    "groups": 1000,
+    "rows": 500500,
+    "cpp": [
+      {
+        "score": 22.176595992998074,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.176595992998074,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      },
+      {
+        "score": 22.176595992998074,
+        "accepted": 1000,
+        "missing": 0,
+        "rejected": 0
+      }
+    ]
+  }
+]
