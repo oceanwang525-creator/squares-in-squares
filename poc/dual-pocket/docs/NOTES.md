@@ -132,6 +132,16 @@ n=638: 25.762714542621 -> 25.762130073140
 n=595: 24.861695596669 -> 24.861685595857
 ```
 
+Support SLP on the final scanned band adds five strict improvements:
+
+```text
+n=756: 27.924555515059 -> 27.923196185770
+n=814: 28.944816016365 -> 28.944431429696
+n=689: 26.745625039011 -> 26.745616355280
+n=505: 22.931815798037 -> 22.930439923010
+n=535: 23.636251174025 -> 23.635045764175
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -162,8 +172,8 @@ donor corpus or claim that all strict-win rows are new constructions. It
 contributes the complete certified union, the reproducible comparison gate,
 and the dual-pocket search findings.
 
-The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
-regressions total `4.4585e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104575919354`.
+The strict Decimal comparison finds 156 wins and 45 tiny regressions. The
+regressions total `4.290528192955028e-10` score over all 1,000 puzzles; the
+official net improvement remains `0.010458443518715`.
 
 No Kaggle submission is performed.
