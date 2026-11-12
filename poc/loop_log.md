@@ -47,9 +47,47 @@ While that import was being certified, the team merge `e6f7b69` landed at
   `poc/fresh_public_sources_nov12/docs/results.md`.
 - The tracked `merged.csv` was overwritten only after both full checks passed.
 
-## Loop 2 - pending
+## Loop 2 - post-resweep public refresh and secondary outputs
 
-The public import plus team union raises the bar to 22.178843629. The next loops
-should use the new packings as seeds and try construction/search ideas that are
-not already logged as failed under `poc/`. Every comparison must be against the
-new tracked `merged.csv` (or a later team merge after re-pulling).
+**Context.** The team resweep `e6f7b69` committed at 2026-11-12 05:05 UTC and
+scanned 149 kernels. Several kernels were created or updated after that
+snapshot, and the Loop 1 fetch only scanned `submission.csv` of nine kernels.
+Idea: scan the secondary CSVs already downloaded (anchor files,
+`submission_merged.csv`, `submission_ours.csv`) and refresh every kernel whose
+`lastRunTime` is newer than the resweep or that is missing from its 149-kernel
+log, then merge any certified per-n win against the 22.178843629 union.
+
+### Attempt 2a - secondary CSVs from the Loop 1 downloads
+
+Scanned all 34 full submission-shaped CSVs under `/tmp/opencode/kout`
+(including 24 `lucifer19` anchors, `submission_merged.csv`, and
+`submission_ours.csv`; `embedded_baseline.csv` has a different header).
+Floating prefilter against the union found **0** candidate n. Negative; the
+final submissions already dominate their own anchors and variants at every n.
+
+### Attempt 2b - refresh kernels newer than the resweep
+
+**Idea.** Fetch current outputs of the seven kernels missing from the
+resweep log (`alexchilton/squares-101-...`, `busyaprime/...`,
+`jonathan1506/...`, `keshigami/...`, `mzishran/...`, `penguin069/...`,
+`denniscanter/...`) plus kernels updated after the resweep snapshot
+(`kmmmvs/...` at 05:45 UTC, `prvsiyan/...` at 05:04, `malyshevdanil/...` at
+04:52, `alexchilton/fault-line-...` at 04:55,
+`saamhm/lb-22-257046-...` at 05:40), then certify strict per-n candidates.
+
+**Why it might work.** Public kernels are still converging; the resweep commit
+was only minutes before the latest `prvsiyan` update and the Loop 1 snapshot
+missed several kernels entirely. Per-n merging is independent of overall LB.
+
+**Measured result.** Two strict per-`n` wins were found, both in the refreshed
+`malyshevdanil/squares-in-squares-living-atlas-of-tight-packings` submission:
+`n=487` (`delta L = 2.7859200741e-9`) and `n=733`
+(`delta L = 2.7509094e-9`). All other refreshed kernels and all 34 secondary
+CSVs from Loop 1 gave zero candidates.
+
+- Literal score: **22.178843628823806**, 1000/1000 accepted.
+- Pandas transport score: **22.178843628823806**, 1000/1000 accepted.
+- Certified reduction: **2.2784924593596167e-10**.
+- SHA256: `aa4fa2ae4fb4ee27f5230d3349eee839536b2efb0351c41d0f54e1c13cb75353`.
+- POC: `poc/post_resweep_refresh`; report in
+  `poc/post_resweep_refresh/docs/results.md`.

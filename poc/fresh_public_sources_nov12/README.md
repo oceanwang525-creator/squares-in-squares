@@ -56,3 +56,9 @@ squares validate /tmp/merged_nov12.csv --require-complete
 
 The fetch step uses only anonymous Kaggle endpoints and downloads data; it
 never submits anything. Public authors retain credit for their packings.
+
+## Later update
+
+The Loop 2 post-resweep refresh (`poc/post_resweep_refresh`) replaced `n=487`
+and `n=733` and moved the tracked score to **22.178843628823806**. See that
+POC for the current measured result.
