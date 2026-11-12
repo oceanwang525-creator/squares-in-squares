@@ -5,7 +5,7 @@ coordinates. It strictly improves 156 `L` values over
 `poc/pell_corrugation/data/border-scan/merged.csv`. It also has 45 microscopic
 regressions totalling `4.290528192955028e-10` score, so the net official
 improvement is
-`0.0104584435187` (`22.199718022946` -> `22.189259579427`).
+`0.0104609539970` (`22.199718022946` -> `22.189257068949`).
 
 The largest gains are:
 
@@ -50,6 +50,9 @@ The third band tightens ten more, led by a further `n=638` improvement.
 The final support-SLP band tightens another five puzzles, led by `n=756`
 (`27.924555515059` -> `27.923196185770`), and brings the portfolio to the
 current certified score.
+Repeated support/corner passes on the improved coordinates then lower the
+whole portfolio from `22.189259579427` to `22.189257068949`, with the largest
+additional gains at `n=738`, `n=814`, and `n=934`.
 
 Run from the repository root after following the shared baseline setup:
 

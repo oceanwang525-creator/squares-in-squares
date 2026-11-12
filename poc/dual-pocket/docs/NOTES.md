@@ -142,6 +142,21 @@ n=505: 22.931815798037 -> 22.930439923010
 n=535: 23.636251174025 -> 23.635045764175
 ```
 
+Repeated support/corner SLP passes on the updated coordinates converge further.
+The main second-pass gains are:
+
+```text
+n=738: 27.679207998933 -> 27.679149374254
+n=814: 28.944431429975 -> 28.944429709280
+n=934: 30.964144432712 -> 30.964143168755
+n=809: 28.889724118039 -> 28.889722927522
+n=593: 24.827169017686 -> 24.827168277694
+```
+
+After restoring the per-puzzle minimum from the previous certified union, the
+complete file scores `22.189257068949` in both the literal and pandas-roundtrip
+certifications.
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -174,6 +189,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 156 wins and 45 tiny regressions. The
 regressions total `4.290528192955028e-10` score over all 1,000 puzzles; the
-official net improvement remains `0.010458443518715`.
+official net improvement is `0.010460953996976`.
 
 No Kaggle submission is performed.
