@@ -1,0 +1,35 @@
+{
+  "run_id": "5dec1bcc-6906-400b-9f4e-60498a623e32",
+  "directory": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\audit\\fresh-proof-5dec1bcc-6906-400b-9f4e-60498a623e32",
+  "final_sha256": "d99e1f6f217855a6d2e140c7711519153b1d1dc7be0efe8799f472d714309f82",
+  "bindings": {
+    "literal-cpp.json": {
+      "input_sha256": "d99e1f6f217855a6d2e140c7711519153b1d1dc7be0efe8799f472d714309f82",
+      "report_sha256": "8ffdbf9e67a0e8b31ab6b739c8b4180befcd037a5a260c6f003e3a2e0d1e56d9",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    },
+    "roundtrip-cpp.json": {
+      "input_sha256": "d99e1f6f217855a6d2e140c7711519153b1d1dc7be0efe8799f472d714309f82",
+      "report_sha256": "a4aea40890e5baa9d054d584a6ec6d01ff164d469f219f94614b07c702651575",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    },
+    "pandas-cpp.json": {
+      "input_sha256": "82606294377a57ac07f60e348e8cde28bcee6e7b8c09d73e0d375523a3ea94ee",
+      "report_sha256": "b4c544f3e2c5ab442a500afebdbf4a99f7bf1dbc460f223542ad49308ee20d75",
+      "certifier_sha256": "9575709f5a793104e1ad150fdab3fecf02c023f9677fb73d0fd6e9fef9e86481"
+    }
+  },
+  "source_manifest": {
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0000.csv": "76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0001.csv": "f44e71ea58e0fc627509ac1d815d54ffebf00600682f2bd49e07383fffb05979",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0002.csv": "7fba68641c4a14e8b87fd22c3872940ce0daf19175fe6e8b8d3f5700cda719a0",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0004.csv": "637666de97edee9aee6cf653c20c2c13a9a4b0c520ea0f6c30ff48a28ce9ae72",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0007.csv": "7878f8a28f01689cb9be660a1adca871d39c68f67b601c5717676d5a5a252619",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0009.csv": "3fb67329a4d2683eca9e8dbed1f72f3fdab8ea0720182bcfe4899f025f8b0040",
+    "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0011.csv": "c39d4f673dd773293a32e1cb30775481ee87cacb6b2663e4b40635c25b177139"
+  },
+  "official_sha256": "760b7a8fca1cba90579b8fcab6318bec0e1a438dfc31fa424673676e0bb559eb",
+  "score_literal": 22.173824282918808,
+  "score_pandas": 22.173824282918808,
+  "all_1000_zero_rejects": true
+}
