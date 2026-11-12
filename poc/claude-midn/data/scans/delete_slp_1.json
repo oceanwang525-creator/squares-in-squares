@@ -1,0 +1,30 @@
+[
+ {
+  "n": 495,
+  "k": 1,
+  "target": 22.76208656176055,
+  "donor": 22.764758412951984,
+  "status": "no-priced-deletion"
+ },
+ {
+  "n": 510,
+  "k": 1,
+  "target": 22.997221435569195,
+  "donor": 23.0,
+  "status": "no-priced-deletion"
+ },
+ {
+  "n": 308,
+  "k": 1,
+  "target": 17.997149121270958,
+  "donor": 18.0,
+  "status": "no-priced-deletion"
+ },
+ {
+  "n": 295,
+  "k": 1,
+  "target": 17.70423279073607,
+  "donor": 17.707106781186564,
+  "status": "no-priced-deletion"
+ }
+]
