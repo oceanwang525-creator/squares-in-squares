@@ -742,3 +742,43 @@ arm's `7.057 > 7.0` density is a finite-end effect from the corner-block
 interlocks, not a periodic band pattern. A periodic cell is strictly less
 capable than the finite arm. This also explains why fixed-wall arm compression
 jams: the extra squares live at the ends. POC: `poc/strip_cell`.
+
+## Loop 27 - npz research-bundle mining
+
+**Idea.** `scan_new.py` only reads `.npz` files with keys `xy`/`th`. The
+`lightningv08/squares-in-squares-layout-atlas` bundle stores thousands of
+`(n,3)` arrays as top-level keys (`304:(304,3)`, `4_4_1:(17,3)`, ...), and the
+`kmmmvs` private bundle has 460 JSONs and 40 TXTs that may also carry raw
+coordinates. Evaluate every `(m,3)` array as an `m`-square packing (x,y,angle)
+and certify any float-side prefilter winner with the official metric.
+
+**Result (negative).** All 9,194 `(m,3)` arrays in the atlas `.npz` bundles were
+evaluated as `m`-square packings at 32 processes (17 files, 4.9 s): **0 wins**.
+The arrays are seeds, gadgets and intermediate candidates; none beats the
+tracked per-n rows. The private bundle's 460 JSONs are manifests/provenance and
+its 40 TXTs are licenses, with no coordinates. POC: this loop entry; scanner
+`/tmp/opencode/npz_scan.py` (not committed, scan-only).
+
+## Loop 28 - public frontier engine + from-scratch block seeds (negative)
+
+**Idea.** Run the public `sis_engine.py`/`sis_search.py` shrink-and-repair
+optimizer (numba) on our better starting rows for the 17 largest-gap `n`
+(2 seeds each, 90 s). In parallel, build from-scratch block-split seeds:
+`a x a` and `g x g` upright blocks, arm grids `floor(W) x floor(H)`, plus the
+~3-5 missing squares tilted at the arm ends; relax all squares at the private
+frontier side with fixed walls. Splits `(8,23),(7,24),(9,23),(10,22)` for
+n=910/911 and `(8,24),(7,25),(9,24),(10,23)` for n=971/972, four placements
+each.
+
+**Measured (negative).**
+- Public engine on 34 `(n, seed)` tasks: **0 wins**, 3m19s at 32 processes.
+- From-scratch block seeds, 64 tasks: **0 feasible relaxations**; every task
+  ends with a positive SAT penetration or wall violation. 3m18s.
+- The `numba` dependency was installed locally to run the engine; no repo
+  dependency was added.
+
+Combined with Loops 10-26, the tracked portfolio is a local optimum under
+fixed-angle LP, corrected Lipschitz SLP, contact-topology search, cavity
+insertion, periodic strip cells, public-engine basin hopping and from-scratch
+block-split seeds. The remaining 0.013824 is the private all-team frontier
+(22.050884), whose coordinates are not in any public artifact.
