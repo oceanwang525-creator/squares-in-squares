@@ -1,5 +1,20 @@
 # Public refresh, Nov 12
 
+## Round 2 (on top of the team merged.csv at 22.173824282607068, upstream 79ef22e)
+
+**38 n improved, fast-check score 22.173820984 (−3.3e-6).** `data/submission.csv` is now the round-2 full CSV (round-1 reports moved to `data/round1/`).
+
+| Source | n | Score gain |
+|---|---:|---:|
+| Uniform shrink (`poc/shrink_pass.py`): packings whose every neighbouring pair has a positive SAT gap (1e-12 … 1e-9) are scaled toward their centre by half the safe amount | 36 | about 3e-7 |
+| Kaggle notebooks re-run since the last team refresh: jazivxt/boxed-in-sub (n = 370), nilanjansaha123/squares-gpu-seam-dp-soft-rigid-highs (n = 598) | 2 | about 3e-6 |
+
+Every n was certified individually: official per-puzzle evaluator on the literal strings and after a pandas 3.1.0 round trip, both strictly below merged.csv. Per-n list with L values: [docs/round2_wins.md](docs/round2_wins.md). **The whole-file official runs (literal and pandas) are in progress and will be committed as `data/official-literal.json` / `data/official-pandas.json`; until then, treat round 2 as per-n certified only.**
+
+945 of 999 non-trivial n have a touching pair (gap < 1e-13), so uniform shrink cannot help them.
+
+## Round 1
+
 Per-n refresh of `border-scan/merged.csv` from public sources posted after the Nov 10 import, plus two team CSVs, plus a certified tiny-win pass (deletion and grid-border wraps). Every win is strictly smaller than merged.csv and passes the unchanged official metric.
 
 **Result: 231 n improved, score 22.199718022945788 → 22.176602111957 (−0.023115911).**
