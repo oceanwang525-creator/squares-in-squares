@@ -81,6 +81,15 @@ n=651: 25.948909294217 -> 25.948909259722
 The result was merged per puzzle with the latest parallel portfolio, preserving
 its concurrent `n=687` improvement.
 
+The following corner-SLP band adds:
+
+```text
+n=497: 22.785578776370 -> 22.785578771363
+n=696: 26.847855736494 -> 26.847855696639
+n=816: 28.978163188659 -> 28.978163145807
+n=925: 30.862335749762 -> 30.862335634477
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -113,6 +122,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 154 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0104003378114`.
+improvement remains `0.0104003448374`.
 
 No Kaggle submission is performed.
