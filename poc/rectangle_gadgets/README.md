@@ -2,26 +2,35 @@
 
 ## Idea
 
-The public fault-line DP builds most large-n packings by placing *gadgets* along an anti-diagonal staircase. A gadget (a, b, g, f) is an (a+f) × (b+f) box holding a·b + g unit squares. Its library is extracted from existing square packings. Rectangles optimised as standalone problems have never been searched, and a thin, cheap gadget could let more gain fit into one K + f box. Example: two (4, 10, 2) gadgets at f ≈ 0.6 would give n = 18² + 4 at 18.6, which is the Cats-and-boxes template at n = 328 / 365 (L − K = 0.59954; ours 0.614).
+The public fault-line DP builds most large-n packings by placing *gadgets* along an anti-diagonal staircase. A gadget (w, h, g, f) is a (w+f) × (h+f) pocket holding w·h + g unit squares. If our portfolio is not closed under composition of its own sub-gadgets, every missing combination is a free certified win; and if it is closed, a value map says which new gadgets would pay.
 
-## Composition rule (derived and checked)
+## Composition rule (derived, checked against the data)
 
-In a K + f box, the region above-left of the staircase is anchored to the top-left corner and the region below-right to the bottom-right corner. The seam between them is f wide, and each gadget straddles it from its bottom-left to its top-right corner. Counting seam turns gives n = K² + Σ g_i, provided
+In a K + f box the region below-left of the seam uses the grid anchored at the bottom-left corner and the region above-right uses the grid anchored at the top-right corner. Each pocket has its lower-left corner on the first grid and its upper-right corner on the second. Two consecutive pockets must be separated by one extra column **or** one extra row (not both), so m gadgets fit iff
 
-    Σ (a_i + 1) ≤ K + 1   and   Σ (b_i + 1) ≤ K + 1,
+    Σ w ≤ K,   Σ h ≤ K,   Σ (w + h + 1) ≤ 2K + 1,
 
-so every extra gadget costs one extra row and column. Checks: three 8×8 diamonds (gain 1, f = 0.53553) need 27 ≤ K + 1, i.e. K = 26, which matches the public notebook's n = 679. Two 5-square gadgets (2×2, f = 0.70711) would need K = 5, not 4, which is consistent with the known record s(18) = 4.8216.
+and then n = K² + Σ g. Checks against tracked rows: three 8×8 diamonds (g = 1, f = 0.53553) need K ≥ 25, and n = 628 = 25² + 3 is at 25.535534 with 75 tilted squares; n = 908 is two (13, 16, +4) pockets with Σw = Σh = 29 at K = 30; two (2, 2, +1) pockets need K = 5 (n = 27 at 5.7071), not K = 4, consistent with s(18) = 4.8216.
+
+**Correction:** the first version of this README stated the rule as Σ(w+1) ≤ K+1 and Σ(h+1) ≤ K+1. That is too strict (it would forbid n = 628). `poc/gaddp.py` uses the correct rule; `poc/gadget_dp.py` and `poc/gadget_value.py` still use the strict one.
 
 ## Measured
 
-1. **Our portfolio is closed under square-gadget composition.** `poc/gadget_dp.py` treats every current n₀ = k₀² + j₀ (L − k₀ < 1) as a gadget (555 gadgets) and runs the 2D knapsack for every K ≤ 31. It reproduces our table exactly: 555 / 555 predicted cells equal, 0 better. Composition of existing packings has nothing left to give.
-2. **Value map for new gadgets** (`poc/gadget_value.py`, `docs/value_map.md`). For each (a, b, g), the largest f at which adding that one gadget improves any n, against the hard lower bound f(b, b, g). Padding b − a columns turns an (a, b, g) gadget into a (b, b, g) one, so f(a, b, g) ≥ f(b, b, g). 176 realistic shapes (a ≥ 4) would pay if they reach f between the bound and the threshold, for example (4, 13, 3) at f ≤ 0.692, (4, 17, 2) at f ≤ 0.591, and (4, 10, 2) at f ≤ 0.650 (n = 229, 260, 293, 328, 365, 489).
-3. **Search validation** (`poc/rgad.py`, random compress-and-relax in rectangular boxes, `docs/search_validation.md`). It reaches the records for n = 5, 7, 10 and 13 (f = 0.70711) but not for n = 17 (0.769 vs 0.6755) or n = 26 (no fit). From random starts it is too weak for the 40–80-square gadgets the value map asks for.
+1. **Sub-gadget library** (`poc/gadlib.py`, `docs/gadget_types.txt`). For every tracked packing, the minimal clean-cut rectangle around each tilted cluster (and each pair of clusters): 892 gadgets, of which 337 are proper sub-rectangles of 95 distinct (w, h, g) types. Examples: (13, 16, +4) at f = 0.634071, (9, 15, +3) at 0.608713, (6, 10, +2) at 0.623065, (8, 11, +2) at 0.591378, (4, 5, +1) at 0.621320.
+2. **Closure** (`poc/gaddp.py`). The corrected DP over all 892 gadgets and both orientations, K ≤ 31: **strictly better than the tracked table at 0 n.** Each cell is also its own gadget, so the DP can never be worse than the table; the informative result is that no combination of existing gadgets beats any tracked row. Composition of what we have is exhausted.
+3. **Value map for new gadgets** (`poc/gadget_value.py`, `docs/value_map.md`). For each hypothetical (a, b, g), the largest f at which that one gadget would improve some n. It was computed with the strict rule, so it understates: any shape listed there pays under the correct rule too, and more shapes may. 176 realistic shapes (a ≥ 4) are listed, for example (4, 13, +3) at f ≤ 0.692 and (4, 10, +2) at f ≤ 0.650.
+4. **Search validation** (`poc/rgad.py`, `docs/search_validation.md`). Random compress-and-relax in rectangular boxes reaches the records for n = 5, 7, 10, 13 (f = 0.70711) but not n = 17 (0.769 vs 0.6755) or n = 26. It is too weak for the 60–210-square gadgets that matter.
+
+## Other findings from the same data
+
+- The tracked rows use tilted blocks near 24–27° (slope ≈ 1/2), 18–19° (≈ 1/3), 33–35° and 41°, not only 45° (`poc/gad_extract.py` prints them). n = 908's pocket holds a 101-square block at 24.5°.
+- Corrugation is not the missing mechanism: the corrugated Pell core at n = 739 (columns at ±0.173°) is only 2e-6 below the rigid band, and the better n = 738 row is a 24.8° block structure, not a 45° band.
+- At K = 31 the frontier's wasted area L² − n is about 30 for every j = 1…12 (ours: 30.5–32.3). The frontier saves 1–2 unit squares of waste per packing; in gadget terms it has lower f for the same (w, h, g).
 
 ## Why it is negative for now
 
-All valuable shapes are thin strips (width a + f with a = 4–7) that must gain 2–3 squares. `poc/strip_cell` shows a strip narrower than a + 1 cannot beat a squares per unit length, so all gain must come from the two ends. I found no construction, and the search here cannot reach these sizes. Also, the leaders beat us at j = 1 (n = K² + 1), where no composition happens, so most of their lead is better *large* gadgets, not better composition.
+No new gadget was found. The useful targets are specific: a (13, 16, +4)-type pocket below f = 0.634 or a (9, 15, +3)-type below 0.6087 would lower many rows at once (j = 4, 8 at K ≥ 28; j = 3, 6 at K ≥ 25).
 
 ## Reuse
 
-`gadget_dp.py` predicts the whole table from any gadget library in seconds. If anyone finds a new gadget (from any optimiser), add it as (a, b, g, f) and the DP lists every n it improves and by how much.
+`gadlib.py` + `gaddp.py` re-check closure in about 10 seconds after any merge. If anyone finds a better gadget, add it to the library and the DP lists every n it improves.
