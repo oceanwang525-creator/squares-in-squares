@@ -1,0 +1,234 @@
+[
+  {
+    "n": 598,
+    "L_ours": 24.903159935190022,
+    "L_front": 24.9003746219398,
+    "configs_tried": 6670,
+    "best_cap": 594,
+    "deficit": 4,
+    "best_cfg": {
+      "L_probe": 24.90236,
+      "Kx": 19,
+      "Ky": 18,
+      "P1": 5,
+      "P2": 6,
+      "w1": 6,
+      "w2": 7,
+      "th1_deg": 23.452,
+      "th2_deg": 20.671,
+      "mode": "sw_upright",
+      "signs": [
+        1,
+        -1
+      ],
+      "base_cap": 594,
+      "cap": 594
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 4.87
+  },
+  {
+    "n": 401,
+    "L_ours": 20.5355339059328,
+    "L_front": 20.526135333409,
+    "configs_tried": 7656,
+    "best_cap": 394,
+    "deficit": 7,
+    "best_cfg": {
+      "L_probe": 20.533534,
+      "Kx": 15,
+      "Ky": 15,
+      "P1": 5,
+      "P2": 5,
+      "w1": 6,
+      "w2": 6,
+      "th1_deg": 33.998,
+      "th2_deg": 33.998,
+      "mode": "sw_upright",
+      "signs": [
+        -1,
+        -1
+      ],
+      "base_cap": 394,
+      "cap": 394
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 3.29
+  },
+  {
+    "n": 530,
+    "L_ours": 23.535533905932855,
+    "L_front": 23.517304919934,
+    "configs_tried": 10712,
+    "best_cap": 523,
+    "deficit": 7,
+    "best_cfg": {
+      "L_probe": 23.533534,
+      "Kx": 18,
+      "Ky": 18,
+      "P1": 5,
+      "P2": 5,
+      "w1": 6,
+      "w2": 6,
+      "th1_deg": 33.998,
+      "th2_deg": 33.998,
+      "mode": "sw_upright",
+      "signs": [
+        -1,
+        -1
+      ],
+      "base_cap": 523,
+      "cap": 523
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 5.72
+  },
+  {
+    "n": 842,
+    "L_ours": 29.520815280171462,
+    "L_front": 29.5021527079033,
+    "configs_tried": 10712,
+    "best_cap": 835,
+    "deficit": 7,
+    "best_cfg": {
+      "L_probe": 29.518815,
+      "Kx": 24,
+      "Ky": 17,
+      "P1": 5,
+      "P2": 12,
+      "w1": 6,
+      "w2": 13,
+      "th1_deg": 34.329,
+      "th2_deg": 20.628,
+      "mode": "sw_upright",
+      "signs": [
+        -1,
+        -1
+      ],
+      "base_cap": 835,
+      "cap": 835
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 9.1
+  },
+  {
+    "n": 634,
+    "L_ours": 25.707106781186678,
+    "L_front": 25.6823088919573,
+    "configs_tried": 12432,
+    "best_cap": 631,
+    "deficit": 3,
+    "best_cfg": {
+      "L_probe": 25.705107,
+      "Kx": 19,
+      "Ky": 19,
+      "P1": 6,
+      "P2": 6,
+      "w1": 7,
+      "w2": 7,
+      "th1_deg": 26.645,
+      "th2_deg": 26.645,
+      "mode": "sw_upright",
+      "signs": [
+        1,
+        1
+      ],
+      "base_cap": 631,
+      "cap": 631
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 7.59
+  },
+  {
+    "n": 908,
+    "L_ours": 30.634070751579078,
+    "L_front": 30.6058845085697,
+    "configs_tried": 12432,
+    "best_cap": 904,
+    "deficit": 4,
+    "best_cfg": {
+      "L_probe": 30.632071,
+      "Kx": 20,
+      "Ky": 20,
+      "P1": 10,
+      "P2": 10,
+      "w1": 11,
+      "w2": 11,
+      "th1_deg": 20.918,
+      "th2_deg": 20.918,
+      "mode": "sw_upright",
+      "signs": [
+        1,
+        1
+      ],
+      "base_cap": 904,
+      "cap": 904
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 11.16
+  },
+  {
+    "n": 911,
+    "L_ours": 30.69562217094861,
+    "L_front": 30.6609125615235,
+    "configs_tried": 12432,
+    "best_cap": 907,
+    "deficit": 4,
+    "best_cfg": {
+      "L_probe": 30.693622,
+      "Kx": 20,
+      "Ky": 21,
+      "P1": 10,
+      "P2": 9,
+      "w1": 11,
+      "w2": 10,
+      "th1_deg": 19.693,
+      "th2_deg": 21.012,
+      "mode": "sw_upright",
+      "signs": [
+        -1,
+        1
+      ],
+      "base_cap": 907,
+      "cap": 907
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 12.42
+  },
+  {
+    "n": 971,
+    "L_ours": 31.66431832520518,
+    "L_front": 31.6367893146482,
+    "configs_tried": 12432,
+    "best_cap": 967,
+    "deficit": 4,
+    "best_cfg": {
+      "L_probe": 31.662318,
+      "Kx": 21,
+      "Ky": 21,
+      "P1": 10,
+      "P2": 10,
+      "w1": 11,
+      "w2": 11,
+      "th1_deg": 20.328,
+      "th2_deg": 20.328,
+      "mode": "sw_upright",
+      "signs": [
+        -1,
+        -1
+      ],
+      "base_cap": 967,
+      "cap": 967
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 12.43
+  }
+]
