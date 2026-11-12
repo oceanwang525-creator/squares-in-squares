@@ -720,3 +720,25 @@ frontier is an all-team per-size envelope that includes private packings; its
 coordinates are in none of the public files. POC: `poc/frontier_nov12`.
 
 New frontier gap table saved at `poc/frontier_nov12/docs/per_n_gap.csv`.
+
+## Loop 26 - periodic strip-cell optimization
+
+**Idea.** The corner arms are the only inefficient region of the large-`n`
+packings: an arm holds 167 squares in `7.664 x 23.664` (density 0.921), while a
+plain 7-column upright grid is 0.913. If a free-angle *periodic* strip cell can
+beat the arm by even 0.4% in width, it reproduces the ~0.03 `L` frontier gap.
+Optimize a cell of `m` unit squares in a width-`W` strip with period `P`
+(periodic images at `x +/- P`), free angles, walls at `y=0,W`; bisect the
+minimal feasible `W` at the arm's linear density `m/P = 7.08`.
+
+This is the periodic-cell experiment explicitly left undone by
+`poc/k2p10_curve_geometry`.
+
+**Result (negative).** At the arm density `m/P = 7.057`, 14-square cells with
+`P=1.9838` were infeasible at every `W >= 8.0` across 12 seeds and 45 shrink
+stages. A 2-column period needs `P >= 2.0` because a unit square's horizontal
+extent is at least 1 in every orientation; one column would need `W=14`. So the
+arm's `7.057 > 7.0` density is a finite-end effect from the corner-block
+interlocks, not a periodic band pattern. A periodic cell is strictly less
+capable than the finite arm. This also explains why fixed-wall arm compression
+jams: the extra squares live at the ends. POC: `poc/strip_cell`.
