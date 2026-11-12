@@ -686,3 +686,21 @@ reduction `1.554695213290798756474198831e-12`. 999 groups `no-gain`.
 
 The portfolio is a local optimum under the corrected safe free-angle model as
 well; only the 4.2e-11 side gain at n=740 was available.
+
+## Loop 24 - areebbb frontier-engine refresh (13:42 UTC)
+
+**Idea.** Re-run the harvest watcher. New kernels: `areebbb` frontier engine,
+`nilanjansaha123` GPU seam, `malyshevdanil` living atlas, `evgendvorkin` EDA.
+Scan their current `submission.csv` against the tracked file.
+
+**Measured (win).** New kernels add one strict per-n win:
+
+- n=598 `24.903161412625517... -> 24.903161405040291...` (ΔL `7.585e-9`,
+  gain `3.1018e-10`), source
+  `areebbb/sis-frontier-targeted-certified-packing-engine`.
+- 32-process gate: 1/1 group, 2.1 s; no dilation needed.
+
+- Literal score: **22.173824282607068**, 1000/1000.
+- Pandas transport: **22.17382428260707**, 1000/1000.
+- SHA256: `94b50fe2c1e271f5f42b4890c2a2145871d5682bb2ee8755caf8499b0d825386`.
+- POC: `poc/areebbb_refresh_nov12`.

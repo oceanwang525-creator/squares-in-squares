@@ -1,0 +1,16 @@
+{
+  "previous_score": 22.173824282917252,
+  "score_literal": 22.173824282607068,
+  "score_pandas": 22.17382428260707,
+  "reduction": 3.101829810047406e-10,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [598],
+  "sha256": "94b50fe2c1e271f5f42b4890c2a2145871d5682bb2ee8755caf8499b0d825386",
+  "poc": "poc/areebbb_refresh_nov12",
+  "source": "areebbb/sis-frontier-targeted-certified-packing-engine",
+  "provenance": "docs/wins.json in the POC"
+}
