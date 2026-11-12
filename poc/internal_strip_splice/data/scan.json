@@ -1,0 +1,672 @@
+{
+  "incumbent_sha256": "1f9c0fd3b7a88e5a0f6c44b567ff2ef354872812c6b0ad8e37807bd1a64e965c",
+  "settings": {
+    "min_donor": 100,
+    "max_cut": 4,
+    "near": 5,
+    "graph_cases": 48,
+    "output": "data"
+  },
+  "scans": {
+    "integer": {
+      "cut_width_pairs": 2076,
+      "within_near_count": 562,
+      "capacity_reaches_target": 0,
+      "seconds_so_far": 83.888
+    },
+    "frontier": {
+      "cut_width_pairs": 1335,
+      "within_near_count": 38,
+      "capacity_reaches_target": 0,
+      "seconds_so_far": 145.202
+    }
+  },
+  "graph_configurations": 432,
+  "non_bipartite_configurations": 432,
+  "certification_attempts": 0,
+  "baseline_rejections": {},
+  "best_capacity_by_target": [
+    {
+      "donor": 101,
+      "target": 37,
+      "incumbent_side": 6.598619609244365,
+      "nominal": 6.535533905932768,
+      "safe_capacity": 36,
+      "best_capacity": 36,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        2.646446609406718,
+        -6.889087296526023
+      ]
+    },
+    {
+      "donor": 104,
+      "target": 39,
+      "incumbent_side": 6.810722083068654,
+      "nominal": 6.707106781186557,
+      "safe_capacity": 38,
+      "best_capacity": 38,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -4.353553390593278,
+        -4.353553390593278
+      ]
+    },
+    {
+      "donor": 122,
+      "target": 50,
+      "incumbent_side": 7.571428571428577,
+      "nominal": 7.535533905932748,
+      "safe_capacity": 49,
+      "best_capacity": 49,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -1.621320343559645,
+        -1.621320343559645
+      ]
+    },
+    {
+      "donor": 103,
+      "target": 51,
+      "incumbent_side": 7.690355937288498,
+      "nominal": 7.679232047361316,
+      "safe_capacity": 50,
+      "best_capacity": 50,
+      "width": [
+        3,
+        3
+      ],
+      "start": [
+        -4.339616023680658,
+        1.339616023680654
+      ]
+    },
+    {
+      "donor": 106,
+      "target": 69,
+      "incumbent_side": 8.827194655729745,
+      "nominal": 8.822908044132857,
+      "safe_capacity": 68,
+      "best_capacity": 68,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        -4.411454022066429,
+        -4.411454022066429
+      ]
+    },
+    {
+      "donor": 171,
+      "target": 83,
+      "incumbent_side": 9.63475764863109,
+      "nominal": 9.571428571428584,
+      "safe_capacity": 82,
+      "best_capacity": 82,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -5.785714285714292,
+        1.785714285714287
+      ]
+    },
+    {
+      "donor": 104,
+      "target": 85,
+      "incumbent_side": 9.742640687119303,
+      "nominal": 9.707106781186557,
+      "safe_capacity": 84,
+      "best_capacity": 84,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -4.353553390593278,
+        -4.353553390593278
+      ]
+    },
+    {
+      "donor": 122,
+      "target": 102,
+      "incumbent_side": 10.605828696431589,
+      "nominal": 10.535533905932748,
+      "safe_capacity": 101,
+      "best_capacity": 101,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -4.767766952966374,
+        -4.767766952966374
+      ]
+    },
+    {
+      "donor": 126,
+      "target": 105,
+      "incumbent_side": 10.789303783743003,
+      "nominal": 10.742640687119296,
+      "safe_capacity": 104,
+      "best_capacity": 104,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -4.871320343559648,
+        3.871320343559646
+      ]
+    },
+    {
+      "donor": 151,
+      "target": 106,
+      "incumbent_side": 10.822908044132857,
+      "nominal": 10.822875655532307,
+      "safe_capacity": 105,
+      "best_capacity": 105,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        -5.411437827766154,
+        -5.411437827766154
+      ]
+    },
+    {
+      "donor": 145,
+      "target": 123,
+      "incumbent_side": 11.591378145497709,
+      "nominal": 11.535533905932773,
+      "safe_capacity": 122,
+      "best_capacity": 122,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        1.0000000000000016,
+        1.0000000000000016
+      ]
+    },
+    {
+      "donor": 149,
+      "target": 126,
+      "incumbent_side": 11.742640687119296,
+      "nominal": 11.707106781186559,
+      "safe_capacity": 125,
+      "best_capacity": 125,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -5.353553390593279,
+        -5.353553390593279
+      ]
+    },
+    {
+      "donor": 177,
+      "target": 128,
+      "incumbent_side": 11.825091968213698,
+      "nominal": 11.822979734169461,
+      "safe_capacity": 127,
+      "best_capacity": 127,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        3.911489867084728,
+        3.911489867084728
+      ]
+    },
+    {
+      "donor": 226,
+      "target": 146,
+      "incumbent_side": 12.583782190151872,
+      "nominal": 12.535533905932752,
+      "safe_capacity": 145,
+      "best_capacity": 145,
+      "width": [
+        3,
+        3
+      ],
+      "start": [
+        -6.767766952966376,
+        -6.767766952966376
+      ]
+    },
+    {
+      "donor": 264,
+      "target": 150,
+      "incumbent_side": 12.778174593052034,
+      "nominal": 12.774735132387878,
+      "safe_capacity": 149,
+      "best_capacity": 149,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -7.387367566193939,
+        3.387367566193925
+      ]
+    },
+    {
+      "donor": 226,
+      "target": 171,
+      "incumbent_side": 13.571428571428584,
+      "nominal": 13.535533905932752,
+      "safe_capacity": 170,
+      "best_capacity": 170,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        -6.767766952966376,
+        -6.767766952966376
+      ]
+    },
+    {
+      "donor": 202,
+      "target": 175,
+      "incumbent_side": 13.764050051543213,
+      "nominal": 13.72792206135787,
+      "safe_capacity": 174,
+      "best_capacity": 174,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -6.363961030678935,
+        -6.363961030678935
+      ]
+    },
+    {
+      "donor": 234,
+      "target": 177,
+      "incumbent_side": 13.822979734169461,
+      "nominal": 13.82287565553231,
+      "safe_capacity": 176,
+      "best_capacity": 176,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        4.911437827766152,
+        4.911437827766152
+      ]
+    },
+    {
+      "donor": 267,
+      "target": 178,
+      "incumbent_side": 13.846667192843503,
+      "nominal": 13.838815269948277,
+      "safe_capacity": 177,
+      "best_capacity": 177,
+      "width": [
+        3,
+        3
+      ],
+      "start": [
+        4.419407634974135,
+        4.419407634974135
+      ]
+    },
+    {
+      "donor": 226,
+      "target": 198,
+      "incumbent_side": 14.571428571428585,
+      "nominal": 14.535533905932752,
+      "safe_capacity": 197,
+      "best_capacity": 197,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -6.767766952966376,
+        -6.767766952966376
+      ]
+    },
+    {
+      "donor": 231,
+      "target": 202,
+      "incumbent_side": 14.72792206135787,
+      "nominal": 14.707106781186562,
+      "safe_capacity": 201,
+      "best_capacity": 201,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -6.853553390593281,
+        -6.853553390593281
+      ]
+    },
+    {
+      "donor": 266,
+      "target": 205,
+      "incumbent_side": 14.824451146124108,
+      "nominal": 14.823028750756492,
+      "safe_capacity": 204,
+      "best_capacity": 204,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        5.411514375378243,
+        5.411514375378243
+      ]
+    },
+    {
+      "donor": 263,
+      "target": 232,
+      "incumbent_side": 15.76140964487721,
+      "nominal": 15.733166007899424,
+      "safe_capacity": 231,
+      "best_capacity": 231,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        6.366583003949707,
+        6.366583003949707
+      ]
+    },
+    {
+      "donor": 296,
+      "target": 263,
+      "incumbent_side": 16.733166007899424,
+      "nominal": 16.707106781186564,
+      "safe_capacity": 262,
+      "best_capacity": 262,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        -7.853553390593282,
+        -7.853553390593282
+      ]
+    },
+    {
+      "donor": 302,
+      "target": 268,
+      "incumbent_side": 16.872029849081432,
+      "nominal": 16.870013850404483,
+      "safe_capacity": 267,
+      "best_capacity": 267,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        6.935006925202238,
+        -7.9350069252022415
+      ]
+    },
+    {
+      "donor": 369,
+      "target": 332,
+      "incumbent_side": 18.74041728754386,
+      "nominal": 18.707106781186607,
+      "safe_capacity": 331,
+      "best_capacity": 331,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        1.0000000000000016,
+        17.7071067811866
+      ]
+    },
+    {
+      "donor": 628,
+      "target": 444,
+      "incumbent_side": 21.56493573027233,
+      "nominal": 21.535533905932876,
+      "safe_capacity": 443,
+      "best_capacity": 443,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -10.767766952968143,
+        5.767766952968679
+      ]
+    },
+    {
+      "donor": 628,
+      "target": 487,
+      "incumbent_side": 22.564935730272346,
+      "nominal": 22.535533905932876,
+      "safe_capacity": 486,
+      "best_capacity": 486,
+      "width": [
+        3,
+        3
+      ],
+      "start": [
+        -10.767766952968143,
+        7.767766952968688
+      ]
+    },
+    {
+      "donor": 102,
+      "target": 38,
+      "incumbent_side": 6.707106781186553,
+      "nominal": 6.605828696431589,
+      "safe_capacity": 36,
+      "best_capacity": 36,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        0.302914348215789,
+        -3.302914348215793
+      ]
+    },
+    {
+      "donor": 106,
+      "target": 40,
+      "incumbent_side": 6.828427124746198,
+      "nominal": 6.822908044132857,
+      "safe_capacity": 38,
+      "best_capacity": 38,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        0.4114540220664237,
+        0.4114540220664237
+      ]
+    },
+    {
+      "donor": 107,
+      "target": 41,
+      "incumbent_side": 6.926693094468808,
+      "nominal": 6.8466671928434994,
+      "safe_capacity": 39,
+      "best_capacity": 39,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        0.4233335964217442,
+        0.423333596421745
+      ]
+    },
+    {
+      "donor": 104,
+      "target": 53,
+      "incumbent_side": 7.822875655532302,
+      "nominal": 7.707106781186557,
+      "safe_capacity": 51,
+      "best_capacity": 51,
+      "width": [
+        3,
+        3
+      ],
+      "start": [
+        -4.353553390593278,
+        -4.353553390593278
+      ]
+    },
+    {
+      "donor": 128,
+      "target": 54,
+      "incumbent_side": 7.846667192843496,
+      "nominal": 7.825091968213698,
+      "safe_capacity": 52,
+      "best_capacity": 52,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        0.912545984106844,
+        0.912545984106844
+      ]
+    },
+    {
+      "donor": 145,
+      "target": 66,
+      "incumbent_side": 8.656854249492387,
+      "nominal": 8.535533905932773,
+      "safe_capacity": 64,
+      "best_capacity": 64,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        4.146446609406737,
+        4.146446609406737
+      ]
+    },
+    {
+      "donor": 104,
+      "target": 68,
+      "incumbent_side": 8.798795237218291,
+      "nominal": 8.707106781186557,
+      "safe_capacity": 66,
+      "best_capacity": 66,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        -4.353553390593278,
+        -4.353553390593278
+      ]
+    },
+    {
+      "donor": 152,
+      "target": 70,
+      "incumbent_side": 8.880960371555588,
+      "nominal": 8.830718800976621,
+      "safe_capacity": 68,
+      "best_capacity": 68,
+      "width": [
+        4,
+        4
+      ],
+      "start": [
+        -5.4153594004883105,
+        -5.4153594004883105
+      ]
+    },
+    {
+      "donor": 103,
+      "target": 84,
+      "incumbent_side": 9.697934799014929,
+      "nominal": 9.679232047361316,
+      "safe_capacity": 82,
+      "best_capacity": 82,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        3.339616023680656,
+        3.339616023680656
+      ]
+    },
+    {
+      "donor": 127,
+      "target": 86,
+      "incumbent_side": 9.82053540749675,
+      "nominal": 9.810878787589191,
+      "safe_capacity": 84,
+      "best_capacity": 84,
+      "width": [
+        2,
+        2
+      ],
+      "start": [
+        0.9054393937945902,
+        2.9054393937945924
+      ]
+    },
+    {
+      "donor": 106,
+      "target": 87,
+      "incumbent_side": 9.83881526994827,
+      "nominal": 9.822908044132857,
+      "safe_capacity": 85,
+      "best_capacity": 85,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        3.411454022066427,
+        3.411454022066427
+      ]
+    },
+    {
+      "donor": 107,
+      "target": 88,
+      "incumbent_side": 9.882451030481256,
+      "nominal": 9.8466671928435,
+      "safe_capacity": 86,
+      "best_capacity": 86,
+      "width": [
+        1,
+        1
+      ],
+      "start": [
+        3.423333596421748,
+        3.423333596421748
+      ]
+    }
+  ],
+  "wins": [],
+  "seconds": 175.846
+}
