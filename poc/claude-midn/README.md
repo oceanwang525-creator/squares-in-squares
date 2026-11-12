@@ -179,8 +179,11 @@ Report: `data/scans/delete_screen.jsonl`.
   (`+2.6e-4`; `+1.2e-4` after 400 steps), `410` (`+5.1e-4`), `540` (`+1.4e-3`),
   `509` (`+2.3e-3`), `421` (`+2.7e-3`).
 
-Only `k = 1` and 40 steps were screened. `k >= 2` and deeper runs on the
-closest targets are untested, apart from the 400-step run on `234`.
+Deep runs (300-400 steps, 4 candidates) on the five closest targets changed
+nothing material: `234` `+1.2e-4`, `410` `+5.1e-4`, `540` `+1.4e-3`, `421`
+`+2.3e-3`, `509` `+2.3e-3` (`data/scans/delete_slp_deep.json`). The 40-step
+screen had already converged, so these are jammed states, not slow descents.
+Only `k = 1` was tested; `k >= 2` is open.
 
 ## What the gap looks like
 
