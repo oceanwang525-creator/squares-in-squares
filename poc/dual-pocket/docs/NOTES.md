@@ -23,6 +23,10 @@ n=791: 28.635045763742 -> 28.634070802306
 n=910: 30.679153216406 -> 30.679151422149
 ```
 
+Seven additional self-generated contact-SLP refinements tighten
+`n=593, 814, 873, 915, 921, 925, 934`; all seven are strict wins against the
+coordinated `22.189419` baseline.
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -55,6 +59,6 @@ and the dual-pocket search findings.
 
 The strict Decimal comparison finds 153 wins and 47 tiny regressions. The
 regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0102987925531`.
+improvement remains `0.0102992120124`.
 
 No Kaggle submission is performed.
