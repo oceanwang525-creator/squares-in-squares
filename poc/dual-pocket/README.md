@@ -1,10 +1,10 @@
 # Dual-pocket certified union
 
 This POC contributes a complete 1,000-puzzle packing built from exact local
-coordinates. It strictly improves 152 `L` values over
-`poc/pell_corrugation/data/border-scan/merged.csv`. It also has 48 microscopic
-regressions totalling `4.66e-10` score, so the net official improvement is
-`0.0102640674165` (`22.199718022946` -> `22.189453955529`).
+coordinates. It strictly improves 153 `L` values over
+`poc/pell_corrugation/data/border-scan/merged.csv`. It also has 47 microscopic
+regressions totalling `4.47e-10` score, so the net official improvement is
+`0.0102987925531` (`22.199718022946` -> `22.189419230393`).
 
 The largest gains are:
 
@@ -19,6 +19,10 @@ The largest gains are:
 The full per-`n` list is in [docs/WINS.md](docs/WINS.md). Both literal-decimal
 and actual pandas `read_csv`/`to_csv` official-metric reports are checked in
 under `data/`.
+
+The latest coordinated topology pass also improves `n=791`
+(`28.635045763742` -> `28.634070802306`) and `n=910`
+(`30.679153216406` -> `30.679151422149`).
 
 Run from the repository root after following the shared baseline setup:
 

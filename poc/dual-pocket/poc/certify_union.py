@@ -198,6 +198,7 @@ def main() -> None:
         writer = csv.DictWriter(
             handle,
             fieldnames=("n", "ours_L", "baseline_L", "delta_L", "score_gain"),
+            lineterminator="\n",
         )
         writer.writeheader()
         writer.writerows(wins)

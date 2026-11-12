@@ -16,6 +16,13 @@ That layout has two 136-square tilted pockets with mean canonical angles about
 `64.85` and `25.15` degrees. Its exact coordinates are local decimal strings;
 no rounding or symbolic form is needed at certification time.
 
+Later coordinated topology passes tighten two more high-`n` layouts:
+
+```text
+n=791: 28.635045763742 -> 28.634070802306
+n=910: 30.679153216406 -> 30.679151422149
+```
+
 ## Dual-pocket search
 
 The exploratory search extracted pocket components from the exact coordinates
@@ -46,8 +53,8 @@ donor corpus or claim that all strict-win rows are new constructions. It
 contributes the complete certified union, the reproducible comparison gate,
 and the dual-pocket search findings.
 
-The strict Decimal comparison finds 152 wins and 48 tiny regressions. The
-regressions total `4.6625e-10` score over all 1,000 puzzles; the official net
-improvement remains `0.0102640674165`.
+The strict Decimal comparison finds 153 wins and 47 tiny regressions. The
+regressions total `4.4659e-10` score over all 1,000 puzzles; the official net
+improvement remains `0.0102987925531`.
 
 No Kaggle submission is performed.
