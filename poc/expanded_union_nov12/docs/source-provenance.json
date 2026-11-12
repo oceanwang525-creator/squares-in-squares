@@ -1,0 +1,86 @@
+[
+  {
+    "origin": "fresh-main:71aadbcb5c3784a2c7d857fe1190f4c59056727d",
+    "sha256": "76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318",
+    "bytes": 26875522,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0000.csv"
+  },
+  {
+    "origin": "rank1:jazivxt/boxed-in-sub:submission.csv",
+    "sha256": "f44e71ea58e0fc627509ac1d815d54ffebf00600682f2bd49e07383fffb05979",
+    "bytes": 40801425,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0001.csv"
+  },
+  {
+    "origin": "rank2:alexchilton/squares-101-the-starter-kit-10-700-downloads:submission.csv",
+    "sha256": "7fba68641c4a14e8b87fd22c3872940ce0daf19175fe6e8b8d3f5700cda719a0",
+    "bytes": 25932060,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0002.csv"
+  },
+  {
+    "origin": "rank2:alexchilton/squares-101-the-starter-kit-10-700-downloads:submission_details.csv",
+    "sha256": "0613c9f239ff5a3b3510ed3b7aa0c5a9683f37182b9f058cb416c12d7b201546",
+    "bytes": 57902,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0003.csv"
+  },
+  {
+    "origin": "rank3:alexchilton/fault-line-dp-basin-hopping-lb-22-2620:merged.csv",
+    "sha256": "637666de97edee9aee6cf653c20c2c13a9a4b0c520ea0f6c30ff48a28ce9ae72",
+    "bytes": 26115016,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0004.csv"
+  },
+  {
+    "origin": "rank3:alexchilton/fault-line-dp-basin-hopping-lb-22-2620:merged_sources.csv",
+    "sha256": "a93abaa2bad6f0c6b3ff1517510bc572fd0e19a69d943d2ad59f63b00491c6f0",
+    "bytes": 23877,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0005.csv"
+  },
+  {
+    "origin": "rank3:alexchilton/fault-line-dp-basin-hopping-lb-22-2620:submission_details.csv",
+    "sha256": "448f47c415506bb59bb44d00ddc7a2de314a607f0a63ca73417bd1f68169f0ab",
+    "bytes": 58809,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0006.csv"
+  },
+  {
+    "origin": "rank4:nilanjansaha123/squares-gpu-seam-dp-soft-rigid-highs:submission.csv",
+    "sha256": "7878f8a28f01689cb9be660a1adca871d39c68f67b601c5717676d5a5a252619",
+    "bytes": 30046204,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0007.csv"
+  },
+  {
+    "origin": "rank4:nilanjansaha123/squares-gpu-seam-dp-soft-rigid-highs:submission_sources.csv",
+    "sha256": "ba99cd9cc2785bcb3974b35e77edd5b934fb2fb09a92c5ebf80f92746fe1a094",
+    "bytes": 124586,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0008.csv"
+  },
+  {
+    "origin": "rank5:prvsiyan/a-square-deal-research-to-verified-packings:embedded_baseline.csv",
+    "sha256": "3fb67329a4d2683eca9e8dbed1f72f3fdab8ea0720182bcfe4899f025f8b0040",
+    "bytes": 428199,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0009.csv"
+  },
+  {
+    "origin": "rank5:prvsiyan/a-square-deal-research-to-verified-packings:per_n_source_table.csv",
+    "sha256": "7a9377901befaeac18a3dd13fc3b0f6167af9b439ca49a752049afc56e2160c6",
+    "bytes": 323189,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0010.csv"
+  },
+  {
+    "origin": "rank5:prvsiyan/a-square-deal-research-to-verified-packings:submission.csv",
+    "sha256": "c39d4f673dd773293a32e1cb30775481ee87cacb6b2663e4b40635c25b177139",
+    "bytes": 26038203,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0011.csv"
+  },
+  {
+    "origin": "rank5:prvsiyan/a-square-deal-research-to-verified-packings:submission_details.csv",
+    "sha256": "ae064a3f71c6f9f91c6726c71aa82a5c807c1a731d86939b489c4e8ba81370d9",
+    "bytes": 58809,
+    "path": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0012.csv"
+  },
+  {
+    "origin": "fresh-main:71aadbcb5c3784a2c7d857fe1190f4c59056727d",
+    "sha256": "76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318",
+    "bytes": 26875522,
+    "duplicate_of": "E:\\squares-recovery-nov12\\top5-resume-20261112-050325\\sources\\0000.csv"
+  }
+]

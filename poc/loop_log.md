@@ -463,3 +463,260 @@ The other 34 local witnesses and the frozen baseline gave 0 candidates.
 - SHA256: `42421d82d582a6f05e738d13e830ef328161a39f469d00896f58ee521b29cdb5`.
 - POC: `poc/sigmaborov_contact_polish`; report in
   `poc/sigmaborov_contact_polish/docs/results.md`.
+
+## Loop 15 - fixed-angle LP re-run after later merges
+
+**Idea.** Newly imported rows (kernels, team unions, tiny pass) have never been
+through the unbounded fixed-angle box-side LP. The file changed at more than
+150 `n` since Loop 6, so re-run the same whole-portfolio LP (3 SLP rounds,
+exact literal + pandas gate).
+
+**Measured result (win).** One new strict win:
+
+- n=740 `27.70664651748958335 -> 27.70664651341567700` (ΔL `4.07e-9`, gain
+  `1.4976e-10`), literal and pandas identical.
+
+Status counts: 997 `no-gain`, 1 `certify-fail`, 1 `lp-infeasible`, 1 `WIN`.
+The LP cost about two minutes for all 1000 groups.
+
+- Literal score: **22.17399590592608**, 1000/1000 accepted.
+- Pandas transport score: **22.173995905926084**, 1000/1000 accepted.
+- Certified reduction: **1.4975977578826128e-10**.
+- SHA256: `3950c42c66bfde7bba8b5dd9991d3b5551e1e5f7518ca10ecb0229663a2cf3b0`.
+- POC: `poc/alln_fixed_lp`; reports `docs/rerun-*.json`.
+
+**Operational note.** Re-run this LP after every large merge; it is cheap and
+matches only the newly imported rows.
+
+## Loop 16 - 32-thread parallel execution
+
+**Idea.** Use the full Ryzen 9 9950X (16 cores / 32 threads) for search and
+certification: one process per `n`, BLAS/OpenMP pinned to 1 in every worker,
+largest `n` first with `imap_unordered`, deterministic sorted merge. The final
+whole-file literal and pandas checks stay single-process.
+
+**Measured throughput (before -> after).**
+
+| stage | serial | 32 jobs | speedup |
+|---|---:|---:|---:|
+| fixed-angle LP, 1000 groups | 476 groups/min (125.9 s) | **7112 groups/min (8.4 s)** | 15.0x |
+| free-angle SLP, 1000 groups | ~240 s | **12.7 s** | ~19x |
+| merge/certify gate, 114 candidate `n` | ~5 min | **8.0 s** | ~14x wall, 2m44s user |
+| external bank scan, 34900 files | tens of minutes | **~28 s** | large |
+
+**CPU confirmation.** During a heavier 12-round LP run, `top` reported
+`%Cpu(s): 96.3 us, 1.3 id`, and 35 Python processes summed to **2986%** (≈30 of
+32 hardware threads), with individual workers at 99-100%.
+
+**Correctness.** The parallel merge gate reproduced the incumbent byte-for-byte
+on a 114-candidate test where every candidate was already merged (0 wins), and
+the parallel LP reproduced the serial `n=740` result. Results are merged in
+sorted `n` order, so output is deterministic.
+
+**Memory.** 52 GiB installed, 42 GiB available; 32 workers stayed well under
+10 GiB (each LP worker is ~300 MB peak). No swap was touched.
+
+Tools updated: `poc/alln_fixed_lp/poc/alln_fixed_lp.py`,
+`poc/free_angle_slp/poc/free_angle_slp.py`,
+`poc/external_witness_refresh/poc/merge_witnesses.py`,
+`poc/external_witness_refresh/poc/scan_new.py`. All take `--jobs 32`.
+
+## Loop 17 - deeper fixed-angle LP re-run (12 rounds)
+
+**Idea.** The Loop 16 parallel LP test used 12 SLP rounds instead of the default
+three and found a win that three rounds missed. Re-run at 12 rounds on the
+current file.
+
+**Measured result (win).** One strict win:
+
+- n=595 `24.86192535001240769 -> 24.86192534775471239` (ΔL `2.258e-9`, gain
+  `9.2556e-11`), literal and pandas identical.
+- Status: 999 `no-gain`, 1 `WIN`. Cost: about 15 s at 32 jobs.
+
+- Literal score: **22.173995905833525**, 1000/1000 accepted.
+- Pandas transport score: **22.173995905833525**, 1000/1000 accepted.
+- SHA256: `71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b`.
+- POC: `poc/alln_fixed_lp`; reports `docs/rerun2-*.json`.
+
+**Operational note.** Use 12 rounds (about 15 s at 32 jobs) as the default for
+re-runs; three rounds can stop short of the LP optimum.
+
+## Loop 18 - contact-topology search (seeded tie-breaking)
+
+**Idea.** The fixed-angle LP fixes one separating axis per nearby pair; when two
+axes are nearly tied, the choice is arbitrary. Add a seeded worker per
+`(n, seed)` that picks randomly among axes within a margin of the best, re-runs
+the 12-round SLP, and keeps the best certified result per `n`. This searches
+alternative contact graphs around each incumbent packing, parallelized across
+32 processes.
+
+**Measured result (negative).**
+
+| run | tasks | time at 32 jobs | wins |
+|---|---:|---:|---:|
+| `--seeds 8 --tie-tol 1e-6 --rounds 12` | 8,000 | 271 s | **0** |
+| `--seeds 4 --tie-tol 1e-3 --rounds 12` | 4,000 | 155 s | **0** |
+
+No alternative contact graph produces a certified lower side. Together with
+Loops 6/11/17 (fixed-angle LP at 3/12/20 rounds and free-angle SLP at 6/12
+rounds), the tracked portfolio is a local optimum in centres, angles and
+near-tied contact topologies.
+
+- `merged.csv` unchanged at SHA256
+  `71e6520007115285f6768890b48efaf9f521a87e0c1d7325ddc78cb875f1639b`.
+- POC: `poc/alln_fixed_lp` (`--seeds`, `--tie-tol`).
+
+## Loop 19 - jazivxt refresh (~11:00 UTC)
+
+**Idea.** `jazivxt/boxed-in-sub` re-ran at 10:58 UTC. Its overall score is still
+far above the tracked file, but per-`n` it can beat it. Fetch the current
+submission and merge every strict winner with the 32-process gate.
+
+**Measured result (win).** 17 strict wins, total `1.7162e-4`:
+
+- n=598 `24.906458443 -> 24.903161419` (gain `1.3483e-4`)
+- n=921 `30.821403933 -> 30.821012592` (gain `1.2895e-5`)
+- n=996 `31.955474330 -> 31.955189555` (gain `9.0235e-6`)
+- n=862, 748, 922 (`~5e-6` each), plus 11 wins at `1e-8` scale.
+
+The 17-candidate gate cost 3.8 s at 32 jobs.
+
+- Literal score: **22.173824283226253**, 1000/1000 accepted.
+- Pandas transport score: **22.173824283226253**, 1000/1000 accepted.
+- Certified reduction: **1.7162260727358832e-4**.
+- SHA256: `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
+- POC: `poc/jazivxt_refresh_nov12`; report in `docs/results.md`.
+
+## Loop 20 - post-jazivxt re-runs (negative)
+
+After the 17 jazivxt rows landed, all local searches were re-run on the new
+file with 32 processes:
+
+| search | settings | time | wins |
+|---|---|---:|---:|
+| fixed-angle LP | 12 SLP rounds | 51.7 s | **0** |
+| free-angle SLP | 12 rounds | 11.8 s | **0** |
+| external bank scan (`jlevy` 33,173 files) | tol `1e-12` | 5.4 s | **0** |
+| kernels newer than 11:39 (`nilanjansaha123`, `alexchilton`) | current outputs | - | **0** |
+
+The jazivxt rows are already at the fixed-angle and free-angle LP optima. Live
+feed (`at 03:58-08:00`) and `origin/main` were also unchanged.
+
+- `merged.csv` unchanged at SHA256
+  `76fa0719a943d089aca7703d81697b91c29964af4e25a6fb0bd164f56ebd8318`.
+
+## Loop 21 - public Kaggle dataset harvest (datasets, not kernels)
+
+**Idea.** The harvest watcher only scans Kaggle *kernels* and the live feed. The
+Kaggle dataset index lists many fresh public packing datasets (some updated
+today) that contain full per-n submissions: `cshara/squares-in-squares-current-best`,
+`prvsiyan/squares-verified-best-of-1105`, `jonathan1506/joegun-squares-packings`,
+`samanyu1808/sis-final-packings`, `busyaprime/...-fq-quenched-packings`,
+`mdmuqtadirfuad/sis-certified-portfolio`, `avazaku/squares-contact-lp-cusp-bounds-465-998`,
+`az05192000gmailcom/squares-in-squares-l-band-packings`,
+`lostdecimal27/squares-in-squares-bank`, and others. Public datasets can be
+fetched anonymously with `kagglehub.dataset_download`. Scan every CSV per `n`,
+certify strict winners with the 32-process gate, and merge.
+
+**Why it could win.** A full best-of submission from another team can be better
+than ours on many `n` even when its total score is worse, exactly like the
+jazivxt refresh (17 wins, `1.72e-4`). Several are newer than the last scan.
+
+**Plan.** (1) fetch all moderate-size datasets; (2) run the existing
+`scan_refresh.py` over every CSV; (3) certify and merge with `merge_witnesses.py
+--jobs 32`; (4) whole-file literal + pandas gate before any overwrite.
+
+## Loop 22 - independent arm-gadget repacking
+
+**Idea.** Cut a large `K^2+D` packing at `x,w` and `y,a` into two upright corner
+blocks and two rectangular arms of size `w x (g-a+w)`. The arms are bounded by
+solid material on all four sides, so shrinking the box from side `L` to `L-d`
+only needs (i) the top-right block shifted by `-d` in `x` and `y`, (ii) the two
+arms repacked in narrower rectangles. The bottom-left block is untouched.
+
+First target: n=971, `a=8`, `g=24`, arms 167/166 squares, current `w=7.664318`,
+leader `L=31.636789` (`w=7.636789`). Test whether the existing arm angles can be
+relaxed into the 0.36%-narrower rectangles with the fixed-angle/ free-angle
+tools, then assemble and certify the whole n=971 file.
+
+**Result (negative).** Nineteen public packing datasets were fetched with
+anonymous `kagglehub`, including a 737 MB private bundle (1,838 files) and a
+60-submission blend bank. `scan_refresh.py` over every submission-shaped CSV and
+`scan_new.py` over the non-CSV witness formats returned **0 candidate n**. The
+`lostdecimal27` bank is the source of the per-puzzle table and reaches the same
+frontier as us but not the private bests: n=908 `30.638533` (ours `30.634071`),
+n=971 `31.678780` (ours `31.664318`), n=972 `31.692388` (ours `31.683990`).
+No CSV was written; `merged.csv` unchanged. POC: `poc/dataset_harvest_nov12`.
+
+## Loop 22 result - arm gadget (negative)
+
+**Measured.** The corner-block/arm decomposition was implemented with a
+rectangular-wall fixed-angle LP, a free-angle feasibility SLP, and a
+Lipschitz-safe SLP. Targets n=973, 972, 911, 910, 908, 969, 971 all failed at
+the private leader side. The 0.05-step shrink continuation reached only 0.06 of
+the required 1.0 arm compression at n=973. Rectangular clipping keeps 140-160 of
+the 167 arm squares, 6-9 short of the target counts.
+
+**Why.** The arms are not rectangle-bounded: seven n=971 arm squares poke
+through holes in the 24x24 corner block (574 squares, not 576), one by 0.336 and
+six by 0.03-0.05. The interface is a corner-point zipper; a flat wall forbids
+the contacts that make the packing dense. POC: `poc/arm_gadget`.
+
+## Loop 23 - corrected free-angle SLP (1 dust win)
+
+**Idea and bug.** The existing `poc/free_angle_slp` pair constraints had the
+wrong sign (`-slack`) and a spurious axis-direction factor on the angle
+gradient, and the wall rows evaluated the tangent at `theta=0`. The LP was
+infeasible even at a feasible incumbent, so its recorded "0 wins" was an
+artefact. The replacement (`poc/lip_slp`) bounds the support growth by
+`LIP*(t_i+t_j)` with `t_i >= |dtheta_i|`, so every accepted step is
+overlap-free by construction.
+
+**Measured (win).** Full 1000-group run at 32 processes, 8 rounds, 426.8 s:
+**1 strict win**, n=740
+`27.706646513415677... -> 27.706646513373385...` (ΔL `4.233e-11`), certified
+reduction `1.554695213290798756474198831e-12`. 999 groups `no-gain`.
+
+- Literal score: **22.173824282917252**, 1000/1000.
+- Pandas transport: **22.173824282917252**, 1000/1000.
+- SHA256: `9c7e3121a506fb6a6c1342cae7beb7b9b4664ff796c3c0d015de94c00c1ac7ca`.
+- The same n=740 candidate was re-merged on top of the newly landed
+  `expanded_union_nov12` team union (`d99e1f6`, score `22.173824282918808`).
+- POC: `poc/lip_slp`; reports in `docs/`.
+
+The portfolio is a local optimum under the corrected safe free-angle model as
+well; only the 4.2e-11 side gain at n=740 was available.
+
+## Loop 24 - areebbb frontier-engine refresh (13:42 UTC)
+
+**Idea.** Re-run the harvest watcher. New kernels: `areebbb` frontier engine,
+`nilanjansaha123` GPU seam, `malyshevdanil` living atlas, `evgendvorkin` EDA.
+Scan their current `submission.csv` against the tracked file.
+
+**Measured (win).** New kernels add one strict per-n win:
+
+- n=598 `24.903161412625517... -> 24.903161405040291...` (ΔL `7.585e-9`,
+  gain `3.1018e-10`), source
+  `areebbb/sis-frontier-targeted-certified-packing-engine`.
+- 32-process gate: 1/1 group, 2.1 s; no dilation needed.
+
+- Literal score: **22.173824282607068**, 1000/1000.
+- Pandas transport: **22.17382428260707**, 1000/1000.
+- SHA256: `94b50fe2c1e271f5f42b4890c2a2145871d5682bb2ee8755caf8499b0d825386`.
+- POC: `poc/areebbb_refresh_nov12`.
+
+## Loop 25 - frontier-engine dissection (negative for coordinates)
+
+**Idea.** `areebbb/sis-frontier-targeted-certified-packing-engine` lists a
+`L_frontier` column that is better than the Oct 29 per-puzzle snapshot (e.g.
+n=973 `31.666638` vs `31.672188`, n=911 `30.660913` vs `30.660916`). Recover
+its sources and the frontier data.
+
+**Finding.** The engine's log names 64 coordinate files (23 notebooks, 81 CSV
+outputs). All were downloaded via the kernel output API and scanned per-n at a
+`1e-12` prefilter: **0 candidate n**. The engine's own certified union is
+`22.177347`, already worse than the tracked `22.173824`. The `22.050884`
+frontier is an all-team per-size envelope that includes private packings; its
+coordinates are in none of the public files. POC: `poc/frontier_nov12`.
+
+New frontier gap table saved at `poc/frontier_nov12/docs/per_n_gap.csv`.

@@ -1,27 +1,39 @@
-"""Global fixed-angle box-side LP over every incumbent group.
+"""Parallel fixed-angle box-side LP over every incumbent group.
 
 For a packing with fixed square angles, the box side is a linear program in the
-centers and L once one separating axis per nearby pair is fixed. The existing
-repair tools only re-solved candidates inside a small trust region. Here we
-solve with no trust region, so the LP can move squares arbitrarily far along
+centers and L once one separating axis per nearby pair is fixed. The LP is
+solved with no trust region, so it can move squares arbitrarily far along
 directions the original contacts leave free.
 
-Any LP solution with L' < L is emitted and then re-checked with the unchanged
-official certifier; only strictly certified winners are kept. The pair set and
-active axis are rebuilt from the LP solution and re-solved a few times (SLP).
+Parallelism
+- one process per ``n`` (``multiprocessing`` pool, default 32 workers);
+- BLAS/OpenMP thread counts pinned to 1 before numpy/scipy import, so workers
+  do not oversubscribe the 32 hardware threads;
+- ``imap_unordered`` with the largest ``n`` first, so slow groups start early;
+- results are merged in sorted ``n`` order, which keeps the output
+  deterministic.
+
+Every LP solution with L' < L is emitted and re-checked with the unchanged
+official certifier; only strictly certified winners are kept.
 """
 from __future__ import annotations
+
+import os
+
+# Pin BLAS/OpenMP before numpy or scipy is imported. This runs in the parent
+# and is inherited by every forked worker.
+for _var in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+             "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+    os.environ[_var] = "1"
 
 import argparse
 import csv
 import json
-import os
+import multiprocessing as mp
 import sys
 import time
 from decimal import Decimal
 from pathlib import Path
-
-os.environ.setdefault("OMP_NUM_THREADS", "1")
 
 import numpy as np
 from scipy.optimize import linprog
@@ -36,7 +48,7 @@ PAIR_RADIUS = 1.6
 MARGIN = 1e-9
 
 
-def build_lp(angles, centers):
+def build_lp(angles, centers, rng=None, tie_tol=0.0):
     n = len(angles)
     u = np.column_stack([np.cos(angles), np.sin(angles)])
     v = np.column_stack([-np.sin(angles), np.cos(angles)])
@@ -63,7 +75,12 @@ def build_lp(angles, centers):
             + np.abs(axes @ u[j])
             + np.abs(axes @ v[j])
         )
-        k = int(np.argmax(np.abs(proj) - radii))
+        alpha = np.abs(proj) - radii
+        if rng is not None and tie_tol > 0:
+            near = np.flatnonzero(alpha >= alpha.max() - tie_tol)
+            k = int(near[rng.integers(len(near))]) if len(near) > 1 else int(np.argmax(alpha))
+        else:
+            k = int(np.argmax(alpha))
         a = axes[k] * (1 if proj[k] >= 0 else -1)
         add([2 * i, 2 * i + 1, 2 * j, 2 * j + 1],
             [a[0], a[1], -a[0], -a[1]], -radii[k] - MARGIN)
@@ -80,8 +97,8 @@ def build_lp(angles, centers):
     return A, np.array(rhs), c
 
 
-def solve_lp(angles, centers, time_limit=60.0):
-    A, b, c = build_lp(angles, centers)
+def solve_lp(angles, centers, time_limit=60.0, rng=None, tie_tol=0.0):
+    A, b, c = build_lp(angles, centers, rng=rng, tie_tol=tie_tol)
     n = len(angles)
     res = linprog(c, A_ub=A, b_ub=b, bounds=[(None, None)] * (2 * n) + [(0, None)],
                   method="highs",
@@ -99,11 +116,12 @@ def exact_side(n, centers, angles):
                      (centers[:, 1] + ext).max() - (centers[:, 1] - ext).min()))
 
 
-def refine(n, centers, angles, rounds, time_limit):
+def refine(n, centers, angles, rounds, time_limit, rng=None, tie_tol=0.0):
     cur = centers
     best = None
     for _ in range(rounds):
-        out = solve_lp(angles, cur, time_limit=time_limit)
+        out = solve_lp(angles, cur, time_limit=time_limit, rng=rng,
+                       tie_tol=tie_tol)
         if out is None:
             break
         side, proposed = out
@@ -122,9 +140,50 @@ def to_rows(n, centers, angles):
             for i in range(n)]
 
 
-def pandas_side(n, rows):
-    transported = core.kaggle_roundtrip({n: rows})
-    return Decimal(core.certify(n, transported[n]))
+def run_group(task):
+    """Worker: LP + exact literal/pandas certification for one ``n``."""
+    n, rows, ours_literal, rounds, time_limit, seed, tie_tol = task
+    ours = Decimal(ours_literal)
+    angles = np.array([float(r["angle"]) for r in rows])
+    centers = np.array([[float(r["x"]), float(r["y"])] for r in rows])
+    rng = np.random.default_rng(seed) if seed else None
+    entry = dict(n=n, seed=seed, base_side=exact_side(n, centers, angles))
+    out = refine(n, centers, angles, rounds, time_limit, rng=rng, tie_tol=tie_tol)
+    if out is None:
+        entry["status"] = "lp-infeasible"
+        return n, entry, None
+    side, proposed = out
+    entry["lp_side"] = side
+    if side >= float(ours) - 1e-12:
+        entry["status"] = "no-gain"
+        return n, entry, None
+    cand = to_rows(n, proposed, angles)
+    try:
+        literal = Decimal(core.certify(n, cand))
+    except Exception as error:  # noqa: BLE001
+        entry["status"] = "certify-fail"
+        entry["error"] = str(error)[:160]
+        return n, entry, None
+    entry["literal"] = str(literal)
+    if literal >= ours:
+        entry["status"] = "not-strict-literal"
+        return n, entry, None
+    try:
+        transported = core.kaggle_roundtrip({n: cand})
+        pandas_l = Decimal(core.certify(n, transported[n]))
+    except Exception as error:  # noqa: BLE001
+        entry["status"] = "pandas-fail"
+        entry["error"] = str(error)[:160]
+        return n, entry, None
+    entry["pandas"] = str(pandas_l)
+    if pandas_l >= ours:
+        entry["status"] = "not-strict-pandas"
+        return n, entry, None
+    entry["status"] = "WIN"
+    win = dict(old_L=str(ours), new_L=str(max(literal, pandas_l)),
+               literal_L=str(literal), pandas_L=str(pandas_l),
+               lp_side=side, seed=seed, rows=cand)
+    return n, entry, win
 
 
 def main() -> None:
@@ -137,6 +196,12 @@ def main() -> None:
     parser.add_argument("--n-list", default="")
     parser.add_argument("--rounds", type=int, default=3)
     parser.add_argument("--time-limit", type=float, default=60.0)
+    parser.add_argument("--jobs", type=int, default=32)
+    parser.add_argument("--seeds", type=int, default=1,
+                        help="one task per (n, seed); seed 0 is the deterministic argmax")
+    parser.add_argument("--tie-tol", type=float, default=0.0,
+                        help="randomly choose among separating axes within this "
+                             "margin of the best (requires seeds > 1 to matter)")
     args = parser.parse_args()
 
     report = json.load(open(args.report, encoding="utf-8"))
@@ -150,72 +215,48 @@ def main() -> None:
     targets = [int(x) for x in args.n_list.split(",") if x.strip()]
     if not targets:
         targets = list(range(1, 1001))
-    wins: dict[int, dict] = {}
-    results = []
-    t0 = time.time()
-    for k, n in enumerate(targets):
-        rows = groups[n]
-        angles = np.array([float(r["angle"]) for r in rows])
-        centers = np.array([[float(r["x"]), float(r["y"])] for r in rows])
-        entry = dict(n=n, base_side=exact_side(n, centers, angles))
-        out = refine(n, centers, angles, args.rounds, args.time_limit)
-        if out is None:
-            entry["status"] = "lp-infeasible"
-            results.append(entry)
-            continue
-        side, proposed = out
-        entry["lp_side"] = side
-        if side >= float(ours[n]) - 1e-12:
-            entry["status"] = "no-gain"
-            results.append(entry)
-            continue
-        cand = to_rows(n, proposed, angles)
-        try:
-            literal = Decimal(core.certify(n, cand))
-        except Exception as error:  # noqa: BLE001
-            entry["status"] = "certify-fail"
-            entry["error"] = str(error)[:160]
-            results.append(entry)
-            continue
-        entry["literal"] = str(literal)
-        if literal >= ours[n]:
-            entry["status"] = "not-strict-literal"
-            results.append(entry)
-            continue
-        try:
-            transported = pandas_side(n, cand)
-        except Exception as error:  # noqa: BLE001
-            entry["status"] = "pandas-fail"
-            entry["error"] = str(error)[:160]
-            results.append(entry)
-            continue
-        entry["pandas"] = str(transported)
-        if transported >= ours[n]:
-            entry["status"] = "not-strict-pandas"
-            results.append(entry)
-            continue
-        entry["status"] = "WIN"
-        wins[n] = dict(old_L=str(ours[n]), new_L=str(max(literal, transported)),
-                       literal_L=str(literal), pandas_L=str(transported),
-                       lp_side=side, rows=cand)
-        results.append(entry)
-        print(f"WIN n={n} old={float(ours[n]):.9f} new={float(max(literal, transported)):.9f}",
-              flush=True)
-        if (k + 1) % 10 == 0:
-            print(f"{k + 1}/{len(targets)} t={time.time() - t0:.0f}s wins={len(wins)}",
-                  flush=True)
+    # Expensive groups first so they do not tail the schedule.
+    tasks = [(n, groups[n], str(ours[n]), args.rounds, args.time_limit, seed,
+              args.tie_tol)
+             for n in sorted(targets, reverse=True)
+             for seed in range(max(1, args.seeds))]
 
+    wins: dict[int, dict] = {}
+    results: list[dict] = []
+    t0 = time.time()
+    done = 0
+    jobs = max(1, min(args.jobs, os.cpu_count() or 1))
+    with mp.get_context("fork").Pool(jobs) as pool:
+        for n, entry, win in pool.imap_unordered(run_group, tasks, chunksize=1):
+            results.append(entry)
+            done += 1
+            if win is not None:
+                if n not in wins or Decimal(win["new_L"]) < Decimal(wins[n]["new_L"]):
+                    wins[n] = win
+                    print(f"WIN n={n} seed={win.get('seed')} "
+                          f"old={float(Decimal(win['old_L'])):.9f} "
+                          f"new={float(Decimal(win['new_L'])):.9f}", flush=True)
+            if done % 100 == 0 or done == len(tasks):
+                rate = done / max(time.time() - t0, 1e-9) * 60.0
+                print(f"{done}/{len(tasks)} groups, {rate:.0f} groups/min, "
+                      f"wins={len(wins)}", flush=True)
+
+    results.sort(key=lambda e: e["n"])
+    ordered_wins = {n: wins[n] for n in sorted(wins)}
     with open(args.wins, "w", encoding="utf-8") as handle:
-        json.dump({str(k): v for k, v in wins.items()}, handle, indent=1)
+        json.dump({str(k): v for k, v in ordered_wins.items()}, handle, indent=1)
     with open(args.output, "w", encoding="utf-8") as handle:
         json.dump(results, handle, indent=1)
     reduction = sum(
         (Decimal(v["old_L"]) - Decimal(v["new_L"])) / Decimal(n).sqrt()
-        for n, v in wins.items())
-    print(json.dumps(dict(scanned=len(targets), wins=len(wins),
-                          reduction=str(reduction),
-                          seconds=round(time.time() - t0, 1)), indent=1))
+        for n, v in ordered_wins.items())
+    print(json.dumps(dict(scanned=len(targets), wins=len(ordered_wins),
+                          reduction=str(reduction), jobs=jobs,
+                          seconds=round(time.time() - t0, 1),
+                          groups_per_min=round(len(targets) / max(time.time() - t0, 1e-9) * 60.0, 1)),
+                     indent=1))
 
 
 if __name__ == "__main__":
+    mp.freeze_support()
     main()

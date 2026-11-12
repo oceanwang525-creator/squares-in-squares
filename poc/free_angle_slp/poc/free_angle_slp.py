@@ -11,12 +11,18 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import multiprocessing as mp
 import os
 import sys
+import time
 from decimal import Decimal
 from pathlib import Path
 
 os.environ.setdefault("OMP_NUM_THREADS", "1")
+
+for _var in ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+             "NUMEXPR_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"):
+    os.environ[_var] = "1"
 
 import numpy as np
 from scipy.optimize import linprog
@@ -169,6 +175,40 @@ def refine(theta, centers, L, rounds, time_limit):
     return best
 
 
+def run_group(task):
+    """Worker: SLP + exact literal/pandas certification for one ``n``."""
+    n, rows, ours_literal, rounds, time_limit = task
+    ours = Decimal(ours_literal)
+    theta = np.array([float(r["angle"]) for r in rows])
+    centers = np.array([[float(r["x"]), float(r["y"])] for r in rows])
+    base = exact_side(centers, theta)
+    entry = dict(n=n, base=base)
+    side, new_centers, new_theta = refine(theta, centers, base, rounds, time_limit)
+    entry["slp_side"] = side
+    if side >= float(ours) - 1e-13:
+        entry["status"] = "no-gain"
+        return n, entry, None
+    cand = [dict(square_id=str(i), x=repr(float(new_centers[i, 0])),
+                 y=repr(float(new_centers[i, 1])),
+                 angle=repr(float(new_theta[i]))) for i in range(n)]
+    try:
+        literal = Decimal(core.certify(n, cand))
+        transported = core.kaggle_roundtrip({n: cand})
+        pandas_l = Decimal(core.certify(n, transported[n]))
+    except Exception as error:  # noqa: BLE001
+        entry["status"] = "certify-fail"
+        entry["error"] = str(error)[:140]
+        return n, entry, None
+    entry.update(literal=str(literal), pandas=str(pandas_l))
+    if literal < ours and pandas_l < ours:
+        entry["status"] = "WIN"
+        win = dict(old_L=str(ours), new_L=str(max(literal, pandas_l)),
+                   literal_L=str(literal), pandas_L=str(pandas_l), rows=cand)
+        return n, entry, win
+    entry["status"] = "not-strict"
+    return n, entry, None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--incumbent", required=True)
@@ -178,6 +218,7 @@ def main() -> None:
     parser.add_argument("--wins", required=True)
     parser.add_argument("--rounds", type=int, default=6)
     parser.add_argument("--time-limit", type=float, default=60.0)
+    parser.add_argument("--jobs", type=int, default=32)
     args = parser.parse_args()
 
     ours = {int(r["n"]): Decimal(r["L"])
@@ -189,57 +230,41 @@ def main() -> None:
             groups.setdefault(int(row["n"]), []).append(row)
 
     targets = [int(x) for x in args.n_list.split(",") if x.strip()]
-    wins: dict[int, dict] = {}
-    log = []
-    for n in targets:
-        rows = groups[n]
-        theta = np.array([float(r["angle"]) for r in rows])
-        centers = np.array([[float(r["x"]), float(r["y"])] for r in rows])
-        base = exact_side(centers, theta)
-        entry = dict(n=n, base=base)
-        side, new_centers, new_theta = refine(
-            theta, centers, base, args.rounds, args.time_limit)
-        entry["slp_side"] = side
-        if side >= float(ours[n]) - 1e-13:
-            entry["status"] = "no-gain"
-            log.append(entry)
-            print(f"n={n} no-gain {side:.9f} vs {float(ours[n]):.9f}", flush=True)
-            continue
-        cand = [dict(square_id=str(i), x=repr(float(new_centers[i, 0])),
-                     y=repr(float(new_centers[i, 1])),
-                     angle=repr(float(new_theta[i]))) for i in range(n)]
-        try:
-            literal = Decimal(core.certify(n, cand))
-            transported = core.kaggle_roundtrip({n: cand})
-            pandas_L = Decimal(core.certify(n, transported[n]))
-        except Exception as error:  # noqa: BLE001
-            entry["status"] = "certify-fail"
-            entry["error"] = str(error)[:140]
-            log.append(entry)
-            print(f"n={n} certify-fail {str(error)[:70]}", flush=True)
-            continue
-        entry.update(literal=str(literal), pandas=str(pandas_L))
-        if literal < ours[n] and pandas_L < ours[n]:
-            entry["status"] = "WIN"
-            wins[n] = dict(old_L=str(ours[n]),
-                           new_L=str(max(literal, pandas_L)),
-                           literal_L=str(literal), pandas_L=str(pandas_L),
-                           rows=cand)
-            print(f"n={n} WIN {float(max(literal, pandas_L)):.9f} "
-                  f"from {float(ours[n]):.9f}", flush=True)
-        else:
-            entry["status"] = "not-strict"
-            print(f"n={n} not-strict {float(literal):.9f}", flush=True)
-        log.append(entry)
+    if not targets:
+        targets = list(range(1, 1001))
+    tasks = [(n, groups[n], str(ours[n]), args.rounds, args.time_limit)
+             for n in sorted(targets, reverse=True)]
 
-    json.dump({str(k): v for k, v in wins.items()},
+    wins: dict[int, dict] = {}
+    log: list[dict] = []
+    done = 0
+    t0 = time.time()
+    jobs = max(1, min(args.jobs, os.cpu_count() or 1))
+    with mp.get_context("fork").Pool(jobs) as pool:
+        for n, entry, win in pool.imap_unordered(run_group, tasks, chunksize=1):
+            log.append(entry)
+            done += 1
+            if win is not None:
+                wins[n] = win
+                print(f"n={n} WIN {float(Decimal(win['new_L'])):.9f} "
+                      f"from {float(Decimal(win['old_L'])):.9f}", flush=True)
+            if done % 100 == 0 or done == len(tasks):
+                rate = done / max(time.time() - t0, 1e-9) * 60.0
+                print(f"{done}/{len(tasks)} groups, {rate:.0f} groups/min, "
+                      f"wins={len(wins)}", flush=True)
+
+    log.sort(key=lambda e: e["n"])
+    ordered_wins = {n: wins[n] for n in sorted(wins)}
+    json.dump({str(k): v for k, v in ordered_wins.items()},
               open(args.wins, "w", encoding="utf-8"), indent=1)
     json.dump(log, open(args.output, "w", encoding="utf-8"), indent=1)
     reduction = sum((Decimal(v["old_L"]) - Decimal(v["new_L"]))
-                    / Decimal(n).sqrt() for n, v in wins.items())
-    print(json.dumps(dict(scanned=len(targets), wins=len(wins),
+                    / Decimal(n).sqrt() for n, v in ordered_wins.items())
+    print(json.dumps(dict(scanned=len(targets), wins=len(ordered_wins),
+                          jobs=jobs, seconds=round(time.time() - t0, 1),
                           reduction=str(reduction)), indent=1))
 
 
 if __name__ == "__main__":
+    mp.freeze_support()
     main()

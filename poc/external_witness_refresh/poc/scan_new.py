@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import collections
 import glob
+import multiprocessing
 import gzip
 import json
 import lzma
@@ -206,37 +207,13 @@ def read_text(path):
     return open(path, errors="replace").read()
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-root", required=True)
-    parser.add_argument("--incumbent-report", required=True)
-    parser.add_argument("--candidates", required=True)
-    parser.add_argument("--since-regex", default=r"2026-11-1[012]",
-                        help="only scan paths matching this regex; use . for all")
-    parser.add_argument("--tol", type=float, default=1e-9,
-                        help="float prefilter margin below the incumbent L")
-    parser.add_argument("--known-best", action="store_true", default=True,
-                        help="also scan packing/witnesses/known-best")
-    args = parser.parse_args()
-
-    report = json.load(open(args.incumbent_report, encoding="utf-8"))
-    ours = {int(row["n"]): Decimal(row["L"]) for row in report["results"]
-            if row["L"] is not None}
-    scanner = Scanner(ours, tol=args.tol)
-
-    files = [path for path in glob.glob(os.path.join(args.repo_root, "**", "*"),
-                                        recursive=True)
-             if os.path.isfile(path) and re.search(args.since_regex, path)]
-    if args.known_best:
-        files += glob.glob(os.path.join(args.repo_root, "**",
-                                        "packing", "witnesses", "known-best", "*.yaml"),
-                           recursive=True)
-    files = sorted(set(files))
-    print("files", len(files), flush=True)
-
+def scan_chunk(task):
+    """Worker: parse a chunk of files and return its local candidates."""
+    paths, ours, tol, repo_root, since_regex = task
+    scanner = Scanner(ours, tol=tol)
     errors = collections.Counter()
-    for path in files:
-        source = os.path.relpath(path, args.repo_root)
+    for path in paths:
+        source = os.path.relpath(path, repo_root)
         try:
             if re.search(r"\.cert(\.gz)?$", path):
                 if os.path.getsize(path) < 20e6:
@@ -256,18 +233,67 @@ def main() -> None:
                 scanner.walk(json.loads(read_text(path)), source)
         except Exception as error:  # noqa: BLE001
             errors[type(error).__name__] += 1
+    return dict(scanner.candidates), dict(errors)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo-root", required=True)
+    parser.add_argument("--incumbent-report", required=True)
+    parser.add_argument("--candidates", required=True)
+    parser.add_argument("--since-regex", default=r"2026-11-1[012]",
+                        help="only scan paths matching this regex; use . for all")
+    parser.add_argument("--tol", type=float, default=1e-9,
+                        help="float prefilter margin below the incumbent L")
+    parser.add_argument("--known-best", action="store_true", default=True,
+                        help="also scan packing/witnesses/known-best")
+    parser.add_argument("--jobs", type=int, default=32)
+    args = parser.parse_args()
+
+    report = json.load(open(args.incumbent_report, encoding="utf-8"))
+    ours = {int(row["n"]): Decimal(row["L"]) for row in report["results"]
+            if row["L"] is not None}
+    files = [path for path in glob.glob(os.path.join(args.repo_root, "**", "*"),
+                                        recursive=True)
+             if os.path.isfile(path) and re.search(args.since_regex, path)]
+    if args.known_best:
+        files += glob.glob(os.path.join(args.repo_root, "**",
+                                        "packing", "witnesses", "known-best", "*.yaml"),
+                           recursive=True)
+    files = sorted(set(files))
+    print("files", len(files), flush=True)
+
+    jobs = max(1, min(args.jobs, os.cpu_count() or 1))
+    n_chunks = max(jobs * 8, 1)
+    chunks = [files[i::n_chunks] for i in range(n_chunks)]
+    tasks = [(chunk, ours, args.tol, args.repo_root, args.since_regex)
+             for chunk in chunks if chunk]
+    merged: dict[int, list[dict]] = collections.defaultdict(list)
+    seen: set[tuple[int, str]] = set()
+    errors: collections.Counter = collections.Counter()
+    with multiprocessing.get_context("fork").Pool(jobs) as pool:
+        for local, local_errors in pool.imap_unordered(scan_chunk, tasks, chunksize=1):
+            errors.update(local_errors)
+            for n, entries in local.items():
+                for entry in entries:
+                    key = (n, entry["source"])
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    merged[n].append(entry)
     print("errors", dict(errors), flush=True)
 
-    serializable = {str(n): entries for n, entries in scanner.candidates.items()}
+    serializable = {str(n): merged[n] for n in sorted(merged)}
     with open(args.candidates, "w", encoding="utf-8") as handle:
         json.dump(serializable, handle, indent=1)
-    print("candidate n", len(scanner.candidates), "candidates",
-          sum(len(v) for v in scanner.candidates.values()), flush=True)
-    for n in sorted(scanner.candidates):
-        best = min(scanner.candidates[n], key=lambda entry: entry["float_side"])
+    print("candidate n", len(merged), "candidates",
+          sum(len(v) for v in merged.values()), "jobs", jobs, flush=True)
+    for n in sorted(merged):
+        best = min(merged[n], key=lambda entry: entry["float_side"])
         print(f"n={n:4d} float_gap={float(ours[n]) - best['float_side']:.6f} "
               f"{best['source']}")
 
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()

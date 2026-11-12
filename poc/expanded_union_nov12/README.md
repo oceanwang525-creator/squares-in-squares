@@ -1,0 +1,1 @@
+Expanded historical and local per-puzzle portfolio. Original pandas 3.1.0, three native transports, both official transports and strict fresh baseline nonregression. No Kaggle submission authorized or executed.

@@ -1,4 +1,12 @@
-# Free-angle SLP over the whole portfolio (negative)
+# Free-angle SLP over the whole portfolio (negative; model defective)
+
+> **Correction (Loop 23).** The LP in this POC has two sign defects: the pair
+> row uses `-slack` instead of `slack` (and multiplies the angle gradient by the
+> axis direction), and the wall rows evaluate the tangent at `theta=0` rather
+> than at the current `theta`. The LP is therefore infeasible at a feasible
+> incumbent, so every "0 wins" below is an artefact of the broken model, not
+> evidence about the packings. See `poc/lip_slp` for a conservative, provably
+> safe replacement and the corrected portfolio result.
 
 **Idea.** The fixed-angle LP (`poc/alln_fixed_lp`) only moves centres. Here the
 LP also linearises each square's rotation: variables are all `x`, `y`, `θ` and
@@ -54,8 +62,15 @@ python poc/free_angle_slp/poc/free_angle_slp.py \
   --incumbent poc/pell_corrugation/data/border-scan/merged.csv \
   --report poc/pell_corrugation/data/border-scan/merged-literal-official.json \
   --n-list "$(seq -s, 1 1000)" \
-  --output /tmp/slp_all.json --wins /tmp/slp_wins.json
+  --output /tmp/slp_all.json --wins /tmp/slp_wins.json --jobs 32
 ```
 
 Requires `numpy`, `scipy` (HiGHS) and the shared official metric. `docs/scan.json`
 holds the per-`n` SLP side and status from the full run.
+
+## Parallel execution (32 threads)
+
+One process per `n` (`--jobs`, default 32), BLAS/OpenMP thread counts pinned to
+1, largest `n` first, `imap_unordered`, deterministic sorted merge. The full
+1000-group run drops from about four minutes serial to 12.7 s at 32 jobs
+(~19x).
