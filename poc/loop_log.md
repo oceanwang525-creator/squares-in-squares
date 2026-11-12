@@ -983,3 +983,27 @@ rounds x 10,000 moves (32 processes):
 No replica reaches `E<1e-16`; exchanges and void moves never improve the best
 state. Even a `1e-5` compression is unrepairable, so the jam sits far below the
 LP/descent scale. 0 wins, `merged.csv` unchanged. POC: `poc/pt_mc`.
+
+## Loop 37 - rational-band void filling (negative)
+
+**Idea.** The rational-band Pareto scan counted only grid+band squares; it never
+tried to fill the residual voids. A slope whose voids are >=1 unit wide could
+add 10-20 squares. Ran box-constrained greedy void filling on **20,408**
+rational configs with `C>=880`, `L<30.72` (7 slopes, all `T1/T2/w/phase`),
+32 processes, 5m22s.
+
+**Measured (negative).** **0 wins.** The voids are uniformly `0.96` wide (just
+under a unit square), so the filler inserts nothing; the earlier 2:1 donor is
+representative.
+
+## Loop 38 - free-angle population search at the n=911 frontier side (negative)
+
+**Idea.** Replace the discrete `p:q` slopes with a GA over
+`(theta, T1, T2, w, gap, phase)` using an analytic free-angle digital-staircase
++ tilted-band count, at `L=30.6609126`, then a 250k-sample fine scan.
+
+**Measured (negative).** Best band config: **898** squares. Fine scan best:
+**900** squares, which is the plain 30x30 grid (BL=899, TR=1, band=0). n=911
+needs 911 at this side, so the frontier packing is 11 squares denser than any
+staircase-band configuration. 0 wins, `merged.csv` unchanged. POC:
+`poc/free_band_ga`.
