@@ -69,3 +69,9 @@ Public authors retain credit.
 
 The Loop 3 external witness refresh (`poc/external_witness_refresh`) added
 seven wins and moved the tracked score to **22.17659599299808**.
+
+## Later update
+
+The Loop 5 external bank expansion (`poc/external_bank_expansion`) added one
+more n=269 win (`16.899469075855`) and moved the tracked score to
+**22.17650298137176**.

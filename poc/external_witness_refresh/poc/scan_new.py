@@ -213,6 +213,8 @@ def main() -> None:
     parser.add_argument("--candidates", required=True)
     parser.add_argument("--since-regex", default=r"2026-11-1[012]",
                         help="only scan paths matching this regex; use . for all")
+    parser.add_argument("--tol", type=float, default=1e-9,
+                        help="float prefilter margin below the incumbent L")
     parser.add_argument("--known-best", action="store_true", default=True,
                         help="also scan packing/witnesses/known-best")
     args = parser.parse_args()
@@ -220,7 +222,7 @@ def main() -> None:
     report = json.load(open(args.incumbent_report, encoding="utf-8"))
     ours = {int(row["n"]): Decimal(row["L"]) for row in report["results"]
             if row["L"] is not None}
-    scanner = Scanner(ours)
+    scanner = Scanner(ours, tol=args.tol)
 
     files = [path for path in glob.glob(os.path.join(args.repo_root, "**", "*"),
                                         recursive=True)

@@ -1,0 +1,22 @@
+{
+  "previous_score": 22.175937592741963,
+  "score_literal": 22.175937590726818,
+  "score_pandas": 22.175937590726818,
+  "reduction": 2.0151448357305352e-9,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "replaced_n": 11,
+  "win_n": [595, 875, 487, 733, 444, 966, 851, 677, 730, 735, 591],
+  "intermediate_score": 22.175937603064224,
+  "intermediate_replaced_n": 33,
+  "sha256": "53b76adab4dcbd6a0e76369eb37c7c83444ea0a429a5559d5bbc53571bbd4bd9",
+  "poc": "poc/team_union_nov12",
+  "sources": [
+    "poc/certified_union_nov12 tracked merged.csv (base)",
+    "poc/public_refresh_nov12/data/submission.csv (intermediate 33)",
+    "Loop 6 tracked merged.csv (LP wins at n=595, n=875)"
+  ],
+  "provenance": "docs/wins.json and docs/wins_vs_loop6.json in the POC"
+}
