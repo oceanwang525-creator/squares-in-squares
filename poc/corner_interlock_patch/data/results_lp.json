@@ -1,0 +1,524 @@
+{
+  "baseline_sha256": "1f9c0fd3b7a88e5a0f6c44b567ff2ef354872812c6b0ad8e37807bd1a64e965c",
+  "configuration": {
+    "targets": [
+      908,
+      969,
+      971
+    ],
+    "patch_sizes": [
+      9,
+      16
+    ],
+    "trials": 2,
+    "iterations": 420,
+    "shrink": 0.001,
+    "polish": true
+  },
+  "groups": [
+    {
+      "n": 908,
+      "baseline_side": 30.634070751579078,
+      "control_side": 30.636239258165272,
+      "control_loss": 1.477522238686598e-06,
+      "control_lp_side": null,
+      "control_residual": 9.721370762827419e-05,
+      "control_iterations": 420,
+      "recipient_patch_counts": {
+        "9": 1,
+        "16": 1
+      },
+      "trials": [
+        {
+          "n": 908,
+          "donor": 969,
+          "patch_size": 9,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            -1,
+            -1
+          ],
+          "recipient_grid_size": 14,
+          "donor_grid_size": 16,
+          "recipient_contact": [
+            877,
+            753
+          ],
+          "donor_contact": [
+            734,
+            696
+          ],
+          "swap": false,
+          "seed_rank": 0.0001343094414640185,
+          "seed_move": 0.2097366543797616,
+          "seed_angle_change": 0.035999915820846384,
+          "halo_size": 25,
+          "local_loss": 6.153041341738655e-08,
+          "local_iterations": 296,
+          "local_residual": 0.00011232366951707817,
+          "loss": 1.5765059362738095e-06,
+          "iterations": 420,
+          "raw_residual": 9.628746725454107e-05,
+          "lp_side": null,
+          "candidate_side": 30.636212091369938,
+          "baseline_side": 30.634070751579078,
+          "target_side": 30.633070751579076
+        },
+        {
+          "n": 908,
+          "donor": 970,
+          "patch_size": 9,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            -1,
+            1
+          ],
+          "recipient_grid_size": 14,
+          "donor_grid_size": 5,
+          "recipient_contact": [
+            877,
+            753
+          ],
+          "donor_contact": [
+            405,
+            383
+          ],
+          "swap": false,
+          "seed_rank": 0.00023421826343700665,
+          "seed_move": 0.15981890261022194,
+          "seed_angle_change": 0.03439629443540482,
+          "halo_size": 25,
+          "local_loss": 6.550312974070466e-08,
+          "local_iterations": 264,
+          "local_residual": 0.0001051123814583832,
+          "loss": 1.5821205406057277e-06,
+          "iterations": 420,
+          "raw_residual": 9.64995366969923e-05,
+          "lp_side": null,
+          "candidate_side": 30.636219616448678,
+          "baseline_side": 30.634070751579078,
+          "target_side": 30.633070751579076
+        },
+        {
+          "n": 908,
+          "donor": 970,
+          "patch_size": 16,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            -1,
+            1
+          ],
+          "recipient_grid_size": 14,
+          "donor_grid_size": 5,
+          "recipient_contact": [
+            877,
+            753
+          ],
+          "donor_contact": [
+            405,
+            383
+          ],
+          "swap": false,
+          "seed_rank": 0.0004972796689740655,
+          "seed_move": 0.2016231689302654,
+          "seed_angle_change": 0.03439629443540482,
+          "halo_size": 37,
+          "local_loss": 5.186206029762253e-08,
+          "local_iterations": 350,
+          "local_residual": 8.906748224735139e-05,
+          "loss": 1.6077905372793012e-06,
+          "iterations": 420,
+          "raw_residual": 9.770082306781447e-05,
+          "lp_side": null,
+          "candidate_side": 30.636258331088005,
+          "baseline_side": 30.634070751579078,
+          "target_side": 30.633070751579076
+        },
+        {
+          "n": 908,
+          "donor": 969,
+          "patch_size": 16,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            -1,
+            -1
+          ],
+          "recipient_grid_size": 14,
+          "donor_grid_size": 16,
+          "recipient_contact": [
+            877,
+            753
+          ],
+          "donor_contact": [
+            962,
+            924
+          ],
+          "swap": true,
+          "seed_rank": 0.0009297399024533871,
+          "seed_move": 0.1798081559683803,
+          "seed_angle_change": 0.035999918843902856,
+          "halo_size": 37,
+          "local_loss": 4.8824342848550245e-08,
+          "local_iterations": 263,
+          "local_residual": 8.179655941265018e-05,
+          "loss": 1.6032775155660923e-06,
+          "iterations": 420,
+          "raw_residual": 9.875192547847966e-05,
+          "lp_side": null,
+          "candidate_side": 30.636293050196375,
+          "baseline_side": 30.634070751579078,
+          "target_side": 30.633070751579076
+        }
+      ],
+      "win": null
+    },
+    {
+      "n": 969,
+      "baseline_side": 31.63398250135948,
+      "control_side": 31.63598664060776,
+      "control_loss": 1.6194501960093621e-06,
+      "control_lp_side": null,
+      "control_residual": 8.885999310459525e-05,
+      "control_iterations": 420,
+      "recipient_patch_counts": {
+        "9": 3,
+        "16": 3
+      },
+      "trials": [
+        {
+          "n": 969,
+          "donor": 908,
+          "patch_size": 9,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            1,
+            1
+          ],
+          "recipient_grid_size": 16,
+          "donor_grid_size": 14,
+          "recipient_contact": [
+            734,
+            696
+          ],
+          "donor_contact": [
+            877,
+            753
+          ],
+          "swap": false,
+          "seed_rank": 0.003177594888961192,
+          "seed_move": 0.2097366543797616,
+          "seed_angle_change": 0.035999915820846384,
+          "halo_size": 25,
+          "local_loss": 1.0181888129099142e-07,
+          "local_iterations": 350,
+          "local_residual": 0.00011060000524909519,
+          "loss": 1.7042141693024244e-06,
+          "iterations": 420,
+          "raw_residual": 8.736274986542725e-05,
+          "lp_side": null,
+          "candidate_side": 31.63593578671334,
+          "baseline_side": 31.63398250135948,
+          "target_side": 31.63298250135948
+        },
+        {
+          "n": 969,
+          "donor": 906,
+          "patch_size": 9,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            1,
+            1
+          ],
+          "recipient_grid_size": 16,
+          "donor_grid_size": 14,
+          "recipient_contact": [
+            962,
+            924
+          ],
+          "donor_contact": [
+            755,
+            64
+          ],
+          "swap": false,
+          "seed_rank": 0.16117457090083318,
+          "seed_move": 0.34819295850830184,
+          "seed_angle_change": 0.7151353759792415,
+          "halo_size": 26,
+          "local_loss": 0.009963334049897065,
+          "local_iterations": 350,
+          "local_residual": 0.04273376943075946,
+          "loss": 7.840104938414678e-05,
+          "iterations": 420,
+          "raw_residual": 0.0011156584151972293,
+          "lp_side": null,
+          "candidate_side": 31.670464336977673,
+          "baseline_side": 31.63398250135948,
+          "target_side": 31.63298250135948
+        },
+        {
+          "n": 969,
+          "donor": 970,
+          "patch_size": 16,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            -1,
+            1
+          ],
+          "recipient_grid_size": 16,
+          "donor_grid_size": 5,
+          "recipient_contact": [
+            734,
+            696
+          ],
+          "donor_contact": [
+            405,
+            383
+          ],
+          "swap": false,
+          "seed_rank": 0.0032866865814529813,
+          "seed_move": 0.13972874421791245,
+          "seed_angle_change": 0.02441174405261437,
+          "halo_size": 37,
+          "local_loss": 3.9025978563631515e-07,
+          "local_iterations": 350,
+          "local_residual": 0.00016038268738260975,
+          "loss": 1.7202322846218527e-06,
+          "iterations": 420,
+          "raw_residual": 8.885734749553009e-05,
+          "lp_side": 63.80049048031038,
+          "candidate_side": 31.635984761574058,
+          "baseline_side": 31.63398250135948,
+          "target_side": 31.63298250135948
+        },
+        {
+          "n": 969,
+          "donor": 908,
+          "patch_size": 16,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            1,
+            1
+          ],
+          "recipient_grid_size": 16,
+          "donor_grid_size": 14,
+          "recipient_contact": [
+            734,
+            696
+          ],
+          "donor_contact": [
+            877,
+            753
+          ],
+          "swap": false,
+          "seed_rank": 0.0035597791022771905,
+          "seed_move": 0.2097366543797616,
+          "seed_angle_change": 0.035999915820846384,
+          "halo_size": 37,
+          "local_loss": 4.908259630709272e-08,
+          "local_iterations": 350,
+          "local_residual": 5.149000013804361e-05,
+          "loss": 1.6796962847821842e-06,
+          "iterations": 420,
+          "raw_residual": 8.78264925099348e-05,
+          "lp_side": null,
+          "candidate_side": 31.63595053168433,
+          "baseline_side": 31.63398250135948,
+          "target_side": 31.63298250135948
+        }
+      ],
+      "win": null
+    },
+    {
+      "n": 971,
+      "baseline_side": 31.66431832520518,
+      "control_side": 31.66630243685871,
+      "control_loss": 1.186625309385752e-06,
+      "control_lp_side": null,
+      "control_residual": 8.783648513377429e-05,
+      "control_iterations": 420,
+      "recipient_patch_counts": {
+        "9": 3,
+        "16": 3
+      },
+      "trials": [
+        {
+          "n": 971,
+          "donor": 970,
+          "patch_size": 9,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            1,
+            1
+          ],
+          "recipient_grid_size": 9,
+          "donor_grid_size": 12,
+          "recipient_contact": [
+            940,
+            795
+          ],
+          "donor_contact": [
+            429,
+            254
+          ],
+          "swap": false,
+          "seed_rank": 0.013290496975917483,
+          "seed_move": 0.27107523067521416,
+          "seed_angle_change": 0.028875487838349256,
+          "halo_size": 24,
+          "local_loss": 2.2779008168329634e-12,
+          "local_iterations": 57,
+          "local_residual": 1.4461420505540445e-08,
+          "loss": 1.1259449416774203e-06,
+          "iterations": 420,
+          "raw_residual": 9.634721861373485e-05,
+          "lp_side": null,
+          "candidate_side": 31.666573354237357,
+          "baseline_side": 31.66431832520518,
+          "target_side": 31.66331832520518
+        },
+        {
+          "n": 971,
+          "donor": 909,
+          "patch_size": 9,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            -1,
+            -1
+          ],
+          "recipient_grid_size": 24,
+          "donor_grid_size": 21,
+          "recipient_contact": [
+            763,
+            739
+          ],
+          "donor_contact": [
+            474,
+            191
+          ],
+          "swap": false,
+          "seed_rank": 0.07439904941133667,
+          "seed_move": 0.26449281246925854,
+          "seed_angle_change": 0.4338771007310158,
+          "halo_size": 26,
+          "local_loss": 0.0029420226407855603,
+          "local_iterations": 251,
+          "local_residual": 0.019820800694077212,
+          "loss": 3.818354788309126e-05,
+          "iterations": 420,
+          "raw_residual": 0.0010258883480167569,
+          "lp_side": null,
+          "candidate_side": 31.69720859913357,
+          "baseline_side": 31.66431832520518,
+          "target_side": 31.66331832520518
+        },
+        {
+          "n": 971,
+          "donor": 909,
+          "patch_size": 16,
+          "recipient_corner": [
+            1,
+            1
+          ],
+          "donor_corner": [
+            1,
+            1
+          ],
+          "recipient_grid_size": 9,
+          "donor_grid_size": 10,
+          "recipient_contact": [
+            940,
+            795
+          ],
+          "donor_contact": [
+            183,
+            98
+          ],
+          "swap": true,
+          "seed_rank": 0.002375763228904048,
+          "seed_move": 0.25165807679254715,
+          "seed_angle_change": 0.45682095255317323,
+          "halo_size": 37,
+          "local_loss": 5.888079032132384e-08,
+          "local_iterations": 156,
+          "local_residual": 8.707457817658248e-05,
+          "loss": 1.2066890701395309e-06,
+          "iterations": 420,
+          "raw_residual": 8.71630313993288e-05,
+          "lp_side": null,
+          "candidate_side": 31.666274182737126,
+          "baseline_side": 31.66431832520518,
+          "target_side": 31.66331832520518
+        },
+        {
+          "n": 971,
+          "donor": 973,
+          "patch_size": 16,
+          "recipient_corner": [
+            -1,
+            -1
+          ],
+          "donor_corner": [
+            -1,
+            -1
+          ],
+          "recipient_grid_size": 24,
+          "donor_grid_size": 24,
+          "recipient_contact": [
+            763,
+            739
+          ],
+          "donor_contact": [
+            945,
+            931
+          ],
+          "swap": true,
+          "seed_rank": 0.00708684723201347,
+          "seed_move": 0.29325551909704445,
+          "seed_angle_change": 0.049886198161559925,
+          "halo_size": 37,
+          "local_loss": 0.00025124670983261586,
+          "local_iterations": 350,
+          "local_residual": 0.006243919926289809,
+          "loss": 5.748515181082819e-05,
+          "iterations": 420,
+          "raw_residual": 0.0013866706008152097,
+          "lp_side": 31.69078705712335,
+          "candidate_side": 31.69078705712335,
+          "baseline_side": 31.66431832520518,
+          "target_side": 31.66331832520518
+        }
+      ],
+      "win": null
+    }
+  ]
+}
