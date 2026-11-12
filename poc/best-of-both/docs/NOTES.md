@@ -2,10 +2,10 @@
 
 ## What PR #5 adds
 
-PR #5 computes a second public-refresh round on top of `merged.csv`. Its 38
+PR #5 computes multiple public-refresh rounds on top of `merged.csv`. Its 41
 reported wins include `n=370, 598, 996`, which are already better in the local
-dual-pocket union. Exact comparison leaves 35 apparent groups; 13 fail the
-two-transport strict gate against the current group, leaving 22 accepted
+dual-pocket union. Exact comparison leaves 37 apparent groups; 13 fail the
+two-transport strict gate against the current group, leaving 24 accepted
 replacements.
 
 The useful rows are copied into `data/pr5-winning-rows.csv`. They are data only;

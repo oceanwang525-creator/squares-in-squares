@@ -13,15 +13,15 @@ transport reports.
 
 ## Measured result
 
-PR #5 contains 38 reported wins. `n=370, 598, 996` are already better in the
-local dual-pocket union, and 13 further candidates fail the two-transport
-strict gate at group level. **22** groups are accepted. The final full file
-scores:
+PR #5 round 3 contains 41 strict wins over the team incumbent. `n=370, 598,
+996` and other rows are already better in the local dual-pocket union, while
+additional candidates fail the two-transport strict gate against the current
+group. **24** groups are accepted. The final full file scores:
 
-- literal: `22.173715449559737`
-- pandas round trip: `22.173715449559740`
+- literal: `22.173715449468716`
+- pandas round trip: `22.173715449468716`
 - accepted: `1000/1000`
-- strict wins over the team incumbent: `50`
+- strict wins over the team incumbent: `52`
 - strict regressions against the current incumbent: `0`
 
 The PR #5 complement is dust-scale on top of the local union. Most of its value
@@ -30,7 +30,7 @@ is already covered by `n=370, 598, 996` and other local wins.
 ## Reproduce
 
 The repository does not commit the complete 500,500-row output. It commits the
-35 candidate puzzle groups and a script that rebuilds the full file from the
+41 candidate puzzle groups and a script that rebuilds the full file from the
 current local union.
 
 ```sh
