@@ -11,3 +11,24 @@ python3 poc/pell_corrugation/poc/pell_corrugation.py --help
 [Measured report](docs/pell_corrugation.md). Saved CSVs and results are in `data/`.
 
 The completed CPU border scan improves the public23 merge at n=739, 794, 851 and 910. Whole-portfolio official score is **22.254062083924335**, down from 22.25406709809781. All 1000 groups pass literal CSV and actual pandas 3.1.0 round-trip certification, independently checked by C++. See [border scan](docs/border_scan.md).
+
+The current tracked portfolio is **22.173995906838663** after the November 12
+public-output import unioned with team merge `e6f7b69`, the post-resweep
+refresh (`n=487`, `n=733`), seven external witnesses
+(`n=132,156,157,180,237,268,269`), one more external bank win at `n=269`
+(`16.899469075855`), the full-portfolio fixed-angle LP (`n=595`, `n=875`), and
+per-`n` unions with the team's `public_refresh_nov12` and
+`certified_union_nov12` files (`n=971`, `n=687`, ...), and a midday kernel
+refresh (`n=694`), the live tracker (`n=269`, `16.889730073596`), and the
+morning kernel refresh (114 `n`).
+Both literal and pandas transport certify 1000/1000. See
+[fresh public outputs](../fresh_public_sources_nov12/README.md),
+[post-resweep refresh](../post_resweep_refresh/README.md),
+[external witness refresh](../external_witness_refresh/README.md),
+[external bank expansion](../external_bank_expansion/README.md),
+[full-portfolio fixed-angle LP](../alln_fixed_lp/README.md),
+[team union](../team_union_nov12/README.md),
+[midday kernel refresh](../kernel_refresh_noon/README.md),
+[live tracker watch](../live_tracker_watch/README.md),
+[morning kernel refresh](../kernel_refresh_morning/README.md), and
+[measured results](../kernel_refresh_morning/docs/results.md).

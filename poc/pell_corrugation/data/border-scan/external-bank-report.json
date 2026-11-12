@@ -1,0 +1,15 @@
+{
+  "previous_score": 22.17659599299808,
+  "score_literal": 22.17650298137176,
+  "score_pandas": 22.176502981371762,
+  "reduction": 0.00009301162632211604,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [269],
+  "sha256": "7de2a8432ca6380678127734fb611cc5c4f090e151d9e804475b2c7ffb4eef05",
+  "poc": "poc/external_bank_expansion",
+  "provenance": "docs/wins.json in the POC"
+}

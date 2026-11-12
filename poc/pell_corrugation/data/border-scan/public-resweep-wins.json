@@ -1,0 +1,1262 @@
+{
+ "11": [
+  "3.87708359002281648779692017452127782094856139224086",
+  "public_resweep_kernels:aqibrazadev/squares-in-squares-top-lb-blending-visualization"
+ ],
+ "17": [
+  "4.67553009360455385457451009483521593667819106402692",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "18": [
+  "4.82287565553229834323757179206996455475213955412470",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "19": [
+  "4.88561808316413000000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "37": [
+  "6.59861960924436500000000000000000000000000000000000",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "50": [
+  "7.57142857142857700000000000000000000000000000000000",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "51": [
+  "7.69035593728849800000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "52": [
+  "7.70710678118655320000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "54": [
+  "7.84666719284349638681314100868121173685204013259546",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "66": [
+  "8.65685424949238680000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "69": [
+  "8.82719465572974600000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "82": [
+  "9.53553390593274740000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n082.npz|f64canon dil=1e-15"
+ ],
+ "84": [
+  "9.69793479901492900000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "89": [
+  "9.94974746830585000000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "105": [
+  "10.78930378374300351607210970282347626602882685064838",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n105.npz|dilate3e-15"
+ ],
+ "130": [
+  "11.90243064598204840000000000000000000000000000000000",
+  "public_resweep_other:ext/jlevy-squares/packing/cases/register_candidates/think-ruu2-2026-10-31/certificates/n-130.cert|f64canon dil=3e-15"
+ ],
+ "131": [
+  "11.94965958803588313477900373866868270266907055960667",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "172": [
+  "13.61468985328378511839483432007902543397854417670871",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "175": [
+  "13.76405005154321469677999749691896863379178360708329",
+  "public_resweep_other:ext/evand-square-packing/search/packer/candidates/s175_1105.cert|f64canon dil=3e-15"
+ ],
+ "176": [
+  "13.79587231843644459024592192708307594353905392418617",
+  "public_resweep_kernels:aqibrazadev/squares-in-squares-top-lb-blending-visualization"
+ ],
+ "179": [
+  "13.88096037155576988717136790176297483965196224369721",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "180": [
+  "13.91699352247784607096072475183677132734124592490938",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "181": [
+  "13.95081953102296237136416855258841036117938194367122",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "199": [
+  "14.61468985328378072989793236804401584591419830744042",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "232": [
+  "15.76140964487721166923132169163889856428894147377727",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "234": [
+  "15.82287565553231000000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "235": [
+  "15.82660563342860000000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "239": [
+  "15.94844332730051471941590051046256111363486421946452",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "241": [
+  "15.98711709515025406534564730254474250875117317040387",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "259": [
+  "16.59137814549773602790309137238184190465154052676621",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "261": [
+  "16.67877987534297107070218466562141189702496646082929",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "263": [
+  "16.73316600789942400000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "270": [
+  "16.92814860333984095023520475065320082149266214023397",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "271": [
+  "16.94894773371370409837697750580768166115757718548042",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261102-1339-jazivxt-v1-submission.csv"
+ ],
+ "303": [
+  "17.90178927315319509999999999989999999999999933333333",
+  "public_resweep_other:ext/jlevy-squares/packing/resources/web/yim-certificates-2026-11-09/source/n303.cert"
+ ],
+ "327": [
+  "18.58378219015195400000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "333": [
+  "18.77263411346726043732982618346370197545604517356050",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "337": [
+  "18.85372898136334758168889237292470425935547990634697",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "339": [
+  "18.90619820768668728560915344865948987479623725368983",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "341": [
+  "18.94268281725517776923132169163439164043857317041350",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "344": [
+  "18.99100099512304258682389135614325053158176978298267",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "366": [
+  "19.65685424949243840000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n366.npz|f64canon dil=3e-15"
+ ],
+ "370": [
+  "19.75749920304762375452091136874356607890728586270101",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "371": [
+  "19.77630338259931743923132169163866471802460314563369",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "372": [
+  "19.79358778664921798707647539773099258234558778428291",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "374": [
+  "19.83235621703286961923132169163794048706201107090123",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv"
+ ],
+ "376": [
+  "19.87600593867922087986478617868839832568161424701219",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "381": [
+  "19.97473984045970652761054370381697611307723420662698",
+  "public_resweep_kernels:avazaku/contact-lp-cusp-bounds"
+ ],
+ "382": [
+  "19.98658171338495537621533920447452842348785684176273",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "405": [
+  "20.63398250210199800000000000000000000000000000000000",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "409": [
+  "20.74041728754388532448778797948716586664870958486063",
+  "public_resweep_kernels:nilanjansaha123/certified-merge-projection-quench-gpu-screen"
+ ],
+ "410": [
+  "20.77212664480884861772718997321857059330934888650538",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "412": [
+  "20.79661490944697490592439953629978336595219878751149",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "416": [
+  "20.87779945685531160961566084581712774389010509905019",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "417": [
+  "20.89714304382116729999999999999728366206067045301494",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "420": [
+  "20.96129301997101183999999999999728366206067045301494",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "422": [
+  "20.98357019357881842810408808253273924190745997323025",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "423": [
+  "20.99372847584260156537914924679483161255175317330070",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "449": [
+  "21.70710678118661240000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n449.npz|f64canon dil=3e-15"
+ ],
+ "452": [
+  "21.77630338259923979677981948766077263259737408835699",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "456": [
+  "21.84666719284380131923132169163571279453333441110722",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "457": [
+  "21.85980527660714746191687752320974333494447472702680",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "458": [
+  "21.87779945685542372923132169163801087176026481688103",
+  "public_resweep_kernels:avazaku/contact-lp-cusp-bounds"
+ ],
+ "460": [
+  "21.91718147780163509979064717636450314603987280581634",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "462": [
+  "21.95313752876894829154364647580267182530657496962904",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "463": [
+  "21.96854540757487690807762522802414112073368742389136",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "491": [
+  "22.68531577876330499901044520102616789574348428102868",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "497": [
+  "22.79533314279304306826147999760093655199675064224363",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "498": [
+  "22.80369543531221881923132169163610471766550357585055",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "499": [
+  "22.82929506726646469358809628457051319303898294784158",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261102-1339-jazivxt-v1-submission.csv"
+ ],
+ "500": [
+  "22.84858049441155306501232384312248499132175226794232",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "502": [
+  "22.87769881837493269038433915417783803275411247401850",
+  "public_resweep_kernels:aqibrazadev/squares-in-squares-top-lb-blending-visualization"
+ ],
+ "503": [
+  "22.89824363936707048029545422665392404516688036828811",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "505": [
+  "22.93181579803710278510562317686468601490227944780342",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "506": [
+  "22.95211315747414992377492620479668616242964132791033",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "507": [
+  "22.96521134417258049663981676644438951193456016503544",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "508": [
+  "22.97898394384189166923132169163816471802460314499907",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "509": [
+  "22.98977709307007701440290805328563357081893781026973",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "532": [
+  "23.56238461960601216002322737027547929259004237130564",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "535": [
+  "23.63625117334811765952467997428336587993232618811236",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "539": [
+  "23.73203728705976981238690815448296909746781940935565",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "542": [
+  "23.78766424619687339726542920309265487643066754806236",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "543": [
+  "23.79279163379991946209041604570365939422493416418888",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "545": [
+  "23.82646495082131559927315034838950062444390989720245",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "546": [
+  "23.85054860327774579980898330674420457974301744457809",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "547": [
+  "23.86087302565639602693784774104405382782427761193962",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "548": [
+  "23.87255738667805946084354123857500031104575352237694",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "549": [
+  "23.89740875617835695020425764718079225636506958167786",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "551": [
+  "23.92643693979708626336759442146528957802410216572016",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "556": [
+  "23.99596239027430168683698909075334889940015566418971",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "579": [
+  "24.56238461960602710933600126909920861829186762515122",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "580": [
+  "24.58378219015207200000000000000000000000000000000000",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "589": [
+  "24.77817459305213069038433915417983803275411247618517",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "590": [
+  "24.79279163380002180000000000000000000000000000000000",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "591": [
+  "24.80272987329410621169357826639501318030407255691748",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "595": [
+  "24.86192565354330775433594822850320341001258076580554",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "596": [
+  "24.87779945685548978697089891791778141915599986873423",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "597": [
+  "24.89692585351771612775557561560595422962802224400520",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "598": [
+  "24.90667194291751734586170058395012049624877122496121",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "599": [
+  "24.92459293819787232635395512272939942337451156352806",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "601": [
+  "24.95698702756339541352990908039447241713942207411490",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "603": [
+  "24.98369776902631967752184402477702627469580234180966",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "604": [
+  "24.99329893242166164999999999999862443037987924959815",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "629": [
+  "25.58378219015208200000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "637": [
+  "25.74473529060242995632619099783922365193975686029401",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "638": [
+  "25.76309361304504827517045248948396881319908966272804",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "641": [
+  "25.80597446557753888608314039231391446220976141949652",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "642": [
+  "25.82624984629898704368849645560788265000345464117396",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "645": [
+  "25.86460740840515287512158214101046899161391950536888",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "648": [
+  "25.90748602055968210541932853598604285943756990217619",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "649": [
+  "25.91490009928836176090726461998080986514091647327289",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "652": [
+  "25.96544111114048887998963972892111255833379201662028",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "653": [
+  "25.98063774122658812501386993261266611721443801925168",
+  "public_resweep_kernels:avazaku/contact-lp-cusp-bounds"
+ ],
+ "654": [
+  "25.99092200642542357923130613214671090009426524489658",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "681": [
+  "26.59137814549785461923132169163794048706201107090123",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "685": [
+  "26.68414360635925427923132169161757086996476691954794",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "690": [
+  "26.76690188787399798510497837384269895603715486489444",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "692": [
+  "26.79419973501125186057202875552537768317139568403932",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "694": [
+  "26.82804673644566271716637732030436882498368924118967",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "695": [
+  "26.83940539055052993386479651576565136881262960329587",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "696": [
+  "26.85620062549974550102760343063134152595144037423572",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "697": [
+  "26.86974580929872599354808713219933517084299907869174",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "698": [
+  "26.88110474080382974999999999999714250832500878069057",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "702": [
+  "26.92281185456386643716768256235439119260062194851918",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "704": [
+  "26.96316319195859860033355097864750268120272149400483",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "705": [
+  "26.97726359680951496591477193758672213792323249220996",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "706": [
+  "26.98788999970322230852083578234352589671138383593935",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "707": [
+  "26.99743325559325871924809512019270860849961882065077",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "735": [
+  "27.60871257844834400000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "738": [
+  "27.67938124878077560690604939851676887278010141581421",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "742": [
+  "27.74194725066358333000312895109188307969424272339751",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "745": [
+  "27.78834393232184474283362172356506990684848794444802",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "746": [
+  "27.79903358948418593375114981696547810879021549271957",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "749": [
+  "27.84335159561837481782975537035556913032018672195965",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "750": [
+  "27.85589303185364027039873898551438732946066016056985",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "751": [
+  "27.86414067381982088169290552428011614772485249911371",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "752": [
+  "27.88091392879267603855913695749781413295109103569225",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "755": [
+  "27.91653890013253262149973488110467727495741673892139",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "759": [
+  "27.97023765466428210899805644018062924493931880307700",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "760": [
+  "27.98467743629225704973088366368361158151054921948458",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "761": [
+  "27.99328330322113979433246276200767602596374113399031",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "786": [
+  "28.53553390593292330961566084581877985919185135539848",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "790": [
+  "28.60871257844784476031947241628144997019765971460461",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "791": [
+  "28.63625117342805182992516238796042778236517123330894",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "795": [
+  "28.70399648154181433596556545394389482490650379570514",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "796": [
+  "28.72154000225941426631508346921879633514953685850680",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "797": [
+  "28.73397986843068187801652089828217777690336478645165",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "798": [
+  "28.74560273776868065923132169163937971838370271201884",
+  "public_resweep_kernels:avazaku/contact-lp-cusp-bounds"
+ ],
+ "800": [
+  "28.77799215244168956923132169163816471802460314499907",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "801": [
+  "28.78113652136364911513853868954902642616747533060191",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "803": [
+  "28.82037605023024997729579464084639193637271455356740",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "805": [
+  "28.84417285521991075053965351447916171195571121304229",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "806": [
+  "28.85465249828325436760750051935678402410994285562174",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "813": [
+  "28.93130038933008065969831465832450888910062668349462",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "814": [
+  "28.94481601636542182670019732952704485888228035422852",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "818": [
+  "28.99857386918160040399928581462691708523249336577645",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "849": [
+  "29.63702940175387857696123697480399114500428883390412",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "851": [
+  "29.68414360635957000000000000000000000000000000000000",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "852": [
+  "29.69959630312499148662684783771821306716012452095760",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "855": [
+  "29.73397986843056669038433915417964764841495829592945",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "858": [
+  "29.77948453410182645193983102990630227611727634973536",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "860": [
+  "29.80242871693334762961566084581728445847365222162786",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "862": [
+  "29.83656364854636939728211844829083983563223036100770",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "865": [
+  "29.86492330904209950442289027339671493273204898474088",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "867": [
+  "29.88457494494994440356431989673883124586605824792262",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "868": [
+  "29.89865717001865526514203234766406098202763148484623",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "870": [
+  "29.92479145196860936499999999999820377499999999839592",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "872": [
+  "29.94088540957417152732837440338667818205435973744140",
+  "public_resweep_other:src/alexchilton_squares-in-squares-starter-kit/best_current.csv"
+ ],
+ "874": [
+  "29.97291740304051630679603480395762011599497016107475",
+  "public_resweep_kernels:avazaku/contact-lp-cusp-bounds"
+ ],
+ "875": [
+  "29.98892459644627485396175612502513861538455817683262",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "904": [
+  "30.56325956643683788349280464656017697336985549655979",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "905": [
+  "30.58378219015221119038433915418008803275411247626850",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "907": [
+  "30.61836606484396699999999999999926827700331714376080",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "908": [
+  "30.63625118077498629908019553413223451343171419450639",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "909": [
+  "30.65685424949258031923132169163970048778021020408988",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "914": [
+  "30.73389195214197407131223997073774257857068311102036",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "928": [
+  "30.89200374994261496923132169163806894862809565305385",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "929": [
+  "30.90852861696734080521918142776636609986515262757434",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "930": [
+  "30.91745532775574415139695477992968018277124687635416",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "931": [
+  "30.93153330515571170795751330291300945207717418029006",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "935": [
+  "30.97988246120824012153985075450659333231019363521369",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "936": [
+  "30.99751120511176751661531314844842316212717685328289",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "962": [
+  "31.52081528017147361923132169163836048706201107158131",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "965": [
+  "31.56207237294744434518669559270846411081892947420071",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "966": [
+  "31.58378219015222430961566084581977985919185135606515",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "968": [
+  "31.60871257844788742295981762672447642879700687518898",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "969": [
+  "31.63398250210213252620320139939017437015829309936760",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "971": [
+  "31.67679531161113889318931829460496713506858261052091",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "975": [
+  "31.72154000225946583307073733176196664647959449406549",
+  "public_resweep_kernels:amirstash/squares-in-squares-certified-merge-22-2173"
+ ],
+ "976": [
+  "31.73397986843066730739159781491908736380343804623244",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "980": [
+  "31.78761546631307260923132169163866471802460314563369",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "981": [
+  "31.79605929030468948886834116489647072124212684860366",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "984": [
+  "31.83614436153076109923132169163645125609941899455207",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "986": [
+  "31.85929399677241306834119916378003940991488117904803",
+  "public_resweep_kernels:pablodiegoo/squares-in-squares-starter-notebook"
+ ],
+ "990": [
+  "31.89488675937936374846900466503831738846835129355003",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "991": [
+  "31.90192666193464260396175612502130207623244362093018",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "993": [
+  "31.92479145195485466923132169072240046443872508746546",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "994": [
+  "31.94088540957424151417141922027492496642980949982397",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "995": [
+  "31.95139255392434515850433921714692010997855078912855",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "996": [
+  "31.95547433038936003223985191025957429695594889430448",
+  "public_resweep_kernels:alexchilton/fault-line-dp-basin-hopping-lb-22-2620"
+ ],
+ "997": [
+  "31.97361820866179014584258868044102480506209477377056",
+  "public_resweep_kernels:busyaprime/lb-22-1994508-sacred-geometry-of-1000-squares"
+ ],
+ "53": [
+  "7.82287565553230203735804612330466872523592318529784",
+  "public_resweep_other:src/alexchilton_squares-in-squares-starter-kit/best_current.csv"
+ ],
+ "87": [
+  "9.83881526994827061528123282764480330173721158319332",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv"
+ ],
+ "145": [
+  "12.53553390593277340000000000000000000000000000000000",
+  "public_resweep_other:src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "147": [
+  "12.65685424949241540000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n147.npz|f64canon dil=3e-15"
+ ],
+ "148": [
+  "12.65685424949241540000000000000000000000000000000000",
+  "public_resweep_other:src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "154": [
+  "12.92110094076171640000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n154.npz|dilate3e-15"
+ ],
+ "182": [
+  "13.97091643621472040000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n182.npz|f64canon dil=3e-15"
+ ],
+ "197": [
+  "14.53553390593278040000000000000000000000000000000000",
+  "public_resweep_other:src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "201": [
+  "14.70710678118659040000000000000000000000000000000000",
+  "public_resweep_other:src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "205": [
+  "14.82445114612410950000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "209": [
+  "14.94622322644648300000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "210": [
+  "14.97300111658765175648850310943610911420904566571442",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "227": [
+  "15.56362565232518067700980270223539690664174800138806",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "229": [
+  "15.65016151387646300000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "257": [
+  "16.53553390593276800000000000000000000000000000000000",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv|f64canon dil=3e-16"
+ ],
+ "265": [
+  "16.77817459305205000000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "272": [
+  "16.96558647483771028464418734064517699516106062891477",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "290": [
+  "17.53553390593278840000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n290.npz|f64canon dil=3e-15"
+ ],
+ "291": [
+  "17.53553390593278840000000000000000000000000000000000",
+  "public_resweep_other:src/lucifer19_think-pack-ship-transparent-inputs/motif_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "293": [
+  "17.62306521206075340000000000000000000000000000000000",
+  "public_resweep_other:ext/evand-square-packing/search/packer/candidates/s293_1105_regularized.cert|f64canon dil=3e-15"
+ ],
+ "297": [
+  "17.74041728754383800000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "304": [
+  "17.92094409334029440000000000000000000000000000000000",
+  "public_resweep_other:ext/evand-square-packing/search/packer/candidates/s304_1105_regularized.cert|f64canon dil=3e-15"
+ ],
+ "325": [
+  "18.53553390593279340000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n325.npz|f64canon dil=3e-15"
+ ],
+ "326": [
+  "18.53553390593279340000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n326.npz|f64canon dil=3e-15"
+ ],
+ "329": [
+  "18.65685424949243540000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n329.npz|f64canon dil=3e-15"
+ ],
+ "331": [
+  "18.70710678118662400000000000000000000000000000000000",
+  "public_resweep_other:src/alexchilton_squares-in-squares-starter-kit/best_current.csv|f64canon dil=0"
+ ],
+ "332": [
+  "18.74041728754385840000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n332.npz|f64canon dil=3e-15"
+ ],
+ "336": [
+  "18.82557149986172540000000000000000000000000000000000",
+  "public_resweep_other:ext/Mishapolk_square-packing-records/certificates/0000-0999/n336.cert|f64canon dil=3e-15"
+ ],
+ "362": [
+  "19.53553390593279640000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n362.npz|f64canon dil=3e-15"
+ ],
+ "363": [
+  "19.53553390593279640000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n363.npz|f64canon dil=3e-15"
+ ],
+ "364": [
+  "19.57142857142864652942883092559284960061488102271871",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "365": [
+  "19.61285638767194630961566084581897024353100553577209",
+  "public_resweep_other:ext/samanyu-dev/best_fit_101_500.csv"
+ ],
+ "369": [
+  "19.70710678118660540000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n369.npz|f64canon dil=3e-15"
+ ],
+ "373": [
+  "19.80369543531196506722331321608184350706550147037920",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "378": [
+  "19.92257879905667692042052623649153500195166614874181",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "401": [
+  "20.53553390593279840000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n401.npz|f64canon dil=3e-15"
+ ],
+ "402": [
+  "20.53553390593279840000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n402.npz|f64canon dil=3e-15"
+ ],
+ "403": [
+  "20.57142857142867205592419745656875839955957424474204",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "404": [
+  "20.59137814549779096740815750465692607432467849969855",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "414": [
+  "20.84066404810378561923132169163794048706201107090123",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "419": [
+  "20.93836338975966121321277987780488321267578983730909",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "442": [
+  "21.53553390593289591923132169163706471766550357769302",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "443": [
+  "21.53553390593283221923132169163882817959068772779748",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "444": [
+  "21.57142857142869946923132169163852087176026481763033",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "445": [
+  "21.59137814549783346923132169163801087176026481688103",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv|dilate1e-16"
+ ],
+ "448": [
+  "21.69238815542521096923132169163907048742111063790037",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "453": [
+  "21.78402409774182553169433444445742832601318253085315",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "455": [
+  "21.82506149632126576923132169163944433368544896612264",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "459": [
+  "21.90308483811782146990161514553964016168079437318177",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "461": [
+  "21.93200195853598082992444892445838721502546356993391",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "485": [
+  "22.53553390593281906923132169163889856428894147377727",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "486": [
+  "22.53553390593281906923132169163889856428894147377727",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "492": [
+  "22.70710678118665600000000000000000000000000000000001",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "493": [
+  "22.70710678118665600000000000000000000000000000000001",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "496": [
+  "22.78113652136335265959343526492827145340589217464698",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "530": [
+  "23.53553390593285546923132169163801087176026481688103",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "531": [
+  "23.53553390593285546923132169163801087176026481688103",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "537": [
+  "23.69238815542523295703449766420326704899437585599464",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "540": [
+  "23.75609756097571719973357936291602985531791118345348",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "550": [
+  "23.91118103596255971071157522083908412623102939101286",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "577": [
+  "24.53553390593287246923132169163762087176026481630803",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "578": [
+  "24.53553390593285061923132169163794048706201107090123",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "583": [
+  "24.65685424949250131923132169163970048778021020408988",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "587": [
+  "24.74989177979916595718097186407033006917855085116986",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "628": [
+  "25.53553390593288006923132169163902856428894147391627",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "630": [
+  "25.60460147572982064933614313463930415599751249634883",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "632": [
+  "25.63914780154432175555705025588407526385038564836868",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "633": [
+  "25.65685424949258106923132169163916856428894147406596",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "634": [
+  "25.70710678118667800000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "677": [
+  "26.52081528017156000000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n677.npz|f64canon dil=1e-14"
+ ],
+ "679": [
+  "26.53553390593285346923132169163963010308195645811009",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "680": [
+  "26.57142857142877671104138880451374948525509254598621",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv|dilate1e-15"
+ ],
+ "686": [
+  "26.70710678118670600000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "691": [
+  "26.78671185026714287529950176776960336573659241251924",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "730": [
+  "27.52081528017157100000000000000000000000000000000000",
+  "public_resweep_other:ext/Minuii_squares-in-squares/best/n730.npz|dilate1e-14"
+ ],
+ "734": [
+  "27.59137814549792925503905496941834891793269190762361",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "740": [
+  "27.70664670115203678366070982142603582964953736262327",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "741": [
+  "27.72792206135799461959188445798663764824720869721954",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "743": [
+  "27.75389876080010362225855061638858780124913140409544",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "754": [
+  "27.90556852053815881989921375878017510524183154605468",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "756": [
+  "27.92350100164038538581895173577160679597408434257118",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "758": [
+  "27.95864141631757136740815750465325915047431019878694",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv|dilate1e-15"
+ ],
+ "785": [
+  "28.52081528017146891923132169163928394898719522007362",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "787": [
+  "28.53553390593294517542193978528014890554453145711533",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-16"
+ ],
+ "789": [
+  "28.59137814549789493744110598823242039794573475225477",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "793": [
+  "28.67877987534306461923132169163955971838370271213030",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "799": [
+  "28.75985617495490332801299454169165985433740911428645",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "804": [
+  "28.82971553858728269541336909883118311419282967934914",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "809": [
+  "28.88972493276774110483650811027223675413857102014600",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "810": [
+  "28.90556851896209904879806862932663812297917848640372",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "842": [
+  "29.52081528017146161923132169163794048706201107090123",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "846": [
+  "29.58378219015220000351156349955101660689222345421339",
+  "public_resweep_other:ext/CacinieP_sis-cloud-artifacts/sub_best.csv"
+ ],
+ "850": [
+  "29.65685424949260031923132169163970048778021020408988",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "853": [
+  "29.70710678118677700000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "856": [
+  "29.74561939801256754714094368179528294382927094132137",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "866": [
+  "29.87906127943777394277716355173331724012610474823853",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "873": [
+  "29.95716317207516249382494758822963162213982146998084",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "902": [
+  "30.53553390593295247542193978527945313614802396437858",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "903": [
+  "30.53553390593295247542193978527945313614802396437858",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "906": [
+  "30.59137814549795376923132169163782510236375732489358",
+  "public_resweep_other:src/kmmmvs_squares-in-squares-private-packings/portfolio_bundle/upstream-20261103-0921-jazivxt-v2-submission.csv|f64canon dil=1e-15"
+ ],
+ "910": [
+  "30.67915325376317081412039458219806240506786448818177",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "915": [
+  "30.74511818228245202370081282203138248140776588122881",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "918": [
+  "30.78672094041610514531660383666507166791162198874258",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "921": [
+  "30.82196020389659010735780420478324220616661812743890",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "925": [
+  "30.86233608384196254862128257312441673499369371904165",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "927": [
+  "30.88701263333788878983946078390245388271553408107460",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "970": [
+  "31.63898244647184124682580818340313201585008018634156",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "973": [
+  "31.69665112612408236532383516006305572148077193318699",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "974": [
+  "31.70710678118679900000000000000000000000000000000000",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=3e-15"
+ ],
+ "978": [
+  "31.75985617683431329034493694049014325416701352533016",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "983": [
+  "31.81685649843034992097843048982571351788026076701946",
+  "public_resweep_other:src/prvsiyan_squares-in-squares-verified-packings-20261101/packing_coordinates.csv|f64canon dil=1e-15"
+ ],
+ "987": [
+  "31.86587735168963239015581063101712110160485547866890",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "988": [
+  "31.87455338944390539590686593955226125408955838483176",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ],
+ "989": [
+  "31.88604637519110706178336089108971959970609402504562",
+  "public_resweep_other:src/prvsiyan_squares-verified-best-of-1105/submission.csv"
+ ]
+}

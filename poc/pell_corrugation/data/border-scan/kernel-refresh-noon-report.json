@@ -1,0 +1,15 @@
+{
+  "previous_score": 22.175937590726818,
+  "score_literal": 22.17589232224942,
+  "score_pandas": 22.17589232224942,
+  "reduction": 4.5268477398062724e-5,
+  "accepted_literal": 1000,
+  "accepted_pandas": 1000,
+  "missing": 0,
+  "rejected": 0,
+  "wins": 1,
+  "win_n": [694],
+  "sha256": "eec27294fbd9991e5a7d65dc447070f89715869e27399fadd3c7d4ddefc2ef61",
+  "poc": "poc/kernel_refresh_noon",
+  "provenance": "docs/wins.json in the POC"
+}
