@@ -54,8 +54,15 @@ python poc/free_angle_slp/poc/free_angle_slp.py \
   --incumbent poc/pell_corrugation/data/border-scan/merged.csv \
   --report poc/pell_corrugation/data/border-scan/merged-literal-official.json \
   --n-list "$(seq -s, 1 1000)" \
-  --output /tmp/slp_all.json --wins /tmp/slp_wins.json
+  --output /tmp/slp_all.json --wins /tmp/slp_wins.json --jobs 32
 ```
 
 Requires `numpy`, `scipy` (HiGHS) and the shared official metric. `docs/scan.json`
 holds the per-`n` SLP side and status from the full run.
+
+## Parallel execution (32 threads)
+
+One process per `n` (`--jobs`, default 32), BLAS/OpenMP thread counts pinned to
+1, largest `n` first, `imap_unordered`, deterministic sorted merge. The full
+1000-group run drops from about four minutes serial to 12.7 s at 32 jobs
+(~19x).

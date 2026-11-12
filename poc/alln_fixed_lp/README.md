@@ -72,9 +72,20 @@ gap, not a numerical one.
 python poc/alln_fixed_lp/poc/alln_fixed_lp.py \
   --incumbent poc/pell_corrugation/data/border-scan/merged.csv \
   --report poc/pell_corrugation/data/border-scan/merged-literal-official.json \
-  --output /tmp/lp_all.json --wins /tmp/lp_all_wins.json
+  --output /tmp/lp_all.json --wins /tmp/lp_all_wins.json --jobs 32
 # probe a subset: add --n-list 971,911,910,972,793,634,791,908,969,803
 ```
 
 Scripts: `poc/alln_fixed_lp.py`. Requires `numpy`, `scipy` (HiGHS) and the
 shared official metric.
+
+## Parallel execution (32 threads)
+
+The solver runs one process per `n` with `multiprocessing` (`--jobs`, default
+32), pins `OMP_NUM_THREADS`/`MKL_NUM_THREADS`/`OPENBLAS_NUM_THREADS`/
+`NUMEXPR_NUM_THREADS` to 1 before importing numpy/scipy, and schedules the
+largest `n` first with `imap_unordered`. Results are collected and merged in
+sorted `n` order, so the output is deterministic. The full 1000-group run costs
+about 8.4 s at 32 jobs (7112 groups/min) versus 125.9 s serial (476
+groups/min), a 15x speedup; `top` shows `%Cpu(s) 96.3 us` and ~2986% aggregate
+across 35 Python processes during a heavier 12-round run.

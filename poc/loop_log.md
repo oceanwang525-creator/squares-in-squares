@@ -487,3 +487,36 @@ The LP cost about two minutes for all 1000 groups.
 
 **Operational note.** Re-run this LP after every large merge; it is cheap and
 matches only the newly imported rows.
+
+## Loop 16 - 32-thread parallel execution
+
+**Idea.** Use the full Ryzen 9 9950X (16 cores / 32 threads) for search and
+certification: one process per `n`, BLAS/OpenMP pinned to 1 in every worker,
+largest `n` first with `imap_unordered`, deterministic sorted merge. The final
+whole-file literal and pandas checks stay single-process.
+
+**Measured throughput (before -> after).**
+
+| stage | serial | 32 jobs | speedup |
+|---|---:|---:|---:|
+| fixed-angle LP, 1000 groups | 476 groups/min (125.9 s) | **7112 groups/min (8.4 s)** | 15.0x |
+| free-angle SLP, 1000 groups | ~240 s | **12.7 s** | ~19x |
+| merge/certify gate, 114 candidate `n` | ~5 min | **8.0 s** | ~14x wall, 2m44s user |
+| external bank scan, 34900 files | tens of minutes | **~28 s** | large |
+
+**CPU confirmation.** During a heavier 12-round LP run, `top` reported
+`%Cpu(s): 96.3 us, 1.3 id`, and 35 Python processes summed to **2986%** (≈30 of
+32 hardware threads), with individual workers at 99-100%.
+
+**Correctness.** The parallel merge gate reproduced the incumbent byte-for-byte
+on a 114-candidate test where every candidate was already merged (0 wins), and
+the parallel LP reproduced the serial `n=740` result. Results are merged in
+sorted `n` order, so output is deterministic.
+
+**Memory.** 52 GiB installed, 42 GiB available; 32 workers stayed well under
+10 GiB (each LP worker is ~300 MB peak). No swap was touched.
+
+Tools updated: `poc/alln_fixed_lp/poc/alln_fixed_lp.py`,
+`poc/free_angle_slp/poc/free_angle_slp.py`,
+`poc/external_witness_refresh/poc/merge_witnesses.py`,
+`poc/external_witness_refresh/poc/scan_new.py`. All take `--jobs 32`.
