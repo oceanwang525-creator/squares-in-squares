@@ -45,3 +45,29 @@ Adapting `angles`'s winning recipe (`7b385ca` / `#80`) combined with phase-exact
 4. **Joint `(x, y, dθ)` HiGHS SLP + Multi-Margin LP + Exact Radial Dilation Repair**: Polish top diverse candidates across all families, suppressing HiGHS `"threads": 1` warning (`OMP_NUM_THREADS=1` enforced) and checking exact literal + `pandas` roundtrip (`deg -> rad`) before saving any win.
 
 **Scope (< 5 min per batch):** Fast-fail batches across `{581, 850, 974, 448, 366, 847, 534, 585, 853, 330, 262, 147}` (max 4 workers).
+
+**Idea 2 Wave 1 Results (`docs/idea2_results_wave1q.json`, quick, Negative — 0 wins):**
+- `n=366`: 35 seeds; C++ feas `5/35`. Best certified non-45 result `s405_01_01_s1` -> `19.6907461` (`+0.0339` vs inc). `inc_melt` slid back into the incumbent basin (`19.6568628`, `+8.5e-6`).
+- `n=448`: C++ feas `2/35`. Best non-45 result `s491_10_10_s1` -> `21.7174210` (`+0.0250`). `inc_melt_7` -> `21.6923911` (`+3.0e-6`, still the 45° basin).
+- `n=581`: C++ feas `4/35`. Best non-45 result `s630_01_10_s1` -> `24.6383598` (`+0.0318`). `inc_melt_1` -> `24.6066020` (`+2.3e-7`, the 45° basin).
+- **Diagnosis:** wall peels of the `40.97°`/`24.8°` donors still leave `oh_rem` between `0.10` and `0.30`, and the overhanging squares cannot be absorbed: the melt only reaches feasibility at about `L_inc + 0.03`. Tilted-MILP seeds are worse (`+0.25`). Incumbent melts always fall back into the `45°` basin.
+
+**Idea 2 Wave 2 Results (`wave2q` on `850, 853, 585, 847`, quick, Negative — 0 wins; interrupted mid-`847` by server restart):**
+- `n=850`: 33 seeds; C++ feas `2/33`. Best non-45 `s909_01_10_s0` -> `29.6862056` (`+0.0294` vs inc). `inc_melt_2` -> `29.6568976` (`+4.3e-5`).
+- `n=853`: 33 seeds; C++ feas `0/33` (`min_pen=5.348e-4`). Best non-45 `s912_10_01_s1` -> `29.7354907` (`+0.0284`). `inc_melt_1` -> `29.7071178` (`+1.1e-5`).
+- `n=585`: 35 seeds; C++ feas `3/35`. Best non-45 `s684_11_20_s1` -> `24.7553109` (`+0.0482`). `inc_melt_3` -> `24.7071149` (`+8.1e-6`).
+- **Overhang audit insight:** Inspecting `405->366`, `630->581`, `491->448`, `909->850` directly showed why `surplus_peel` regressed: `630->581` at `L_box=24.591378` has **580/581** squares feasible (`0` overlap, `0` overhang) and only **1** overhanging square (`idx=139, 40.97°, oh=0.1874`); `405->366` at `19.633983` has only **3** overhanging squares (`two 45° @ 0.0972, one 0.94° @ 0.0096`). Unmasked global `a=0.78` melt shattered the feasible interior crystal.
+
+---
+
+## Idea 3: Multi-Margin Direct `joint_xytheta_slp` Harvest (`#90`) + Frozen-Interior Masked Wall/Seam Surgery (`< 4 min` Batches)
+
+**Hypothesis:**
+1. **Part A (`< 3 min` direct SLP harvest per `#90`):** Run multi-margin `[1e-7, 2e-8, 5e-9]` `joint_xytheta_slp` (with HiGHS `time_limit=10.0`) + 4 micro-jitter starts (`1e-4` pos, `0.02°` angle) directly on `merged.csv[n]` across all 12 targets (`850, 581, 974, 847, 534, 366, 585, 853, 448, 330, 262, 147`) to harvest any tight incumbent slack immediately.
+**Idea 3A Harvest Results (`docs/idea3a_harvest.json`, `691.5s`, 2 strict wins):**
+- `n=147`: **WIN** `L_lit=L_pd=12.65685424949241500000000000000000000000000000000000` vs `inc=12.65685424949241540000000000000000000000000000000000` (`dL=-4.000e-16`, saved to `data/win_n147.csv` + `final.csv`).
+- `n=850`: **WIN** `L_lit=L_pd=29.65685424949260031415926535897938666094826185440144` vs `inc=29.65685424949260031923132169163970048778021020408988` (`dL=-5.072e-18`, saved to `data/win_n850.csv` + `final.csv`).
+- Other 10 targets (`262, 330, 366, 448, 534, 581, 585, 847, 853, 974`): matched `inc_L` (tight 45° basins cannot break via local `joint_xytheta_slp` alone; next testing Idea 3B frozen-interior masked wall/void/seam surgery for real non-45° band replacements).
+
+2. **Part B (Frozen-Interior Masked Wall/Void/Seam Surgery):** Preserve the feasible non-`45°` crystal in `surplus_peel` (`s630_01_10 -> 581`, `s405_01_01 -> 366`, `s491_10_10 -> 448`, `s909_01_10 -> 850`, `s912_01_01 -> 853`, `s685_11_02 -> 585`, `s906_01_01 -> 847`, `s630_02_11 -> 534`, `s199_11_02 -> 147`) and `cascades`-style interior `dk` cross-cuts by:
+   - Setting C++ `free_mask` to ONLY squares within radius `R = 2.5..6.0` of overhanging squares / peeled seams / interior voids (holding the rest of the `L_box < L_inc` crystal rigid during initial soft `a`-melt!), OR dropping the `1..3` overhanging squares and re-inserting them into max-clearance interior voids before local `free_mask` melt + unmasked final `joint_xytheta_slp`!

@@ -8,7 +8,9 @@ os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
+import ctypes
 import math
+import subprocess
 import sys
 from decimal import Decimal
 from pathlib import Path
@@ -227,6 +229,63 @@ def sat_penalty_grad(
     return energy, grad
 
 
+_CPP_LIB = None
+
+
+def _get_cpp_melt():
+    global _CPP_LIB
+    if _CPP_LIB is not None:
+        return _CPP_LIB
+    so_path = Path("/tmp/libreplace45_melt.so")
+    cpp_src = Path(__file__).resolve().parent / "cpp_melt.cpp"
+    if not so_path.exists() and cpp_src.exists():
+        subprocess.run(
+            ["g++", "-O3", "-march=native", "-shared", "-fPIC", "-std=c++17", str(cpp_src), "-o", str(so_path)],
+            check=True,
+        )
+    if so_path.exists():
+        lib = ctypes.CDLL(str(so_path))
+        lib.batch_melt_solve.argtypes = [
+            ctypes.c_int, ctypes.c_int,
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            ctypes.c_int, np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            ctypes.c_int, np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=np.int32, flags="C_CONTIGUOUS"),
+            ctypes.c_int, ctypes.c_void_p, ctypes.c_int, ctypes.c_uint64,
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+            np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS"),
+        ]
+        lib.batch_melt_solve.restype = None
+        _CPP_LIB = lib
+    return _CPP_LIB
+
+
+def _cpp_relax_single(
+    x: np.ndarray, y: np.ndarray, th: np.ndarray, L: float, maxiter: int = 160
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, float]:
+    lib = _get_cpp_melt()
+    if lib is None:
+        return relax_lbfgs(x, y, th, L, maxiter=maxiter)
+    n = len(x)
+    z = np.ascontiguousarray(np.concatenate([x, y, th]), dtype=np.float64)
+    zf = np.zeros_like(z)
+    ls = np.array([float(L)], dtype=np.float64)
+    asch = np.array([1.0], dtype=np.float64)
+    ip = np.array([int(maxiter)], dtype=np.int32)
+    bL = np.full(1, 1e18, dtype=np.float64)
+    oE = np.zeros(1, dtype=np.float64)
+    op = np.zeros(1, dtype=np.float64)
+    ob = np.zeros(1, dtype=np.float64)
+    lib.batch_melt_solve(1, n, z, zf, 1, ls, 1, asch, ip, 0, None, 1, 17, bL, oE, op, ob)
+    src = zf if bL[0] < 1e17 else z
+    nx, ny, nth = src[:n].copy(), src[n : 2 * n].copy(), src[2 * n :].copy()
+    pen, _ = sat_max_overlap_and_bbox(nx, ny, nth)
+    return nx, ny, nth, float(pen)
+
+
 def relax_lbfgs(
     x: np.ndarray,
     y: np.ndarray,
@@ -347,7 +406,7 @@ def fixed_angle_lp_tighten(
         obj = np.zeros(2 * n + 1)
         obj[2 * n] = 1.0
         bounds = [(None, None)] * (2 * n) + [(0.0, None)]
-        res = linprog(obj, A_ub=A, b_ub=np.array(ub), bounds=bounds, method="highs", options={"threads": 1})
+        res = linprog(obj, A_ub=A, b_ub=np.array(ub), bounds=bounds, method="highs")
         if not res.success or res.x is None:
             return best_x, best_y, best_L, best_L < 1e17
         nx = res.x[:n]
@@ -557,12 +616,12 @@ def joint_xytheta_slp(
 
     pen0, bbox0 = sat_max_overlap_and_bbox(cur_x, cur_y, cur_th)
     if pen0 > 1e-7:
-        cur_x, cur_y, cur_th, pen0 = relax_lbfgs(cur_x, cur_y, cur_th, max(bbox0, k + 0.50), maxiter=220)
+        cur_x, cur_y, cur_th, pen0 = _cpp_relax_single(cur_x, cur_y, cur_th, max(bbox0, k + 0.50), maxiter=220)
         pen0, bbox0 = sat_max_overlap_and_bbox(cur_x, cur_y, cur_th)
 
     best_x, best_y, best_th = cur_x.copy(), cur_y.copy(), cur_th.copy()
-    best_L = bbox0 if pen0 <= 1e-7 else 1e9
-    best_ok = pen0 <= 1e-7
+    best_L = bbox0 if pen0 <= 1e-12 else 1e9
+    best_ok = pen0 <= 1e-12
 
     obj = np.zeros(3 * n + 1, dtype=np.float64)
     obj[3 * n] = 1.0
@@ -575,9 +634,9 @@ def joint_xytheta_slp(
         bounds = (
             [(-tr_xy, tr_xy)] * (2 * n)
             + [(-tr_th, tr_th)] * n
-            + [(float(k) + 0.45, float(max(bbox0, k + 0.65) + 0.35))]
+            + [(float(k) + 0.40, float(max(bbox0, k + 0.65) + 0.35))]
         )
-        res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs", options={"threads": 1})
+        res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs", options={"time_limit": 10.0})
         if not res.success or res.x is None:
             tr_th *= 0.6
             tr_xy *= 0.7
@@ -593,18 +652,28 @@ def joint_xytheta_slp(
             cand_x = cur_x + alpha * dx
             cand_y = cur_y + alpha * dy
             cand_th = cur_th + alpha * dth
+            chx = 0.5 * (np.abs(np.cos(cand_th)) + np.abs(np.sin(cand_th)))
+            cand_x = cand_x - np.min(cand_x - chx)
+            cand_y = cand_y - np.min(cand_y - chx)
             pen_c, bbox_c = sat_max_overlap_and_bbox(cand_x, cand_y, cand_th)
-            if pen_c > 1e-8:
-                target_L = max(lp_L, min(bbox_c, bbox0) - 0.002)
-                cand_x, cand_y, cand_th, pen_c = relax_lbfgs(
-                    cand_x, cand_y, cand_th, target_L, maxiter=90, w_wall=2.0, w_pair=1.0
-                )
+            if pen_c > 1e-9:
+                target_L = max(lp_L, min(bbox_c, bbox0) - 0.0015)
+                cand_x, cand_y, cand_th, pen_c = _cpp_relax_single(cand_x, cand_y, cand_th, target_L, maxiter=160)
+                chx = 0.5 * (np.abs(np.cos(cand_th)) + np.abs(np.sin(cand_th)))
+                cand_x = cand_x - np.min(cand_x - chx)
+                cand_y = cand_y - np.min(cand_y - chx)
                 pen_c, bbox_c = sat_max_overlap_and_bbox(cand_x, cand_y, cand_th)
 
-            if pen_c <= 1e-7 and bbox_c < best_L:
+            if pen_c <= 1e-12 and bbox_c < best_L:
                 best_L = bbox_c
                 best_x, best_y, best_th = cand_x.copy(), cand_y.copy(), cand_th.copy()
                 best_ok = True
+            elif pen_c <= 1e-7 and bbox_c < best_L + 0.002:
+                tx, ty, tL, tok = fixed_angle_lp_tighten(cand_x, cand_y, cand_th, rounds=3, margin=1e-7)
+                if tok and tL < best_L:
+                    best_L = tL
+                    best_x, best_y, best_th = tx, ty, cand_th.copy()
+                    best_ok = True
 
             if pen_c <= max(5e-4, pen0 * 0.9) and bbox_c <= bbox0 + 0.01:
                 cur_x, cur_y, cur_th = cand_x, cand_y, cand_th
@@ -621,18 +690,21 @@ def joint_xytheta_slp(
 
     for cx, cy, cth in [(best_x, best_y, best_th), (cur_x, cur_y, cur_th)]:
         pen_f, bbox_f = sat_max_overlap_and_bbox(cx, cy, cth)
-        if pen_f > 1e-9:
-            cx, cy, cth, pen_f = relax_lbfgs(cx, cy, cth, bbox_f, maxiter=250, w_wall=2.0, w_pair=1.0)
-        tx, ty, tL, tok = fixed_angle_lp_tighten(cx, cy, cth, rounds=5, margin=1e-8)
-        if tok and tL < best_L:
-            best_x, best_y, best_th, best_L, best_ok = tx, ty, cth.copy(), tL, True
+        if pen_f > 1e-11:
+            cx, cy, cth, pen_f = _cpp_relax_single(cx, cy, cth, bbox_f + 1e-4, maxiter=250)
+        for m_lp in (1e-7, 2e-8, 5e-9):
+            tx, ty, tL, tok = fixed_angle_lp_tighten(cx, cy, cth, rounds=5, margin=m_lp)
+            if tok and (not best_ok or tL < best_L):
+                best_x, best_y, best_th, best_L, best_ok = tx, ty, cth.copy(), tL, True
 
     return best_x, best_y, best_th, best_L, best_ok
 
 
 def verify_official(n: int, x: np.ndarray, y: np.ndarray, th: np.ndarray) -> dict:
-    """Certify literal + pandas roundtrip via official squares.core metric."""
-    hx = 0.5 * (np.abs(np.cos(th)) + np.abs(np.sin(th)))
+    """Certify literal, pandas, and deg-roundtrip via official squares.core metric."""
+    deg_vals = [math.degrees(float(t)) for t in th]
+    th_deg_rad = np.array([math.radians(float(repr(d))) for d in deg_vals], dtype=np.float64)
+    hx = 0.5 * (np.abs(np.cos(th_deg_rad)) + np.abs(np.sin(th_deg_rad)))
     sx = x - (x - hx).min() + 1e-12
     sy = y - (y - hx).min() + 1e-12
     rows = [
@@ -640,7 +712,7 @@ def verify_official(n: int, x: np.ndarray, y: np.ndarray, th: np.ndarray) -> dic
             "square_id": str(i),
             "x": repr(float(sx[i])),
             "y": repr(float(sy[i])),
-            "angle": repr(float(th[i])),
+            "angle": repr(float(th_deg_rad[i])),
         }
         for i in range(n)
     ]
@@ -661,7 +733,7 @@ def verify_official(n: int, x: np.ndarray, y: np.ndarray, th: np.ndarray) -> dic
         "rows": rows,
         "x": sx,
         "y": sy,
-        "th": th.copy(),
+        "th": th_deg_rad.copy(),
     }
 
 
