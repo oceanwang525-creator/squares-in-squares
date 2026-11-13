@@ -1,0 +1,11 @@
+Plain squeeze of every extracted proper sub-gadget on its own (incumbent of Nov 12, 337 pockets).
+Only pockets whose f dropped by more than 1e-7 are listed.
+
+(w,h,g)=(2,2,+1) from n=126 N=5: f 0.74264069 -> 0.70710678 (-3.55e-02)
+(w,h,g)=(2,2,+1) from n=263 N=5: f 0.73316601 -> 0.70710678 (-2.61e-02)
+(w,h,g)=(4,5,+1) from n=405 N=21: f 0.63398250 -> 0.62132034 (-1.27e-02)
+(w,h,g)=(8,16,+6) from n=638 N=134: f 0.76153640 -> 0.76043556 (-1.10e-03)
+(w,h,g)=(11,15,+3) from n=736 N=168: f 0.63702940 -> 0.63688125 (-1.48e-04)
+(w,h,g)=(17,8,+7) from n=691 N=143: f 0.76336734 -> 0.76335916 (-8.17e-06)
+(w,h,g)=(6,10,+2) from n=490 N=62: f 0.62307289 -> 0.62306521 (-7.68e-06)
+(w,h,g)=(22,8,+12) from n=986 N=188: f 0.83833864 -> 0.83833122 (-7.42e-06)
