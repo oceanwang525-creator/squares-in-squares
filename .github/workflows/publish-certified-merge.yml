@@ -40,6 +40,10 @@ jobs:
           python -m unittest discover -s .github/scripts -p 'test_certification_runtime.py'
           python -m unittest discover -s .github/scripts -p 'test_certification_cache.py'
       - name: Union, certify, commit strict gains, then publish exact canonical
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CERT_FULL_AUDIT: ${{ inputs.full_audit && 'true' || 'false' }}
+          CERT_EVIDENCE_OUT: ${{ runner.temp }}/squares-cert-evidence
         run: |
           /usr/bin/time -v python -u .github/scripts/publish_certified_merge.py
       - name: Persist trusted official group evidence
