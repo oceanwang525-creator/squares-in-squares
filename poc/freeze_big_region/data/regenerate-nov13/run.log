@@ -1,0 +1,5 @@
+n=634 R=3.0 seed=1 sig=0.06900759428559608 adeg=1.031400935640663 free=254/634 pairs=974 L0=25.707106781
+  jitter-relax at L0+loose: E=1.33e-08
+  lowest feasible-penalty L reached 26.011106781 (vs L0 25.707106781)
+  stalled: feasible-penalty L=25.707106781 (shrink 0.00e+00) tried=25 t=18s
+RESULT 634 3.0 1 incumbent 25.707106781186678 penalty-feasible 25.707106781186678 measured None

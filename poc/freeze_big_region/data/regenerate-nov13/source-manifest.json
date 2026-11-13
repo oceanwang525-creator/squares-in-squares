@@ -1,0 +1,24 @@
+{
+  "source_main": "28b87e5f28a327e337b498d027e8cecdc8c80559",
+  "original_sources": {
+    "poc/freeze_big_region/poc/big_free.py": "200350a1deb70f478339cd7121123039f6267d8a59440d693b980c55124eff7a"
+  },
+  "execution": {
+    "folder": "freeze_big_region",
+    "args": [
+      "poc/freeze_big_region/poc/big_free.py",
+      "634",
+      "3",
+      "1",
+      "150"
+    ],
+    "reason": "Documented n634 150second serious local relaxation",
+    "timeout": 3500,
+    "pid": 426384,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 26.44
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}
