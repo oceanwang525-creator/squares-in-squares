@@ -1,7 +1,7 @@
 {
   "folder": "corner_interlock_patch",
-  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
-  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "source_main": "f3b4adc743eadd4702853421be3b06b5ccde7e86",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
@@ -9,6 +9,12 @@
     {
       "path": "poc/corner_interlock_patch/data/regenerate-nov13/results.json",
       "sha256": "7441e8ca75989fbb0177753fa8d4b317595c1ff4da8909f21551f70bcf0f82ff",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/corner_interlock_patch/data/regenerate-nov13/source-manifest.json",
+      "sha256": "89184476ee4d7ce038ae98c48312c7ca58afe62e4c81500a7ede8fbed03b87ef",
       "decode_note": "report/metadata, not a saved coordinate-row list",
       "groups": 0
     },
