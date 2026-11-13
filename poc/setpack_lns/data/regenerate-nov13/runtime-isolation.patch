@@ -1,0 +1,22 @@
+diff --git a/poc/setpack_lns/poc/setpack_lns.py b/poc/setpack_lns/poc/setpack_lns.py
+index ad40b96..64dbdeb 100644
+--- a/poc/setpack_lns/poc/setpack_lns.py
++++ b/poc/setpack_lns/poc/setpack_lns.py
+@@ -26,7 +26,7 @@ from scipy.optimize import milp, LinearConstraint, Bounds
+ from scipy.sparse import coo_matrix
+ from scipy.spatial import cKDTree
+ 
+-ROOT = "/mnt/e/squares-in-squares"
++ROOT = "/mnt/e/squares-poc-regenerate-nov13"
+ sys.path.insert(0, ROOT + "/poc/baseline/poc/src")
+ from squares import core  # noqa: E402
+ from squares import _official_metric as metric  # noqa: E402
+@@ -199,7 +199,7 @@ def main() -> None:
+                     json.dump({"911": dict(old_L=str(ours), new_L=str(max(lit, pan)),
+                                            literal_L=str(lit), pandas_L=str(pan),
+                                            rows=rr)},
+-                              open("/tmp/opencode/setpack_win.json", "w"), indent=1)
++                              open("/mnt/e/squares-poc-regenerate-nov13/poc/setpack_lns/data/regenerate-nov13/setpack_win.json", "w"), indent=1)
+                     print("WIN", flush=True)
+                 break
+             except Exception as ex:
