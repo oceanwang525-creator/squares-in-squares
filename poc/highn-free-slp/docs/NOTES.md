@@ -187,6 +187,17 @@ gate=58/58 literal=22.173714776457253 1000/1000 pandas=22.173714776457256 1000/1
 The net change from R40 is `3.204e-12`. This remains numerical polishing; the
 larger radius gives no indication of a new contact topology.
 
+R42 repeated trust `0.050`. It found 55 strict wins and replaced seven final
+groups (`703, 738, 748, 791, 793, 908, 988`). The full certification is:
+
+```text
+gate=58/58 literal=22.173714776454094 1000/1000 pandas=22.173714776454094 1000/1000
+```
+
+The net change from R41 is `3.159e-12`. This is treated as the numerical floor
+of the current contact graph; further trust sweeps are not a route to the
+target score.
+
 ## Provenance
 
 Search code is from the collaborator POC `poc/claude-midn`; this folder owns

@@ -55,6 +55,7 @@ portfolio and rescored from scratch.
 - R34 certified full union: `22.173714777045685`
 - R40 certified full union: `22.173714776460457`
 - R41 certified full union: `22.173714776457253`
+- R42 certified full union: `22.173714776454094`
 - both transports: `1000/1000` accepted, `gate=58/58`
 
 The largest improvements are:
@@ -105,6 +106,11 @@ R41 at trust `0.050` again found 58 strict wins and replaced six R40 groups
 `22.173714776457253` in both transports, another `3.204e-12` lower. This pass
 also confirms that raising the trust radius further only polishes the same
 contact graph.
+
+R42 kept trust `0.050`, found 55 strict wins, and replaced seven R41 groups
+(`703, 738, 748, 791, 793, 908, 988`). The certified union is
+`22.173714776454094`, another `3.159e-12` lower. The repeated overlap and
+sub-picometre changes show this basin is exhausted.
 
 ## Files
 
