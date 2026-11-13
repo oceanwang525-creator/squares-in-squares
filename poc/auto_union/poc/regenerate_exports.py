@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Export only reviewed regeneration folders, never modifying the incumbent."""
-import argparse, csv, io, json, pathlib, subprocess, sys
+import argparse, csv, io, json, pathlib, subprocess, sys, math, re
 ROOT=pathlib.Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT/'poc/auto_union/poc'))
 import normalize as norm
@@ -39,12 +39,29 @@ def export(folder,cache,sides,source):
         rec={'path':str(path.relative_to(ROOT)),'sha256':u.digest(path.read_bytes())}
         groups=[]
         try:
-            a,b=norm.candidate(path);groups.append((a,b))
+            a,b=norm.candidate(path)
+            expected={'free_band_ga':911,'multi_tilted_blocks':908,'k2p10_two_bands':635,'k2p10_fill2':635}.get(folder)
+            if expected is not None and path.suffix in ('.npy','.npz') and set(a)!={expected}:
+                raise ValueError('saved capacity/partial array does not contain target n='+str(expected))
+            groups.append((a,b))
         except Exception as e:
             rec['decode_note']=str(e)
             if path.suffix=='.json':
                 try:
-                    for raw in row_groups(json.loads(path.read_text())):
+                    blob=json.loads(path.read_text())
+                    decoded=row_groups(blob)
+                    if folder=='c4_symmetric_ils' and isinstance(blob,dict) and {'n','L','p'}<=blob.keys():
+                        n=int(blob['n']);L=float(blob['L']);params=blob['p'];centre=n%4;m=(n-centre)//4
+                        if centre in (0,1) and len(params)==3*m+centre:
+                            rows=[]
+                            for k in range(4):
+                                ck=round(math.cos(k*math.pi/2));sk=round(math.sin(k*math.pi/2))
+                                for i in range(m):
+                                    x,y,t=params[3*i:3*i+3]
+                                    rows.append(dict(x=repr(L/2+ck*x-sk*y),y=repr(L/2+sk*x+ck*y),angle=repr(t+k*math.pi/2)))
+                            if centre:rows.append(dict(x=repr(L/2),y=repr(L/2),angle=repr(params[-1])))
+                            decoded+=row_groups(dict(n=n,rows=rows))
+                    for raw in decoded:
                         text=u.csv_text(raw)
                         groups.append((u.parse_text(text),u.parse_text(u.pd.read_csv(io.StringIO(text)).to_csv(index=False))))
                 except Exception as e:rec['row_decode_note']=str(e)
