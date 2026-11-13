@@ -825,11 +825,20 @@ def verify_official(n: int, x: np.ndarray, y: np.ndarray, th: np.ndarray) -> dic
     _, _, side_pd, reason_pd = sc.evaluate(n, rt[n])
     if reason_pd != "ok" or side_pd is None:
         return {"ok": False, "reason_lit": reason_lit, "reason_pd": reason_pd, "L_lit": side_lit, "L_pandas": None}
+    # Also verify exact final.csv serialization roundtrip through auto_union load + check
+    union_mod = get_union_module()
+    txt = union_mod.final_text({n: core_rows})
+    lit_g, pd_g = union_mod.parse_text(txt), union_mod.parse_text(
+        pd.read_csv(io.StringIO(txt)).to_csv(index=False)
+    )
+    chk = union_mod.check((n, lit_g[n], pd_g[n]))
+    if chk is None:
+        return {"ok": False, "reason_lit": "union_check_failed", "L_lit": side_lit, "L_pandas": side_pd}
     return {
         "ok": True,
-        "L_lit": side_lit,
-        "L_pandas": side_pd,
-        "L_float": float(max(Decimal(side_lit), Decimal(side_pd))),
+        "L_lit": chk[0],
+        "L_pandas": chk[1],
+        "L_float": float(max(Decimal(chk[0]), Decimal(chk[1]))),
         "rows": rows,
     }
 
@@ -856,21 +865,25 @@ def verify_final_csv_with_union(path: Path = FINAL_CSV, baseline_path: Path = ME
 
 
 def write_final_csv_from_wins(wins_by_n: dict[int, dict], out_path: Path = FINAL_CSV) -> None:
-    """Write certified wins/ties into final.csv (`id,x,y,deg`, header-only if empty)."""
+    """Write certified wins/ties into final.csv (`id,x,y,deg`, canonical s-prefixed format)."""
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if not wins_by_n:
         out_path.write_text("id,x,y,deg\n", encoding="utf-8")
         return
-    records = []
+    union_mod = get_union_module()
+    groups = {}
     for n in sorted(wins_by_n):
         rows = wins_by_n[n]["rows"]
-        for r in rows:
-            sid = int(r["square_id"])
-            id_str = f"{n:03d}_{sid}" if n < 1000 else f"{n}_{sid}"
-            deg_val = r["deg"] if "deg" in r else repr(float(np.degrees(float(r["angle"]))))
-            records.append({"id": id_str, "x": r["x"], "y": r["y"], "deg": deg_val})
-    df_out = pd.DataFrame(records, columns=["id", "x", "y", "deg"])
-    df_out.to_csv(out_path, index=False)
+        groups[n] = [
+            {
+                "square_id": str(r["square_id"]),
+                "x": r["x"],
+                "y": r["y"],
+                "angle": r["angle"],
+            }
+            for r in rows
+        ]
+    out_path.write_text(union_mod.final_text(groups), encoding="utf-8")
 
 
 def load_incumbent_and_frontier(ns: list[int]) -> tuple[dict[int, tuple], dict[int, dict[str, float]]]:

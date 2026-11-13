@@ -18,5 +18,12 @@ Gate passed in `273.8s` (`poc/swarm_walldrift/docs/gate_results.json`):
 On `n=598` (`walls_1e-8 = [L=23, R=21, B=24, T=6]`), all top 4 polished candidates (`wd_mpk_wall_1`, `wd_mpk_opp_3`, `wd_mpk_wall_6`, `i20_drift_5`) beat `L_inc` by `-3.79e-4` to `-4.33e-4`.
 
 ## Verification
-- `poc/auto_union/poc/union.py` `load` + `check` (literal & pandas) passed on all entries in `poc/swarm_walldrift/final.csv`.
-- Unit tests in `poc/swarm_walldrift/poc/tests/test_walldrift.py` + `poc/baseline/poc/tests/` pass.
+- `poc/auto_union/poc/union.py` `load` + `check` (literal & pandas) passed against `swarm` baseline on 15 entries (`598` real win + 14 ties), and after `origin/main` updated (`e7f910b`), `poc/swarm_walldrift/final.csv` was filtered to the 5 entries that still strictly tie `origin/main:poc/pell_corrugation/data/border-scan/merged.csv` (`637, 806, 916, 925, 979`; `-1.800e-15..-1.300e-15`).
+- `pytest -q poc/baseline/poc/tests/ poc/swarm_walldrift/poc/tests/` passes.
+
+## Scale-Up Results (`scale_results.json`)
+Scaled H9 across 15 wall-imbalance targets (`916, 997, 979, 852, 909, 692, 695, 637, 647, 799, 806, 811, 861, 915, 925`), stopping cleanly after 17 consecutive non-real-wins (`>= 12` threshold per `#122`):
+- **12 strict both-mode ties vs initial incumbent** (`-2.509e-15..-2.000e-16` via `direct_0jit_slp`, `union.py` verified): `637, 692, 695, 799, 806, 810` (gate), `811, 852, 915, 916, 925, 979, 997` (plus `754` in gate = 14 ties total). After `origin/main` `e7f910b` beat/matched `598, 692, 695, 754, 799, 810, 811, 852, 915, 997`, `final.csv` retains `637, 806, 916, 925, 979`.
+- **3 misses**: `647` (`+0.000e+00`), `861` (`+1.242e-16`), `909` (dropped from `final.csv` after `union.check` failed at `mpmath` precision; `slp_utils.py` updated to serialize canonical `"s"`-prefixed 75-digit `union.final_text` and validate `union.check` inside `verify_official`).
+- **Diagnosis**: Large (`n=637..997`) wall-imbalanced incumbents only yield `O(1e-15)` coupled slack under local pocket melts (`R=4.8..7.4`); only `n=598` (`dL = -4.327310e-04`, merged into `swarm` in `9e1c500` / PR #14 and subsequently improved on `origin/main` `e7f910b` to `24.9025211305`) had a deformable sparse-wall (`T=6`) bottleneck pocket.
+
