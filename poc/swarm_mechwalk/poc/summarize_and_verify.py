@@ -59,6 +59,15 @@ def main() -> None:
             row["run_file"] = name
             batch1_runs[int(row["n"])] = row
 
+    batch4_runs: dict[int, dict] = {}
+    for name in ("b4_s1_results.json",):
+        p = ml.DOCS_DIR / name
+        if not p.exists():
+            continue
+        for row in json.loads(p.read_text(encoding="utf-8")):
+            row["run_file"] = name
+            batch4_runs[int(row["n"])] = row
+
     batch3_runs: dict[int, dict] = {}
     for name in ("b3_s1_results.json", "b3_s2_results.json"):
         p = ml.DOCS_DIR / name
@@ -78,7 +87,7 @@ def main() -> None:
             batch2_runs[int(row["n"])] = row
 
     lines = [
-        "# H22 / H31 / H39: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt",
+        "# H22 / H31 / H39 / H45: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt",
         "",
         "## Method",
         "",
@@ -89,7 +98,7 @@ def main() -> None:
         "  - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.",
         "- **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).",
         "",
-        f"## Batch 3 Summary (H39: {len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
+        f"## Batch 4 Summary (H45: {len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
         "",
         "| `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |",
         "|---:|---:|---:|---|---|---|",
@@ -99,11 +108,27 @@ def main() -> None:
             f"| {w['n']} | `{w['dL']:+.6e}` | `{w['ds']:+.6e}` | `{w['L_lit'][:22]}` | `{w['L_inc'][:22]}` ({w['inc_src']}) | `{w['label']}` |"
         )
 
+    b4_wins = [batch4_runs[n] for n in sorted(batch4_runs) if batch4_runs[n]["status"] == "REAL_WIN"]
+    b4_misses = [batch4_runs[n] for n in sorted(batch4_runs) if batch4_runs[n]["status"] != "REAL_WIN"]
+    lines.extend([
+        "",
+        f"## Batch 4 Run Log ({len(batch4_runs)} Evaluated `n`s: {len(b4_wins)} REAL WINs vs seed, {len(verified_wins)} strict vs `origin/main`, {len(b4_misses)} Ties/Misses)",
+        "",
+        "| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |",
+        "|---:|---|---|---:|---:|---|",
+    ])
+    for n in sorted(batch4_runs):
+        r = batch4_runs[n]
+        dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
+        lines.append(
+            f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
+        )
+
     b3_wins = [batch3_runs[n] for n in sorted(batch3_runs) if batch3_runs[n]["status"] == "REAL_WIN"]
     b3_misses = [batch3_runs[n] for n in sorted(batch3_runs) if batch3_runs[n]["status"] != "REAL_WIN"]
     lines.extend([
         "",
-        f"## Batch 3 Run Log ({len(batch3_runs)} Evaluated `n`s: {len(b3_wins)} REAL WINs, {len(b3_misses)} Ties/Misses)",
+        f"## Batch 3 Archive (Merged in PR #40 / `37be2a8`: {len(b3_wins)} REAL WINs, {len(b3_misses)} Ties/Misses across {len(batch3_runs)} `n`s)",
         "",
         "| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |",
         "|---:|---|---|---:|---:|---|",
