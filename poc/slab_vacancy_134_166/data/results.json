@@ -1,0 +1,14 @@
+{
+  "upstream": "2c1e6a6",
+  "target_range": [134, 166],
+  "pandas": "3.1.0",
+  "modes": {
+    "compact": {"candidates": 17, "wins": 0},
+    "cuts": {"candidates": 156, "wins": 0},
+    "deletion": {"candidates": 690, "wins": 0},
+    "diamond": {"candidates": 132, "wins": 0},
+    "insertion": {"candidates": 84, "wins": 0}
+  },
+  "total_candidates": 1079,
+  "verified_improvements": 0
+}
