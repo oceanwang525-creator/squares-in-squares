@@ -1,7 +1,7 @@
 {
   "folder": "d1_chain",
-  "source_main": "910cceb3f8d27b2668c80418c0f0ae96f24f82e8",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "81840526b9aa6bd7a810960c2a4a93a9a676709d",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
