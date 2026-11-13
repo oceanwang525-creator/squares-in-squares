@@ -1,0 +1,96 @@
+name: final.csv check
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  final-csv-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Trusted base only. Never check out or run scripts supplied by the PR.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - name: Fetch PR commits
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head"
+      - name: Check changed final.csv files
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import csv
+          import io
+          import math
+          import os
+          import re
+          import subprocess
+          import sys
+          
+          def validate(text):
+              reader = csv.reader(io.StringIO(text, newline=""), strict=True)
+              if next(reader, None) != ["id", "x", "y", "deg"]:
+                  raise ValueError("expected header id,x,y,deg")
+              groups = {}
+              for line, row in enumerate(reader, 2):
+                  if len(row) != 4:
+                      raise ValueError(f"line {line}: expected four columns")
+                  match = re.fullmatch(r"([0-9]{3}|1000)_(0|[1-9][0-9]*)", row[0])
+                  if not match:
+                      raise ValueError(f"line {line}: invalid id")
+                  n, index = map(int, match.groups())
+                  if not 1 <= n <= 1000 or not 0 <= index < n:
+                      raise ValueError(f"line {line}: id out of range")
+                  indices = groups.setdefault(n, set())
+                  if index in indices:
+                      raise ValueError(f"line {line}: duplicate id/group")
+                  indices.add(index)
+                  for value in row[1:]:
+                      if not math.isfinite(float(value[1:] if value.startswith("s") else value)):
+                          raise ValueError(f"line {line}: coordinates must be finite numbers (optional s prefix)")
+              if not groups:
+                  raise ValueError("empty final.csv")
+              for n, indices in groups.items():
+                  if indices != set(range(n)):
+                      raise ValueError(f"n={n}: incomplete group ({len(indices)}/{n})")
+          
+          def main():
+              base, head = os.environ["BASE_SHA"], os.environ["HEAD_SHA"]
+              if not all(re.fullmatch(r"[0-9a-f]{40}", sha) for sha in (base, head)):
+                  raise ValueError("invalid commit SHA")
+              changed = subprocess.check_output([
+                  "git", "diff", "--name-only", "-z", "--no-renames", "--diff-filter=AM",
+                  f"{base}...{head}", "--",
+              ]).decode().split("\0")
+              paths = [p for p in changed if re.fullmatch(r"poc/[^/]+/final[.]csv", p)]
+              if not paths:
+                  raise ValueError("PR must add or modify at least one poc/*/final.csv")
+              for path in paths:
+                  # Read CSV blobs, never import or execute code from the PR.
+                  kind = subprocess.check_output(["git", "ls-tree", head, "--", path]).decode()
+                  if not kind.startswith("100644 blob ") and not kind.startswith("100755 blob "):
+                      raise ValueError(f"{path!r}: final.csv must be a regular file")
+                  text = subprocess.check_output(["git", "show", f"{head}:{path}"]).decode("utf-8")
+                  try:
+                      validate(text)
+                  except (ValueError, csv.Error) as error:
+                      raise ValueError(f"{path!r}: {error}") from error
+              print(f"Validated {len(paths)} changed final.csv file(s), structure only.")
+          
+          if __name__ == "__main__":
+              try:
+                  main()
+              except (ValueError, csv.Error, UnicodeError, subprocess.CalledProcessError) as error:
+                  print(f"final.csv check failed: {error}", file=sys.stderr)
+                  sys.exit(1)
+          PYTHON
