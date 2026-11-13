@@ -62,6 +62,16 @@ def test_build_seeds_shapes():
     assert len(labels) == 24
 
 
+def test_canonicalize_tr_rotated():
+    x, y, th, L = _load_norm(577)
+    xc, yc, tc, best_q = ss.canonicalize_tr(x, y, th, L)
+    assert best_q in (0, 1, 2, 3)
+    _, _, _, q_after = ss.canonicalize_tr(xc, yc, tc, L)
+    assert q_after == 0
+    info = ss.detect_endcap_strips(xc, yc, tc, L)
+    assert len(info["r_idx"]) >= 3 or len(info["t_idx"]) >= 3
+
+
 def test_final_csv_schema_if_present():
     if not FINAL_CSV.exists():
         return
