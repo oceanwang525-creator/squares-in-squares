@@ -1,0 +1,25 @@
+{
+  "incumbent_sha256": "d08670d4e517548f72ac10dc61fba5274028efacc9b305bffaf1cebc4f49557f",
+  "previous_incumbent_sha256": "1f9c0fd3b7a88e5a0f6c44b567ff2ef354872812c6b0ad8e37807bd1a64e965c",
+  "range": [
+    167,
+    200
+  ],
+  "minimum_side_improvement": 1e-09,
+  "recrop": {
+    "total": 171,
+    "incumbent_corner_slp": 18,
+    "donor_window_starts": 153,
+    "emitted_candidates": false
+  },
+  "restarts": {
+    "total": 116,
+    "modes": {
+      "patch": 36,
+      "sweep": 36,
+      "insert": 12,
+      "delete": 32
+    },
+    "emitted_candidates": false
+  }
+}
