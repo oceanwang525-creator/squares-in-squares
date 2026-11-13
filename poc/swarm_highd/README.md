@@ -122,4 +122,7 @@ Disjoint target pool (`14` targets; never touch `861` or any non-owned `n`):
 - **Hypothesis**:
   - `mpk_void_11` (a non-teleport void-centered masked pocket around void `3`, `R ~ 5.2..7.2`, `a=0.78 -> 1.00`, `cavity_relocate_orbit`) delivered `-4.531e-06` on `n=698`.
   - Scaling Idea 6 with 4 extra non-teleport void seeds (`mpk_voidx_0..3` on top 4 voids, `R = 4.8..7.6`) and `k_keep = 8` (`mpk_void: 3, mpk_wall: 2, mpk_seam: 1, fpeel: 2`) across our remaining pool targets (`805, 639, 339, 237, 269, 698`) followed by ranked unclaimed `non0 > 0` `n >= 200` targets (excluding all claimed pools from `hydrogen`, `pockets`, `angles`, `inflation`, `bicrystal`, `replace45`, `cascades`, `walldrift`, `donor`), writing per-`n` checkpoints and halting after `12` consecutive misses/ties (`#122`).
-- **Status**: Launching detached checkpointed sweep (`--threads 4`, `--max-misses 12`).
+- **Status**: Running detached checkpointed sweep (`poc/idea6_scaled_checkpoint.py --threads 4 --max-misses 12`, checkpoints in `docs/idea6_ckpt/`):
+  - `n=698` (**REAL WIN #3 / further improvement via `mpk_void_2`, `67.2s`**): `L_lit = L_pd = 26.88109929473200608395728943762961445067668205168834` (`-6.640e-07` below `2493969` `win_n698.csv`, **`-5.195e-06`** below `merged.csv`).
+  - `n=866` (**REAL WIN #4 via `mpk_void_7`, `97.6s`**): `L_lit = L_pd = 29.87897800679794297366149428364514929102448670126127` vs `inc_L = 29.879009145769484` (**`dL = -3.113897e-05`**!).
+  - Misses so far: `805 (+2.762e-06)`, `639 (+5.027e-06)`, `339 (+3.116e-06)`, `237 (+2.435e-07)`, `269 (+4.304e-07)`, `506 (+5.848e-07)`, `924 (+7.078e-06)`, `500 (+6.106e-06)`, `984 (+4.486e-06)`.
