@@ -16,5 +16,10 @@ written.
 
 - `poc/run.py` - parallel seeded runner around the collaborator SLP.
 - `docs/NOTES.md` - experiment settings and measured results.
+- `data/hard-target-wins.csv` - complete groups for the seven strict wins.
+- `data/hard-target-report.json` - exact literal and pandas changes.
+- `final.csv` - the same seven strict groups in the repository final format.
 
-No `final.csv` is included unless a complete improved group is found.
+The seven strict wins are all numerically dominated by the deterministic
+free-SLP result already recorded in `poc/highn-free-slp/final.csv`; they do not
+change the team union on their own.
