@@ -40,4 +40,9 @@ Command: `python -u poc/swarm_armslack/poc/run_gate.py --targets 971 915 975 914
 - **`n=789` (REAL WIN, `r_slide_4`)**: `L_lit = L_pd = 28.591332243216104...` vs `inc = 28.591344634320595...` (**`dL = -1.239110e-05`**, `ds = -1.570482e-08`)
 - Remaining 25 targets (including the final 10 consecutive misses `966..205`): `MISS` (0 ties). Total certified REAL WINs in `poc/swarm_armslack/final.csv`: 10 (`442, 485, 530, 542, 577, 789, 796, 800, 911, 915`).
 
+## Scaling Batch 3 Results (`scale_sweep.py`, `855.2s` solver / `868.1s` wall, stopped on `12/12` consecutive non-real-wins, `canonicalize_void_tr` `q_void`)
+13 targets evaluated (`401, 851, 963, 747, 790, 964, 582, 730, 366, 735, 936, 677, 591`):
+- **`n=401` (REAL WIN, `t_slide_1`, `q=3`)**: `L_lit = L_pd = 20.533530106866359...` vs `inc = 20.533704455357993...` (**`dL = -1.743485e-04`**; also beats `252fe8b:poc/guestdata_atlas/final.csv` `20.533704455357993...`)
+- Remaining 12 targets (`851..591`): `MISS` (0 ties). Total certified REAL WINs in `poc/swarm_armslack/final.csv`: 11 (`401, 442, 485, 530, 542, 577, 789, 796, 800, 911, 915`).
+
 *(Note: an initial gate run prior to fetching `e7f910b` also compressed `50badc8`'s `win_n971` from `31.662036554` to `31.661253448`, `dL = -7.831062e-04`, via `r_slide_2`, before `e7f910b` superseded `win_n971`.)*

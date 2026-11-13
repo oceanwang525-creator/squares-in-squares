@@ -80,7 +80,7 @@ def solve_one(
 ) -> dict:
     t0 = time.time()
     rng = np.random.default_rng(22000 + n)
-    x_b, y_b, th_b, best_q = ss.canonicalize_tr(x_b, y_b, th_b, L_b)
+    x_b, y_b, th_b, best_q, best_mv = ss.canonicalize_void_tr(x_b, y_b, th_b, L_b)
     info = ss.detect_endcap_strips(x_b, y_b, th_b, L_b)
 
     # Combine strip-junction seeds + outer-endcap+BL seeds (always include both when unslid)
@@ -100,7 +100,7 @@ def solve_one(
     n_feas = int(np.sum(lf < 1e9))
     best_feas = float(np.min(lf)) if n_feas else None
     print(
-        f"\n=== Scale n={n} (q={best_q}) | L_b={L_b:.9f} dA={info['dA']:+.5f} dB={info['dB']:+.5f} "
+        f"\n=== Scale n={n} (q={best_q}, mv={best_mv:.3f}) | L_b={L_b:.9f} dA={info['dA']:+.5f} dB={info['dB']:+.5f} "
         f"r_y0={info['r_y0']:.3f} t_x0={info['t_x0']:.3f} | N={len(labels)} feas={n_feas} min_pen={float(np.min(po)):.2e} ===",
         flush=True,
     )
@@ -181,11 +181,12 @@ def main() -> None:
     ap.add_argument("--targets", type=int, nargs="+", default=DEFAULT_TARGETS)
     ap.add_argument("--threads", type=int, default=4)
     ap.add_argument("--stop-consec-nonreal", type=int, default=12)
+    ap.add_argument("--ckpt-dir", type=Path, default=CKPT_DIR)
     ap.add_argument("--summary-json", type=Path, default=SUMMARY_JSON)
     args = ap.parse_args()
     n_threads = min(4, max(1, args.threads))
 
-    CKPT_DIR.mkdir(parents=True, exist_ok=True)
+    args.ckpt_dir.mkdir(parents=True, exist_ok=True)
     t_all = time.time()
     merged_df = pd.read_csv(rg.MERGED_CSV)
     base_puzzles = rg.read_submission(rg.MERGED_CSV)
@@ -195,7 +196,7 @@ def main() -> None:
     results = []
     consec_nonreal = 0
     for n in args.targets:
-        ckpt_path = CKPT_DIR / f"n_{n}.json"
+        ckpt_path = args.ckpt_dir / f"n_{n}.json"
         if ckpt_path.exists():
             res = json.loads(ckpt_path.read_text())
             results.append(res)
