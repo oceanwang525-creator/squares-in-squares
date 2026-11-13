@@ -9,12 +9,12 @@ GuestData in `final_atlas copy.csv` (SHA-256
 ## Result
 
 Compared with upstream `merge` artifact
-`merged-22.17370485852.csv`, 163 complete `n` groups are strictly smaller in
+`merged-22.17370485852.csv`, 165 complete `n` groups are strictly smaller in
 both the unchanged official literal check and the pandas `read_csv`/`to_csv`
-transport. `final.csv` contains only those groups.
+transport. `final.csv` contains only those groups. For `n=852` and `n=920`,
+angles below `1e-18` degrees were snapped to zero so the canonical file stayed
+inside the official parser's literal-length limit.
 
-The certified per-`n` union score is `22.159890710933333668...` in literal mode
-and `22.159890710933333781...` after pandas transport, a gain of
-`0.013814147591580...` from the merge incumbent. Two raw float wins
-(`n=852` and `n=920`) were excluded because they did not survive the unchanged
-official certification.
+The certified per-`n` union score is `22.159779301349195347...` in literal mode
+and `22.159779301349195460...` after pandas transport, a gain of
+`0.013925557175718...` from the merge incumbent.
