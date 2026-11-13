@@ -54,6 +54,7 @@ portfolio and rescored from scratch.
 - current upstream merged baseline: `22.17371545003316`
 - R34 certified full union: `22.173714777045685`
 - R40 certified full union: `22.173714776460457`
+- R41 certified full union: `22.173714776457253`
 - both transports: `1000/1000` accepted, `gate=58/58`
 
 The largest improvements are:
@@ -98,6 +99,12 @@ R40 at trust `0.040` found 58 strict wins and replaced six R39 groups
 `22.173714776462209` to `22.173714776460457`, only `1.752e-12` lower. This is
 the numerical floor of the current deterministic SLP basin, not a topology
 change.
+
+R41 at trust `0.050` again found 58 strict wins and replaced six R40 groups
+(`748, 791, 818, 874, 934, 988`). The full union is
+`22.173714776457253` in both transports, another `3.204e-12` lower. This pass
+also confirms that raising the trust radius further only polishes the same
+contact graph.
 
 ## Files
 

@@ -176,6 +176,17 @@ The net change from R39 is only `1.752e-12`. At this point the deterministic
 trust sweep is acting as numerical polishing. Any material gain has to come
 from a different contact topology.
 
+R41 moved the trust radius to `0.050`. It found 58 strict wins and replaced
+six existing final groups (`748, 791, 818, 874, 934, 988`). The certified
+union is:
+
+```text
+gate=58/58 literal=22.173714776457253 1000/1000 pandas=22.173714776457256 1000/1000
+```
+
+The net change from R40 is `3.204e-12`. This remains numerical polishing; the
+larger radius gives no indication of a new contact topology.
+
 ## Provenance
 
 Search code is from the collaborator POC `poc/claude-midn`; this folder owns
