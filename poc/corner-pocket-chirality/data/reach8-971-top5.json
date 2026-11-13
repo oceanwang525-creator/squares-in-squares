@@ -1,0 +1,441 @@
+{
+  "baseline": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv",
+  "best_count": 963,
+  "hits": 0,
+  "incumbent_L": "31.66431832515162747971347060000000000000000000000000",
+  "legacy_summary": "/Users/xiekuan/Documents/ChatGPT/Square/Squares in Squares/experiments/dual_pocket/search_971x971_support_candidates_n971_20261112/summary.json",
+  "margin": "1e-9",
+  "pockets": [
+    {
+      "component_id": 0,
+      "source_n": 971,
+      "support_count": 25,
+      "tilted_count": 136
+    },
+    {
+      "component_id": 1,
+      "source_n": 971,
+      "support_count": 25,
+      "tilted_count": 136
+    }
+  ],
+  "reach": 8,
+  "replayed_cells": 5,
+  "side": "31.66431832415162747971347060",
+  "sources": [
+    971
+  ],
+  "support_modes": [
+    "none",
+    "candidate",
+    "fixed"
+  ],
+  "target": 971,
+  "top": [
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "none",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 57,
+      "second_phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 7,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "candidate",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 57,
+      "second_phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 7,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "none",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 51,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 6,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "candidate",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 51,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 6,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "none",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 13,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 1,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "candidate",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 13,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 1,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "none",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 19,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 2,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "candidate",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 19,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 2,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "none",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 45,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 5,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "candidate",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 45,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 5,
+      "tilted_count": 272,
+      "upright_count": 691,
+      "used_support_count": 0,
+      "valid": true
+    },
+    {
+      "count": 960,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "fixed",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 57,
+      "second_phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 7,
+      "tilted_count": 272,
+      "upright_count": 684,
+      "used_support_count": 4,
+      "valid": true
+    },
+    {
+      "count": 960,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "fixed",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 51,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 6,
+      "tilted_count": 272,
+      "upright_count": 684,
+      "used_support_count": 4,
+      "valid": true
+    },
+    {
+      "count": 959,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 20,
+      "first_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "first_source": 971,
+      "first_symmetry": 2,
+      "mode": "fixed",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 19,
+      "second_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "second_source": 971,
+      "second_symmetry": 2,
+      "tilted_count": 272,
+      "upright_count": 683,
+      "used_support_count": 4,
+      "valid": true
+    },
+    {
+      "count": 959,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "fixed",
+      "reach": 8,
+      "second_component": 1,
+      "second_index": 1,
+      "second_option": 45,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 5,
+      "tilted_count": 272,
+      "upright_count": 683,
+      "used_support_count": 4,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_component": 0,
+      "first_index": 0,
+      "first_option": 42,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "first_source": 971,
+      "first_symmetry": 5,
+      "mode": "fixed",
+      "reach": 8,
+      "second_component": 0,
+      "second_index": 0,
+      "second_option": 13,
+      "second_phase_xy": [
+        0.5,
+        0.0
+      ],
+      "second_source": 971,
+      "second_symmetry": 1,
+      "tilted_count": 272,
+      "upright_count": 682,
+      "used_support_count": 4,
+      "valid": true
+    }
+  ]
+}

@@ -1,0 +1,1316 @@
+{
+  "baseline": "poc/pell_corrugation/data/border-scan/merged.csv",
+  "best_count": 965,
+  "cell": 0,
+  "first_index": 0,
+  "first_symmetry": 7,
+  "hits": 0,
+  "incumbent_L": "31.66431832515162747971347060000000000000000000000000",
+  "legacy_summary": "/Users/xiekuan/Documents/ChatGPT/Square/Squares in Squares/experiments/dual_pocket/search_972x971_support_candidates_n971_20261112/summary.json",
+  "margin": "1e-9",
+  "measured_first_phase_xy": [
+    0.0,
+    0.5
+  ],
+  "measured_second_phase_xy": [
+    0.5,
+    0.0
+  ],
+  "phase_grid": {
+    "count": 99,
+    "x_max": 0.65,
+    "x_min": 0.55,
+    "x_step": 0.01,
+    "y_max": 0.08,
+    "y_min": 0.0,
+    "y_step": 0.01
+  },
+  "reach": 12,
+  "scan_pocket": "second",
+  "second_index": 2,
+  "second_symmetry": 1,
+  "side": 31.664318324151626,
+  "target": 971,
+  "top": [
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 965,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.55,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.55,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.56,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.56,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.57,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.57,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.58,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.58,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.59,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.59,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.6,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.6,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.61,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.61,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.06
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.07
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.07
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.62,
+        0.08
+      ],
+      "second_phase_xy": [
+        0.62,
+        0.08
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 964,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.64,
+        0.0
+      ],
+      "second_phase_xy": [
+        0.64,
+        0.0
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.01
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.01
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.02
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.02
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.03
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.03
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.04
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.04
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.05
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.05
+      ],
+      "valid": true
+    },
+    {
+      "count": 963,
+      "first_phase_xy": [
+        0.0,
+        0.5
+      ],
+      "phase_xy": [
+        0.63,
+        0.06
+      ],
+      "second_phase_xy": [
+        0.63,
+        0.06
+      ],
+      "valid": true
+    }
+  ]
+}

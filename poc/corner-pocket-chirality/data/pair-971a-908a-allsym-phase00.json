@@ -1,0 +1,492 @@
+{
+  "all_symmetries": true,
+  "baseline": "poc/pell_corrugation/data/border-scan/merged.csv",
+  "best_count": 959,
+  "first_index": 0,
+  "first_symmetry": 0,
+  "hits": 0,
+  "incumbent_L": "31.66431832515162747971347060000000000000000000000000",
+  "margin": "1e-9",
+  "phase_step": 1.0,
+  "pockets": [
+    {
+      "component_id": 0,
+      "index": 0,
+      "source_n": 971,
+      "support_count": 25,
+      "tilted_count": 136
+    },
+    {
+      "component_id": 1,
+      "index": 1,
+      "source_n": 971,
+      "support_count": 25,
+      "tilted_count": 136
+    },
+    {
+      "component_id": 0,
+      "index": 2,
+      "source_n": 908,
+      "support_count": 37,
+      "tilted_count": 101
+    },
+    {
+      "component_id": 1,
+      "index": 3,
+      "source_n": 908,
+      "support_count": 37,
+      "tilted_count": 101
+    }
+  ],
+  "reach": 8,
+  "second_index": 2,
+  "second_symmetry": 0,
+  "side": 31.664318324151626,
+  "sources": [
+    971,
+    908
+  ],
+  "target": 971,
+  "top": [
+    {
+      "count": 959,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 959,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 959,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 5,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 6,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_symmetry": 5,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 958,
+      "first_symmetry": 5,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 4,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 6,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 0,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 2,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 957,
+      "first_symmetry": 6,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 5,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 6,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 5,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 0,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 6,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 6,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 6,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 6,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 7,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 956,
+      "first_symmetry": 7,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 5,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 6,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 1,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 3,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 2,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 4,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 3,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 4,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 5,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 5,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 2,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 5,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 7,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 955,
+      "first_symmetry": 6,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 5,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 954,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 0,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 954,
+      "first_symmetry": 0,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 2,
+      "tilted_count": 237,
+      "valid": true
+    },
+    {
+      "count": 954,
+      "first_symmetry": 1,
+      "phase_xy": [
+        0.0,
+        0.0
+      ],
+      "second_symmetry": 0,
+      "tilted_count": 237,
+      "valid": true
+    }
+  ]
+}
