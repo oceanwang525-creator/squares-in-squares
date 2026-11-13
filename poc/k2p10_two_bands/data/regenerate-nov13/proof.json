@@ -1,7 +1,7 @@
 {
   "folder": "k2p10_two_bands",
-  "source_main": "48e17f1ff7a0208c050a56456684bd344e7d78ba",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "8653dd177fb8a72155add269531a66ed587de5a7",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
