@@ -77,7 +77,14 @@ accepted 1000/1000
 
 `final.csv` contains the best currently certified rows for all 58 strict wins
 owned by this POC. Its per-n gate accepted all 58 groups in both transports
-against the current `merged.csv`.
+against the current `merged.csv`. Unioning `final.csv` into the current
+incumbent gives:
+
+```text
+literal 22.173714780634086
+pandas  22.173714780634086
+accepted 1000/1000
+```
 
 The exact per-n values and the pandas-round-trip checks are in
 `data/multi-round-gate.json` and `docs/MULTI_ROUND_WINS.md`.
@@ -91,8 +98,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173714763006313 1000 0 0
-pandas  22.173714763006313 1000 0 0
+literal 22.173714780634086 1000 0 0
+pandas  22.173714780634086 1000 0 0
 ```
 
 ## Provenance

@@ -40,8 +40,10 @@ portfolio and rescored from scratch.
 - 5 additional strict per-`n` wins from the trust-`0.010` long pass
 - 6 additional strict per-`n` wins from the trust-`0.012` long pass
 - 5 additional strict per-`n` wins from the trust-`0.014` long pass
-- full literal score: `22.173714763006313`
-- full pandas score: `22.173714763006313`
+- standalone R30 full literal score: `22.173714763006313`
+- standalone R30 full pandas score: `22.173714763006313`
+- `final.csv` union with current merged: `22.173714780634086`
+- current upstream merged baseline: `22.17371545003316`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
