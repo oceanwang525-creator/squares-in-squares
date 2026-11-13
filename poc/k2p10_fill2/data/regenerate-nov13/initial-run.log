@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc/b_fill.py", line 9, in <module>
+    from build import build
+  File "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_out_of_phase/poc/build.py", line 4, in <module>
+    from poc.pell_corrugation.poc.pell_corrugation import build_staircase_band_45, add_l_border_exact, extent, sat_check, polish_band
+ModuleNotFoundError: No module named 'poc'

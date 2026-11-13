@@ -1,0 +1,33 @@
+{
+  "source_main": "f383fdf4dc3d77eff7029166c206f9ff3567df36",
+  "original_sources": {
+    "poc/k2p10_fill2/poc/a_corner.py": "a3f98bb198f5e201ab4ab70fe728eb63498b4980df54458e4fc89eb91fee2e99",
+    "poc/k2p10_fill2/poc/a_overlap.py": "5fba88e9182dc3689e78a0672e08a76abb1b697cadcf8ad659cd492fe7a5dbf3",
+    "poc/k2p10_fill2/poc/a_pockets.py": "2e33d8ee60b18bcb5a5b9584234f53e9018f9e96f53badd94c55f8fa4546fe2d",
+    "poc/k2p10_fill2/poc/a_relax.py": "12260bdd0f08f14119e65207f137edad186a08a742f3eabd608400629a784dd3",
+    "poc/k2p10_fill2/poc/b_fill.py": "0a668ebd92f8abc5b421e5c86e2c3f65c20df46b2e64dbb1de1cce41a373c80c",
+    "poc/k2p10_fill2/poc/b_hop.py": "e0f9fca3c3c52957f3d2924bc05590786062bab5d0e0507d98d5d16678c32a18",
+    "poc/k2p10_fill2/poc/b_overlap.py": "1eae0311b222a40ca92acdcc3470f15d525703d2e223f400abd4aa747ae7df51",
+    "poc/k2p10_fill2/poc/b_verify.py": "8f983a5a2ed187518a1d0065763cb1de59e9c73f4fed60e2b5af4d4d03f1bdaa"
+  },
+  "execution": {
+    "folder": "k2p10_fill2",
+    "args": [
+      "poc/k2p10_fill2/poc/b_fill.py",
+      "0",
+      "25.705",
+      "5",
+      "1",
+      "300"
+    ],
+    "reason": "Documented five-trial n635fill five-minute budget",
+    "timeout": 3500,
+    "pid": 436219,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 53.04,
+    "retry": true
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}
