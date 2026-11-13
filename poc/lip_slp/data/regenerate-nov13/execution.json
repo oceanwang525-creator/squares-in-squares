@@ -1,0 +1,24 @@
+{
+  "folder": "lip_slp",
+  "args": [
+    "poc/lip_slp/poc/lip_slp.py",
+    "--incumbent",
+    "regeneration-proof/incumbent.csv",
+    "--report",
+    "regeneration-proof/incumbent-report.json",
+    "--n-list",
+    "147,850,862",
+    "--output",
+    "poc/lip_slp/data/regenerate-nov13/scan.json",
+    "--wins",
+    "poc/lip_slp/data/regenerate-nov13/wins.json",
+    "--jobs",
+    "1"
+  ],
+  "reason": "Genuine latestPR12 target subset; full1000serial estimated3.8h skipped",
+  "timeout": 3500,
+  "pid": 433089,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 21.68
+}
