@@ -1,7 +1,7 @@
 {
   "folder": "leader_poc_k2p10",
-  "source_main": "f23d69eb5ff322bda5d7b08c3022e1540ddfd1ac",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "d62c573d26e9adeb662a90723107555d1cc7bbfd",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
