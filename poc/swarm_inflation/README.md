@@ -520,4 +520,18 @@ Idea 16 tests **Frozen-Exterior Masked-Pocket Soft-`a` GPU Melt (`fast_mode=7`)*
 - **`mband16`:** Diagonal corridor (`hw=3.2..5.2`) or quadrant (`R=7.0..9.2`) reorganization.
 
 ### Results Log (Idea 16)
-*(Pending 3-target gate execution on `{971, 687, 367}`)*
+- **3-Target Falsification Gate (`{971, 687, 367}`, `batch=1024`, `fast_mode=7`, `fast_joint_xytheta_slp` + `[1e-7, 2e-8, 5e-9, 1e-9]` LP):**
+  - **`n=687` (REAL WIN, `v16_fm7#11`):** `L_lit = L_pd = 26.72310028517847520130065377728184982984534775425979` vs `merged.csv = 26.72327149739741452573736753634140121089419869381267` (**`dL = -1.712122e-04`, `ds = -1.331976e-05`**; `1169.78s`; improves `50badc8`'s `-2.552e-06` by `-1.687e-04`). Updated [win_n687.csv](file:///home/lucas/.gemini/antigravity-cli/worktrees/a4fb0b93-b63b-426d-aa12-67454e99bc08/swarm-inflation-488c6599/poc/swarm_inflation/data/win_n687.csv) and [final.csv](file:///home/lucas/.gemini/antigravity-cli/worktrees/a4fb0b93-b63b-426d-aa12-67454e99bc08/swarm-inflation-488c6599/poc/swarm_inflation/final.csv). Also dropped borderline `n=851` tie (`#133`) from `final.csv`.
+  - **`n=367` (`v16_fm7#4`):** `dL = +9.20e-08` (`158.97s`, no win).
+  - **`n=971` (`v16_fm7#7`, finished in parallel `490.4s`):** `L = 31.664323344175967676...`, `dL = +5.019e-06` vs `merged.csv` (no win; `50badc8`'s Idea 15 `v15_fm5#5` retains `31.662036554171997879...`, `dL = -2.281771e-03`).
+  - **Key Lesson:** **Idea 15 (`fast_mode=5`)** won `n=971` (`-2.282e-03`), while **Idea 16 (`fast_mode=7` masked pocket melt)** won `n=687` (`-1.712e-04`). Neither engine has been scaled to the rest of the pool yet!
+
+---
+
+## Idea 17: Scaled Dual-Track GPU Melt (`Idea 15 fm=5` + `Idea 16 fm=7` with Expansion Headroom)
+
+### Hypothesis & Architecture
+Both Idea 15 (`fast_mode=5`, unmasked soft-`a` melt `0.94 -> 1.00`, `-2.282e-03` on `n=971`) and Idea 16 (`fast_mode=7`, frozen-exterior masked-pocket soft-`a` melt `0.80 -> 1.00`, `-1.712e-04` on `n=687`) are proven winners on 3-target pilots, whereas the remaining pool targets (`{972, 791, 969, 851, 796, 333, 970, 911, 910, 973}`) have only seen 0-jitter SLP so far. Adding `+0.024` and `+0.008` expansion headroom (`MIXED_DELTAS = (-0.024, -0.008, 0.00015, 0.0006, 0.0020, 0.0060)`) to Track B (`fm=7`) gives jammed pockets breathing room before re-compaction, while 4-worker parallel basin polishing (`top_k=8` from `fm=5` + `top_k=8` from `fm=7` + 4 incumbent jitters = 20 basins/target) and per-`n` JSON checkpoints (`docs/idea17_ckpt.json`) keep wall time ~6 min/`n`.
+
+### Results Log (Idea 17)
+*(Pending execution of `idea17_scale_gpu_melt.py`)*
