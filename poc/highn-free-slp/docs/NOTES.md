@@ -40,6 +40,11 @@ A wider schedule at `0.004` and then `0.006` found the first real jump:
 `n=645` moved by `1.117e-5`. Across three wide passes, six distinct `n`
 improved and the total group gain was `1.123e-5`.
 
+After that, a trust-`0.008` pass found 5 strict wins and a trust-`0.010` pass
+found 5 more. Across the two later passes, 7 distinct `n` improved:
+`791, 816, 868, 908, 910, 912, 936`. The final R28 rows were gated against the
+current upstream incumbent and accepted `5/5`.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -57,6 +62,14 @@ regression. The final file is:
 ```text
 literal 22.173714766133950
 pandas  22.173714766133950
+accepted 1000/1000
+```
+
+The later long-escape file is:
+
+```text
+literal 22.173714764572708
+pandas  22.173714764572708
 accepted 1000/1000
 ```
 

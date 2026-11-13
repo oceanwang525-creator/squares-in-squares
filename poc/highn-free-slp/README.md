@@ -19,6 +19,8 @@ coarse pass: 30 iterations, trust 0.002
 fine pass:   60 iterations, trust 5e-4 -> 2e-6
 escape pass: 100 iterations, trust 0.002
 wide pass:   100 iterations, trust 0.004 -> 0.006
+long pass:   100 iterations, trust 0.008
+long pass:   100 iterations, trust 0.010
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -32,8 +34,10 @@ portfolio and rescored from scratch.
 - 5 additional strict per-`n` wins from a 100-iteration trust-`0.002` escape pass
 - 6 additional strict per-`n` wins from the 3-pass wide escape schedule,
   including the first real jump at `n=645`
-- full literal score: `22.173714766133950`
-- full pandas score: `22.173714766133950`
+- 5 additional strict per-`n` wins from the trust-`0.008` long pass
+- 5 additional strict per-`n` wins from the trust-`0.010` long pass
+- full literal score: `22.173714764572708`
+- full pandas score: `22.173714764572708`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
@@ -46,6 +50,9 @@ The largest improvements are:
 | 936 | `-2.969e-7` |
 | 997 | `-2.919e-7` |
 | 694 | `-1.684e-7` |
+
+The two later long passes additionally improved `791`, `816`, and `868`
+against the current upstream incumbent.
 
 ## Files
 
@@ -63,10 +70,17 @@ The largest improvements are:
 - `data/wide-escape-round-gate.json` - exact old/new per-n values for the 6 wide wins.
 - `data/wide-escape-round-rows.csv` - the 6 wide-escape puzzle groups only.
 - `data/wide-escape-round-summary.json` - wide-pass win count and group gain.
+- `data/long-escape-r27-report.json` - exact SLP report for the trust-`0.008` pass.
+- `data/long-escape-r27-rows.csv` - the 5 trust-`0.008` puzzle groups only.
+- `data/long-escape-r28-report.json` - exact SLP report for the trust-`0.010` pass.
+- `data/long-escape-r28-rows.csv` - the 5 trust-`0.010` puzzle groups only.
+- `data/long-escape-r28-gate.csv` - incumbent-gated rows for the final pass.
+- `data/long-escape-round-summary.json` - later long-pass win count and group gain.
 - `docs/NOTES.md` - execution and certification details.
 - `docs/MULTI_ROUND_WINS.md` - human-readable per-n comparison.
 - `docs/FINE_ROUND_WINS.md` - human-readable fine-round comparison.
 - `docs/ESCAPE_ROUND_WINS.md` - human-readable escape-round comparison.
 - `docs/WIDE_ESCAPE_ROUND_WINS.md` - human-readable wide-escape comparison.
+- `docs/LONG_ESCAPE_ROUND_WINS.md` - human-readable later long-pass comparison.
 
 No complete 500,500-row file is committed.

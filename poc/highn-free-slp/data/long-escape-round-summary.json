@@ -1,0 +1,31 @@
+{
+  "rounds": [
+    {
+      "file": "free_slp_600_1000_r27_t8e-3_i100_report.json",
+      "trust": 0.008,
+      "wins": 5,
+      "group_gain": -2.593678516404907e-08,
+      "largest_n": 868,
+      "largest_delta": -2.417056066406076e-08
+    },
+    {
+      "file": "free_slp_600_1000_r28_t1e-2_i100_report.json",
+      "trust": 0.010,
+      "wins": 5,
+      "group_gain": -2.011800503964878e-08,
+      "largest_n": 868,
+      "largest_delta": -1.976317065555122e-08
+    }
+  ],
+  "distinct_n": [
+    791,
+    816,
+    868,
+    908,
+    910,
+    912,
+    936
+  ],
+  "distinct_win_count": 7,
+  "total_group_gain": -4.605479020369785e-08
+}
