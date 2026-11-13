@@ -1,0 +1,5 @@
+[
+  {"n": 401, "L_ours": 20.5355339059, "min_slab_E": 0.147554644184, "best_9d_cap": 397, "best_9d_tag": "9D_chamf 5x5 c=2 th=45 sx=1 nt=13 up=384", "best_win_L": 20.5355339059, "best_src": "none", "seconds": 5.9},
+  {"n": 442, "L_ours": 21.5355339059, "min_slab_E": 0.109218509652, "best_9d_cap": 438, "best_9d_tag": "9D_chamf 7x7 c=1 th=45 sx=0.5 nt=45 up=393", "best_win_L": 21.5355339059, "best_src": "none", "seconds": 6.5},
+  {"n": 530, "L_ours": 23.5355339059, "min_slab_E": 0.253744604457, "best_9d_cap": 526, "best_9d_tag": "9D_chamf 12x9 c=1 th=45 sx=1 nt=104 up=422", "best_win_L": 23.5355339059, "best_src": "none", "seconds": 7.9}
+]
