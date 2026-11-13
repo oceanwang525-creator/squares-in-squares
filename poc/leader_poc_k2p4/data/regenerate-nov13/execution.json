@@ -1,0 +1,16 @@
+{
+  "folder": "leader_poc_k2p4",
+  "args": [
+    "poc/leader_poc_k2p4/poc/slp.py",
+    "328",
+    "120",
+    "0.05",
+    "0.02"
+  ],
+  "reason": "Documented n328120secondSLP",
+  "timeout": 3500,
+  "pid": 427726,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 13.57
+}
