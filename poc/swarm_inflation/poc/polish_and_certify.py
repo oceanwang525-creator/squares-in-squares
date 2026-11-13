@@ -417,6 +417,7 @@ def polish_candidates(
     lp_rounds: int = 8,
     slp_rounds: int = 8,
     slp_top_k: int = 4,
+    out_best_csv: Path | None = None,
 ) -> dict:
     """Polish candidate batch for puzzle `n` and certify best against merged.csv."""
     inc_L = load_incumbent_L(n)
@@ -482,6 +483,9 @@ def polish_candidates(
             best_cert_info = dict(cert, meta=entry["seed_meta"], L_post_lp=L_lp2)
 
     candidate_logs.sort(key=lambda e: e["idx"])
+
+    if out_best_csv is not None and best_cert_info is not None:
+        core.write_submission(out_best_csv, {n: best_cert_info["rows"]}, validate=True)
 
     is_win = best_cert_L is not None and best_cert_L < inc_L
     if is_win and out_win_csv is not None and best_cert_info is not None:

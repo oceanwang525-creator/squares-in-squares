@@ -14,6 +14,7 @@ if str(POC_DIR) not in sys.path:
 
 import idea7_chain_ruin as i7  # noqa: E402
 import idea8_seam_surgery as i8  # noqa: E402
+import idea9_subpocket as i9  # noqa: E402
 import polish_and_certify as pc  # noqa: E402
 import run_inflation_v2 as riv2  # noqa: E402
 import sat_cuda as sc_gpu  # noqa: E402
@@ -208,3 +209,35 @@ def test_idea7_and_idea8_surgery_pools_and_fast_mode3():
     out3 = riv2.run_cuda_batch(pos5, th5, box5, use_elastic_L=1, fast_mode=3, seed=42)
     assert float(np.min(out3["L_cert"])) < 2.72
     assert pc.sat_max_penetration(out3["pos"][int(np.argmin(out3["L_cert"]))], out3["th"][int(np.argmin(out3["L_cert"]))]) == 0.0
+
+
+def test_idea9_subpocket_freeze_and_cuda():
+    # 5x5 grid with 4 tilted interior squares; verify frozen subset has 0 overlap and stays fixed in CUDA
+    pts = []
+    for ix in range(5):
+        for iy in range(5):
+            ang = 0.35 if (1 <= ix <= 2 and 1 <= iy <= 2) else 0.0
+            pts.append((0.6 + ix * 1.15, 0.6 + iy * 1.15, ang))
+    pos = np.array([[x, y] for x, y, _ in pts], dtype=np.float64)
+    th = np.array([a for _, _, a in pts], dtype=np.float64)
+    info = i7.extract_lp_duals_and_holes(pos, th, polish_rounds=1)
+    L_base = float(info["L"])
+    p_ord, t_ord, order, nmob = i9.select_mobile_and_shift_frozen(
+        pos, th, L_base=L_base, L_target=L_base + 0.02, info=info, r_cut=2.0, max_mob=12
+    )
+    assert 4 <= nmob <= 12
+    assert len(order) == 25
+    assert pc.sat_max_penetration(p_ord[nmob:], t_ord[nmob:]) == 0.0
+
+    bx, by, bth, nmob_b = i9.build_subpocket_batch(
+        25, pos, th, L_target=L_base + 0.05, info=info, batch=8, r_cut=2.0, max_mob=12
+    )
+    ox, oy, oth, open_a, olam_a = i9.run_sat_sub_cuda(
+        bx, by, bth, L_val=L_base + 0.05, n_mob=nmob_b, seed=77, mode=1
+    )
+    assert ox.shape == (8, 25)
+    assert np.allclose(ox[:, nmob_b:], bx[:, nmob_b:], atol=1e-6)
+    assert np.allclose(oy[:, nmob_b:], by[:, nmob_b:], atol=1e-6)
+    assert float(open_a.min()) < 1e-3
+    assert float(olam_a.min()) < 1.002
+

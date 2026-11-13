@@ -301,3 +301,65 @@ Tested `--idea 7 --batch 1024 --fast-mode 0 --elastic-L 1` (512 LP-dual surgical
 - **Key Idea 8 Takeaways:**
   1. `fast_mode=3` multi-temp cycles + 1024-probe `void_relocate` + `asym8` unlocked a **new `~31.649` basin on `n=969`** (`-0.03185` better than `smec1`!) from **1 single lucky `(p=45, t=-27, w=4)` seed**, while most `(n, v_shift, w)` slices of `asym8` were skipped whenever `abs(diff)` missed `0` or landed far off-target.
   2. Tight `max_L_b = sh_L_init + ...` clamping in `fast_mode=3` helped `surg8` drop `n=851`/`796`/`972`/`367`, yet `n=969` still trapped period-3 Moire seam pockets (`0.81..0.86` void radius) because global inflation locks outer `0°` crystals early and cannot repack 40–180 seam squares collectively at `L < inc_L`.
+
+---
+
+## Idea 9: Fixed-Crystal GPU Sub-Pocket Inflation (`sat_sub.cu`) + Systematic Wall-Anchored `asym9` & Pythagorean Diamond Stepped Grids
+- **Diagnosis of Bottlenecks in Idea 8 Top Basins (LP Dual Chains):**
+  - HiGHS LP-dual inspection across our 4 tightest `cand_v8` basins shows only **8%–11% of squares carry any LP load**, all pinned along a single `4..6`-square tilted cross-bridge + wall tips:
+    - `n=969` (`31.649192`, `+0.01521`): `60/969` active duals (`(5.5,6.15)->(10.15,3.5)` 4-sq `-26.9°` bridge), `0.649` column split in `t_lo`, period-3 seam voids `r=0.827..0.839`. Meanwhile `31.649192` already undercuts `inc(971)=31.664318` and `inc(972)=31.683990`!
+    - `n=367` (`19.713224`, `+0.02084`): `35/367` active duals (`(6.21,3.5)->(0.5,8.21)` 6-sq `-38.7°` bridge) right above a `r=0.893` tip void at `(3.33, 1.29)`.
+    - `n=851` (`29.717106`, `+0.03296`): `55/851` active duals (`6`-sq `+40.5°` bridge `(10.5,12.5)->(16.22,17.22)`).
+    - `n=972` (`31.717267`, `+0.03328`): `62/972` active duals (`6`-sq `-40.7°` bridge `(3.5,25.51)->(8.22,31.22)`) beside a `r=0.881` corner void `(0.5, 31.22)`.
+  - Meanwhile, rational approximation of `per_n_gap.csv` targets reveals Pythagorean denominators (`n=367: 19+9/13` `(5,12,13)`, `n=910: 30+11/17` & `n=687: 26+12/17` `(8,15,17)`, `n=333: 18+19/25` `(7,24,25)`, `n=796: 28+7/10` `(3,4,5)`), while `seed_asym_band_v8` anchored `t_lo`/`t_hi` inconsistently and sampled only `~20%` of scratch seeds (`~77` draws over ~3,920 `(psi, th, wb, u_frac)` slots).
+- **Proposed Mechanisms (Idea 9):**
+  1. **9A — Fixed-Crystal Sub-Pocket GPU Inflation (`poc/swarm_inflation/poc/sat_sub.cu` + `idea9_subpocket.py`):**
+     - Freeze `N_fix = N - N_mob` flawless deep-interior `0°` crystal squares (shifting any `(L, L)`-anchored upper-right block cleanly by `ΔL = L_target - L_old`, checking zero frozen-frozen overlap), leaving `N_mob ~ 90..220` squares around the LP dual bridge, band, corner tips, and largest voids mobile.
+     - Run `B = 1024..2048` parallel sub-pocket trajectories on RTX 4070 Super inflating ONLY `N_mob` from `a: 0.72 -> 1.00` (with 3 deflate-reheat cycles, free angle exploration `0°/±22.6°/±26.6°/±28.1°/±36.9°/±45°`, wall-tip & void teleportation, and tight fixed `L_target = inc_L - delta`).
+     - Also run `+2`/`+3` from-scratch stoichiometry lifts on our `n=969` `31.649` basin (`969 -> 971` at `L < 31.664`, `969 -> 972` at `L < 31.684`).
+     - Any sub-pocket run reaching `lam <= 1.0005` passes directly to AL-LBFGS + HiGHS LP & Lip-SLP certification (`polish_and_certify.py`).
+  2. **9B — Systematic Wall-Anchored `asym9` + Pythagorean Stepped-Grid Diamond Clusters (`cpp_pipeline.cpp --idea 9`):**
+     - Fix `seed_asym_band_v9` so `t_lo` anchors cleanly to `(0, 0)` and `t_hi` anchors cleanly to `(L, L)`, allocate 55% of scratch to `asym9`, and sweep rational/Pythagorean angles (`-14.04°, -16.26°, -18.43°, -22.62°, -26.57°, -28.07°, -30.96°, -33.69°, -36.87°, -40.5°`) × `psi in {45°, 36.87°, 31°, 26.57°}` × `wb in 2..7` × `u_frac`.
+     - Add `seed_pyth_diamond_v9`: stepped `0°` grids partitioned by `1..6` anti-diagonal / diagonal clusters of Pythagorean `(3,4,5)`, `(5,12,13)`, `(8,15,17)`, `(7,24,25)`, `(1,2,sqrt5)` tilted squares (25% of scratch), keeping `fband8/ftilt8/shb6/wrapL6` (20%) + `v8` warm-starts.
+- **Verification & Fast Scope (<5 min):**
+  - Test **9B** first (`~15s/n`) on `{969, 971, 972, 367, 910, 851}` (`batch=1024, fast_mode=3, elastic_L=1`) + HiGHS LP/Lip-SLP.
+  - Build & unit-test `sat_sub.cu` + `idea9_subpocket.py` on `{969, 367, 971, 972, 851, 910}` (including `969->971/972` lifts), then scale wins/improvements across remaining targets.
+
+### Results Log (Idea 9)
+- **Idea 9A (`sat_sub.cu` + `idea9_subpocket.py`)**:
+  - Diagnosed and fixed two root causes in fixed-crystal sub-pocket inflation: (1) unnormalized `2*pen` gradient descent stalled at `pen ~ 0.061` (`lam ~ 1.064`), replaced with thread-local Adam (`b1=0.85, b2=0.99`, cosine decay) + `mode=0` gentle (`a: 0.960 -> 1.000`, `w_align=0`) and `mode=2` deep (`a: 0.895 -> 1.000`) schedules, dropping unperturbed `n=969` residual penetration 130x to `4.70e-4` (`lam=1.000471`); (2) added connected single-hole ball selection (`focus_hole >= 0`) and gentle stoichiometry-preserving perturbations.
+  - Across `n in {969, 971, 972, 367, 851, 910, 796}` (`B=512` per config), freezing the upright crystal at `L_target < inc_L` gave `pen = |dL| / sqrt(2) = 0.0106..0.0115` (`eff_L = 31.97` on `969`, `19.85` on `367`, `29.95` on `851`) and `pen = 0.040` on `+2/+3` stoichiometry lifts (`969 -> 971/972`), proving that rigid frozen boundaries prevent global `0°` crystal sliding and seam re-partitioning (`sat_lmin_cuda --elastic-L 1` required).
+- **Idea 9B (`cpp_pipeline.cpp --idea 9` + HiGHS LP/SLP polish `pol_v9b_1` & `pol_v9b_2`)**:
+  - Fixed `slot_hint` stride (`gcd(288, 20) = 4` -> sequential `asym_slot = grp * 11 + fam` and `pyth_slot = grp * 5 + (fam - 11)`) so all 288 `(psi, th, w)` wall-anchored `asym9` configs and 24 `pyth9` configs are swept uniformly across `B=1024`.
+  - **5 new all-time bests for our from-scratch pipeline** (verified via `squares.core.certify` and pandas roundtrip):
+    - **`n=791`**: `AL=28.663066036371` -> **`pol_pd=28.658853445488`** vs `inc=28.634070751579` (**`+0.024783`**, **`-0.020068` drop** from Idea 8's `28.678921`, via `asym9(p=45,t=-28,w=4,diff=0)`)
+    - **`n=972`**: `AL=31.716515784024` (scratch) / `31.720801802524` (surg) -> **`pol_pd=31.708429178278`** vs `inc=31.683990214555` (**`+0.024439`**, **`-0.008838` drop** from Idea 8's `31.717267`, via `surg9_stoich@L=31.68339`)
+    - **`n=971`**: **`pol_pd=31.711910858759`** vs `inc=31.664318325205` (**`-0.001286` drop** from Idea 8's `31.713197`)
+    - **`n=333`**: `AL=18.825859707092` -> **`pol_pd=18.822641723285`** vs `inc=18.772634113467` (**`-0.006429` drop** from Idea 8's `18.829071`, via `asym9(p=45,t=-18,w=6,diff=0)`)
+    - **`n=687`**: `AL=26.806819439220` -> **`pol_pd=26.804722490408`** vs `inc=26.723271497397` (**`-0.068658` drop** from Idea 8's `26.873380`, via `asym9(p=45,t=-37,w=6,diff=0)`)
+    - Unchanged prior bests: `n=969: 31.649192182516` (`+0.015210`), `n=367: 19.713223586114` (`+0.020835`), `n=851: 29.717105816792` (`+0.032962`), `n=910: 30.716003127444` (`+0.036854`), `n=796: 28.761586835840` (`+0.040047`).
+
+---
+
+## Idea 10: Gentle Elastic-L Full-Crystal Breathing (`fast_mode=2`, `a: 0.945 -> 1.000`) on Cross-`n` Stoichiometry Transfers (`969 <-> 971 <-> 972`) + Flush-Sheared (`du = tan(theta)`) Pythagorean Bicrystals
+
+### Hypothesis & Motivation
+1. **Why Idea 8/9 `fast_mode=3` (`a: 0.880 -> 1.000` + random void teleports) under-exploited `cand_v8_n969` (`31.649192 < inc(971)=31.664318 < inc(972)=31.683990`) and `cand_v9_n791` (`28.658853`):**
+   - `cand_v8_n969.csv` (`31.649192`) was discovered at the end of Idea 8, AFTER `971` and `972` had already run, and contains 5 seam holes of radius `r = 0.850..0.866` along the `+45°` boundary between `822` upright squares and `147` `-26.07°` tilted squares.
+   - When `fast_mode=3` melts a surgical/stoichiometric candidate down to `a = 0.880` (`12%` linear shrinkage) with `lr = 0.016` and random void jumps, it scrambles the pristine `822`-square `0°` crystal and `-26.07°` band. Conversely, `Idea 9A` (`sat_sub_cuda`) froze the `0°` crystal rigidly so `t_lo` and `t_hi` could not slide or breathe.
+   - In `sat_lmin.cu`, `fast_mode=2` (`stages_gentle`: `a: 0.945 -> 0.962 -> 0.976 -> 0.986 -> 0.992 -> 0.996 -> 0.9985 -> 1.000`, `lr: 0.0055 -> 0.00005`, `opt_L=1` from stage 0, **zero random teleports**) lets the entire `0°` crystal and tilted band breathe and slide smoothly without losing crystal order!
+2. **Flush-Sheared (`du = ±tan(theta)`) Tilted Bands & Stepped 4-Quadrant (`SW(0,0), NE(f,f), NW(0,f), SE(f,0)`) Pythagorean Seeds (`Idea 10B`):**
+   - A tilted lattice at angle `theta` (`|tan(theta)| < 1`) sheared row-by-row by `du = +tan(theta)` (`dv = 1.0`) maintains exact `max(|du|, |dv|) = 1.0` non-overlap while making the step vector `(dx, dy) = (0, sec(theta))` **100% flush (`dx = 0`) against a vertical `0°` crystal wall** (eliminating staircase sawtooth waste!).
+   - Furthermore, for rational targets (`687: 26+12/17`, `910: 30+11/17` from `(5,12,13)` with `a+b=17`; `333: 18+19/25` from `c=25`; `796: 28+7/10` from `(3,4,5)`), partitioning the `0°` background into 4 shifted quadrants `SW(0,0), NE(f,f), NW(0,f), SE(f,0)` leaves an exact width-`f` / `1+f` L-stepped channel filled by `du`-sheared tilted clusters.
+
+### Plan & Validation
+- **Track 10A (`poc/swarm_inflation/poc/idea10_gentle_transfer.py` + `cpp_pipeline --fast-mode 2`)**:
+  - Build a dedicated 1024-trajectory surgical & cross-`n` transfer pool from our tightest polished basins (`cand_v8_n969: 31.649192`, `cand_v9_n972: 31.708429`, `cand_v9_n791: 28.658853`, `cand_v8_n367: 19.713224`, `cand_v8_n851: 29.717106`, `cand_v7_n910: 30.716003`, `cand_v8_n796: 28.761587`, `cand_v9_n333: 18.822642`, `cand_v9_n687: 26.804722`):
+    1. **Cross-`n` seam-hole insertion (`969 -> 971` `+2`, `969 -> 972` `+3`, `971 -> 972` `+1`)** and **high-dual seam removal (`972 -> 971` `-1`, `972 -> 969` `-3`, `971 -> 969` `-2`)** placing new squares directly at the exact `r = 0.85..0.866` seam voids with local neighbor backoff.
+    2. **Same-`n` LP-dual bridge slide, band-angle micro-rotation (`±0.4°..2.0°`), and `0°`-to-tilted boundary conversion** (converting 1–4 `0°` squares adjacent to `r > 0.82` seam holes into tilted band squares so `t_lo`/`t_hi` can step inward by `0.02..0.04`).
+  - Run through `sat_lmin_cuda` under **`fast_mode=2` (`a: 0.945 -> 1.000` gentle elastic-L)** + C++ OpenMP AL polish + HiGHS LP/SLP polish.
+- **Track 10B (`seed_flush_sheared_v10` in `cpp_pipeline.cpp --idea 10`)**:
+  - Implement flush-sheared (`du = ±tan(theta)`) asymmetric bands and 4-quadrant stepped (`SW/NE/NW/SE`) Pythagorean clusters, plus 50% surgical pool when `--surg-dir` is supplied.
+
+### Results Log (Idea 10)
+*(Pending execution)*
