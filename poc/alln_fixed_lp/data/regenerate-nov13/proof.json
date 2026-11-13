@@ -1,0 +1,61 @@
+{
+  "folder": "alln_fixed_lp",
+  "source_main": "44d3b0261326f15bf49a0426e0bfd8e476f98dcb",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+      "sha256": "ed7b26870dbc3a1076ebfbe02219d87419e2c6882a55f5cc9332924c0be753b4",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/source-manifest.json",
+      "sha256": "31637c68eb4ede5e9605c2c78705c128e73312656d269cb57935453b359a00d9",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+      "sha256": "490fc02329cb70b62498aabc74d87804420cd27682573cf669e58e09f59c0802",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 1,
+  "winning_ns": [
+    904
+  ],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "40d20f6747c043c9a36b1f082b0531856d1d7c4afac5bb41ef09a46070467656",
+  "sources": {
+    "904": "poc/alln_fixed_lp/data/regenerate-nov13/wins.json"
+  },
+  "candidate_results": [
+    {
+      "n": 904,
+      "key": "ada402604e6c79f71be386bdd74ffa42cb4095d2e676dfa27169c58d5c7ea25e",
+      "official": [
+        "30.56311620380489691923132169161402817671789112465933",
+        "30.56311620380489691923132169161402817671789112465933"
+      ]
+    }
+  ],
+  "final_results": [
+    {
+      "n": 904,
+      "official": [
+        "30.56311620380489691923132169161402817671789112465933",
+        "30.56311620380489691923132169161402817671789112465933"
+      ],
+      "incumbent": [
+        "30.56311909557035302302544074687604416490726708334374",
+        "30.56311909557035304999999999999124212147215762639049"
+      ]
+    }
+  ]
+}
