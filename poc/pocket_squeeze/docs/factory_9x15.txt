@@ -1,0 +1,10 @@
+Seed factory for the (9,15) pocket: rigid scan, then one SLP squeeze per seed (no shaking).
+Known pocket for comparison: (9,15,+3) at f = 0.608713.
+
+(9,15): 4989600 rigid seeds scanned in 381s; 158073 with gain >= 2
+  28364 distinct signatures; squeezing 2500
+  squeezed 2500 in 306s
+  gain +4: 551 seeds; best f=0.764252; 5th=0.7657; median=0.7880; best params th=19.0 R=12 a=6.5 f0=0.85
+  gain +5: 1650 seeds; best f=0.778466; 5th=0.7830; median=0.8268; best params th=20.0 R=13 a=6.5 f0=0.95
+  gain +6: 292 seeds; best f=0.794503; 5th=0.7988; median=0.8370; best params th=18.0 R=15 a=8.5 f0=0.95
+  gain +7: 7 seeds; best f=0.848502; 5th=0.8524; median=0.8516; best params th=18.0 R=13 a=6.5 f0=0.95
