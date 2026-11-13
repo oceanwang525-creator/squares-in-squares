@@ -22,6 +22,7 @@ wide pass:   100 iterations, trust 0.004 -> 0.006
 long pass:   100 iterations, trust 0.008
 long pass:   100 iterations, trust 0.010
 long pass:   100 iterations, trust 0.012
+long pass:   100 iterations, trust 0.014
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -38,8 +39,9 @@ portfolio and rescored from scratch.
 - 5 additional strict per-`n` wins from the trust-`0.008` long pass
 - 5 additional strict per-`n` wins from the trust-`0.010` long pass
 - 6 additional strict per-`n` wins from the trust-`0.012` long pass
-- full literal score: `22.173714763845947`
-- full pandas score: `22.173714763845947`
+- 5 additional strict per-`n` wins from the trust-`0.014` long pass
+- full literal score: `22.173714763006313`
+- full pandas score: `22.173714763006313`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
@@ -80,6 +82,11 @@ against the current upstream incumbent.
 - `data/long-escape-r29-report.json` - exact SLP report for the trust-`0.012` pass.
 - `data/long-escape-r29-rows.csv` - the 6 trust-`0.012` puzzle groups only.
 - `data/long-escape-r29-gate.csv` - incumbent-gated rows for the final pass.
+- `data/long-escape-r30-report.json` - exact SLP report for the trust-`0.014` pass.
+- `data/long-escape-r30-rows.csv` - the 5 trust-`0.014` puzzle groups only.
+- `data/long-escape-r30-gate.csv` - incumbent-gated rows for the final pass.
+- `final.csv` - the best certified rows for all 58 current strict wins.
+- `docs/FINAL_GATE.json` - per-n literal and pandas comparison for `final.csv`.
 - `data/long-escape-round-summary.json` - later long-pass win count and group gain.
 - `docs/NOTES.md` - execution and certification details.
 - `docs/MULTI_ROUND_WINS.md` - human-readable per-n comparison.

@@ -40,10 +40,12 @@ A wider schedule at `0.004` and then `0.006` found the first real jump:
 `n=645` moved by `1.117e-5`. Across three wide passes, six distinct `n`
 improved and the total group gain was `1.123e-5`.
 
-After that, trust-`0.008` found 5 strict wins, trust-`0.010` found 5, and
-trust-`0.012` found 6. Across the three later passes, 8 distinct `n` improved:
+After that, trust-`0.008` found 5 strict wins, trust-`0.010` found 5,
+trust-`0.012` found 6, and trust-`0.014` found 5. Across the four later passes,
+8 distinct `n` improved:
 `747, 791, 816, 868, 908, 910, 912, 936`. The final R29 rows were gated against
-the current upstream incumbent and accepted `6/6`.
+the then-current upstream incumbent and accepted `6/6`; R30 was then gated
+against the newer PR #7 incumbent and accepted `5/5`.
 
 ## Latest incumbent
 
@@ -68,10 +70,14 @@ accepted 1000/1000
 The later long-escape file is:
 
 ```text
-literal 22.173714763845947
-pandas  22.173714763845947
+literal 22.173714763006313
+pandas  22.173714763006313
 accepted 1000/1000
 ```
+
+`final.csv` contains the best currently certified rows for all 58 strict wins
+owned by this POC. Its per-n gate accepted all 58 groups in both transports
+against the current `merged.csv`.
 
 The exact per-n values and the pandas-round-trip checks are in
 `data/multi-round-gate.json` and `docs/MULTI_ROUND_WINS.md`.
@@ -85,8 +91,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173714763845947 1000 0 0
-pandas  22.173714763845947 1000 0 0
+literal 22.173714763006313 1000 0 0
+pandas  22.173714763006313 1000 0 0
 ```
 
 ## Provenance

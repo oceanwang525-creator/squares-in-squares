@@ -23,6 +23,14 @@
       "group_gain": -2.1413221418242756e-08,
       "largest_n": 868,
       "largest_delta": -2.0945886802792302e-08
+    },
+    {
+      "file": "free_slp_600_1000_r30_t1p4e-2_i100_report.json",
+      "trust": 0.014,
+      "wins": 5,
+      "group_gain": -2.4742906390429198e-08,
+      "largest_n": 868,
+      "largest_delta": -2.4404592124938063e-08
     }
   ],
   "distinct_n": [
@@ -36,5 +44,5 @@
     936
   ],
   "distinct_win_count": 8,
-  "total_group_gain": -6.746801162194061e-08
+  "total_group_gain": -9.221091801236981e-08
 }
