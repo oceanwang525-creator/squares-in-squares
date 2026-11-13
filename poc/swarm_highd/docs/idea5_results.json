@@ -1,0 +1,110 @@
+{
+  "results": [
+    {
+      "n": 339,
+      "L_inc": 18.906198207686685,
+      "L_base": 18.906198207686685,
+      "L_front": 18.8973759187236,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 8.79
+    },
+    {
+      "n": 545,
+      "L_inc": 23.825172336094965,
+      "L_base": 23.825172336094965,
+      "L_front": 23.8127641095062,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 26.82
+    },
+    {
+      "n": 639,
+      "L_inc": 25.781136521363386,
+      "L_base": 25.781136521363383,
+      "L_front": 25.7689945942536,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 95.34
+    },
+    {
+      "n": 698,
+      "L_inc": 26.8811044897729,
+      "L_base": 26.8811044897729,
+      "L_front": 26.8678587883283,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 62.92
+    },
+    {
+      "n": 703,
+      "L_inc": 26.947015851077786,
+      "L_base": 26.947015851077786,
+      "L_front": 26.9344329487539,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 90.17
+    },
+    {
+      "n": 805,
+      "L_inc": 28.84344105476938,
+      "L_base": 28.84344105476938,
+      "L_front": 28.8289322634411,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 119.08
+    },
+    {
+      "n": 862,
+      "L_inc": 29.827137340356035,
+      "L_base": 29.82713653946184,
+      "L_front": 29.8120864559465,
+      "best_tag": "none",
+      "L_best": null,
+      "dL_base": null,
+      "dL_inc": null,
+      "win": false,
+      "verify": {
+        "ok": false
+      },
+      "dt": 201.45
+    }
+  ],
+  "dt_s": 202.3
+}
