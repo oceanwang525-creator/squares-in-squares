@@ -1,0 +1,71 @@
+{
+  "expand": 3.0,
+  "final_count": 965,
+  "initial_count": 965,
+  "input": "poc/corner-pocket-chirality/data/probe-972x971-965.csv",
+  "probe": "poc/corner-pocket-chirality/data/probe-972x971-965.json",
+  "results": [
+    {
+      "accepted": false,
+      "candidates": 673,
+      "gain": -12,
+      "index": 0,
+      "new_upright": 11,
+      "old_upright": 23,
+      "source_gap_area": 3.248263888888889,
+      "window": [
+        0.0,
+        8.791666666666668,
+        0.0,
+        5.625
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 6219,
+      "gain": -12,
+      "index": 1,
+      "new_upright": 66,
+      "old_upright": 78,
+      "source_gap_area": 3.2309027777777777,
+      "window": [
+        6.541666666666666,
+        16.25,
+        17.0,
+        27.416666666666668
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 204,
+      "gain": -4,
+      "index": 2,
+      "new_upright": 5,
+      "old_upright": 9,
+      "source_gap_area": 3.1197916666666665,
+      "window": [
+        26.75,
+        31.664318324151626,
+        24.833333333333332,
+        31.664318324151626
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 2720,
+      "gain": -11,
+      "index": 3,
+      "new_upright": 29,
+      "old_upright": 40,
+      "source_gap_area": 1.875,
+      "window": [
+        15.666666666666668,
+        22.666666666666668,
+        0.0,
+        5.0
+      ]
+    }
+  ],
+  "side": 31.664318324151626,
+  "step": 0.1
+}

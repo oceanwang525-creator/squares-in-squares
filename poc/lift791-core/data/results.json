@@ -1,0 +1,43 @@
+{
+  "core_count": 791,
+  "initial_exact_fill": {
+    "908": 907,
+    "971": 968,
+    "972": 968,
+    "973": 968
+  },
+  "one_square_release": {
+    "908": {
+      "best": 907,
+      "tasks": 791
+    },
+    "971": {
+      "best": 968,
+      "tasks": 791
+    }
+  },
+  "rigid_transform": {
+    "908": {
+      "best": 907,
+      "tasks": 392
+    },
+    "971": {
+      "best": 968,
+      "tasks": 968
+    }
+  },
+  "motif_replacement": {
+    "908": {
+      "fixed_core_best": 907,
+      "conflict_swap_best": 905
+    },
+    "971": {
+      "fixed_core_best": 968,
+      "conflict_swap_best": 965
+    }
+  },
+  "n972_self_pair": {
+    "best": 964,
+    "tasks": 1024
+  }
+}
