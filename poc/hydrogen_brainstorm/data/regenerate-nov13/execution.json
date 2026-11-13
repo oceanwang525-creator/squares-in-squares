@@ -1,0 +1,12 @@
+{
+  "folder": "hydrogen_brainstorm",
+  "args": [
+    "poc/hydrogen_brainstorm/data/regenerate-nov13/run_pipeline.py"
+  ],
+  "timeout": 3500,
+  "reason": "All three actual original brainstormCPU scripts full defaults; capacityoutputs may contain no completepacking",
+  "pid": 434443,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 188.67
+}

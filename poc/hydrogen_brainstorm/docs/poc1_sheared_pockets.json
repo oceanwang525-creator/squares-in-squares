@@ -26,7 +26,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 4.87
+    "seconds": 5.03
   },
   {
     "n": 401,
@@ -55,7 +55,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 3.29
+    "seconds": 2.53
   },
   {
     "n": 530,
@@ -84,7 +84,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 5.72
+    "seconds": 4.46
   },
   {
     "n": 842,
@@ -95,14 +95,14 @@
     "deficit": 7,
     "best_cfg": {
       "L_probe": 29.518815,
-      "Kx": 24,
-      "Ky": 17,
-      "P1": 5,
-      "P2": 12,
-      "w1": 6,
-      "w2": 13,
-      "th1_deg": 34.329,
-      "th2_deg": 20.628,
+      "Kx": 17,
+      "Ky": 24,
+      "P1": 12,
+      "P2": 5,
+      "w1": 13,
+      "w2": 6,
+      "th1_deg": 20.628,
+      "th2_deg": 34.329,
       "mode": "sw_upright",
       "signs": [
         -1,
@@ -113,7 +113,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 9.1
+    "seconds": 6.88
   },
   {
     "n": 634,
@@ -142,7 +142,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 7.59
+    "seconds": 5.75
   },
   {
     "n": 908,
@@ -171,7 +171,7 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 11.16
+    "seconds": 8.36
   },
   {
     "n": 911,
@@ -200,11 +200,11 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 12.42
+    "seconds": 8.48
   },
   {
     "n": 971,
-    "L_ours": 31.66431832520518,
+    "L_ours": 31.664318325151626,
     "L_front": 31.6367893146482,
     "configs_tried": 12432,
     "best_cap": 967,
@@ -229,6 +229,6 @@
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 12.43
+    "seconds": 8.4
   }
 ]
