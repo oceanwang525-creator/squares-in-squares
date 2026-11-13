@@ -26,11 +26,11 @@ def make_border_extend_seed(x: np.ndarray, y: np.ndarray, th: np.ndarray, L: flo
     for _ in range(layers):
         m = int(np.floor(cur_L))
         b = np.arange(0.5, m, 1.0)
-        off = cur_L + 0.5 + 1e-6
+        off = cur_L + 0.5 + 1e-8
         cx = np.concatenate([cx, np.full(m, off), b, [off]])
         cy = np.concatenate([cy, b, np.full(m, off), [off]])
         ct = np.concatenate([ct, np.zeros(m + m + 1)])
-        cur_L += 1.0 + 1e-6
+        cur_L += 1.0 + 1e-8
     return st.norm_pack(cx, cy, ct)
 
 
@@ -209,8 +209,6 @@ def generate_peel_seeds_for_target(
     seeds = []
     for src_n, (x, y, t, L) in sorted(donors.items(), reverse=True):
         if src_n <= n_target:
-            continue
-        if src_n >= 970 and n_target < 960:
             continue
         h = st.hx_of(t)
         for k in range(1, 7):
@@ -410,16 +408,11 @@ def main():
     packs, best_L = st.load_frontier()
     rng = np.random.default_rng(20261113)
 
-    # Same-tilt donor pool starts with GuestData n=910 and n=909
-    donors: dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float]] = {
-        910: packs[910],
-        909: packs[909],
-    }
-    # Add 910+61->971 and 909+61->970 as virtual extended donors
-    x971, y971, t971, L971 = make_border_extend_seed(*packs[910], layers=1)
-    donors[971] = (x971, y971, t971, L971)
-    x970, y970, t970, L970 = make_border_extend_seed(*packs[909], layers=1)
-    donors[970] = (x970, y970, t970, L970)
+    # Proven donors from merged frontier + same-tilt atlas
+    donors: dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float]] = {}
+    for dn in (970, 972, 973, 911, 910, 909, 850, 793, 530, 442):
+        if dn in packs:
+            donors[dn] = packs[dn]
 
     # Load any previously saved sametilt wins into donors
     for p in sorted(st.DATA_DIR.glob("win_n*.json")):
@@ -429,23 +422,23 @@ def main():
         xw = np.array([float(r["x"]) for r in rows])
         yw = np.array([float(r["y"]) for r in rows])
         tw = np.array([float(r["angle"]) for r in rows])
-        donors[wn] = st.norm_pack(xw, yw, tw)
+        wp = st.norm_pack(xw, yw, tw)
+        if wn not in donors or wp[3] < donors[wn][3]:
+            donors[wn] = wp
 
     default_targets = [
-        # m=31 upward extensions
-        971, 972, 973, 974, 975, 976,
-        # m=29 peel + expansions
-        851, 850, 852, 853, 854, 855, 856,
-        # m=28 peel + expansions
-        794, 793, 795, 796,
-        # m=27 peel + expansions
-        739, 740, 738, 741,
-        # m=26 peel + expansions
-        686, 685, 687, 688,
-        # m=25 peel + expansions
-        635, 634, 636, 637,
-        # m=24 peel
-        586, 585, 584, 587,
+        # Immediate upward L-border extensions
+        909, 577, 485, 971,
+        # r = +9 downward peels (from 970, 909, 850, 793)
+        850, 738, 685, 634,
+        # r = +10 downward peels (from 910, 971)
+        851, 794, 739, 686,
+        # r = +11 downward peels (from 972, 911)
+        911, 852, 795, 740,
+        # r = +12 downward peels (from 973)
+        912, 853, 796, 741,
+        # Extra expansions around 972..975 and 854..856
+        972, 973, 974, 975, 854, 855,
     ]
     targets = args.targets if args.targets else default_targets
 
@@ -469,9 +462,14 @@ def main():
         L_inc = float(L_inc_dec)
         print(f"\n=== Track B Target n={n_t} (frontier L={L_inc:.12f}) ===", flush=True)
         seeds = []
-        if n_t in (971,) and n_t in donors:
-            x, y, t, L = donors[n_t]
-            seeds.append(("ext61_910", x, y, t, L, np.array([[5.3, 9.4], [27.2, 5.3]])))
+        # Check any exact 1-layer upward L-border extension from packs or donors
+        ext_pool = dict(packs)
+        ext_pool.update(donors)
+        for src_n, (xs, ys, ts, Ls) in sorted(ext_pool.items()):
+            ms = int(np.floor(Ls))
+            if src_n + 2 * ms + 1 == n_t and Ls + 1.0 < L_inc - 1e-8:
+                xe, ye, te, Le = make_border_extend_seed(xs, ys, ts, Ls, layers=1)
+                seeds.append((f"ext{2*ms+1}_{src_n}", xe, ye, te, Le, np.array([[5.3, 9.4], [max(2.0, Ls - 2.0), 5.0]])))
         seeds += generate_peel_seeds_for_target(n_t, donors, L_inc)
         seeds += generate_plusk_seeds(n_t, donors, L_inc)
         if not seeds:
