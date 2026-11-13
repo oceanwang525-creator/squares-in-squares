@@ -1,7 +1,7 @@
 {
   "folder": "coupled_angle_sweep",
-  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
-  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "source_main": "a05b1c03bcdc5f3fefc45ca00953783a5a15f8fc",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
@@ -9,6 +9,12 @@
     {
       "path": "poc/coupled_angle_sweep/data/regenerate-nov13/results.json",
       "sha256": "f785eedfa56d5024512733c1d04e5424f98efc4eabbfb535757a4dd24645a0d9",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/coupled_angle_sweep/data/regenerate-nov13/source-manifest.json",
+      "sha256": "2317d361927da151176d9fbf1fea51f0bde0f8b83537692f786cc21690ba36af",
       "decode_note": "report/metadata, not a saved coordinate-row list",
       "groups": 0
     },
