@@ -1,0 +1,177 @@
+[
+  {
+    "n": 582,
+    "L_inc": 24.633982502102096,
+    "n_seeds": 20,
+    "n_jobs": 120,
+    "n_feas": 0,
+    "best_cpp_Lf": 1e+18,
+    "best_seen_L": 24.66668447020573,
+    "win": false,
+    "best_label": null,
+    "L_win": null,
+    "dL": 0.032701968103634016,
+    "polish_logs": [
+      {
+        "label": "peel_631_TL_clamp_rot0_R7.7_s4",
+        "cppLf": 1e+18,
+        "L": 24.668461560558367,
+        "dL": 0.0344790584562679,
+        "ok": true
+      },
+      {
+        "label": "peel_631_TL_clamp_rot0_R6.9_s0",
+        "cppLf": 1e+18,
+        "L": 24.667274713756072,
+        "dL": 0.03329221165397317,
+        "ok": true
+      },
+      {
+        "label": "peel_631_TR_clamp_keepAng_R6.4_s4",
+        "cppLf": 1e+18,
+        "L": 24.666923745517536,
+        "dL": 0.032941243415439,
+        "ok": true
+      },
+      {
+        "label": "peel_631_TL_clamp_rot45_R5.8_s1",
+        "cppLf": 1e+18,
+        "L": 24.666688691934475,
+        "dL": 0.03270618983237673,
+        "ok": true
+      },
+      {
+        "label": "peel_631_TL_clamp_keepAng_R6.0_s0",
+        "cppLf": 1e+18,
+        "L": 24.66668447020573,
+        "dL": 0.03270196810363202,
+        "ok": true
+      },
+      {
+        "label": "peel_631_TL_clamp_keepAng_R8.0_s2",
+        "cppLf": 1e+18,
+        "L": 24.66870103234903,
+        "dL": 0.034718530246932056,
+        "ok": true
+      }
+    ],
+    "elapsed_s": 114.0,
+    "donor": 631
+  },
+  {
+    "n": 692,
+    "L_inc": 26.791643395469492,
+    "n_seeds": 20,
+    "n_jobs": 120,
+    "n_feas": 0,
+    "best_cpp_Lf": 1e+18,
+    "best_seen_L": 26.826898394393982,
+    "win": false,
+    "best_label": null,
+    "L_win": null,
+    "dL": 0.03525499892448991,
+    "polish_logs": [
+      {
+        "label": "peel_745_TL_clamp_rot45_R10.4_s5",
+        "cppLf": 1e+18,
+        "L": 26.826898394393982,
+        "dL": 0.03525499892448914,
+        "ok": true
+      },
+      {
+        "label": "peel_745_TL_clamp_rot45_R7.5_s2",
+        "cppLf": 1e+18,
+        "L": 26.83825175171968,
+        "dL": 0.046608356250189234,
+        "ok": true
+      },
+      {
+        "label": "peel_745_TL_clamp_keepAng_R11.5_s5",
+        "cppLf": 1e+18,
+        "L": 26.83926408260865,
+        "dL": 0.04762068713915562,
+        "ok": true
+      },
+      {
+        "label": "peel_745_TL_clamp_rot0_R6.3_s3",
+        "cppLf": 1e+18,
+        "L": 26.828792663466906,
+        "dL": 0.03714926799741414,
+        "ok": true
+      },
+      {
+        "label": "peel_745_TL_clamp_keepAng_R7.0_s4",
+        "cppLf": 1e+18,
+        "L": 26.831983489373872,
+        "dL": 0.04034009390437995,
+        "ok": true
+      },
+      {
+        "label": "peel_745_TL_clamp_keepAng_R6.7_s1",
+        "cppLf": 1e+18,
+        "L": 26.838239407109103,
+        "dL": 0.04659601163961108,
+        "ok": true
+      }
+    ],
+    "elapsed_s": 117.3,
+    "donor": 745
+  },
+  {
+    "n": 577,
+    "L_inc": 24.533050505846838,
+    "n_seeds": 20,
+    "n_jobs": 120,
+    "n_feas": 0,
+    "best_cpp_Lf": 1e+18,
+    "best_seen_L": 24.560331692770472,
+    "win": false,
+    "best_label": null,
+    "L_win": null,
+    "dL": 0.027281186923634237,
+    "polish_logs": [
+      {
+        "label": "peel_626_BL_clamp_rot0_R6.2_s0",
+        "cppLf": 1e+18,
+        "pen": 0.0008263064983732304,
+        "ok": false
+      },
+      {
+        "label": "peel_626_TL_clamp_rot0_R6.1_s0",
+        "cppLf": 1e+18,
+        "L": 24.560331692770472,
+        "dL": 0.027281186923633426,
+        "ok": true
+      },
+      {
+        "label": "peel_626_BL_clamp_keepAng_R8.1_s4",
+        "cppLf": 1e+18,
+        "pen": 0.0013759010491136703,
+        "ok": false
+      },
+      {
+        "label": "peel_626_BL_clamp_rot0_R11.0_s5",
+        "cppLf": 1e+18,
+        "L": 24.561281890231943,
+        "dL": 0.028231384385102618,
+        "ok": true
+      },
+      {
+        "label": "peel_626_TL_clamp_rot0_R7.9_s1",
+        "cppLf": 1e+18,
+        "L": 24.560967942812688,
+        "dL": 0.027917436965849283,
+        "ok": true
+      },
+      {
+        "label": "peel_626_TL_clamp_rot45_R7.0_s0",
+        "cppLf": 1e+18,
+        "L": 24.608084025421604,
+        "dL": 0.07503351957476552,
+        "ok": true
+      }
+    ],
+    "elapsed_s": 131.8,
+    "donor": 626
+  }
+]
