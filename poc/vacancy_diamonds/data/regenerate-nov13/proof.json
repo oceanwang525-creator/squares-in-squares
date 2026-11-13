@@ -1,0 +1,51 @@
+{
+  "folder": "vacancy_diamonds",
+  "source_main": "f953dd81096b8a9ac6e81e82781e5d547da5a934",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/vacancy_diamonds/data/q401.npy",
+      "sha256": "96f7eec74a258f1ebe392768d59641da502020fe7b0a578d552bb1e9ba6d60a2",
+      "groups": 1
+    },
+    {
+      "path": "poc/vacancy_diamonds/data/regenerate-nov13/source-manifest.json",
+      "sha256": "756d07109ba023c912d1b54d5d40ad10b228e40a62a8c75134e18b0985445645",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/vacancy_diamonds/data/slp401.npy",
+      "sha256": "01a99e0d81b70bf37842018e7fb228924752bc780f1941c2650e3abaf10ecdcd",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 2,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 401,
+      "key": "01133f8ad7a1c0342f0656a484e8e203a29402038be09812468d7746b504eede",
+      "official": [
+        "20.53553390593279840000000000000000000000000000000000",
+        "20.53553390593279840000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 401,
+      "key": "d2f9fdd2d83b6df828a265983eb793cc832aba1f4f7360bbfe29a52ceba8eb46",
+      "official": [
+        "20.53553390593280000000000000000000000000000000000000",
+        "20.53553390593280000000000000000000000000000000000000"
+      ]
+    }
+  ],
+  "final_results": []
+}
