@@ -1,0 +1,24 @@
+{
+  "source_main": "1aaf3a28cb43c7b26335c4fbc017b298a7fc01e4",
+  "original_sources": {
+    "poc/bent_band_join/poc/bent_band.py": "5b8e097bcdbc0b58505216aca5be692c7cc29d86eb406b65efa2acd3b48ae4df",
+    "poc/bent_band_join/poc/run.py": "244e2c4c6c5237a343104b79c028cb0f10d2cde4415be0b0b6fc48c359b27c53",
+    "poc/bent_band_join/poc/search.py": "473ef4cf93c58c72612c21e4035d74f84e79cea2eef7a74e9f55d23006d09575"
+  },
+  "execution": {
+    "folder": "bent_band_join",
+    "args": [
+      "poc/bent_band_join/poc/run.py",
+      "--out-dir",
+      "poc/bent_band_join/data/regenerate-nov13/"
+    ],
+    "reason": "Full finite four-target construction",
+    "timeout": 3500,
+    "pid": 422953,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 115.18
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

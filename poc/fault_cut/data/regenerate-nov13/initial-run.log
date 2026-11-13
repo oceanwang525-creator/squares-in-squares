@@ -1,0 +1,28 @@
+27 True 5.707106781186552
+51 True 7.690355937288498
+102 True 10.605828696431589
+635 True 25.707106781186695
+Traceback (most recent call last):
+  File "/mnt/e/squares-poc-regenerate-nov13/poc/fault_cut/data/regenerate-nov13/export.py", line 13, in <module>
+    pathlib.Path(__file__).with_name('results.json').write_text(json.dumps(results,indent=2))
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lucas/miniconda3/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/lucas/miniconda3/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int32 is not JSON serializable

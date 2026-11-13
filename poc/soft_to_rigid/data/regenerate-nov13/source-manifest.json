@@ -1,0 +1,27 @@
+{
+  "source_main": "ee1b009e98fd9aaaacc8b947d70d44c1f921e456",
+  "original_sources": {
+    "poc/soft_to_rigid/poc/incumbent.py": "8926de5d135f7da8f391f86f89d566b2f7642a606346208107dabf6e107e9b16",
+    "poc/soft_to_rigid/poc/run.py": "86035785acf716c70bfd888b18d19afcac6c79ca9ad45f29d092d8ce75716f8c",
+    "poc/soft_to_rigid/poc/s2r.py": "3b441189f3cd36b32e8980a683f9eaab6ce69e1f8edd5a6b6bbec1cf1ed5a1dc",
+    "poc/soft_to_rigid/poc/sweep.py": "f2d97bdad5a670983908617b844858c1029850aac90091d01246b9866ea91a3b",
+    "poc/soft_to_rigid/poc/test_grad.py": "b103192603d04e2ed77193fa6f3ccd5ae8c46b8439d2ead9ef93dff93eac57db"
+  },
+  "execution": {
+    "folder": "soft_to_rigid",
+    "args": [
+      "sweep.py",
+      "51",
+      "300"
+    ],
+    "reason": "Normal n51 five-minute sweep",
+    "timeout": 3500,
+    "cwd": "poc/soft_to_rigid/poc",
+    "pid": 427341,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 310.06
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

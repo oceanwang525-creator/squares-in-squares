@@ -1,0 +1,15 @@
+{
+  "folder": "leader_poc_kk1m9",
+  "args": [
+    "poc/leader_poc_kk1m9/poc/relax.py",
+    "411",
+    "20.77414",
+    "120"
+  ],
+  "reason": "Documented n411120secondrelaxation",
+  "timeout": 3500,
+  "pid": 427765,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 130.73
+}

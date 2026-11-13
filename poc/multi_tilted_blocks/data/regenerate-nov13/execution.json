@@ -1,0 +1,15 @@
+{
+  "folder": "multi_tilted_blocks",
+  "args": [
+    "poc/multi_tilted_blocks/poc/mis.py",
+    "30.63",
+    "240",
+    "2"
+  ],
+  "reason": "Documented L30.63 candidate enumeration240secondMILP",
+  "timeout": 3500,
+  "pid": 428182,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 243.78
+}

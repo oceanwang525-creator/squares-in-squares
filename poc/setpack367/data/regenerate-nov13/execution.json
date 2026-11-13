@@ -1,0 +1,12 @@
+{
+  "folder": "setpack367",
+  "args": [
+    "poc/setpack367/poc/setpack367.py"
+  ],
+  "reason": "Normal n367 MILP300second cap, no gadget32pool",
+  "timeout": 3500,
+  "pid": 426638,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 570.75
+}

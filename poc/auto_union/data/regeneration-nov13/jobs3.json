@@ -1,0 +1,115 @@
+[
+  {
+    "folder": "family_reverse_fit",
+    "args": [
+      "poc/family_reverse_fit/poc/relax442.py",
+      "442",
+      "21.524648",
+      "4",
+      "1"
+    ],
+    "reason": "Documented fourtrial420second bounded relaxation; may emit no packing",
+    "timeout": 3500
+  },
+  {
+    "folder": "k2p10_fill2",
+    "args": [
+      "poc/k2p10_fill2/poc/b_fill.py",
+      "0",
+      "25.705",
+      "5",
+      "1",
+      "300"
+    ],
+    "reason": "Documented five-trial n635fill five-minute budget",
+    "timeout": 3500
+  },
+  {
+    "folder": "leader_poc_k2p10",
+    "args": [
+      "poc/leader_poc_k2p10/poc/repolish.py",
+      "635",
+      "6"
+    ],
+    "reason": "Documented six-round n635fullpacking polish",
+    "timeout": 3500
+  },
+  {
+    "folder": "lip_slp",
+    "args": [
+      "poc/lip_slp/poc/lip_slp.py",
+      "--incumbent",
+      "regeneration-proof/incumbent.csv",
+      "--report",
+      "regeneration-proof/incumbent-report.json",
+      "--n-list",
+      "147,850,862",
+      "--output",
+      "poc/lip_slp/data/regenerate-nov13/scan.json",
+      "--wins",
+      "poc/lip_slp/data/regenerate-nov13/wins.json",
+      "--jobs",
+      "1"
+    ],
+    "reason": "Genuine latestPR12 target subset; full1000serial estimated3.8h skipped",
+    "timeout": 3500
+  },
+  {
+    "folder": "research",
+    "args": [
+      "poc/research/poc/search_large_n_scratch_bands.py",
+      "--output-file",
+      "poc/research/data/regenerate-nov13/scratch-results.json"
+    ],
+    "reason": "Full defaulttop40 CPU scratch sweep historic~55s; GPUColabrunners skipped",
+    "timeout": 3500
+  },
+  {
+    "folder": "d1_chain",
+    "args": [
+      "poc/d1_chain/poc/fan.py",
+      "240",
+      "1"
+    ],
+    "reason": "Documented n401 four-minute fan relaxation",
+    "timeout": 3500
+  },
+  {
+    "folder": "vacancy_diamonds",
+    "args": [
+      "poc/vacancy_diamonds/data/regenerate-nov13/run_pipeline.py"
+    ],
+    "reason": "Reextract n401 then normal240second SLP with fullrawarray",
+    "timeout": 3500
+  },
+  {
+    "folder": "fault_cut",
+    "args": [
+      "poc/fault_cut/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Genuine incumbent topologicaldeletion targets26,50,101,634",
+    "timeout": 3500
+  },
+  {
+    "folder": "hydrogen_brainstorm",
+    "args": [
+      "poc/hydrogen_brainstorm/data/regenerate-nov13/run_pipeline.py"
+    ],
+    "timeout": 3500,
+    "reason": "All three actual original brainstormCPU scripts full defaults; capacityoutputs may contain no completepacking"
+  },
+  {
+    "folder": "k2p10_two_bands",
+    "args": [
+      "poc/k2p10_two_bands/poc/sweep.py",
+      "635",
+      "25.69874",
+      "4",
+      "1",
+      "20",
+      "two"
+    ],
+    "timeout": 3500,
+    "reason": "Documented4configuration two-bandMILP normal20seccap perconfiguration; poollimited1"
+  }
+]

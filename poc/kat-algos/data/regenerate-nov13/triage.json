@@ -1,0 +1,12 @@
+{
+  "folder": "kat-algos",
+  "scripts": [
+    "poc/algos_bench.py",
+    "poc/algos_sweep.py",
+    "poc/tests/algos_smoke.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 26867,
+  "status": "skipped-deferred",
+  "reason": "CUDA benchmark/sweep requires compiled GPU solvers; no GPU allocation."
+}

@@ -1,0 +1,24 @@
+{
+  "source_main": "30dc8a4b2c9711bbb81e665a43041408d7ed9f37",
+  "original_sources": {
+    "poc/freeze_relax_momentum/poc/freeze_relax.py": "913d594070f75f18bebd616c6bcc81ff96fc87c76a863b61ffbbe115cd7bd88f"
+  },
+  "execution": {
+    "folder": "freeze_relax_momentum",
+    "args": [
+      "poc/freeze_relax_momentum/poc/freeze_relax.py",
+      "634",
+      "2",
+      "1.5",
+      "150"
+    ],
+    "reason": "n634 normal150second momentum relaxation",
+    "timeout": 3500,
+    "pid": 426385,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 32.66
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

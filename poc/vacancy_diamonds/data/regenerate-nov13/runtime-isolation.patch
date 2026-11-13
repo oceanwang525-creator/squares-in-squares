@@ -1,0 +1,11 @@
+diff --git a/poc/vacancy_diamonds/poc/slp.py b/poc/vacancy_diamonds/poc/slp.py
+index 8ab6a01..40a8256 100644
+--- a/poc/vacancy_diamonds/poc/slp.py
++++ b/poc/vacancy_diamonds/poc/slp.py
+@@ -1,5 +1,5 @@
+ import sys, math, numpy as np, time
+-sys.path.insert(0,'/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc')
++sys.path.insert(0,'/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc')
+ from a_overlap import pairs, pair_depth
+ from scipy.optimize import linprog
+ from scipy.sparse import lil_matrix

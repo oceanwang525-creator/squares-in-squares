@@ -1,0 +1,36 @@
+{
+  "folder": "lip_slp",
+  "source_main": "136ba89e03df3113cf18771f002ee465519b5bef",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/lip_slp/data/regenerate-nov13/scan.json",
+      "sha256": "e865173a626dd7b625e5685b26ab1823b368dbc70e24e17dc77befc79f26b3b2",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/lip_slp/data/regenerate-nov13/source-manifest.json",
+      "sha256": "9ef16af0f04dbb45ac7a793899f8a6d74bc05835a6bb0a62f97eb61ff658e22a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/lip_slp/data/regenerate-nov13/wins.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

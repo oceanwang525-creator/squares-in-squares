@@ -1,0 +1,10 @@
+{
+  "folder": "kernel_refresh_noon",
+  "scripts": [
+    "poc/fetch_outputs.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 4000,
+  "status": "skipped-external-input",
+  "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+}

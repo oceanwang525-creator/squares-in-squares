@@ -1,0 +1,11 @@
+{
+  "folder": "k2p10_wildcard",
+  "scripts": [
+    "poc/scan.py",
+    "poc/tiltband.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 4752,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

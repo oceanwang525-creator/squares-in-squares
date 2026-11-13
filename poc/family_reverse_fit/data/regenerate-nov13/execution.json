@@ -1,0 +1,16 @@
+{
+  "folder": "family_reverse_fit",
+  "args": [
+    "poc/family_reverse_fit/poc/relax442.py",
+    "442",
+    "21.524648",
+    "4",
+    "1"
+  ],
+  "reason": "Documented fourtrial420second bounded relaxation; may emit no packing",
+  "timeout": 3500,
+  "pid": 433073,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 12.8
+}

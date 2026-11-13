@@ -1,0 +1,20 @@
+{
+  "source_main": "05e870ff44fa88a0e58db2ab8d31e874742267ac",
+  "original_sources": {
+    "poc/shelf_knapsack/poc/shelf_knapsack.py": "36361186e1b654f5e9b16b05f96521f3009fff1b33f114d73d57d1611645f114"
+  },
+  "execution": {
+    "folder": "shelf_knapsack",
+    "args": [
+      "poc/shelf_knapsack/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Full six-target default construction with raw rows export",
+    "timeout": 3500,
+    "pid": 428395,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 4.18
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

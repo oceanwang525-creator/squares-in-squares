@@ -1,0 +1,10 @@
+{
+  "folder": "arm_gadget",
+  "scripts": [
+    "poc/arm_repack.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 19794,
+  "status": "skipped-deferred",
+  "reason": "Historical rerun requires mandatory target-specific --a --g and --target-L values absent from saved README/scripts; flat-wall model documented infeasible. Not guessing geometry parameters."
+}

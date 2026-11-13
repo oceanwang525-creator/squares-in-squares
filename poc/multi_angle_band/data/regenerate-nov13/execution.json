@@ -1,0 +1,16 @@
+{
+  "folder": "multi_angle_band",
+  "args": [
+    "poc/multi_angle_band/poc/search.py",
+    "634",
+    "25.70710678",
+    "60",
+    "0.15"
+  ],
+  "reason": "Documented full n634 MILP60second budget",
+  "timeout": 3500,
+  "pid": 427957,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 63.56
+}

@@ -1,0 +1,10 @@
+Loaded 1000 donor puzzles
+integer 500 cut-width pairs 396 within capacity threshold
+integer 1000 cut-width pairs 470 within capacity threshold
+integer 1500 cut-width pairs 515 within capacity threshold
+integer 2000 cut-width pairs 563 within capacity threshold
+integer {'cut_width_pairs': 2076, 'within_near_count': 563, 'capacity_reaches_target': 0, 'seconds_so_far': 8.46}
+frontier 500 cut-width pairs 15 within capacity threshold
+frontier 1000 cut-width pairs 25 within capacity threshold
+frontier {'cut_width_pairs': 1335, 'within_near_count': 37, 'capacity_reaches_target': 0, 'seconds_so_far': 14.524}
+432 graph variants, 0 certification attempts, 0 wins, 16.407 seconds

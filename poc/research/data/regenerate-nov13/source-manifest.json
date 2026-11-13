@@ -1,0 +1,38 @@
+{
+  "source_main": "d98f800f0299b79e26c3c9199e864448d97cf19e",
+  "original_sources": {
+    "poc/research/poc/colab_high_n_runner.py": "8282684bea5214fb0214f8710ea94c438ab17458002bfe9388b2fa9967c52b50",
+    "poc/research/poc/colab_runner.py": "eb965d9a23c416982656a9787569dc601d3c07410706925a8a0b4180074f7690",
+    "poc/research/poc/erdos_graham_parametric.py": "b60e608638cbb8563832bb5141f762a36b51d802096d671fa421a79dcfbe2494",
+    "poc/research/poc/high_n_core_border_sweep.py": "fffe36c010b71075f125c6ec096f9a140a437c3a128a5fe457e07b91d5a9fddd",
+    "poc/research/poc/high_n_vacancy_deletion.py": "8ec2eb9475cc9f0cb7df3078bf91da8b5b2cb3538a3ff86c4b0640cb82ee6bf4",
+    "poc/research/poc/multi_d_pell_sweep.py": "79b5d6a815d00bbd071d2f4875184da9acce4b0e9b05cfc217cc1bcd6c56e1f5",
+    "poc/research/poc/plot_packing_svg.py": "56c88ad2ffa962294063d5d10e420f34cd8c018d1d43ce1bae20fa44c38a4067",
+    "poc/research/poc/rank_high_n_gaps.py": "481a791f7be69c578f647f697df01a038a31ac52090cbdd6127f810efa9cf528",
+    "poc/research/poc/relax_n106.py": "89738998e45ae3c2edb056ed05e15968113f5c1fd60c5aaa7a419e36e6e1be6e",
+    "poc/research/poc/relax_n151.py": "444cf3238f80244e24a961ad61707bd772f226cd3f3d095cd68e84bddc2efb6c",
+    "poc/research/poc/relax_n234.py": "d051be2d77de3d9b8e20d74c6339791b8dda353af965c973e7c0e82119ca8147",
+    "poc/research/poc/relax_n295.py": "72c48e51519ddbd19f2c22263ff47771d2d40dcb16d7652178c13c05d4a6a8fb",
+    "poc/research/poc/sanity_check_tilted.py": "cf0e0581a6a55c3d8dcb76611a59608b50a10aff9aea1f5c3ebb60aa92a5eb52",
+    "poc/research/poc/search_large_n_scratch_bands.py": "bea5c9174be6b593c9d1dcddbfaf8dd7c685cd7c2e94b07f4b8c413acc1ea0c2",
+    "poc/research/poc/search_recursive_refill_strips.py": "d6f16622a2bb628fd761cd0cbba82933cfdf053a800d2a62c764a4c6217fdd0a",
+    "poc/research/poc/tilted_band_scratch.py": "757ead8d233a47eea910bd430ad708d9ab2036c4b82aab5a8bc3906df474cb2d",
+    "poc/research/poc/transplant_solver.py": "c23e1bed93f8720b0a00aa8598715e07115b66638ae82fceb321112e30d783d7"
+  },
+  "execution": {
+    "folder": "research",
+    "args": [
+      "poc/research/poc/search_large_n_scratch_bands.py",
+      "--output-file",
+      "poc/research/data/regenerate-nov13/scratch-results.json"
+    ],
+    "reason": "Full defaulttop40 CPU scratch sweep historic~55s; GPUColabrunners skipped",
+    "timeout": 3500,
+    "pid": 433188,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 179.42
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

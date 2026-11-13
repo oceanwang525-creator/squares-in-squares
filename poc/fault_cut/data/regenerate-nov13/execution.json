@@ -1,0 +1,13 @@
+{
+  "folder": "fault_cut",
+  "args": [
+    "poc/fault_cut/data/regenerate-nov13/export.py"
+  ],
+  "reason": "Genuine incumbent topologicaldeletion targets26,50,101,634",
+  "timeout": 3500,
+  "pid": 436218,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 51.89,
+  "retry": true
+}

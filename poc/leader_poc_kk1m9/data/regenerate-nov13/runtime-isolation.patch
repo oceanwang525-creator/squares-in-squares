@@ -1,0 +1,20 @@
+diff --git a/poc/leader_poc_kk1m9/poc/relax.py b/poc/leader_poc_kk1m9/poc/relax.py
+index 3534af3..83578d5 100644
+--- a/poc/leader_poc_kk1m9/poc/relax.py
++++ b/poc/leader_poc_kk1m9/poc/relax.py
+@@ -3,7 +3,7 @@ usage: relax.py n L_target seconds   -> docs/relax_n{n}.npy (x,y,angle), prints
+ import sys, time, numpy as np, pandas as pd
+ from scipy.optimize import minimize
+ n, Lt, secs = int(sys.argv[1]), float(sys.argv[2]), float(sys.argv[3])
+-d = pd.read_csv('/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv')
++d = pd.read_csv('/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv')
+ g = d[d.n == n]; P = g[['x','y','angle']].to_numpy().copy()
+ def ext(P):
+     h = .5*(np.abs(np.cos(P[:,2]))+np.abs(np.sin(P[:,2])))
+@@ -62,5 +62,5 @@ while time.time()-t < secs:
+     print(round(time.time()-t), r.fun, flush=True)
+     if r.fun < 1e-22: break
+ P = v.reshape(n,3); P[:,0]+=Lt/2; P[:,1]+=Lt/2
+-np.save(f'/Users/lucaszhang/squares-in-squares/poc/leader_poc_kk1m9/docs/relax_n{n}.npy', P)
++np.save(f'/mnt/e/squares-poc-regenerate-nov13/poc/leader_poc_kk1m9/docs/relax_n{n}.npy', P)
+ pe,w = energy_parts(v.reshape(n,3)); print('final pen',pe.sum()+w.sum(),'max pair pen',np.sqrt(pe.max()))

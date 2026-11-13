@@ -1,0 +1,16 @@
+{
+  "folder": "baseline",
+  "scripts": [
+    "poc/src/squares/cli.py",
+    "poc/src/squares/core.py",
+    "poc/src/squares/optimizer.py",
+    "poc/src/squares/references.py",
+    "poc/src/squares/_official_metric.py",
+    "poc/src/squares/__init__.py",
+    "poc/src/squares/__main__.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 48114,
+  "status": "skipped-deferred",
+  "reason": "Official metric/baseline infrastructure, not a packing-search experiment; rerunning would not regenerate missing search outputs."
+}

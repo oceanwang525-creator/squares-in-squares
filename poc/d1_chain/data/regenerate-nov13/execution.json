@@ -1,0 +1,14 @@
+{
+  "folder": "d1_chain",
+  "args": [
+    "poc/d1_chain/poc/fan.py",
+    "240",
+    "1"
+  ],
+  "reason": "Documented n401 four-minute fan relaxation",
+  "timeout": 3500,
+  "pid": 433359,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 246.54
+}

@@ -1,0 +1,24 @@
+{
+  "folder": "hydrogen_brainstorm",
+  "source_main": "b5f74b189d684eb2c1373970debf56a302ed278d",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/hydrogen_brainstorm/data/regenerate-nov13/source-manifest.json",
+      "sha256": "f21718b08a2e63ec0e639614533787848d60c4c28a456464bd3f2a6388021186",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

@@ -1,0 +1,24 @@
+{
+  "folder": "family_reverse_fit",
+  "source_main": "229b88b479781ae245876f93e6b316b610e14f49",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/family_reverse_fit/data/regenerate-nov13/source-manifest.json",
+      "sha256": "c2d5c599e1314fc9ad2e3663f14802ca923940cfc4233d0a46cf395283453ab0",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}
