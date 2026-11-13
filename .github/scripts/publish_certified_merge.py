@@ -23,6 +23,11 @@ EMAIL = "91501777+koboshchan@users.noreply.github.com"
 COMMIT_MESSAGE = "Auto-union certified POC finals"
 EXPECTED = set(range(1, 1001))
 
+# Script directory is not guaranteed on sys.path when imported by tests.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from certification_runtime import install_runtime
+from certification_cache import save
+
 
 def git(*args, cwd=ROOT, check=True):
     return subprocess.run(
@@ -173,6 +178,7 @@ def main():
     spec.loader.exec_module(union)
     if union.pd.__version__ != "3.1.0":
         raise ValueError("Actual pandas 3.1.0 is required")
+    runtime = install_runtime(union)
     with tempfile.TemporaryDirectory(prefix="certified-union-") as temp:
         audit = Path(temp)
         print("Certifying initial canonical in literal and actual pandas modes", flush=True)
@@ -188,6 +194,7 @@ def main():
         wins = validate_transition(before, proof["reports"], changed)
         if sorted(proof["improved"]) != wins:
             raise ValueError("Union improvement list differs from full certification")
+        save(runtime, canonical)
         print("Dual certification", json.dumps({
             "source_sha": initial_sha, "changed": changed, "wins": wins,
             "scores": [r["score"] for r in proof["reports"]],

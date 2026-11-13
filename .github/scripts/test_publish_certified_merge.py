@@ -182,6 +182,12 @@ class MirrorIntegrationTests(unittest.TestCase):
 
 class PublisherIntegrationTests(MirrorIntegrationTests):
     def prepare_union(self, improve=False, bad=False):
+        runtime_patch = patch.object(p, "install_runtime")
+        runtime_patch.start()
+        save_patch = patch.object(p, "save")
+        save_patch.start()
+        self.addCleanup(save_patch.stop)
+        self.addCleanup(runtime_patch.stop)
         canonical = self.root / p.CANONICAL
         canonical.parent.mkdir(parents=True)
         canonical.write_bytes(b"initial fixture bytes")
