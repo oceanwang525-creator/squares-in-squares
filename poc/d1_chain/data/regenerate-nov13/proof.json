@@ -1,0 +1,24 @@
+{
+  "folder": "d1_chain",
+  "source_main": "910cceb3f8d27b2668c80418c0f0ae96f24f82e8",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/d1_chain/data/regenerate-nov13/source-manifest.json",
+      "sha256": "5e7ec9db6d3a9263f7a0e6dec1a73cab8e1b3b07e9c8860804a99ad32db84592",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}
