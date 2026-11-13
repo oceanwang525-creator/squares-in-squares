@@ -288,10 +288,13 @@ def relax_lbfgs(
 
 
 def _highs_linprog(obj: np.ndarray, A_ub, b_ub: np.ndarray, bounds):
-    """Run HiGHS linprog strictly with threads=1."""
+    """Run HiGHS linprog strictly with threads=1 and bounded time_limit."""
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        return linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs", options={"threads": 1})
+        return linprog(
+            obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds,
+            method="highs", options={"threads": 1, "time_limit": 8.0},
+        )
 
 
 def fixed_angle_lp_tighten(

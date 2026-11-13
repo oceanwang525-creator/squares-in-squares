@@ -49,4 +49,32 @@ Disjoint target pool (`14` targets; never touch `861` or any non-owned `n`):
   3. **Track B — Pure Local-Only Pocket Melts (`a_start=1.00`, `L_sched=[L_inc+0.003, L_inc-1.5e-4, L_inc-0.001, L_inc-0.0035]`, 28 seeds)**: Keeps the global lattice at `a=1.0` while perturbing only a local pocket around weak walls, voids, or bottleneck overlaps (`R=4..7`), allowing local rearrangements without shattering the crystal.
   4. **Track C — `(n+1)->n` & Top-3 `surplus_peel` Donors**: Same early-stop SLP polish on top `k_keep=12` diverse low-penalty candidates.
 - **Pilot Targets (`< 6 min`, max 4 CPU threads)**: `698, 860, 339, 921`.
-- **Status**: Planned (`poc/idea2_highd_sweep.py`).
+- **Status**: Fast-failed at `~5m40s` (`task-187` terminated per `#80` `< 5 min` rule).
+- **Results**:
+  - `n=698`: `[Batch78] N=41 feas=5 best_Lf=26.9206 min_pen=5.90e-4`; `[BatchLoc] N=27 feas=0 min_pen=3.29e-4`; `BEST VALID n=698: inc78_13 L_lit=26.8811088295203 (inc=26.881104490, dL=+4.340e-06, win=False)`.
+  - `n=860`: `[Batch78] N=41 feas=2 best_Lf=29.8418 min_pen=6.92e-4`; `[BatchLoc] N=27 feas=0 min_pen=3.84e-4`; stalled in 24-round HiGHS SLP polish across 12 `n=860` candidates (`>2m40s` in SLP alone).
+- **Diagnosis**: Calling `joint_xytheta_slp(rounds=10)` PLUS a second `rounds=14` upgrade whenever `L_slp < L_inc + 0.002` caused `~24` HiGHS LP solves on `n=860` across 12 candidates (`> 3 min` per `n`). Dropping the cap to `k_keep = 6`, `rounds = 8`, and only upgrading if `L_slp < L_inc + 0.0005` cuts SLP polish to `< 35s` per `n`. Also `cascades` (`ff463df`) just won `n=904` and `n=640` directly via `joint_xytheta_slp` on `merged.csv` (`Track A`), which we have not yet run on our other 11 targets!
+
+---
+
+## Idea 3 (Logged pre-test): Full 14-Target Direct Joint `(x, y, dtheta)` SLP Audit + Ultra-Fast Dual-Regime (`a=0.78` & `a=0.92`) Pocket Melts
+
+- **Files**: `poc/idea3_direct_and_fastmelt.py`
+- **Hypothesis**:
+  1. **Track A — Direct Joint `(x, y, dtheta)` SLP on ALL 14 Owned Targets**: Run `joint_xytheta_slp(rounds=18, tr_th0=0.025, tr_xy0=0.10)` + multi-margin `fixed_angle_lp_tighten` directly on `merged.csv[n]` across all 14 targets (`~30-45s` total on 4 cores) to harvest any immediate local `(x, y, theta)` optimality slack (the exact mechanism behind `cascades`'s `640` and `904` wins).
+  2. **Track B — Ultra-Fast Pocket Melts (`a=0.78` & gentler `a=0.92`, `k_keep=6`, `rounds=8`)**: Keeps SLP polish `< 35s` per `n` so 4 targets finish cleanly in `< 3-4 min`, testing `{860, 339, 921, 981}` and `{703, 805, 919, 639, 862}`.
+- **Status (`Track A` Direct Multi-Jitter SLP)**: Completed (`poc/idea3_direct_and_fastmelt.py --mode direct --threads 4`, `582.2s`, `docs/idea3_direct_results.json`).
+  - **CERTIFIED WIN `n=862`**: `jit0_m1e-07` (`142.65s`): `L_lit = L_pd = 29.82713653946183845476838727052095377039066254099632` vs `inc_L = 29.82713734035603629491603846202282427686716636335656` (`dL = -8.008941954074089e-07`), written to `poc/swarm_highd/final.csv` (`data/win_n862.csv`).
+  - Remaining 13 targets: `237, 269, 339, 545, 703, 805, 919, 921, 981` (`dL=0.0`), `698, 860, 918` (`dL=-3.55e-15`, float tie), `639` (`infeasible: Squares overlap` at `m=1e-7`, needs `m=1e-6` or L-BFGS repair).
+- **Status (`Track B` Fast Melt)**: Partial pilot (`339`: `inc92_2` `+1.871e-6` in `19.3s`; `860`: `inc92_13` `+3.424e-6` in `205.1s`, interrupted by server restart). Notice `inc92` (`a=0.92`) consistently beat `inc78` (`a=0.78`), motivating **Idea 4 (Frozen-Exterior / Masked-Pocket Melt)**.
+
+---
+
+## Idea 4 (Logged pre-test): Frozen-Exterior Masked-Pocket C++ `a`-Melt + Void/Weak-Wall Re-Packing + Fine-Margin SLP
+
+- **Files**: `poc/highd_ils.cpp` (add `seam_mask` frozen-exterior support or masked L-BFGS), `poc/idea4_masked_pocket.py`
+- **Hypothesis**:
+  1. Why did `a=0.78` and even `a=0.92` global melts re-freeze `+2e-6..+3e-6` above `L_inc`? Because melting all `n` squares shrinks/perturbs the already-optimal `~20°` L-corridor everywhere instead of concentrating rearrangement where voids (`0.30..0.40` clearance) and weak walls live.
+  2. Freezing all squares outside a local pocket (`R = 4.5..7.0` around max-clearance voids, weakest-wall defects, or tilted/upright seams — `~35-95` free squares) while running C++ L-BFGS `a`-melt (`a: 0.85 -> 1.00`) + cavity relocation ONLY on the active pocket lets 1-2 squares rotate/slide into adjacent voids without disturbing the rest of the crystal, followed by full-box fine `joint_xytheta_slp` + `[1e-7, 2e-8, 5e-9]` LP tighten.
+  3. Also test fine-margin (`1e-6` repair check on `n=639` + `1e-4` micro-jitter on `n=862` iterated once more / other top `n`: `860, 698, 918, 921, 981, 339, 545`).
+- **Status**: Planned (`poc/idea4_masked_pocket.py`).

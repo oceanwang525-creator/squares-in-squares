@@ -183,21 +183,27 @@ def joint_xytheta_slp(
     x: np.ndarray,
     y: np.ndarray,
     th: np.ndarray,
-    rounds: int = 16,
+    rounds: int = 10,
     tr_th0: float = 0.025,
     tr_xy0: float = 0.12,
     margin: float = 1e-8,
+    tol: float = 1e-8,
+    patience: int = 2,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, float, bool]:
     """Jointly optimize (x, y, th, L) via Sequential Linear Programming + L-BFGS + final LP polish."""
     n = len(x)
     k = math.isqrt(n)
-    cur_x = x.copy()
-    cur_y = y.copy()
+    hx0 = 0.5 * (np.abs(np.cos(th)) + np.abs(np.sin(th)))
+    cur_x = x - np.min(x - hx0)
+    cur_y = y - np.min(y - hx0)
     cur_th = th.copy()
 
     pen0, bbox0 = u.sat_max_overlap_and_bbox(cur_x, cur_y, cur_th)
     if pen0 > 1e-7:
         cur_x, cur_y, cur_th, pen0 = u.relax_lbfgs(cur_x, cur_y, cur_th, max(bbox0, k + 0.70), maxiter=220)
+        hx0 = 0.5 * (np.abs(np.cos(cur_th)) + np.abs(np.sin(cur_th)))
+        cur_x = cur_x - np.min(cur_x - hx0)
+        cur_y = cur_y - np.min(cur_y - hx0)
         pen0, bbox0 = u.sat_max_overlap_and_bbox(cur_x, cur_y, cur_th)
 
     best_x, best_y, best_th = cur_x.copy(), cur_y.copy(), cur_th.copy()
@@ -210,8 +216,10 @@ def joint_xytheta_slp(
     tr_th = tr_th0
     tr_xy = tr_xy0
     L_hi = float(max(bbox0, k + 1.0) + 0.25)
+    stall_cnt = 0
 
     for _ in range(rounds):
+        prev_best_L = best_L
         A_ub, b_ub = _build_joint_slp_sparse(cur_x, cur_y, cur_th, tr_xy=tr_xy, tr_th=tr_th, margin=margin)
         bounds = (
             [(-tr_xy, tr_xy)] * (2 * n)
@@ -234,15 +242,21 @@ def joint_xytheta_slp(
             cand_x = cur_x + alpha * dx
             cand_y = cur_y + alpha * dy
             cand_th = cur_th + alpha * dth
+            chx = 0.5 * (np.abs(np.cos(cand_th)) + np.abs(np.sin(cand_th)))
+            cand_x = cand_x - np.min(cand_x - chx)
+            cand_y = cand_y - np.min(cand_y - chx)
             pen_c, bbox_c = u.sat_max_overlap_and_bbox(cand_x, cand_y, cand_th)
             if pen_c > 1e-8:
                 target_L = max(lp_L, min(bbox_c, bbox0) - 0.002)
                 cand_x, cand_y, cand_th, pen_c = u.relax_lbfgs(
                     cand_x, cand_y, cand_th, target_L, maxiter=90, w_wall=2.0, w_pair=1.0
                 )
+                chx = 0.5 * (np.abs(np.cos(cand_th)) + np.abs(np.sin(cand_th)))
+                cand_x = cand_x - np.min(cand_x - chx)
+                cand_y = cand_y - np.min(cand_y - chx)
                 pen_c, bbox_c = u.sat_max_overlap_and_bbox(cand_x, cand_y, cand_th)
 
-            if pen_c <= 1e-7 and bbox_c < best_L:
+            if pen_c <= 1e-9 and bbox_c < best_L:
                 best_L = bbox_c
                 best_x, best_y, best_th = cand_x.copy(), cand_y.copy(), cand_th.copy()
                 best_ok = True
@@ -259,6 +273,13 @@ def joint_xytheta_slp(
         else:
             tr_th = max(1e-5, tr_th * 0.5)
             tr_xy = max(5e-4, tr_xy * 0.6)
+
+        if best_ok and (prev_best_L - best_L) < tol:
+            stall_cnt += 1
+            if stall_cnt >= patience:
+                break
+        else:
+            stall_cnt = 0
 
     for cx, cy, cth in [(best_x, best_y, best_th), (cur_x, cur_y, cur_th)]:
         pen_f, bbox_f = u.sat_max_overlap_and_bbox(cx, cy, cth)
