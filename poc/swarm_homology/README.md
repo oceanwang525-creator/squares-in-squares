@@ -6,7 +6,14 @@ Across `n = 600..1000`, `non0 > 0` incumbents decompose cleanly around `(cut, cu
 2. `TR`: pure upright `(m - k_off) x (m - k_off)` grid (`x > cut, y > cut`),
 3. `Arm A` (`x < cut, y > cut`) and `Arm B` (`x > cut, y < cut`): decoupled tilted corridor modules.
 
-Cross-`m` homology adds/strips `1`-unit outer end-cap strips (or `BL/TL/BR/TR` 1-unit crops `x, y <= L - 1.05`), reducing the cross-basin jump to a 1–2 square local seam protrusion or corner void resolved via `a: 0.78 -> 1.00` masked-pocket `cavity_relocate_orbit` melt + `joint_xytheta_slp` + multi-margin `fixed_angle_lp_tighten`.
+Cross-`m` homology takes `BL/TL/BR/TR` 1-unit crops (`x, y <= L - 1.05`) from donor `n_src` packings with `prot <= 1..2` protruding squares, relocates protruding squares into true outer wall gaps discovered by `wall_gap_slots()` (single inward pocket center `1.2` units inside the box), and melts the pocket with `L_inc`-anchored `sched_a`/`sched_b` schedules (`a: 0.78 -> 1.00`, `highd_ils.cpp` keeping best overall stage `unf_E <= best_overall_E`) followed by `joint_xytheta_slp` + multi-margin `fixed_angle_lp_tighten`.
+
+## Certified Real Wins (literal == pandas vs `origin/main` `4f23cbe` `merged.csv`)
+
+| `n` | `origin/main` `merged.csv` `L` | Best Valid `L_lit == L_pd` | `dL` vs `merged.csv` | `ds` vs `merged.csv` | Status | Source |
+|---:|---:|---:|---:|---:|---|---|
+| **686** | `26.705913986119564` | `26.701648540631480` | **`-4.265445e-03`** | `-3.320802e-04` | **REAL WIN** | `crop_739_BL_w0_top_R7.9_s1` (beats PR #20 `26.705901783` by `-4.253242e-03`) |
+| **910** | `30.679149454240586` | `30.677024325828058` | **`-2.125128e-03`** | `-1.432854e-04` | **REAL WIN** | `910_971crop_tuck1_R5.9_s4` (carried from PR #16 `c4e3272`) |
 
 ## 15-Minute Gate Results (against `origin/main` `e7f910b` `merged.csv`)
 
@@ -17,10 +24,8 @@ Cross-`m` homology adds/strips `1`-unit outer end-cap strips (or `BL/TL/BR/TR` 1
 | 863 | `29.843941662` | `29.850256733513790` | `+6.3151e-03` | miss | `863c_923strip1_R5.1_s7` |
 | 805 | `28.843441055` | — | — | miss | `805_749cap` (`min_pen = 7.56e-3`) |
 
-*(Note: during the gate, `origin/main` updated at `e7f910b`, lowering `n=922` to `30.826655323`, below `n=862` + `1`. Our `n=910` win `30.677024325828058` strictly beats `origin/main` `30.679149454241` by **`dL = -2.125128e-03`**, `ds = -6.927e-05`.)*
-
 ## Files
-- Solver: [h10_gate.py](poc/h10_gate.py), [utils.py](poc/utils.py), [joint_slp.py](poc/joint_slp.py), [cpp_wrap.py](poc/cpp_wrap.py), [highd_ils.cpp](poc/highd_ils.cpp)
+- Solver: [h10_gate.py](poc/h10_gate.py), [h10_scale.py](poc/h10_scale.py), [utils.py](poc/utils.py), [joint_slp.py](poc/joint_slp.py), [cpp_wrap.py](poc/cpp_wrap.py), [highd_ils.cpp](poc/highd_ils.cpp)
 - Unit tests: [test_homology.py](poc/tests/test_homology.py)
-- Certified wins: [final.csv](final.csv), [win_n910.csv](data/win_n910.csv)
-- Gate logs/JSON: [gate_910.json](docs/gate_910.json)
+- Certified wins: [final.csv](final.csv), [win_n686.csv](data/win_n686.csv), [win_n910.csv](data/win_n910.csv)
+- Logs/JSON: [gate_910.json](docs/gate_910.json), [scale_results.json](docs/scale_results.json)
