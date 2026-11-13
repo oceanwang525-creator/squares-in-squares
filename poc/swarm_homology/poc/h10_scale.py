@@ -47,6 +47,49 @@ def load_origin_main_merged() -> dict[int, tuple[np.ndarray, np.ndarray, np.ndar
     return out
 
 
+def wall_gap_slots(
+    x: np.ndarray,
+    y: np.ndarray,
+    t: np.ndarray,
+    Lt: float,
+    idx_ex: int,
+    n_slots: int = 4,
+) -> list[tuple[float, str, float, float, float, float]]:
+    """Find best wall-adjacent upright slot positions (px, py) and single inward pocket centers (cx, cy)."""
+    keep = np.arange(len(x)) != idx_ex
+    xk, yk, tk = x[keep], y[keep], t[keep]
+    c, s = np.cos(tk), np.sin(tk)
+    grid = np.arange(0.5, Lt - 0.5 + 1e-9, 0.05)
+    pts = []
+    for edge in ("top", "right", "bot", "left"):
+        if edge == "top":
+            px, py = grid, np.full_like(grid, Lt - 0.5)
+            cx_arr, cy_arr = np.clip(grid, 1.5, Lt - 1.5), np.full_like(grid, Lt - 1.2)
+        elif edge == "right":
+            px, py = np.full_like(grid, Lt - 0.5), grid
+            cx_arr, cy_arr = np.full_like(grid, Lt - 1.2), np.clip(grid, 1.5, Lt - 1.5)
+        elif edge == "bot":
+            px, py = grid, np.full_like(grid, 0.5)
+            cx_arr, cy_arr = np.clip(grid, 1.5, Lt - 1.5), np.full_like(grid, 1.2)
+        else:
+            px, py = np.full_like(grid, 0.5), grid
+            cx_arr, cy_arr = np.full_like(grid, 1.2), np.clip(grid, 1.5, Lt - 1.5)
+        dx = px[:, None] - xk[None, :]
+        dy = py[:, None] - yk[None, :]
+        d_local = np.maximum(np.abs(c * dx + s * dy), np.abs(-s * dx + c * dy)) - 0.5
+        clr = d_local.min(axis=1) - 0.5
+        for k in range(len(px)):
+            pts.append((float(clr[k]), edge, float(px[k]), float(py[k]), float(cx_arr[k]), float(cy_arr[k])))
+    pts.sort(key=lambda r: -r[0])
+    chosen: list[tuple[float, str, float, float, float, float]] = []
+    for cl, edge, px, py, cx, cy in pts:
+        if all((px - q[2]) ** 2 + (py - q[3]) ** 2 > 1.25 ** 2 for q in chosen):
+            chosen.append((cl, edge, px, py, cx, cy))
+        if len(chosen) >= n_slots:
+            break
+    return chosen
+
+
 def find_crop_seeds(
     n_target: int,
     M: dict[int, tuple],
@@ -88,48 +131,35 @@ def find_crop_seeds(
             continue
         seen_src.add((n_src, cname))
         p_idx = np.where(prot_mask)[0]
-        ctrs = np.c_[xk[p_idx], yk[p_idx]] if len(p_idx) else np.array([[Lt / 2, Lt / 2]])
-        seeds.append((f"crop_{n_src}_{cname}_raw", xk, yk, tk, Lt, ctrs))
+        x_base, y_base, t_base = xk.copy(), yk.copy(), tk.copy()
+        if len(p_idx) == 1:
+            idx = int(p_idx[0])
+            # Prioritise true outer-wall gap slots with single inward pocket center
+            slots = wall_gap_slots(x_base, y_base, t_base, Lt, idx, n_slots=4)
+            for k_w, (_, edge, gx, gy, cx, cy) in enumerate(slots):
+                xt, yt, tt = x_base.copy(), y_base.copy(), t_base.copy()
+                xt[idx], yt[idx], tt[idx] = gx, gy, 0.0
+                seeds.append((
+                    f"crop_{n_src}_{cname}_w{k_w}_{edge}",
+                    xt, yt, tt, Lt, np.array([[cx, cy]]),
+                ))
         if len(p_idx) > 0:
-            # Relocate protruding square(s) into top clearance voids at Lt
-            x_base, y_base, t_base = xk.copy(), yk.copy(), tk.copy()
+            # Also relocate into top interior clearance voids (single center)
             keep_in = ~prot_mask
-            vp = hg.clearance_points(x_base[keep_in], y_base[keep_in], t_base[keep_in], Lt, max(6, len(p_idx) + 3))
+            vp = hg.clearance_points(x_base[keep_in], y_base[keep_in], t_base[keep_in], Lt, max(5, len(p_idx) + 2))
             if len(vp) >= len(p_idx):
-                for v_shift in range(min(3, len(vp) - len(p_idx) + 1)):
+                for v_shift in range(min(2, len(vp) - len(p_idx) + 1)):
                     xr, yr, tr = x_base.copy(), y_base.copy(), t_base.copy()
-                    vctrs = []
                     for k_i, idx in enumerate(p_idx):
                         vx, vy, _ = vp[v_shift + k_i]
                         xr[idx], yr[idx], tr[idx] = vx, vy, 0.0
-                        vctrs.append([vx, vy])
+                    vx0, vy0, _ = vp[v_shift]
                     seeds.append((
                         f"crop_{n_src}_{cname}_v{v_shift}",
-                        xr, yr, tr, Lt, np.vstack([ctrs, np.array(vctrs)]),
+                        xr, yr, tr, Lt, np.array([[vx0, vy0]]),
                     ))
-            # For prot == 1, also tuck upright near the protruding wall along the edge gap
-            if len(p_idx) == 1:
-                idx = int(p_idx[0])
-                px, py = float(xk[idx]), float(yk[idx])
-                for k_t, delta in enumerate((-1.2, 0.0, 1.2)):
-                    xt, yt, tt = x_base.copy(), y_base.copy(), t_base.copy()
-                    if py > Lt - 1.0:
-                        xt[idx] = np.clip(px + delta, 0.5, Lt - 0.5)
-                        yt[idx] = Lt - 0.5
-                    elif py < 1.0:
-                        xt[idx] = np.clip(px + delta, 0.5, Lt - 0.5)
-                        yt[idx] = 0.5
-                    elif px > Lt - 1.0:
-                        xt[idx] = Lt - 0.5
-                        yt[idx] = np.clip(py + delta, 0.5, Lt - 0.5)
-                    else:
-                        xt[idx] = 0.5
-                        yt[idx] = np.clip(py + delta, 0.5, Lt - 0.5)
-                    tt[idx] = 0.0
-                    seeds.append((
-                        f"crop_{n_src}_{cname}_t{k_t}",
-                        xt, yt, tt, Lt, np.array([[xt[idx], yt[idx]]]),
-                    ))
+        ctrs = np.c_[xk[p_idx[:1]], yk[p_idx[:1]]] if len(p_idx) else np.array([[Lt / 2, Lt / 2]])
+        seeds.append((f"crop_{n_src}_{cname}_raw", xk, yk, tk, Lt, ctrs))
     return seeds
 
 
@@ -158,10 +188,10 @@ def find_plus1_seeds(
     return out
 
 
-def build_melt_jobs(seeds, L_inc: float, rng: np.random.Generator, per_seed: int = 5):
+def build_melt_jobs(seeds, L_inc: float, rng: np.random.Generator, per_seed: int = 6):
     q, m, ls, lab = [], [], [], []
     for name, X, Y, T, Lt, ctrs in seeds:
-        L0 = Lt + 0.032
+        L0 = max(L_inc, Lt) + 0.032
         off = 0.5 * (L0 - Lt)
         xb = X + off
         yb = Y + off
@@ -169,20 +199,19 @@ def build_melt_jobs(seeds, L_inc: float, rng: np.random.Generator, per_seed: int
         xb = np.clip(xb, h + 1e-4, L0 - h - 1e-4)
         yb = np.clip(yb, h + 1e-4, L0 - h - 1e-4)
 
-        gap = L_inc - Lt
-        sched_a = [L0, L_inc - 0.05 * gap, L_inc - 0.35 * gap, L_inc - 0.75 * gap]
-        sched_b = [L0, L_inc + 0.002, L_inc - 0.15 * gap, Lt + 0.0005]
+        sched_a = [L0, L_inc + 0.003, L_inc - 0.0005, L_inc - 0.0025]
+        sched_b = [L0, L_inc + 0.001, L_inc - 0.0015, L_inc - 0.0050]
         for s in range(per_seed):
-            R = float(rng.uniform(4.8, 7.6))
+            R = float(rng.uniform(5.0, 10.5))
             d2 = ((xb[:, None] - (ctrs[None, :, 0] + off)) ** 2 + (yb[:, None] - (ctrs[None, :, 1] + off)) ** 2).min(axis=1)
             near = d2 <= R * R
             near |= (xb - h < off) | (xb + h > L0 - off) | (yb - h < off) | (yb + h > L0 - off)
             x2, y2, t2 = xb.copy(), yb.copy(), T.copy()
             k = int(near.sum())
             if s > 0:
-                x2[near] += rng.uniform(-0.09, 0.09, k)
-                y2[near] += rng.uniform(-0.09, 0.09, k)
-                t2[near] += rng.uniform(-0.22, 0.22, k)
+                x2[near] += rng.uniform(-0.08, 0.08, k)
+                y2[near] += rng.uniform(-0.08, 0.08, k)
+                t2[near] += rng.uniform(-0.20, 0.20, k)
             q.append(full_to_free_sym(x2, y2, t2, L0))
             mm = near.astype(np.uint8)
             m.append(np.concatenate([mm, mm, mm]))
@@ -198,15 +227,15 @@ def run_one(n: int, M: dict[int, tuple], threads: int, existing_best: float | No
     if not seeds:
         print(f"[{n}] no qualifying homology seeds below L_inc={L_inc:.9f}", flush=True)
         return None
-    # Keep up to 10 diverse seeds
-    seeds = seeds[:10]
-    rng = np.random.default_rng(7700 + n)
+    # Keep up to 8 diverse seeds (4 wall-gap slots + interior voids + raw)
+    seeds = seeds[:8]
+    rng = np.random.default_rng(9900 + n)
     t0 = time.time()
-    q, m, ls, lab = build_melt_jobs(seeds, L_inc, rng, per_seed=4)
+    q, m, ls, lab = build_melt_jobs(seeds, L_inc, rng, per_seed=6)
     qb, qf, lf, eo, po, lb = run_cpp_masked_melt(
-        n, 1, q, m, ls, [5, 8, 12, 15],
-        a_start=0.78, n_melt_stages=4, masked_iters=180, full_iters=200,
-        n_threads=threads, base_seed=51000 + n,
+        n, 1, q, m, ls, [5, 8, 12, 16],
+        a_start=0.78, n_melt_stages=4, masked_iters=200, full_iters=280,
+        n_threads=threads, base_seed=71000 + n,
     )
     n_feas = int((lf < 1e9).sum())
     print(f"[{n}] seeds={len(seeds)} jobs={len(q)} melt {time.time()-t0:.1f}s feas={n_feas} "

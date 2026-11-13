@@ -17,6 +17,7 @@ sys.path.insert(0, str(POC_DIR))
 sys.path.insert(0, str(ROOT / "poc" / "baseline" / "poc" / "src"))
 
 import h10_gate as hg  # noqa: E402
+import h10_scale as hs  # noqa: E402
 import utils as u  # noqa: E402
 from cpp_wrap import cpp_eval_sat_pen_bbox  # noqa: E402
 import squares.core as sc  # noqa: E402
@@ -67,6 +68,37 @@ def test_grid_non_overlapping():
     pen, L = u.sat_max_overlap_and_bbox(gx, gy, gt)
     assert pen <= 1e-12
     assert abs(L - 5.0) < 1e-12
+
+
+def test_wall_gap_slots_and_crop_seeds():
+    # Construct a 5x5 upright packing on L=5.0 with an extra protruding square and one open top gap at x=2.5
+    xs, ys = [], []
+    for iy in range(5):
+        for ix in range(5):
+            if iy == 4 and ix == 2:
+                continue
+            xs.append(0.5 + ix)
+            ys.append(0.5 + iy)
+    xs.append(2.5)
+    ys.append(4.8)  # protruding above Lt=5.0
+    x = np.array(xs, dtype=float)
+    y = np.array(ys, dtype=float)
+    t = np.zeros_like(x)
+    idx_ex = len(x) - 1
+    slots = hs.wall_gap_slots(x, y, t, Lt=5.0, idx_ex=idx_ex, n_slots=3)
+    assert len(slots) >= 1
+    best_clr, edge, px, py, cx, cy = slots[0]
+    assert edge == "top" and abs(px - 2.5) < 0.2 and abs(py - 4.5) < 1e-6 and best_clr >= -0.05
+    assert 1.5 <= cx <= 3.5 and abs(cy - 3.8) < 1e-6
+
+    M = {
+        len(x): (x, y, t, 5.2),
+        len(x) + 10: (np.concatenate([x, np.full(10, 5.5)]), np.concatenate([y, np.linspace(0.5, 4.5, 10)]), np.zeros(len(x) + 10), 6.0),
+    }
+    p1 = hs.find_plus1_seeds(len(x) + 1, {len(x): (x[:-1], y[:-1], t[:-1], 5.0), len(x) + 1: (x, y, t, 5.5)})
+    assert len(p1) >= 1
+    q, m, ls, lab = hs.build_melt_jobs([("s0", x, y, t, 5.0, np.array([[2.5, 3.8]]))], L_inc=5.05, rng=np.random.default_rng(7), per_seed=2)
+    assert len(q) == 2 and len(m) == 2 and ls[0][1] > 5.05 > ls[0][2]
 
 
 def test_final_csv_if_present_valid_and_nonregressive():
