@@ -1,0 +1,26 @@
+{
+  "source_main": "679b74c4e57b52c2b5bda4ffe5d09e9d1b88bed6",
+  "original_sources": {
+    "poc/c4_symmetric_ils/poc/c4ils.py": "fdba0ef778b7fdb8a6cfb8c4899bcd0a8f6df65b6209ddde7e8d7409b15c9346",
+    "poc/c4_symmetric_ils/poc/c4run.py": "4ff77675f19a7f7c9b2986f992b5bc2d92aca2d0822bd01e21892bc80ecb87f5",
+    "poc/c4_symmetric_ils/poc/rgad.py": "63e8674371e57a8339d32807ae86b066d2821bb7250d644a15885431ceb2e4fb"
+  },
+  "execution": {
+    "folder": "c4_symmetric_ils",
+    "args": [
+      "poc/c4_symmetric_ils/poc/c4run.py",
+      "109",
+      "10.9498",
+      "240",
+      "1"
+    ],
+    "reason": "Documented n109 C4 240second singleworker",
+    "timeout": 3500,
+    "pid": 428390,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 244.63
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}
