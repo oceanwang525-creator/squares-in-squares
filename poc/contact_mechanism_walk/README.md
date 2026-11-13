@@ -34,18 +34,17 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15726293235.csv`, the current final leaves the recursive
-`n=800` improvement. The complete candidate scores `22.15726292930414`, with
-`1000/1000` groups accepted in both literal and pandas modes:
+Against `merged-22.15496211934.csv`, the current final leaves one strict
+improvement from a second mechanism pass over the newly merged `n=909` seed.
+The projected complete score is `22.15496203092410`, with `1000/1000` groups
+accepted in both literal and pandas modes:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 800 | 28.775369213891515 | 28.775369127667270 | -8.622424431e-08 |
+| 909 | 30.640084505984516 | 30.640081840278218 | -2.665706299e-06 |
 
-The aggregate reduction is `-3.045860e-9`. The previous 12-group mechanism
-result and the first recursive `n=800` result are included in the merge
-artifact; this iteration supersedes its `n=800` row with a deeper recursive
-walk.
+The aggregate reduction is `-8.841590e-8`. The earlier recursive `n=800`
+result is now part of the upstream merge artifact and is no longer exported.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
@@ -61,6 +60,13 @@ The detailed machine-generated before/after report is in
   `703`, `649`, `507`, and `538`; the closest was `419` at `+2.455e-9`.
 - A further fine/wide retry missed for `367`, `468`, `605`, and `612`; the
   nearest was `367` at `+9.20e-8`.
+- A targeted tilted/upright interface melt for polished `n=794` tested 55
+  mixed and one-sided masks; its best certified result still missed by
+  `+6.617691448e-7`.
+- A second mechanism pass from the newly merged `n=972` seed missed by
+  `+3.424031143e-6`.
+- A third pass from the new `n=909` record missed by `+2.617814852e-6`, so the
+  second-pass result remains the exported record.
 - A broad untested `700..1000` scan was interrupted after mostly zero or
   low-amplitude modes; it should not be repeated unchanged.
 - The attached `submission-kaggle-safe.csv` was rejected as a donor: its
