@@ -58,44 +58,41 @@ def norm_pack(x: np.ndarray, y: np.ndarray, th: np.ndarray) -> tuple[np.ndarray,
 
 
 def load_frontier() -> tuple[dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float]], dict[int, Decimal]]:
-    """Load best-known packings and exact Decimal L across audit union (PR21), guestdata_atlas, and PR22."""
+    """Load best-known packings and Decimal L from merged.csv and any local/main POC final.csv overlays."""
     packs: dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float]] = {}
     best_L_dec: dict[int, Decimal] = {}
 
-    lit_json = Path("/mnt/e/squares-pr21-audit-nov13/proof/union-literal.json")
-    exact_map: dict[int, Decimal] = {}
-    if lit_json.exists():
-        rep = json.loads(lit_json.read_text())
-        for row in rep.get("results", []):
-            if row.get("L") is not None:
-                exact_map[int(row["n"])] = Decimal(str(row["L"]))
-
-    src_csv = AUDIT_UNION if AUDIT_UNION.exists() else MERGED_CSV
+    src_csv = MERGED_CSV if MERGED_CSV.exists() else AUDIT_UNION
     df = pd.read_csv(src_csv)
     for n_val, sub in df.groupby("n"):
         n = int(n_val)
         x, y, th, L = norm_pack(sub["x"].to_numpy(), sub["y"].to_numpy(), sub["angle"].to_numpy())
         packs[n] = (x, y, th, L)
-        best_L_dec[n] = exact_map.get(n, Decimal(f"{L:.17g}"))
+        best_L_dec[n] = Decimal(f"{L:.17g}")
 
-    # Also overlay PR #22 if available in git remote
-    for p in ("poc/swarm_homology/final.csv", "poc/swarm_new159/final.csv"):
+    for p in (
+        GUESTDATA_CSV,
+        REPO / "poc" / "swarm_homology" / "final.csv",
+        REPO / "poc" / "swarm_new159" / "final.csv",
+        REPO / "poc" / "swarm_armslack" / "final.csv",
+        FINAL_CSV,
+    ):
+        if not p.exists():
+            continue
         try:
-            txt = subprocess.check_output(
-                ["git", "-C", str(REPO), "show", f"origin/swarm-homology-new159:{p}"],
-                text=True,
-                stderr=subprocess.DEVNULL,
-            )
-            a = auto_union.parse_text(txt)
+            a = auto_union.parse_text(p.read_text())
             for n, rows in a.items():
+                if len(rows) != n:
+                    continue
                 x = np.array([float(r["x"]) for r in rows], dtype=float)
                 y = np.array([float(r["y"]) for r in rows], dtype=float)
                 th = np.array([float(r["angle"]) for r in rows], dtype=float)
                 x, y, th, L = norm_pack(x, y, th)
-                Ld = Decimal(auto_union.certify(n, rows))
-                if n not in best_L_dec or Ld < best_L_dec[n]:
-                    packs[n] = (x, y, th, L)
-                    best_L_dec[n] = Ld
+                if n not in best_L_dec or Decimal(f"{L:.17g}") < best_L_dec[n] - Decimal("1e-13"):
+                    Ld = Decimal(auto_union.certify(n, rows))
+                    if n not in best_L_dec or Ld < best_L_dec[n]:
+                        packs[n] = (x, y, th, L)
+                        best_L_dec[n] = Ld
         except Exception:
             pass
 

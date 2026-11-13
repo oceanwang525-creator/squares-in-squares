@@ -15,11 +15,21 @@ GuestData's `n=910` (`L = 30.65750541071413945`, PR #21) beats `swarm_homology`'
 Every candidate is certified in BOTH `literal` and `pandas` transport modes via `poc/auto_union/poc/union.py` (`check`) against the full frontier (`origin/main` + PR #21 + PR #22).
 Only strictly winning candidates (`dL <= -1e-9`) are saved to `poc/swarm_sametilt/data/win_n*.json` and compiled into `poc/swarm_sametilt/final.csv`.
 
-## Results (batch 1, certified literal==pandas vs origin/main 252fe8b)
+## Results (batch 1, certified literal==pandas vs origin/main 252fe8b; merged in PR #28)
 | n | L | dL | source |
 |---|---|---|---|
 | 793 | 28.659432082141936751 | -1.780745e-2 (vs guestdata_atlas 28.677239531) | `peel2_910_BL_dropMinProt_reloc` (910 -> peel 2 border layers) |
 | 850 | 29.649077415119136501 | -7.776834e-3 (vs merged 29.656854249) | `peel1_909_BL_v1` |
 | 971 | 31.657506410714138034 | -5.474715e-4 (vs merged 31.658053882) | `ext61_910_raw` (+61 border strip on GuestData 910) |
+
+## Results (batch 2, certified literal==pandas vs origin/main 4478e04; total new ds = -1.106690e-04)
+| n | L | dL vs 4478e04 | source |
+|---|---|---|---|
+| 485 | 22.533079978339103103705 | -3.593547e-06 | `ext43_442_raw` (+43 L-border on 442) |
+| 577 | 24.533043271085422099354 | -7.234761e-06 | `ext47_530_raw` (+47 L-border on 530) |
+| 909 | 30.649074867992931595408 | -3.321670e-03 | `ext59_850_R7.0_s4` (+59 L-border on our 850 + seam melt) |
+| 971 | 31.657505420714138034906 | -9.900000e-07 | `ext61_910_raw` (+61 L-border on 910, 1e-8 offset) |
+| 793 | 28.659432082141936751692 | +0.000000e+00 (carried PR #28) | `peel2_910_BL_dropMinProt_reloc` |
+| 850 | 29.649077415119136501614 | +0.000000e+00 (carried PR #28) | `peel1_909_BL_v1` |
 
 Certify: `PYTHONPATH=. python poc/swarm_sametilt/poc/certify_final.py origin/main`.
