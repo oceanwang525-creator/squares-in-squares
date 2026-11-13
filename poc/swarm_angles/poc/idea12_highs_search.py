@@ -121,9 +121,11 @@ def build_grid9_and_solve(args):
         return (tag, fam, len(tilted) + len(pts), len(tilted), len(pts), pts)
 
     A = coo_matrix((np.ones(len(rows)), (rows, cols)), shape=(rid, len(pts))).tocsc()
+    tl = 1.5 if augment_iface else 0.55
     res = milp(c=-np.ones(len(pts)), integrality=np.ones(len(pts)), bounds=Bounds(0, 1),
-               constraints=LinearConstraint(A, -np.inf, 1.0))
-    if not res.success:
+               constraints=LinearConstraint(A, -np.inf, 1.0),
+               options={"time_limit": tl})
+    if res.x is None:
         return (tag, fam, len(tilted), len(tilted), 0, np.empty((0, 2)))
     sel = res.x > 0.5
     nup = int(np.sum(sel))
@@ -287,22 +289,22 @@ def build_candidates(n: int, k: int, L_probe: float) -> list:
     cands = []
 
     # Fam A: Single & Dual Asymmetric Diamonds / Rectangles (with off-center & multi-corner)
-    for deg in [35.0, 39.0, 42.0, 44.0, 45.0]:
+    for deg in [35.0, 40.0, 43.0, 45.0]:
         th = math.radians(deg)
-        for m in [4, 5, 6, 7, 8]:
-            for cx1 in [m * 0.72 + 0.5, m * 0.72 + 1.5, m * 0.72 + 2.5]:
-                for cy1 in [L_probe - m * 0.72 - 0.5, L_probe - m * 0.72 - 1.5, L_probe - m * 0.72 - 3.5]:
+        for m in [4, 5, 6, 7]:
+            for cx1 in [m * 0.72 + 0.5, m * 0.72 + 2.0]:
+                for cy1 in [L_probe - m * 0.72 - 0.5, L_probe - m * 0.72 - 2.5]:
                     b1 = make_block(L_probe, m, m, th, cx1, cy1, 0)
                     b2 = make_block(L_probe, m, m, th, L_probe - cy1, L_probe - cx1, 0)
                     if b1 and b2 and non_overlap_batch(b1 + b2):
-                        cands.append((f"2blk_{m}x{m}_d{deg}_({cx1:.1f},{cy1:.1f})", "2blk", L_probe, b1 + b2, 0.0, False))
+                        cands.append((f"#{len(cands)}_2blk_{m}x{m}_d{deg}", "2blk", L_probe, b1 + b2, 0.0, False))
 
-    # Fam B: 4-Block C4 Chiral Pinwheel (`a x b` blocks at 15..42 deg around center)
-    for deg in [18.0, 25.0, 32.0, 37.0, 42.0]:
+    # Fam B: 4-Block C4 Chiral Pinwheel (`a x b` blocks at 14..42 deg around center)
+    for deg in [14.0, 22.0, 30.0, 37.0, 42.0]:
         th = math.radians(deg)
-        for a, b in [(3, 2), (4, 2), (4, 3), (5, 3), (5, 4), (6, 3), (6, 4), (7, 3)]:
-            for d_out in [0.22 * L_probe, 0.30 * L_probe, 0.37 * L_probe]:
-                for d_side in [-0.20 * L_probe, 0.0, 0.20 * L_probe]:
+        for a, b in [(3, 2), (4, 2), (4, 3), (5, 3), (6, 3), (6, 4)]:
+            for d_out in [0.24 * L_probe, 0.34 * L_probe]:
+                for d_side in [-0.18 * L_probe, 0.0, 0.18 * L_probe]:
                     bx0, by0 = 0.5 * L_probe + d_side, 0.5 * L_probe - d_out
                     blk = make_block(L_probe, a, b, th, bx0, by0, 0)
                     if not blk:
@@ -315,51 +317,52 @@ def build_candidates(n: int, k: int, L_probe: float) -> list:
                             dx, dy = qx - half_L, qy - half_L
                             all4.append((half_L + dx * cr - dy * sr, half_L + dx * sr + dy * cr, qth + rot * 0.5 * math.pi))
                     if non_overlap_batch(all4):
-                        cands.append((f"4pin_{a}x{b}_d{deg}", "4pin", L_probe, all4, 0.0, False))
+                        cands.append((f"#{len(cands)}_4pin_{a}x{b}_d{deg}", "4pin", L_probe, all4, 0.0, False))
 
-    # Fam C: True Oblique-Cut n=971 / n=908 Pockets (1-pocket, 2-adjacent, 2-antidiag, 4-arm frame)
-    for deg in [18.0, 22.0, 25.2, 29.0, 33.0, 36.87]:
+    # Fam C: Oblique-Cut n=971 / n=908 / 4-Edge Chiral Frames (`wp=1.45` narrow edge strips included!)
+    for deg in [12.0, 18.0, 25.2, 32.0, 36.87]:
         th = math.radians(deg)
-        for wp in [2.2, 3.2, 4.4, 5.8]:
-            for x_lo in [0.0, 1.0, 3.0, 7.0]:
+        for wp in [1.45, 2.3, 3.4, 4.8]:
+            for x_lo in [0.0, 2.0, 6.0]:
                 if x_lo >= L_probe - 6.0:
                     continue
-                for dx_hi in [0.0, 2.0, 3.5]:
+                for dx_hi in [0.0, 2.5]:
                     x_hi = L_probe - dx_hi
                     if x_hi - x_lo < 5.0:
                         continue
-                    for u_cut in [x_lo * math.cos(th), x_lo * math.cos(th) + 2.5]:
+                    for u_off in [0.0, 2.5]:
+                        u_cut = x_lo * math.cos(th) + u_off
                         for md in [-1, 0, 1, 3]:
                             t971 = make_971_oblique(L_probe, th, wp, x_lo, x_hi, 0.0, u_cut, md)
                             if t971 and len(t971) < n:
-                                cands.append((f"971_d{deg}_w{wp}_x{x_lo:.0f}_m{md}", "971", L_probe, t971, 0.0, False))
+                                cands.append((f"#{len(cands)}_971_d{deg}_w{wp}_m{md}", "971", L_probe, t971, 0.0, False))
 
-    # Fam D: n=847 Hybrids (45-deg m x m off-center + non-45 small corner pocket)
+    # Fam D: n=847 Hybrids (45-deg m x m off-center + 1 or 2 non-45 corner pockets)
     for m_dim in range(max(5, k - 12), min(k - 3, 20), 2):
         hspan = 0.5 * m_dim * math.sqrt(2.0)
         if 2.0 * hspan > L_probe - 0.3:
             continue
-        for off in [0.5, 2.0, 4.0]:
+        for off in [0.5, 2.5]:
             dcx = L_probe - hspan - 0.5 - off
             dcy = hspan + 0.5 + off * 0.25
             b45 = make_block(L_probe, m_dim, m_dim, 0.25 * math.pi, dcx, dcy, 0)
             if not b45:
                 continue
-            for pdeg in [25.0, 32.0, 37.4, 41.0]:
-                for pw, ph in [(2, 4), (3, 4), (3, 5), (4, 4)]:
+            for pdeg in [24.0, 31.0, 37.4]:
+                for pw, ph in [(2, 4), (3, 4), (3, 5)]:
                     pkt = make_block(L_probe, pw, ph, math.radians(pdeg), 2.8, L_probe - 3.2, 0)
                     if pkt and non_overlap_batch(b45 + pkt):
-                        cands.append((f"847_m{m_dim}_pd{pdeg}_{pw}x{ph}", "847", L_probe, b45 + pkt, 0.0, False))
+                        cands.append((f"#{len(cands)}_847_m{m_dim}_pd{pdeg}_{pw}x{ph}", "847", L_probe, b45 + pkt, 0.0, False))
 
     # Fam E: Calibrated DP Jogging Diagonal Bands
-    for deg in [26.0, 30.0, 33.5, 34.58, 38.0, 42.0, 45.0]:
+    for deg in [26.0, 33.0, 34.58, 39.0, 44.0]:
         th = math.radians(deg)
         for w in [2, 3, 4, 5]:
             for a_nw in range(max(4, k - w - 3), k - w + 2):
-                for da in [0, 1]:
-                    dp = make_dp_jog_band(L_probe, k, a_nw, a_nw - da, w, th, 0.0)
+                for u_off in [0.0, 0.5, 0.96]:
+                    dp = make_dp_jog_band(L_probe, k, a_nw, a_nw, w, th, u_off)
                     if dp and len(dp) < n:
-                        cands.append((f"dp_w{w}_d{deg}_a{a_nw}", "dp", L_probe, dp, 0.0, False))
+                        cands.append((f"#{len(cands)}_dp_w{w}_d{deg}_a{a_nw}_u{u_off}", "dp", L_probe, dp, 0.0, False))
 
     # Area prefilter so hopeless giant voids skip HiGHS
     kept = []
@@ -376,10 +379,11 @@ def main():
     L403 = 20.564935730
     dp403_best = 0
     for a in range(15, 19):
-        b = make_dp_jog_band(L403, 20, a, a, 3, math.radians(34.58), 0.0)
-        if b:
-            _, fam, tot, nt, nup, _ = build_grid9_and_solve(("c403", "dp", L403, b, 0.0, False))
-            dp403_best = max(dp403_best, tot)
+        for u_off in [0.0, 0.35, 0.70, 0.96]:
+            b = make_dp_jog_band(L403, 20, a, a, 3, math.radians(34.58), u_off)
+            if b:
+                _, fam, tot, nt, nup, _ = build_grid9_and_solve(("c403", "dp", L403, b, 0.0, False))
+                dp403_best = max(dp403_best, tot)
     print(f"Calib DP band on n=403 with exact HiGHS: {dp403_best}/403", flush=True)
 
     targets = [
@@ -389,7 +393,7 @@ def main():
     ]
 
     summary = []
-    from poc.swarm_angles.poc import utils as u
+    u = None
 
     with ProcessPoolExecutor(max_workers=7, mp_context=mp.get_context("spawn")) as ex:
         for n, k, L_base, L_front in targets:
@@ -397,23 +401,32 @@ def main():
             L_probe = L_base - 0.001
             cands = build_candidates(n, k, L_probe)
             print(f"\nn={n} (L_probe={L_probe:.6f}): evaluating {len(cands)} candidates via exact HiGHS...", flush=True)
-            res = list(ex.map(build_grid9_and_solve, cands, chunksize=8))
+            res = []
+            for start in range(0, len(cands), 140):
+                res.extend(ex.map(build_grid9_and_solve, cands[start:start + 140], chunksize=4))
+                best_so_far = max((r[2] for r in res), default=0)
+                print(f"  progress {len(res)}/{len(cands)} (best={best_so_far}/{n}, {time.time()-tn:.1f}s)", flush=True)
 
             by_fam = {}
+            by_fam_list = {}
             for tag, fam, tot, nt, nup, up_pts in res:
+                by_fam_list.setdefault(fam, []).append((tot, tag, nt, nup))
                 if fam not in by_fam or tot > by_fam[fam][0]:
                     by_fam[fam] = (tot, tag, nt, nup)
             for fam, (tot, tag, nt, nup) in sorted(by_fam.items()):
                 print(f"  fam={fam:4s}: exact_Grid9={tot:3d}/{n} [{tag} nt={nt} up={nup}]", flush=True)
 
-            # Top 25 candidates: re-solve with interface-augmented grid + soft (-0.07) -> L-BFGS/LP
-            top25_tags = {r[0] for r in sorted(res, key=lambda x: -x[2])[:25]}
+            # Top 15 overall + top 3 per family -> interface-augmented + soft (-0.08) -> L-BFGS/LP
+            top_tags = {r[0] for r in sorted(res, key=lambda x: -x[2])[:15]}
+            for fam, lst in by_fam_list.items():
+                for _, tag, _, _ in sorted(lst, key=lambda x: -x[0])[:3]:
+                    top_tags.add(tag)
             fine_tasks = []
             cand_map = {c[0]: c for c in cands}
-            for tag in top25_tags:
+            for tag in sorted(top_tags):
                 _, fam, L_, tilted, _, _ = cand_map[tag]
                 fine_tasks.append((tag + "|aug0", fam, L_, tilted, 0.0, True))
-                fine_tasks.append((tag + "|soft7", fam, L_, tilted, -0.07, True))
+                fine_tasks.append((tag + "|soft8", fam, L_, tilted, -0.08, True))
             fine_res = list(ex.map(build_grid9_and_solve, fine_tasks, chunksize=2))
             best_fine = max(fine_res, key=lambda x: x[2])
             print(f"  Top-25 fine+soft best: {best_fine[2]}/{n} ({best_fine[0]})", flush=True)
@@ -421,6 +434,8 @@ def main():
             win_L = L_base
             for tag, fam, tot, nt, nup, up_pts in fine_res:
                 if tot >= n:
+                    if u is None:
+                        from poc.swarm_angles.poc import utils as u
                     base_tag = tag.split("|")[0]
                     tilted = np.asarray(cand_map[base_tag][3], dtype=np.float64)
                     # Smart trim worst overlapping upright squares if tot > n
