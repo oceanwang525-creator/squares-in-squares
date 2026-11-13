@@ -74,7 +74,7 @@ def parse_text(text):
             angle = mp.nstr(mp.mpf(values["deg"]) * mp.pi / 180, 75)
             groups.setdefault(n, []).append(dict(square_id=sid, x=values["x"],
                                                  y=values["y"], angle=angle))
-    # A canonical header-only final explicitly records zero strict wins.
+    # A header-only final explicitly records no exported candidate groups.
     for n, rows in groups.items():
         error = metric._validate_puzzle(n, rows)
         if error:
@@ -98,7 +98,7 @@ def check(task):
         return None
 
 def qualifies(result, limits):
-    """A new final must strictly win in BOTH official transport modes."""
+    """Selection, not admission: replace only for a strict win in BOTH modes."""
     return result is not None and all(Decimal(x) < limit for x, limit in zip(result, limits))
 
 def key(task):
@@ -177,7 +177,7 @@ def export(base, workers, audit):
             if result is None: continue
             n, rows, _ = t
             a, b = map(Decimal, result)
-            if qualifies(result, sides[n]) and (n not in values or a < values[n]):
+            if n not in values or a < values[n]:
                 best[n], values[n], sources[n] = rows, a, source
         final = folder / "final.csv"
         if best:
@@ -191,7 +191,7 @@ def export(base, workers, audit):
                 excluded = []
                 for t in actual_tasks:
                     n = t[0]
-                    if not qualifies(cache[key(t)], sides[n]):
+                    if cache[key(t)] is None:
                         excluded.append(n)
                 for n in excluded:
                     del best[n]
@@ -204,7 +204,7 @@ def export(base, workers, audit):
             results[folder.name] = dict(count=len(best), bytes=len(data),
                 ns=sorted(best), sources=sources, transport_excluded=excluded, sha256=digest(data))
         else:
-            # --export explicitly regenerates finals against this fresh incumbent.
+            # --export regenerates valid candidate finals, including nonwinning groups.
             data = final_text({}).encode()
             if base.read_bytes() != initial: raise ValueError("Incumbent changed during export")
             atomic(final, data)
