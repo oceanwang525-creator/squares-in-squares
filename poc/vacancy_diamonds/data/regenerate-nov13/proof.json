@@ -1,7 +1,7 @@
 {
   "folder": "vacancy_diamonds",
-  "source_main": "f953dd81096b8a9ac6e81e82781e5d547da5a934",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "d50776b2cd51ff5bc1ae548de62c333a85f8dc80",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
