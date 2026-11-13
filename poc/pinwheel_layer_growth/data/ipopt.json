@@ -1,0 +1,61 @@
+{
+  "target_n": 184,
+  "donor_n": 157,
+  "incumbent_sha256": "1f9c0fd3b7a88e5a0f6c44b567ff2ef354872812c6b0ad8e37807bd1a64e965c",
+  "incumbent_side": 14.0,
+  "trials": [
+    {
+      "seed": {
+        "x": 3.0624186566078806,
+        "y": 3.5530233207598507,
+        "copy_overlap_limit": 0.12,
+        "shift_clearance": 0.005,
+        "seed_count": 184,
+        "seed_penalty": 0.048111090597415036,
+        "side_float": 14.033864588796853,
+        "minimum_gap_float": -0.0013138409366818538
+      },
+      "rounds": [
+        {
+          "status": "Solve_Succeeded",
+          "iterations": 52,
+          "side_float": 14.043857982368523,
+          "minimum_gap_float": -1.6321544116237874e-10
+        },
+        {
+          "status": "Maximum_CpuTime_Exceeded",
+          "iterations": 76,
+          "side_float": 14.043466916724444,
+          "minimum_gap_float": -8.410779531287105e-06
+        }
+      ]
+    },
+    {
+      "seed": {
+        "x": 3.0624186566078806,
+        "y": 4.5342326490637905,
+        "copy_overlap_limit": 0.12,
+        "shift_clearance": 0.005,
+        "seed_count": 184,
+        "seed_penalty": 0.04798323532166309,
+        "side_float": 14.027152979906909,
+        "minimum_gap_float": -0.0015090640579269454
+      },
+      "rounds": [
+        {
+          "status": "Solve_Succeeded",
+          "iterations": 47,
+          "side_float": 14.04353984776691,
+          "minimum_gap_float": -1.564210982962777e-10
+        },
+        {
+          "status": "Solve_Succeeded",
+          "iterations": 81,
+          "side_float": 14.043394355299917,
+          "minimum_gap_float": -1.5708856437868235e-10
+        }
+      ]
+    }
+  ],
+  "wins": []
+}
