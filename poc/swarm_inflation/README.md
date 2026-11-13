@@ -475,4 +475,25 @@ Combining the root-cause findings of Idea 11 and Idea 12:
   2. Combining **gentle GPU breathing (`fast_mode=4/5`, `a: 0.94 -> 1.00`, zero artificial `w_align` penalty)** on `v13` / `v11` scratch basins + **end-matched curved/twin `24.8°–26.6°` L-pockets** (eliminating the `(0,L)/(L,0)` end-strip collision & corner miter holes `(4.46, 26.25)`, `(1.49, 2.48)` via tapered row length & miter curve) + `joint_xytheta_slp` on core targets `{687, 796, 367, 971}` (`<10` min pilot first) will close the remaining `0.021..0.027` gap.
 
 ### Results Log (Idea 14)
+- **Status:** `0` strict wins (`L_lit < inc_L`), dropped per fast-fail `#80` (`+0.015..+0.043` above `inc_L`). Added `poc/swarm_inflation/final.csv` (header-only `id,x,y,deg`).
+- **Observed Results (`n in {687, 796, 971, 367}`, `batch=1024`):**
+  - `joint_xytheta_slp_polish` in `polish_and_certify.py` cleanly unlocks cooperative rotation (`n=687` smoke `AL_L=26.86868 -> L_lit=26.811968`), and proved `v13_r2` basins (`687@26.744554`, `796@28.752755`) are already continuous KKT minima (`pen=0.00`).
+  - `fast_mode=5` (`stages_breathe`, `0.94 -> 1.00`) improved fresh `brg13` bridge seeds (`n=971`: `AL_L 31.794781 -> 31.742566`; `n=367`: `AL_L 19.748373 -> 19.730486`).
+  - Round 1 + `idea11_force_chain` + Round 2 (`fm5`/`fm4`) + SLP: `n=687` `L_lit=26.764574` (`inc=26.723271`, `win=False`), `n=796` `AL_L=28.750324` (`inc=28.721540`), `n=971` `AL_L=31.707129` (`inc=31.664318`), `n=367` `AL_L=19.707115` (`inc=19.692388`). All de-novo scratch `v11..v14` generation is now retired (`#80`).
+
+---
+
+## Idea 15: Argon Pivot — GPU Soft-`a` Incumbent Melt (`0.78..0.92 -> 1.00`) + Wall-Slack Drift / Void-Collapse / `surplus_peel` + Exact-Jacobian `joint_xytheta_slp` (2026-11-13)
+### Hypothesis
+Following `#80` and `7b385ca` (`poc/swarm_angles/poc/idea20_partner_shift.py`), instead of de-novo scratch synthesis (`+0.02..+0.08` above `inc_L`), we directly perturb and GPU-melt our true `merged.csv` incumbent basins on the 10 disjoint targets `{910, 971, 972, 791, 969, 687, 851, 796, 367, 333}` (capped `<= 4` CPU threads + single GPU):
+1. **Track 15A (`inc_melt` modes 0–4 + soft-`a` CUDA breathing):**
+   - Generate diverse perturbations of `merged.csv[n]` (`L0 = L_inc - delta`, `delta in [0.0005, 0.015]`): (a) asymmetric wall-slack drift pushing away from the over-constrained wall toward the weakest contact wall, (b) worst-clearance void collapse (pulling `r <= 3.5` neighbors gently inward / relocating pinned boundary outliers into top interior clearances), (c) localized boundary-pin pocket melts & tilted-seam neighborhood melts (`dp <= 0.14`, `dth <= 0.10`).
+   - Run batched RTX 4070 Super CUDA soft-`a` inflation from `a in [0.80, 0.92] -> 1.00` (new `fast_mode=6` tailored to incumbent melts with NO global random `w_align` kick, preserving grain structure while allowing interface slip) + fp64 L-squeezer (`AL_L`).
+2. **Track 15B (`surplus_peel` `n+1..n+5k -> n` & `n-1 -> n` tip deletion/insertion):**
+   - Extract sub-`inc_L` donors from `merged.csv[n2]` (`n2 in [n+1, n+5k+18]`) via `c in {1, 2, 3}` border peels `(cL, cR, cB, cT)` and interior `c=1` cross-cuts (`n <= nr <= n+6`), dropping `nr - n` worst overhang/seam squares (specifically `972->971`, `792->791`, `970->969`, etc.) + melting seam neighborhoods via CUDA `fast_mode=6`.
+3. **Track 15C (`joint_xytheta_slp` + multi-margin HiGHS LP tighten + mpmath dual cert):**
+   - Polish top diverse basins across Track 15A/15B with `joint_xytheta_slp_polish` (`rounds=16`, exact signed `(dx, dy, dtheta_i, dtheta_j, dL)` Jacobian) + `fixed_angle_lp_polish` + `dual_certify` (`L_lit < inc_L` & `L_pd < inc_L`).
+- Fast-fail check on 2–3 core targets (`367, 687, 971`) in `< 5 min` first; commit and notify `@verifier` immediately on any win, then sweep all 10 targets.
+
+### Results Log (Idea 15)
 *(Pending execution)*

@@ -369,6 +369,21 @@ def test_idea13_bridge_filter_and_sheared_corridor() -> None:
     assert pc.sat_max_penetration(pts, np.full(len(pts), th)) < 1e-12
 
 
+def test_idea14_joint_xytheta_slp_and_twin_pocket() -> None:
+    """Verify joint_xytheta_slp_polish beats fixed-angle LP minimum via cooperative rotation."""
+    # Two valid non-overlapping 25-deg squares already tightened by fixed_angle_lp_polish:
+    # fixed_angle_lp_polish cannot shrink further without changing theta, whereas
+    # joint_xytheta_slp_polish rotates both squares toward 0 deg and shrinks L cleanly.
+    pos = np.array([[0.75, 0.75], [2.05, 0.75]], dtype=np.float64)
+    th = np.array([0.35, 0.35], dtype=np.float64)
+    assert pc.sat_max_penetration(pos, th) < 1e-12
+    pos_lp, L_lp = pc.fixed_angle_lp_polish(pos, th, rounds=6)
+    pos_s, th_s, L_slp = pc.joint_xytheta_slp_polish(pos_lp, th, rounds=20)
+    assert L_slp < L_lp - 0.03
+    assert pc.sat_max_penetration(pos_s, th_s) < 1e-11
+
+
+
 
 
 

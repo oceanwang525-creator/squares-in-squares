@@ -419,12 +419,26 @@ __global__ void solve_batch_fp32(
         {1.000f, 650, 0.00009f,90000.0f, 1.0f, 1},
         {1.000f, 550, 0.00004f,150000.0f,1.0f, 1}
     };
-    const int n_stages = (fast_mode == 2) ? 10 : ((fast_mode == 3) ? 16 : ((fast_mode == 4) ? 12 : 14));
-    const Stage* stages = (fast_mode == 2) ? stages_gentle : ((fast_mode == 3) ? stages_deep : ((fast_mode == 4) ? stages_micro : stages_fast));
-    const float mult_steps = (fast_mode == 0) ? 1.8f : ((fast_mode == 3) ? 1.45f : ((fast_mode == 4) ? 1.15f : 1.0f));
+    const Stage stages_breathe[12] = {
+        {0.940f, 450, 0.0110f, 20.0f,    0.0f, 0},
+        {0.955f, 450, 0.0085f, 50.0f,    1.0f, 1},
+        {0.968f, 500, 0.0060f, 120.0f,   1.0f, 1},
+        {0.958f, 450, 0.0065f, 250.0f,   1.0f, 1},
+        {0.978f, 550, 0.0040f, 550.0f,   1.0f, 1},
+        {0.986f, 600, 0.0026f, 1200.0f,  1.0f, 1},
+        {0.992f, 650, 0.0017f, 3000.0f,  1.0f, 1},
+        {0.996f, 700, 0.0010f, 7500.0f,  1.0f, 1},
+        {0.9985f,700, 0.00050f,18000.0f, 1.0f, 1},
+        {1.000f, 800, 0.00022f,45000.0f, 1.0f, 1},
+        {1.000f, 750, 0.00010f,90000.0f, 1.0f, 1},
+        {1.000f, 650, 0.00004f,150000.0f,1.0f, 1}
+    };
+    const int n_stages = (fast_mode == 2) ? 10 : ((fast_mode == 3) ? 16 : ((fast_mode == 4 || fast_mode == 5) ? 12 : 14));
+    const Stage* stages = (fast_mode == 2) ? stages_gentle : ((fast_mode == 3) ? stages_deep : ((fast_mode == 4) ? stages_micro : ((fast_mode == 5) ? stages_breathe : stages_fast)));
+    const float mult_steps = (fast_mode == 0) ? 1.8f : ((fast_mode == 3) ? 1.45f : ((fast_mode == 4 || fast_mode == 5) ? 1.20f : 1.0f));
 
     int step_g = 0;
-    float w_align_base = (fast_mode == 4) ? 0.0f : ((b % 2 == 1) ? 0.016f : 0.0f);
+    float w_align_base = (fast_mode == 4 || fast_mode == 5) ? 0.0f : ((b % 2 == 1) ? 0.016f : 0.0f);
 
     for (int st = 0; st < n_stages; ++st) {
         float scale_a = stages[st].a;
@@ -577,18 +591,18 @@ __global__ void solve_batch_fp32(
 
             if (opt_L && tid == 0) {
                 float sfrac = (fast_mode == 2) ? ((float)st / 9.0f)
-                    : ((fast_mode == 4) ? ((float)st / 11.0f)
+                    : ((fast_mode == 4 || fast_mode == 5) ? ((float)st / 11.0f)
                     : ((fast_mode == 3) ? ((float)max(0, st - 3) / 12.0f) : ((float)max(0, st - 4) / 9.0f)));
                 float target_w = (fast_mode == 2)
                     ? (0.030f * (1.0f - sfrac) + 0.0001f)
-                    : ((fast_mode == 4)
-                        ? (0.018f * (1.0f - sfrac) + 0.00015f)
+                    : ((fast_mode == 4 || fast_mode == 5)
+                        ? (0.020f * (1.0f - sfrac) + 0.00015f)
                         : ((fast_mode == 3)
                             ? (0.028f * (1.0f - sfrac) + 0.00015f)
                             : (0.045f * (1.0f - sfrac) + 0.0005f)));
                 float max_L_b = sh_L_init + ((fast_mode == 2)
                     ? ((b % 3 == 0) ? 0.002f : ((b % 3 == 1) ? 0.010f : 0.025f))
-                    : ((fast_mode == 4)
+                    : ((fast_mode == 4 || fast_mode == 5)
                         ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0008f : ((b % 4 == 2) ? 0.0025f : 0.0060f)))
                         : ((fast_mode == 3)
                             ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0015f : ((b % 4 == 2) ? 0.0045f : 0.0120f)))
@@ -597,9 +611,9 @@ __global__ void solve_batch_fp32(
                 float step_c = fminf(0.0018f, lr_xy * 0.5f);
                 sh_x0 += step_c * tanhf(sum_vx * 2.0f);
                 sh_y0 += step_c * tanhf(sum_vy * 2.0f);
-                float denom_w = (fast_mode == 4 && sum_wall < target_w)
+                float denom_w = ((fast_mode == 4 || fast_mode == 5) && sum_wall < target_w)
                     ? fmaxf(target_w, 1.0e-5f)
-                    : fmaxf(target_w, (fast_mode == 4) ? 0.008f : 0.015f);
+                    : fmaxf(target_w, (fast_mode == 4 || fast_mode == 5) ? 0.008f : 0.015f);
                 float err_w = (sum_wall - target_w) / denom_w;
                 sh_L += step_c * 0.8f * fminf(1.0f, fmaxf(-1.0f, err_w));
                 sh_L = fminf(max_L_b, fmaxf(min_L_b, sh_L));
@@ -607,7 +621,7 @@ __global__ void solve_batch_fp32(
             __syncthreads();
 
             // Active discrete + collective moves during mobile inflation / anneal
-            const bool do_moves = (fast_mode == 3 || fast_mode == 4)
+            const bool do_moves = (fast_mode == 3 || fast_mode == 4 || fast_mode == 5)
                 ? (scale_a <= 0.995f && ((it == n_steps / 4) || (it == n_steps / 2) || (it == (3 * n_steps) / 4)))
                 : (scale_a <= 0.988f && ((it == n_steps / 3) || (it == (2 * n_steps) / 3)));
             if (do_moves) {
@@ -615,7 +629,7 @@ __global__ void solve_batch_fp32(
                 float w_wall_unit = stage_tight ? 1.0f : 5.0f;
 
                 // 1) Parallel 256-thread void relocation on the worst-stress squares
-                if (fast_mode != 2 && fast_mode != 4) {
+                if (fast_mode != 2 && fast_mode != 4 && fast_mode != 5) {
                 const int n_mv = (fast_mode == 3) ? 3 : 2;
                 const int n_pr = (fast_mode == 3) ? 4 : 1;
                 const int n_ang = (fast_mode == 3) ? 7 : 3;
@@ -976,10 +990,10 @@ __global__ void polish_and_cert_fp64(
             sh_x0 += 0.5 * lr * tanh(sdx * 5.0);
             sh_y0 += 0.5 * lr * tanh(sdy * 5.0);
             if (use_elastic_L) {
-                double denom = (fast_mode == 4 && swall < 1.0e-4) ? 2.0e-4 : 0.005;
+                double denom = ((fast_mode == 4 || fast_mode == 5) && swall < 1.0e-4) ? 2.0e-4 : 0.005;
                 double err_w = (swall - 1.0e-4) / denom;
                 sh_L += 0.4 * lr * fmin(1.0, fmax(-1.0, err_w));
-                double max_add = (fast_mode == 4) ? 0.0015 : 0.015;
+                double max_add = (fast_mode == 4 || fast_mode == 5) ? 0.0015 : 0.015;
                 sh_L = fmin(sh_L_init + max_add, fmax(fmax(1.0, sh_L_init * 0.75), sh_L));
             }
         }
@@ -1210,7 +1224,7 @@ int main(int argc, char** argv) {
     check_cuda(cudaMalloc(&d_lam, sp.B * sizeof(double)), "malloc d_lam");
     check_cuda(cudaMalloc(&d_pen, sp.B * sizeof(double)), "malloc d_pen");
 
-    int polish_steps = (sp.fast_mode == 4) ? 1000 : (sp.fast_mode ? 800 : 1800);
+    int polish_steps = (sp.fast_mode == 4 || sp.fast_mode == 5) ? 1100 : (sp.fast_mode ? 800 : 1800);
     polish_and_cert_fp64<<<sp.B, BLOCK_THREADS>>>(
         sp.B, sp.N, polish_steps, sp.use_elastic_L, sp.fast_mode,
         d_ox, d_oy, d_oth, d_ox0, d_oy0, d_oL,

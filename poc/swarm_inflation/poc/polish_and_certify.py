@@ -329,6 +329,230 @@ def lip_slp_polish(
     return cur_c, cur_t, best_L
 
 
+def joint_xytheta_slp_polish(
+    centers: np.ndarray,
+    theta: np.ndarray,
+    rounds: int = 12,
+    time_limit: float = 45.0,
+) -> tuple[np.ndarray, np.ndarray, float]:
+    """Exact first-order signed-Jacobian joint (dx, dy, dtheta, dL) HiGHS SLP."""
+    n = len(theta)
+    cur_c, _ = minimal_feasible_dilation(shift_positive(centers, theta), theta)
+    cur_c = shift_positive(cur_c, theta)
+    cur_t = theta.copy()
+    best_L = exact_bbox_side(cur_c, cur_t)
+    ta, tm = 0.008, 0.020
+    kink_eps = 1e-4
+
+    for _ in range(rounds):
+        u = np.column_stack([np.cos(cur_t), np.sin(cur_t)])
+        v = np.column_stack([-np.sin(cur_t), np.cos(cur_t)])
+        pairs = list(cKDTree(cur_c).query_pairs(PAIR_RADIUS))
+        rows: list[int] = []
+        cols: list[int] = []
+        vals: list[float] = []
+        rhs: list[float] = []
+        n_aux = 0
+
+        def add(columns: list[int], values: list[float], b: float) -> None:
+            row = len(rhs)
+            rows.extend([row] * len(columns))
+            cols.extend(columns)
+            vals.extend(values)
+            rhs.append(b)
+
+        def new_aux() -> int:
+            nonlocal n_aux
+            col = 3 * n + 1 + n_aux
+            n_aux += 1
+            return col
+
+        iL = 3 * n
+        curv_buf = (0.4 * ta * ta) if ta > 2e-4 else 0.0
+
+        for i, j in pairs:
+            axes = (u[i], v[i], u[j], v[j])
+            delta = cur_c[j] - cur_c[i]
+            proj = np.array([float(w @ delta) for w in axes])
+            rad = np.array(
+                [
+                    0.5
+                    * (
+                        abs(float(w @ u[i]))
+                        + abs(float(w @ v[i]))
+                        + abs(float(w @ u[j]))
+                        + abs(float(w @ v[j]))
+                    )
+                    for w in axes
+                ]
+            )
+            alpha = np.abs(proj) - rad
+            k_best = int(np.argmax(alpha))
+            alpha_max = float(alpha[k_best])
+            active_ks = [
+                k_cand
+                for k_cand in range(4)
+                if k_cand == k_best or alpha[k_cand] >= alpha_max - (2.0 * ta + 0.015)
+            ]
+            for k in active_ks:
+                direction = 1.0 if proj[k] >= 0.0 else -1.0
+                s = axes[k] * direction
+                slack = direction * proj[k] - rad[k] - MARGIN - curv_buf
+
+                # ds / dt_i and ds / dt_j
+                if k == 0:
+                    ds_di = v[i] * direction
+                    ds_dj = np.zeros(2)
+                elif k == 1:
+                    ds_di = -u[i] * direction
+                    ds_dj = np.zeros(2)
+                elif k == 2:
+                    ds_di = np.zeros(2)
+                    ds_dj = v[j] * direction
+                else:
+                    ds_di = np.zeros(2)
+                    ds_dj = -u[j] * direction
+
+                c_ti = float(ds_di @ delta)
+                c_tj = float(ds_dj @ delta)
+                q_cols: list[int] = []
+
+                other_axes = ((u[j], v[j], v[j], -u[j]) if k < 2 else (u[i], v[i], v[i], -u[i]))
+                other_is_j = k < 2
+                for idx_e in range(2):
+                    e = other_axes[idx_e]
+                    de = other_axes[idx_e + 2]
+                    p = float(s @ e)
+                    dp_di = float(ds_di @ e) + (0.0 if other_is_j else float(s @ de))
+                    dp_dj = float(ds_dj @ e) + (float(s @ de) if other_is_j else 0.0)
+                    if abs(p) >= kink_eps:
+                        sgn = 1.0 if p > 0.0 else -1.0
+                        c_ti -= 0.5 * sgn * dp_di
+                        c_tj -= 0.5 * sgn * dp_dj
+                    else:
+                        q = new_aux()
+                        add([2 * n + i, 2 * n + j, q], [dp_di, dp_dj, -1.0], 0.0)
+                        add([2 * n + i, 2 * n + j, q], [-dp_di, -dp_dj, -1.0], 0.0)
+                        q_cols.append(q)
+
+                r_cols = [2 * i, 2 * i + 1, 2 * j, 2 * j + 1, 2 * n + i, 2 * n + j]
+                r_vals = [float(s[0]), float(s[1]), float(-s[0]), float(-s[1]), -c_ti, -c_tj]
+                for q in q_cols:
+                    r_cols.append(q)
+                    r_vals.append(0.5)
+                add(r_cols, r_vals, slack)
+
+        # Boundary constraints with exact d(ext_i)/dtheta_i (plus kink aux when cos or sin near 0)
+        e = extents(cur_t)
+        w_curv = MARGIN + ((0.2 * ta * ta) if ta > 2e-4 else 0.0)
+        for i in range(n):
+            cx, cy = float(cur_c[i, 0]), float(cur_c[i, 1])
+            ct, st = float(u[i, 0]), float(u[i, 1])
+            d_ext = 0.0
+            q_ext = -1
+            if abs(ct) >= kink_eps:
+                d_ext += 0.5 * (1.0 if ct > 0.0 else -1.0) * (-st)
+            else:
+                q_ext = new_aux()
+                add([2 * n + i, q_ext], [1.0, -1.0], 0.0)
+                add([2 * n + i, q_ext], [-1.0, -1.0], 0.0)
+            if abs(st) >= kink_eps:
+                d_ext += 0.5 * (1.0 if st > 0.0 else -1.0) * ct
+            elif q_ext < 0:
+                q_ext = new_aux()
+                add([2 * n + i, q_ext], [1.0, -1.0], 0.0)
+                add([2 * n + i, q_ext], [-1.0, -1.0], 0.0)
+
+            bcols_hi_x = [2 * i, 2 * n + i, iL] + ([q_ext] if q_ext >= 0 else [])
+            bvals_hi_x = [1.0, d_ext, -1.0] + ([0.5] if q_ext >= 0 else [])
+            add(bcols_hi_x, bvals_hi_x, best_L - cx - e[i] - w_curv)
+
+            bcols_lo_x = [2 * i, 2 * n + i] + ([q_ext] if q_ext >= 0 else [])
+            bvals_lo_x = [-1.0, d_ext] + ([0.5] if q_ext >= 0 else [])
+            add(bcols_lo_x, bvals_lo_x, cx - e[i] - w_curv)
+
+            bcols_hi_y = [2 * i + 1, 2 * n + i, iL] + ([q_ext] if q_ext >= 0 else [])
+            bvals_hi_y = [1.0, d_ext, -1.0] + ([0.5] if q_ext >= 0 else [])
+            add(bcols_hi_y, bvals_hi_y, best_L - cy - e[i] - w_curv)
+
+            bcols_lo_y = [2 * i + 1, 2 * n + i] + ([q_ext] if q_ext >= 0 else [])
+            bvals_lo_y = [-1.0, d_ext] + ([0.5] if q_ext >= 0 else [])
+            add(bcols_lo_y, bvals_lo_y, cy - e[i] - w_curv)
+
+        total_vars = 3 * n + 1 + n_aux
+        A = coo_matrix((vals, (rows, cols)), shape=(len(rhs), total_vars)).tocsr()
+        bounds = (
+            [(-tm, tm)] * (2 * n)
+            + [(-ta, ta)] * n
+            + [(-0.08, 0.08)]
+            + [(0.0, None)] * n_aux
+        )
+        c_obj = np.zeros(total_vars)
+        c_obj[iL] = 1.0
+        res = linprog(
+            c_obj,
+            A_ub=A,
+            b_ub=np.array(rhs),
+            bounds=bounds,
+            method="highs",
+            options={
+                "dual_feasibility_tolerance": 1e-9,
+                "primal_feasibility_tolerance": 1e-9,
+                "time_limit": time_limit,
+            },
+        )
+        if not res.success:
+            ta *= 0.5
+            tm *= 0.5
+            if ta < 1e-7:
+                break
+            continue
+
+        x = res.x
+        dc = np.column_stack([x[0 : 2 * n : 2], x[1 : 2 * n : 2]])
+        dt = x[2 * n : 3 * n]
+        nc = cur_c + dc
+        nt = cur_t + dt
+        if sat_max_penetration(nc, nt) > 1e-11:
+            # Try exact minimal feasible dilation or scaled step along LP direction
+            accepted = False
+            for alpha_step in (1.0, 0.5, 0.25):
+                nc_s = cur_c + alpha_step * dc
+                nt_s = cur_t + alpha_step * dt
+                if sat_max_penetration(nc_s, nt_s) > 1e-11:
+                    nc_s, sc_s = minimal_feasible_dilation(shift_positive(nc_s, nt_s), nt_s)
+                    if sc_s > 1.002 or sat_max_penetration(nc_s, nt_s) > 1e-11:
+                        continue
+                new_L_s = exact_bbox_side(nc_s, nt_s)
+                if new_L_s < best_L - 1e-11:
+                    cur_c, cur_t = shift_positive(nc_s, nt_s), nt_s
+                    best_L = exact_bbox_side(cur_c, cur_t)
+                    accepted = True
+                    break
+            if not accepted:
+                ta *= 0.5
+                tm *= 0.5
+                if ta < 1e-7:
+                    break
+            continue
+
+        new_L = exact_bbox_side(nc, nt)
+        if new_L <= best_L + 1e-11:
+            cur_c, cur_t = shift_positive(nc, nt), nt
+            best_L = exact_bbox_side(cur_c, cur_t)
+            if max(float(np.abs(dc).max()), float(np.abs(dt).max())) < 1e-9:
+                break
+            ta = min(0.010, max(ta * 1.25, 1e-6))
+            tm = min(0.025, max(tm * 1.25, 1e-6))
+        else:
+            ta *= 0.5
+            tm *= 0.5
+            if ta < 1e-7:
+                break
+
+    return cur_c, cur_t, best_L
+
+
 def to_rows(centers: np.ndarray, theta: np.ndarray) -> list[dict[str, str]]:
     return [
         {
@@ -450,10 +674,10 @@ def polish_candidates(
 
     stage1.sort(key=lambda item: item[0])
 
-    # Stage 2: run expensive Lip-SLP + final LP + dual certify on best slp_top_k
+    # Stage 2: run joint (dx, dy, dtheta, dL) SLP + final LP + dual certify on best slp_top_k
     for rank, (L_lp1, idx, p_lp1, t0, entry) in enumerate(stage1):
         if rank < slp_top_k:
-            p_slp, t_slp, _ = lip_slp_polish(p_lp1, t0, rounds=slp_rounds)
+            p_slp, t_slp, _ = joint_xytheta_slp_polish(p_lp1, t0, rounds=max(slp_rounds, 12))
             p_lp2, L_lp2 = fixed_angle_lp_polish(p_slp, t_slp, rounds=lp_rounds)
         else:
             p_lp2, t_slp, L_lp2 = p_lp1, t0, L_lp1

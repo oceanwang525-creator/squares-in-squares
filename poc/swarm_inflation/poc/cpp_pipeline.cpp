@@ -3477,6 +3477,289 @@ static std::vector<Sq> seed_fanned_Lpockets_v13(
 }
 
 // =========================================================================
+// Idea 14: Twin-Strip / 4-Pinwheel 24-27 deg Pockets + End-Tapered L-Pockets
+// =========================================================================
+static void append_sheared_strip_v14(
+    std::vector<Sq>& trial, double L,
+    double rx0, double rx1, double ry0, double ry1,
+    int w, double th, int shear_sgn, bool horizontal, bool anchor_hi,
+    double a_lat, double phase, double a_sat
+) {
+    double c = std::cos(th), sn = std::sin(th);
+    double hx = 0.5 * (c + sn);
+    double step_along = a_lat / c;
+    double phi = (double)shear_sgn * th;
+    double lo_x = std::max(hx, rx0), hi_x = std::min(L - hx, rx1);
+    double lo_y = std::max(hx, ry0), hi_y = std::min(L - hx, ry1);
+
+    if (horizontal) {
+        for (int j = 0; j < w; ++j) {
+            double cy = anchor_hi ? std::max(ry0 + hx, ry1 - hx - (double)j * c)
+                                  : std::min(ry1 - hx, ry0 + hx + (double)j * c);
+            if (cy < lo_y || cy > hi_y) continue;
+            double x0 = phase - (double)shear_sgn * (double)j * sn;
+            int i0 = (int)std::floor((lo_x - x0) / step_along) - 1;
+            int i1 = (int)std::ceil((hi_x - x0) / step_along) + 1;
+            for (int i = i0; i <= i1; ++i) {
+                double cx = x0 + (double)i * step_along;
+                if (cx >= lo_x && cx <= hi_x && sat_ok_point(cx, cy, phi, trial, a_sat)) {
+                    trial.push_back({cx, cy, phi});
+                }
+            }
+        }
+    } else {
+        for (int j = 0; j < w; ++j) {
+            double cx = anchor_hi ? std::max(rx0 + hx, rx1 - hx - (double)j * c)
+                                  : std::min(rx1 - hx, rx0 + hx + (double)j * c);
+            if (cx < lo_x || cx > hi_x) continue;
+            double y0 = phase + (double)shear_sgn * (double)j * sn;
+            int i0 = (int)std::floor((lo_y - y0) / step_along) - 1;
+            int i1 = (int)std::ceil((hi_y - y0) / step_along) + 1;
+            for (int i = i0; i <= i1; ++i) {
+                double cy = y0 + (double)i * step_along;
+                if (cy >= lo_y && cy <= hi_y && sat_ok_point(cx, cy, phi, trial, a_sat)) {
+                    trial.push_back({cx, cy, phi});
+                }
+            }
+        }
+    }
+}
+
+static std::vector<Sq> seed_twin_opp_pockets_v14(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    int k = (int)std::floor(L);
+    double f_L = L - k;
+    int p_lo = (k >= 25) ? 3 : 2;
+    int p_hi = (k >= 25) ? 6 : 5;
+    static const double a_lats[3] = {0.992, 0.996, 1.000};
+
+    std::vector<Sq> best_pts;
+    int best_score = 1000000000;
+    int best_mode = 0, bP1 = 4, bP2 = 4, bP3 = 4, bP4 = 4, bpre = 0;
+
+    for (int att = 0; att < 24; ++att) {
+        int submode = (att + slot_hint) % 3; // 0: 4-pinwheel, 1: C2 twin L-pockets, 2: 3-strip U-pocket
+        double carry_y = (f_L > 0.74 && (att % 4 == 0)) ? 0.0 : 1.0;
+        double fb = (carry_y + f_L) * (0.5 + rand_uniform(rng, -0.09, 0.09));
+        double ft = (carry_y + f_L) - fb;
+        int Pb = p_lo + ((slot_hint + att) % (p_hi - p_lo + 1));
+        int Pt = (att % 2 == 0) ? Pb : (p_lo + ((slot_hint * 3 + att) % (p_hi - p_lo + 1)));
+        double Wb = (double)Pb + fb, Wt = (double)Pt + ft;
+        int wb = Pb + 1, wt = Pt + 1;
+        double thb = 0.0, tht = 0.0;
+        if (!solve_shear_angle(wb, Wb - 1e-4, thb) || thb < 0.16 || thb > 0.72) continue;
+        if (!solve_shear_angle(wt, Wt - 1e-4, tht) || tht < 0.16 || tht > 0.72) continue;
+
+        double carry_x = 1.0, fl = 0.0, fr = 0.0, Wl = 0.0, Wr = 0.0, thl = 0.0, thr = 0.0;
+        int Pl = 0, Pr = 0, wl = 0, wr = 0;
+        if (submode == 2) {
+            carry_x = 0.0;
+            Pl = ((k >= 29) ? 7 : 5) + ((att + slot_hint) % 4);
+            Pr = 0;
+            fl = f_L; fr = 0.0;
+            Wl = (double)Pl + fl; Wr = 0.0;
+            wl = Pl + 1; wr = 0;
+            if (!solve_shear_angle(wl, Wl - 1e-4, thl) || thl < 0.16 || thl > 0.72) continue;
+        } else {
+            carry_x = (f_L > 0.74 && (att % 5 == 0)) ? 0.0 : 1.0;
+            fl = (carry_x + f_L) * (0.5 + rand_uniform(rng, -0.09, 0.09));
+            fr = (carry_x + f_L) - fl;
+            Pl = p_lo + ((slot_hint * 5 + att) % (p_hi - p_lo + 1));
+            Pr = (att % 2 == 0) ? Pl : (p_lo + ((slot_hint * 7 + att + 1) % (p_hi - p_lo + 1)));
+            Wl = (double)Pl + fl; Wr = (double)Pr + fr;
+            wl = Pl + 1; wr = Pr + 1;
+            if (!solve_shear_angle(wl, Wl - 1e-4, thl) || thl < 0.16 || thl > 0.72) continue;
+            if (!solve_shear_angle(wr, Wr - 1e-4, thr) || thr < 0.16 || thr > 0.72) continue;
+        }
+
+        int kx = k - Pl - Pr - (int)std::round(carry_x);
+        int ky = k - Pb - Pt - (int)std::round(carry_y);
+        if (kx < 4 || ky < 4) continue;
+
+        double a_lat = a_lats[(att + slot_hint) % 3];
+        double a_sat = rand_uniform(rng, 0.876, 0.892);
+        int sb = ((att + slot_hint) & 1) ? -1 : 1;
+        int st = ((att / 2) & 1) ? sb : -sb;
+        int sl = -sb, sr = -st;
+
+        std::vector<Sq> trial;
+        trial.reserve(n);
+
+        // Exact integer upright core [Wl, L - Wr] x [Wb, L - Wt]
+        for (int ix = 0; ix < kx; ++ix) {
+            for (int iy = 0; iy < ky; ++iy) {
+                double cx = Wl + 0.5 + ix;
+                double cy = Wb + 0.5 + iy;
+                if (cx >= 0.5 && cx <= L - 0.5 && cy >= 0.5 && cy <= L - 0.5) {
+                    trial.push_back({cx, cy, 0.0});
+                }
+            }
+        }
+
+        double ph = rand_uniform(rng, 0.0, 1.2);
+        if (submode == 0) {
+            // Clockwise 4-border sheared pinwheel
+            append_sheared_strip_v14(trial, L, 0.0, L - Wr + 0.25, 0.0, Wb, wb, thb, sb, true, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, L - Wr, L, 0.0, L - Wt + 0.25, wr, thr, sr, false, true, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, Wl - 0.25, L, L - Wt, L, wt, tht, st, true, true, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, Wl, Wb - 0.25, L, wl, thl, sl, false, false, a_lat, ph, a_sat);
+        } else if (submode == 1) {
+            // Twin C2 opposite corner L-pockets at (0,0) and (L,L)
+            append_sheared_strip_v14(trial, L, 0.0, L - Wr + 0.3, 0.0, Wb, wb, thb, sb, true, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, Wl, Wb - 0.3, L - Wt + 0.3, wl, thl, -sb, false, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, Wl - 0.3, L, L - Wt, L, wt, tht, -sb, true, true, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, L - Wr, L, Wb - 0.3, L - Wt + 0.3, wr, thr, sb, false, true, a_lat, ph, a_sat);
+            // Corner 0-deg fillers at (L,0) and (0,L)
+            for (int ix = 0; ix <= Pr + 1; ++ix) {
+                for (int iy = 0; iy <= Pb + 1; ++iy) {
+                    double px1 = L - 0.5 - ix, py1 = 0.5 + iy;
+                    if (px1 >= 0.5 && py1 <= L - 0.5 && sat_ok_point(px1, py1, 0.0, trial, a_sat))
+                        trial.push_back({px1, py1, 0.0});
+                    double px2 = 0.5 + ix, py2 = L - 0.5 - iy;
+                    if (px2 <= L - 0.5 && py2 >= 0.5 && sat_ok_point(px2, py2, 0.0, trial, a_sat))
+                        trial.push_back({px2, py2, 0.0});
+                }
+            }
+        } else {
+            // 3-strip U-pocket wrapping flush to x=L core
+            append_sheared_strip_v14(trial, L, 0.0, L, 0.0, Wb, wb, thb, sb, true, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, L, L - Wt, L, wt, tht, st, true, true, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, Wl, Wb - 0.3, L - Wt + 0.3, wl, thl, sl, false, false, a_lat, ph, a_sat);
+        }
+
+        int diff = (int)trial.size() - n;
+        int score = (diff <= 1) ? std::abs(diff) : (12 + 5 * (diff - 1));
+        if (score < best_score) {
+            best_score = score;
+            best_pts = std::move(trial);
+            best_mode = submode; bP1 = Pb; bP2 = Pt; bP3 = Pl; bP4 = Pr;
+            bpre = (int)best_pts.size();
+        }
+        if (best_score <= 2 && att >= 8) break;
+    }
+
+    if (best_pts.empty()) return seed_fanned_Lpockets_v13(n, L, rng, desc, slot_hint);
+
+    if ((int)best_pts.size() < n) {
+        best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.888, 0.43, rng);
+        best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.890);
+    } else if ((int)best_pts.size() > n) {
+        trim_excess_nearest_v13(best_pts, n);
+    }
+    apply_d4_symmetry_v13(best_pts, L, slot_hint & 7);
+    add_jitter(best_pts, rng, 0.002);
+
+    char buf[128];
+    std::snprintf(buf, sizeof(buf), "twin14(m=%d,P=%d,%d,%d,%d,pre=%d)", best_mode, bP1, bP2, bP3, bP4, bpre);
+    desc = buf;
+    return best_pts;
+}
+
+static std::vector<Sq> seed_end_tapered_L_v14(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    int k = (int)std::floor(L);
+    double f_L = L - k;
+    int P_min = (k >= 29) ? 7 : 5;
+    int P_max = std::min(std::max(P_min + 2, k / 2), P_min + 5);
+    static const double a_lats[3] = {0.992, 0.996, 1.000};
+
+    std::vector<Sq> best_pts;
+    int best_score = 1000000000;
+    int bP1 = P_min, bP2 = P_min, bs1 = -1, bs2 = 1, bcm = 0, bpre = 0;
+
+    for (int att = 0; att < 24; ++att) {
+        int P1 = P_min + ((slot_hint + att) % (P_max - P_min + 1));
+        int P2 = (att % 2 == 0) ? P1 : (P_min + ((slot_hint * 3 + att + 1) % (P_max - P_min + 1)));
+        double W1 = (double)P1 + f_L, W2 = (double)P2 + f_L;
+        int w1 = P1 + 1, w2 = P2 + 1;
+        double th1 = 0.0, th2 = 0.0;
+        if (!solve_shear_angle(w1, W1 - 1e-4, th1) || th1 < 0.17 || th1 > 0.72) continue;
+        if (!solve_shear_angle(w2, W2 - 1e-4, th2) || th2 < 0.17 || th2 > 0.72) continue;
+
+        int s1 = ((att + slot_hint) & 1) ? -1 : 1;
+        int s2 = (att % 4 < 3) ? -s1 : s1;
+        int cm = (att + slot_hint) % 2; // 0: flush rectangular L-corner, 1: 45-deg corner cap
+        double a_lat = a_lats[(att + slot_hint) % 3];
+        double a_sat = rand_uniform(rng, 0.875, 0.892);
+
+        std::vector<Sq> trial;
+        trial.reserve(n);
+
+        // 1. Exact integer upright core [W2, L] x [W1, L]
+        for (int ix = 0; ix < k - P2; ++ix) {
+            for (int iy = 0; iy < k - P1; ++iy) {
+                double cx = W2 + 0.5 + ix, cy = W1 + 0.5 + iy;
+                if (cx <= L - 0.5 && cy <= L - 0.5) trial.push_back({cx, cy, 0.0});
+            }
+        }
+
+        // 2. Optional 45-deg corner cap inside [0, W2] x [0, W1]
+        if (cm == 1) {
+            int cap_n = std::min(3, std::min(P1, P2) / 2);
+            double u45 = 0.71;
+            for (int i = 0; i < cap_n; ++i) {
+                for (int j = 0; j < cap_n; ++j) {
+                    double px = u45 + 0.7071 * (i + j) + 0.02;
+                    double py = u45 + 0.7071 * (j - i + cap_n - 1) + 0.02;
+                    if (px >= 0.71 && px <= W2 && py >= 0.71 && py <= W1 && sat_ok_point(px, py, 0.25 * PI, trial, a_sat)) {
+                        trial.push_back({px, py, 0.25 * PI});
+                    }
+                }
+            }
+        }
+
+        // 3. Full-length sheared strips without colliding 5x9 end-wedge slabs
+        double ph = rand_uniform(rng, 0.0, 1.2);
+        if (cm == 0) {
+            append_sheared_strip_v14(trial, L, 0.0, L, 0.0, W1, w1, th1, s1, true, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, W2, W1 - 0.35, L, w2, th2, s2, false, false, a_lat, ph, a_sat);
+        } else {
+            append_sheared_strip_v14(trial, L, 0.5 * W2, L, 0.0, W1, w1, th1, s1, true, false, a_lat, ph, a_sat);
+            append_sheared_strip_v14(trial, L, 0.0, W2, 0.5 * W1, L, w2, th2, s2, false, false, a_lat, ph, a_sat);
+        }
+
+        // 4. Only 1-2 acute outer-tip 0 deg teeth AFTER sheared strips (avoid carving (4.46,26.25) holes)
+        for (int ix = 0; ix < 2; ++ix) {
+            for (int iy = 0; iy < P1; ++iy) {
+                double px1 = L - 0.5 - ix, py1 = 0.5 + iy;
+                if (px1 >= 0.5 && py1 <= L - 0.5 && sat_ok_point(px1, py1, 0.0, trial, a_sat))
+                    trial.push_back({px1, py1, 0.0});
+                double px2 = 0.5 + iy, py2 = L - 0.5 - ix;
+                if (py2 >= 0.5 && px2 <= L - 0.5 && sat_ok_point(px2, py2, 0.0, trial, a_sat))
+                    trial.push_back({px2, py2, 0.0});
+            }
+        }
+
+        int diff = (int)trial.size() - n;
+        int score = (diff <= 1) ? std::abs(diff) : (12 + 5 * (diff - 1));
+        if (score < best_score) {
+            best_score = score;
+            best_pts = std::move(trial);
+            bP1 = P1; bP2 = P2; bs1 = s1; bs2 = s2; bcm = cm; bpre = (int)best_pts.size();
+        }
+        if (best_score <= 3 && att >= 8) break;
+    }
+
+    if (best_pts.empty()) return seed_fanned_Lpockets_v13(n, L, rng, desc, slot_hint);
+
+    if ((int)best_pts.size() < n) {
+        best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.888, 0.44, rng);
+        best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.890);
+    } else if ((int)best_pts.size() > n) {
+        trim_excess_nearest_v13(best_pts, n);
+    }
+    apply_d4_symmetry_v13(best_pts, L, slot_hint & 7);
+    add_jitter(best_pts, rng, 0.002);
+
+    char buf[128];
+    std::snprintf(buf, sizeof(buf), "tapL14(P=%d,%d,s=%+d,%+d,cm=%d,pre=%d)", bP1, bP2, bs1, bs2, bcm, bpre);
+    desc = buf;
+    return best_pts;
+}
+
+// =========================================================================
 // Augmented-Lagrangian + L-BFGS float64 L-Squeezer (Fixed & Free Angles)
 // =========================================================================
 
@@ -4162,7 +4445,7 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_exact_bridge_v12(n, L_val, rng, desc, grp * 7 + (fam - 13));
                     }
                 }
-            } else {
+            } else if (idea == 13) {
                 // Idea 13: Asymmetric Exact-Root Diagonal Bridges (65%) + Corner-Fanned P>=7 L-Pockets (35%)
                 if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 4 == 0))) {
                     int sidx = b % (int)surg_pool.size();
@@ -4177,6 +4460,25 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_asym_bridge_v13(n, L_val, inc_L, rng, desc, grp * 13 + fam);
                     } else {
                         seeds_pts[b] = seed_fanned_Lpockets_v13(n, L_val, rng, desc, grp * 7 + (fam - 13));
+                    }
+                }
+            } else {
+                // Idea 14: Twin/4-Pinwheel 24-27 deg Pockets (45%) + End-Tapered L-Pockets (30%) + Bridges (25%)
+                if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 5 || fast_mode == 2 || (b % 4 == 0))) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = exact_bbox_side(seeds_pts[b]);
+                    const char* ops[5] = {"surg14_buckle", "surg14_slipline", "surg14_vachop", "surg14_aniso", "surg14_xfer"};
+                    desc = ops[sidx % 5];
+                } else {
+                    int fam = b % 20;
+                    int grp = b / 20;
+                    if (fam < 9) {
+                        seeds_pts[b] = seed_twin_opp_pockets_v14(n, L_val, rng, desc, grp * 9 + fam);
+                    } else if (fam < 15) {
+                        seeds_pts[b] = seed_end_tapered_L_v14(n, L_val, rng, desc, grp * 6 + (fam - 9));
+                    } else {
+                        seeds_pts[b] = seed_asym_bridge_v13(n, L_val, inc_L, rng, desc, grp * 5 + (fam - 15));
                     }
                 }
             }
