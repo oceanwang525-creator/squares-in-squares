@@ -1,0 +1,5 @@
+[
+  {"n": 401, "L_ours": 20.5355339059, "L_front": 20.5261353334, "best_9b_cap": 400, "best_9b_tag": "9B_rect 2x2 th=7.5 s=(1,-1) up=396", "min_sa_E": 7.16175737542e-05, "best_win_L": 20.5355339059, "win_src": "none", "seconds": 5.7},
+  {"n": 442, "L_ours": 21.5355339059, "L_front": 21.5229229397, "best_9b_cap": 441, "best_9b_tag": "9B_pkt 2x3 th=7.5 xy=(2,2) s=0 up=435", "min_sa_E": 9.4226002724e-05, "best_win_L": 21.5355339059, "win_src": "none", "seconds": 6},
+  {"n": 530, "L_ours": 23.5355339059, "L_front": 23.5173049199, "best_9b_cap": 529, "best_9b_tag": "9B_rect 3x3 th=3.76 s=(1,0) up=520", "min_sa_E": 0.000176442892645, "best_win_L": 23.5355339059, "win_src": "none", "seconds": 6.6}
+]
