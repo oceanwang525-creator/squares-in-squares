@@ -34,17 +34,18 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15730466507.csv`, the current final leaves the recursive
-`n=800` improvement. The complete candidate scores `22.15730465068137` in both
-literal and pandas modes, with `1000/1000` groups accepted:
+Against `merged-22.15726293235.csv`, the current final leaves the recursive
+`n=800` improvement. The complete candidate scores `22.15726292930414`, with
+`1000/1000` groups accepted in both literal and pandas modes:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 800 | 28.775369620969101 | 28.775369213891515 | -4.070775861e-07 |
+| 800 | 28.775369213891515 | 28.775369127667270 | -8.622424431e-08 |
 
-The aggregate reduction is `-1.438863e-8`. The previous 12-group mechanism
-result is included in the merge artifact; this iteration supersedes its
-`n=800` row with a second recursive walk.
+The aggregate reduction is `-3.045860e-9`. The previous 12-group mechanism
+result and the first recursive `n=800` result are included in the merge
+artifact; this iteration supersedes its `n=800` row with a deeper recursive
+walk.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
@@ -58,6 +59,8 @@ The detailed machine-generated before/after report is in
   `972`, and `973`.
 - Recursive amplitude retries missed for `861`, `546`, `419`, `416`, `421`,
   `703`, `649`, `507`, and `538`; the closest was `419` at `+2.455e-9`.
+- A further fine/wide retry missed for `367`, `468`, `605`, and `612`; the
+  nearest was `367` at `+9.20e-8`.
 - A broad untested `700..1000` scan was interrupted after mostly zero or
   low-amplitude modes; it should not be repeated unchanged.
 - The attached `submission-kaggle-safe.csv` was rejected as a donor: its
