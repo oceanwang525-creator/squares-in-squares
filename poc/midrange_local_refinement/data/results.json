@@ -1,0 +1,179 @@
+{
+  "upstream": "2c1e6a6",
+  "baseline_sha256": "d08670d4e517548f72ac10dc61fba5274028efacc9b305bffaf1cebc4f49557f",
+  "range": [
+    100,
+    133
+  ],
+  "linearization": {
+    "trials": 39,
+    "wins": 0
+  },
+  "randomized_axes": {
+    "trials": 158,
+    "wins": 0,
+    "by_n": {
+      "105": 11,
+      "106": 15,
+      "107": 7,
+      "108": 5,
+      "109": 18,
+      "110": 14,
+      "123": 12,
+      "127": 6,
+      "128": 19,
+      "129": 10,
+      "130": 16,
+      "131": 13,
+      "132": 12
+    }
+  },
+  "perturbation": {
+    "trials": 335,
+    "wins": 0,
+    "by_n": {
+      "105": {
+        "trials": 11,
+        "minimum_squared_penalty": 8.562544921766715e-07
+      },
+      "106": {
+        "trials": 8,
+        "minimum_squared_penalty": 4.7170885117932804e-07
+      },
+      "107": {
+        "trials": 33,
+        "minimum_squared_penalty": 3.831100807142654e-07
+      },
+      "108": {
+        "trials": 34,
+        "minimum_squared_penalty": 4.540021129747142e-07
+      },
+      "109": {
+        "trials": 30,
+        "minimum_squared_penalty": 1.3178952110955949e-06
+      },
+      "110": {
+        "trials": 19,
+        "minimum_squared_penalty": 5.631228668326569e-07
+      },
+      "123": {
+        "trials": 31,
+        "minimum_squared_penalty": 5.8875551347332884e-08
+      },
+      "127": {
+        "trials": 30,
+        "minimum_squared_penalty": 1.1836053599174596e-07
+      },
+      "128": {
+        "trials": 26,
+        "minimum_squared_penalty": 6.495092003607991e-07
+      },
+      "129": {
+        "trials": 29,
+        "minimum_squared_penalty": 2.2797677443222063e-08
+      },
+      "130": {
+        "trials": 19,
+        "minimum_squared_penalty": 1.3433719289767033e-07
+      },
+      "131": {
+        "trials": 30,
+        "minimum_squared_penalty": 4.2702281031493394e-07
+      },
+      "132": {
+        "trials": 35,
+        "minimum_squared_penalty": 9.45378439827432e-07
+      }
+    }
+  },
+  "insertion": {
+    "trials": 297,
+    "wins": 0,
+    "by_n": {
+      "102": {
+        "trials": 24,
+        "minimum_squared_penalty": 0.012957727177400312
+      },
+      "103": {
+        "trials": 21,
+        "minimum_squared_penalty": 0.008601296242816237
+      },
+      "104": {
+        "trials": 6,
+        "minimum_squared_penalty": 0.00858231888419756
+      },
+      "105": {
+        "trials": 27,
+        "minimum_squared_penalty": 0.0037752216365853426
+      },
+      "106": {
+        "trials": 18,
+        "minimum_squared_penalty": 0.002622770285537068
+      },
+      "107": {
+        "trials": 12,
+        "minimum_squared_penalty": 0.0019850870465015023
+      },
+      "108": {
+        "trials": 12,
+        "minimum_squared_penalty": 0.0023679432539012654
+      },
+      "109": {
+        "trials": 12,
+        "minimum_squared_penalty": 0.002220518673036747
+      },
+      "110": {
+        "trials": 6,
+        "minimum_squared_penalty": 0.002923635119934401
+      },
+      "111": {
+        "trials": 15,
+        "minimum_squared_penalty": 0.0034611158894733932
+      },
+      "123": {
+        "trials": 24,
+        "minimum_squared_penalty": 0.012885374675902818
+      },
+      "124": {
+        "trials": 15,
+        "minimum_squared_penalty": 0.009076610831680865
+      },
+      "125": {
+        "trials": 24,
+        "minimum_squared_penalty": 0.01298805902938871
+      },
+      "126": {
+        "trials": 12,
+        "minimum_squared_penalty": 0.005168349293349794
+      },
+      "127": {
+        "trials": 9,
+        "minimum_squared_penalty": 0.005561830140604384
+      },
+      "128": {
+        "trials": 15,
+        "minimum_squared_penalty": 0.004014954365638721
+      },
+      "129": {
+        "trials": 6,
+        "minimum_squared_penalty": 0.0013186597655101189
+      },
+      "130": {
+        "trials": 12,
+        "minimum_squared_penalty": 0.0008961295524661148
+      },
+      "131": {
+        "trials": 9,
+        "minimum_squared_penalty": 0.004063412818029055
+      },
+      "132": {
+        "trials": 9,
+        "minimum_squared_penalty": 0.0004604774130467253
+      },
+      "133": {
+        "trials": 9,
+        "minimum_squared_penalty": 0.0018310894792266884
+      }
+    }
+  }
+}
