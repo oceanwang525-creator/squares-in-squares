@@ -158,7 +158,7 @@ def build_masked_pocket_tasks(
     heavy_idx = wb["heavy_idx"]
     nx_in, ny_in = wb["inward_normal"]
     ox_in, oy_in = wb["opp_normal"]
-    sched = [L0_pocket, L_base + 0.008, L_base - 2e-4, L_base - 0.002]
+    sched = [L0_pocket, L_base + 0.008, L_base + 0.001, L_base - 3e-4]
 
     coords, masks, drifts, d_strengths, ls_list, labels = [], [], [], [], [], []
 
@@ -282,7 +282,7 @@ def build_idea20_walldrift_tasks(
     margins = wb["margins"]
     min_margin = np.minimum.reduce([margins["L"], margins["R"], margins["B"], margins["T"]])
     tight_idx = np.argsort(min_margin)[:18]
-    sched = [L0, L_base + 0.010, L_base - 2e-4, L_base - 0.002]
+    sched = [L0, L_base + 0.010, L_base + 0.001, L_base - 3e-4]
 
     coords, drifts, d_strengths, ls_list, labels = [], [], [], [], []
 
@@ -586,28 +586,37 @@ def solve_target(
 
 
 def load_disk_wins(data_dir: Path, mats: dict, inc_info: dict) -> dict[int, dict]:
-    """Load and re-verify existing win_n*.csv checkpoints on disk."""
-    import pandas as pd
-
+    """Load and re-verify existing win_n*.csv checkpoints on disk via auto_union."""
     out = {}
     if not data_dir.exists():
         return out
+    union_mod = su.get_union_module()
     for p in sorted(data_dir.glob("win_n*.csv")):
         nw = int(p.stem.replace("win_n", ""))
-        sub = pd.read_csv(p)
-        sub["sid"] = sub["id"].astype(str).str.split("_").str[1].astype(int)
-        sub = sub.sort_values("sid")
-        x = sub["x"].to_numpy(np.float64)
-        y = sub["y"].to_numpy(np.float64)
-        th = np.radians(sub["deg"].to_numpy(np.float64))
-        ver = su.verify_official(nw, x, y, th)
+        try:
+            lit_g, pd_g = union_mod.load(p)
+        except Exception:
+            continue
+        if nw not in lit_g or nw not in pd_g:
+            continue
+        chk = union_mod.check((nw, lit_g[nw], pd_g[nw]))
+        if chk is None:
+            continue
         if nw not in inc_info:
             _, extra_info = su.load_incumbent_and_frontier([nw])
             inc_info.update(extra_info)
-        if ver.get("ok"):
-            inc_dec = Decimal(inc_info[nw]["L_inc_str"])
-            if max(Decimal(ver["L_lit"]), Decimal(ver["L_pandas"])) < inc_dec:
-                out[nw] = {"n": nw, "rows": ver["rows"], "verify": {k: v for k, v in ver.items() if k != "rows"}}
+        inc_dec = Decimal(inc_info[nw]["L_inc_str"])
+        if Decimal(chk[0]) < inc_dec and Decimal(chk[1]) < inc_dec:
+            out[nw] = {
+                "n": nw,
+                "rows": lit_g[nw],
+                "verify": {
+                    "ok": True,
+                    "L_lit": chk[0],
+                    "L_pandas": chk[1],
+                    "L_float": float(max(Decimal(chk[0]), Decimal(chk[1]))),
+                },
+            }
     return out
 
 
