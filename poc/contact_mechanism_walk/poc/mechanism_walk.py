@@ -464,6 +464,11 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=4)
     parser.add_argument("--slp-rounds", type=int, default=4)
     parser.add_argument("--out-dir", type=Path, default=Path(__file__).resolve().parents[1] / "docs")
+    parser.add_argument(
+        "--final",
+        type=Path,
+        default=Path(__file__).resolve().parents[1] / "final.csv",
+    )
     args = parser.parse_args()
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -497,7 +502,7 @@ def main() -> None:
                 flush=True,
             )
         # Keep an incremental checkpoint even if a long scale-up is interrupted.
-        write_final(wins, Path(__file__).resolve().parents[1] / "final.csv")
+        write_final(wins, args.final)
     (args.out_dir / "summary.json").write_text(
         json.dumps(all_results, indent=2), encoding="utf-8"
     )

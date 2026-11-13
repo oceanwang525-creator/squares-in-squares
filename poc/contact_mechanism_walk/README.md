@@ -43,9 +43,9 @@ on a certified win or a small, structurally plausible residual gap.
 ## Result
 
 Against the atlas-combined incumbent, `n=911` improves from
-`L=30.689430606622263` to `L=30.688898119997003472...`, a certified
-`dL=-5.324866252607e-4`. Both the unchanged literal check and pandas
-`read_csv`/`to_csv` transport agree. The `n=367`, `849`, `971`, and `973`
-pilots did not improve and are omitted.
+`L=30.689430606622263` to `L=30.686880320822803215...`, a certified
+`dL=-2.550285799463e-3` after four successive mechanism walks. Both the
+unchanged literal check and pandas `read_csv`/`to_csv` transport agree. The
+`n=367`, `849`, `971`, and `973` pilots did not improve and are omitted.
 
 `final.csv` contains only the complete winning `n=911` group.
