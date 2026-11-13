@@ -3043,6 +3043,440 @@ static std::vector<Sq> seed_exact_bridge_v12(
 }
 
 // =========================================================================
+// Idea 13: Exact-Root +-45 deg Diagonal-Corridor Bridges (w>=3 / 796,687 0.7071)
+//          & Corner-Fanned P>=7 L-Pockets
+// =========================================================================
+struct BridgeRootV13 {
+    int w, a, b;
+    double f_r, th_r;
+};
+
+static std::vector<BridgeRootV13> enumerate_strict_bridges_v13(double L, double inc_L) {
+    double f_inc = inc_L - std::floor(inc_L);
+    int w_max = std::min(18, std::max(4, (int)std::floor(L * 0.65)));
+    std::vector<BridgeRootV13> roots;
+    for (int w = 1; w <= w_max; ++w) {
+        for (int a = 0; a < w; ++a) {
+            for (int b = a; b < w; ++b) {
+                double disc = 2.0 * (double)w * (double)w - (double)(a - b) * (double)(a - b);
+                if (disc < 0.0) continue;
+                double f_r = -0.5 * (double)(a + b) + 0.5 * std::sqrt(disc);
+                if (f_r < 0.45 || f_r >= f_inc - 1e-4) continue;
+                double th_r = std::atan2((double)a + f_r, (double)b + f_r);
+                roots.push_back({w, a, b, f_r, th_r});
+            }
+        }
+    }
+    std::sort(roots.begin(), roots.end(), [](const BridgeRootV13& p, const BridgeRootV13& q) {
+        if (std::abs(p.f_r - q.f_r) > 1e-9) return p.f_r > q.f_r;
+        return p.w < q.w;
+    });
+    if (roots.empty()) {
+        double f4 = std::sqrt(7.0) - 2.0;
+        roots.push_back({4, 1, 3, f4, std::atan2(1.0 + f4, 3.0 + f4)});
+    }
+    return roots;
+}
+
+static void trim_excess_nearest_v13(std::vector<Sq>& pts, int n) {
+    while ((int)pts.size() > n) {
+        int m = (int)pts.size();
+        int worst_idx = m - 1;
+        double worst_d2 = 1e18;
+        for (int i = 0; i < m; ++i) {
+            double best_nn = 1e18;
+            for (int j = 0; j < m; ++j) {
+                if (i == j) continue;
+                double dx = pts[i].x - pts[j].x;
+                double dy = pts[i].y - pts[j].y;
+                double d2 = dx * dx + dy * dy;
+                if (d2 < best_nn) best_nn = d2;
+            }
+            if (best_nn < worst_d2) {
+                worst_d2 = best_nn;
+                worst_idx = i;
+            }
+        }
+        pts[worst_idx] = pts.back();
+        pts.pop_back();
+    }
+}
+
+static void apply_d4_symmetry_v13(std::vector<Sq>& pts, double L, int d4_idx) {
+    int rot = d4_idx & 3;
+    bool flip = (d4_idx >> 2) & 1;
+    for (auto& s : pts) {
+        double x = s.x, y = s.y, th = s.th;
+        if (flip) {
+            x = L - x;
+            th = -th;
+        }
+        for (int r = 0; r < rot; ++r) {
+            double nx = L - y;
+            double ny = x;
+            x = nx;
+            y = ny;
+            th += 0.5 * PI;
+        }
+        s.x = x;
+        s.y = y;
+        s.th = th;
+    }
+}
+
+static std::vector<Sq> seed_asym_bridge_v13(
+    int n, double L, double inc_L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    double f_inc = inc_L - std::floor(inc_L);
+    auto roots = enumerate_strict_bridges_v13(L, inc_L);
+    int top_k = std::min(4, (int)roots.size());
+    int r_idx = ((slot_hint % 9) < 5)
+        ? ((slot_hint / 9 + slot_hint) % top_k)
+        : (slot_hint % (int)roots.size());
+    BridgeRootV13 br = roots[r_idx];
+
+    std::vector<Sq> best_pts;
+    int best_score = 1000000000;
+    int best_wb = br.w;
+    int best_pre = 0;
+
+    for (int att = 0; att < 28; ++att) {
+        bool true_axis_mode = (((slot_hint + att) & 3) == 0);
+        double psi = 0.0;
+        double th = br.th_r;
+        int s_th = ((att + slot_hint) & 1) ? 1 : -1;
+        if (att % 5 == 2) th = 0.5 * PI - br.th_r;
+        if (att % 2 == 1) th += rand_uniform(rng, -0.043, 0.043);
+        th *= s_th;
+
+        if (true_axis_mode) {
+            psi = th + rand_uniform(rng, -0.052, 0.052);
+        } else {
+            double dpsi = (att % 4 == 0) ? 0.0 : rand_uniform(rng, -0.155, 0.155);
+            psi = ((att & 1) ? 0.25 * PI : -0.25 * PI) + dpsi;
+        }
+
+        // Normalize th mod PI/2 so |sin(th - psi)| >= 0.7071 in sheared mode (|sh| <= 1.0)
+        while (th - psi > 0.25 * PI) th -= 0.5 * PI;
+        while (th - psi < -0.25 * PI) th += 0.5 * PI;
+        if (!true_axis_mode && std::abs(std::sin(th - psi)) < 0.7071) {
+            th += (th > psi ? -0.5 * PI : 0.5 * PI);
+        }
+
+        int wb = br.w;
+        if (br.w == 1 && f_inc > 0.7072) {
+            wb = 1 + ((att + slot_hint) % 5);
+        } else if (att % 2 == 1) {
+            int max_w = std::max(3, std::min(16, (int)std::floor(L * 0.6)));
+            int delta = ((att / 2) % 5) - 2;
+            wb = std::max(3, std::min(max_w, br.w + delta));
+        }
+
+        double sp_u = rand_uniform(rng, 0.978, 0.998);
+        double sp_v = rand_uniform(rng, 0.978, 0.998);
+        double a_sat = rand_uniform(rng, 0.862, 0.878);
+        double shift_d = rand_uniform(rng, -0.28 * L, 0.28 * L);
+
+        double tx = std::cos(psi), ty = std::sin(psi);
+        double nx = -ty, ny = tx;
+        double ux = 0.5 * L + shift_d * nx;
+        double uy = 0.5 * L + shift_d * ny;
+
+        double hx = 0.5 * (std::abs(std::cos(th)) + std::abs(std::sin(th)));
+        double e1x = std::cos(th) * sp_u, e1y = std::sin(th) * sp_u;
+        double e2x0 = -std::sin(th), e2y0 = std::cos(th);
+
+        double sh = 0.0;
+        bool aligned_shear = (!true_axis_mode && (att % 3 != 0) && std::abs(std::sin(th - psi)) >= 0.68);
+        if (aligned_shear) {
+            sh = -std::cos(th - psi) / std::sin(th - psi);
+            if (att % 6 == 4) sh += rand_uniform(rng, -0.08, 0.08);
+        } else if (att % 3 == 2) {
+            sh = rand_uniform(rng, -0.25, 0.25);
+        }
+        double e2x = (e2x0 + sh * std::cos(th)) * sp_v;
+        double e2y = (e2y0 + sh * std::sin(th)) * sp_v;
+
+        std::vector<Sq> band_pts;
+        band_pts.reserve(n / 2);
+        double u_off = rand_uniform(rng, -0.45, 0.45);
+        double v_off = rand_uniform(rng, 0.0, 1.0);
+
+        if (aligned_shear) {
+            int j_lim = (int)std::ceil(L * 1.9);
+            for (int i = 0; i < wb; ++i) {
+                double fi = (double)i - 0.5 * (double)(wb - 1) + u_off;
+                for (int j = -j_lim; j <= j_lim; ++j) {
+                    double fj = (double)j + v_off;
+                    double px = ux + fi * e1x + fj * e2x;
+                    double py = uy + fi * e1y + fj * e2y;
+                    if (px >= hx && px <= L - hx && py >= hx && py <= L - hx) {
+                        band_pts.push_back({px, py, th});
+                    }
+                }
+            }
+        } else {
+            double sin_tp = std::max(0.55, std::abs(std::sin(th - psi)));
+            double W_band = true_axis_mode ? ((double)wb * sp_v) : ((double)wb * sin_tp * sp_u);
+            double half_W = 0.5 * W_band;
+            int k_lim = (int)std::ceil(L * 1.8);
+            for (int i = -k_lim; i <= k_lim; ++i) {
+                double fi = (double)i + u_off;
+                for (int j = -k_lim; j <= k_lim; ++j) {
+                    double fj = (double)j + v_off;
+                    double px = ux + fi * e1x + fj * e2x;
+                    double py = uy + fi * e1y + fj * e2y;
+                    if (px < hx || px > L - hx || py < hx || py > L - hx) continue;
+                    double dn = (px - ux) * nx + (py - uy) * ny;
+                    if (std::abs(dn) <= half_W) {
+                        band_pts.push_back({px, py, th});
+                    }
+                }
+            }
+        }
+
+        // Corner-anchored 0 deg blocks aligned with band normal (nx, ny)
+        bool neg_left = (nx >= 0.0);
+        bool neg_bot = (ny >= 0.0);
+        bool use_3rd = (((att + slot_hint) % 5 == 0) && std::abs(shift_d) > 0.14 * L);
+        double x_split = rand_uniform(rng, 0.25 * L, 0.55 * L);
+        int K_g = (int)std::floor(L) + 1;
+        std::vector<Sq> cand_neg, cand_pos, cand_third, cand_zip;
+
+        for (int ix = 0; ix < K_g; ++ix) {
+            for (int iy = 0; iy < K_g; ++iy) {
+                double px0 = neg_left ? (0.5 + ix) : (L - 0.5 - ix);
+                double py0 = neg_bot ? (0.5 + iy) : (L - 0.5 - iy);
+                if (px0 >= 0.5 && px0 <= L - 0.5 && py0 >= 0.5 && py0 <= L - 0.5) {
+                    double dn = (px0 - ux) * nx + (py0 - uy) * ny;
+                    if (dn < -0.15) cand_neg.push_back({px0, py0, 0.0});
+                }
+                double px1 = neg_left ? (L - 0.5 - ix) : (0.5 + ix);
+                double py1 = neg_bot ? (L - 0.5 - iy) : (0.5 + iy);
+                if (px1 >= 0.5 && px1 <= L - 0.5 && py1 >= 0.5 && py1 <= L - 0.5) {
+                    double dn = (px1 - ux) * nx + (py1 - uy) * ny;
+                    if (dn > 0.15) {
+                        if (!use_3rd || (shift_d > 0.0) || (neg_left ? (px1 >= x_split) : (px1 <= L - x_split))) {
+                            cand_pos.push_back({px1, py1, 0.0});
+                        }
+                    }
+                }
+                if (use_3rd && shift_d < 0.0) {
+                    double px3 = neg_left ? (0.5 + ix) : (L - 0.5 - ix);
+                    double py3 = neg_bot ? (L - 0.5 - iy) : (0.5 + iy);
+                    if (px3 >= 0.5 && px3 <= L - 0.5 && py3 >= 0.5 && py3 <= L - 0.5) {
+                        double dn = (px3 - ux) * nx + (py3 - uy) * ny;
+                        bool in3 = neg_left ? (px3 <= x_split - 1.45) : (px3 >= L - x_split + 1.45);
+                        if (dn > 0.15 && in3) cand_third.push_back({px3, py3, 0.0});
+                    }
+                }
+            }
+        }
+        if (use_3rd && shift_d < 0.0) {
+            double xz = neg_left ? (x_split - 0.72) : (L - x_split + 0.72);
+            for (int iz = 0; iz < K_g; ++iz) {
+                double yz = neg_bot ? (L - 0.72 - iz * 1.40) : (0.72 + iz * 1.40);
+                if (yz >= 0.71 && yz <= L - 0.71) {
+                    double dn = (xz - ux) * nx + (yz - uy) * ny;
+                    if (dn > 0.25) cand_zip.push_back({xz, yz, 0.25 * PI});
+                }
+            }
+        }
+
+        std::vector<Sq> trial = std::move(band_pts);
+        auto ok_neg = sat_filter_against(cand_neg, trial, a_sat, L);
+        trial.insert(trial.end(), ok_neg.begin(), ok_neg.end());
+        auto ok_pos = sat_filter_against(cand_pos, trial, a_sat, L);
+        trial.insert(trial.end(), ok_pos.begin(), ok_pos.end());
+        if (!cand_zip.empty()) {
+            auto ok_z = sat_filter_against(cand_zip, trial, a_sat, L);
+            trial.insert(trial.end(), ok_z.begin(), ok_z.end());
+        }
+        if (!cand_third.empty()) {
+            auto ok_3 = sat_filter_against(cand_third, trial, a_sat, L);
+            trial.insert(trial.end(), ok_3.begin(), ok_3.end());
+        }
+
+        int diff = (int)trial.size() - n;
+        int score = (diff <= 1) ? std::abs(diff) : (10 + 4 * (diff - 1));
+        if (score < best_score) {
+            best_score = score;
+            best_pts = std::move(trial);
+            best_wb = wb;
+            best_pre = (int)best_pts.size();
+        }
+        if (best_score <= 1 && att >= 8 && !(br.w == 1 && att < 12)) break;
+    }
+
+    if ((int)best_pts.size() < n) {
+        best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.878, br.th_r, rng);
+        best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.875);
+    } else if ((int)best_pts.size() > n) {
+        trim_excess_nearest_v13(best_pts, n);
+    }
+    apply_d4_symmetry_v13(best_pts, L, slot_hint & 7);
+    add_jitter(best_pts, rng, 0.002);
+
+    char buf[96];
+    std::snprintf(buf, sizeof(buf), "brg13(w=%d,%d_%d,wb=%d,f=%.3f,pre=%d)", br.w, br.a, br.b, best_wb, br.f_r, best_pre);
+    desc = buf;
+    return best_pts;
+}
+
+static std::vector<Sq> seed_fanned_Lpockets_v13(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    int k = (int)std::floor(L);
+    double f_L = L - k;
+    int P_min = (k >= 29) ? 7 : 5;
+    int P_max = std::min(std::max(P_min + 2, k / 2), P_min + 6);
+    static const double a_lats[3] = {0.992, 0.996, 1.000};
+    static const int nfs[3] = {0, 3, 5};
+
+    std::vector<Sq> best_pts;
+    int best_score = 1000000000;
+    int bP1 = P_min, bP2 = P_min, bw1 = P_min + 1, bw2 = P_min + 1, bs1 = -1, bs2 = 1, bnf = 3, bpre = 0;
+
+    for (int att = 0; att < 24; ++att) {
+        int P1 = P_min + ((slot_hint + att) % (P_max - P_min + 1));
+        int P2 = (att % 2 == 0) ? P1 : (P_min + ((slot_hint * 3 + att * 2 + 1) % (P_max - P_min + 1)));
+        double W1 = (double)P1 + f_L;
+        double W2 = (double)P2 + f_L;
+
+        int w1 = P1 + 1;
+        double th1 = 0.0;
+        if (!solve_shear_angle(w1, W1 - 1e-4, th1) || th1 < 0.17 || th1 > 0.72) {
+            w1 = P1 + 2;
+            if (!solve_shear_angle(w1, W1 - 1e-4, th1) || th1 < 0.17 || th1 > 0.72) continue;
+        }
+        int w2 = P2 + 1;
+        double th2 = 0.0;
+        if (!solve_shear_angle(w2, W2 - 1e-4, th2) || th2 < 0.17 || th2 > 0.72) {
+            w2 = P2 + 2;
+            if (!solve_shear_angle(w2, W2 - 1e-4, th2) || th2 < 0.17 || th2 > 0.72) continue;
+        }
+
+        int s1 = ((att + slot_hint) & 1) ? -1 : 1;
+        int s2 = (att % 4 < 3) ? -s1 : s1;
+        double a_lat = a_lats[(att + slot_hint) % 3];
+        int nf = nfs[(att / 3 + slot_hint) % 3];
+        double a_sat = rand_uniform(rng, 0.874, 0.890);
+
+        std::vector<Sq> trial;
+        trial.reserve(n);
+
+        // 1. Exact integer upright core [W2, L] x [W1, L]
+        int k_core2 = k - P2;
+        int k_core1 = k - P1;
+        for (int ix = 0; ix < k_core2; ++ix) {
+            for (int iy = 0; iy < k_core1; ++iy) {
+                double cx = W2 + 0.5 + ix;
+                double cy = W1 + 0.5 + iy;
+                if (cx <= L - 0.5 && cy <= L - 0.5) trial.push_back({cx, cy, 0.0});
+            }
+        }
+
+        // 2. Bottom sheared strip (y in [0, W1]) with exact hx = 0.5*(c+s) & corner-miter fan
+        double c1 = std::cos(th1), sn1 = std::sin(th1);
+        double hx1 = 0.5 * (c1 + sn1);
+        double dx1 = a_lat / c1;
+        double phi1 = (double)s1 * th1;
+        double ph1 = rand_uniform(rng, 0.0, dx1);
+        for (int j = 0; j < w1; ++j) {
+            double cy = std::min(W1 - hx1, hx1 + (double)j * c1);
+            double x_miter = W2 * (cy / W1);
+            double x_row0 = ph1 - (double)s1 * (double)j * sn1;
+            int i_start = (int)std::floor((x_miter - 0.35 - x_row0) / dx1) - 1;
+            int i_end = (int)std::ceil((L - 0.5 - x_row0) / dx1) + 1;
+            for (int i = i_start; i <= i_end; ++i) {
+                double cx = x_row0 + (double)i * dx1;
+                double phi = phi1;
+                if (nf > 0 && cx < x_miter + (double)nf * 0.55) {
+                    double t = std::clamp((x_miter + (double)nf * 0.55 - cx) / ((double)nf * 0.55 + 0.35), 0.0, 1.0);
+                    phi = phi1 * (1.0 - 0.5 * t);
+                }
+                double hxi = 0.5 * (std::abs(std::cos(phi)) + std::abs(std::sin(phi)));
+                if (cx < hxi || cx > L - hxi || cy < hxi || cy > L - hxi) continue;
+                if (cx < x_miter - 0.35) continue;
+                if (sat_ok_point(cx, cy, phi, trial, a_sat)) trial.push_back({cx, cy, phi});
+            }
+        }
+
+        // 3. Left sheared strip (x in [0, W2])
+        double c2 = std::cos(th2), sn2 = std::sin(th2);
+        double hx2 = 0.5 * (c2 + sn2);
+        double dy2 = a_lat / c2;
+        double phi2 = (double)s2 * th2;
+        double ph2 = rand_uniform(rng, 0.0, dy2);
+        for (int j = 0; j < w2; ++j) {
+            double cx = std::min(W2 - hx2, hx2 + (double)j * c2);
+            double y_miter = W1 * (cx / W2);
+            double y_col0 = ph2 + (double)s2 * (double)j * sn2;
+            int i_start = (int)std::floor((y_miter - 0.35 - y_col0) / dy2) - 1;
+            int i_end = (int)std::ceil((L - 0.5 - y_col0) / dy2) + 1;
+            for (int i = i_start; i <= i_end; ++i) {
+                double cy = y_col0 + (double)i * dy2;
+                double phi = phi2;
+                if (nf > 0 && cy < y_miter + (double)nf * 0.55) {
+                    double t = std::clamp((y_miter + (double)nf * 0.55 - cy) / ((double)nf * 0.55 + 0.35), 0.0, 1.0);
+                    phi = phi2 * (1.0 - 0.5 * t);
+                }
+                double hxi = 0.5 * (std::abs(std::cos(phi)) + std::abs(std::sin(phi)));
+                if (cx < hxi || cx > L - hxi || cy < hxi || cy > L - hxi) continue;
+                if (cy < y_miter - 0.35) continue;
+                if (sat_ok_point(cx, cy, phi, trial, a_sat)) trial.push_back({cx, cy, phi});
+            }
+        }
+
+        // 4. Upright 0 deg end-wedge teeth into (L, 0), (0, L), and (0, 0) wedges
+        int end_k = std::min(k, std::max(P1, P2) + 3);
+        for (int ix = 0; ix < 5; ++ix) {
+            for (int iy = 0; iy < end_k; ++iy) {
+                double px1 = L - 0.5 - ix, py1 = 0.5 + iy;
+                if (px1 >= 0.5 && py1 <= L - 0.5 && sat_ok_point(px1, py1, 0.0, trial, a_sat))
+                    trial.push_back({px1, py1, 0.0});
+                double px2 = 0.5 + iy, py2 = L - 0.5 - ix;
+                if (py2 >= 0.5 && px2 <= L - 0.5 && sat_ok_point(px2, py2, 0.0, trial, a_sat))
+                    trial.push_back({px2, py2, 0.0});
+            }
+        }
+        for (int ix = 0; ix <= P2 + 1; ++ix) {
+            for (int iy = 0; iy <= P1 + 1; ++iy) {
+                double px = 0.5 + ix, py = 0.5 + iy;
+                if (px <= L - 0.5 && py <= L - 0.5 && sat_ok_point(px, py, 0.0, trial, a_sat))
+                    trial.push_back({px, py, 0.0});
+            }
+        }
+
+        int diff = (int)trial.size() - n;
+        int score = (diff <= 1) ? std::abs(diff) : (12 + 5 * (diff - 1));
+        if (score < best_score) {
+            best_score = score;
+            best_pts = std::move(trial);
+            bP1 = P1; bP2 = P2; bw1 = w1; bw2 = w2; bs1 = s1; bs2 = s2; bnf = nf;
+            bpre = (int)best_pts.size();
+        }
+        if (best_score <= 3 && att >= 8) break;
+    }
+
+    if (best_pts.empty()) return seed_asym_band_v9(n, L, rng, desc, slot_hint);
+
+    if ((int)best_pts.size() < n) {
+        best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.890, 0.44, rng);
+        best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.892);
+    } else if ((int)best_pts.size() > n) {
+        trim_excess_nearest_v13(best_pts, n);
+    }
+    apply_d4_symmetry_v13(best_pts, L, slot_hint & 7);
+    add_jitter(best_pts, rng, 0.002);
+
+    char buf[128];
+    std::snprintf(buf, sizeof(buf), "fanL13(P=%d,%d,w=%d,%d,s=%+d,%+d,nf=%d,pre=%d)", bP1, bP2, bw1, bw2, bs1, bs2, bnf, bpre);
+    desc = buf;
+    return best_pts;
+}
+
+// =========================================================================
 // Augmented-Lagrangian + L-BFGS float64 L-Squeezer (Fixed & Free Angles)
 // =========================================================================
 
@@ -3711,7 +4145,7 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_pyth_diamond_v9(n, L_val, rng, desc, grp * 3 + (fam - 17));
                     }
                 }
-            } else {
+            } else if (idea == 12) {
                 // Idea 12: Mitered Flush Sheared-Row L-Pockets (65%) + True-Axis Algebraic Bridges w=2..10 (35%)
                 if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 4 == 0))) {
                     int sidx = b % (int)surg_pool.size();
@@ -3726,6 +4160,23 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_mitered_Lpockets_v12(n, L_val, rng, desc, grp * 13 + fam);
                     } else {
                         seeds_pts[b] = seed_exact_bridge_v12(n, L_val, rng, desc, grp * 7 + (fam - 13));
+                    }
+                }
+            } else {
+                // Idea 13: Asymmetric Exact-Root Diagonal Bridges (65%) + Corner-Fanned P>=7 L-Pockets (35%)
+                if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 4 == 0))) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = exact_bbox_side(seeds_pts[b]);
+                    const char* ops[5] = {"surg13_buckle", "surg13_slipline", "surg13_vachop", "surg13_aniso", "surg13_xfer"};
+                    desc = ops[sidx % 5];
+                } else {
+                    int fam = b % 20;
+                    int grp = b / 20;
+                    if (fam < 13) {
+                        seeds_pts[b] = seed_asym_bridge_v13(n, L_val, inc_L, rng, desc, grp * 13 + fam);
+                    } else {
+                        seeds_pts[b] = seed_fanned_Lpockets_v13(n, L_val, rng, desc, grp * 7 + (fam - 13));
                     }
                 }
             }

@@ -329,5 +329,46 @@ def test_idea12_lpocket_and_bridge_identities():
         assert pc.sat_max_penetration(chain, np.full(w_b, th_r)) < 1e-12
 
 
+def test_idea13_bridge_filter_and_sheared_corridor() -> None:
+    """Verify Idea 13 sub-inc_f bridge gating and band-aligned sheared lattice invariants."""
+    def strict_roots(f_inc: float, w_max: int = 12) -> list[tuple[int, int, int, float]]:
+        out = []
+        for w in range(1, w_max + 1):
+            for a in range(w):
+                for b in range(a, w):
+                    disc = 2 * w * w - (a - b) * (a - b)
+                    if disc < 0:
+                        continue
+                    f_r = -0.5 * (a + b) + 0.5 * math.sqrt(disc)
+                    if 0.45 <= f_r < f_inc - 1e-4:
+                        out.append((w, a, b, f_r))
+        return out
+
+    # n=971 (f_inc ~ 0.66432): w=1 @ 45 deg (0.7071) must be excluded; (8,5,5) & (4,1,3) kept
+    r971 = strict_roots(0.664318)
+    assert all(not (w == 1 and a == 0 and b == 0) for w, a, b, _ in r971)
+    assert any((w, a, b) == (8, 5, 5) for w, a, b, _ in r971)
+    assert any((w, a, b) == (4, 1, 3) for w, a, b, _ in r971)
+
+    # n=796 (f_inc ~ 0.72154): w=1 @ 45 deg (0.7071) and (6,3,4) both strictly sub-inc_f
+    r796 = strict_roots(0.721540)
+    assert any((w, a, b) == (1, 0, 0) for w, a, b, _ in r796)
+    assert any((w, a, b) == (6, 3, 4) for w, a, b, _ in r796)
+
+    # Band-aligned sheared basis: sh = -cot(th - psi) makes e2_sheared parallel to band axis
+    f4 = math.sqrt(7.0) - 2.0
+    th = math.atan2(1.0 + f4, 3.0 + f4)
+    psi = -0.25 * math.pi
+    nx, ny = -math.sin(psi), math.cos(psi)
+    sh = -math.cos(th - psi) / math.sin(th - psi)
+    assert abs(sh) <= 1.0
+    e1 = np.array([math.cos(th), math.sin(th)])
+    e2 = np.array([-math.sin(th) + sh * math.cos(th), math.cos(th) + sh * math.sin(th)])
+    assert abs(e2[0] * nx + e2[1] * ny) < 1e-12
+    pts = np.array([10.0 + i * e1 + j * e2 for i in range(4) for j in range(6)], dtype=np.float64)
+    assert pc.sat_max_penetration(pts, np.full(len(pts), th)) < 1e-12
+
+
+
 
 

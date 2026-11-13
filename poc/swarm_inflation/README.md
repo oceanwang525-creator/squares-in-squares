@@ -439,3 +439,40 @@ Idea 11 proved mathematically that local force-chain relaxations around our `v10
   1. **Area budget (`L^2 - n`) proves `P=7 (w=8)` L-pockets lose ~18.5 squares at un-tapered corners (`NW, SE, SW`):** At `P=7`, bulk strip waste already consumes `~23.7` of `31.6` total empty area (`n=971, 972`), leaving `< 8.6` area for all three corners. Naive `L`-strip clipping at `a=1.000` lost `5..7` squares (`965/972`, `964/971`, `360/367`), while stuffing missing squares via `0.882` random probes (`fill_wedges_and_complete`) jammed `1-2` boundary/interface outliers that bloated `lam=1.003..1.007`. Also `raw_est` favored `P=5, 6` (`rho=0.91..0.93`) over `P=7, 8, 9` (`rho=0.945..0.955`), and `s1=+1, s2=-1` was strictly inferior to `s1=-1, s2=+1`.
   2. **Bridge orientation mismatch:** `seed_exact_bridge_v12` aligned band tangent `psi = th_r +- 4°` instead of the `+-45°` diagonal corridor (`psi = +-45°, th = +-th_r`), whereas `cand_v11_n791`/`n969` (`0.6467`) and `cand_v11_n333` (`18.8167`) proved sheared `th_r` supercells inside an asymmetrically-shifted `+-45°` corridor are the tight seam geometry.
   3. **Untapped `0.7071` & `w >= 4` bridge headroom:** Every target has strictly sub-`inc_L` algebraic bridge roots (`971: (8,5,5) 0.65685, (4,1,3) 0.64575`; `972/851/910: (13,8,9) 0.67878, (11,2,10) 0.67083, (8,5,5) 0.65685`; `367: (9,4,7) 0.68466, (8,5,5) 0.65685`; `791/969: (9,2,8) 0.61249, (12,5,10) 0.60864, (15,10,10) 0.60660`; `796/687: w=1..4 @ 45° 0.70711, (5,1,4) 0.70156, (6,3,4) 0.71308`; `333: (14,5,12) 0.76013, (15,2,14) 0.74643`). Meanwhile `seed_asym_band_v9` stopped via `if (diff >= -1 && diff <= 1) break;` on `w=1` (`0.7071`) before ever generating `w >= 4` bands.
+
+---
+
+## Idea 13: Exact-Root `+-45°` Diagonal-Corridor Bridges (`w>=3` / `796,687` `0.7071`) & Corner-Fanned `P>=7` L-Pockets (2026-11-13)
+### Hypothesis
+Combining the root-cause findings of Idea 11 and Idea 12:
+1. **Track 13A (`seed_asym_bridge_v13`, 65% of batch):**
+   - Enumerates all exact algebraic bridge roots `(w_b, a, b)` (`w_b in [1..18]`, `(a+f)^2+(b+f)^2=w_b^2`) strictly below `inc_f - 1e-4`.
+   - When `inc_f < 0.7071` (`367, 910, 971, 972, 851, 791, 969, 333`), explicitly excludes `w <= 2 @ 45°` so seeds never settle into the `0.707107` `w=1` trap. Conversely, for `796 (inc_f=0.72154)` and `687 (inc_f=0.72327)`, directly targets `w=1..5 @ 45°` (`0.70711`) and `(5,1,4)` (`0.70156`) / `(6,3,4)` (`0.71308`), which Idea 10/11 never generated cleanly after shifting away from `asym9`.
+   - Places the `th_r` sheared crystal inside an asymmetrically shifted `+-45°` corridor (`psi = +-45° +- 8°`, plus `30%` true-axis `psi = th_r +- 3°`), supporting both 2-corner and 3-corner `0°` anchorings (`cand_v11_n969` style), sweeping `(shift_d, wb, sp_u, a_seed)` until `diff in [-2, +1]` without early `w=1` exit, followed by seam void filling.
+2. **Track 13B (`seed_fanned_Lpockets_v13`, 35% of batch):**
+   - Fixes `seed_mitered_Lpockets_v12` by restricting `P >= 7` (`k >= 29`, else `>= 5`) where `rho_shear >= 0.944`, prioritizing `(s1, s2) = (-1, +1)` and `(+1, -1)`, enforcing exact outer `hx = 0.5*(c+s)` wall margins, adding continuous corner fanning (`nf = 0, 3, 5`) + `0°` staircase wedge teeth before `0.892` corner completion.
+- Test first on 4 targets (`796, 687, 971, 367`, `batch=1024`, `fast_mode=3`, `<5 min`) + Round 2 `Idea 11` surgery + `fast_mode=4` + 10-round HiGHS LP/SLP polish; scale to all 10 targets on promising results.
+
+### Results Log (Idea 13)
+- **Status:** `0` strict wins (`L_lit < inc_L`), `2` all-time `swarm-inflation` personal bests (`n=687`, `n=796`), committed on `swarm-inflation`.
+- **Pipeline:** Added `seed_asym_bridge_v13` (strict sub-`inc_f` `(w,a,b)` roots with `45°` `0.7071` gated by `inc_f > 0.7072`, band-aligned shear `sh = -cot(th-psi)`, `nx/ny`-matched corner anchors) + `seed_fanned_Lpockets_v13` (`P >= 7` for `k >= 29`, `(s1,s2)` opposite-shear bias, exact `hx = 0.5*(c+s)` wall margins, miter corner fanning, `0°` end-wedge teeth).
+- **Core 4 Targets (`796, 687, 971, 367` — Round 1 `fm3` `batch=1024` + `idea11_force_chain` surgery -> Round 2 `fm4`/`fm2` + 10-rd HiGHS LP/SLP):**
+  - `n=687` (`inc=26.723271`): **NEW BEST `26.744554107875`** (`v13_r2:fm4` + SLP10, down `-0.0290` from `v11_surg` `26.773585`; gap `0.0213`). Structure: genuine `P=7, w=8` opposite-shear `(23°, 67°)` L-pocket (`382 @ 0°`, `137 @ 67°`, `126 @ 23°`).
+  - `n=796` (`inc=28.721540`): **NEW BEST `28.748227708142`** (`v13_r2:fm4` + SLP10, down `-0.0078` from `v11_surg` `28.755991`; Round 1 `brg13(w=6,3_4)` hit `28.767601` and `fanL13` hit `28.766607 -> 28.751129`).
+  - `n=971` (`inc=31.664318`): Round 1 `fanL13(P=8,9)` `31.741379 -> 31.717119` (SLP10), `brg13(w=4,1_3)` `31.761635`; Round 2 pulled back to `31.707131` (`45°` `v11_top` donor).
+  - `n=367` (`inc=19.692388`): Round 1 `fanL13(P=6,6)` `19.740413 -> 19.737964` (SLP10), `brg13(w=4,1_3)` `19.749446`; Round 2 `19.707110` (`45°`).
+- **Remaining 6 Targets (Round 1 `fm3` `batch=1024`):**
+  - `n=791` (`inc=28.634071`): `28.703882` (`fanL13(P=9,6)`); `n=969` (`31.633983`): `31.714716` (`fanL13(P=9,9)`); `n=972` (`31.683990`): `31.735638` (`fanL13(P=9,7)`); `n=851` (`29.684144`): `29.737313` (`fanL13(P=9,7)`); `n=910` (`30.679149`): `30.759441` (`fanL13(P=8,8)`); `n=333` (`18.772634`): `18.806003` (`fanL13(P=5,5)`).
+- **Key Bottleneck Diagnostics:**
+  1. Void audit of `cand_v13_n687` & `cand_v13_n796` shows largest remaining voids (`r=0.79..0.82`) sit strictly at the `(0, L)`/`(L, 0)` outer L-pocket strip ends (`(4.46, 26.25)`, `(26.25, 3.47)`) and `(0,0)` corner miter (`(1.49, 2.48)`).
+  2. `lip_slp_polish` in `polish_and_certify.py` uses a symmetric worst-case `+LIP * |dtheta|` Lipschitz penalty on every pair, which mathematically blocks cooperative small-angle rotation `(dx, dy, dtheta)` of locked bridge/pocket chains.
+
+---
+
+## Idea 14: Exact-Jacobian Joint `(x, y, dtheta)` HiGHS SLP + Gentle GPU Breathing (`0.94 -> 1.00`) + End-Matched `24.8°–26.6°` Twin/L-Pockets (2026-11-13)
+- **Hypothesis:**
+  1. Replacing `lip_slp_polish`'s symmetric `+LIP * |dtheta|` bound with **exact signed first-order SAT-margin derivatives `(dx, dy, dtheta_i, dtheta_j, dL)`** (analytic derivatives `dg/dtheta_i, dg/dtheta_j` of `direction * proj_k - rad_k` + exact `d(ext_i)/dtheta_i` + `O(ta^2)` curvature margin + trust-region halving / backtracking on exact `sat_max_penetration`) will unlock cooperative rotation of tilted chains inside our existing `cand_v13_n687`, `cand_v13_n796`, `cand_v11_n791`, `cand_v11_n969`, and exported `v13_r1`/`v13_r2` bins.
+  2. Combining **gentle GPU breathing (`fast_mode=4/5`, `a: 0.94 -> 1.00`, zero artificial `w_align` penalty)** on `v13` / `v11` scratch basins + **end-matched curved/twin `24.8°–26.6°` L-pockets** (eliminating the `(0,L)/(L,0)` end-strip collision & corner miter holes `(4.46, 26.25)`, `(1.49, 2.48)` via tapered row length & miter curve) + `joint_xytheta_slp` on core targets `{687, 796, 367, 971}` (`<10` min pilot first) will close the remaining `0.021..0.027` gap.
+
+### Results Log (Idea 14)
+*(Pending execution)*
