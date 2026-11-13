@@ -65,7 +65,7 @@ def main():
     paths = check_pr(os.environ["BASE_SHA"], os.environ["HEAD_SHA"])
     print(f"Validated {len(paths)} touched POC final.csv file(s), structure only.")
     print("Separate merge gate required: official literal + actual pandas certification "
-          "and strictly smaller L in BOTH modes versus fresh main; no ties or snapshots.")
+          "for ALL included groups; valid ties/losses/snapshots are allowed. Union must select best per n without regressions.")
 
 if __name__ == "__main__":
     try:

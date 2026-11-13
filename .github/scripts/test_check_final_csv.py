@@ -14,6 +14,9 @@ class StructureTests(unittest.TestCase):
         c.validate("id,x,y,deg\n")
     def test_complete_valid(self):
         c.validate("id,x,y,deg\n001_0,s0,s0,s0\n")
+    def test_complete_worse_spread_group_allowed(self):
+        c.validate("id,x,y,deg\n002_0,s0,s0,s0\n002_1,s100,s0,s0\n")
+
     def test_reject_bad_data(self):
         for text in ["", "n,square_id,x,y,angle\n", '"id",x,y,deg\n',
                      "id,x,y,deg\n002_0,0,0,0\n",
