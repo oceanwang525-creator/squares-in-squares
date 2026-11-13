@@ -1,0 +1,149 @@
+[
+  {
+    "n": 269,
+    "L_ours": 16.889730073595636,
+    "L_front": 16.8897300791247,
+    "configs": 3388,
+    "best_rigid_cap": 261,
+    "rigid_deficit": 8,
+    "best_rigid_cfg": {
+      "L_probe": 16.889230073595638,
+      "deg": 44.5,
+      "w": 1,
+      "dv": 0.0,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 261
+    },
+    "best_relax_cap": 261,
+    "relax_deficit": 8,
+    "best_relax_cfg": {
+      "L_probe": 16.889230073595638,
+      "deg": 44.5,
+      "w": 1,
+      "dv": 0.0,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 261,
+      "pen": 5.551115123125783e-16
+    },
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 6.79
+  },
+  {
+    "n": 328,
+    "L_ours": 18.614368938490983,
+    "L_front": 18.5995354648065,
+    "configs": 6776,
+    "best_rigid_cap": 318,
+    "rigid_deficit": 10,
+    "best_rigid_cfg": {
+      "L_probe": 18.613368938490982,
+      "deg": 44.5,
+      "w": 2,
+      "dv": 0.0,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 318
+    },
+    "best_relax_cap": 0,
+    "relax_deficit": 328,
+    "best_relax_cfg": null,
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 14.8
+  },
+  {
+    "n": 367,
+    "L_ours": 19.692388155425203,
+    "L_front": 19.6708567970218,
+    "configs": 6776,
+    "best_rigid_cap": 357,
+    "rigid_deficit": 10,
+    "best_rigid_cfg": {
+      "L_probe": 19.6913881554252,
+      "deg": 44.5,
+      "w": 2,
+      "dv": -1.5,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 357
+    },
+    "best_relax_cap": 0,
+    "relax_deficit": 367,
+    "best_relax_cfg": null,
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 17.62
+  },
+  {
+    "n": 492,
+    "L_ours": 22.707106781186653,
+    "L_front": 22.6905404757633,
+    "configs": 6776,
+    "best_rigid_cap": 480,
+    "rigid_deficit": 12,
+    "best_rigid_cfg": {
+      "L_probe": 22.70610678118665,
+      "deg": 44.5,
+      "w": 2,
+      "dv": -1.5,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 480
+    },
+    "best_relax_cap": 0,
+    "relax_deficit": 492,
+    "best_relax_cfg": null,
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 21.37
+  },
+  {
+    "n": 634,
+    "L_ours": 25.707106781186678,
+    "L_front": 25.6823088919573,
+    "configs": 6776,
+    "best_rigid_cap": 620,
+    "rigid_deficit": 14,
+    "best_rigid_cfg": {
+      "L_probe": 25.706106781186676,
+      "deg": 44.5,
+      "w": 5,
+      "dv": 0.0,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 620
+    },
+    "best_relax_cap": 0,
+    "relax_deficit": 634,
+    "best_relax_cfg": null,
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 26.65
+  },
+  {
+    "n": 686,
+    "L_ours": 26.707106781186706,
+    "L_front": 26.6866153169709,
+    "configs": 6776,
+    "best_rigid_cap": 670,
+    "rigid_deficit": 16,
+    "best_rigid_cfg": {
+      "L_probe": 26.706106781186705,
+      "deg": 44.5,
+      "w": 2,
+      "dv": -1.5,
+      "stagger": 0.0,
+      "mode": "corner_L0",
+      "cap": 670
+    },
+    "best_relax_cap": 0,
+    "relax_deficit": 686,
+    "best_relax_cfg": null,
+    "relaxed_L": null,
+    "certified_win": null,
+    "seconds": 27.82
+  }
+]
