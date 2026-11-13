@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.util
 import io
 import os
+import subprocess
 import sys
 import tempfile
 import warnings
@@ -318,12 +319,34 @@ def load_origin_main_portfolio(target_ns: list[int] | set[int]) -> dict[int, dic
                 best[n]["L_dec"] = L_raw
 
     for p in sorted((REPO_ROOT / "poc").glob("*/final.csv")):
-        if p == FINAL_CSV or p.stat().st_size <= 20:
-            continue
-        try:
-            lit, pd_t = auto_union.load(p)
-        except Exception:
-            continue
+        if p == FINAL_CSV:
+            try:
+                origin_text = subprocess.check_output(
+                    ["git", "show", "origin/main:poc/swarm_mechwalk/final.csv"],
+                    cwd=str(REPO_ROOT),
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                )
+            except Exception:
+                continue
+            if len(origin_text) <= 20:
+                continue
+            try:
+                with tempfile.TemporaryDirectory() as td:
+                    tp = Path(td) / "origin_mechwalk_final.csv"
+                    tp.write_text(origin_text, encoding="utf-8")
+                    lit, pd_t = auto_union.load(tp)
+            except Exception:
+                continue
+            src_label = "origin/main:poc/swarm_mechwalk/final.csv"
+        else:
+            if p.stat().st_size <= 20:
+                continue
+            try:
+                lit, pd_t = auto_union.load(p)
+            except Exception:
+                continue
+            src_label = str(p.relative_to(REPO_ROOT))
         for n in need:
             if n not in lit or n not in pd_t or len(lit[n]) != n:
                 continue
@@ -343,7 +366,7 @@ def load_origin_main_portfolio(target_ns: list[int] | set[int]) -> dict[int, dic
                     "th": th,
                     "L": L_f,
                     "L_dec": L_dec,
-                    "source": str(p.relative_to(REPO_ROOT)),
+                    "source": src_label,
                 }
 
     return best
