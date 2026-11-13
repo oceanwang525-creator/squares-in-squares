@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Certified per-POC exports and fail-closed incumbent union."""
 from __future__ import annotations
-import argparse, csv, hashlib, io, json, os, sys, tempfile
+import argparse, csv, hashlib, importlib.util, io, json, os, sys, tempfile
 from concurrent.futures import ProcessPoolExecutor
 from decimal import Decimal
 from pathlib import Path
@@ -15,6 +15,9 @@ from squares import _official_metric as metric
 
 BASE = ROOT / "poc/pell_corrugation/data/border-scan/merged.csv"
 FIELDS = ["id", "n", "square_id", "x", "y", "angle"]
+_spec = importlib.util.spec_from_file_location("final_csv_structure", ROOT / ".github/scripts/check_final_csv.py")
+_structure = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_structure)
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
@@ -53,6 +56,7 @@ def parse_text(text):
         if not set(FIELDS).issubset(reader.fieldnames or []):
             raise ValueError("Expected id,x,y,deg or legacy incumbent schema")
         return metric._parse_submission_csv(text)
+    _structure.validate(text)
     groups = {}
     with mp.workdps(95):
         for row in reader:
@@ -70,8 +74,7 @@ def parse_text(text):
             angle = mp.nstr(mp.mpf(values["deg"]) * mp.pi / 180, 75)
             groups.setdefault(n, []).append(dict(square_id=sid, x=values["x"],
                                                  y=values["y"], angle=angle))
-    if not groups:
-        raise ValueError("Empty final")
+    # A canonical header-only final explicitly records zero strict wins.
     for n, rows in groups.items():
         error = metric._validate_puzzle(n, rows)
         if error:
@@ -95,7 +98,8 @@ def check(task):
         return None
 
 def qualifies(result, limits):
-    return result is not None and all(Decimal(x) <= limit for x, limit in zip(result, limits))
+    """A new final must strictly win in BOTH official transport modes."""
+    return result is not None and all(Decimal(x) < limit for x, limit in zip(result, limits))
 
 def key(task):
     return digest(json.dumps(task, sort_keys=True).encode())
@@ -173,7 +177,7 @@ def export(base, workers, audit):
             if result is None: continue
             n, rows, _ = t
             a, b = map(Decimal, result)
-            if a <= sides[n][0] and b <= sides[n][1] and (n not in values or a < values[n]):
+            if qualifies(result, sides[n]) and (n not in values or a < values[n]):
                 best[n], values[n], sources[n] = rows, a, source
         final = folder / "final.csv"
         if best:
@@ -193,8 +197,6 @@ def export(base, workers, audit):
                     del best[n]
                     del sources[n]
                 atomic(cache_path, json.dumps(cache).encode())
-                if not best:
-                    raise ValueError("No groups survive actual four-column transport: " + str(folder))
                 # Subsetting independent groups does not change their exported bytes.
                 data = final_text(best).encode()
             if base.read_bytes() != initial: raise ValueError("Incumbent changed during export")
@@ -202,9 +204,11 @@ def export(base, workers, audit):
             results[folder.name] = dict(count=len(best), bytes=len(data),
                 ns=sorted(best), sources=sources, transport_excluded=excluded, sha256=digest(data))
         else:
-            # Never delete pre-existing files silently.
-            if final.exists(): raise ValueError("Existing final no longer qualifies: " + str(final))
-            results[folder.name] = dict(count=0, bytes=0)
+            # --export explicitly regenerates finals against this fresh incumbent.
+            data = final_text({}).encode()
+            if base.read_bytes() != initial: raise ValueError("Incumbent changed during export")
+            atomic(final, data)
+            results[folder.name] = dict(count=0, bytes=len(data), ns=[], sources={}, sha256=digest(data))
         print(folder.name, results[folder.name]["count"], results[folder.name]["bytes"], flush=True)
     if base.read_bytes() != initial: raise ValueError("Incumbent changed")
     atomic(audit / "exports.json", json.dumps(dict(baseline_sha256=digest(initial),

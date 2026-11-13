@@ -59,3 +59,13 @@ Choose the architecture for your actual GPU. CUDA runtime results are not implie
 The unmodified official metric and its separate license live in [the shared package](poc/baseline/poc/vendor/NOTICE). Proposed improvements must pass literal-decimal and actual pandas transport certification. Historical results are preserved under the relevant approach, not relabeled as new results. The hinged-band and boundary-zipper POCs produced valid but worse outputs, with zero wins.
 
 Project code is [MIT licensed](LICENSE). See [detailed baseline usage](poc/baseline/docs/USAGE.md) and each approach's docs for provenance and limits.
+
+## Contributing results
+
+Every added or changed `poc/{name}` folder in a PR must contain `final.csv` in the PR head, even when that CSV itself did not change. Use the exact header `id,x,y,deg`. A header-only file is the correct result when the POC has no certified strict wins. Fully deleted POC folders are exempt.
+
+Nonempty finals contain only complete n groups that strictly reduce L against fresh main in BOTH the unchanged official literal-decimal check and actual pandas read_csv/to_csv transport certification. Do not publish incumbent snapshots, ties, regressions, or incomplete groups as final results. A final may contain just the n values won by that POC, not all 1000. IDs use `001_0` through `1000_999` as applicable; decimals may use an s prefix to preserve precision through pandas.
+
+The PR workflow checks every touched POC's final structure using trusted base code and a read-only token. It never executes PR code. This is NOT geometry certification or proof of improvement. Before merging, separately compare against fresh main, certify literal and actual pandas transport, and retain only strict wins in both modes. Record source paths, incumbent revision/hash, certification environment and results in the POC's provenance. Refresh those checks if main changes.
+
+Historical finals are not automatically rewritten by this policy change. The union independently certifies candidates and only selects dual-mode strict improvements; a tie in a historical file cannot displace the incumbent.
