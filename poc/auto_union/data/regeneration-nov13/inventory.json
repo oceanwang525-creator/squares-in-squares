@@ -1,0 +1,3291 @@
+[
+  {
+    "folder": "alln_fixed_lp",
+    "scripts": [
+      "poc/alln_fixed_lp.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 10304,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "alln_fixed_lp",
+      "args": [
+        "poc/alln_fixed_lp/poc/alln_fixed_lp.py",
+        "--incumbent",
+        "regeneration-proof/incumbent.csv",
+        "--report",
+        "regeneration-proof/incumbent-report.json",
+        "--output",
+        "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+        "--wins",
+        "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+        "--jobs",
+        "1",
+        "--rounds",
+        "12"
+      ],
+      "reason": "Full 1000-group 12-round normal rerun, historical serial ~minutes",
+      "timeout": 3500,
+      "pid": 422952,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 1124.98
+    },
+    "result": {
+      "folder": "alln_fixed_lp",
+      "source_main": "44d3b0261326f15bf49a0426e0bfd8e476f98dcb",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+          "sha256": "ed7b26870dbc3a1076ebfbe02219d87419e2c6882a55f5cc9332924c0be753b4",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/alln_fixed_lp/data/regenerate-nov13/source-manifest.json",
+          "sha256": "31637c68eb4ede5e9605c2c78705c128e73312656d269cb57935453b359a00d9",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+          "sha256": "490fc02329cb70b62498aabc74d87804420cd27682573cf669e58e09f59c0802",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [
+        904
+      ],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "40d20f6747c043c9a36b1f082b0531856d1d7c4afac5bb41ef09a46070467656",
+      "sources": {
+        "904": "poc/alln_fixed_lp/data/regenerate-nov13/wins.json"
+      },
+      "candidate_results": [
+        {
+          "n": 904,
+          "key": "ada402604e6c79f71be386bdd74ffa42cb4095d2e676dfa27169c58d5c7ea25e",
+          "official": [
+            "30.56311620380489691923132169161402817671789112465933",
+            "30.56311620380489691923132169161402817671789112465933"
+          ]
+        }
+      ],
+      "final_results": [
+        {
+          "n": 904,
+          "official": [
+            "30.56311620380489691923132169161402817671789112465933",
+            "30.56311620380489691923132169161402817671789112465933"
+          ],
+          "incumbent": [
+            "30.56311909557035302302544074687604416490726708334374",
+            "30.56311909557035304999999999999124212147215762639049"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "folder": "areebbb_refresh_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "arm_gadget",
+    "scripts": [
+      "poc/arm_repack.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 19794,
+    "status": "skipped-deferred",
+    "reason": "Historical rerun requires mandatory target-specific --a --g and --target-L values absent from saved README/scripts; flat-wall model documented infeasible. Not guessing geometry parameters."
+  },
+  {
+    "folder": "asymptotic_families",
+    "scripts": [
+      "poc/breakeven.py",
+      "poc/strip.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 3394,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "auto_union",
+    "scripts": [
+      "poc/union.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 11919,
+    "status": "skipped-deferred",
+    "reason": "Infrastructure/certification tooling, not a packing-search experiment; export guard separately tested, not a search rerun."
+  },
+  {
+    "folder": "baseline",
+    "scripts": [
+      "poc/src/squares/cli.py",
+      "poc/src/squares/core.py",
+      "poc/src/squares/optimizer.py",
+      "poc/src/squares/references.py",
+      "poc/src/squares/_official_metric.py",
+      "poc/src/squares/__init__.py",
+      "poc/src/squares/__main__.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 48114,
+    "status": "skipped-deferred",
+    "reason": "Official metric/baseline infrastructure, not a packing-search experiment; rerunning would not regenerate missing search outputs."
+  },
+  {
+    "folder": "bent_band_join",
+    "scripts": [
+      "poc/bent_band.py",
+      "poc/run.py",
+      "poc/search.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 19178,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "bent_band_join",
+      "args": [
+        "poc/bent_band_join/poc/run.py",
+        "--out-dir",
+        "poc/bent_band_join/data/regenerate-nov13/"
+      ],
+      "reason": "Full finite four-target construction",
+      "timeout": 3500,
+      "pid": 422953,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 115.18
+    },
+    "result": {
+      "folder": "bent_band_join",
+      "source_main": "5ebeade65849c74170264dd47a2d222d27823d1f",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n645-literal.csv",
+          "sha256": "68e4546d4d3cb50b9ed941b21d8e7698d6f433f46962064dfbc11859e7f61cd4",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n645-pandas.csv",
+          "sha256": "a7ab6a50f7cee27c3099f55014295d2a753194f6cffffc3b6008292fad8636ec",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n751-literal.csv",
+          "sha256": "9bb7c8239e2e3596551a578f6d5d7ea2cbe88718198fbfa3de401b7ebdb34fb1",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n751-pandas.csv",
+          "sha256": "5e692d9f4d59d31e7fc7e5f4975ecbcb68f66a3cd94de5fa087d23c852c86b1a",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n925-literal.csv",
+          "sha256": "1bd735478525b3cda5f8c3696b6a135e643add137611c159172f6a11b566aa19",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n925-pandas.csv",
+          "sha256": "724f8941b6d30c8a83bbcb478112e08d7b5b9e2eabefa0b96187f269fda42e89",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n987-literal.csv",
+          "sha256": "8dacc5cb5d263d873187467d8fa9a480669c9c9b99f1b33d825281c9c1977670",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/n987-pandas.csv",
+          "sha256": "c9f24380160b2c47ff56acd99aeb4cef1ec3df80e906b848b0e9cb993d6126fe",
+          "groups": 1
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/results.json",
+          "sha256": "494ea14fca9ed56fd4ac4efe75d89be468b9c9497bfd89a2a72fc2d063de0a3e",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/bent_band_join/data/regenerate-nov13/source-manifest.json",
+          "sha256": "f4ea1c4f09d7c7a716aaffa2c1cd655cbe1a1e8295d95439bdf52df960de2f25",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 8,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 645,
+          "key": "6109deed9aab81d2556a64fe6c7c1800c70976feaa085b74324e8b47a311bd9b",
+          "official": [
+            "26.19238865927288273000000000000000000000000000000000",
+            "26.19238865927288264000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 645,
+          "key": "c028e1c2bb927c1d56b1dc24e7b3d56057e61dd25a58dd1563db4ea2d93b61bc",
+          "official": [
+            "26.19238865927288264000000000000000000000000000000000",
+            "26.19238865927288264000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 751,
+          "key": "a67fa424642728ce9bd91a13e24e980889a7d9247bfa16046e2032b08a7f83a2",
+          "official": [
+            "28.10660225993025385000000000000000000000000000000000",
+            "28.10660225993025340000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 751,
+          "key": "b51ef4e4b895542f8ef8023a567bf9f3ad5863235f111f0abaa582166e47dc7c",
+          "official": [
+            "28.10660225993025340000000000000000000000000000000000",
+            "28.10660225993025340000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 925,
+          "key": "dff2b0e7588f1faff05f65149f5ec4be8823ffe7530b57cd1d5f0c0fb9defb92",
+          "official": [
+            "31.43502945124498283000000000000000000000000000000000",
+            "31.43502945124498275000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 925,
+          "key": "c16cf26e0c3841a61bdd9f5f05911e782d6c798477d668239ebe7e599821a56f",
+          "official": [
+            "31.43502945124498275000000000000000000000000000000000",
+            "31.43502945124498275000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 987,
+          "key": "b2e62bad4fe6fb8c5c5dc2336030a6ff7f1909842cdf4dcba3982a17d87a6590",
+          "official": [
+            "32.02081590058761406000000000000000000000000000000000",
+            "32.02081590058761430000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 987,
+          "key": "659f0d8fe13b9dbab0bb85641e5355d3a0bb3138390b3ba73d3e950ce0c68f1d",
+          "official": [
+            "32.02081590058761430000000000000000000000000000000000",
+            "32.02081590058761430000000000000000000000000000000000"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "bign_donors",
+    "scripts": [
+      "poc/crop.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 2591,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "c4_symmetric_ils",
+    "scripts": [
+      "poc/c4ils.py",
+      "poc/c4run.py",
+      "poc/rgad.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 11745,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "c4_symmetric_ils",
+      "args": [
+        "poc/c4_symmetric_ils/poc/c4run.py",
+        "109",
+        "10.9498",
+        "240",
+        "1"
+      ],
+      "reason": "Documented n109 C4 240second singleworker",
+      "timeout": 3500,
+      "pid": 428390,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 244.63
+    },
+    "result": {
+      "folder": "c4_symmetric_ils",
+      "source_main": "ac4aa85618a97924338ce5d425fc5f14a000a5d0",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/c4_symmetric_ils/data/regenerate-nov13/c4/109_10.9498.json",
+          "sha256": "b4c004b30ed312c5e4765ac17cf40cea6de3cdc77431cb279cfae620a37784d8",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 1
+        },
+        {
+          "path": "poc/c4_symmetric_ils/data/regenerate-nov13/source-manifest.json",
+          "sha256": "53cc972062f5eba669817ce062553cb334d7da81ea9a53bafe8e0acf049040ca",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 109,
+          "key": "d4fa3fd758ae0b9182744dd333c1df5196c611648806f4b627fd808293339ef3",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "certified_union_nov12",
+    "scripts": [
+      "poc/fresh-proof.py",
+      "poc/union.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 11367,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "constant_clusters",
+    "scripts": [
+      "poc/cluster.py",
+      "poc/match.py",
+      "poc/roots.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 3945,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "corner_interlock_patch",
+    "scripts": [
+      "poc/patch_search.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 16815,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "corner_interlock_patch",
+      "args": [
+        "poc/corner_interlock_patch/poc/patch_search.py",
+        "--baseline",
+        "regeneration-proof/incumbent.csv",
+        "--out",
+        "poc/corner_interlock_patch/data/regenerate-nov13/"
+      ],
+      "reason": "Normal defaults seven targets trials2 iterations420",
+      "timeout": 3500,
+      "pid": 422950,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 20.62
+    },
+    "result": {
+      "folder": "corner_interlock_patch",
+      "source_main": "f3b4adc743eadd4702853421be3b06b5ccde7e86",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/corner_interlock_patch/data/regenerate-nov13/results.json",
+          "sha256": "7441e8ca75989fbb0177753fa8d4b317595c1ff4da8909f21551f70bcf0f82ff",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/corner_interlock_patch/data/regenerate-nov13/source-manifest.json",
+          "sha256": "89184476ee4d7ce038ae98c48312c7ca58afe62e4c81500a7ede8fbed03b87ef",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/corner_interlock_patch/data/results.json",
+          "sha256": "774ce046f28bfca34d59cbc1288d9663366ca69567d1de907aae82fd3ee249e5",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/corner_interlock_patch/data/results_lp.json",
+          "sha256": "7321fb20b1560eb648e67b56943ca3aca093cf5fec23dbd399566c99e40b12d6",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "corrugated_flanks",
+    "scripts": [
+      "poc/cell.py",
+      "poc/check.py",
+      "poc/full635.py",
+      "poc/phase_scan.py",
+      "poc/run_cell.py",
+      "poc/scan_km.py",
+      "poc/scan_w.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 8766,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "coupled_angle_sweep",
+    "scripts": [
+      "poc/sweep.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 9313,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "coupled_angle_sweep",
+      "args": [
+        "poc/coupled_angle_sweep/poc/sweep.py",
+        "regeneration-proof/incumbent.csv",
+        "poc/coupled_angle_sweep/data/regenerate-nov13/candidate.csv",
+        "poc/coupled_angle_sweep/data/regenerate-nov13/results.json",
+        "635",
+        "686",
+        "--workers",
+        "1"
+      ],
+      "reason": "Both documented family probes, bounded one worker",
+      "timeout": 3500,
+      "pid": 423151,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 8.89
+    },
+    "result": {
+      "folder": "coupled_angle_sweep",
+      "source_main": "a05b1c03bcdc5f3fefc45ca00953783a5a15f8fc",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/coupled_angle_sweep/data/regenerate-nov13/results.json",
+          "sha256": "f785eedfa56d5024512733c1d04e5424f98efc4eabbfb535757a4dd24645a0d9",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/coupled_angle_sweep/data/regenerate-nov13/source-manifest.json",
+          "sha256": "2317d361927da151176d9fbf1fea51f0bde0f8b83537692f786cc21690ba36af",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/coupled_angle_sweep/data/results.json",
+          "sha256": "771b14804dc5112cf3b57b5da2e1da022f8a50092b1d7699f198d5edc1a46d1c",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "cuda-loop",
+    "scripts": [
+      "poc/autotune.py",
+      "poc/batch.py",
+      "poc/budget.py",
+      "poc/cpp_loop.py",
+      "poc/cpp_pass.py",
+      "poc/demo.py",
+      "poc/endless.py",
+      "poc/families.py",
+      "poc/full_run.py",
+      "poc/polish.py",
+      "poc/records.py",
+      "poc/record_report.py",
+      "poc/refine.py",
+      "poc/scheduler.py",
+      "poc/seeded.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 75462,
+    "status": "skipped-deferred",
+    "reason": "GPU/Colab solver pipeline and CUDA binaries; desktop GPU already used by swarm. No GPU allocation or tiny CPU substitute run."
+  },
+  {
+    "folder": "d1_chain",
+    "scripts": [
+      "poc/common.py",
+      "poc/fan.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 2355,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "d1_chain",
+      "args": [
+        "poc/d1_chain/poc/fan.py",
+        "240",
+        "1"
+      ],
+      "reason": "Documented n401 four-minute fan relaxation",
+      "timeout": 3500,
+      "pid": 433359,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 246.54
+    },
+    "result": {
+      "folder": "d1_chain",
+      "source_main": "910cceb3f8d27b2668c80418c0f0ae96f24f82e8",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/d1_chain/data/regenerate-nov13/source-manifest.json",
+          "sha256": "5e7ec9db6d3a9263f7a0e6dec1a73cab8e1b3b07e9c8860804a99ad32db84592",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "dataset_harvest_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "diamond_core",
+    "scripts": [
+      "poc/diamond_core.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 13363,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "diamond_core",
+      "args": [
+        "poc/diamond_core/data/regenerate-nov13/export.py"
+      ],
+      "reason": "Full11-target default construction with raw rows export",
+      "timeout": 3500,
+      "pid": 428428,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 42.55
+    },
+    "result": {
+      "folder": "diamond_core",
+      "source_main": "c028b493e96d87656fba2a375a6c77892a8542e7",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/diamond_core/data/regenerate-nov13/generated.json",
+          "sha256": "3e1e84e02ea52fdfe0aa79924f3b8d4e2749f118e803f933eae195f26c52de36",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 11
+        },
+        {
+          "path": "poc/diamond_core/data/regenerate-nov13/source-manifest.json",
+          "sha256": "fdadcf88caad038c5566b3db5857418e3e8b9e3f02978d533fcddb13a8f903ab",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 11,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 17,
+          "key": "4ac8a07b46004e6506cb174036c529c785a6a06248bdd502d3a1fd717e502c78",
+          "official": null
+        },
+        {
+          "n": 26,
+          "key": "fe1446537327682c542c3c7aa8860f44f0d5fafddcc25f81581a878a596dbb77",
+          "official": null
+        },
+        {
+          "n": 37,
+          "key": "eddc171991180999bf9c2afb3b5ac38acde7c86beef12902d2cf610eac6a1f08",
+          "official": null
+        },
+        {
+          "n": 50,
+          "key": "d35bcec52df7ee93f5f817e0e73743e3eaf6be98121760648bc53d9819f7b150",
+          "official": null
+        },
+        {
+          "n": 65,
+          "key": "423c24371eb8122c0c35002b25e6dda4a1b7b0e33fba908b7ae29ed591475577",
+          "official": null
+        },
+        {
+          "n": 82,
+          "key": "a26985207863c6be152aa4fc4bd224275d3b8390417bce270e8e82482e4a3e44",
+          "official": null
+        },
+        {
+          "n": 101,
+          "key": "1eea895f6a50ba1188ff65abb325205e0128ff8b4b45d097362a994f5ce7dbfd",
+          "official": null
+        },
+        {
+          "n": 626,
+          "key": "6020e274b3739f6050af5f795bf539d879a111787d058468a069e47ee4653f47",
+          "official": null
+        },
+        {
+          "n": 677,
+          "key": "25be3793ac90c14bca4d8d3d943f9dfcef09bca5282078141e263b2f3bcd5228",
+          "official": null
+        },
+        {
+          "n": 730,
+          "key": "e96666196468dda006172b6a325940525635ba5a565d942dd8a0980e8c1f2327",
+          "official": null
+        },
+        {
+          "n": 901,
+          "key": "7e43e22f0eee4e8257a2d1c74c0a2e80952c73831fa2154f555411f51c9cea9a",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "expanded_union_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "external_bank_expansion",
+    "scripts": [
+      "poc/fetch_banks.py",
+      "poc/scan_and_merge.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4609,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "external_witness_refresh",
+    "scripts": [
+      "poc/fetch_external.py",
+      "poc/merge_witnesses.py",
+      "poc/scan_new.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 20210,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "family_reverse_fit",
+    "scripts": [
+      "poc/relax442.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 1600,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "family_reverse_fit",
+      "args": [
+        "poc/family_reverse_fit/poc/relax442.py",
+        "442",
+        "21.524648",
+        "4",
+        "1"
+      ],
+      "reason": "Documented fourtrial420second bounded relaxation; may emit no packing",
+      "timeout": 3500,
+      "pid": 433073,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 12.8
+    },
+    "result": {
+      "folder": "family_reverse_fit",
+      "source_main": "e6898877e50a9793ce6820827a960b83c5f4bede",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/family_reverse_fit/data/regenerate-nov13/source-manifest.json",
+          "sha256": "c2d5c599e1314fc9ad2e3663f14802ca923940cfc4233d0a46cf395283453ab0",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "fault_cut",
+    "scripts": [
+      "poc/fault_cut.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 19770,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "fault_cut",
+      "args": [
+        "poc/fault_cut/data/regenerate-nov13/export.py"
+      ],
+      "reason": "Genuine incumbent topologicaldeletion targets26,50,101,634",
+      "timeout": 3500,
+      "pid": 436218,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 51.89,
+      "retry": true
+    },
+    "result": {
+      "folder": "fault_cut",
+      "source_main": "f1eb7f1d9cf3a3abc63c1e0b4594c535d02ff7e7",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/initial-execution.json",
+          "sha256": "77e7bb2b3207b8676eeaa2829f4dd647b6ece57031386d961e313a46247145a6",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/n101.csv",
+          "sha256": "3fee473a1c60ac7f248ea83101580b231d221e4ea336459a779db5ef50947749",
+          "groups": 1
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/n26.csv",
+          "sha256": "5568879a76a4d9247b0e24a22e58e4ed6ff268b8441bfac3831228169c989ede",
+          "groups": 1
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/n50.csv",
+          "sha256": "52bf97b5cc76e4a7b4e8a303c71c57d839e9f963df509bdde520802126df2470",
+          "groups": 1
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/n634.csv",
+          "sha256": "41bda7cc0bd00b30086c71b58a17e462f514b5edc0472742bc0dccc12ae1bbeb",
+          "groups": 1
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/results.json",
+          "sha256": "e28379313ad261507899310f88f66698d3e4d8c652bdeb1aae960152971bffa7",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/fault_cut/data/regenerate-nov13/source-manifest.json",
+          "sha256": "3f5650347e32de44e9ec215ecb27d6a3b3df64095425be1cbf99bc10433c1d79",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 4,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 101,
+          "key": "9c33ad85cc67f834f435fbad4b7014eb9b427fac7e3826e4d88cc695bdbc6b66",
+          "official": [
+            "10.60582869643158860000000000000000000000000000000000",
+            "10.60582869643158800000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 26,
+          "key": "2cd1190c44100b351f9025fe36cd2c9b28d6f780dbfc10426d54f2e4409a3d37",
+          "official": [
+            "5.70710678118655240000000000000000000000000000000000",
+            "5.70710678118655200000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 50,
+          "key": "6cb24deb70c494c6a489ea3fd5dce830dda45e72c002d1bba83b7aa09ca7d4c3",
+          "official": [
+            "7.69035593728849780000000000000000000000000000000000",
+            "7.69035593728849800000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 634,
+          "key": "be6428c1d06dc3b2de4d06a28cf1953ced48626a9bed10b2dacea92077e364bf",
+          "official": [
+            "25.70710678118669700000000000000000000000000000000000",
+            "25.70710678118669700000000000000000000000000000000000"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "free_angle_slp",
+    "scripts": [
+      "poc/free_angle_slp.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 10207,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "free_angle_slp",
+      "args": [
+        "poc/free_angle_slp/poc/free_angle_slp.py",
+        "--incumbent",
+        "regeneration-proof/incumbent.csv",
+        "--report",
+        "regeneration-proof/incumbent-report.json",
+        "--n-list",
+        "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,663,664,665,666,667,668,669,670,671,672,673,674,675,676,677,678,679,680,681,682,683,684,685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,796,797,798,799,800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894,895,896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000",
+        "--output",
+        "poc/free_angle_slp/data/regenerate-nov13/scan.json",
+        "--wins",
+        "poc/free_angle_slp/data/regenerate-nov13/wins.json",
+        "--jobs",
+        "1"
+      ],
+      "reason": "Full1000 genuine original-model rerun; known formulation defects documented",
+      "timeout": 3500,
+      "pid": 422951,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 269.7
+    },
+    "result": {
+      "folder": "free_angle_slp",
+      "source_main": "a2e8c0ff0dd49033c5062061fb4453f836965b2d",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/free_angle_slp/data/regenerate-nov13/scan.json",
+          "sha256": "aaaf102837fb795d02340f40b242481dc0d36edf38edfb7d3d519543c410dfc0",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/free_angle_slp/data/regenerate-nov13/source-manifest.json",
+          "sha256": "4b2c603b01f249c63674795eb61c6517ddc002133e00a5de5dd670e543f79014",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/free_angle_slp/data/regenerate-nov13/wins.json",
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "free_band_ga",
+    "scripts": [
+      "poc/free_band_ga.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5113,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "free_band_ga",
+      "args": [
+        "poc/free_band_ga/poc/free_band_ga.py"
+      ],
+      "reason": "Normal300generation64population",
+      "timeout": 3500,
+      "pid": 426383,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 1.43
+    },
+    "result": {
+      "folder": "free_band_ga",
+      "source_main": "b9e224b3e2d73dfde10c0b2319432be6b2707462",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/free_band_ga/data/regenerate-nov13/free_band_best.npy",
+          "sha256": "36b08a38414a71c259c3a7fb06d6ea4a32980dab36cee761a1698ea43ed78b7d",
+          "decode_note": "incomplete saved packing: 1797/1797",
+          "groups": 0
+        },
+        {
+          "path": "poc/free_band_ga/data/regenerate-nov13/source-manifest.json",
+          "sha256": "1c9d78e926348e46c29bb0dc9542bda6b1c87a61b4d05c113aebb0e4debd80ec",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "freeze_big_region",
+    "scripts": [
+      "poc/big_free.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4707,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "freeze_big_region",
+      "args": [
+        "poc/freeze_big_region/poc/big_free.py",
+        "634",
+        "3",
+        "1",
+        "150"
+      ],
+      "reason": "Documented n634 150second serious local relaxation",
+      "timeout": 3500,
+      "pid": 426384,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 26.44
+    },
+    "result": {
+      "folder": "freeze_big_region",
+      "source_main": "37f5f5519ac799c7df76ec2f2ddc86e7ea5ca151",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/freeze_big_region/data/regenerate-nov13/source-manifest.json",
+          "sha256": "40441e6dc1aefdb8f5cfc6ae83e55f81af70faae78f5756bc18e7007d21df4c8",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "freeze_relax_momentum",
+    "scripts": [
+      "poc/freeze_relax.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4780,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "freeze_relax_momentum",
+      "args": [
+        "poc/freeze_relax_momentum/poc/freeze_relax.py",
+        "634",
+        "2",
+        "1.5",
+        "150"
+      ],
+      "reason": "n634 normal150second momentum relaxation",
+      "timeout": 3500,
+      "pid": 426385,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 32.66
+    },
+    "result": {
+      "folder": "freeze_relax_momentum",
+      "source_main": "5f9636c230fa51408abc074d4d9e5f2326a5bb71",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/freeze_relax_momentum/data/regenerate-nov13/source-manifest.json",
+          "sha256": "cc2ee30132e809f9b1503fb2137aa584a8c1c72be7671a8c2cd9e66bf9cff0e7",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "fresh_public_sources",
+    "scripts": [
+      "poc/build_and_score.py",
+      "poc/cmp_index.py",
+      "poc/fetch_kernels.py",
+      "poc/scan.py",
+      "poc/true_wins.py",
+      "poc/verify.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 7196,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "fresh_public_sources_nov12",
+    "scripts": [
+      "poc/fetch_outputs.py",
+      "poc/merge_public.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 8743,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "frontier_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "gallery_repair",
+    "scripts": [
+      "poc/repair_gallery.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5746,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "gap_reachability",
+    "scripts": [
+      "poc/analyze_gap.py",
+      "poc/verify_score.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 21016,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "gemini",
+    "scripts": [
+      "poc/gemini_full_run.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 12237,
+    "status": "skipped-deferred",
+    "reason": "CUDA solver driver, requires GPU executable and multiworker prepass; skipped to avoid disturbing swarm."
+  },
+  {
+    "folder": "global_search_midn",
+    "scripts": [
+      "poc/gsearch.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5884,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "global_search_midn",
+      "args": [
+        "poc/global_search_midn/poc/gsearch.py",
+        "328",
+        "330",
+        "42"
+      ],
+      "reason": "Documented330second n328 run",
+      "timeout": 3500,
+      "pid": 426393,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 337.73
+    },
+    "result": {
+      "folder": "global_search_midn",
+      "source_main": "95a49d99281b5166e49ca945109c16d8a733d087",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/global_search_midn/data/best_328.npy",
+          "sha256": "41a9d9b1a8fae313594522153b61c578a511dcef0109fb77f53aa63be9e11836",
+          "groups": 1
+        },
+        {
+          "path": "poc/global_search_midn/data/best_492.npy",
+          "sha256": "5fdbcc971c8a02749df943c05ff3ff54fbce80f99274dc9d3bc0cf8e8063e77d",
+          "groups": 1
+        },
+        {
+          "path": "poc/global_search_midn/data/best_497.npy",
+          "sha256": "07d086a4575315b29b33870277f5b6d1d1c555c38b027dbfca9b6b47589de3d0",
+          "groups": 1
+        },
+        {
+          "path": "poc/global_search_midn/data/regenerate-nov13/source-manifest.json",
+          "sha256": "d7a8696167c030292df07df1bfea84ba517f8cebb9fe98e5486db18b3071e8ca",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/global_search_midn/data/run_328_0.json",
+          "sha256": "e9106fc232a4c771b9a16546df5a5d55a768db7e707d3b7f8125c6128bd0778a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/global_search_midn/data/run_328_1.json",
+          "sha256": "d86da89e541975f74cc87e6fe93f0c44d1ff0da2ea4aa0d1185cfcc90d0b5e0e",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/global_search_midn/data/run_328_42.json",
+          "sha256": "b8f4aceea7a8f7b355cdd4259e4c48fbcea5e658849420851679db954083604b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/global_search_midn/data/run_492_1.json",
+          "sha256": "5f2106b93c593014f7f6370dca89e1b0e9febdd996e074e4edaf4fa06cd63046",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/global_search_midn/data/run_497_1.json",
+          "sha256": "d35657b912a87514f8a5d31660e9c09c28107c68c9aa445af96f231e20f1291b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 3,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 328,
+          "key": "e362ca92337acce0c9c6b3e78ee82bdb0f63f6e95b39bb5df19c4d7c9a0dc8db",
+          "official": [
+            "18.73128170769607574647291933413010236069799343511879",
+            "18.73128170769607574647291933413010236069799343511879"
+          ]
+        },
+        {
+          "n": 492,
+          "key": "5bf9af540e6923ba1725716b8c7bd4220df1a9be1af9359bf1cd478c1417a930",
+          "official": [
+            "22.88976278796362475856074387183971539770423989519575",
+            "22.88976278796362475856074387183971539770423989519575"
+          ]
+        },
+        {
+          "n": 497,
+          "key": "c3bd4d885aa6bb054d55579735b275be393c4d98bb08071596b153fb09264465",
+          "official": [
+            "23.28091170571864510723672326810908338974160647797494",
+            "23.28091170571864510723672326810908338974160647797494"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "harvest_watch",
+    "scripts": [
+      "poc/cycle.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 6333,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "hydrogen_brainstorm",
+    "scripts": [
+      "poc/geom_utils.py",
+      "poc/poc1_sheared_pockets.py",
+      "poc/poc2_off45_sturmian_band.py",
+      "poc/poc3_skyline_dp.py"
+    ],
+    "final_bytes": 11,
+    "script_bytes": 58667,
+    "status": "scheduled",
+    "reason": "All three actual original brainstormCPU scripts full defaults; capacityoutputs may contain no completepacking",
+    "execution": {
+      "folder": "hydrogen_brainstorm",
+      "args": [
+        "poc/hydrogen_brainstorm/data/regenerate-nov13/run_pipeline.py"
+      ],
+      "timeout": 3500,
+      "reason": "All three actual original brainstormCPU scripts full defaults; capacityoutputs may contain no completepacking",
+      "pid": 434443,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 188.67
+    },
+    "result": {
+      "folder": "hydrogen_brainstorm",
+      "source_main": "418c7970b7b00525e92457deef94aae698caf2bf",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/hydrogen_brainstorm/data/regenerate-nov13/source-manifest.json",
+          "sha256": "f21718b08a2e63ec0e639614533787848d60c4c28a456464bd3f2a6388021186",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "internal_strip_splice",
+    "scripts": [
+      "poc/assign.py",
+      "poc/splice.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 27198,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "internal_strip_splice",
+      "args": [
+        "poc/internal_strip_splice/poc/splice.py",
+        "--output",
+        "poc/internal_strip_splice/data/regenerate-nov13/"
+      ],
+      "reason": "Normal full48graphcase default sweep",
+      "timeout": 3500,
+      "pid": 423959,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 22.73
+    },
+    "result": {
+      "folder": "internal_strip_splice",
+      "source_main": "3d4060bdec306ecc5dc066ffa255ac7bcd4720cb",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/internal_strip_splice/data/assignment.json",
+          "sha256": "5b94548f7edd708e8d8b751e588fb01b49f3e778388c8d69b7542014a83f7f22",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/internal_strip_splice/data/regenerate-nov13/scan.json",
+          "sha256": "b771b84d87bc8d6c730da68dca7e2325dbc6107e9a37445d83afdd019e669eb5",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/internal_strip_splice/data/regenerate-nov13/source-manifest.json",
+          "sha256": "9012780d8d360b2f2791c811b8b5f4e29857251e118c39f7b6ef45b62b211d1b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/internal_strip_splice/data/scan.json",
+          "sha256": "28d5fdc3fa485d3b86fa4fe02c3141be68b9140338cb2f775b2f1de64bb3df15",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "jazivxt_refresh_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "k2p10_band_search",
+    "scripts": [
+      "poc/bandmilp.py",
+      "poc/enum45.py",
+      "poc/enum45_L.py",
+      "poc/sweep.py",
+      "poc/try1.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 9559,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "k2p10_curve_geometry",
+    "scripts": [
+      "poc/band_count.py",
+      "poc/ident.py",
+      "poc/ident2.py",
+      "poc/ident3.py",
+      "poc/scan2.py",
+      "poc/scan3.py",
+      "poc/scan4.py",
+      "poc/tables.py",
+      "poc/waste_fit.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 8015,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "k2p10_fill2",
+    "scripts": [
+      "poc/a_corner.py",
+      "poc/a_overlap.py",
+      "poc/a_pockets.py",
+      "poc/a_relax.py",
+      "poc/b_fill.py",
+      "poc/b_hop.py",
+      "poc/b_overlap.py",
+      "poc/b_verify.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 22516,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "k2p10_fill2",
+      "args": [
+        "poc/k2p10_fill2/poc/b_fill.py",
+        "0",
+        "25.705",
+        "5",
+        "1",
+        "300"
+      ],
+      "reason": "Documented five-trial n635fill five-minute budget",
+      "timeout": 3500,
+      "pid": 436219,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 53.04,
+      "retry": true
+    },
+    "result": {
+      "folder": "k2p10_fill2",
+      "source_main": "c86da64bdbcc4d1600988ad17412749673d8e940",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/k2p10_fill2/data/regenerate-nov13/initial-execution.json",
+          "sha256": "8646b5f30a585dce446d3dcc9ddfd94e1692a590fd27e456a5a672ab98c3adb6",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/k2p10_fill2/data/regenerate-nov13/source-manifest.json",
+          "sha256": "84235770fe099f92f131339d9f782b12d8bf365874fdffc9d5463e6db6a83eae",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/a_best_relax_L25.705.npy",
+          "sha256": "95c69302d902ff2a602be540b178a7658f23c83cd525c4a25480cfe453e9d0cb",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.705_s1.npy",
+          "sha256": "6cd343421dc82f7b2758867af7a3f6fe540fff639fa24e19b01b4b74e4c7a68b",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.705_s4.npy",
+          "sha256": "92e3f8351d82917fe50365db76a930477f8ba7df68d0fc012f35cb2df0c825b8",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.7071_s5.npy",
+          "sha256": "4050131b16c566f05a3bdf24ee52b06e622bf6b929b7db910b0b15198935f658",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.7_s1.npy",
+          "sha256": "eeaae93c90f207aacc51ec9f6fb1226044a13318fa009413c381b0abf2a52a6d",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg1_L25.7_s2.npy",
+          "sha256": "5a58d9ea946e51ba01cd98ed29b413451f4df2d995e765d22a38a81fbfe56d7d",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg1_L25.7_s2_hop.npy",
+          "sha256": "3be2c184c163bd53e5a528a4b4edc517a345709b42a4b7f93c8b8e30cd73e0d7",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_fill2/docs/b_best_cfg2_L25.7_s3.npy",
+          "sha256": "bbca87758ad96a8bb9d53a2e91e2012a5757a8a62f757b8ac6793c30720d6c0c",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 8,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 635,
+          "key": "01b4a212aa88e04cc757011486e02c11bf4cd89347ab160e1333d8c59cf16223",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "2dfdf6541dafea74c383be1b9d72c50c201beb6129bc59afcf0d8300ce7fa4f1",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "5975178c9862f678a05e0366354ca406213ece6df15d507f19fb389b7cfc1612",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "05ea038caab2fb9f928ef386e2f64b409e16ae48f4c8f43cfb1347a91db97c2a",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "92a88f3c25ec3a1d291af8af4ea891b39b635b9163a0a30007809312f03e2300",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "699a52255cb7776e620da014eee152cd7228e5977250cd715b713b364aeed7c6",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "6578530f24b43d588ba4eec90a4985bce8174f5f88f0342ba7b1e39bc9dd2610",
+          "official": null
+        },
+        {
+          "n": 635,
+          "key": "6531dece7e92f83bdfe5b9fbc8125e35ee21f34235089575d3c8931c031035a3",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "k2p10_out_of_phase",
+    "scripts": [
+      "poc/build.py",
+      "poc/enumerate_cores.py",
+      "poc/holes.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4188,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "k2p10_two_bands",
+    "scripts": [
+      "poc/sweep.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 2218,
+    "status": "scheduled",
+    "reason": "Documented4configuration two-bandMILP normal20seccap perconfiguration; poollimited1",
+    "execution": {
+      "folder": "k2p10_two_bands",
+      "args": [
+        "poc/k2p10_two_bands/poc/sweep.py",
+        "635",
+        "25.69874",
+        "4",
+        "1",
+        "20",
+        "two"
+      ],
+      "timeout": 3500,
+      "reason": "Documented4configuration two-bandMILP normal20seccap perconfiguration; poollimited1",
+      "pid": 435197,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 158.16
+    },
+    "result": {
+      "folder": "k2p10_two_bands",
+      "source_main": "48e17f1ff7a0208c050a56456684bd344e7d78ba",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/k2p10_two_bands/data/regenerate-nov13/source-manifest.json",
+          "sha256": "4d7108bc8f83d9a62c2347fd22b84ef8fa02d8763690aaab70be582c8b1679ef",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/k2p10_two_bands/docs/best_one_n635_L25.69874.npy",
+          "sha256": "5431c873e7bf7874ef8d97f1d31fb869e16eaf40c2b8ad08304d8e5df30eadd7",
+          "decode_note": "saved capacity/partial array does not contain target n=635",
+          "groups": 0
+        },
+        {
+          "path": "poc/k2p10_two_bands/docs/best_one_n635_L25.7071078.npy",
+          "sha256": "5b35b0f47754b24df1235d404cc0b95079d6971cb921e55ee9dd5b24485e3f2d",
+          "groups": 1
+        },
+        {
+          "path": "poc/k2p10_two_bands/docs/best_two_n635_L25.69874.npy",
+          "sha256": "f04508ae0a3bb03f461a3449ee72296d32bb33b9941e9a352bd3542edc5f7531",
+          "decode_note": "saved capacity/partial array does not contain target n=635",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 635,
+          "key": "c5fa675aa104e7758224fea00220f0c98c36f5db20716f364af6fe916c2b12f3",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "k2p10_wildcard",
+    "scripts": [
+      "poc/scan.py",
+      "poc/tiltband.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4752,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "kat-algos",
+    "scripts": [
+      "poc/algos_bench.py",
+      "poc/algos_sweep.py",
+      "poc/tests/algos_smoke.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 26867,
+    "status": "skipped-deferred",
+    "reason": "CUDA benchmark/sweep requires compiled GPU solvers; no GPU allocation."
+  },
+  {
+    "folder": "kat-band",
+    "scripts": [
+      "poc/band_geometry.py",
+      "poc/band_polish.py",
+      "poc/band_relax.py",
+      "poc/certify_hour.py",
+      "poc/core_refill.py",
+      "poc/ftmc_bundle.py",
+      "poc/ftmc_detached.py",
+      "poc/ftmc_hour.py",
+      "poc/ftmc_moves.py",
+      "poc/ftmc_pilot.py",
+      "poc/gensane.py",
+      "poc/gensane_driver.py",
+      "poc/gensane_polish.py",
+      "poc/gensane_recovery.py",
+      "poc/gensane_seeds.py",
+      "poc/local_ruin.py",
+      "poc/ribbon_archive.py",
+      "poc/run_relax.py",
+      "poc/seed_cli.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 153874,
+    "status": "skipped-deferred",
+    "reason": "GPU-targeted A100 full hour FTMC experiment and large multi-target CPU variants; skipped GPU/long pipeline, not replaced by toy run."
+  },
+  {
+    "folder": "kernel_refresh_morning",
+    "scripts": [
+      "poc/scan_and_merge.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 2033,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "kernel_refresh_noon",
+    "scripts": [
+      "poc/fetch_outputs.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4000,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "leader_curve_analysis",
+    "scripts": [
+      "poc/analyze.py",
+      "poc/compare.py",
+      "poc/families.py",
+      "poc/waste.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 7455,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "leader_poc_k2p10",
+    "scripts": [
+      "poc/repolish.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 922,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "leader_poc_k2p10",
+      "args": [
+        "poc/leader_poc_k2p10/poc/repolish.py",
+        "635",
+        "6"
+      ],
+      "reason": "Documented six-round n635fullpacking polish",
+      "timeout": 3500,
+      "pid": 433075,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 27.39
+    },
+    "result": {
+      "folder": "leader_poc_k2p10",
+      "source_main": "f23d69eb5ff322bda5d7b08c3022e1540ddfd1ac",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/leader_poc_k2p10/data/regenerate-nov13/source-manifest.json",
+          "sha256": "aca2a373c9e4661d7c6f3188e8dc30c0ddbea3b9a5f6697000df498520adcb5b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/leader_poc_k2p10/docs/polished_635.npy",
+          "sha256": "96834a007e6273a278d6c7a8327c82d2336b4e6fa10577eef1ab34dbd7b11368",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 635,
+          "key": "028d799a0062e4dea2c12c4f29ed068fb620dd0910c43fa54e5ad870bebbc907",
+          "official": [
+            "25.70710690325761713699910888891051623124416364443272",
+            "25.70710690325761713699910888891051623124416364443272"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "leader_poc_k2p4",
+    "scripts": [
+      "poc/hop.py",
+      "poc/slp.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5352,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "leader_poc_k2p4",
+      "args": [
+        "poc/leader_poc_k2p4/poc/slp.py",
+        "328",
+        "120",
+        "0.05",
+        "0.02"
+      ],
+      "reason": "Documented n328120secondSLP",
+      "timeout": 3500,
+      "pid": 427726,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 13.57
+    },
+    "result": {
+      "folder": "leader_poc_k2p4",
+      "source_main": "1b96b4ac4a06752c59e6307f8a601a9fba823af9",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/leader_poc_k2p4/data/regenerate-nov13/source-manifest.json",
+          "sha256": "3a326f463b8aded000313bc974d4d19f356b84bfa14a41465a86438ddf77115a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/leader_poc_k2p4/data/slp_n328.npy",
+          "sha256": "783fec7f9fbd437dc16174813afe21a99b70bd6c154414cca1d79a1435d40cea",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 328,
+          "key": "4001f45ba7a4ec59ff67290346ba619ceb735381740c07c96785a1917c24d63f",
+          "official": [
+            "18.61436893849098671812102148400498831565224351233939",
+            "18.61436893849098671812102148400498831565224351233939"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "leader_poc_kk1m9",
+    "scripts": [
+      "poc/relax.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 3381,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "leader_poc_kk1m9",
+      "args": [
+        "poc/leader_poc_kk1m9/poc/relax.py",
+        "411",
+        "20.77414",
+        "120"
+      ],
+      "reason": "Documented n411120secondrelaxation",
+      "timeout": 3500,
+      "pid": 427765,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 130.73
+    },
+    "result": {
+      "folder": "leader_poc_kk1m9",
+      "source_main": "6848d51d26767c5eaa4a0d8bcfa514221f17b371",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/leader_poc_kk1m9/data/regenerate-nov13/source-manifest.json",
+          "sha256": "4cb3ccb254c55502ed97ecc8f9bda6edef29dcd27b17494339b4cf8b982dd0ee",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/leader_poc_kk1m9/docs/relax_n411.npy",
+          "sha256": "e0c3173701c3f3500f08e9b19d02b61ee1e3038bbbe7bc10d6d102041d7389ae",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 1,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 411,
+          "key": "6ff5fbc18550bada38ea546fed6c9e6678cf2690a499f61205f3638d57298270",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "leader_reverse_engineering",
+    "scripts": [
+      "poc/eps_profile.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 903,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "lip_slp",
+    "scripts": [
+      "poc/lip_slp.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 8743,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "lip_slp",
+      "args": [
+        "poc/lip_slp/poc/lip_slp.py",
+        "--incumbent",
+        "regeneration-proof/incumbent.csv",
+        "--report",
+        "regeneration-proof/incumbent-report.json",
+        "--n-list",
+        "147,850,862",
+        "--output",
+        "poc/lip_slp/data/regenerate-nov13/scan.json",
+        "--wins",
+        "poc/lip_slp/data/regenerate-nov13/wins.json",
+        "--jobs",
+        "1"
+      ],
+      "reason": "Genuine latestPR12 target subset; full1000serial estimated3.8h skipped",
+      "timeout": 3500,
+      "pid": 433089,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 21.68
+    },
+    "result": {
+      "folder": "lip_slp",
+      "source_main": "1124ea91cd832c003fac348d90445453eba784cd",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/lip_slp/data/regenerate-nov13/scan.json",
+          "sha256": "e865173a626dd7b625e5685b26ab1823b368dbc70e24e17dc77befc79f26b3b2",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/lip_slp/data/regenerate-nov13/source-manifest.json",
+          "sha256": "9ef16af0f04dbb45ac7a793899f8a6d74bc05835a6bb0a62f97eb61ff658e22a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/lip_slp/data/regenerate-nov13/wins.json",
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "live_tracker_watch",
+    "scripts": [
+      "poc/fetch_bounds_repos.py",
+      "poc/poll_feed.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5696,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "motif_transplant",
+    "scripts": [
+      "poc/bandgen.py",
+      "poc/motif.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 6805,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "multi_angle_band",
+    "scripts": [
+      "poc/certify.py",
+      "poc/mab.py",
+      "poc/rank_targets.py",
+      "poc/search.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 6475,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "multi_angle_band",
+      "args": [
+        "poc/multi_angle_band/poc/search.py",
+        "634",
+        "25.70710678",
+        "60",
+        "0.15"
+      ],
+      "reason": "Documented full n634 MILP60second budget",
+      "timeout": 3500,
+      "pid": 427957,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 63.56
+    },
+    "result": {
+      "folder": "multi_angle_band",
+      "source_main": "3b9e73d52d4752270bc4ca3ad7c4d23d759185ed",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/multi_angle_band/data/regenerate-nov13/source-manifest.json",
+          "sha256": "ac3cd783aaa58fffefa49134c4baa7adc6939ce512d7991757f7e0b5d087eabc",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.0.npy",
+          "sha256": "abd0149401171761e25d1b579b72411e24ee8083d95775cf3cb4c557b596975e",
+          "decode_note": "incomplete saved packing: 625/626",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.1.npy",
+          "sha256": "78a60ff74fb6af1504f609dd29da886c26694f7684821f14d88e552bc60ceb20",
+          "decode_note": "incomplete saved packing: 625/626",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.15.npy",
+          "sha256": "1e4ec52df9aac2818c5e77be2819ba6940fb9b59cda93ea22b9f5609daeda74f",
+          "groups": 1
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.2.npy",
+          "sha256": "dce77a45e9e7dcb2ea6d8c78174e85b33d002feca14565b2ad59509fcce374aa",
+          "groups": 1
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.3.npy",
+          "sha256": "e72294d7d26b34925c74c39c1e279f182f4ed083fa6d9e2934d274997814da62",
+          "groups": 1
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n626_dL0.4.npy",
+          "sha256": "2d6fd38063c7679031d0063bdc4447df20df07f34a101565a1cafc66d3741727",
+          "groups": 1
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n634_dL0.0.npy",
+          "sha256": "dd97fb51c2c8ed0ab5df131fa1d6b95f5373497216125fb955b8e18aab784154",
+          "decode_note": "incomplete saved packing: 629/634",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n634_dL0.1.npy",
+          "sha256": "2121f6a0629e570bed43bde22fd62c587d286776464e7a45dfe610d3a25850f3",
+          "decode_note": "incomplete saved packing: 633/634",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n634_dL0.15.npy",
+          "sha256": "8e939e07f471e934cc5c92d899d9ca6ccc913f72c29c8ccc2ee4bcc47d6d303e",
+          "groups": 1
+        },
+        {
+          "path": "poc/multi_angle_band/docs/best_n634_dL0.2.npy",
+          "sha256": "7c1fd8e3c6efc80f4f98daf665329e436898fcd9b2397d7bfba870d8431c6b84",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 6,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 626,
+          "key": "07ea4bcfdee42f586f02e782e7414c617e08fac40635828e6d7536d4ca32a967",
+          "official": null
+        },
+        {
+          "n": 626,
+          "key": "674532c8fee5794e7073ca7650caa0f08db52a68ff9594914358a9458e924968",
+          "official": null
+        },
+        {
+          "n": 626,
+          "key": "e0c4fc4bf1c7b75b5b06b074c493192ad46522f05ef619fb2318cd1c06dd96bd",
+          "official": null
+        },
+        {
+          "n": 626,
+          "key": "56b743d9710eb46cce9d93c83cc53a0d4f401574e4f12a032ff8b13a8d999c64",
+          "official": null
+        },
+        {
+          "n": 634,
+          "key": "478754cabb6e5574844c86e4dbc7d51b108d89a399aad04971f1d8f53f1ef68a",
+          "official": null
+        },
+        {
+          "n": 634,
+          "key": "ea2d170f39884299ac5bcb731dc4b245367596958e72ad8149c4a3a10ca257da",
+          "official": null
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "multi_pell_cores",
+    "scripts": [
+      "1/poc/multi_pell_cores.py",
+      "1/poc/scan_odd_d_cores.py",
+      "2/poc/asymmetric_even_d_cores.py",
+      "3/poc/multi_pell_cores_3.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 62665,
+    "status": "skipped-deferred",
+    "reason": "Full odd/even/negative-slack geometric configuration sweeps include nested D,w,t and polish trials; conservative one-worker aggregate >1h. Kept as deferred full search, no tiny substitute."
+  },
+  {
+    "folder": "multi_tilted_blocks",
+    "scripts": [
+      "poc/extract.py",
+      "poc/mis.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 3339,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "multi_tilted_blocks",
+      "args": [
+        "poc/multi_tilted_blocks/poc/mis.py",
+        "30.63",
+        "240",
+        "2"
+      ],
+      "reason": "Documented L30.63 candidate enumeration240secondMILP",
+      "timeout": 3500,
+      "pid": 428182,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 243.78
+    },
+    "result": {
+      "folder": "multi_tilted_blocks",
+      "source_main": "1e14fc6261ee02407194e587cae715cb78e3ecc2",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/multi_tilted_blocks/data/regenerate-nov13/source-manifest.json",
+          "sha256": "935e64b6f967dd6dee901a0370f3eac6f3c3be925d89d37ee1657e8a90c95d6b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/multi_tilted_blocks/data/sel_L30.63.npy",
+          "sha256": "b047f69fd7b5a0c525f67481d9967300ae9dba77360c4c2f0d5a3d14a482cefa",
+          "decode_note": "saved capacity/partial array does not contain target n=908",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "neighbour_deletion",
+    "scripts": [
+      "poc/nd.py",
+      "poc/nd_fine.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 8118,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "neighbour_deletion",
+      "args": [
+        "poc/neighbour_deletion/poc/nd.py",
+        "908,911,973",
+        "6",
+        "300",
+        "300",
+        "poc/neighbour_deletion/data/regenerate-nov13/scan"
+      ],
+      "reason": "three frontier targets300s bounded normal neighbour deletion",
+      "timeout": 3500,
+      "pid": 426565,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 57.82
+    },
+    "result": {
+      "folder": "neighbour_deletion",
+      "source_main": "789b0fc63cc554dc5bf50d89319da0d3e689091c",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/neighbour_deletion/data/regenerate-nov13/scan.json",
+          "sha256": "b08765b93beb1b276e9ee18769ecf916e7be4654a80614b857df198e98cf4598",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/neighbour_deletion/data/regenerate-nov13/source-manifest.json",
+          "sha256": "528de90791a0ad795aeea94d0a310520384f80981c29d071f50d12e6dfda678f",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/neighbour_deletion/data/run1.json",
+          "sha256": "7ad4b6bd8c680427b141815e1a5a063bf859108717a07df9fb1a7b9926a7a23a",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/neighbour_deletion/data/run2.json",
+          "sha256": "fc0cbedd5227df577e456fc6791255b4866dafdaa24f0616b329afd6eadd85be",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/neighbour_deletion/data/t1.json",
+          "sha256": "6e7cc9e5e0d263de70b815f3e3c86c937ea6d1343e03e9fe5f8c3db2ae20f721",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "pinwheel_layer_growth",
+    "scripts": [
+      "poc/ipopt.py",
+      "poc/search.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 21730,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "pinwheel_layer_growth",
+      "args": [
+        "poc/pinwheel_layer_growth/poc/search.py",
+        "--incumbent",
+        "regeneration-proof/incumbent.csv",
+        "--out",
+        "poc/pinwheel_layer_growth/data/regenerate-nov13/",
+        "--family",
+        "157:184",
+        "183:212",
+        "211:242",
+        "109:132",
+        "132:157"
+      ],
+      "reason": "Full documented five-family normal sweep",
+      "timeout": 3500,
+      "pid": 423268,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 81.55
+    },
+    "result": {
+      "folder": "pinwheel_layer_growth",
+      "source_main": "a145f140d306b1d2e8695bf33a7d88bcfb3c8ae3",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/pinwheel_layer_growth/data/ipopt.json",
+          "sha256": "a629953a7f04d40c742b22e694b8903d3aad49d7951b4de41561c4bd77d162fa",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/pinwheel_layer_growth/data/regenerate-nov13/scan.json",
+          "sha256": "2e703b0412cbc9b62b54e249eef5f860c437e67c28f2afe90c7a055bb4d43c79",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/pinwheel_layer_growth/data/regenerate-nov13/source-manifest.json",
+          "sha256": "b35d78a7d55be5c94582cb066ceaf17d6d30e9f4f294baf2c9170375dc07d480",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/pinwheel_layer_growth/data/scan.json",
+          "sha256": "f1ab4a7b614117ea8ebce9e858ce7e765f4d0eeeeca50b19f8db71f9c0c91f1b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "post_resweep_refresh",
+    "scripts": [
+      "poc/fetch_refresh.py",
+      "poc/merge_refresh.py",
+      "poc/scan_refresh.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 9899,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "pr45_union",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "pr4_union",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "pt_mc",
+    "scripts": [
+      "poc/hs_sa.py",
+      "poc/pt_mc.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 21905,
+    "status": "skipped-deferred",
+    "reason": "Historical default32-process parallel tempering over multiple seeds/replicas/rounds estimated >1h on1worker; skip to respect swarm and runtime budget."
+  },
+  {
+    "folder": "public_resweep_kernels",
+    "scripts": [
+      "poc/extract_zips.py",
+      "poc/fetch_all.py",
+      "poc/finalize.py",
+      "poc/list_kernels.py",
+      "poc/our_L.py",
+      "poc/scan.py",
+      "poc/verify.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 15377,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "public_resweep_merge",
+    "scripts": [
+      "poc/build.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 1664,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "public_resweep_other",
+    "scripts": [
+      "poc/canon.py",
+      "poc/common.py",
+      "poc/dilate.py",
+      "poc/extract.py",
+      "poc/final.py",
+      "poc/gal.py",
+      "poc/gallery_lean.py",
+      "poc/kd.py",
+      "poc/kd2.py",
+      "poc/repair.py",
+      "poc/scan.py",
+      "poc/scan_ext.py",
+      "poc/scan_npz.py",
+      "poc/sigma.py",
+      "poc/verify.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 29457,
+    "status": "skipped-external-input",
+    "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+  },
+  {
+    "folder": "rectangle_gadgets",
+    "scripts": [
+      "poc/gaddp.py",
+      "poc/gadget_dp.py",
+      "poc/gadget_value.py",
+      "poc/gadlib.py",
+      "poc/gad_extract.py",
+      "poc/rgad.py",
+      "poc/rgad_run.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 21522,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "research",
+    "scripts": [
+      "poc/colab_high_n_runner.py",
+      "poc/colab_runner.py",
+      "poc/erdos_graham_parametric.py",
+      "poc/high_n_core_border_sweep.py",
+      "poc/high_n_vacancy_deletion.py",
+      "poc/multi_d_pell_sweep.py",
+      "poc/plot_packing_svg.py",
+      "poc/rank_high_n_gaps.py",
+      "poc/relax_n106.py",
+      "poc/relax_n151.py",
+      "poc/relax_n234.py",
+      "poc/relax_n295.py",
+      "poc/sanity_check_tilted.py",
+      "poc/search_large_n_scratch_bands.py",
+      "poc/search_recursive_refill_strips.py",
+      "poc/tilted_band_scratch.py",
+      "poc/transplant_solver.py",
+      "scripts/certify_candidates_907_968.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 502411,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "research",
+      "args": [
+        "poc/research/poc/search_large_n_scratch_bands.py",
+        "--output-file",
+        "poc/research/data/regenerate-nov13/scratch-results.json"
+      ],
+      "reason": "Full defaulttop40 CPU scratch sweep historic~55s; GPUColabrunners skipped",
+      "timeout": 3500,
+      "pid": 433188,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 179.42
+    },
+    "result": {
+      "folder": "research",
+      "source_main": "fda90439e2b959713d0914576310374464076ae7",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/research/data/erdos_graham_results.json",
+          "sha256": "d88bc6b3c940066ad51e960f794a486933cb94870a7307d9c5d94e6f19c16248",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/high_n_gap_ranking.json",
+          "sha256": "293554a857fd1175852886af4e3c5cfe9b2c2b475a34c680d22fdf6e91cb82ce",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/large_n_scratch_band_results.json",
+          "sha256": "fa3b6dcb5ee86a4a684936c21a709bfd8fb551f18092673cea3bf137e9375376",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/recursive_refill_results.json",
+          "sha256": "e5309b19b582ac82fcc594b1e742a3e492ea471d8299a325134e378945ce75aa",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/regenerate-nov13/scratch-results.json",
+          "sha256": "e46ea462c986923db1c3d8900f0289029360f773e017fba5c68e7506f418f10b",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/regenerate-nov13/source-manifest.json",
+          "sha256": "5746314cf14b97237a5df001ef85ae94069fe4655ba92a7607816e4b756597c8",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/relax_n106_results.json",
+          "sha256": "54536cd87154e14d4a532372562a72d3275a7e064665a65aeda1b9d4295eb441",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/relax_n151_results.json",
+          "sha256": "bc2e3018732460e6480d686f941b0e1120256e3740868852a2a2665fcd3158ba",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/relax_n234_results.json",
+          "sha256": "b251cd81348e63ff6975a6e65f618b6b7383fb3e1045878e1271abdb67227eb5",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/relax_n295_results.json",
+          "sha256": "a2c27870dee92ddd747a262cbbbbe462b422973027d6a57b48b390fa27def7b3",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/sanity_check_results.json",
+          "sha256": "282adf36cd34c9263aa36cbc9a654c795a17328d5a0677f515f739d3b6db2991",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/smoke_test_colab.json",
+          "sha256": "5285b0353c0cc0cc4b22b2fe479ee9c1c43a2f6a74c98590911edb53e48f3893",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/smoke_test_core_border.json",
+          "sha256": "e500cc5b0b475dcf3f271e761574d460e06a6e6b686574093e3fe1cdbb3b8178",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/smoke_test_multi_d.json",
+          "sha256": "aa4098ef44a13dadbc144d2dff9a08669d050b1335aea898dffe3c17ea8bf570",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/smoke_test_vacancy.json",
+          "sha256": "2579df24d96781f0cb362d6157018cdd9ecf7558aa1f92f6de2206591d207262",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/top40_excess_targets.json",
+          "sha256": "7365c89d84eb93dde9ca6e98de167a611e6f8b63fae5f7026dac108f371330fe",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/top50_worst_offenders.json",
+          "sha256": "fd5b378aa7fd7212d00788f100d641484b333f00dd3246557aa0ccf8d4b5a6e3",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/research/data/transplant_results.json",
+          "sha256": "c295b75d47f5e1006a744ffd741bfb7167df26dff1b9cc65ef04ad6d04f15f9f",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "rotated_midrange_windows",
+    "scripts": [
+      "poc/search.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 4066,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "rotated_midrange_windows",
+      "args": [
+        "poc/rotated_midrange_windows/poc/search.py",
+        "regeneration-proof/incumbent.csv",
+        "poc/rotated_midrange_windows/data/regenerate-nov13/report.json",
+        "poc/rotated_midrange_windows/data/regenerate-nov13/output.csv"
+      ],
+      "reason": "Full normal donor sweep100..265",
+      "timeout": 3500,
+      "pid": 423204,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 13.31
+    },
+    "result": {
+      "folder": "rotated_midrange_windows",
+      "source_main": "83ff0b36fe2f916bb2f2fe92dc0772431dc572f2",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/rotated_midrange_windows/data/regenerate-nov13/report.json",
+          "sha256": "946af7ab5afb6eb0c55fa7984b53b5babc1a7eb8a76f6a45e7198d462e921ac2",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/rotated_midrange_windows/data/regenerate-nov13/source-manifest.json",
+          "sha256": "41f4ffdf2b4d8f8af77ad58cc736c2f4a93a8d2de6f76dbd16d5164cc4065535",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/rotated_midrange_windows/data/scan.json",
+          "sha256": "9873f028116a18defe33542f82a32de2de32a5de476c6fd9053374042562503c",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "setpack367",
+    "scripts": [
+      "poc/gadget_search.py",
+      "poc/setpack367.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 7375,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "setpack367",
+      "args": [
+        "poc/setpack367/poc/setpack367.py"
+      ],
+      "reason": "Normal n367 MILP300second cap, no gadget32pool",
+      "timeout": 3500,
+      "pid": 426638,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 570.75
+    },
+    "result": {
+      "folder": "setpack367",
+      "source_main": "eb2e3c01dd378c05290445fb9c2a7f322ed7d9de",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/setpack367/data/regenerate-nov13/source-manifest.json",
+          "sha256": "3b6cdffc6709c5ce64fe928a74fe05d0bb8d60d0fe7e95c05c0f9235bca2b4bd",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "setpack_lns",
+    "scripts": [
+      "poc/setpack_lns.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 7816,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "setpack_lns",
+      "args": [
+        "poc/setpack_lns/poc/setpack_lns.py"
+      ],
+      "reason": "Normal150iterations10secondsubMILPs <=~25min",
+      "timeout": 3500,
+      "pid": 426758,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 659.36
+    },
+    "result": {
+      "folder": "setpack_lns",
+      "source_main": "feab3651720dea3e1d66f37f12c32dfbaaf2dd09",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/setpack_lns/data/regenerate-nov13/source-manifest.json",
+          "sha256": "c7f0f5129e8c5f9b5618a8135bea6e01e80e558b0b3db69aa1803564d3d71b14",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 0,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "sheared_pocket_push",
+    "scripts": [
+      "poc/certify_merged.py",
+      "poc/pocket_core.py",
+      "poc/v1_continuous_angle.py",
+      "poc/v2_end_taper.py",
+      "poc/v3_miter_corner.py",
+      "poc/v4_arm_phases.py",
+      "poc/v5_asymmetric_arms.py",
+      "poc/v6_slp_squeeze.py"
+    ],
+    "final_bytes": 11,
+    "script_bytes": 80156,
+    "status": "skipped-deferred",
+    "reason": "Six variants perform many multiprocess nonlinear optimizations. Conservative single-thread full replay estimated >1h; no huge all-core replay while swarm active."
+  },
+  {
+    "folder": "shelf_knapsack",
+    "scripts": [
+      "poc/shelf_knapsack.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 12275,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "shelf_knapsack",
+      "args": [
+        "poc/shelf_knapsack/data/regenerate-nov13/export.py"
+      ],
+      "reason": "Full six-target default construction with raw rows export",
+      "timeout": 3500,
+      "pid": 428395,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 4.18
+    },
+    "result": {
+      "folder": "shelf_knapsack",
+      "source_main": "382eec2c6057e62e7246d8aa03d6821940de3fd1",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/shelf_knapsack/data/regenerate-nov13/generated.json",
+          "sha256": "45470fd8fa6281062c2524ba78bcd96c0d2f13b3dd21021f189f4ceda5907496",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 6
+        },
+        {
+          "path": "poc/shelf_knapsack/data/regenerate-nov13/source-manifest.json",
+          "sha256": "d539c62239edf2d57afceafbeec0c7e33348796e09cd537d7e38b01261494ba7",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 6,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 17,
+          "key": "e1f2649fc99b11f8418923e0cef886ad576922195962f8f79b37b41316bd6365",
+          "official": [
+            "5.00000400000000000000000000000000000000000000000000",
+            "5.00000400000000000000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 26,
+          "key": "e3909ecf893032620af18d419ed41fec130ffe6159941f711ba1015d82f2a3d2",
+          "official": [
+            "6.00000500000000000000000000000000000000000000000000",
+            "6.00000500000000000000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 37,
+          "key": "a6fa31b855414522196df9722a30211ed0effe50d24873cfcf7120768d7a0a39",
+          "official": [
+            "7.00000600000000000000000000000000000000000000000000",
+            "7.00000600000000000000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 50,
+          "key": "8163f051f1c92f038dafd6b190140be8574d44de89ab0bb1cda30ba9f140732f",
+          "official": [
+            "8.00000700000000000000000000000000000000000000000000",
+            "8.00000700000000000000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 65,
+          "key": "9b082c7a2483daff2320adc1003d522ccf68182835bc6d6e5f4e0925f9fe7e8f",
+          "official": [
+            "9.00000800000000000000000000000000000000000000000000",
+            "9.00000800000000000000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 101,
+          "key": "93b2ae3d66c9441c303ecc5844eb06c059bb775d4c2a02c8380f6710eec9b6db",
+          "official": [
+            "11.00001000000000000000000000000000000000000000000000",
+            "11.00001000000000000000000000000000000000000000000000"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "sigmaborov_contact_polish",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "soft_to_rigid",
+    "scripts": [
+      "poc/incumbent.py",
+      "poc/run.py",
+      "poc/s2r.py",
+      "poc/sweep.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 10055,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "soft_to_rigid",
+      "args": [
+        "sweep.py",
+        "51",
+        "300"
+      ],
+      "reason": "Normal n51 five-minute sweep",
+      "timeout": 3500,
+      "cwd": "poc/soft_to_rigid/poc",
+      "pid": 427341,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 310.06
+    },
+    "result": {
+      "folder": "soft_to_rigid",
+      "source_main": "d6dbedeb1540f91c6739c63de0fd96a34f5b4364",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/soft_to_rigid/data/best_51.json",
+          "sha256": "50bd40e038d4253aa4f6f5f82f067c72f6872fafaaefcfb768cd6d0f685d39cd",
+          "groups": 1
+        },
+        {
+          "path": "poc/soft_to_rigid/data/best_68.json",
+          "sha256": "e3a34e3e4613331357935939049686d3b2f8a87d352499daf7795361ed60156f",
+          "groups": 1
+        },
+        {
+          "path": "poc/soft_to_rigid/data/best_86.json",
+          "sha256": "1a1c8901b5c6a42ea8af3b9592c3e0bd33fbc5be5b9c967673a13802b5a7c750",
+          "groups": 1
+        },
+        {
+          "path": "poc/soft_to_rigid/data/regenerate-nov13/source-manifest.json",
+          "sha256": "9de389e3558a0b2d91bd45bce472e881365f8f0f6d0c37c3dc9d8ed5211d68c0",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/soft_to_rigid/data/sweep_51.json",
+          "sha256": "b75c5f6b301feec908e263b995f263f263151b3a74ff55bb50d8d5e5c7483f82",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/soft_to_rigid/data/sweep_68.json",
+          "sha256": "f590589b7ed0432c88ad8b04195a799599d8436c05ca23a7491dfd068c92a277",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/soft_to_rigid/data/sweep_86.json",
+          "sha256": "4f074965814cb922e3ebd943cf3fff313afd684cbb5a4279fef4db5be9c41261",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        }
+      ],
+      "candidate_groups": 3,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 51,
+          "key": "6d50b7746207e0e8fb92691460a199335a92c83cfd0fa1829457345e60cf0eaf",
+          "official": [
+            "7.69039490391301472961081078502360631379370427841200",
+            "7.69039490391301463961084578485137707922998513942720"
+          ]
+        },
+        {
+          "n": 68,
+          "key": "f1d66940004a4b1730c543c20d997006e55b1421d0a3ad00bc155e4c48c5d861",
+          "official": [
+            "8.79922499989010398900722783405671011132893934595841",
+            "8.79922499989010347900722783405671011132893934595841"
+          ]
+        },
+        {
+          "n": 86,
+          "key": "fa1ef1dc6d16fc86242793ea383de5b51cd74f9167e0df4e1d9ece635578094f",
+          "official": [
+            "9.82084794258677058441986820312627279439069974739314",
+            "9.82084794258677071441986819312627279955010331976559"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "strip_cell",
+    "scripts": [
+      "poc/strip_cell.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 5331,
+    "status": "skipped-deferred",
+    "reason": "Full 12-seed45-stage strip-subproblem sweep has no complete container exporter and conservative1worker >1h; partial capacity output is not a complete packing."
+  },
+  {
+    "folder": "swarm_cascades",
+    "scripts": [
+      "poc/donor_surgery.py",
+      "poc/idea1_run.py",
+      "poc/idea2_run.py",
+      "poc/slp_utils.py"
+    ],
+    "final_bytes": 99972,
+    "script_bytes": 75645,
+    "status": "excluded-existing-final",
+    "reason": "Existing nonempty final.csv already contains complete certified packing output; excluded from no-packing-at-all reruns. Preserved untouched."
+  },
+  {
+    "folder": "swarm_replace45",
+    "scripts": [
+      "poc/idea1_run.py",
+      "poc/idea2_peel_and_melt.py",
+      "poc/idea3_harvest_and_masked_peel.py",
+      "poc/utils.py"
+    ],
+    "final_bytes": 56940,
+    "script_bytes": 108104,
+    "status": "excluded-existing-final",
+    "reason": "Existing nonempty final.csv already contains complete PR12 packing output; excluded from no-packing-at-all reruns. Preserved untouched."
+  },
+  {
+    "folder": "team_union_nov12",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "tiny_pass_rerun",
+    "scripts": [],
+    "final_bytes": 0,
+    "script_bytes": 0,
+    "status": "skipped-no-source",
+    "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+  },
+  {
+    "folder": "vacancy_diamonds",
+    "scripts": [
+      "poc/colmodel.py",
+      "poc/extract.py",
+      "poc/hybrid.py",
+      "poc/plot.py",
+      "poc/slp.py",
+      "poc/t1.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 9636,
+    "status": "scheduled",
+    "reason": "Reviewed bounded CPU replay scheduled; exact command and cap in per-folder execution.json.",
+    "execution": {
+      "folder": "vacancy_diamonds",
+      "args": [
+        "poc/vacancy_diamonds/data/regenerate-nov13/run_pipeline.py"
+      ],
+      "reason": "Reextract n401 then normal240second SLP with fullrawarray",
+      "timeout": 3500,
+      "pid": 433483,
+      "status": "completed",
+      "returncode": 0,
+      "seconds": 8.95
+    },
+    "result": {
+      "folder": "vacancy_diamonds",
+      "source_main": "f953dd81096b8a9ac6e81e82781e5d547da5a934",
+      "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+      "canonical_unchanged": true,
+      "pandas": "3.1.0",
+      "literal_and_actual_pandas": true,
+      "candidate_files": [
+        {
+          "path": "poc/vacancy_diamonds/data/q401.npy",
+          "sha256": "96f7eec74a258f1ebe392768d59641da502020fe7b0a578d552bb1e9ba6d60a2",
+          "groups": 1
+        },
+        {
+          "path": "poc/vacancy_diamonds/data/regenerate-nov13/source-manifest.json",
+          "sha256": "756d07109ba023c912d1b54d5d40ad10b228e40a62a8c75134e18b0985445645",
+          "decode_note": "report/metadata, not a saved coordinate-row list",
+          "groups": 0
+        },
+        {
+          "path": "poc/vacancy_diamonds/data/slp401.npy",
+          "sha256": "01a99e0d81b70bf37842018e7fb228924752bc780f1941c2650e3abaf10ecdcd",
+          "groups": 1
+        }
+      ],
+      "candidate_groups": 2,
+      "winning_ns": [],
+      "preserved_ns": [],
+      "conversion_excluded": [],
+      "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+      "sources": {},
+      "candidate_results": [
+        {
+          "n": 401,
+          "key": "01133f8ad7a1c0342f0656a484e8e203a29402038be09812468d7746b504eede",
+          "official": [
+            "20.53553390593279840000000000000000000000000000000000",
+            "20.53553390593279840000000000000000000000000000000000"
+          ]
+        },
+        {
+          "n": 401,
+          "key": "d2f9fdd2d83b6df828a265983eb793cc832aba1f4f7360bbfe29a52ceba8eb46",
+          "official": [
+            "20.53553390593280000000000000000000000000000000000000",
+            "20.53553390593280000000000000000000000000000000000000"
+          ]
+        }
+      ],
+      "final_results": []
+    }
+  },
+  {
+    "folder": "wildcard_idea",
+    "scripts": [
+      "poc/border_wrap_audit.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 1541,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  },
+  {
+    "folder": "wildcard_round3",
+    "scripts": [
+      "poc/rate.py",
+      "poc/scan_phase.py",
+      "poc/slack.py"
+    ],
+    "final_bytes": 0,
+    "script_bytes": 3692,
+    "status": "skipped-no-complete-packing-exporter",
+    "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+  }
+]
