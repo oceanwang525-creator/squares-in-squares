@@ -1,0 +1,24 @@
+{
+  "source_main": "c0a91e8f017d928eb0e30d1285d9b6673c43d271",
+  "original_sources": {
+    "poc/family_reverse_fit/poc/relax442.py": "ae126f93c1a57b19e23fc59ace0a1e5307b845ceb641290bbe3d6359c4b8644c"
+  },
+  "execution": {
+    "folder": "family_reverse_fit",
+    "args": [
+      "poc/family_reverse_fit/poc/relax442.py",
+      "442",
+      "21.524648",
+      "4",
+      "1"
+    ],
+    "reason": "Documented fourtrial420second bounded relaxation; may emit no packing",
+    "timeout": 3500,
+    "pid": 433073,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 12.8
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

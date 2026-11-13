@@ -1,0 +1,17 @@
+diff --git a/poc/family_reverse_fit/poc/relax442.py b/poc/family_reverse_fit/poc/relax442.py
+index 494a87e..0d0ed70 100644
+--- a/poc/family_reverse_fit/poc/relax442.py
++++ b/poc/family_reverse_fit/poc/relax442.py
+@@ -1,10 +1,10 @@
+ """Shrink the incumbent n=442 (L=21.535534) toward leader L=21.524648 via penalty relaxation. python relax442.py n target_L trials seed"""
+ import sys, math, time, numpy as np, pandas as pd
+-sys.path.insert(0,"/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0,"/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ from a_overlap import penalty, pairs, max_violation, bbox_side
+ from scipy.optimize import minimize
+ n=int(sys.argv[1]); Lt=float(sys.argv[2]); T=int(sys.argv[3]); rng=np.random.default_rng(int(sys.argv[4]))
+-df=pd.read_csv("/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv",usecols=["n","x","y","angle"],dtype=str)
++df=pd.read_csv("/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv",usecols=["n","x","y","angle"],dtype=str)
+ df=df[df.n==str(n)]
+ q=np.c_[df.x.astype(float),df.y.astype(float),df.angle.astype(float)]
+ print("n",len(q),"bbox",bbox_side(q))
