@@ -1,0 +1,23 @@
+{
+  "source_main": "c10f8f8c19537f37045ae07ca5a7d13aaf4adc9d",
+  "original_sources": {
+    "poc/internal_strip_splice/poc/assign.py": "8abd3298945bfa02f64f007ad2f697212453cc27d341cd759f32cf53d1850cf7",
+    "poc/internal_strip_splice/poc/splice.py": "f2debdaa332b81c3f2220ab28cc98c52f2829ff7e8d72891bd020135182d74b2"
+  },
+  "execution": {
+    "folder": "internal_strip_splice",
+    "args": [
+      "poc/internal_strip_splice/poc/splice.py",
+      "--output",
+      "poc/internal_strip_splice/data/regenerate-nov13/"
+    ],
+    "reason": "Normal full48graphcase default sweep",
+    "timeout": 3500,
+    "pid": 423959,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 22.73
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

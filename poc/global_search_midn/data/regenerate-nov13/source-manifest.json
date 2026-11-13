@@ -1,0 +1,23 @@
+{
+  "source_main": "c14d2305e1ee371a0d4f50efca5bdf9b17e3e8ec",
+  "original_sources": {
+    "poc/global_search_midn/poc/gsearch.py": "9885045501edb52ed4b9ab20a07b22844d03be1c5f2a8b74e34c3e67ec0f8f73"
+  },
+  "execution": {
+    "folder": "global_search_midn",
+    "args": [
+      "poc/global_search_midn/poc/gsearch.py",
+      "328",
+      "330",
+      "42"
+    ],
+    "reason": "Documented330second n328 run",
+    "timeout": 3500,
+    "pid": 426393,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 337.73
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

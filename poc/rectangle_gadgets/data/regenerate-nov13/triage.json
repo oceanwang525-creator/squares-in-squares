@@ -1,0 +1,16 @@
+{
+  "folder": "rectangle_gadgets",
+  "scripts": [
+    "poc/gaddp.py",
+    "poc/gadget_dp.py",
+    "poc/gadget_value.py",
+    "poc/gadlib.py",
+    "poc/gad_extract.py",
+    "poc/rgad.py",
+    "poc/rgad_run.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 21522,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

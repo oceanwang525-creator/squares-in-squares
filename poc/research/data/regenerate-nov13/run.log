@@ -1,0 +1,45 @@
+Running sanity test on n=290...
+Sanity test PASSED: n=290 L=17.535534 <= 17.55 (n_tilted=85)
+[ 1/40] n=105: SUCCESS L=10.828427 (inc=10.789304, delta=+0.039123) in 1.68s
+[ 2/40] n=103: SUCCESS L=10.707107 (inc=10.679232, delta=+0.027875) in 1.05s
+[ 3/40] n=127: SUCCESS L=11.828427 (inc=11.810879, delta=+0.017548) in 2.02s
+[ 4/40] n=147: SUCCESS L=12.707107 (inc=12.656854, delta=+0.050253) in 1.62s
+[ 5/40] n=151: SUCCESS L=12.828427 (inc=12.822876, delta=+0.005551) in 2.54s
+[ 6/40] n=150: SUCCESS L=12.828427 (inc=12.778175, delta=+0.050253) in 2.68s
+[ 7/40] n=175: SUCCESS L=13.828427 (inc=13.764174, delta=+0.064253) in 2.74s
+[ 8/40] n=110: FAILED (cannot achieve L < ceil(sqrt(n))) in 1.89s
+[ 9/40] n=106: SUCCESS L=10.828427 (inc=10.822908, delta=+0.005519) in 1.53s
+[10/40] n=125: SUCCESS L=11.707107 (inc=11.707107, delta=-0.000000) in 0.52s
+[11/40] n=176: SUCCESS L=13.828427 (inc=13.795872, delta=+0.032555) in 2.89s
+[12/40] n=290: SUCCESS L=17.535534 (inc=17.535534, delta=-0.000000) in 2.37s
+[13/40] n=124: SUCCESS L=11.707107 (inc=11.656854, delta=+0.050253) in 1.27s
+[14/40] n=325: SUCCESS L=18.535534 (inc=18.535534, delta=-0.000000) in 2.97s
+[15/40] n=102: SUCCESS L=10.621320 (inc=10.605829, delta=+0.015492) in 1.14s
+[16/40] n=362: SUCCESS L=19.621320 (inc=19.535534, delta=+0.085786) in 6.14s
+[17/40] n=367: SUCCESS L=19.707107 (inc=19.692388, delta=+0.014719) in 4.49s
+[18/40] n=232: SUCCESS L=15.828427 (inc=15.761656, delta=+0.066771) in 4.90s
+[19/40] n=203: SUCCESS L=14.828427 (inc=14.778175, delta=+0.050253) in 3.71s
+[20/40] n=295: SUCCESS L=17.707107 (inc=17.704233, delta=+0.002874) in 3.41s
+[21/40] n=401: SUCCESS L=20.535534 (inc=20.535534, delta=-0.000000) in 4.69s
+[22/40] n=491: SUCCESS L=22.707107 (inc=22.692388, delta=+0.014719) in 6.68s
+[23/40] n=264: SUCCESS L=16.828427 (inc=16.774735, delta=+0.053692) in 5.69s
+[24/40] n=442: SUCCESS L=21.535534 (inc=21.535534, delta=-0.000000) in 6.00s
+[25/40] n=234: SUCCESS L=15.828427 (inc=15.822876, delta=+0.005551) in 5.09s
+[26/40] n=201: SUCCESS L=14.707107 (inc=14.707107, delta=-0.000000) in 1.11s
+[27/40] n=485: SUCCESS L=22.535534 (inc=22.535534, delta=-0.000000) in 7.02s
+[28/40] n=626: SUCCESS L=25.535534 (inc=25.520815, delta=+0.014719) in 17.78s
+[29/40] n=183: FAILED (cannot achieve L < ceil(sqrt(n))) in 3.99s
+[30/40] n=132: FAILED (cannot achieve L < ceil(sqrt(n))) in 2.71s
+[31/40] n=530: SUCCESS L=23.535534 (inc=23.535534, delta=-0.000000) in 7.97s
+[32/40] n=126: SUCCESS L=11.828427 (inc=11.742641, delta=+0.085786) in 2.57s
+[33/40] n=204: SUCCESS L=14.828427 (inc=14.807627, delta=+0.020800) in 4.25s
+[34/40] n=677: SUCCESS L=26.535534 (inc=26.520815, delta=+0.014719) in 16.12s
+[35/40] n=177: SUCCESS L=13.914214 (inc=13.822980, delta=+0.091234) in 2.86s
+[36/40] n=330: SUCCESS L=18.707107 (inc=18.692388, delta=+0.014719) in 3.53s
+[37/40] n=261: SUCCESS L=16.707107 (inc=16.678780, delta=+0.028327) in 2.98s
+[38/40] n=333: SUCCESS L=18.828427 (inc=18.773753, delta=+0.054674) in 7.61s
+[39/40] n=366: SUCCESS L=19.707107 (inc=19.656854, delta=+0.050253) in 5.24s
+[40/40] n=577: SUCCESS L=24.535534 (inc=24.535534, delta=-0.000000) in 8.60s
+
+Execution finished in 176.56s. Saved to poc/research/data/regenerate-nov13/scratch-results.json.
+Success: 37/40, Failed: 3/40, Within 1e-3: 9

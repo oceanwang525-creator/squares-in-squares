@@ -1,0 +1,10 @@
+{
+  "folder": "public_resweep_merge",
+  "scripts": [
+    "poc/build.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 1664,
+  "status": "skipped-external-input",
+  "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+}

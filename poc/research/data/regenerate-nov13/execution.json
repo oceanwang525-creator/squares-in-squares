@@ -1,0 +1,14 @@
+{
+  "folder": "research",
+  "args": [
+    "poc/research/poc/search_large_n_scratch_bands.py",
+    "--output-file",
+    "poc/research/data/regenerate-nov13/scratch-results.json"
+  ],
+  "reason": "Full defaulttop40 CPU scratch sweep historic~55s; GPUColabrunners skipped",
+  "timeout": 3500,
+  "pid": 433188,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 179.42
+}

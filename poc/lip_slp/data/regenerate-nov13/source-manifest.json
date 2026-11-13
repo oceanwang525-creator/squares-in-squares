@@ -1,0 +1,32 @@
+{
+  "source_main": "4f17747248cf444646d0b137c018ebbefb35f332",
+  "original_sources": {
+    "poc/lip_slp/poc/lip_slp.py": "765bf8a2a4b4a29ea301c04b78757f7dd625aa469323a80315c1c8c28a7ae24b"
+  },
+  "execution": {
+    "folder": "lip_slp",
+    "args": [
+      "poc/lip_slp/poc/lip_slp.py",
+      "--incumbent",
+      "regeneration-proof/incumbent.csv",
+      "--report",
+      "regeneration-proof/incumbent-report.json",
+      "--n-list",
+      "147,850,862",
+      "--output",
+      "poc/lip_slp/data/regenerate-nov13/scan.json",
+      "--wins",
+      "poc/lip_slp/data/regenerate-nov13/wins.json",
+      "--jobs",
+      "1"
+    ],
+    "reason": "Genuine latestPR12 target subset; full1000serial estimated3.8h skipped",
+    "timeout": 3500,
+    "pid": 433089,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 21.68
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

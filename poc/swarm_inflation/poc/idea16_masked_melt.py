@@ -63,6 +63,7 @@ def build_masked_batch_for_n(
     mats: dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float]],
     batch: int = 1024,
     rng_seed: int = 1600,
+    deltas: tuple[float, ...] | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Construct `batch` perturbed layouts + binary mobile masks (1=mobile, 0=frozen)."""
     rng = np.random.default_rng(rng_seed + n * 53)
@@ -90,7 +91,8 @@ def build_masked_batch_for_n(
     border_peels, cross_peels = m15.collect_surplus_peels(n, L_inc, mats)
     all_peels = border_peels + cross_peels
 
-    deltas = (0.00015, 0.0004, 0.0010, 0.0022, 0.0045, 0.0080)
+    if deltas is None:
+        deltas = (0.00015, 0.0004, 0.0010, 0.0022, 0.0045, 0.0080)
     out_x = np.zeros((batch, n), dtype=np.float64)
     out_y = np.zeros((batch, n), dtype=np.float64)
     out_th = np.zeros((batch, n), dtype=np.float64)

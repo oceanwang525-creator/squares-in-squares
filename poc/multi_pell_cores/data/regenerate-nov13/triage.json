@@ -1,0 +1,13 @@
+{
+  "folder": "multi_pell_cores",
+  "scripts": [
+    "1/poc/multi_pell_cores.py",
+    "1/poc/scan_odd_d_cores.py",
+    "2/poc/asymmetric_even_d_cores.py",
+    "3/poc/multi_pell_cores_3.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 62665,
+  "status": "skipped-deferred",
+  "reason": "Full odd/even/negative-slack geometric configuration sweeps include nested D,w,t and polish trials; conservative one-worker aggregate >1h. Kept as deferred full search, no tiny substitute."
+}

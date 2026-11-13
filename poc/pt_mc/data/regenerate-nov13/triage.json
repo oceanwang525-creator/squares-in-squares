@@ -1,0 +1,11 @@
+{
+  "folder": "pt_mc",
+  "scripts": [
+    "poc/hs_sa.py",
+    "poc/pt_mc.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 21905,
+  "status": "skipped-deferred",
+  "reason": "Historical default32-process parallel tempering over multiple seeds/replicas/rounds estimated >1h on1worker; skip to respect swarm and runtime budget."
+}

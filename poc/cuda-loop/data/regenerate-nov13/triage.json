@@ -1,0 +1,24 @@
+{
+  "folder": "cuda-loop",
+  "scripts": [
+    "poc/autotune.py",
+    "poc/batch.py",
+    "poc/budget.py",
+    "poc/cpp_loop.py",
+    "poc/cpp_pass.py",
+    "poc/demo.py",
+    "poc/endless.py",
+    "poc/families.py",
+    "poc/full_run.py",
+    "poc/polish.py",
+    "poc/records.py",
+    "poc/record_report.py",
+    "poc/refine.py",
+    "poc/scheduler.py",
+    "poc/seeded.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 75462,
+  "status": "skipped-deferred",
+  "reason": "GPU/Colab solver pipeline and CUDA binaries; desktop GPU already used by swarm. No GPU allocation or tiny CPU substitute run."
+}

@@ -1,0 +1,13 @@
+{
+  "folders": 85,
+  "reruns": 33,
+  "statuses": {
+    "completed": 33,
+    "failed": 0,
+    "runtime-cap": 0
+  },
+  "winning_folders": {},
+  "canonical_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "no_kaggle": true,
+  "no_canonical_write": true
+}

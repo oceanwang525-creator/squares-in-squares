@@ -1,5 +1,5 @@
 {
-  "total_seconds": 13.49,
+  "total_seconds": 14.56,
   "strips": [
     {
       "W": 2.502,
@@ -35,7 +35,7 @@
           "checker_22deg": 31.57297
         }
       },
-      "seconds": 1.4
+      "seconds": 1.5
     },
     {
       "W": 3.502,
@@ -71,7 +71,7 @@
           "checker_12deg": 16.83483
         }
       },
-      "seconds": 0.68
+      "seconds": 0.69
     },
     {
       "W": 4.502,
@@ -113,7 +113,7 @@
           "checker_12deg": 13.24665
         }
       },
-      "seconds": 1.14
+      "seconds": 1.18
     },
     {
       "W": 5.502,
@@ -151,7 +151,7 @@
           "upright_bottom_taper_w6": 10.30361
         }
       },
-      "seconds": 1.66
+      "seconds": 1.55
     },
     {
       "W": 6.502,
@@ -191,7 +191,7 @@
           "upright_bottom_taper_w8": 11.54787
         }
       },
-      "seconds": 1.95
+      "seconds": 1.97
     },
     {
       "W": 7.502,
@@ -231,7 +231,7 @@
           "upright_bottom_taper_w9": 11.73396
         }
       },
-      "seconds": 3.14
+      "seconds": 3.08
     },
     {
       "W": 7.661,
@@ -271,7 +271,7 @@
           "upright_bottom_taper_w9": 11.42839
         }
       },
-      "seconds": 3.02
+      "seconds": 3.11
     }
   ]
 }

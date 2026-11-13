@@ -1,0 +1,12 @@
+{
+  "folder": "setpack_lns",
+  "args": [
+    "poc/setpack_lns/poc/setpack_lns.py"
+  ],
+  "reason": "Normal150iterations10secondsubMILPs <=~25min",
+  "timeout": 3500,
+  "pid": 426758,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 659.36
+}

@@ -1,0 +1,6 @@
+cfg0 (1, 8, 18, 18, 6, 6, 25) Lc=25.705 tr0 pockets=[(np.float64(24.1), np.float64(24.9), 0), (np.float64(6.3), np.float64(0.5), 0)] E=1.023e-02 maxd=0.0123 npairs=330 t=9s
+cfg0 (1, 8, 18, 18, 6, 6, 25) Lc=25.705 tr1 pockets=[(np.float64(22.5), np.float64(20.3), 0), (np.float64(24.7), np.float64(25.1), 0)] E=1.076e-02 maxd=0.0164 npairs=344 t=18s
+cfg0 (1, 8, 18, 18, 6, 6, 25) Lc=25.705 tr2 pockets=[(np.float64(11.3), np.float64(5.1), 0), (np.float64(0.5), np.float64(6.5), 0)] E=2.653e-02 maxd=0.0299 npairs=729 t=28s
+cfg0 (1, 8, 18, 18, 6, 6, 25) Lc=25.705 tr3 pockets=[(np.float64(22.5), np.float64(20.3), 0), (np.float64(18.3), np.float64(24.1), 0)] E=1.761e-02 maxd=0.0249 npairs=552 t=37s
+cfg0 (1, 8, 18, 18, 6, 6, 25) Lc=25.705 tr4 pockets=[(np.float64(23.3), np.float64(19.5), 0), (np.float64(9.3), np.float64(15.3), 0)] E=2.868e-02 maxd=0.0309 npairs=445 t=46s
+BEST 0 25.705 0.010234655393422463 {'maxd': 0.012324934690114642, 'sumd': 1.08871327993994, 'npairs': 330, 'wmax': 0.012066331246754103}

@@ -1,0 +1,10 @@
+{
+  "folder": "strip_cell",
+  "scripts": [
+    "poc/strip_cell.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 5331,
+  "status": "skipped-deferred",
+  "reason": "Full 12-seed45-stage strip-subproblem sweep has no complete container exporter and conservative1worker >1h; partial capacity output is not a complete packing."
+}

@@ -1,0 +1,12 @@
+{
+  "folder": "external_witness_refresh",
+  "scripts": [
+    "poc/fetch_external.py",
+    "poc/merge_witnesses.py",
+    "poc/scan_new.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 20210,
+  "status": "skipped-external-input",
+  "reason": "External harvester/merger/repair pipeline requires absent downloaded banks, online Kaggle/source refresh, or external certifier files. Existing local metadata is not sufficient for an offline search replay."
+}

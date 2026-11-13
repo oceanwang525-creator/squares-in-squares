@@ -1,0 +1,26 @@
+{
+  "source_main": "0eb640fd3b9881cca106bac1705bff4fa233b19c",
+  "original_sources": {
+    "poc/neighbour_deletion/poc/nd.py": "9b81490f90d314031a9061eadd7b22636e486245c5f6260d2106ff9966638250",
+    "poc/neighbour_deletion/poc/nd_fine.py": "855600c582a9451e3d53bc3ae7892d9d17405cca720fb53ea844326559c852c4"
+  },
+  "execution": {
+    "folder": "neighbour_deletion",
+    "args": [
+      "poc/neighbour_deletion/poc/nd.py",
+      "908,911,973",
+      "6",
+      "300",
+      "300",
+      "poc/neighbour_deletion/data/regenerate-nov13/scan"
+    ],
+    "reason": "three frontier targets300s bounded normal neighbour deletion",
+    "timeout": 3500,
+    "pid": 426565,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 57.82
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

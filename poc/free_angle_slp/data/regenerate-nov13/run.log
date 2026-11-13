@@ -1,0 +1,17 @@
+100/1000 groups, 112 groups/min, wins=0
+200/1000 groups, 114 groups/min, wins=0
+300/1000 groups, 123 groups/min, wins=0
+400/1000 groups, 135 groups/min, wins=0
+500/1000 groups, 149 groups/min, wins=0
+600/1000 groups, 163 groups/min, wins=0
+700/1000 groups, 176 groups/min, wins=0
+800/1000 groups, 191 groups/min, wins=0
+900/1000 groups, 208 groups/min, wins=0
+1000/1000 groups, 229 groups/min, wins=0
+{
+ "scanned": 1000,
+ "wins": 0,
+ "jobs": 1,
+ "seconds": 261.8,
+ "reduction": "0"
+}

@@ -1,0 +1,23 @@
+{
+  "source_main": "bc554b81af18969ac624d468a070c07387372545",
+  "original_sources": {
+    "poc/d1_chain/poc/common.py": "a51bf7ffd3fa3b1e9c6ca96db9e7620f93a1a737ef2e7e13cbf6df82f4c42d2e",
+    "poc/d1_chain/poc/fan.py": "130ef98f8aea9b5a7f4c6bc1fa7cc36d44a7cf84d0a3e0010269626e00264d9e"
+  },
+  "execution": {
+    "folder": "d1_chain",
+    "args": [
+      "poc/d1_chain/poc/fan.py",
+      "240",
+      "1"
+    ],
+    "reason": "Documented n401 four-minute fan relaxation",
+    "timeout": 3500,
+    "pid": 433359,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 246.54
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

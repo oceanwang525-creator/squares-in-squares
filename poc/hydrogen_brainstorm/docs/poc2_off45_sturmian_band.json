@@ -25,11 +25,11 @@
       "stagger": 0.0,
       "mode": "corner_L0",
       "cap": 261,
-      "pen": 5.551115123125783e-16
+      "pen": 6.661338147750939e-16
     },
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 6.79
+    "seconds": 7.43
   },
   {
     "n": 328,
@@ -52,7 +52,7 @@
     "best_relax_cfg": null,
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 14.8
+    "seconds": 13.08
   },
   {
     "n": 367,
@@ -75,7 +75,7 @@
     "best_relax_cfg": null,
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 17.62
+    "seconds": 14.81
   },
   {
     "n": 492,
@@ -98,7 +98,7 @@
     "best_relax_cfg": null,
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 21.37
+    "seconds": 19.55
   },
   {
     "n": 634,
@@ -121,7 +121,7 @@
     "best_relax_cfg": null,
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 26.65
+    "seconds": 24.83
   },
   {
     "n": 686,
@@ -144,6 +144,6 @@
     "best_relax_cfg": null,
     "relaxed_L": null,
     "certified_win": null,
-    "seconds": 27.82
+    "seconds": 20.88
   }
 ]

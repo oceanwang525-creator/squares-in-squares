@@ -1,0 +1,126 @@
+{
+  "folder": "research",
+  "source_main": "38b8995ee87d3b5144b3412ffeefef968d2db32e",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/research/data/erdos_graham_results.json",
+      "sha256": "d88bc6b3c940066ad51e960f794a486933cb94870a7307d9c5d94e6f19c16248",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/high_n_gap_ranking.json",
+      "sha256": "293554a857fd1175852886af4e3c5cfe9b2c2b475a34c680d22fdf6e91cb82ce",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/large_n_scratch_band_results.json",
+      "sha256": "fa3b6dcb5ee86a4a684936c21a709bfd8fb551f18092673cea3bf137e9375376",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/recursive_refill_results.json",
+      "sha256": "e5309b19b582ac82fcc594b1e742a3e492ea471d8299a325134e378945ce75aa",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/regenerate-nov13/scratch-results.json",
+      "sha256": "e46ea462c986923db1c3d8900f0289029360f773e017fba5c68e7506f418f10b",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/regenerate-nov13/source-manifest.json",
+      "sha256": "5746314cf14b97237a5df001ef85ae94069fe4655ba92a7607816e4b756597c8",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/relax_n106_results.json",
+      "sha256": "54536cd87154e14d4a532372562a72d3275a7e064665a65aeda1b9d4295eb441",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/relax_n151_results.json",
+      "sha256": "bc2e3018732460e6480d686f941b0e1120256e3740868852a2a2665fcd3158ba",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/relax_n234_results.json",
+      "sha256": "b251cd81348e63ff6975a6e65f618b6b7383fb3e1045878e1271abdb67227eb5",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/relax_n295_results.json",
+      "sha256": "a2c27870dee92ddd747a262cbbbbe462b422973027d6a57b48b390fa27def7b3",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/sanity_check_results.json",
+      "sha256": "282adf36cd34c9263aa36cbc9a654c795a17328d5a0677f515f739d3b6db2991",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/smoke_test_colab.json",
+      "sha256": "5285b0353c0cc0cc4b22b2fe479ee9c1c43a2f6a74c98590911edb53e48f3893",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/smoke_test_core_border.json",
+      "sha256": "e500cc5b0b475dcf3f271e761574d460e06a6e6b686574093e3fe1cdbb3b8178",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/smoke_test_multi_d.json",
+      "sha256": "aa4098ef44a13dadbc144d2dff9a08669d050b1335aea898dffe3c17ea8bf570",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/smoke_test_vacancy.json",
+      "sha256": "2579df24d96781f0cb362d6157018cdd9ecf7558aa1f92f6de2206591d207262",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/top40_excess_targets.json",
+      "sha256": "7365c89d84eb93dde9ca6e98de167a611e6f8b63fae5f7026dac108f371330fe",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/top50_worst_offenders.json",
+      "sha256": "fd5b378aa7fd7212d00788f100d641484b333f00dd3246557aa0ccf8d4b5a6e3",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/research/data/transplant_results.json",
+      "sha256": "c295b75d47f5e1006a744ffd741bfb7167df26dff1b9cc65ef04ad6d04f15f9f",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

@@ -1,0 +1,14 @@
+diff --git a/poc/d1_chain/poc/common.py b/poc/d1_chain/poc/common.py
+index 768cd53..4c67394 100644
+--- a/poc/d1_chain/poc/common.py
++++ b/poc/d1_chain/poc/common.py
+@@ -1,7 +1,7 @@
+ import numpy as np, pandas as pd, math, sys
+-sys.path.insert(0,'/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc')
++sys.path.insert(0,'/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc')
+ import a_overlap as ao
+-MERGED='/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv'
++MERGED='/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv'
+ def load(n):
+     d=pd.read_csv(MERGED); r=d[d.n==n].sort_values('square_id')
+     return r[['x','y','angle']].values.copy()

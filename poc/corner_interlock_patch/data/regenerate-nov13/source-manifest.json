@@ -1,0 +1,24 @@
+{
+  "source_main": "3ba7a96d3744d0e4e0a86a054924909de5ec830f",
+  "original_sources": {
+    "poc/corner_interlock_patch/poc/patch_search.py": "2da3880938a564ce608e0859d708d81a18b09890467c18e5e900f0302a4cee75"
+  },
+  "execution": {
+    "folder": "corner_interlock_patch",
+    "args": [
+      "poc/corner_interlock_patch/poc/patch_search.py",
+      "--baseline",
+      "regeneration-proof/incumbent.csv",
+      "--out",
+      "poc/corner_interlock_patch/data/regenerate-nov13/"
+    ],
+    "reason": "Normal defaults seven targets trials2 iterations420",
+    "timeout": 3500,
+    "pid": 422950,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 20.62
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

@@ -1,0 +1,21 @@
+{
+  "source_main": "a10291aca41b449f95ca4bf62478c2696fccae24",
+  "original_sources": {
+    "poc/fault_cut/poc/fault_cut.py": "a61ae3cf60d79e6c811f06088bca57c3bc35cb3b9a58e9b29da6b28c63c77c3d"
+  },
+  "execution": {
+    "folder": "fault_cut",
+    "args": [
+      "poc/fault_cut/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Genuine incumbent topologicaldeletion targets26,50,101,634",
+    "timeout": 3500,
+    "pid": 436218,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 51.89,
+    "retry": true
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

@@ -1,0 +1,27 @@
+{
+  "source_main": "ef00e965bdb5311feeac6292ab226142842867f3",
+  "original_sources": {
+    "poc/multi_angle_band/poc/certify.py": "c8be0577a8cca26e7bf74042a15b4c34695b286202214586ec6287085c11602e",
+    "poc/multi_angle_band/poc/mab.py": "79b3eb622830305c0dfc77ef4927162ca02a5e6007ee8b97b3168880d8484a7c",
+    "poc/multi_angle_band/poc/rank_targets.py": "0ac05930fa9f7a02f81545ac3629af649cdd3fdb5150b7b53e107fc060969dd6",
+    "poc/multi_angle_band/poc/search.py": "7d49ff24646f5d84b0c6ba86c56369261ceb955af283d8422f25e1fb792d03ce"
+  },
+  "execution": {
+    "folder": "multi_angle_band",
+    "args": [
+      "poc/multi_angle_band/poc/search.py",
+      "634",
+      "25.70710678",
+      "60",
+      "0.15"
+    ],
+    "reason": "Documented full n634 MILP60second budget",
+    "timeout": 3500,
+    "pid": 427957,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 63.56
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

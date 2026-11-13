@@ -1,0 +1,28 @@
+{
+  "folder": "kat-band",
+  "scripts": [
+    "poc/band_geometry.py",
+    "poc/band_polish.py",
+    "poc/band_relax.py",
+    "poc/certify_hour.py",
+    "poc/core_refill.py",
+    "poc/ftmc_bundle.py",
+    "poc/ftmc_detached.py",
+    "poc/ftmc_hour.py",
+    "poc/ftmc_moves.py",
+    "poc/ftmc_pilot.py",
+    "poc/gensane.py",
+    "poc/gensane_driver.py",
+    "poc/gensane_polish.py",
+    "poc/gensane_recovery.py",
+    "poc/gensane_seeds.py",
+    "poc/local_ruin.py",
+    "poc/ribbon_archive.py",
+    "poc/run_relax.py",
+    "poc/seed_cli.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 153874,
+  "status": "skipped-deferred",
+  "reason": "GPU-targeted A100 full hour FTMC experiment and large multi-target CPU variants; skipped GPU/long pipeline, not replaced by toy run."
+}

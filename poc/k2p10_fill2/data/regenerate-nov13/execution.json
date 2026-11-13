@@ -1,0 +1,18 @@
+{
+  "folder": "k2p10_fill2",
+  "args": [
+    "poc/k2p10_fill2/poc/b_fill.py",
+    "0",
+    "25.705",
+    "5",
+    "1",
+    "300"
+  ],
+  "reason": "Documented five-trial n635fill five-minute budget",
+  "timeout": 3500,
+  "pid": 436219,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 53.04,
+  "retry": true
+}

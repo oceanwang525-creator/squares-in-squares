@@ -1,0 +1,25 @@
+{
+  "source_main": "2d4c0b65e167d0d50eb696147cae991e32888b2d",
+  "original_sources": {
+    "poc/vacancy_diamonds/poc/colmodel.py": "3c2f8ca673e0cc78a16a6a70be48717299187dcb8e116d0b175446630af3daee",
+    "poc/vacancy_diamonds/poc/extract.py": "b6c9a0bdcc3b25d320943fd5bb73aa222a7b7aaf018814fe040a2dcdc9165dff",
+    "poc/vacancy_diamonds/poc/hybrid.py": "b2b76a638524407c840a1dcef645b9fb926e8230e4a4d0cff7ee66bd1afa3003",
+    "poc/vacancy_diamonds/poc/plot.py": "23467134dc0c24ba4db66937035d23eb0b692368613504d989925fa06c29407d",
+    "poc/vacancy_diamonds/poc/slp.py": "5535c1ce3dc39eb2cf8476100ec81516fb860542bf68a06b35f1ddadc9d7adc1",
+    "poc/vacancy_diamonds/poc/t1.py": "55ef2d6deb10bc7be73621fad45febade2fac8f9b7df8dacfb992725cb4d348f"
+  },
+  "execution": {
+    "folder": "vacancy_diamonds",
+    "args": [
+      "poc/vacancy_diamonds/data/regenerate-nov13/run_pipeline.py"
+    ],
+    "reason": "Reextract n401 then normal240second SLP with fullrawarray",
+    "timeout": 3500,
+    "pid": 433483,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 8.95
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

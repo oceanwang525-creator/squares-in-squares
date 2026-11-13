@@ -1,0 +1,159 @@
+[
+  {
+    "folder": "free_band_ga",
+    "args": [
+      "poc/free_band_ga/poc/free_band_ga.py"
+    ],
+    "reason": "Normal300generation64population",
+    "timeout": 3500
+  },
+  {
+    "folder": "freeze_big_region",
+    "args": [
+      "poc/freeze_big_region/poc/big_free.py",
+      "634",
+      "3",
+      "1",
+      "150"
+    ],
+    "reason": "Documented n634 150second serious local relaxation",
+    "timeout": 3500
+  },
+  {
+    "folder": "freeze_relax_momentum",
+    "args": [
+      "poc/freeze_relax_momentum/poc/freeze_relax.py",
+      "634",
+      "2",
+      "1.5",
+      "150"
+    ],
+    "reason": "n634 normal150second momentum relaxation",
+    "timeout": 3500
+  },
+  {
+    "folder": "global_search_midn",
+    "args": [
+      "poc/global_search_midn/poc/gsearch.py",
+      "328",
+      "330",
+      "42"
+    ],
+    "reason": "Documented330second n328 run",
+    "timeout": 3500
+  },
+  {
+    "folder": "neighbour_deletion",
+    "args": [
+      "poc/neighbour_deletion/poc/nd.py",
+      "908,911,973",
+      "6",
+      "300",
+      "300",
+      "poc/neighbour_deletion/data/regenerate-nov13/scan"
+    ],
+    "reason": "three frontier targets300s bounded normal neighbour deletion",
+    "timeout": 3500
+  },
+  {
+    "folder": "setpack367",
+    "args": [
+      "poc/setpack367/poc/setpack367.py"
+    ],
+    "reason": "Normal n367 MILP300second cap, no gadget32pool",
+    "timeout": 3500
+  },
+  {
+    "folder": "setpack_lns",
+    "args": [
+      "poc/setpack_lns/poc/setpack_lns.py"
+    ],
+    "reason": "Normal150iterations10secondsubMILPs <=~25min",
+    "timeout": 3500
+  },
+  {
+    "folder": "soft_to_rigid",
+    "args": [
+      "sweep.py",
+      "51",
+      "300"
+    ],
+    "reason": "Normal n51 five-minute sweep",
+    "timeout": 3500,
+    "cwd": "poc/soft_to_rigid/poc"
+  },
+  {
+    "folder": "leader_poc_k2p4",
+    "args": [
+      "poc/leader_poc_k2p4/poc/slp.py",
+      "328",
+      "120",
+      "0.05",
+      "0.02"
+    ],
+    "reason": "Documented n328120secondSLP",
+    "timeout": 3500
+  },
+  {
+    "folder": "leader_poc_kk1m9",
+    "args": [
+      "poc/leader_poc_kk1m9/poc/relax.py",
+      "411",
+      "20.77414",
+      "120"
+    ],
+    "reason": "Documented n411120secondrelaxation",
+    "timeout": 3500
+  },
+  {
+    "folder": "multi_angle_band",
+    "args": [
+      "poc/multi_angle_band/poc/search.py",
+      "634",
+      "25.70710678",
+      "60",
+      "0.15"
+    ],
+    "reason": "Documented full n634 MILP60second budget",
+    "timeout": 3500
+  },
+  {
+    "folder": "multi_tilted_blocks",
+    "args": [
+      "poc/multi_tilted_blocks/poc/mis.py",
+      "30.63",
+      "240",
+      "2"
+    ],
+    "reason": "Documented L30.63 candidate enumeration240secondMILP",
+    "timeout": 3500
+  },
+  {
+    "folder": "c4_symmetric_ils",
+    "args": [
+      "poc/c4_symmetric_ils/poc/c4run.py",
+      "109",
+      "10.9498",
+      "240",
+      "1"
+    ],
+    "reason": "Documented n109 C4 240second singleworker",
+    "timeout": 3500
+  },
+  {
+    "folder": "shelf_knapsack",
+    "args": [
+      "poc/shelf_knapsack/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Full six-target default construction with raw rows export",
+    "timeout": 3500
+  },
+  {
+    "folder": "diamond_core",
+    "args": [
+      "poc/diamond_core/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Full11-target default construction with raw rows export",
+    "timeout": 3500
+  }
+]

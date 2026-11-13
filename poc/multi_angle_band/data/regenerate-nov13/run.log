@@ -1,0 +1,7 @@
+n=634 L=25.857107 count=626 target=634 cands=2540 t=2s
+n=634 L=25.857107 count=630 target=634 cands=2564 t=2s
+n=634 L=25.857107 count=631 target=634 cands=2559 t=3s
+n=634 L=25.857107 count=632 target=634 cands=2566 t=9s
+n=634 L=25.857107 count=633 target=634 cands=2586 t=31s
+n=634 L=25.857107 count=634 target=634 cands=2630 t=44s
+FINAL 634 25.85710678 634 valid_local True gap_to_n 0
