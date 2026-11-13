@@ -43,6 +43,23 @@ python poc/cross-pocket-phase/poc/scan.py \
   --phase-step 0.5 --jobs 10 --reach 8 --milp-limit 10 \
   --summary poc/cross-pocket-phase/data/scan-973a-973b-target972-half.json \
   --best-out poc/cross-pocket-phase/data/probe-973a-973b-target972.csv
+
+python poc/cross-pocket-phase/poc/scan.py \
+  --target 908 --first-source 908 --first-component 0 \
+  --second-source 908 --second-component 1 \
+  --phase-step 0.5 --jobs 10 --reach 8 --milp-limit 10 \
+  --summary poc/cross-pocket-phase/data/scan-908a-908b-target908-half.json \
+  --best-out poc/cross-pocket-phase/data/probe-908a-908b-target908.csv
+
+python poc/cross-pocket-phase/poc/scan.py \
+  --target 908 --first-source 908 --first-component 0 \
+  --second-source 908 --second-component 1 \
+  --phase-step 0.5 --jobs 10 --reach 8 --milp-limit 10 \
+  --support-candidates \
+  --refine poc/cross-pocket-phase/data/scan-908a-908b-target908-half.json \
+  --top 64 \
+  --summary poc/cross-pocket-phase/data/refine-908a-908b-target908-support.json \
+  --best-out poc/cross-pocket-phase/data/probe-908a-908b-target908-support.csv
 ```
 
 The `791` run uses `908:0 x 908:0` at the `791` incumbent side. The complete
@@ -60,6 +77,9 @@ two-pocket template does not survive the smaller box.
 - Both `973 x 973` and `972 x 972` reach `965/972`.
 - Sixteen additional upright lattice offsets do not improve that `965/972`
   peak.
+- `908:0 x 908:1` at target `908` reaches `894/908`. Replaying its top 64
+  poses with source support candidates also reaches `894/908`; both best
+  probes are identical, so this is not a missing-candidate artifact.
 - Keeping the complete upright skirt from `908` while inserting the two
   `971` pockets leaves too many locked contacts; exact refill probes only
   reach the low 900s. This is a boundary on the core-replacement idea.

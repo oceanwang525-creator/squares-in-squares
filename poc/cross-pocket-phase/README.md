@@ -31,10 +31,17 @@ complete target group.
 | 791 | `908:0` (101) | `908:0` (101) | all 64 dihedrals, 16 phase pairs | 780 |
 | 972 | `973:0` (144) | `973:1` (144) | all 64 dihedrals, 16 phase pairs | 965 |
 | 972 | `972:0` (140) | `972:1` (135) | all 64 dihedrals, 16 phase pairs | 965 |
+| 908 | `908:0` (101) | `908:1` (101) | all 64 dihedrals, 16 phase pairs | 894 |
+| 908 | same top 64 poses | same top 64 poses | plus source support candidates | 894 |
 
 The `972` scan was repeated for the top 64 `973 x 973` poses with the default
 corner lattices plus all 16 upright-lattice quarter phases. It remained
 `965/972`, so the seven-square gap is not an omitted upright translation.
+
+The target-`908` scan was refined with the source support points enabled in
+addition to the default candidate graph. It remained `894/908`; the best
+probe from both modes is byte-for-byte identical. Disabling or enabling those
+support candidates therefore does not change the binding geometry.
 
 No `final.csv` is included because no complete target group was found, and
 therefore there is nothing to run through the full-union official gate.

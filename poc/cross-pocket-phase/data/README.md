@@ -13,5 +13,7 @@ The `probe-*.csv` files are best negative candidates, not submissions:
 - `908 x 908` at target 791: 780/791
 - `973 x 973` at target 972: 965/972
 - `972 x 972` at target 972: 965/972
+- `908:0 x 908:1` at target 908: 894/908
+- `908:0 x 908:1` at target 908, source support candidates: 894/908
 
 No `final.csv` exists because none of these reaches its target group.
