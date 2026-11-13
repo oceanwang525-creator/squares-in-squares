@@ -16,6 +16,7 @@ import idea7_chain_ruin as i7  # noqa: E402
 import idea8_seam_surgery as i8  # noqa: E402
 import idea9_subpocket as i9  # noqa: E402
 import idea10_gentle_transfer as i10  # noqa: E402
+import idea11_force_chain as i11  # noqa: E402
 import polish_and_certify as pc  # noqa: E402
 import run_inflation_v2 as riv2  # noqa: E402
 import sat_cuda as sc_gpu  # noqa: E402
@@ -264,5 +265,36 @@ def test_idea10_gentle_transfer_pool():
         assert st.shape == (12, n_tgt)
         assert np.all(np.isfinite(sx)) and np.all(np.isfinite(sy)) and np.all(np.isfinite(st))
         assert np.all(sx >= 0.4) and np.all(sy >= 0.4)
+
+
+def test_idea11_force_chain_and_fast_mode4():
+    pts = []
+    for ix in range(5):
+        for iy in range(5):
+            ang = -0.45 if abs(ix - iy) <= 1 else 0.0
+            pts.append((0.6 + ix * 1.15, 0.6 + iy * 1.15, ang))
+    pos = np.array([[x, y] for x, y, _ in pts], dtype=np.float64)
+    th = np.array([a for _, _, a in pts], dtype=np.float64)
+    info = i7.extract_lp_duals_and_holes(pos, th, polish_rounds=1)
+    info["n_src"] = 25
+    info["holes"] = i10.find_diverse_holes(np.stack([info["x"], info["y"]], axis=1), float(info["L"]), top_k=6)
+
+    for n_tgt in (25, 27, 24):
+        sx, sy, st = i11.generate_idea11_pool(n_tgt, [info], inc_L=float(info["L"]) - 0.02, count=15, rng_seed=111)
+        assert sx.shape == (15, n_tgt)
+        assert sy.shape == (15, n_tgt)
+        assert st.shape == (15, n_tgt)
+        assert np.all(np.isfinite(sx)) and np.all(np.isfinite(sy)) and np.all(np.isfinite(st))
+        assert np.all(sx >= 0.4) and np.all(sy >= 0.4)
+
+    # Verify fast_mode=4 (Idea 11 symmetric box-squeeze & split-half-crystal CUDA kernel)
+    rng = np.random.default_rng(31)
+    pos5 = rng.uniform(0.6, 2.4, (12, 5, 2))
+    th5 = rng.uniform(-0.3, 0.3, (12, 5))
+    box5 = np.full(12, 3.0)
+    out4 = riv2.run_cuda_batch(pos5, th5, box5, use_elastic_L=1, fast_mode=4, seed=73)
+    assert float(np.min(out4["L_cert"])) < 2.85
+    assert pc.sat_max_penetration(out4["pos"][int(np.argmin(out4["L_cert"]))], out4["th"][int(np.argmin(out4["L_cert"]))]) == 0.0
+
 
 

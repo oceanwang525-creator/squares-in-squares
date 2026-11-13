@@ -405,12 +405,26 @@ __global__ void solve_batch_fp32(
         {1.000f, 750, 0.00010f,75000.0f, 1.0f, 1},
         {1.000f, 650, 0.000045f,140000.0f,1.0f,1}
     };
-    const int n_stages = (fast_mode == 2) ? 10 : ((fast_mode == 3) ? 16 : 14);
-    const Stage* stages = (fast_mode == 2) ? stages_gentle : ((fast_mode == 3) ? stages_deep : stages_fast);
-    const float mult_steps = (fast_mode == 0) ? 1.8f : ((fast_mode == 3) ? 1.45f : 1.0f);
+    const Stage stages_micro[12] = {
+        {0.965f, 350, 0.0038f, 25.0f,    1.0f, 1},
+        {0.975f, 400, 0.0030f, 70.0f,    1.0f, 1},
+        {0.983f, 450, 0.0023f, 180.0f,   1.0f, 1},
+        {0.989f, 500, 0.0017f, 450.0f,   1.0f, 1},
+        {0.982f, 400, 0.0020f, 800.0f,   1.0f, 1},
+        {0.991f, 550, 0.0013f, 1600.0f,  1.0f, 1},
+        {0.995f, 600, 0.00085f,4000.0f,  1.0f, 1},
+        {0.9975f,600, 0.00050f,10000.0f, 1.0f, 1},
+        {0.9990f,650, 0.00030f,25000.0f, 1.0f, 1},
+        {1.000f, 750, 0.00018f,50000.0f, 1.0f, 1},
+        {1.000f, 650, 0.00009f,90000.0f, 1.0f, 1},
+        {1.000f, 550, 0.00004f,150000.0f,1.0f, 1}
+    };
+    const int n_stages = (fast_mode == 2) ? 10 : ((fast_mode == 3) ? 16 : ((fast_mode == 4) ? 12 : 14));
+    const Stage* stages = (fast_mode == 2) ? stages_gentle : ((fast_mode == 3) ? stages_deep : ((fast_mode == 4) ? stages_micro : stages_fast));
+    const float mult_steps = (fast_mode == 0) ? 1.8f : ((fast_mode == 3) ? 1.45f : ((fast_mode == 4) ? 1.15f : 1.0f));
 
     int step_g = 0;
-    float w_align_base = (b % 2 == 1) ? 0.016f : 0.0f;
+    float w_align_base = (fast_mode == 4) ? 0.0f : ((b % 2 == 1) ? 0.016f : 0.0f);
 
     for (int st = 0; st < n_stages; ++st) {
         float scale_a = stages[st].a;
@@ -563,37 +577,45 @@ __global__ void solve_batch_fp32(
 
             if (opt_L && tid == 0) {
                 float sfrac = (fast_mode == 2) ? ((float)st / 9.0f)
-                    : ((fast_mode == 3) ? ((float)max(0, st - 3) / 12.0f) : ((float)max(0, st - 4) / 9.0f));
+                    : ((fast_mode == 4) ? ((float)st / 11.0f)
+                    : ((fast_mode == 3) ? ((float)max(0, st - 3) / 12.0f) : ((float)max(0, st - 4) / 9.0f)));
                 float target_w = (fast_mode == 2)
                     ? (0.030f * (1.0f - sfrac) + 0.0001f)
-                    : ((fast_mode == 3)
-                        ? (0.028f * (1.0f - sfrac) + 0.00015f)
-                        : (0.045f * (1.0f - sfrac) + 0.0005f));
+                    : ((fast_mode == 4)
+                        ? (0.018f * (1.0f - sfrac) + 0.00015f)
+                        : ((fast_mode == 3)
+                            ? (0.028f * (1.0f - sfrac) + 0.00015f)
+                            : (0.045f * (1.0f - sfrac) + 0.0005f)));
                 float max_L_b = sh_L_init + ((fast_mode == 2)
                     ? ((b % 3 == 0) ? 0.002f : ((b % 3 == 1) ? 0.010f : 0.025f))
-                    : ((fast_mode == 3)
-                        ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0015f : ((b % 4 == 2) ? 0.0045f : 0.0120f)))
-                        : ((b % 3 == 0) ? 0.003f : ((b % 3 == 1) ? 0.015f : 0.040f))));
+                    : ((fast_mode == 4)
+                        ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0008f : ((b % 4 == 2) ? 0.0025f : 0.0060f)))
+                        : ((fast_mode == 3)
+                            ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0015f : ((b % 4 == 2) ? 0.0045f : 0.0120f)))
+                            : ((b % 3 == 0) ? 0.003f : ((b % 3 == 1) ? 0.015f : 0.040f)))));
                 float min_L_b = fmaxf(1.0f, sh_L_init * 0.75f);
                 float step_c = fminf(0.0018f, lr_xy * 0.5f);
                 sh_x0 += step_c * tanhf(sum_vx * 2.0f);
                 sh_y0 += step_c * tanhf(sum_vy * 2.0f);
-                float err_w = (sum_wall - target_w) / fmaxf(target_w, 0.015f);
+                float denom_w = (fast_mode == 4 && sum_wall < target_w)
+                    ? fmaxf(target_w, 1.0e-5f)
+                    : fmaxf(target_w, (fast_mode == 4) ? 0.008f : 0.015f);
+                float err_w = (sum_wall - target_w) / denom_w;
                 sh_L += step_c * 0.8f * fminf(1.0f, fmaxf(-1.0f, err_w));
                 sh_L = fminf(max_L_b, fmaxf(min_L_b, sh_L));
             }
             __syncthreads();
 
             // Active discrete + collective moves during mobile inflation / anneal
-            const bool do_moves = (fast_mode == 3)
-                ? (scale_a <= 0.993f && ((it == n_steps / 4) || (it == n_steps / 2) || (it == (3 * n_steps) / 4)))
+            const bool do_moves = (fast_mode == 3 || fast_mode == 4)
+                ? (scale_a <= 0.995f && ((it == n_steps / 4) || (it == n_steps / 2) || (it == (3 * n_steps) / 4)))
                 : (scale_a <= 0.988f && ((it == n_steps / 3) || (it == (2 * n_steps) / 3)));
             if (do_moves) {
                 rebuild_grid(N, sh_x0, sh_y0, sh_L, sx, sy, cell_head, cell_next, sh_gx0, sh_gy0, sh_cw);
                 float w_wall_unit = stage_tight ? 1.0f : 5.0f;
 
                 // 1) Parallel 256-thread void relocation on the worst-stress squares
-                if (fast_mode != 2) {
+                if (fast_mode != 2 && fast_mode != 4) {
                 const int n_mv = (fast_mode == 3) ? 3 : 2;
                 const int n_pr = (fast_mode == 3) ? 4 : 1;
                 const int n_ang = (fast_mode == 3) ? 7 : 3;
@@ -682,6 +704,11 @@ __global__ void solve_batch_fp32(
                     __syncthreads();
 
                     float seed_th = sth[seed_idx];
+                    float seed_x = sx[seed_idx], seed_y = sy[seed_idx];
+                    float cx0 = sh_x0 + 0.5f * sh_L, cy0 = sh_y0 + 0.5f * sh_L;
+                    float seed_d1 = (seed_x - cx0) - (seed_y - cy0);
+                    float seed_d2 = (seed_x - cx0) + (seed_y - cy0);
+                    bool seed_upright = (fabsf(sinf(2.0f * seed_th)) < 0.25f);
                     float e0 = compute_total_energy_f32(
                         N, sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw,
                         scale_a, w_wall_unit, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
@@ -696,9 +723,19 @@ __global__ void solve_batch_fp32(
                         int i = tid + r * BLOCK_THREADS;
                         if (i >= N) break;
                         ox[r] = sx[i]; oy[r] = sy[i];
-                        bool mask = (cm == 0)
-                            ? (fabsf(cosf(2.0f * (sth[i] - seed_th))) > 0.96f)
-                            : (fabsf(sx[i] - sx[seed_idx]) < 3.5f || fabsf(sy[i] - sy[seed_idx]) < 3.5f);
+                        bool mask;
+                        if (cm == 0) {
+                            mask = (fabsf(cosf(2.0f * (sth[i] - seed_th))) > 0.96f);
+                            if (mask && fast_mode == 4 && seed_upright) {
+                                // Split upright 0-deg crystal into independent half-grains (g_hi vs g_lo)
+                                float di = ((st + it) & 1)
+                                    ? (((sx[i] - cx0) + (sy[i] - cy0)) * seed_d2)
+                                    : (((sx[i] - cx0) - (sy[i] - cy0)) * seed_d1);
+                                mask = (di >= 0.0f);
+                            }
+                        } else {
+                            mask = (fabsf(sx[i] - seed_x) < 3.5f || fabsf(sy[i] - seed_y) < 3.5f);
+                        }
                         if (mask) {
                             in_cl[r] = 1;
                             float xi = sx[i], yi = sy[i], ci = sc[i], si = ss[i];
@@ -772,7 +809,7 @@ __global__ void solve_batch_fp32(
 
 // Float64 final polish + exact all-pairs uniform dilation L_cert (one block per trajectory)
 __global__ void polish_and_cert_fp64(
-    int B, int N, int n_polish_steps, int use_elastic_L,
+    int B, int N, int n_polish_steps, int use_elastic_L, int fast_mode,
     const float* __restrict__ in_x,
     const float* __restrict__ in_y,
     const float* __restrict__ in_th,
@@ -939,9 +976,11 @@ __global__ void polish_and_cert_fp64(
             sh_x0 += 0.5 * lr * tanh(sdx * 5.0);
             sh_y0 += 0.5 * lr * tanh(sdy * 5.0);
             if (use_elastic_L) {
-                double err_w = (swall - 1.0e-4) / 0.005;
+                double denom = (fast_mode == 4 && swall < 1.0e-4) ? 2.0e-4 : 0.005;
+                double err_w = (swall - 1.0e-4) / denom;
                 sh_L += 0.4 * lr * fmin(1.0, fmax(-1.0, err_w));
-                sh_L = fmin(sh_L_init + 0.015, fmax(fmax(1.0, sh_L_init * 0.75), sh_L));
+                double max_add = (fast_mode == 4) ? 0.0015 : 0.015;
+                sh_L = fmin(sh_L_init + max_add, fmax(fmax(1.0, sh_L_init * 0.75), sh_L));
             }
         }
         __syncthreads();
@@ -1171,9 +1210,9 @@ int main(int argc, char** argv) {
     check_cuda(cudaMalloc(&d_lam, sp.B * sizeof(double)), "malloc d_lam");
     check_cuda(cudaMalloc(&d_pen, sp.B * sizeof(double)), "malloc d_pen");
 
-    int polish_steps = sp.fast_mode ? 800 : 1800;
+    int polish_steps = (sp.fast_mode == 4) ? 1000 : (sp.fast_mode ? 800 : 1800);
     polish_and_cert_fp64<<<sp.B, BLOCK_THREADS>>>(
-        sp.B, sp.N, polish_steps, sp.use_elastic_L,
+        sp.B, sp.N, polish_steps, sp.use_elastic_L, sp.fast_mode,
         d_ox, d_oy, d_oth, d_ox0, d_oy0, d_oL,
         d_px, d_py, d_pth, d_Lc, d_lam, d_pen
     );

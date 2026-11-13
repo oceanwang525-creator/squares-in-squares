@@ -3312,7 +3312,7 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_sheared_band_v6(n, L_val, rng, desc);
                     }
                 }
-            } else {
+            } else if (idea == 10) {
                 // Idea 10: Gentle elastic-L transfer pool (100% when fast_mode==2 & surg_pool present)
                 //          + Twin off-diagonal rectangular pockets (NW/SE) + Flush-sheared bands
                 if (!surg_pool.empty() && (fast_mode == 2 || (b % 3 == 0))) {
@@ -3330,6 +3330,25 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_flush_sheared_v10(n, L_val, rng, desc, grp * 7 + (fam - 11));
                     } else {
                         seeds_pts[b] = seed_asym_band_v9(n, L_val, rng, desc, b * 131 + fam);
+                    }
+                }
+            } else {
+                // Idea 11: Active LP-dual force-chain buckling & slip-line surgery under fast_mode=4/2
+                if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 2 == 0))) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = exact_bbox_side(seeds_pts[b]);
+                    const char* ops[5] = {"surg11_buckle", "surg11_slipline", "surg11_vachop", "surg11_aniso", "surg11_xfer"};
+                    desc = ops[sidx % 5];
+                } else {
+                    int fam = b % 20;
+                    int grp = b / 20;
+                    if (fam < 12) {
+                        seeds_pts[b] = seed_asym_band_v9(n, L_val, rng, desc, grp * 12 + fam);
+                    } else if (fam < 17) {
+                        seeds_pts[b] = seed_flush_sheared_v10(n, L_val, rng, desc, grp * 5 + (fam - 12));
+                    } else {
+                        seeds_pts[b] = seed_pyth_diamond_v9(n, L_val, rng, desc, grp * 3 + (fam - 17));
                     }
                 }
             }

@@ -402,4 +402,15 @@ Tested `--idea 7 --batch 1024 --fast-mode 0 --elastic-L 1` (512 LP-dual surgical
   - Implement 5 force-chain & slip-line surgical operators (`op=0`: force-chain transverse buckle; `op=1`: slip-line shear through peak-dual bottleneck; `op=2`: max-dual bottleneck to max-void vacancy hop; `op=3`: dual-weighted anisotropic inward squeeze + rattler void drift; `op=4`: cross-`n` stoichiometry transfer + dual-grain glide) and run across all 10 targets (`791, 969, 367, 972, 971, 851, 910, 796, 333, 687`).
 
 ### Results Log (Idea 11)
-*(Pending execution)*
+- Ran fresh `fast_mode=4` (`task-1607`, `batch=1024`) + fixed surgical force-chain Rounds 1–2 (`s=1110, 1115`, `task-1638`) + 10-round HiGHS LP / 10-round SLP polish across all 10 targets (`0` wins, all 10 improved strictly over Idea 10, pushed right up against exact topology floors):
+  - `791`: `28.646711798378` vs `inc=28.634070751579` (`gap=+0.012641`, `-0.000063`) — sitting on the `w=4, (1+f)^2+(3+f)^2>=16 -> f_min=sqrt(7)-2=0.645751` algebraic floor (`L_min=28.645751`).
+  - `969`: `31.646763931217` vs `inc=31.633982501359` (`gap=+0.012781`, `-0.000703`) — sitting on the exact same `w=4, f_min=0.645751` floor (`L_min=31.645751`).
+  - `367`: `19.707109910174` vs `inc=19.692388155425` (`gap=+0.014722`, `-0.000002`) — `w=1` `45°` band floor (`k + sqrt(2)/2 = 19.707107`).
+  - `972`: `31.707117598066` vs `inc=31.683990214555` (`gap=+0.023127`, `-0.000007`) — `w=1` `45°` band floor (`31.707107`).
+  - `851`: `29.707126768156` vs `inc=29.684143606359` (`gap=+0.022983`, **`-0.008364`**) — `w=1` `45°` band floor (`29.707107`).
+  - `910`: `30.707136765186` vs `inc=30.679149464636` (`gap=+0.027987`, **`-0.007475`**) — `w=1` `45°` band floor (`30.707107`).
+  - `971`: `31.707141323055` vs `inc=31.664318325205` (`gap=+0.042823`, `-0.000330`) — `w=1` `45°` band floor (`31.707107`).
+  - `796`: `28.755514088565` vs `inc=28.721540002259` (`gap=+0.033974`, **`-0.001366`**)
+  - `333`: `18.816719150203` vs `inc=18.772634113467` (`gap=+0.044085`, **`-0.001964`**)
+  - `687`: `26.772431306882` vs `inc=26.723271497397` (`gap=+0.049160`, **`-0.003544`**)
+- **Diagnostic Proof of Why Local Basin Search Cannot Beat `inc_L`:** Force-chain and active-wall audits on `cand_v11` proved `791`/`969` have a single `w=4` tilted bridge `(1+f, 3+f)` whose Cauchy-Schwarz bound `(1+f)^2+(3+f)^2 >= 16` forces `f >= sqrt(7)-2 = 0.645751 > f_inc (~0.634)`, while `367, 851, 910, 971, 972` hit the `w=1` `45°` band floor `sqrt(2)/2 = 0.707107 > f_inc`. Idea 12 must therefore change global topology cleanly via higher-width exact bridge seeds (`w=3/5/8/9`) and true flush sheared-row wall L-pockets (`W=P+f`).
