@@ -1,0 +1,130 @@
+[
+  {
+    "n": 401,
+    "L_ours": 20.5355339059328,
+    "L_front": 20.526135333409,
+    "L_probe": 20.533533905932803,
+    "best_single": {
+      "type": "single_block",
+      "m1": 2,
+      "m2": 2,
+      "th_deg": 5.0,
+      "shift": [
+        0.0,
+        0.0
+      ],
+      "n_tilt": 4,
+      "n_up": 396,
+      "cap": 400
+    },
+    "best_two": {
+      "type": "two_blocks",
+      "m": 2,
+      "th_deg": 5.0,
+      "d_offset": [
+        2.0,
+        2.0
+      ],
+      "n_tilt": 8,
+      "n_up": 392,
+      "cap": 400
+    },
+    "seconds": 1.65
+  },
+  {
+    "n": 442,
+    "L_ours": 21.53553390593283,
+    "L_front": 21.5229229397321,
+    "L_probe": 21.53353390593283,
+    "best_single": {
+      "type": "single_block",
+      "m1": 2,
+      "m2": 1,
+      "th_deg": 5.0,
+      "shift": [
+        0.5,
+        0.0
+      ],
+      "n_tilt": 2,
+      "n_up": 439,
+      "cap": 441
+    },
+    "best_two": {
+      "type": "two_blocks",
+      "m": 3,
+      "th_deg": 5.0,
+      "d_offset": [
+        2.0,
+        2.0
+      ],
+      "n_tilt": 18,
+      "n_up": 423,
+      "cap": 441
+    },
+    "seconds": 1.98
+  },
+  {
+    "n": 530,
+    "L_ours": 23.535533905932855,
+    "L_front": 23.517304919934,
+    "L_probe": 23.533533905932856,
+    "best_single": {
+      "type": "single_block",
+      "m1": 2,
+      "m2": 1,
+      "th_deg": 5.0,
+      "shift": [
+        0.5,
+        0.0
+      ],
+      "n_tilt": 2,
+      "n_up": 527,
+      "cap": 529
+    },
+    "best_two": {
+      "type": "two_blocks",
+      "m": 3,
+      "th_deg": 5.0,
+      "d_offset": [
+        2.0,
+        2.0
+      ],
+      "n_tilt": 18,
+      "n_up": 511,
+      "cap": 529
+    },
+    "seconds": 2.87
+  },
+  {
+    "n": 626,
+    "L_ours": 25.520815280171426,
+    "L_front": 25.5110487642192,
+    "L_probe": 25.518815280171427,
+    "best_single": {
+      "type": "single_block",
+      "m1": 2,
+      "m2": 1,
+      "th_deg": 5.0,
+      "shift": [
+        0.5,
+        0.0
+      ],
+      "n_tilt": 2,
+      "n_up": 623,
+      "cap": 625
+    },
+    "best_two": {
+      "type": "two_blocks",
+      "m": 3,
+      "th_deg": 5.0,
+      "d_offset": [
+        2.0,
+        2.0
+      ],
+      "n_tilt": 18,
+      "n_up": 607,
+      "cap": 625
+    },
+    "seconds": 4.2
+  }
+]
