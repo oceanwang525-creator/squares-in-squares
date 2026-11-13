@@ -1,7 +1,7 @@
 {
   "folder": "shelf_knapsack",
-  "source_main": "382eec2c6057e62e7246d8aa03d6821940de3fd1",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "80b16e298dd284087b94af09d0cf1af047797b83",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
