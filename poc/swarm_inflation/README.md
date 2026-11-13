@@ -496,4 +496,28 @@ Following `#80` and `7b385ca` (`poc/swarm_angles/poc/idea20_partner_shift.py`), 
 - Fast-fail check on 2–3 core targets (`367, 687, 971`) in `< 5 min` first; commit and notify `@verifier` immediately on any win, then sweep all 10 targets.
 
 ### Results Log (Idea 15)
-*(Pending execution)*
+- **GPU Soft-`a` Melt (`fast_mode=6,5`, `batch=1024`, `{367, 687, 971}`):** Exported top 16 GPU+AL basins per target to `/tmp/v15_top/top_n{367,687,971}_fm{5,6}.bin`.
+- **`idea15_direct_slp_harvest.py` (All 10 Targets, `fast_joint_xytheta_slp` + `[1e-7, 2e-8, 5e-9, 1e-9]` LP + `dual_certify`, `2455.2s`, 4 workers):**
+  - **`n=971` (REAL WIN, `v15_fm5#5` GPU melt + SLP):** `L_lit = L_pd = 31.66203655417199787943752168310285037795427519232259` vs `inc_L = 31.66431832515162747971347060000000000000000000000000` (**`dL = -2.281771e-03`, `ds = -1.488118e-04`**). Saved in [win_n971.csv](file:///home/lucas/.gemini/antigravity-cli/worktrees/a4fb0b93-b63b-426d-aa12-67454e99bc08/swarm-inflation-488c6599/poc/swarm_inflation/data/win_n971.csv) and `final.csv`.
+  - **`n=687` (REAL WIN, `jit_0` + SLP):** `L_lit = L_pd = 26.72326894516290411928693258187183648002456127583718` vs `inc_L = 26.72327149739741452573736753634140121089419869381267` (**`dL = -2.552235e-06`, `ds = -1.985562e-07`**). Saved in [win_n687.csv](file:///home/lucas/.gemini/antigravity-cli/worktrees/a4fb0b93-b63b-426d-aa12-67454e99bc08/swarm-inflation-488c6599/poc/swarm_inflation/data/win_n687.csv) and `final.csv`.
+  - **Bundled Certified Ties (`final.csv`):** `n=851` (`dL = -7.069890e-16`), `n=969` (`dL = -3.000000e-16`), `n=972` (`dL = -2.000000e-16`).
+  - **No win (`6/10`):** `n=333 (+4.0e-16)`, `n=367 (+1.869e-12)`, `n=791 (+2.8e-15)`, `n=796 (+1.0e-15)`, `n=910 (+4.298e-16)`.
+  - **Key Lesson:** Pairing Idea 15's GPU `fast_mode=5` inflation melt (`v15_fm5#5`) with vectorized `fast_joint_xytheta_slp` cracked `n=971` by **`-2.282e-03`**! Now scaling Idea 15 GPU melt across remaining top-gap `n`s AND testing Idea 16 masked-pocket melt (`fast_mode=7`) for local `dL <= -1e-5` reorganization.
+
+---
+
+## Idea 16: Frozen-Exterior Masked-Pocket GPU Soft-a Melt (`0.80 -> 1.00`)
+
+### Hypothesis & Architecture
+Global unmasked soft-`a` melt (`Idea 15`, `fast_mode=5,6`) relaxes the entire bulk crystal simultaneously, allowing long-range lattice drift that pushes `L` up (`+1e-5..+6e-4`) and erases local improvements before lock-in. Conversely, pure continuous SLP (`idea15_direct_slp_harvest`) only yields float/LP-margin `1e-16..1e-12` rounding ties on already-jammed topologies.
+
+Idea 16 tests **Frozen-Exterior Masked-Pocket Soft-`a` GPU Melt (`fast_mode=7`)** on the 3-target falsification gate `{971, 687, 367}` (`#108`, `< 15 min`), aiming for structural `dL <= -1e-5` reorganization by freezing the exterior bulk (`mob[i] == 0`) through `a: 0.800 -> 0.9985` while melting only targeted `R = 4.5..9.2` pockets at fixed `L0 = L_inc - delta`, then unfreezing all squares at `a = 1.000` (`opt_L = 1`) and polishing top GPU+AL basins with `fast_joint_xytheta_slp` + multi-margin LP + `dual_certify`:
+- **`mvoid16`:** `R=4.5..7.5` void-collapse melt around top clearance voids with inward pull and discrete orientation flips (`0, 45 deg, tilt`).
+- **`mpin16`:** 1–2 tightest boundary-pin teleports into internal voids, melting both source and destination `R=4.5..4.8` cavities.
+- **`mwall16`:** Weak-wall contact-balancing strip melt (`depth = 3.6..6.2`).
+- **`mseam16`:** Tilted/upright grain-boundary seam melt (`R = 4.8..7.5`).
+- **`mpeel16`:** Masked surplus-peel (`n+1..n+5k -> n` & tip deletions, melting deleted-hole `R<=4.8` & high-overlap zones).
+- **`mband16`:** Diagonal corridor (`hw=3.2..5.2`) or quadrant (`R=7.0..9.2`) reorganization.
+
+### Results Log (Idea 16)
+*(Pending 3-target gate execution on `{971, 687, 367}`)*

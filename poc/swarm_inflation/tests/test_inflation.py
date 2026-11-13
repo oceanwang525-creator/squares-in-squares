@@ -387,3 +387,46 @@ def test_idea14_joint_xytheta_slp_and_twin_pocket() -> None:
 
 
 
+
+def test_idea16_masked_batch_and_fast_slp(tmp_path):
+    repo_root = str(Path(__file__).resolve().parents[3])
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+    from poc.swarm_inflation.poc import idea16_masked_melt as i16
+    from poc.swarm_inflation.poc import polish_and_certify as pcn
+
+    # Build a clean 12x12 grid (n=144) plus one n+1 entry so all 6 masked families run
+    gx, gy = np.meshgrid(np.arange(12) + 0.5, np.arange(12) + 0.5)
+    x144 = gx.ravel().astype(np.float64)
+    y144 = gy.ravel().astype(np.float64)
+    th144 = np.zeros(144, dtype=np.float64)
+    mats = {
+        144: (x144, y144, th144, 12.0),
+        145: (
+            np.append(x144, 6.0),
+            np.append(y144, 6.0),
+            np.append(th144, 0.1),
+            12.0,
+        ),
+    }
+    sx, sy, st, smob = i16.build_masked_batch_for_n(144, mats, batch=12, rng_seed=42)
+    assert sx.shape == (12, 144) and sy.shape == (12, 144) and st.shape == (12, 144)
+    assert smob.shape == (12, 144) and smob.dtype == np.uint8
+    assert set(np.unique(smob).tolist()).issubset({0, 1})
+    assert 0.05 < float(smob.mean()) < 0.90
+
+    mask_p = tmp_path / "mask.bin"
+    i16.write_mask_bin(mask_p, smob)
+    raw = mask_p.read_bytes()
+    assert len(raw) == 8 + 12 * 144
+
+    # fast_joint_xytheta_slp compacts a slightly expanded 3x3 grid back toward L=3.0
+    g3x, g3y = np.meshgrid(np.arange(3) * 1.03 + 0.55, np.arange(3) * 1.03 + 0.55)
+    pos9 = np.column_stack([g3x.ravel(), g3y.ravel()]).astype(np.float64)
+    th9 = np.full(9, 0.015, dtype=np.float64)
+    c_slp, t_slp, L_slp = pcn.fast_joint_xytheta_slp(
+        pos9, th9, rounds=6, tr_th0=0.02, tr_xy0=0.08, lp_margins=(1e-7, 1e-9)
+    )
+    assert c_slp.shape == (9, 2) and t_slp.shape == (9,)
+    assert np.isfinite(L_slp) and L_slp <= 3.005
+    assert pcn.sat_max_penetration(c_slp, t_slp) <= 1e-9

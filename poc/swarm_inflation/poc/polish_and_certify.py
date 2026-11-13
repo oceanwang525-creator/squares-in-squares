@@ -68,30 +68,27 @@ def shift_positive(centers: np.ndarray, theta: np.ndarray) -> np.ndarray:
 
 
 def sat_max_penetration(centers: np.ndarray, theta: np.ndarray) -> float:
-    """Exact float64 SAT max penetration using cKDTree broad phase."""
+    """Exact float64 SAT max penetration using vectorized cKDTree broad phase."""
     n = len(centers)
     if n <= 1:
         return 0.0
-    pairs = list(cKDTree(centers).query_pairs(1.45))
-    if not pairs:
+    pairs = cKDTree(centers).query_pairs(1.45, output_type="ndarray")
+    if len(pairs) == 0:
         return 0.0
     c = np.cos(theta)
     s = np.sin(theta)
-    max_pen = 0.0
-    for i, j in pairs:
-        dx = centers[j, 0] - centers[i, 0]
-        dy = centers[j, 1] - centers[i, 1]
-        ci, si = c[i], s[i]
-        cj, sj = c[j], s[j]
-        rad = 0.5 * (1.0 + abs(ci * cj + si * sj) + abs(si * cj - ci * sj))
-        p1 = abs(dx * ci + dy * si)
-        p2 = abs(-dx * si + dy * ci)
-        p3 = abs(dx * cj + dy * sj)
-        p4 = abs(-dx * sj + dy * cj)
-        pen = rad - max(p1, p2, p3, p4)
-        if pen > max_pen:
-            max_pen = pen
-    return max_pen
+    ii, jj = pairs[:, 0], pairs[:, 1]
+    dx = centers[jj, 0] - centers[ii, 0]
+    dy = centers[jj, 1] - centers[ii, 1]
+    ci, si = c[ii], s[ii]
+    cj, sj = c[jj], s[jj]
+    rad = 0.5 * (1.0 + np.abs(ci * cj + si * sj) + np.abs(si * cj - ci * sj))
+    p1 = np.abs(dx * ci + dy * si)
+    p2 = np.abs(-dx * si + dy * ci)
+    p3 = np.abs(dx * cj + dy * sj)
+    p4 = np.abs(-dx * sj + dy * cj)
+    pen = rad - np.maximum.reduce([p1, p2, p3, p4])
+    return float(max(0.0, float(pen.max())))
 
 
 def minimal_feasible_dilation(
@@ -136,6 +133,7 @@ def fixed_angle_lp_polish(
     theta: np.ndarray,
     rounds: int = 8,
     time_limit: float = 30.0,
+    margin: float = MARGIN,
 ) -> tuple[np.ndarray, float]:
     """Unbounded fixed-angle SLP compression (no trust region on centers)."""
     n = len(theta)
@@ -148,50 +146,64 @@ def fixed_angle_lp_polish(
     ext = extents(theta)
 
     for _ in range(rounds):
-        pairs = list(cKDTree(cur).query_pairs(PAIR_RADIUS))
-        rows: list[int] = []
-        cols: list[int] = []
-        vals: list[float] = []
-        rhs: list[float] = []
+        pairs = cKDTree(cur).query_pairs(PAIR_RADIUS, output_type="ndarray")
+        rows_l: list[np.ndarray] = []
+        cols_l: list[np.ndarray] = []
+        vals_l: list[np.ndarray] = []
+        rhs_l: list[np.ndarray] = []
+        row_cnt = 0
 
-        def add(columns: list[int], values: list[float], b: float) -> None:
-            row = len(rhs)
-            rows.extend([row] * len(columns))
-            cols.extend(columns)
-            vals.extend(values)
-            rhs.append(b)
+        if len(pairs) > 0:
+            ii, jj = pairs[:, 0], pairs[:, 1]
+            dx = cur[jj, 0] - cur[ii, 0]
+            dy = cur[jj, 1] - cur[ii, 1]
+            ci, si = u[ii, 0], u[ii, 1]
+            cj, sj = u[jj, 0], u[jj, 1]
+            ax_all = np.stack([ci, -si, cj, -sj], axis=1)
+            ay_all = np.stack([si, ci, sj, cj], axis=1)
+            proj_all = dx[:, None] * ax_all + dy[:, None] * ay_all
+            rad_pair = 0.5 * (1.0 + np.abs(ci * cj + si * sj) + np.abs(si * cj - ci * sj))
+            # Separating axis rad differs per axis pair (ui/vi vs uj/vj actually share the same rad_pair!)
+            k_best = np.argmax(np.abs(proj_all), axis=1)
+            m_p = len(ii)
+            ar = np.arange(m_p)
+            p_sel = proj_all[ar, k_best]
+            sgn = np.where(p_sel >= 0.0, 1.0, -1.0)
+            ax_s = ax_all[ar, k_best] * sgn
+            ay_s = ay_all[ar, k_best] * sgn
+            r_ids = np.arange(row_cnt, row_cnt + m_p, dtype=np.int32)
+            row_cnt += m_p
+            rows_l.extend([r_ids, r_ids, r_ids, r_ids])
+            cols_l.extend([2 * ii, 2 * ii + 1, 2 * jj, 2 * jj + 1])
+            vals_l.extend([ax_s, ay_s, -ax_s, -ay_s])
+            rhs_l.append(-(rad_pair + margin))
 
-        for i, j in pairs:
-            axes = np.array([u[i], v[i], u[j], v[j]])
-            delta = cur[j] - cur[i]
-            proj = axes @ delta
-            radii = 0.5 * (
-                np.abs(axes @ u[i])
-                + np.abs(axes @ v[i])
-                + np.abs(axes @ u[j])
-                + np.abs(axes @ v[j])
-            )
-            alpha = np.abs(proj) - radii
-            k = int(np.argmax(alpha))
-            a = axes[k] * (1.0 if proj[k] >= 0.0 else -1.0)
-            add(
-                [2 * i, 2 * i + 1, 2 * j, 2 * j + 1],
-                [a[0], a[1], -a[0], -a[1]],
-                -radii[k] - MARGIN,
-            )
+        idx_n = np.arange(n, dtype=np.int32)
+        for k_dim in range(2):
+            r1 = np.arange(row_cnt, row_cnt + n, dtype=np.int32)
+            row_cnt += n
+            rows_l.append(r1)
+            cols_l.append(2 * idx_n + k_dim)
+            vals_l.append(np.full(n, -1.0))
+            rhs_l.append(-(ext + margin))
 
-        for i in range(n):
-            for k in range(2):
-                add([2 * i + k], [-1.0], -ext[i] - MARGIN)
-                add([2 * i + k, 2 * n], [1.0, -1.0], -ext[i] - MARGIN)
+            r2 = np.arange(row_cnt, row_cnt + n, dtype=np.int32)
+            row_cnt += n
+            rows_l.extend([r2, r2])
+            cols_l.extend([2 * idx_n + k_dim, np.full(n, 2 * n, dtype=np.int32)])
+            vals_l.extend([np.ones(n), np.full(n, -1.0)])
+            rhs_l.append(-(ext + margin))
 
-        A = coo_matrix((vals, (rows, cols)), shape=(len(rhs), 2 * n + 1)).tocsr()
+        A = coo_matrix(
+            (np.concatenate(vals_l), (np.concatenate(rows_l), np.concatenate(cols_l))),
+            shape=(row_cnt, 2 * n + 1),
+        ).tocsr()
         c_obj = np.zeros(2 * n + 1)
         c_obj[-1] = 1.0
         res = linprog(
             c_obj,
             A_ub=A,
-            b_ub=np.array(rhs),
+            b_ub=np.concatenate(rhs_l),
             bounds=[(None, None)] * (2 * n) + [(0.0, None)],
             method="highs",
             options={
@@ -553,6 +565,244 @@ def joint_xytheta_slp_polish(
     return cur_c, cur_t, best_L
 
 
+def _build_joint_slp_vectorized(
+    x: np.ndarray,
+    y: np.ndarray,
+    th: np.ndarray,
+    tr_xy: float,
+    tr_th: float,
+    margin: float = 1e-8,
+) -> tuple[coo_matrix, np.ndarray]:
+    """Vectorized sparse A_ub, b_ub for joint (dx_0..n-1, dy_0..n-1, dtheta_0..n-1, L)."""
+    n = len(x)
+    c = np.cos(th)
+    s = np.sin(th)
+    s1 = np.array([-0.5, -0.5, 0.5, 0.5], dtype=np.float64)
+    s2 = np.array([-0.5, 0.5, -0.5, 0.5], dtype=np.float64)
+    dx_c = c[:, None] * s1[None, :] - s[:, None] * s2[None, :]
+    dy_c = s[:, None] * s1[None, :] + c[:, None] * s2[None, :]
+    X_c = x[:, None] + dx_c
+    Y_c = y[:, None] + dy_c
+
+    rows_l: list[np.ndarray] = []
+    cols_l: list[np.ndarray] = []
+    vals_l: list[np.ndarray] = []
+    b_l: list[np.ndarray] = []
+    row_cnt = 0
+
+    curv_pad = 0.25 * (tr_th * tr_th)
+    idx_n = np.arange(n, dtype=np.int32)
+    order_x = np.argsort(X_c, axis=1)
+    order_y = np.argsort(Y_c, axis=1)
+    L_est_x = float(np.max(X_c))
+    L_est_y = float(np.max(Y_c))
+    min_x = float(np.min(X_c))
+    min_y = float(np.min(Y_c))
+
+    for k_slot in range(2):
+        c_min_x = order_x[:, k_slot]
+        x_val = X_c[idx_n, c_min_x]
+        dy_val = dy_c[idx_n, c_min_x]
+        mask = x_val < min_x + 2.5
+        if np.any(mask):
+            m_idx = idx_n[mask]
+            m_len = len(m_idx)
+            r_ids = np.arange(row_cnt, row_cnt + m_len, dtype=np.int32)
+            row_cnt += m_len
+            rows_l.extend([r_ids, r_ids])
+            cols_l.extend([m_idx, 2 * n + m_idx])
+            vals_l.extend([np.full(m_len, -1.0), dy_val[mask]])
+            b_l.append(np.maximum(x_val[mask] - curv_pad - margin, -0.4 * tr_xy))
+
+        c_max_x = order_x[:, 3 - k_slot]
+        x_val = X_c[idx_n, c_max_x]
+        dy_val = dy_c[idx_n, c_max_x]
+        mask = x_val > L_est_x - 2.5
+        if np.any(mask):
+            m_idx = idx_n[mask]
+            m_len = len(m_idx)
+            r_ids = np.arange(row_cnt, row_cnt + m_len, dtype=np.int32)
+            row_cnt += m_len
+            rows_l.extend([r_ids, r_ids, r_ids])
+            cols_l.extend([m_idx, 2 * n + m_idx, np.full(m_len, 3 * n, dtype=np.int32)])
+            vals_l.extend([np.ones(m_len), -dy_val[mask], np.full(m_len, -1.0)])
+            b_l.append(-x_val[mask] - curv_pad - margin)
+
+        c_min_y = order_y[:, k_slot]
+        y_val = Y_c[idx_n, c_min_y]
+        dx_val = dx_c[idx_n, c_min_y]
+        mask = y_val < min_y + 2.5
+        if np.any(mask):
+            m_idx = idx_n[mask]
+            m_len = len(m_idx)
+            r_ids = np.arange(row_cnt, row_cnt + m_len, dtype=np.int32)
+            row_cnt += m_len
+            rows_l.extend([r_ids, r_ids])
+            cols_l.extend([n + m_idx, 2 * n + m_idx])
+            vals_l.extend([np.full(m_len, -1.0), -dx_val[mask]])
+            b_l.append(np.maximum(y_val[mask] - curv_pad - margin, -0.4 * tr_xy))
+
+        c_max_y = order_y[:, 3 - k_slot]
+        y_val = Y_c[idx_n, c_max_y]
+        dx_val = dx_c[idx_n, c_max_y]
+        mask = y_val > L_est_y - 2.5
+        if np.any(mask):
+            m_idx = idx_n[mask]
+            m_len = len(m_idx)
+            r_ids = np.arange(row_cnt, row_cnt + m_len, dtype=np.int32)
+            row_cnt += m_len
+            rows_l.extend([r_ids, r_ids, r_ids])
+            cols_l.extend([n + m_idx, 2 * n + m_idx, np.full(m_len, 3 * n, dtype=np.int32)])
+            vals_l.extend([np.ones(m_len), dx_val[mask], np.full(m_len, -1.0)])
+            b_l.append(-y_val[mask] - curv_pad - margin)
+
+    pairs = cKDTree(np.column_stack([x, y])).query_pairs(PAIR_RADIUS, output_type="ndarray")
+    if len(pairs) > 0:
+        near_i, near_j = pairs[:, 0], pairs[:, 1]
+        dxi = x[near_j] - x[near_i]
+        dyi = y[near_j] - y[near_i]
+        ci, si = c[near_i], s[near_i]
+        cj, sj = c[near_j], s[near_j]
+        nx_all = np.stack([ci, -si, cj, -sj], axis=1)
+        ny_all = np.stack([si, ci, sj, cj], axis=1)
+        proj = dxi[:, None] * nx_all + dyi[:, None] * ny_all
+        s_dir = np.where(proj >= 0.0, 1.0, -1.0)
+        rad_other = 0.5 * (np.abs(ci * cj + si * sj) + np.abs(ci * sj - si * cj))
+        gaps = np.abs(proj) - (0.5 + rad_other[:, None])
+        best_a = np.argmax(gaps, axis=1)
+        i_owns = best_a < 2
+        p_idx = np.where(i_owns, near_i, near_j)
+        q_idx = np.where(i_owns, near_j, near_i)
+        m_pairs = len(near_i)
+        pair_ar = np.arange(m_pairs)
+        flip = np.where(i_owns, 1.0, -1.0)
+        ux = nx_all[pair_ar, best_a] * s_dir[pair_ar, best_a] * flip
+        uy = ny_all[pair_ar, best_a] * s_dir[pair_ar, best_a] * flip
+
+        dx_q = dx_c[q_idx]
+        dy_q = dy_c[q_idx]
+        dX = (x[q_idx, None] + dx_q) - x[p_idx, None]
+        dY = (y[q_idx, None] + dy_q) - y[p_idx, None]
+        f_all = dX * ux[:, None] + dY * uy[:, None] - 0.5
+        order_f = np.argsort(f_all, axis=1)
+        for k_slot in range(2):
+            c_idx = order_f[:, k_slot]
+            f_val = f_all[pair_ar, c_idx]
+            if k_slot == 1:
+                f_min = f_all[pair_ar, order_f[:, 0]]
+                active_mask = (f_val - f_min) <= (2.5 * tr_th + 0.025)
+            else:
+                active_mask = f_val < 0.45
+            if not np.any(active_mask):
+                continue
+            mp = p_idx[active_mask]
+            mq = q_idx[active_mask]
+            mux = ux[active_mask]
+            muy = uy[active_mask]
+            mdX = dX[active_mask, c_idx[active_mask]]
+            mdY = dY[active_mask, c_idx[active_mask]]
+            mdx_q = dx_q[active_mask, c_idx[active_mask]]
+            mdy_q = dy_q[active_mask, c_idx[active_mask]]
+            mf = f_val[active_mask]
+            m_len = len(mp)
+            r_ids = np.arange(row_cnt, row_cnt + m_len, dtype=np.int32)
+            row_cnt += m_len
+            c_th_p = mdX * muy - mdY * mux
+            c_th_q = mdy_q * mux - mdx_q * muy
+            rows_l.extend([r_ids, r_ids, r_ids, r_ids, r_ids, r_ids])
+            cols_l.extend([mp, n + mp, 2 * n + mp, mq, n + mq, 2 * n + mq])
+            vals_l.extend([mux, muy, c_th_p, -mux, -muy, c_th_q])
+            b_l.append(np.maximum(mf - margin - curv_pad, -0.35 * tr_xy))
+
+    A = coo_matrix(
+        (np.concatenate(vals_l), (np.concatenate(rows_l), np.concatenate(cols_l))),
+        shape=(row_cnt, 3 * n + 1),
+    ).tocsc()
+    return A, np.concatenate(b_l)
+
+
+def fast_joint_xytheta_slp(
+    centers: np.ndarray,
+    theta: np.ndarray,
+    rounds: int = 16,
+    tr_th0: float = 0.025,
+    tr_xy0: float = 0.12,
+    slp_margin: float = 1e-8,
+    lp_margins: tuple[float, ...] = (1e-7, 2e-8, 5e-9, 1e-9),
+) -> tuple[np.ndarray, np.ndarray, float]:
+    """Fast vectorized signed-Jacobian joint (x, y, th, L) SLP + multi-margin LP polish."""
+    n = len(theta)
+    cur_c = shift_positive(centers, theta)
+    cur_t = theta.copy()
+    if sat_max_penetration(cur_c, cur_t) > 1e-11:
+        cur_c, _ = minimal_feasible_dilation(cur_c, cur_t)
+    best_c, best_t = cur_c.copy(), cur_t.copy()
+    best_L = exact_bbox_side(cur_c, cur_t)
+
+    obj = np.zeros(3 * n + 1, dtype=np.float64)
+    obj[3 * n] = 1.0
+    tr_th, tr_xy = tr_th0, tr_xy0
+
+    for _ in range(rounds):
+        A_ub, b_ub = _build_joint_slp_vectorized(
+            cur_c[:, 0], cur_c[:, 1], cur_t, tr_xy=tr_xy, tr_th=tr_th, margin=slp_margin
+        )
+        bounds = (
+            [(-tr_xy, tr_xy)] * (2 * n)
+            + [(-tr_th, tr_th)] * n
+            + [(max(1.0, best_L - 0.5), best_L + 0.5)]
+        )
+        res = linprog(
+            obj,
+            A_ub=A_ub,
+            b_ub=b_ub,
+            bounds=bounds,
+            method="highs",
+            options={"dual_feasibility_tolerance": 1e-9, "primal_feasibility_tolerance": 1e-9, "time_limit": 10.0},
+        )
+        if not res.success or res.x is None:
+            tr_th *= 0.5
+            tr_xy *= 0.6
+            if tr_th < 1e-7:
+                break
+            continue
+
+        dx = res.x[:n]
+        dy = res.x[n : 2 * n]
+        dth = res.x[2 * n : 3 * n]
+        accepted = False
+        for alpha in (1.0, 0.5, 0.25):
+            nc = np.column_stack([cur_c[:, 0] + alpha * dx, cur_c[:, 1] + alpha * dy])
+            nt = cur_t + alpha * dth
+            nc = shift_positive(nc, nt)
+            if sat_max_penetration(nc, nt) > 1e-11:
+                nc, sc_s = minimal_feasible_dilation(nc, nt, tau=1e-10)
+                if sc_s > 1.005 or sat_max_penetration(nc, nt) > 1e-11:
+                    continue
+            new_L = exact_bbox_side(nc, nt)
+            if new_L < best_L - 1e-11:
+                cur_c, cur_t = nc, nt
+                best_c, best_t, best_L = nc.copy(), nt.copy(), new_L
+                accepted = True
+                break
+        if accepted:
+            if max(float(np.abs(dx).max()), float(np.abs(dy).max()), float(np.abs(dth).max())) < 1e-9:
+                break
+            tr_th = max(2e-5, tr_th * 0.85)
+            tr_xy = max(5e-4, tr_xy * 0.88)
+        else:
+            tr_th *= 0.5
+            tr_xy *= 0.55
+            if tr_th < 1e-7:
+                break
+
+    for m_lp in lp_margins:
+        c_lp, L_lp = fixed_angle_lp_polish(best_c, best_t, rounds=6, margin=m_lp)
+        if L_lp < best_L and sat_max_penetration(c_lp, best_t) <= 1e-11:
+            best_c, best_L = c_lp, L_lp
+    return best_c, best_t, best_L
+
+
 def to_rows(centers: np.ndarray, theta: np.ndarray) -> list[dict[str, str]]:
     return [
         {
@@ -677,8 +927,9 @@ def polish_candidates(
     # Stage 2: run joint (dx, dy, dtheta, dL) SLP + final LP + dual certify on best slp_top_k
     for rank, (L_lp1, idx, p_lp1, t0, entry) in enumerate(stage1):
         if rank < slp_top_k:
-            p_slp, t_slp, _ = joint_xytheta_slp_polish(p_lp1, t0, rounds=max(slp_rounds, 12))
-            p_lp2, L_lp2 = fixed_angle_lp_polish(p_slp, t_slp, rounds=lp_rounds)
+            p_lp2, t_slp, L_lp2 = fast_joint_xytheta_slp(
+                p_lp1, t0, rounds=max(slp_rounds, 16), lp_margins=(1e-7, 2e-8, 5e-9, 1e-9)
+            )
         else:
             p_lp2, t_slp, L_lp2 = p_lp1, t0, L_lp1
         entry["L_post_lp"] = float(L_lp2)

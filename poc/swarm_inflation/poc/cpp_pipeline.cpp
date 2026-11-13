@@ -4217,8 +4217,29 @@ static std::vector<std::vector<Sq>> load_surg_bin(int n, const std::string& surg
     return out;
 }
 
+static std::vector<std::vector<uint8_t>> load_mask_bin(int n, const std::string& surg_dir) {
+    std::vector<std::vector<uint8_t>> out;
+    if (surg_dir.empty()) return out;
+    std::string ep = surg_dir + "/mask_n" + std::to_string(n) + ".bin";
+    FILE* f = std::fopen(ep.c_str(), "rb");
+    if (!f) return out;
+    int32_t hdr[2] = {0, 0};
+    if (std::fread(hdr, sizeof(int32_t), 2, f) == 2 && hdr[1] == n && hdr[0] > 0 && hdr[0] <= 4096) {
+        int M = hdr[0];
+        out.resize(M, std::vector<uint8_t>(n, 1));
+        for (int k = 0; k < M; ++k) {
+            if (std::fread(out[k].data(), sizeof(uint8_t), n, f) != (size_t)n) {
+                out.resize(k);
+                break;
+            }
+        }
+    }
+    std::fclose(f);
+    return out;
+}
+
 int main(int argc, char** argv) {
-    omp_set_num_threads(7);
+    omp_set_num_threads(4);
     std::vector<int> n_list = {367, 910, 971};
     int batch = 336, top_k = 32, seed = 2, fast_mode = 1, elastic_L = 1, idea = 4;
     std::string export_top_dir, warm_start_dir, surg_dir;
@@ -4262,12 +4283,14 @@ int main(int argc, char** argv) {
         };
         auto warm_pool = (idea >= 6) ? load_warm_basins(n, warm_start_dir) : std::vector<std::vector<Sq>>{};
         auto surg_pool = (idea >= 7) ? load_surg_bin(n, surg_dir) : std::vector<std::vector<Sq>>{};
+        auto mask_pool = (idea >= 16) ? load_mask_bin(n, surg_dir) : std::vector<std::vector<uint8_t>>{};
         std::printf("=== Idea %d (C++/CUDA) n=%d batch=%d elastic=%d fast=%d warm=%zu surg=%zu f_L=%.6f inc_L=%.6f ===\n",
                     idea, n, batch, elastic_L, fast_mode, warm_pool.size(), surg_pool.size(), f_L, inc_L);
         std::fflush(stdout);
 
         double t0 = omp_get_wtime();
         std::vector<std::vector<Sq>> seeds_pts(batch);
+        std::vector<std::vector<uint8_t>> seeds_mob(batch);
         std::vector<std::string> meta(batch);
         std::vector<float> box_L(batch);
 
@@ -4462,7 +4485,7 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_fanned_Lpockets_v13(n, L_val, rng, desc, grp * 7 + (fam - 13));
                     }
                 }
-            } else {
+            } else if (idea == 14) {
                 // Idea 14: Twin/4-Pinwheel 24-27 deg Pockets (45%) + End-Tapered L-Pockets (30%) + Bridges (25%)
                 if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 5 || fast_mode == 2 || (b % 4 == 0))) {
                     int sidx = b % (int)surg_pool.size();
@@ -4480,6 +4503,34 @@ int main(int argc, char** argv) {
                     } else {
                         seeds_pts[b] = seed_asym_bridge_v13(n, L_val, inc_L, rng, desc, grp * 5 + (fam - 15));
                     }
+                }
+            } else if (idea == 15) {
+                // Idea 15: GPU soft-a melt directly on incumbent / surplus_peel / deficit_n1 surgical pool
+                if (!surg_pool.empty()) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = std::min(exact_bbox_side(seeds_pts[b]), inc_L - 0.0002);
+                    const char* ops[8] = {
+                        "melt15_pin", "melt15_pocket", "melt15_seam", "melt15_void",
+                        "melt15_slack", "peel15_border", "peel15_cross", "def15_ins"
+                    };
+                    desc = ops[sidx % 8];
+                } else {
+                    seeds_pts[b] = seed_fanned_Lpockets_v13(n, L_val, rng, desc, b);
+                }
+            } else {
+                // Idea 16: Frozen-exterior masked-pocket soft-a GPU melt (0.80 -> 1.00)
+                if (!surg_pool.empty()) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    if (!mask_pool.empty()) seeds_mob[b] = mask_pool[sidx % (int)mask_pool.size()];
+                    L_val = std::min(exact_bbox_side(seeds_pts[b]), inc_L - 0.0001);
+                    const char* ops[6] = {
+                        "mvoid16", "mpin16", "mwall16", "mseam16", "mpeel16", "mband16"
+                    };
+                    desc = ops[sidx % 6];
+                } else {
+                    seeds_pts[b] = seed_fanned_Lpockets_v13(n, L_val, rng, desc, b);
                 }
             }
             box_L[b] = (float)L_val;
@@ -4507,6 +4558,17 @@ int main(int argc, char** argv) {
             std::fwrite(hy.data(), sizeof(float), bn, f);
             std::fwrite(hth.data(), sizeof(float), bn, f);
             std::fwrite(box_L.data(), sizeof(float), batch, f);
+            if (!mask_pool.empty()) {
+                uint32_t magic = 0x4D41534Bu;
+                std::vector<uint8_t> hmob(bn, 1);
+                for (int b = 0; b < batch; ++b) {
+                    if ((int)seeds_mob[b].size() == n) {
+                        std::memcpy(&hmob[(size_t)b * n], seeds_mob[b].data(), n);
+                    }
+                }
+                std::fwrite(&magic, sizeof(uint32_t), 1, f);
+                std::fwrite(hmob.data(), sizeof(uint8_t), bn, f);
+            }
             std::fclose(f);
         }
         double t_g0 = omp_get_wtime();
