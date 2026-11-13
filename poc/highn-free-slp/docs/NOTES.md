@@ -47,6 +47,11 @@ trust-`0.012` found 6, and trust-`0.014` found 5. Across the four later passes,
 the then-current upstream incumbent and accepted `6/6`; R30 was then gated
 against the newer PR #7 incumbent and accepted `5/5`.
 
+R31 moved the trust radius to `0.016` for 100 iterations. It found four strict
+wins (`791, 868, 910, 936`), all accepted `4/4` against the R30 union. The
+R30/R31 progress shows that the larger trust radius is still productive after
+the fine passes have converged.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -75,14 +80,14 @@ pandas  22.173714763006313
 accepted 1000/1000
 ```
 
-`final.csv` contains the best currently certified rows for all 58 strict wins
-owned by this POC. Its per-n gate accepted all 58 groups in both transports
+`final.csv` contains the best currently certified rows for all 58 strict-win
+`n` groups owned by this POC. Its per-n gate accepted all 58 groups in both transports
 against the current `merged.csv`. Unioning `final.csv` into the current
 incumbent gives:
 
 ```text
-literal 22.173714780634086
-pandas  22.173714780634086
+literal 22.173714779607618
+pandas  22.173714779607618
 accepted 1000/1000
 ```
 
@@ -98,8 +103,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173714780634086 1000 0 0
-pandas  22.173714780634086 1000 0 0
+literal 22.173714779607618 1000 0 0
+pandas  22.173714779607618 1000 0 0
 ```
 
 ## Provenance
