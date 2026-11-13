@@ -36,6 +36,10 @@ A final 100-iteration pass at the original `0.002` trust then found 5 more
 strict wins, showing that the fine-radius convergence had left a small
 longer-range escape available.
 
+A wider schedule at `0.004` and then `0.006` found the first real jump:
+`n=645` moved by `1.117e-5`. Across three wide passes, six distinct `n`
+improved and the total group gain was `1.123e-5`.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -51,8 +55,8 @@ The per-puzzle union keeps 55 coarse plus 16 fine high-n strict wins and has no
 regression. The final file is:
 
 ```text
-literal 22.173715208116295
-pandas  22.173715208116295
+literal 22.173714766133950
+pandas  22.173714766133950
 accepted 1000/1000
 ```
 
@@ -68,8 +72,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173715208116295 1000 0 0
-pandas  22.173715208116295 1000 0 0
+literal 22.173714766133950 1000 0 0
+pandas  22.173714766133950 1000 0 0
 ```
 
 ## Provenance

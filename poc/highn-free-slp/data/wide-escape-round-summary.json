@@ -1,0 +1,35 @@
+{
+  "rounds": [
+    {
+      "file": "free_slp_600_1000_r24_t4e-3_i100_report.json",
+      "wins": 6,
+      "group_gain": -1.1189596659022527e-05,
+      "largest_n": 645,
+      "largest_delta": -1.1169805407718059e-05
+    },
+    {
+      "file": "free_slp_600_1000_r25_t4e-3_i100_report.json",
+      "wins": 6,
+      "group_gain": -2.390254394413205e-08,
+      "largest_n": 868,
+      "largest_delta": -1.7794036466511898e-08
+    },
+    {
+      "file": "free_slp_600_1000_r26_t6e-3_i100_report.json",
+      "wins": 5,
+      "group_gain": -2.0686336199560174e-08,
+      "largest_n": 868,
+      "largest_delta": -1.5491867344508137e-08
+    }
+  ],
+  "distinct_n": [
+    645,
+    868,
+    908,
+    910,
+    912,
+    936
+  ],
+  "distinct_win_count": 6,
+  "total_group_gain": -1.123418553916622e-05
+}
