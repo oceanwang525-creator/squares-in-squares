@@ -1,0 +1,20 @@
+{
+  "source_main": "2cd2468fd42b0f5d457a13cdb2c8f038638f6ca9",
+  "original_sources": {
+    "poc/diamond_core/poc/diamond_core.py": "d7f52f39f6a3bf76dcaae2a87ad09eaef8e89b44f1aed25ef1cf89edb8a88a8c"
+  },
+  "execution": {
+    "folder": "diamond_core",
+    "args": [
+      "poc/diamond_core/data/regenerate-nov13/export.py"
+    ],
+    "reason": "Full11-target default construction with raw rows export",
+    "timeout": 3500,
+    "pid": 428428,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 42.55
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

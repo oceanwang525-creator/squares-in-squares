@@ -1,0 +1,12 @@
+{
+  "folder": "diamond_core",
+  "args": [
+    "poc/diamond_core/data/regenerate-nov13/export.py"
+  ],
+  "reason": "Full11-target default construction with raw rows export",
+  "timeout": 3500,
+  "pid": 428428,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 42.55
+}
