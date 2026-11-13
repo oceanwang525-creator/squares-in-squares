@@ -430,3 +430,20 @@ def test_idea16_masked_batch_and_fast_slp(tmp_path):
     assert c_slp.shape == (9, 2) and t_slp.shape == (9,)
     assert np.isfinite(L_slp) and L_slp <= 3.005
     assert pcn.sat_max_penetration(c_slp, t_slp) <= 1e-9
+
+def test_idea17_mixed_deltas_and_floor_guard():
+    repo_root = str(Path(__file__).resolve().parents[3])
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+    from poc.swarm_inflation.poc import idea16_masked_melt as i16
+    from poc.swarm_inflation.poc import idea17_scale_gpu_melt as i17
+
+    assert any(d < 0.0 for d in i17.MIXED_DELTAS)
+    assert any(d > 0.0 for d in i17.MIXED_DELTAS)
+    gx, gy = np.meshgrid(np.arange(12) + 0.5, np.arange(12) + 0.5)
+    mats = {144: (gx.ravel().astype(np.float64), gy.ravel().astype(np.float64), np.zeros(144), 12.0)}
+    sx, sy, st, smob = i16.build_masked_batch_for_n(
+        144, mats, batch=12, rng_seed=77, deltas=i17.MIXED_DELTAS
+    )
+    assert sx.shape == (12, 144) and smob.dtype == np.uint8
+    assert 0.05 < float(smob.mean()) < 0.90
