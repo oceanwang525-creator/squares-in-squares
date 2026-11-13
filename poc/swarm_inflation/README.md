@@ -221,3 +221,83 @@ Target: discover strictly lower-$L$, zero-overlap, non-grid packings from scratc
   - `n=910`: `AL_L = 30.724373`, **`pol_pd = 30.723210888981`** vs `inc_L = 30.679149464636` (`+0.044061`, was `+0.0514`; fresh `shb6(wb=6,a=40,uf=45,diff=0)` GPU best `30.727599`).
   - `n=971`: `AL_L = 31.713987`, **`pol_pd = 31.708784817800`** vs `inc_L = 31.664318325205` (`+0.044466`, was `+0.0489`; `ruin6_btilt`).
   - **Takeaway:** coherent band-angle tilt (`ruin6_btilt`) + explicit sheared 40° band (`shb6`) are the productive moves; `fast_mode=0` helps. Iterating ruin-and-recreate (v6 basins -> v7) is the next step. No win yet.
+
+---
+
+### Idea 7 — LP Dual Force-Chain Surgery + Alternating LP/SLP ↔ CUDA Ruin-and-Recreate (`fast_mode=0`) & 10-Target Expansion
+- **Status:** Logged before coding/testing.
+- **Diagnosis of Idea 6 Jamming:**
+  - Exact HiGHS LP dual analysis on `cand_v6_n367.csv` (`19.714342`, `+0.02195`, 0.86 squares short) reveals that only **34 active pair duals + 4 wall duals** hold the entire 367-square box open via a single 6-square cross-band pinch (`298 -> 117 -> 98 -> 77 -> 54 -> 29 -> 4 -> 280 -> ... -> 137`), while 21 rattlers (`deg<=1`) and `0.85`-radius voids sit untouched elsewhere.
+  - Similarly `cand_v6_n910.csv` is held up by a 6-square `42.4°` cross-band pinch (`656 -> 159..4 -> 528 -> 527 -> 526`, 108 active pairs, 184 rattlers!), and `cand_v6_n971.csv` is held open by a `13.8°` wall-to-wall tilted row chain (`38 -> 43..51`).
+  - Blind random hole teleportation (`ruin6_hole`) misses the dual bottleneck chain >90% of the time, and `lip_slp_polish` moves only small local steps (`<= 0.04` rad) without evicting or flipping the pinning bridge squares.
+- **Hypothesis:**
+  1. **LP Dual Chain-Break Surgery (`idea7_chain_ruin.py`):** Solve fixed-angle LP + Lip-SLP on top distinct `v5`/`v6` scratch basins (`top_n*_fm*.bin` & `cand_v*_n*.csv`, never `merged.csv`) to extract exact dual shadow-price load `sq_load[i]` and top interior/corner voids `(hx, hy)`, then generate targeted surgical perturbations:
+     - **(Op A) Chain-Evict Teleport:** Pick one of the top-12 highest-dual-load squares `p` (plus optionally 1 chain neighbor), move `p` into a top-3 void `(hx, hy)` at candidate grain angles, and melt (`±0.18` pos, `±0.40` rad) `r < 2.6` around both the vacated bridge site and the void destination.
+     - **(Op B) Bottleneck Cluster Flip:** Select the 3–9 connected highest-load squares on the force chain, coherently flip/rotate their angles (`±15°..45°` or snap to `0°/±39°/45°`), and soften neighboring `r < 2.2` seam squares.
+     - **(Op C) Cut-Plane Strip Compression:** Across a cut bisecting the highest-load bridge, pull one half inward by `Δ = -0.025..-0.060` toward `inc_L` and soften the `2.8`-wide seam strip.
+     - **(Op D) Deep Band-Tilt + Dual Melt:** Scale to `L_target in [inc_L - 0.012, inc_L - 0.001]`, shift band angles `Δth in [-7°, +7°]`, and melt all `sq_load > 0.05` squares before full `0.88 -> 1.00` CUDA re-inflation (`fast_mode=0`).
+  2. **Fresh Scratch Fine-Sweep (`shb7`):** Keep ~50% of every batch as pure scratch (`wb in [4, 8]`, `band_deg in [36°, 43.5°] ∪ [46.5°, 54°]`, `wrapped_dual_L_v6`, `smec1_v5`) so new basins keep entering.
+  3. **Scale Idea 6+7 Across All 10 Targets:** Run `{367, 910, 971}` first (`<4 min`); iterate `v7 -> v8` on near-misses and expand `shb6/shb7 + ruin` across all 10 assigned `n` (`333, 687, 791, 796, 851, 969, 972`).
+- **Planned Verification & Fast Scope (<6 min initial check):**
+  - Implement `poc/swarm_inflation/poc/idea7_chain_ruin.py` + `--idea 7 --surg-dir` in `cpp_pipeline.cpp`.
+  - Run `{367, 910, 971}` (`batch=1024, fast_mode=0`, `512` surgical + `512` fresh scratch) + top-16 HiGHS LP/Lip-SLP polish (`<4 min`).
+
+### Results Log (Idea 7)
+Tested `--idea 7 --batch 1024 --fast-mode 0 --elastic-L 1` (512 LP-dual surgical warm starts + 512 fresh `v6/v5` seeds) + HiGHS LP & Lip-SLP polish (`pos[:20], slp_top_k=8, lp_rounds=10, slp_rounds=10`) on `{367, 910, 971}`:
+- **`n=367`**: `AL=19.713335114836`, **`pol_pd=19.713328807893`** vs `inc=19.692388155425` (**`+0.020941`**, `surg7_cut@L=19.69159`, down `-0.00101` from Idea 6; ~0.82 squares short).
+- **`n=910`**: `AL=30.714951466300`, **`pol_pd=30.714908827300`** vs `inc=30.679149464636` (**`+0.035759`**, `surg7_btilt@L=30.67835`, down **`-0.00830`** from Idea 6).
+- **`n=971`**: `AL=31.709461857377`, `pol_pd=31.708923519430` vs `inc=31.664318325205` (`+0.044605`, `surg7_cut@L=31.66352`).
+
+---
+
+## Idea 7b: Scale Idea 6 + Idea 7 Pipeline to Remaining 7 Assigned Targets (`{333, 687, 969, 851, 972, 791, 796}`)
+- **Hypothesis:** Targets `{333, 687, 969, 851, 972, 791, 796}` have ONLY been tested with `Idea 5` (`fast_mode=1`, `batch=480`), where `969` (`31^2+8`) already reached `+0.04998` and `333` (`18^2+9`), `687` (`26^2+11`), `851` (`29^2+10`) are small/mid `k` where `shb6` (`sheared_band_v6`) + `wrapped_dual_L_v6` + `bent_band_v6` + `idea7_chain_ruin` surgical starts + `fast_mode=0` LP/Lip-SLP polish can make large jumps (or win outright).
+- **Plan:** Run `idea7_chain_ruin.py --bin-dirs /tmp/v5_top --count 384 --polish-rounds 3` -> `/tmp/cpp_pipeline --idea 7 --batch 768 --top-k 48 --fast-mode 0 --elastic-L 1 --surg-dir /tmp/v7_warm --export-top /tmp/v7_top` -> `polish_and_certify.py` on `{333, 687, 969}` first (~3 min), then `{851, 972, 791, 796}`.
+- **Criteria:** Any certified `pol_pd < inc_L` -> save `win_n<n>.csv` and hand off to `@verifier`; otherwise update baseline across all 10 assigned `n` before Idea 8.
+
+### Results Log (Idea 7b)
+*(All 7 extended-pool targets completed through CUDA + AL + HiGHS LP/Lip-SLP polish; `0` wins vs incumbents, large drops across all 7 vs Idea 5)*:
+- **`n=333`**: `AL=18.818520188878`, **`pol_pd=18.818486582345`** vs `inc=18.772634113467` (`+0.045852`, `-0.01116` drop vs Idea 5; `-14.05°` `O`-framed tilted core + `0°` wall sleeves).
+- **`n=687`**: `AL=26.783416786482`, `pol_pd=26.782835412327` vs `inc=26.723271497397` (`+0.059564`, `-24.49°`).
+- **`n=969`**: `AL=31.681078919761`, **`pol_pd=31.681042669670`** vs `inc=31.633982501359` (**`+0.047060`**, `-0.00292` drop vs Idea 5; `-16.98°` `smec1` + side sleeves).
+- **`n=972`**: `AL=31.718152855693`, **`pol_pd=31.718147261340`** vs `inc=31.683990214555` (**`+0.034157`**, `-0.02447` drop vs Idea 5; `+40.98°` sheared band).
+- **`n=851`**: `AL=29.724026673799`, **`pol_pd=29.723992821712`** vs `inc=29.684143606359` (**`+0.039849`**, `-0.01793` drop vs Idea 5; `-41.10°` sheared band).
+- **`n=791`**: `AL=28.679588859551`, **`pol_pd=28.679353424318`** vs `inc=28.634070751579` (`+0.045283`, `-0.02246` drop vs Idea 5; `+24.85°` tilted interior).
+- **`n=796`**: `AL=28.768579078832`, **`pol_pd=28.766259427809`** vs `inc=28.721540002259` (`+0.044719`, `-0.02063` drop vs Idea 5; `+25.08°` tilted interior).
+
+---
+
+## Idea 8: Corner-Framed & Asymmetric-Plane Bands + Seam Phase-Conversion Surgery + Tight-Target Multi-Temp CUDA (`fast_mode=3`)
+- **Diagnosis of Idea 7 Spatial & Optimizer Bottlenecks:**
+  1. **Spatial vacant-area map on `cand_v7_n367.csv` (`+0.0209`, 0.825 sq short of `inc=19.692388`):** Interior of `t_low` (`81`), `t_hi` (`153=T(17)`), and `band` (`133 @ -38.86°`) has `0.00` waste. All `21.616` waste lives in: (a) blunt band tips hitting `x=0` (`~4.0` area) & `y=0` (`~3.05` area) corner-first, and (b) upper seam `band <-> t_hi` (`~7.5` area, `~0.95` per `2x2` cell, twice the lower seam `~4.5`) locked by one single `6`-square bridge `sq#358 (8.5,3.5) -> sq#231 (13.21,9.21)`. Same blunt band-tip signature appears on `n=910` (`+0.0358`) and `n=972` (`+0.0342`, `++///` defects at top-right).
+  2. **Missed geometric families in `cpp_pipeline.cpp`:** `seed_sheared_band_v6` hardcoded `band_ang ≈ 45° ± 2°` and `th_b ≈ -45° ± 9.5°`, never generating asymmetric band planes `psi in {26.57°, 33.7°, 38°}` + rational slopes `±18.43°, ±26.57°, ±36.87°` (`psi=26.57°, th=-36.87°` packs `371` at `a=0.96`), never tapering `wb` or putting `0°` wall-border frames around band tips to stop corner wedge waste, and never explicitly seeding the `0°`-sleeved tilted core (`O`/`U`/`L`-frame) that `n=333` (`-14.1°`), `n=969` (`-17.0°`), and `n=971` (`+26.6°`) converged to from scratch.
+  3. **CUDA `sat_lmin.cu` lock-in:** `max_L_b` allowed `2/3` of the batch to expand `+0.015..+0.040` past `sh_L_init` instead of forcing packing below `inc_L`, while `void_relocate` probed only `256` random points × `3` angles (`{0°, 45°, sth[i]}`), missing `0.85`-radius seam/corner holes on `L=20..32` (`~90%` miss rate) and never trying `±18.4°, ±26.6°, ±38.8°`.
+- **Proposed Mechanisms (Idea 8):**
+  1. **`sat_lmin.cu` `fast_mode=3` (Tight-Target Multi-Temp + 1024-Probe Void Relocate):**
+     - Add intermediate deflate-reheat cycles (`0.955 -> 0.978 -> 0.964 -> 0.988 -> 0.976 -> 0.994 -> 0.998 -> 1.000`) with `2.2x` step budget.
+     - Tighten `max_L_b = sh_L_init + {-0.0005, +0.001, +0.003, +0.008}` (`b % 4`) with lower `target_w` (`0.025 -> 0.0001`) so trajectories stay packed under `inc_L`.
+     - Upgrade `void_relocate` (`scale_a <= 0.992f`, up to `4` moves/stage): `4` spatial probes per thread (`1024` probes/move) across `7` candidate angles (`0°, ±22.5°, ±26.57°, 45°, sth[w_i]`), including targeted corner/wall-bias probes (`25%` along walls/corners where `cand_v7` holes concentrate).
+  2. **New Scratch Topologies in `cpp_pipeline.cpp` (`idea == 8`):**
+     - `seed_framed_band_v8`: `0°` wall-flush border arms along `(0, L)` / `(L, 0)` (eliminating tilted corner-tip sawtooth waste) + tapered-width sheared band (`wb -> wb-2 -> 2` near corners) across `th_b in [-54°, -18°]`.
+     - `seed_asym_band_v8`: asymmetric band plane `psi in {26.57°, 31°, 35°, 40°, 45°, 50°, 55°, 63.43°}` × rational/sheared `th_b in {±14°, ±18.43°, ±26.57°, ±33.69°, ±36.87°, ±41°, 45°}` + dual-anchored upright triangles.
+     - `seed_framed_tilted_v8`: explicit `O`/`U`/`L`-frame of `fB, fT, fL, fR` upright wall layers enclosing a sheared smectic tilted interior (`11°..30°`), tailored for `333, 687, 791, 796, 969, 971`.
+  3. **Targeted Seam & Corner-Tip Refold (`poc/swarm_inflation/poc/idea8_seam_surgery.py`):**
+     - **Op E (Seam Phase Slide & Gap Closure):** Lock `t_low`, tangentially slide `t_hi` along `(±s, ∓s)` (`s in [-0.7, +0.7]`) AND shift inward `(-d, -d)` (`d in [0.05, 0.35]`) into the low-density seam channel, breaking single pinch bridges and scanning all inter-tooth phases.
+     - **Op F (Corner-Tip Strip Refold):** Strip tilted squares in blunt corner pockets (`x < 2.2` or `y < 2.2` or corners) and re-seed flush `0°` wall columns/rows (plus `±45°`/`±26.6°` corner wedges) directly inside `L_target in [inc_L - 0.008, inc_L - 0.0008]`.
+     - **Op G (Seam Stoichiometry Shift `band <-> up`):** Convert `2..8` high-dual seam squares between `band` angle and `0°` (widening/narrowing `band` by 1 row locally without leaving `inc_L`).
+- **Verification & Fast Scope (<5 min):**
+  - Build updated `sat_lmin.cu` + `cpp_pipeline.cpp`; validate on `{367, 910, 972}` first (`batch=1024`, `fast_mode=3`, `512` seam-surgical + `512` new `v8` scratch) + HiGHS LP & Lip-SLP polish.
+  - Scale winning `v8` pipeline across best remaining targets (`971, 851, 969, 333, 791, 796, 687`).
+
+### Results Log (Idea 8)
+*(Completed across all 9 surg-enabled targets (`batch=1024` on `{367,910,972}`, `batch=768` on `{851,971,969,333,791,796}` + scratch `n=687`) with `fast_mode=3` + HiGHS LP/Lip-SLP polish; `0` wins vs incumbents, `6` targets improved over Idea 7b led by a `-0.03185` drop on `n=969`)*:
+- **`n=969`**: `AL=31.649203828139`, **`pol_pd=31.649192182516`** vs `inc=31.633982501359` (**`+0.015210`**, **`-0.03185` drop** vs Idea 7b `31.681043`! Grown from scratch via `asym8(p=45,t=-27,w=4,diff=0)` into `823 up + 146 @ -26.07°` — note `31.649192` is already smaller than `inc(971)=31.664318` and `inc(972)=31.683990`, with remaining gap concentrated in period-3 seam voids `min_d <= 0.86` and a `0.649` bottom-wall column split).
+- **`n=367`**: `AL=19.713231251926`, **`pol_pd=19.713223586114`** vs `inc=19.692388155425` (**`+0.020835`**, `-0.00011` drop vs Idea 7b; `surg8_stoich`).
+- **`n=851`**: `AL=29.721064913408`, **`pol_pd=29.717105816792`** vs `inc=29.684143606359` (`+0.032962`, **`-0.00689` drop** vs Idea 7b; `surg8_dualtilt`).
+- **`n=972`**: `AL=31.722641075952`, **`pol_pd=31.717267107638`** vs `inc=31.683990214555` (`+0.033277`, `-0.00088` drop vs Idea 7b; `surg8_stoich`).
+- **`n=796`**: `AL=28.766314888467`, **`pol_pd=28.761586835840`** vs `inc=28.721540002259` (`+0.040047`, **`-0.00467` drop** vs Idea 7b; `surg8_stoich`).
+- **`n=791`**: `AL=28.693022751970`, **`pol_pd=28.678921495261`** vs `inc=28.634070751579` (`+0.044851`, `-0.00043` drop vs Idea 7b).
+- Unimproved vs Idea 7b: `n=910` (`pol_pd=30.716003127444`, vs `30.714909`), `n=971` (`pol_pd=31.713197338572`, vs `31.708924`), `n=333` (`pol_pd=18.829070649461`, vs `18.818487`), `n=687` (`AL=26.873380287724` scratch-only without `surg8`, vs `26.782835`).
+- **Key Idea 8 Takeaways:**
+  1. `fast_mode=3` multi-temp cycles + 1024-probe `void_relocate` + `asym8` unlocked a **new `~31.649` basin on `n=969`** (`-0.03185` better than `smec1`!) from **1 single lucky `(p=45, t=-27, w=4)` seed**, while most `(n, v_shift, w)` slices of `asym8` were skipped whenever `abs(diff)` missed `0` or landed far off-target.
+  2. Tight `max_L_b = sh_L_init + ...` clamping in `fast_mode=3` helped `surg8` drop `n=851`/`796`/`972`/`367`, yet `n=969` still trapped period-3 Moire seam pockets (`0.81..0.86` void radius) because global inflation locks outer `0°` crystals early and cannot repack 40–180 seam squares collectively at `L < inc_L`.

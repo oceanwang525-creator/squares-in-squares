@@ -12,6 +12,8 @@ POC_DIR = Path(__file__).resolve().parents[1] / "poc"
 if str(POC_DIR) not in sys.path:
     sys.path.insert(0, str(POC_DIR))
 
+import idea7_chain_ruin as i7  # noqa: E402
+import idea8_seam_surgery as i8  # noqa: E402
 import polish_and_certify as pc  # noqa: E402
 import run_inflation_v2 as riv2  # noqa: E402
 import sat_cuda as sc_gpu  # noqa: E402
@@ -171,3 +173,38 @@ def test_cuda_v2_multiwarp_n367_certification_matches_python():
         py_L = pc.exact_bbox_side(out["pos"][b], out["th"][b])
         assert abs(py_L - float(out["L_cert"][b])) < 1e-6
         assert float(out["L_cert"][b]) < 21.5
+
+
+def test_idea7_and_idea8_surgery_pools_and_fast_mode3():
+    # Synthetic 16-square grid with 4 tilted interior squares
+    pts = []
+    for ix in range(4):
+        for iy in range(4):
+            ang = 0.45 if (1 <= ix <= 2 and 1 <= iy <= 2) else 0.0
+            pts.append((0.6 + ix * 1.15, 0.6 + iy * 1.15, ang))
+    pos = np.array([[x, y] for x, y, _ in pts], dtype=np.float64)
+    th = np.array([a for _, _, a in pts], dtype=np.float64)
+    info = i7.extract_lp_duals_and_holes(pos, th, polish_rounds=2)
+    assert info["sq_load"].shape == (16,)
+    assert len(info["holes"]) >= 1
+    assert np.isfinite(info["L"])
+
+    inc_L = info["L"] - 0.05
+    sx7, sy7, st7 = i7.generate_surgical_pool(16, [info], inc_L=inc_L, count=8, rng_seed=123)
+    assert sx7.shape == (8, 16)
+    assert np.all(np.isfinite(sx7)) and np.all(np.isfinite(sy7)) and np.all(np.isfinite(st7))
+    assert np.all(sx7 >= 0.4) and np.all(sy7 >= 0.4)
+
+    sx8, sy8, st8 = i8.generate_idea8_pool(16, [info], inc_L=inc_L, count=8, rng_seed=456)
+    assert sx8.shape == (8, 16)
+    assert np.all(np.isfinite(sx8)) and np.all(np.isfinite(sy8)) and np.all(np.isfinite(st8))
+    assert np.all(sx8 >= 0.4) and np.all(sy8 >= 0.4)
+
+    # Verify fast_mode=3 (Idea 8 CUDA multi-temp anneal) converges cleanly on synthetic N=5
+    rng = np.random.default_rng(19)
+    pos5 = rng.uniform(0.6, 2.4, (12, 5, 2))
+    th5 = rng.uniform(-0.7, 0.7, (12, 5))
+    box5 = np.full(12, 3.0)
+    out3 = riv2.run_cuda_batch(pos5, th5, box5, use_elastic_L=1, fast_mode=3, seed=42)
+    assert float(np.min(out3["L_cert"])) < 2.72
+    assert pc.sat_max_penetration(out3["pos"][int(np.argmin(out3["L_cert"]))], out3["th"][int(np.argmin(out3["L_cert"]))]) == 0.0

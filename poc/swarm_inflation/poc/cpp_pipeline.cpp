@@ -2008,6 +2008,281 @@ static std::vector<Sq> seed_ruin_warm_v6(
 }
 
 // =========================================================================
+// Idea 8 Scratch Seed Families: Framed Sheared Band, Asym-Plane Band, O/U-Framed Tilted Core
+// =========================================================================
+
+static std::vector<Sq> seed_framed_band_v8(int n, double L, std::mt19937_64& rng, std::string& desc) {
+    const double s2 = std::sqrt(2.0);
+    const double alpha_opts[11] = {-9.5, -8.13, -6.8, -5.5, -4.0, -2.0, 0.0, 2.0, 4.0, 6.8, 8.13};
+    int max_wb = std::min(10, std::max(3, (int)(L * 0.34)));
+
+    std::vector<Sq> best_pts;
+    double best_pen = 1e18;
+    std::string best_desc;
+
+    for (int att = 0; att < 10; ++att) {
+        int wb = 3 + (int)(rng() % std::max(1, max_wb - 2));
+        int fw = 1 + (int)(rng() % 2); // 1 or 2 upright wall-frame layers protecting corners (0,L) and (L,0)
+        bool taper_ends = ((rng() % 3) != 0);
+        double u_frac = std::uniform_real_distribution<double>(0.24, 0.76)(rng);
+        double u_mid = u_frac * (L * s2);
+        double alpha_deg = alpha_opts[rng() % 11];
+        double th_b = -PI * 0.25 + alpha_deg * (PI / 180.0);
+        double tilt_b = ((rng() % 3) == 0) ? std::uniform_real_distribution<double>(-0.04, 0.04)(rng) : 0.0;
+        double band_ang = PI * 0.25 + tilt_b;
+        double dpx = std::cos(band_ang), dpy = std::sin(band_ang);
+        double dnx = dpy, dny = -dpx;
+
+        double cb = std::cos(th_b), sb = std::sin(th_b);
+        double e1x = cb, e1y = sb, e2x = -sb, e2y = cb;
+        double par_step = ((rng() % 4) == 0 ? 0.992 : 1.000) /
+                          std::max(std::abs(e1x * dpx + e1y * dpy), std::abs(e2x * dpx + e2y * dpy));
+        double vpx = dpx * par_step, vpy = dpy * par_step;
+
+        double sh_row = ((rng() % 3) == 0) ? std::uniform_real_distribution<double>(-0.14, 0.14)(rng) : 0.0;
+        bool use_e1 = std::abs(e1x * dnx + e1y * dny) >= std::abs(e2x * dnx + e2y * dny);
+        double rstep_x = use_e1 ? e1x : e2x, rstep_y = use_e1 ? e1y : e2y;
+        double tstep_x = use_e1 ? e2x : e1x, tstep_y = use_e1 ? e2y : e1y;
+        double row_dx = rstep_x + sh_row * tstep_x, row_dy = rstep_y + sh_row * tstep_y;
+        if (row_dx * dnx + row_dy * dny < 0.0) { row_dx = -row_dx; row_dy = -row_dy; }
+
+        double u0_off = u_mid - 0.5 * L * s2;
+        double mid_x = 0.5 * L + u0_off * dnx;
+        double mid_y = 0.5 * L + u0_off * dny;
+        double vp = std::uniform_real_distribution<double>(-0.45, 0.45)(rng);
+
+        // Place tapered band clipped inside upright frame [fw*sp, L - fw*sp]
+        double sp_f = std::uniform_real_distribution<double>(0.986, 1.000)(rng);
+        double pad = fw * sp_f + 0.42;
+        double band_half_len = 0.5 * L * s2;
+        std::vector<Sq> pts;
+        pts.reserve((size_t)(L * L) + 16);
+        int m = (int)std::ceil(L * 1.5);
+        for (int iu = 0; iu < wb; ++iu) {
+            double su = iu - 0.5 * (wb - 1);
+            double bx0 = mid_x + su * row_dx, by0 = mid_y + su * row_dy;
+            for (int iv = -m; iv <= m; ++iv) {
+                double sv = iv + vp;
+                double px = bx0 + sv * vpx, py = by0 + sv * vpy;
+                if (taper_ends) {
+                    double d_along = std::abs((px - mid_x) * dpx + (py - mid_y) * dpy);
+                    double local_hw = (d_along > 0.68 * band_half_len)
+                        ? std::max(0.6, 0.5 * (wb - 2.0))
+                        : (0.5 * wb + 0.05);
+                    if (std::abs(su) > local_hw) continue;
+                }
+                if (px >= pad && px <= L - pad && py >= pad && py <= L - pad) {
+                    if (sat_ok_point(px, py, th_b, pts, 0.875)) pts.push_back({px, py, th_b});
+                }
+            }
+        }
+
+        // Flush 0-deg wall frame along all 4 outer sides + dual-anchored interior triangles
+        double band_norm_c = (!pts.empty()) ? 0.0 : (mid_x * dnx + mid_y * dny);
+        if (!pts.empty()) {
+            for (const auto& q : pts) band_norm_c += q.x * dnx + q.y * dny;
+            band_norm_c /= (double)pts.size();
+        }
+        std::vector<Sq> up;
+        up.reserve((size_t)(L * L) + 16);
+        int n_row = (int)std::floor(L / sp_f);
+        for (int ix = 0; ix < n_row; ++ix) {
+            for (int iy = 0; iy < n_row; ++iy) {
+                bool on_frame = (ix < fw || ix >= n_row - fw || iy < fw || iy >= n_row - fw);
+                double gx = 0.5 * sp_f + ix * sp_f;
+                double gy = 0.5 * sp_f + iy * sp_f;
+                if (on_frame) {
+                    up.push_back({gx, gy, 0.0});
+                } else if (gx * dnx + gy * dny <= band_norm_c) {
+                    up.push_back({gx, gy, 0.0});
+                } else {
+                    double rx = L - 0.5 * sp_f - (n_row - 1 - ix) * sp_f;
+                    double ry = L - 0.5 * sp_f - (n_row - 1 - iy) * sp_f;
+                    up.push_back({rx, ry, 0.0});
+                }
+            }
+        }
+        auto ok = sat_filter_against(up, pts, 0.87, L);
+        pts.insert(pts.end(), ok.begin(), ok.end());
+        add_corner_wedge_plugs(pts, n, L, 0.872, rng);
+        int diff = (int)pts.size() - n;
+        double pen = std::abs(diff) + (diff < -10 ? 2.0 * (-diff) : 0.0);
+        if (pen < best_pen) {
+            best_pen = pen;
+            best_pts = std::move(pts);
+            std::ostringstream os;
+            os << "fband8(fw=" << fw << ",wb=" << wb << ",a=" << (int)std::round(45.0 + alpha_deg)
+               << ",diff=" << diff << ")";
+            best_desc = os.str();
+            if (diff >= -2 && diff <= 2) break;
+        }
+    }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { s.x = L - s.x; s.th = -s.th; }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { std::swap(s.x, s.y); s.th = -s.th; }
+    best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.875, PI * 0.22, rng);
+    best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.87);
+    add_jitter(best_pts, rng, 0.003);
+    desc = best_desc;
+    return best_pts;
+}
+
+static std::vector<Sq> seed_asym_band_v8(int n, double L, std::mt19937_64& rng, std::string& desc) {
+    const double s2 = std::sqrt(2.0);
+    const double psi_opts[7] = {18.435, 26.565, 31.0, 35.0, 38.0, 41.0, 45.0};
+    const double th_opts[8] = {-45.0, -40.5, -36.87, -33.69, -26.565, -21.8, -18.435, -14.036};
+
+    std::vector<Sq> best_pts;
+    double best_pen = 1e18;
+    std::string best_desc;
+
+    for (int att = 0; att < 10; ++att) {
+        double psi_deg = psi_opts[rng() % 7];
+        double th_deg = th_opts[rng() % 8];
+        double psi = psi_deg * (PI / 180.0);
+        double th_b = th_deg * (PI / 180.0);
+        int wb = 3 + (int)(rng() % std::max(1, std::min(9, (int)(L * 0.30)) - 2));
+        double u_frac = std::uniform_real_distribution<double>(0.20, 0.80)(rng);
+        double dpx = std::cos(psi), dpy = std::sin(psi);
+        double dnx = dpy, dny = -dpx;
+
+        double cb = std::cos(th_b), sb = std::sin(th_b);
+        double e1x = cb, e1y = sb, e2x = -sb, e2y = cb;
+        double par_step = ((rng() % 3) == 0 ? 0.992 : 1.000) /
+                          std::max(std::abs(e1x * dpx + e1y * dpy), std::abs(e2x * dpx + e2y * dpy));
+        double vpx = dpx * par_step, vpy = dpy * par_step;
+
+        bool use_e1 = std::abs(e1x * dnx + e1y * dny) >= std::abs(e2x * dnx + e2y * dny);
+        double sh_row = ((rng() % 2) == 0) ? std::uniform_real_distribution<double>(-0.18, 0.18)(rng) : 0.0;
+        double rstep_x = (use_e1 ? e1x : e2x) + sh_row * (use_e1 ? e2x : e1x);
+        double rstep_y = (use_e1 ? e1y : e2y) + sh_row * (use_e1 ? e2y : e1y);
+        if (rstep_x * dnx + rstep_y * dny < 0.0) { rstep_x = -rstep_x; rstep_y = -rstep_y; }
+
+        double u_off = (u_frac - 0.5) * L * 1.15;
+        double mid_x = 0.5 * L + u_off * dnx, mid_y = 0.5 * L + u_off * dny;
+        double vp = std::uniform_real_distribution<double>(-0.45, 0.45)(rng);
+        double ext_b = 0.5 * 0.90 * (std::abs(cb) + std::abs(sb));
+
+        std::vector<Sq> pts;
+        pts.reserve((size_t)(L * L) + 16);
+        int m = (int)std::ceil(L * 1.6);
+        for (int iu = 0; iu < wb; ++iu) {
+            double su = iu - 0.5 * (wb - 1);
+            double bx0 = mid_x + su * rstep_x, by0 = mid_y + su * rstep_y;
+            for (int iv = -m; iv <= m; ++iv) {
+                double sv = iv + vp;
+                double px = bx0 + sv * vpx, py = by0 + sv * vpy;
+                if (px >= ext_b && px <= L - ext_b && py >= ext_b && py <= L - ext_b) {
+                    if (sat_ok_point(px, py, th_b, pts, 0.875)) pts.push_back({px, py, th_b});
+                }
+            }
+        }
+        double band_norm_c = 0.0;
+        if (!pts.empty()) {
+            for (const auto& q : pts) band_norm_c += q.x * dnx + q.y * dny;
+            band_norm_c /= (double)pts.size();
+        } else {
+            band_norm_c = mid_x * dnx + mid_y * dny;
+        }
+        double sp_u = std::uniform_real_distribution<double>(0.988, 1.000)(rng);
+        std::vector<Sq> up;
+        up.reserve((size_t)(L * L) + 16);
+        for (double gx = 0.48; gx < L - 0.45; gx += sp_u) {
+            for (double gy = L - 0.48; gy > 0.45; gy -= sp_u) {
+                if (gx * dnx + gy * dny <= band_norm_c) up.push_back({gx, gy, 0.0});
+            }
+        }
+        for (double gx = L - 0.48; gx > 0.45; gx -= sp_u) {
+            for (double gy = 0.48; gy < L - 0.45; gy += sp_u) {
+                if (gx * dnx + gy * dny > band_norm_c) up.push_back({gx, gy, 0.0});
+            }
+        }
+        auto ok = sat_filter_against(up, pts, 0.87, L);
+        pts.insert(pts.end(), ok.begin(), ok.end());
+        add_corner_wedge_plugs(pts, n, L, 0.872, rng);
+        int diff = (int)pts.size() - n;
+        double pen = std::abs(diff) + (diff < -10 ? 2.0 * (-diff) : 0.0);
+        if (pen < best_pen) {
+            best_pen = pen;
+            best_pts = std::move(pts);
+            std::ostringstream os;
+            os << "asym8(p=" << (int)std::round(psi_deg) << ",t=" << (int)std::round(th_deg)
+               << ",w=" << wb << ",diff=" << diff << ")";
+            best_desc = os.str();
+            if (diff >= -2 && diff <= 2) break;
+        }
+    }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { s.x = L - s.x; s.th = -s.th; }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { std::swap(s.x, s.y); s.th = -s.th; }
+    best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.875, 0.46, rng);
+    best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.87);
+    add_jitter(best_pts, rng, 0.003);
+    desc = best_desc;
+    return best_pts;
+}
+
+static std::vector<Sq> seed_framed_tilted_v8(int n, double L, std::mt19937_64& rng, std::string& desc) {
+    int max_f = std::max(1, (int)(L * 0.35));
+    std::vector<Sq> best_pts;
+    double best_pen = 1e18;
+    std::string best_desc;
+
+    for (int att = 0; att < 10; ++att) {
+        int fL = (rng() % 3 == 0) ? 0 : (1 + (int)(rng() % std::min(4, max_f)));
+        int fR = (rng() % 3 == 0) ? 0 : (1 + (int)(rng() % std::min(4, max_f)));
+        int fB = (rng() % 4 == 0) ? 0 : (1 + (int)(rng() % std::min(6, max_f)));
+        int fT = (rng() % 4 == 0) ? 0 : (1 + (int)(rng() % std::min(6, max_f)));
+        double sp = std::uniform_real_distribution<double>(0.985, 1.000)(rng);
+        double ix0 = fL * sp, ix1 = L - fR * sp;
+        double iy0 = fB * sp, iy1 = L - fT * sp;
+        if (ix1 - ix0 < 3.0 || iy1 - iy0 < 3.0) { fL = 1; fR = 0; fB = 3; fT = 2; ix0 = sp; ix1 = L; iy0 = 3*sp; iy1 = L - 2*sp; }
+
+        double a_s = std::uniform_real_distribution<double>(0.92, 0.995)(rng);
+        double best_th = 0.30;
+        size_t best_c = 0;
+        for (int d = 11; d <= 34; d += 2) {
+            double th = d * (PI / 180.0);
+            auto blk = build_wrapped_strip_block(ix0, iy0, ix1 - ix0, iy1 - iy0, th, a_s, false);
+            if (blk.size() > best_c) { best_c = blk.size(); best_th = th; }
+        }
+        double th_use = std::clamp(best_th + std::uniform_real_distribution<double>(-0.05, 0.05)(rng), 0.14, 0.68);
+        bool tr = ((rng() % 2) == 1);
+        std::vector<Sq> pts = build_wrapped_strip_block(ix0, iy0, ix1 - ix0, iy1 - iy0, th_use, a_s, tr);
+
+        std::vector<Sq> up;
+        int nx_full = (int)std::floor(L / sp);
+        int ny_full = (int)std::floor(L / sp);
+        for (int ix = 0; ix < nx_full; ++ix) {
+            for (int iy = 0; iy < ny_full; ++iy) {
+                if (ix < fL || ix >= nx_full - fR || iy < fB || iy >= ny_full - fT) {
+                    up.push_back({0.5 * sp + ix * sp, 0.5 * sp + iy * sp, 0.0});
+                }
+            }
+        }
+        auto ok = sat_filter_against(up, pts, 0.87, L);
+        pts.insert(pts.end(), ok.begin(), ok.end());
+        add_corner_wedge_plugs(pts, n, L, 0.872, rng);
+        int diff = (int)pts.size() - n;
+        double pen = std::abs(diff) + (diff < -10 ? 2.0 * (-diff) : 0.0);
+        if (pen < best_pen) {
+            best_pen = pen;
+            best_pts = std::move(pts);
+            std::ostringstream os;
+            os << "ftilt8(F=" << fL << fR << fB << fT << ",a=" << (int)std::round(th_use * 180 / PI)
+               << ",diff=" << diff << ")";
+            best_desc = os.str();
+            if (diff >= -2 && diff <= 2) break;
+        }
+    }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { s.x = L - s.x; s.th = -s.th; }
+    if ((rng() % 2) == 1) for (auto& s : best_pts) { std::swap(s.x, s.y); s.th = -s.th; }
+    best_pts = add_interface_void_squares(std::move(best_pts), n, L, 0.875, 0.35, rng);
+    best_pts = fill_wedges_and_complete(std::move(best_pts), n, L, rng, 0.87);
+    add_jitter(best_pts, rng, 0.003);
+    desc = best_desc;
+    return best_pts;
+}
+
+// =========================================================================
 // Augmented-Lagrangian + L-BFGS float64 L-Squeezer (Fixed & Free Angles)
 // =========================================================================
 
@@ -2441,11 +2716,35 @@ static std::vector<TargetInfo> load_targets(const std::vector<int>& n_list) {
     return out;
 }
 
+static std::vector<std::vector<Sq>> load_surg_bin(int n, const std::string& surg_dir) {
+    std::vector<std::vector<Sq>> out;
+    if (surg_dir.empty()) return out;
+    std::string ep = surg_dir + "/surg_n" + std::to_string(n) + ".bin";
+    FILE* f = std::fopen(ep.c_str(), "rb");
+    if (!f) return out;
+    int32_t hdr[2] = {0, 0};
+    if (std::fread(hdr, sizeof(int32_t), 2, f) == 2 && hdr[1] == n && hdr[0] > 0 && hdr[0] <= 4096) {
+        int M = hdr[0];
+        out.reserve(M);
+        std::vector<double> ax(n), ay(n), ath(n);
+        for (int k = 0; k < M; ++k) {
+            if (std::fread(ax.data(), sizeof(double), n, f) != (size_t)n) break;
+            if (std::fread(ay.data(), sizeof(double), n, f) != (size_t)n) break;
+            if (std::fread(ath.data(), sizeof(double), n, f) != (size_t)n) break;
+            std::vector<Sq> pts(n);
+            for (int i = 0; i < n; ++i) pts[i] = {ax[i], ay[i], ath[i]};
+            out.push_back(std::move(pts));
+        }
+    }
+    std::fclose(f);
+    return out;
+}
+
 int main(int argc, char** argv) {
     omp_set_num_threads(7);
     std::vector<int> n_list = {367, 910, 971};
     int batch = 336, top_k = 32, seed = 2, fast_mode = 1, elastic_L = 1, idea = 4;
-    std::string export_top_dir, warm_start_dir;
+    std::string export_top_dir, warm_start_dir, surg_dir;
     for (int i = 1; i < argc; ++i) {
         if (std::strcmp(argv[i], "--n-list") == 0 && i + 1 < argc) {
             n_list.clear();
@@ -2460,6 +2759,7 @@ int main(int argc, char** argv) {
         else if (std::strcmp(argv[i], "--idea") == 0 && i + 1 < argc) idea = std::atoi(argv[++i]);
         else if (std::strcmp(argv[i], "--export-top") == 0 && i + 1 < argc) export_top_dir = argv[++i];
         else if (std::strcmp(argv[i], "--warm-start-dir") == 0 && i + 1 < argc) warm_start_dir = argv[++i];
+        else if (std::strcmp(argv[i], "--surg-dir") == 0 && i + 1 < argc) surg_dir = argv[++i];
     }
 
     const std::string cu_src = "poc/swarm_inflation/poc/sat_lmin.cu";
@@ -2484,8 +2784,9 @@ int main(int argc, char** argv) {
             (idea >= 6) ? (inc_L - 0.0012) : ((idea >= 3) ? (inc_L - 0.001) : (inc_L + 0.012))
         };
         auto warm_pool = (idea >= 6) ? load_warm_basins(n, warm_start_dir) : std::vector<std::vector<Sq>>{};
-        std::printf("=== Idea %d (C++/CUDA) n=%d batch=%d elastic=%d fast=%d warm=%zu f_L=%.6f inc_L=%.6f ===\n",
-                    idea, n, batch, elastic_L, fast_mode, warm_pool.size(), f_L, inc_L);
+        auto surg_pool = (idea >= 7) ? load_surg_bin(n, surg_dir) : std::vector<std::vector<Sq>>{};
+        std::printf("=== Idea %d (C++/CUDA) n=%d batch=%d elastic=%d fast=%d warm=%zu surg=%zu f_L=%.6f inc_L=%.6f ===\n",
+                    idea, n, batch, elastic_L, fast_mode, warm_pool.size(), surg_pool.size(), f_L, inc_L);
         std::fflush(stdout);
 
         double t0 = omp_get_wtime();
@@ -2533,7 +2834,7 @@ int main(int argc, char** argv) {
                 else seeds_pts[b] = ((b / 10) % 2 == 0)
                     ? seed_pinwheel_4pocket(n, L_val, rng, desc)
                     : seed_smectic_1strip(n, L_val, rng, desc);
-            } else {
+            } else if (idea == 6) {
                 int fam = b % 12;
                 if (fam <= 3) seeds_pts[b] = seed_sheared_band_v6(n, L_val, rng, desc);
                 else if (fam <= 5) seeds_pts[b] = seed_wrapped_dual_L_v6(n, L_val, rng, desc);
@@ -2549,6 +2850,42 @@ int main(int argc, char** argv) {
                     seeds_pts[b] = (fam == 9)
                         ? seed_sheared_band_v6(n, L_val, rng, desc)
                         : seed_wrapped_dual_L_v6(n, L_val, rng, desc);
+                }
+            } else if (idea == 7) {
+                // Idea 7: ~50% LP-dual surgical ruin candidates + ~50% fresh scratch
+                if (!surg_pool.empty() && (b % 2 == 0)) {
+                    int sidx = (b / 2) % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = std::min(exact_bbox_side(seeds_pts[b]), inc_L - 0.0008);
+                    const char* ops[4] = {"surg7_evict", "surg7_flip", "surg7_cut", "surg7_btilt"};
+                    desc = ops[sidx % 4];
+                } else {
+                    int fam = (b / 2) % 10;
+                    if (fam <= 4) seeds_pts[b] = seed_sheared_band_v6(n, L_val, rng, desc);
+                    else if (fam <= 6) seeds_pts[b] = seed_wrapped_dual_L_v6(n, L_val, rng, desc);
+                    else if (fam == 7) seeds_pts[b] = seed_bent_band_v6(n, L_val, rng, desc);
+                    else if (fam == 8) seeds_pts[b] = seed_hybrid45_v5(n, L_val, rng, desc);
+                    else seeds_pts[b] = ((b / 20) % 2 == 0)
+                        ? seed_smec1_v5(n, L_val, rng, desc)
+                        : seed_tapered_L_v5(n, L_val, rng, desc);
+                }
+            } else {
+                // Idea 8: ~50% seam-slide / corner-refold / stoich surgery + ~50% new v8 topologies
+                if (!surg_pool.empty() && (b % 2 == 0)) {
+                    int sidx = (b / 2) % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = std::min(exact_bbox_side(seeds_pts[b]), inc_L - 0.0006);
+                    const char* ops[4] = {"surg8_slide", "surg8_refold", "surg8_stoich", "surg8_dualtilt"};
+                    desc = ops[sidx % 4];
+                } else {
+                    int fam = (b / 2) % 10;
+                    if (fam <= 2) seeds_pts[b] = seed_framed_band_v8(n, L_val, rng, desc);
+                    else if (fam <= 4) seeds_pts[b] = seed_asym_band_v8(n, L_val, rng, desc);
+                    else if (fam <= 6) seeds_pts[b] = seed_framed_tilted_v8(n, L_val, rng, desc);
+                    else if (fam <= 8) seeds_pts[b] = seed_sheared_band_v6(n, L_val, rng, desc);
+                    else seeds_pts[b] = ((b / 20) % 2 == 0)
+                        ? seed_wrapped_dual_L_v6(n, L_val, rng, desc)
+                        : seed_bent_band_v6(n, L_val, rng, desc);
                 }
             }
             box_L[b] = (float)L_val;

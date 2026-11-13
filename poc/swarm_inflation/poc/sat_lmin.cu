@@ -387,9 +387,27 @@ __global__ void solve_batch_fp32(
         {1.000f, 650, 0.00012f,60000.0f,1.0f, 1},
         {1.000f, 550, 0.00005f,120000.0f,1.0f,1}
     };
-    const int n_stages = (fast_mode == 2) ? 10 : 14;
-    const Stage* stages = (fast_mode == 2) ? stages_gentle : stages_fast;
-    const float mult_steps = (fast_mode == 0) ? 1.8f : 1.0f;
+    const Stage stages_deep[16] = {
+        {0.880f, 350, 0.0160f, 5.0f,     0.0f, 0},
+        {0.915f, 350, 0.0130f, 5.0f,     0.0f, 0},
+        {0.948f, 450, 0.0100f, 5.0f,     0.0f, 0},
+        {0.970f, 500, 0.0070f, 15.0f,    1.0f, 1},
+        {0.955f, 450, 0.0080f, 45.0f,    1.0f, 1},
+        {0.978f, 600, 0.0052f, 90.0f,    1.0f, 1},
+        {0.964f, 450, 0.0055f, 180.0f,   1.0f, 1},
+        {0.986f, 650, 0.0036f, 350.0f,   1.0f, 1},
+        {0.975f, 500, 0.0038f, 600.0f,   1.0f, 1},
+        {0.991f, 700, 0.0024f, 1200.0f,  1.0f, 1},
+        {0.995f, 700, 0.0014f, 3200.0f,  1.0f, 1},
+        {0.998f, 700, 0.00075f,8000.0f,  1.0f, 1},
+        {0.9993f,700, 0.00040f,18000.0f, 1.0f, 1},
+        {1.000f, 850, 0.00022f,35000.0f, 1.0f, 1},
+        {1.000f, 750, 0.00010f,75000.0f, 1.0f, 1},
+        {1.000f, 650, 0.000045f,140000.0f,1.0f,1}
+    };
+    const int n_stages = (fast_mode == 2) ? 10 : ((fast_mode == 3) ? 16 : 14);
+    const Stage* stages = (fast_mode == 2) ? stages_gentle : ((fast_mode == 3) ? stages_deep : stages_fast);
+    const float mult_steps = (fast_mode == 0) ? 1.8f : ((fast_mode == 3) ? 1.45f : 1.0f);
 
     int step_g = 0;
     float w_align_base = (b % 2 == 1) ? 0.016f : 0.0f;
@@ -544,13 +562,18 @@ __global__ void solve_batch_fp32(
             }
 
             if (opt_L && tid == 0) {
-                float sfrac = (fast_mode == 2) ? ((float)st / 9.0f) : ((float)max(0, st - 4) / 9.0f);
+                float sfrac = (fast_mode == 2) ? ((float)st / 9.0f)
+                    : ((fast_mode == 3) ? ((float)max(0, st - 3) / 12.0f) : ((float)max(0, st - 4) / 9.0f));
                 float target_w = (fast_mode == 2)
                     ? (0.030f * (1.0f - sfrac) + 0.0001f)
-                    : (0.045f * (1.0f - sfrac) + 0.0005f);
+                    : ((fast_mode == 3)
+                        ? (0.028f * (1.0f - sfrac) + 0.00015f)
+                        : (0.045f * (1.0f - sfrac) + 0.0005f));
                 float max_L_b = sh_L_init + ((fast_mode == 2)
                     ? ((b % 3 == 0) ? 0.002f : ((b % 3 == 1) ? 0.010f : 0.025f))
-                    : ((b % 3 == 0) ? 0.003f : ((b % 3 == 1) ? 0.015f : 0.040f)));
+                    : ((fast_mode == 3)
+                        ? ((b % 4 == 0) ? -0.0002f : ((b % 4 == 1) ? 0.0015f : ((b % 4 == 2) ? 0.0045f : 0.0120f)))
+                        : ((b % 3 == 0) ? 0.003f : ((b % 3 == 1) ? 0.015f : 0.040f))));
                 float min_L_b = fmaxf(1.0f, sh_L_init * 0.75f);
                 float step_c = fminf(0.0018f, lr_xy * 0.5f);
                 sh_x0 += step_c * tanhf(sum_vx * 2.0f);
@@ -561,14 +584,20 @@ __global__ void solve_batch_fp32(
             }
             __syncthreads();
 
-            // Active discrete + collective moves during mobile inflation / anneal (a <= 0.988)
-            if (scale_a <= 0.988f && ((it == n_steps / 3) || (it == (2 * n_steps) / 3))) {
+            // Active discrete + collective moves during mobile inflation / anneal
+            const bool do_moves = (fast_mode == 3)
+                ? (scale_a <= 0.993f && ((it == n_steps / 4) || (it == n_steps / 2) || (it == (3 * n_steps) / 4)))
+                : (scale_a <= 0.988f && ((it == n_steps / 3) || (it == (2 * n_steps) / 3)));
+            if (do_moves) {
                 rebuild_grid(N, sh_x0, sh_y0, sh_L, sx, sy, cell_head, cell_next, sh_gx0, sh_gy0, sh_cw);
                 float w_wall_unit = stage_tight ? 1.0f : 5.0f;
 
-                // 1) Parallel 256-thread void relocation on the 2 worst-stress squares (skip in gentle mode to preserve ordered crystal seeds)
+                // 1) Parallel 256-thread void relocation on the worst-stress squares
                 if (fast_mode != 2) {
-                for (int mv = 0; mv < 2; ++mv) {
+                const int n_mv = (fast_mode == 3) ? 3 : 2;
+                const int n_pr = (fast_mode == 3) ? 4 : 1;
+                const int n_ang = (fast_mode == 3) ? 7 : 3;
+                for (int mv = 0; mv < n_mv; ++mv) {
                     compute_total_energy_f32(
                         N, sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw,
                         scale_a, w_wall_unit, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
@@ -594,19 +623,32 @@ __global__ void solve_batch_fp32(
                     __syncthreads();
                     if (w_i < 0 || e_old <= 1e-6f) break;
 
-                    // Each thread evaluates 1 random probe inside [x0+0.5, x0+L-0.5]^2 x 3 angles
-                    float px = sh_x0 + 0.52f + rand_u01(rng) * fmaxf(0.2f, sh_L - 1.04f);
-                    float py = sh_y0 + 0.52f + rand_u01(rng) * fmaxf(0.2f, sh_L - 1.04f);
+                    float best_px = sh_x0 + 0.52f, best_py = sh_y0 + 0.52f;
                     float best_ang = 0.0f;
-                    float cand_a[3] = {0.0f, 0.78539816f, sth[w_i]};
                     float best_ep = 1e9f;
-                    for (int ak = 0; ak < 3; ++ak) {
-                        float ec = eval_single_sq_f32(
-                            w_i, px, py, cand_a[ak], N, sh_x0, sh_y0, sh_L,
-                            sh_gx0, sh_gy0, sh_cw, scale_a, w_wall_unit,
-                            sx, sy, sc, ss, cell_head, cell_next
-                        );
-                        if (ec < best_ep) { best_ep = ec; best_ang = cand_a[ak]; }
+                    float cand_a[7] = {0.0f, 0.78539816f, -0.78539816f, 0.4636476f, -0.4636476f, 0.3217506f, sth[w_i]};
+                    for (int pr = 0; pr < n_pr; ++pr) {
+                        float px, py;
+                        if (fast_mode == 3 && pr == 3) {
+                            // Wall & corner bias (width ~0.5..2.8 from boundary)
+                            float margin = 0.50f + rand_u01(rng) * fminf(2.3f, 0.25f * sh_L);
+                            uint32_t side = xorshift32(rng) & 3u;
+                            float along = 0.52f + rand_u01(rng) * fmaxf(0.2f, sh_L - 1.04f);
+                            px = sh_x0 + ((side == 0) ? margin : ((side == 1) ? (sh_L - margin) : along));
+                            py = sh_y0 + ((side == 2) ? margin : ((side == 3) ? (sh_L - margin) : along));
+                        } else {
+                            px = sh_x0 + 0.52f + rand_u01(rng) * fmaxf(0.2f, sh_L - 1.04f);
+                            py = sh_y0 + 0.52f + rand_u01(rng) * fmaxf(0.2f, sh_L - 1.04f);
+                        }
+                        for (int ak = 0; ak < n_ang; ++ak) {
+                            int ai = (fast_mode == 3) ? ak : ((ak == 2) ? 6 : ak);
+                            float ec = eval_single_sq_f32(
+                                w_i, px, py, cand_a[ai], N, sh_x0, sh_y0, sh_L,
+                                sh_gx0, sh_gy0, sh_cw, scale_a, w_wall_unit,
+                                sx, sy, sc, ss, cell_head, cell_next
+                            );
+                            if (ec < best_ep) { best_ep = ec; best_px = px; best_py = py; best_ang = cand_a[ai]; }
+                        }
                     }
                     red_buf[tid] = best_ep;
                     ired_buf[tid] = tid;
@@ -623,7 +665,7 @@ __global__ void solve_batch_fp32(
                     float e_best = red_buf[0];
                     __syncthreads();
                     if (tid == win_t && e_best + 1e-6f < e_old) {
-                        sx[w_i] = px; sy[w_i] = py; sth[w_i] = best_ang;
+                        sx[w_i] = best_px; sy[w_i] = best_py; sth[w_i] = best_ang;
                         sc[w_i] = cosf(best_ang); ss[w_i] = sinf(best_ang);
                     }
                     __syncthreads();
