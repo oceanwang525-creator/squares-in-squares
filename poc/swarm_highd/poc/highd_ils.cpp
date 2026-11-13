@@ -468,25 +468,32 @@ inline double compute_energy_grad_full(
 inline double eval_sym_energy_grad(
     SymLbfgsWorkspace& ws, const double* q_red,
     double L, double w_wall, double w_pair, double side,
-    double* g_red_out, double* per_sq_pen = nullptr
+    double* g_red_out, double* per_sq_pen = nullptr,
+    const uint8_t* active_mask = nullptr
 ) {
     expand_sym(ws.n, ws.sym_mode, ws.m_orbits, ws.has_center, L, q_red, ws.z_full.data());
     const double e = compute_energy_grad_full(
         ws.n, ws.z_full.data(), L, w_wall, w_pair, side, ws.grid, ws.g_full.data(), per_sq_pen
     );
     fold_sym_grad(ws.n, ws.sym_mode, ws.m_orbits, ws.has_center, ws.g_full.data(), g_red_out);
+    if (active_mask) {
+        for (int k = 0; k < ws.dim; ++k) {
+            if (!active_mask[k]) g_red_out[k] = 0.0;
+        }
+    }
     return e;
 }
 
 double lbfgs_minimize_sym(
     int n, int sym_mode, double* q_red, double L,
-    double w_wall, double w_pair, double side, int maxiter, SymLbfgsWorkspace& ws
+    double w_wall, double w_pair, double side, int maxiter, SymLbfgsWorkspace& ws,
+    const uint8_t* active_mask = nullptr
 ) {
     ws.init(n, sym_mode);
     const int dim = ws.dim;
     constexpr int M = SymLbfgsWorkspace::M;
 
-    double f = eval_sym_energy_grad(ws, q_red, L, w_wall, w_pair, side, ws.g.data());
+    double f = eval_sym_energy_grad(ws, q_red, L, w_wall, w_pair, side, ws.g.data(), nullptr, active_mask);
     if (f < 1e-15) return f;
 
     int head = 0;
@@ -546,7 +553,7 @@ double lbfgs_minimize_sym(
         double f_new = f;
         for (int ls = 0; ls < 20; ++ls) {
             for (int k = 0; k < dim; ++k) ws.q_new[k] = q_red[k] + alpha * ws.d[k];
-            f_new = eval_sym_energy_grad(ws, ws.q_new.data(), L, w_wall, w_pair, side, ws.g_new.data());
+            f_new = eval_sym_energy_grad(ws, ws.q_new.data(), L, w_wall, w_pair, side, ws.g_new.data(), nullptr, active_mask);
             if (std::isfinite(f_new) && f_new <= f + 1e-4 * alpha * dg) {
                 accepted = true;
                 break;
@@ -623,7 +630,8 @@ inline double eval_single_sq_energy(
 
 bool cavity_relocate_orbit(
     SymLbfgsWorkspace& ws, double* q_red, double L, double side,
-    std::mt19937_64& rng, std::vector<int>& occ, std::vector<std::pair<int, int>>& empty_cells
+    std::mt19937_64& rng, std::vector<int>& occ, std::vector<std::pair<int, int>>& empty_cells,
+    const uint8_t* active_mask = nullptr
 ) {
     const int n = ws.n;
     const int m = ws.m_orbits;
@@ -632,6 +640,10 @@ bool cavity_relocate_orbit(
 
     std::vector<std::pair<double, int>> orb_scores(m);
     for (int j = 0; j < m; ++j) {
+        if (active_mask && !(active_mask[j] && active_mask[m + j])) {
+            orb_scores[j] = {-1.0, j};
+            continue;
+        }
         double sc = 0.0;
         for (int k = 0; k < ws.sym_mode; ++k) {
             sc = std::max(sc, ws.per_pen[j * ws.sym_mode + k]);
@@ -676,13 +688,27 @@ bool cavity_relocate_orbit(
             }
         }
     }
+    const double hc = 0.5 * L;
+    double ax0 = 0.55, ax1 = L - 0.55, ay0 = 0.55, ay1 = L - 0.55;
+    if (active_mask) {
+        ax0 = 1e9; ax1 = -1e9; ay0 = 1e9; ay1 = -1e9;
+        for (int j = 0; j < m; ++j) {
+            if (active_mask[j] && active_mask[m + j]) {
+                const double xj = q_red[j] + hc, yj = q_red[m + j] + hc;
+                ax0 = std::min(ax0, xj); ax1 = std::max(ax1, xj);
+                ay0 = std::min(ay0, yj); ay1 = std::max(ay1, yj);
+            }
+        }
+        ax0 = std::max(0.55, ax0 - 1.0); ax1 = std::min(L - 0.55, ax1 + 1.0);
+        ay0 = std::max(0.55, ay0 - 1.0); ay1 = std::min(L - 0.55, ay1 + 1.0);
+    }
     empty_cells.clear();
     empty_cells.reserve(ng * ng);
-    const double hc = 0.5 * L;
     for (int ix = 1; ix < ng - 1; ++ix) {
         for (int iy = 1; iy < ng - 1; ++iy) {
             const double px = (ix + 0.5) * gstep;
             const double py = (iy + 0.5) * gstep;
+            if (active_mask && (px < ax0 || px > ax1 || py < ay0 || py > ay1)) continue;
             if (ws.sym_mode == 2 && (px - hc) < -0.2) continue;
             if (ws.sym_mode == 4 && ((px - hc) < -0.2 || (py - hc) < -0.2)) continue;
             empty_cells.push_back({occ[ix * ng + iy], ix * ng + iy});
@@ -710,8 +736,8 @@ bool cavity_relocate_orbit(
             px = (ix + 0.5) * gstep + u_jit(rng);
             py = (iy + 0.5) * gstep + u_jit(rng);
         } else {
-            px = std::uniform_real_distribution<double>(0.55, L - 0.55)(rng);
-            py = std::uniform_real_distribution<double>(0.55, L - 0.55)(rng);
+            px = std::uniform_real_distribution<double>(ax0, std::max(ax0 + 0.1, ax1))(rng);
+            py = std::uniform_real_distribution<double>(ay0, std::max(ay0 + 0.1, ay1))(rng);
         }
         const double rx = px - hc, ry = py - hc;
         if (ws.sym_mode >= 2 && (rx * rx + ry * ry) < 0.48) continue;
@@ -857,6 +883,106 @@ void run_ils_trajectory(
     std::copy_n(q_overall_best.data(), dim, q_red);
 }
 
+void run_masked_melt_trajectory(
+    int n, int sym_mode, double* q_red, const uint8_t* active_mask,
+    int n_L_steps, const double* L_sched, const int* ils_iters_per_L,
+    double a_start, int n_melt_stages, int masked_iters, int full_iters,
+    uint64_t rng_seed, SymLbfgsWorkspace& ws,
+    double* out_best_q_feas, double* out_best_L_feas,
+    double* out_best_E, double* out_best_pen, double* out_L_bbox
+) {
+    ws.init(n, sym_mode);
+    const int dim = ws.dim;
+    const int m = ws.m_orbits;
+    std::mt19937_64 rng(rng_seed);
+    std::uniform_real_distribution<double> u_ang(-0.30, 0.30);
+    std::uniform_real_distribution<double> u_xy(-0.14, 0.14);
+    std::uniform_real_distribution<double> u_01(0.0, 1.0);
+
+    std::vector<int> active_orbits;
+    for (int j = 0; j < m; ++j) {
+        if (active_mask[j] || active_mask[m + j] || active_mask[2 * m + j]) active_orbits.push_back(j);
+    }
+
+    std::vector<double> q_cur(q_red, q_red + dim);
+    std::vector<double> q_trial(dim), q_stage_best(dim), q_unfreeze(dim);
+    std::vector<int> occ;
+    std::vector<std::pair<int, int>> empty_cells;
+    *out_best_L_feas = 1e18;
+    double best_overall_E = 1e18;
+    std::vector<double> q_overall_best(q_red, q_red + dim);
+
+    if (n_melt_stages > 0 && a_start < 0.999) {
+        for (int ms = 0; ms < n_melt_stages; ++ms) {
+            const double frac = (n_melt_stages == 1) ? 1.0 : static_cast<double>(ms) / (n_melt_stages - 1);
+            const double a = a_start + frac * (1.0 - a_start);
+            lbfgs_minimize_sym(n, sym_mode, q_cur.data(), L_sched[0], 2.0, 1.0, a, masked_iters, ws, active_mask);
+        }
+    }
+
+    for (int ls = 0; ls < n_L_steps; ++ls) {
+        const double L_tgt = L_sched[ls];
+        double stage_best_E = lbfgs_minimize_sym(n, sym_mode, q_cur.data(), L_tgt, 2.0, 1.0, 1.0, masked_iters, ws, active_mask);
+        std::copy_n(q_cur.data(), dim, q_stage_best.data());
+
+        if (stage_best_E > 1e-11 && !active_orbits.empty()) {
+            const int n_ils = ils_iters_per_L ? ils_iters_per_L[ls] : 0;
+            for (int step = 0; step < n_ils; ++step) {
+                std::copy_n(q_stage_best.data(), dim, q_trial.data());
+                if (step % 3 != 2) {
+                    cavity_relocate_orbit(ws, q_trial.data(), L_tgt, 1.0, rng, occ, empty_cells, active_mask);
+                    const int n_pert = std::min<int>(3, static_cast<int>(active_orbits.size()));
+                    for (int p = 0; p < n_pert; ++p) {
+                        const int j = active_orbits[std::uniform_int_distribution<int>(0, static_cast<int>(active_orbits.size()) - 1)(rng)];
+                        if (active_mask[j]) q_trial[j] += 0.5 * u_xy(rng);
+                        if (active_mask[m + j]) q_trial[m + j] += 0.5 * u_xy(rng);
+                        if (active_mask[2 * m + j] && u_01(rng) < 0.5) q_trial[2 * m + j] += 0.4 * u_ang(rng);
+                    }
+                } else {
+                    const int n_pert = std::min<int>(6, static_cast<int>(active_orbits.size()));
+                    for (int p = 0; p < n_pert; ++p) {
+                        const int j = active_orbits[std::uniform_int_distribution<int>(0, static_cast<int>(active_orbits.size()) - 1)(rng)];
+                        if (active_mask[j]) q_trial[j] += u_xy(rng);
+                        if (active_mask[m + j]) q_trial[m + j] += u_xy(rng);
+                        if (active_mask[2 * m + j] && u_01(rng) < 0.7) q_trial[2 * m + j] += u_ang(rng);
+                    }
+                    lbfgs_minimize_sym(n, sym_mode, q_trial.data(), L_tgt, 2.0, 1.0, 0.90, 120, ws, active_mask);
+                }
+                const double tE = lbfgs_minimize_sym(n, sym_mode, q_trial.data(), L_tgt, 2.0, 1.0, 1.0, masked_iters, ws, active_mask);
+                if (tE < stage_best_E - 1e-12) {
+                    stage_best_E = tE;
+                    std::copy_n(q_trial.data(), dim, q_stage_best.data());
+                    if (stage_best_E < 1e-12) break;
+                }
+            }
+        }
+
+        std::copy_n(q_stage_best.data(), dim, q_cur.data());
+        // Check full-box unfreeze settle on final stages without corrupting masked q_cur on early stages
+        if (ls >= std::max(0, n_L_steps - 2)) {
+            std::copy_n(q_cur.data(), dim, q_unfreeze.data());
+            const double unf_E = lbfgs_minimize_sym(n, sym_mode, q_unfreeze.data(), L_tgt, 4.0, 1.0, 1.0, full_iters, ws, nullptr);
+            expand_sym(n, sym_mode, ws.m_orbits, ws.has_center, L_tgt, q_unfreeze.data(), ws.z_full.data());
+            double bbox_L = 0.0;
+            const double stage_pen = compute_sat_bbox_and_pen(
+                n, ws.z_full.data(), ws.z_full.data() + n, ws.z_full.data() + 2 * n, 1.0, ws.grid, &bbox_L
+            );
+            if (stage_pen <= 1e-11 && bbox_L < *out_best_L_feas) {
+                *out_best_L_feas = bbox_L;
+                std::copy_n(q_unfreeze.data(), dim, out_best_q_feas);
+            }
+            if (ls == n_L_steps - 1 || unf_E <= best_overall_E) {
+                best_overall_E = unf_E;
+                std::copy_n(q_unfreeze.data(), dim, q_overall_best.data());
+                *out_best_E = unf_E;
+                *out_best_pen = stage_pen;
+                *out_L_bbox = bbox_L;
+            }
+        }
+    }
+    std::copy_n(q_overall_best.data(), dim, q_red);
+}
+
 }  // namespace
 
 extern "C" {
@@ -910,6 +1036,56 @@ void batch_ils_solve(
                 n_L_steps, L_sched_batch + static_cast<size_t>(b) * n_L_steps,
                 ils_iters_per_L, a_start, n_melt_stages,
                 base_seed + static_cast<uint64_t>(b) * 1000003ULL + 13ULL,
+                ws, q_feas_batch + static_cast<size_t>(b) * dim,
+                &bL_feas, &e, &p, &lb
+            );
+            out_best_L_feas[b] = bL_feas;
+            out_E[b] = e;
+            out_pen[b] = p;
+            out_L_bbox[b] = lb;
+        }
+    };
+
+    if (threads == 1 || batch_size <= 1) {
+        worker_fn();
+    } else {
+        std::vector<std::thread> pool;
+        pool.reserve(threads);
+        for (int t = 0; t < threads; ++t) pool.emplace_back(worker_fn);
+        for (auto& thd : pool) thd.join();
+    }
+}
+
+void batch_masked_melt_solve(
+    int batch_size, int n, int sym_mode,
+    double* q_red_batch,
+    double* q_feas_batch,
+    const uint8_t* active_mask_batch,
+    int n_L_steps, const double* L_sched_batch,
+    const int* ils_iters_per_L,
+    double a_start, int n_melt_stages, int masked_iters, int full_iters,
+    int n_threads, uint64_t base_seed,
+    double* out_best_L_feas, double* out_E, double* out_pen, double* out_L_bbox
+) {
+    const int threads = std::max(1, std::min(4, n_threads));
+    const int has_c = (sym_mode == 1) ? 0 : (n % sym_mode);
+    const int m_orb = (sym_mode == 1) ? n : ((n - has_c) / sym_mode);
+    const int dim = 3 * m_orb + has_c;
+    std::atomic_int next_idx{0};
+
+    auto worker_fn = [&]() {
+        SymLbfgsWorkspace ws;
+        while (true) {
+            const int b = next_idx.fetch_add(1, std::memory_order_relaxed);
+            if (b >= batch_size) break;
+            double bL_feas = 1e18, e = 0.0, p = 0.0, lb = 0.0;
+            run_masked_melt_trajectory(
+                n, sym_mode,
+                q_red_batch + static_cast<size_t>(b) * dim,
+                active_mask_batch + static_cast<size_t>(b) * dim,
+                n_L_steps, L_sched_batch + static_cast<size_t>(b) * n_L_steps,
+                ils_iters_per_L, a_start, n_melt_stages, masked_iters, full_iters,
+                base_seed + static_cast<uint64_t>(b) * 1000003ULL + 29ULL,
                 ws, q_feas_batch + static_cast<size_t>(b) * dim,
                 &bL_feas, &e, &p, &lb
             );

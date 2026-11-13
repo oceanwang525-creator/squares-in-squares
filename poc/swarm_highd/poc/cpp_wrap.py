@@ -44,6 +44,7 @@ def get_cpp_lib(force_rebuild: bool = False) -> ctypes.CDLL:
     lib = ctypes.CDLL(str(CPP_LIB))
     c_dp = np.ctypeslib.ndpointer(dtype=np.float64, flags="C_CONTIGUOUS")
     c_ip = np.ctypeslib.ndpointer(dtype=np.int32, flags="C_CONTIGUOUS")
+    c_u8p = np.ctypeslib.ndpointer(dtype=np.uint8, flags="C_CONTIGUOUS")
 
     lib.eval_sym_sat_energy_grad.argtypes = [
         ctypes.c_int,
@@ -89,6 +90,29 @@ def get_cpp_lib(force_rebuild: bool = False) -> ctypes.CDLL:
         c_dp,
     ]
     lib.batch_ils_solve.restype = None
+
+    lib.batch_masked_melt_solve.argtypes = [
+        ctypes.c_int,
+        ctypes.c_int,
+        ctypes.c_int,
+        c_dp,
+        c_dp,
+        c_u8p,
+        ctypes.c_int,
+        c_dp,
+        c_ip,
+        ctypes.c_double,
+        ctypes.c_int,
+        ctypes.c_int,
+        ctypes.c_int,
+        ctypes.c_int,
+        ctypes.c_uint64,
+        c_dp,
+        c_dp,
+        c_dp,
+        c_dp,
+    ]
+    lib.batch_masked_melt_solve.restype = None
 
     _LIB = lib
     return lib
@@ -187,6 +211,63 @@ def run_cpp_batch_ils(
         out_E,
         out_pen,
         out_Lb,
+    )
+    return (
+        q_flat.reshape(b, dim),
+        qf_flat.reshape(b, dim),
+        out_Lf,
+        out_E,
+        out_pen,
+        out_Lb,
+    )
+
+
+def run_cpp_masked_melt(
+    n: int,
+    sym_mode: int,
+    q_list: list[np.ndarray],
+    mask_list: list[np.ndarray],
+    L_sched_list: list[list[float]] | list[np.ndarray],
+    ils_iters_per_L: list[int],
+    a_start: float = 0.85,
+    n_melt_stages: int = 4,
+    masked_iters: int = 180,
+    full_iters: int = 240,
+    n_threads: int = 4,
+    base_seed: int = 29001,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Run batch of frozen-exterior masked-pocket melts + full unfreeze settle (<= 4 threads)."""
+    lib = get_cpp_lib()
+    n_threads = min(4, max(1, int(n_threads)))
+    b = len(q_list)
+    _, _, dim = sym_dim(n, sym_mode)
+    n_L = len(ils_iters_per_L)
+
+    q_batch = np.zeros((b, dim), dtype=np.float64)
+    m_batch = np.zeros((b, dim), dtype=np.uint8)
+    L_batch = np.zeros((b, n_L), dtype=np.float64)
+    for i in range(b):
+        assert len(q_list[i]) == dim and len(mask_list[i]) == dim and len(L_sched_list[i]) == n_L
+        q_batch[i] = q_list[i]
+        m_batch[i] = mask_list[i]
+        L_batch[i] = L_sched_list[i]
+
+    q_feas = np.zeros_like(q_batch)
+    ils_arr = np.ascontiguousarray(ils_iters_per_L, dtype=np.int32)
+    out_Lf = np.empty(b, dtype=np.float64)
+    out_E = np.empty(b, dtype=np.float64)
+    out_pen = np.empty(b, dtype=np.float64)
+    out_Lb = np.empty(b, dtype=np.float64)
+
+    q_flat = np.ascontiguousarray(q_batch.ravel())
+    qf_flat = np.ascontiguousarray(q_feas.ravel())
+    m_flat = np.ascontiguousarray(m_batch.ravel())
+    L_flat = np.ascontiguousarray(L_batch.ravel())
+
+    lib.batch_masked_melt_solve(
+        b, n, sym_mode, q_flat, qf_flat, m_flat, n_L, L_flat, ils_arr,
+        float(a_start), int(n_melt_stages), int(masked_iters), int(full_iters),
+        int(n_threads), int(base_seed), out_Lf, out_E, out_pen, out_Lb,
     )
     return (
         q_flat.reshape(b, dim),
