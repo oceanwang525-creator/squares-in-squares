@@ -1,0 +1,209 @@
+{
+  "n": 971,
+  "inc_L": "31.66431832520518103260191900000000000000000000000000",
+  "best_cert_L": null,
+  "best_L_lit": null,
+  "best_L_pd": null,
+  "win": false,
+  "candidates": [
+    {
+      "idx": 0,
+      "seed_meta": "hybrid45_band(wb=6)@L=31.63779",
+      "lam": 1000000000.0,
+      "L_pre_lp": 32.61412279245447,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 1,
+      "seed_meta": "hybrid45_band(wb=8)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 32.78175324431148,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 2,
+      "seed_meta": "hybrid45_core(M=16)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.029293286466064,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 3,
+      "seed_meta": "sym_bicryst(a=12.0,b=2)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.18814932050654,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 4,
+      "seed_meta": "sym_bicryst(a=12.0,b=2)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.39170621098235,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 5,
+      "seed_meta": "hybrid45_split(leg=29.2)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.40688746582891,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 6,
+      "seed_meta": "step2tier(K=20x22)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.7199156506202,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 7,
+      "seed_meta": "hybrid45_core(M=16)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.78303563689726,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 8,
+      "seed_meta": "hybrid45_split(leg=39.6)@L=31.63779",
+      "lam": 1000000000.0,
+      "L_pre_lp": 33.89035278936296,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 9,
+      "seed_meta": "pyth_corner(phi=36.9)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.14638504236762,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 10,
+      "seed_meta": "tapered_L(K=23x21,w=10/11,Sfull)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.304229297487566,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 11,
+      "seed_meta": "tapered_L(K=27x22,w=5/10,Sfull)@L=31.63779",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.42949044867332,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 12,
+      "seed_meta": "pyth_corner(phi=16.3)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 36.44690240526097,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 13,
+      "seed_meta": "step2tier(K=19x21)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 37.584818765502405,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 14,
+      "seed_meta": "pinwheel4(K=19x20,w=4/9/8/4)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 51.58753031990355,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 15,
+      "seed_meta": "chiral_clip(phi=32.0,sheared,r=0.42)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 103.22308761822715,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 16,
+      "seed_meta": "hybrid45_2c(leg=10.2)@L=31.64642",
+      "lam": 832255.5696196158,
+      "L_pre_lp": 91607064.90785363,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 17,
+      "seed_meta": "hybrid45_2c(leg=10.4)@L=31.67632",
+      "lam": 2010319.4939130796,
+      "L_pre_lp": 221425430.99458972,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 18,
+      "seed_meta": "chiral_clip(phi=26.0,sheared,r=0.42)@L=31.63779",
+      "lam": 1000000000.0,
+      "L_pre_lp": 122.62818092556144,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 19,
+      "seed_meta": "pinwheel4(K=24x20,w=4/4/5/7)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 178.06491760596492,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 20,
+      "seed_meta": "hybrid45_core(M=16)@L=31.63779",
+      "lam": 62.87811896869741,
+      "L_pre_lp": 2093.613520939108,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 21,
+      "seed_meta": "hybrid45_band(wb=11)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.332505630190695,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 22,
+      "seed_meta": "hybrid45_split(leg=36.4)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.40590842047761,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 23,
+      "seed_meta": "hybrid45_split(leg=30.0)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.53653358276663,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 24,
+      "seed_meta": "hybrid45_split(leg=36.2)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.764452290843884,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 25,
+      "seed_meta": "hybrid45_band(wb=12)@L=31.65744",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.90122017965408,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 26,
+      "seed_meta": "hybrid45_split(leg=22.4)@L=31.64642",
+      "lam": 1000000000.0,
+      "L_pre_lp": 34.949837467589774,
+      "status": "high_lam_skip"
+    },
+    {
+      "idx": 27,
+      "seed_meta": "hybrid45_band(wb=5)@L=31.67632",
+      "lam": 1000000000.0,
+      "L_pre_lp": 35.27630396137822,
+      "status": "high_lam_skip"
+    }
+  ],
+  "elapsed_seconds": 58.22,
+  "seed_seconds": 53.25,
+  "gpu_seconds": 3.65
+}
