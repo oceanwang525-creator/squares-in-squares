@@ -1,0 +1,20 @@
+{
+  "source_main": "68e19d42ff76ff3f4e192a0005d164c3162999f0",
+  "original_sources": {
+    "poc/free_band_ga/poc/free_band_ga.py": "11c2b3003528ebca670c5de40a780f3c759aa07d8898714124856accd3a64137"
+  },
+  "execution": {
+    "folder": "free_band_ga",
+    "args": [
+      "poc/free_band_ga/poc/free_band_ga.py"
+    ],
+    "reason": "Normal300generation64population",
+    "timeout": 3500,
+    "pid": 426383,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 1.43
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}
