@@ -8,6 +8,31 @@ def _half_extents(th: np.ndarray) -> np.ndarray:
     return 0.5 * (np.abs(np.cos(th)) + np.abs(np.sin(th)))
 
 
+def canonicalize_tr(
+    x: np.ndarray,
+    y: np.ndarray,
+    th: np.ndarray,
+    L: float,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, int]:
+    """Reflect packing across x=L/2 and/or y=L/2 so the main upright grid sits in TR."""
+    up = np.abs(np.sin(2.0 * th)) < 0.05
+    qs = [
+        int(np.sum(up & (x > 0.5 * L) & (y > 0.5 * L))),  # 0: TR
+        int(np.sum(up & (x < 0.5 * L) & (y > 0.5 * L))),  # 1: TL
+        int(np.sum(up & (x > 0.5 * L) & (y < 0.5 * L))),  # 2: BR
+        int(np.sum(up & (x < 0.5 * L) & (y < 0.5 * L))),  # 3: BL
+    ]
+    best_q = int(np.argmax(qs))
+    xc, yc, tc = x.copy(), y.copy(), th.copy()
+    if best_q in (1, 3):
+        xc = L - xc
+        tc = -tc
+    if best_q in (2, 3):
+        yc = L - yc
+        tc = -tc
+    return xc, yc, tc, best_q
+
+
 def detect_endcap_strips(
     x: np.ndarray,
     y: np.ndarray,
