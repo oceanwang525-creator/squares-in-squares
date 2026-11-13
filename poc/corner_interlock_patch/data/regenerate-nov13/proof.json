@@ -1,0 +1,36 @@
+{
+  "folder": "corner_interlock_patch",
+  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
+  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/corner_interlock_patch/data/regenerate-nov13/results.json",
+      "sha256": "7441e8ca75989fbb0177753fa8d4b317595c1ff4da8909f21551f70bcf0f82ff",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/corner_interlock_patch/data/results.json",
+      "sha256": "774ce046f28bfca34d59cbc1288d9663366ca69567d1de907aae82fd3ee249e5",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/corner_interlock_patch/data/results_lp.json",
+      "sha256": "7321fb20b1560eb648e67b56943ca3aca093cf5fec23dbd399566c99e40b12d6",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

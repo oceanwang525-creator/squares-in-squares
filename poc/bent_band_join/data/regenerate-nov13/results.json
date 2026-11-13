@@ -1,0 +1,186 @@
+{
+  "score_delta_total": 0.0452445964758563,
+  "reachable": false,
+  "results": [
+    {
+      "n": 645,
+      "status": "certified",
+      "params": {
+        "w": 13,
+        "l": 21,
+        "a1": 16,
+        "a2": 16,
+        "b1": 9,
+        "b2": 10
+      },
+      "search_tried": 59,
+      "predicted_L": 26.192388155425117,
+      "L_literal": "26.19238865927288273000000000000000000000000000000000",
+      "L_pandas": "26.19238865927288264000000000000000000000000000000000",
+      "incumbent_L": "25.87031812251975364740446552983030849778887781162520",
+      "delta_L": 0.32207053675312736,
+      "score_delta": 0.012681515000368444,
+      "max_capacity_at_incumbent": 640,
+      "shortfall_at_incumbent": 5,
+      "max_capacity_params": [
+        4,
+        32,
+        22,
+        22,
+        2,
+        2,
+        25.828427
+      ],
+      "bent_capacity_at_incumbent": 606,
+      "bent_best_params": {
+        "t1": "45",
+        "t2": "45",
+        "w1": 4,
+        "w2": 4,
+        "l1": 10,
+        "l2": 10,
+        "block_a": 34,
+        "block_b": 34,
+        "dropped": 0,
+        "fill": 538
+      },
+      "bent_configs_tried": 2401,
+      "seconds": 19.0
+    },
+    {
+      "n": 751,
+      "status": "certified",
+      "params": {
+        "w": 15,
+        "l": 22,
+        "a1": 16,
+        "a2": 17,
+        "b1": 11,
+        "b2": 11
+      },
+      "search_tried": 50,
+      "predicted_L": 28.106601717798213,
+      "L_literal": "28.10660225993025385000000000000000000000000000000000",
+      "L_pandas": "28.10660225993025340000000000000000000000000000000000",
+      "incumbent_L": "27.86424008616910855961199900976410503972147125750780",
+      "delta_L": 0.2423621737611441,
+      "score_delta": 0.00884392132678656,
+      "max_capacity_at_incumbent": 746,
+      "shortfall_at_incumbent": 5,
+      "max_capacity_params": [
+        4,
+        35,
+        24,
+        24,
+        2,
+        2,
+        27.828427
+      ],
+      "bent_capacity_at_incumbent": 710,
+      "bent_best_params": {
+        "t1": "45",
+        "t2": "45",
+        "w1": 4,
+        "w2": 4,
+        "l1": 10,
+        "l2": 10,
+        "block_a": 34,
+        "block_b": 34,
+        "dropped": 0,
+        "fill": 642
+      },
+      "bent_configs_tried": 2401,
+      "seconds": 24.1
+    },
+    {
+      "n": 925,
+      "status": "certified",
+      "params": {
+        "w": 19,
+        "l": 23,
+        "a1": 17,
+        "a2": 17,
+        "b1": 13,
+        "b2": 13
+      },
+      "search_tried": 46,
+      "predicted_L": 31.4350288425444,
+      "L_literal": "31.43502945124498283000000000000000000000000000000000",
+      "L_pandas": "31.43502945124498275000000000000000000000000000000000",
+      "incumbent_L": "30.86321837316950898175795253708386667312879581004381",
+      "delta_L": 0.5718110780754735,
+      "score_delta": 0.018801032433118484,
+      "max_capacity_at_incumbent": 921,
+      "shortfall_at_incumbent": 4,
+      "max_capacity_params": [
+        21,
+        21,
+        15,
+        15,
+        15,
+        15,
+        30.849242
+      ],
+      "bent_capacity_at_incumbent": 881,
+      "bent_best_params": {
+        "t1": "45",
+        "t2": "45",
+        "w1": 4,
+        "w2": 4,
+        "l1": 10,
+        "l2": 10,
+        "block_a": 34,
+        "block_b": 34,
+        "dropped": 0,
+        "fill": 813
+      },
+      "bent_configs_tried": 2401,
+      "seconds": 31.3
+    },
+    {
+      "n": 987,
+      "status": "certified",
+      "params": {
+        "w": 17,
+        "l": 25,
+        "a1": 19,
+        "a2": 19,
+        "b1": 13,
+        "b2": 13
+      },
+      "search_tried": 50,
+      "predicted_L": 32.020815280171306,
+      "L_literal": "32.02081590058761406000000000000000000000000000000000",
+      "L_pandas": "32.02081590058761430000000000000000000000000000000000",
+      "incumbent_L": "31.86630526508366147711534673847566523363639134913683",
+      "delta_L": 0.1545106355039536,
+      "score_delta": 0.004918127715582811,
+      "max_capacity_at_incumbent": 982,
+      "shortfall_at_incumbent": 5,
+      "max_capacity_params": [
+        9,
+        35,
+        24,
+        25,
+        6,
+        6,
+        31.863961
+      ],
+      "bent_capacity_at_incumbent": 942,
+      "bent_best_params": {
+        "t1": "45",
+        "t2": "45",
+        "w1": 4,
+        "w2": 4,
+        "l1": 10,
+        "l2": 10,
+        "block_a": 34,
+        "block_b": 34,
+        "dropped": 0,
+        "fill": 874
+      },
+      "bent_configs_tried": 2401,
+      "seconds": 33.7
+    }
+  ]
+}

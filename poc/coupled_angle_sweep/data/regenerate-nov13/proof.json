@@ -1,0 +1,30 @@
+{
+  "folder": "coupled_angle_sweep",
+  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
+  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/coupled_angle_sweep/data/regenerate-nov13/results.json",
+      "sha256": "f785eedfa56d5024512733c1d04e5424f98efc4eabbfb535757a4dd24645a0d9",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/coupled_angle_sweep/data/results.json",
+      "sha256": "771b14804dc5112cf3b57b5da2e1da022f8a50092b1d7699f198d5edc1a46d1c",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

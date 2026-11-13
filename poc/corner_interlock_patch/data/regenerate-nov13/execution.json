@@ -1,0 +1,16 @@
+{
+  "folder": "corner_interlock_patch",
+  "args": [
+    "poc/corner_interlock_patch/poc/patch_search.py",
+    "--baseline",
+    "regeneration-proof/incumbent.csv",
+    "--out",
+    "poc/corner_interlock_patch/data/regenerate-nov13/"
+  ],
+  "reason": "Normal defaults seven targets trials2 iterations420",
+  "timeout": 3500,
+  "pid": 422950,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 20.62
+}
