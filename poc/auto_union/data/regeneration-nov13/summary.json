@@ -6,12 +6,8 @@
     "failed": 0,
     "runtime-cap": 0
   },
-  "winning_folders": {
-    "alln_fixed_lp": [
-      904
-    ]
-  },
-  "canonical_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
+  "winning_folders": {},
+  "canonical_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
   "no_kaggle": true,
   "no_canonical_write": true
 }
