@@ -8,6 +8,24 @@ def _half_extents(th: np.ndarray) -> np.ndarray:
     return 0.5 * (np.abs(np.cos(th)) + np.abs(np.sin(th)))
 
 
+def reflect_orientation(
+    x: np.ndarray,
+    y: np.ndarray,
+    th: np.ndarray,
+    L: float,
+    q: int,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Reflect packing by quadrant index q in {0: TR, 1: TL->TR, 2: BR->TR, 3: BL->TR}."""
+    xc, yc, tc = x.copy(), y.copy(), th.copy()
+    if q in (1, 3):
+        xc = L - xc
+        tc = -tc
+    if q in (2, 3):
+        yc = L - yc
+        tc = -tc
+    return xc, yc, tc
+
+
 def canonicalize_tr(
     x: np.ndarray,
     y: np.ndarray,
@@ -23,14 +41,31 @@ def canonicalize_tr(
         int(np.sum(up & (x < 0.5 * L) & (y < 0.5 * L))),  # 3: BL
     ]
     best_q = int(np.argmax(qs))
-    xc, yc, tc = x.copy(), y.copy(), th.copy()
-    if best_q in (1, 3):
-        xc = L - xc
-        tc = -tc
-    if best_q in (2, 3):
-        yc = L - yc
-        tc = -tc
+    xc, yc, tc = reflect_orientation(x, y, th, L, best_q)
     return xc, yc, tc, best_q
+
+
+def canonicalize_void_tr(
+    x: np.ndarray,
+    y: np.ndarray,
+    th: np.ndarray,
+    L: float,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, int, float]:
+    """Select orientation q in {0..3} maximizing unslid end-cap void mv(q), falling back to TR upright majority."""
+    mvs = []
+    for q in range(4):
+        xq, yq, tq = reflect_orientation(x, y, th, L, q)
+        info = detect_endcap_strips(xq, yq, tq, L)
+        rv = (info["r_y0"] - 0.5) if (len(info["r_idx"]) >= 8 and 0.60 < info["r_y0"] < 1.48) else 0.0
+        tv = (info["t_x0"] - 0.5) if (len(info["t_idx"]) >= 8 and 0.60 < info["t_x0"] < 1.48) else 0.0
+        mvs.append(max(rv, tv))
+    best_mv = float(max(mvs))
+    if best_mv > 0.0:
+        best_q = int(np.argmax(mvs))
+        xc, yc, tc = reflect_orientation(x, y, th, L, best_q)
+        return xc, yc, tc, best_q, best_mv
+    xc, yc, tc, best_q = canonicalize_tr(x, y, th, L)
+    return xc, yc, tc, best_q, 0.0
 
 
 def detect_endcap_strips(

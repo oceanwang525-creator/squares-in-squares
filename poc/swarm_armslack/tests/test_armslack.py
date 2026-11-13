@@ -72,6 +72,15 @@ def test_canonicalize_tr_rotated():
     assert len(info["r_idx"]) >= 3 or len(info["t_idx"]) >= 3
 
 
+def test_canonicalize_void_tr_n401():
+    x, y, th, L = _load_norm(401)
+    xc, yc, tc, best_q, mv = ss.canonicalize_void_tr(x, y, th, L)
+    assert best_q == 3
+    assert mv > 0.25
+    info = ss.detect_endcap_strips(xc, yc, tc, L)
+    assert len(info["t_idx"]) >= 8 and 0.60 < info["t_x0"] < 1.48
+
+
 def test_final_csv_schema_if_present():
     if not FINAL_CSV.exists():
         return
