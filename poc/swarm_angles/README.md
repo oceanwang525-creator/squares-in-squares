@@ -401,6 +401,27 @@ Structural clues from existing `merged.csv` non-$45^\circ$ packings:
     - Per-`n` time `85..150s` (`> 5 min` total for the pilot), so per the `#80` fast-fail rule this direction is **dropped**.
   - **Status**: Complete (`0` wins, dropped).
 
+- **Idea 22 (Logged pre-test): Direct Multi-Margin `joint_xytheta_slp` + 4 Micro-Jitter Harvest across all 12 targets (`poc/idea22_direct_slp.py`)**
+  - **Hypothesis**: Per `#90`, running signed-Jacobian `joint_xytheta_slp` directly on `merged.csv[n]` (plus `win_n694.csv` for `n=694`) without prior global C++ shrinkage preserves delicate multi-domain registry while jointly unlocking `(dx, dy, dtheta, L)`, especially with `4` micro-jitter starts (`1e-4` pos, `0.02°` angle) and multi-margin final LP clearance `[1e-7, 2e-8, 5e-9]` + exact `verify_official`. (`Idea 20c` pre-restart on `n=965` already hit `+1.041e-7`!)
+  - **Targets**: All 12 claimed `n` `{228, 340, 456, 491, 694, 748, 790, 795, 848, 852, 965, 982}` (`< 3 min`, max 4 threads, HiGHS `threads=1`).
+  - **Results (`1214.44s`, `docs/idea22_results.json`, `9` CERTIFIED STRICT WINS in `final.csv`)**:
+    - `n=694`: **`disk_win` improved further** to `26.8249458597683884317...` vs `inc=26.8252335118387820261` (**`dL = -2.876521e-04`**, `-3.316e-5` below `7b385ca`!).
+    - `n=456`: `merged_exact -> 21.8466671928438006007...` (`dL = -6.462514e-16`)
+    - `n=491`: `merged_exact -> 22.6841436063591912488...` (`dL = -1.600000e-15`)
+    - `n=748`: `merged_exact -> 27.8271519586368300000...` (`dL = -3.000000e-15`)
+    - `n=790`: `merged_exact -> 28.6087125784478419999...` (`dL = -2.500000e-15`)
+    - `n=795`: `merged_exact -> 28.7034039229130716651...` (`dL = -8.400000e-16`)
+    - `n=852`: `merged_exact -> 29.6995963031249903096...` (`dL = -1.015564e-15`)
+    - `n=965`: `merged_exact -> 31.5620506587165685091...` (`dL = -8.250407e-17`)
+    - `n=982`: `merged_exact -> 31.8105394575977555257...` (`dL = -1.000000e-15`)
+    - Non-wins (`340: +2.096e-7`, `228: +4.380e-7`, `848: +1.000e-15`). Notice `9/9` wins came from `0`-jitter (`merged_exact` / `disk_win`), matching `#97`.
+  - **Status**: Complete (`9` wins verified in `data/win_n*.csv` and `final.csv`).
+
+- **Idea 23 (Logged pre-test): Frozen-Exterior Masked-Pocket Soft-`a` Melt (`a=0.88..0.92 -> 1.00`) + `0`-Jitter `joint_xytheta_slp` (`poc/idea23_masked_pocket.py`)**
+  - **Hypothesis**: Why did `n=694` unlock `-2.877e-4` while global `a_start=0.78..0.88` snapped `340, 848, 852, ...` back to the incumbent? Because melting globally shakes the outer crystal, whereas freezing exterior squares outside `R=4.5..7.0` around (1) HiGHS LP-dual critical force-chain tilted junctions (`|\lambda| > 1e-5`), (2) max-clearance voids (`340 clr=0.439`, `982 clr=0.301`, `965 clr=0.285`), and (3) weakest wall-contact edges (`852 R=9`, `848 R=14`) keeps global registry locked while letting the active `~35..65`-square pocket reconfigure (`a: 0.88..0.92 -> 1.00`) before `0`-jitter multi-margin `joint_xytheta_slp`.
+  - **Pilot**: `{340, 848, 852}` (`< 4 min`, max 4 threads, HiGHS `threads=1`), then scale across remaining targets `{228, 456, 491, 748, 790, 795, 965, 982}` (starting from existing best `win_n*.csv` or `merged.csv`).
+  - **Status**: Planned (`poc/idea23_masked_pocket.py`).
+
 
 
 
