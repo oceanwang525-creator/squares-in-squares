@@ -1,0 +1,8 @@
+{
+  "folder": "dataset_harvest_nov12",
+  "scripts": [],
+  "final_bytes": 0,
+  "script_bytes": 0,
+  "status": "skipped-no-source",
+  "reason": "No runnable search source is saved in this folder; contains only provenance/reports/metadata."
+}
