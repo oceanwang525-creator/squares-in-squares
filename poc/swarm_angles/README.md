@@ -379,8 +379,27 @@ Structural clues from existing `merged.csv` non-$45^\circ$ packings:
     1. **Exact Margin Repair**: Fixing HiGHS `linprog` primal tolerance (`~1e-7`) / float-vs-Decimal polygon rounding overlaps (`1e-10..5e-9`) via `fixed_angle_lp_tighten(..., margin=5e-8..1e-6)` + minimal radial `(1+eps)` deflation fallback unlocks near-feasible basins that currently fail `verify_official`.
     2. **Wall-Unbalance Drift + Void-Collapse Melts**: Incumbent wall-contact audit across the 12 claimed targets shows strong contact asymmetry matching pre-win `694` (`[25,8,26,21]`): `852` (`[26,9,27,18]`), `848` (`[29,14,26,28]`), `748` (`[26,26,20,21]`), `491` (`[13,18,14,16]`), `795` (`[26,24,26,21]`), `340` (`[17,16,17,14]`, `clr=0.439`). Adding wall-slack drift seeds (nudging opposite/seam subregions toward the weakest walls), void-centered pocket melts (`R=4.0..7.5`), and multi-scale pocket melts (`R=4.0..8.5`) with tighter intermediate `L_sched = [L0, L_inc+0.012, L_inc-2e-4, L_inc-0.002, L_inc-0.006]` targets the exact `694`-winning mechanism.
     3. **`max_oh`-Sorted Surplus Peels & Safe Win Merging**: Ranking `surplus >= 0` peels by `(max_oh, surplus, L)` keeps low-overhang `surplus=1..3` donors (`378`, `852`, `968`), starting C++ ILS at `L0 = max(L_inc+0.04, peel_L + min(0.10, max_oh) + 0.015)` and merging all `data/win_n*.csv` wins cleanly into `final.csv`.
-  - **Plan**: First run quick pilot on `{228, 340, 456, 491}` (`< 3 min`), then scale across `{748, 790, 795, 848, 852, 965, 982}` + re-polish `{694}` if safe.
-  - **Status**: Planned (`poc/idea20_partner_shift.py`).
+  - **Results (`--quick --max-donors 5`, 4 threads, `docs/idea20_results.json`, `0` new wins beyond `694`)**:
+    - Exact margin repair eliminated every `1e-9` float-overlap rejection (`verify.ok = True`, `pen_fin = 0.0` across all top polished candidates):
+      - `n=228`: `inc_melt_6 -> 15.6047076971174` (`+1.062e-4` vs `15.604601476`)
+      - `n=340`: `inc_melt_11 -> 18.9268992138196` (`+3.135e-7` vs `18.926898900`)
+      - `n=456`: `inc_melt_12 -> 21.8466701081072` (`+2.915e-6` vs `21.846667193`)
+      - `n=491`: `inc_melt_12 -> 22.6841514287884` (`+7.822e-6` vs `22.684143606`)
+      - `n=848`: `inc_melt_13 -> 29.6230717065311` (`+6.494e-6` vs `29.623065212`)
+      - `n=852`: `inc_melt_12 -> 29.6995998304554` (`+3.527e-6` vs `29.699596303`)
+    - **Diagnosis**: (1) `±0.14` local `inc_melt` perturbations snapped back to the exact incumbent basin (`+3e-7..+8e-6`); (2) donor tilted pockets (`377..972`) hug the outer perimeter, so boundary peels cut tilted rows, while Idea 20c's `a_start=0.78` melted entire cross-cuts out of crystal phase. Fine `0.25`-step interior cross-cut scan located near-exact `0`-`3` tilted-cut donor transfers (`968->848 c=2` `0` tilted cut, `pen=0.2065`, `L=29.608713`; `971->852 c=2` `3` tilted cut, `pen=0.1446`, `L=29.664318`; `906->790 c=2` `2` tilted cut, `pen=0.2065`, `L=28.591378`; `803->748 c=1` `pen=0.0928`, `L=27.819190`; `852->795 c=1` `pen=0.0906`, `L=28.699596`).
+  - **Status**: Complete (`0` new wins beyond `694`); upgraded to Idea 21.
+
+- **Idea 21 (Logged pre-test): Fine Interior Seam Cross-Cuts (`a=0.95->1.00`) + Topological Pocket Ruin-and-Recreate (`poc/idea21_seam_cross.py`)**
+  - **Hypothesis**:
+    1. **Gentle-Breathing Interior Cross-Cuts (`c in 1..3`, `0.25` step)**: Using the minimal-overlap interior cross-cuts (`803->748 pen=0.0928`, `852->795 pen=0.0906`, `971->852 pen=0.1446`, `906->790`, `968->848`, `536->491`, `259->228`), relaxing ONLY the `~1.8`-unit cross-seam first via frozen-quadrant L-BFGS + slack-distributed shift `-(c - delta)` and then running gentle `a_start = 0.95 -> 1.00` C++ ILS preserves the perimeter tilted pockets instead of shattering at `a_start=0.78`.
+    2. **Topological Incumbent Ruin-and-Recreate (`±0.35` + full angle scramble in `R=5.5..8.0`) + Fast 2-Stage SLP**: Breaks out of `inc_melt`'s `+3e-7` incumbent basin lock across untested `{748, 790, 795, 965, 982}` and retries `{228, 340, 456, 491, 848, 852}` at max 4 CPU threads / HiGHS `threads=1`.
+  - **Pilot**: `{748, 790, 795, 852}` (`< 5 min`, 4 threads), then expand to `{340, 965, 982, 848, 491, 456, 228}`.
+  - **Results (`--targets 748 790 795 852 --threads 4 --quick`, `438.48s` total, `docs/idea21_results.json`, `0` wins)**:
+    - Fine cross-cuts had much larger initial overlap than the `0.25`-grid pre-scan suggested once surplus/tilted squares were included (`pen0 = 0.27..0.75`). Track A (`a_start=0.94`) gave **`feas=0`** on all 4 targets (`min_pen = 3.7e-3..6.4e-3`).
+    - Track B ruin-and-recreate also gave `feas=0` in C++ (`min_pen ~ 1e-3`). After SLP the best results were back in the incumbent basin: `748: ruin_4 -> 27.8271586468952 (+6.688e-6)`, `795: ruin_7 -> 28.7034153720220 (+1.145e-5)`, `852: ruin_16 -> 29.6996023614244 (+6.058e-6)`. For `790` it fell out of the basin: `ruin_6 -> 28.6291907150774 (+2.048e-2)`.
+    - Per-`n` time `85..150s` (`> 5 min` total for the pilot), so per the `#80` fast-fail rule this direction is **dropped**.
+  - **Status**: Complete (`0` wins, dropped).
 
 
 
