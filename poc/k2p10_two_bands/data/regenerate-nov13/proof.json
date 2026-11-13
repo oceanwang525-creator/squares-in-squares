@@ -1,0 +1,47 @@
+{
+  "folder": "k2p10_two_bands",
+  "source_main": "48e17f1ff7a0208c050a56456684bd344e7d78ba",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/k2p10_two_bands/data/regenerate-nov13/source-manifest.json",
+      "sha256": "4d7108bc8f83d9a62c2347fd22b84ef8fa02d8763690aaab70be582c8b1679ef",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/k2p10_two_bands/docs/best_one_n635_L25.69874.npy",
+      "sha256": "5431c873e7bf7874ef8d97f1d31fb869e16eaf40c2b8ad08304d8e5df30eadd7",
+      "decode_note": "saved capacity/partial array does not contain target n=635",
+      "groups": 0
+    },
+    {
+      "path": "poc/k2p10_two_bands/docs/best_one_n635_L25.7071078.npy",
+      "sha256": "5b35b0f47754b24df1235d404cc0b95079d6971cb921e55ee9dd5b24485e3f2d",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_two_bands/docs/best_two_n635_L25.69874.npy",
+      "sha256": "f04508ae0a3bb03f461a3449ee72296d32bb33b9941e9a352bd3542edc5f7531",
+      "decode_note": "saved capacity/partial array does not contain target n=635",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 1,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 635,
+      "key": "c5fa675aa104e7758224fea00220f0c98c36f5db20716f364af6fe916c2b12f3",
+      "official": null
+    }
+  ],
+  "final_results": []
+}
