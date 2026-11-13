@@ -15,6 +15,7 @@ if str(POC_DIR) not in sys.path:
 import idea7_chain_ruin as i7  # noqa: E402
 import idea8_seam_surgery as i8  # noqa: E402
 import idea9_subpocket as i9  # noqa: E402
+import idea10_gentle_transfer as i10  # noqa: E402
 import polish_and_certify as pc  # noqa: E402
 import run_inflation_v2 as riv2  # noqa: E402
 import sat_cuda as sc_gpu  # noqa: E402
@@ -240,4 +241,28 @@ def test_idea9_subpocket_freeze_and_cuda():
     assert np.allclose(oy[:, nmob_b:], by[:, nmob_b:], atol=1e-6)
     assert float(open_a.min()) < 1e-3
     assert float(olam_a.min()) < 1.002
+
+
+def test_idea10_gentle_transfer_pool():
+    pts = []
+    for ix in range(5):
+        for iy in range(5):
+            ang = -0.45 if abs(ix - iy) <= 1 else 0.0
+            pts.append((0.6 + ix * 1.15, 0.6 + iy * 1.15, ang))
+    pos = np.array([[x, y] for x, y, _ in pts], dtype=np.float64)
+    th = np.array([a for _, _, a in pts], dtype=np.float64)
+    info = i7.extract_lp_duals_and_holes(pos, th, polish_rounds=1)
+    info["n_src"] = 25
+    info["holes"] = i10.find_diverse_holes(np.stack([info["x"], info["y"]], axis=1), float(info["L"]), top_k=6)
+    assert len(info["holes"]) >= 1
+
+    # Test same-n (25 -> 25) and cross-n stoichiometry transfer (25 -> 27, 25 -> 24)
+    for n_tgt in (25, 27, 24):
+        sx, sy, st = i10.generate_idea10_pool(n_tgt, [info], inc_L=float(info["L"]) - 0.02, count=12, rng_seed=99)
+        assert sx.shape == (12, n_tgt)
+        assert sy.shape == (12, n_tgt)
+        assert st.shape == (12, n_tgt)
+        assert np.all(np.isfinite(sx)) and np.all(np.isfinite(sy)) and np.all(np.isfinite(st))
+        assert np.all(sx >= 0.4) and np.all(sy >= 0.4)
+
 

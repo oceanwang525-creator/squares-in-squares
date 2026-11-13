@@ -2494,6 +2494,195 @@ static std::vector<Sq> seed_pyth_diamond_v9(int n, double L, std::mt19937_64& rn
 }
 
 // =========================================================================
+// Idea 10B: Twin Off-Diagonal Rectangular Pockets (NW +theta, SE +-theta)
+//           & Flush-Sheared (du = +-tan(theta)) Asymmetric Bands
+// =========================================================================
+
+static inline double rand_uniform(std::mt19937_64& rng, double a, double b) {
+    return std::uniform_real_distribution<double>(a, b)(rng);
+}
+
+static std::vector<Sq> seed_twin_rect_pockets_v10(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    // 8 target tilt angles (including Pythagorean atan(5/12)=22.62, 24.5, 25.5, atan(1/2)=26.57, atan(8/15)=28.07, 31.0, atan(3/4)=36.87, 40.5)
+    static const double ang_deg[8] = {22.619865, 24.50, 25.50, 26.565051, 28.072487, 31.00, 36.869898, 40.50};
+    int ia = slot_hint % 8;
+    int m_wall = (slot_hint / 8) % 3; // 0, 1, or 2 outer 0-deg wall frame rows
+    int chiral = (slot_hint / 24) % 2; // 0: NW(+th)/SE(-th), 1: NW(+th)/SE(+th)
+    int shear_m = (slot_hint / 48) % 3; // 0: no shear, 1: +tan(th)*0.5, 2: -sin(th)*0.5
+
+    double th1 = ang_deg[ia] * PI / 180.0 + rand_uniform(rng, -0.008, 0.008);
+    double th2 = (chiral == 0) ? (-th1 + rand_uniform(rng, -0.008, 0.008)) : (th1 + rand_uniform(rng, -0.008, 0.008));
+
+    // Scale pocket dimensions proportionally to L (target ~15%..26% total tilted squares)
+    double base_w = std::max(4.5, std::min(13.5, std::round(L * rand_uniform(rng, 0.28, 0.42))));
+    double base_h = std::max(4.5, std::min(13.5, std::round(L * rand_uniform(rng, 0.28, 0.42))));
+    double w1 = base_w + rand_uniform(rng, -0.35, 0.35);
+    double h1 = base_h + rand_uniform(rng, -0.35, 0.35);
+    double w2 = base_w + rand_uniform(rng, -0.35, 0.35);
+    double h2 = base_h + rand_uniform(rng, -0.35, 0.35);
+
+    // NW cavity: x in [m_wall, m_wall + w1], y in [L - m_wall - h1, L - m_wall]
+    double nw_x0 = (double)m_wall, nw_x1 = (double)m_wall + w1;
+    double nw_y0 = L - (double)m_wall - h1, nw_y1 = L - (double)m_wall;
+
+    // SE cavity: x in [L - m_wall - w2, L - m_wall], y in [m_wall, m_wall + h2]
+    double se_x0 = L - (double)m_wall - w2, se_x1 = L - (double)m_wall;
+    double se_y0 = (double)m_wall, se_y1 = (double)m_wall + h2;
+
+    struct CandSq { Sq s; double prio; };
+    std::vector<CandSq> cands;
+    cands.reserve(n + 128);
+
+    int K = (int)std::floor(L);
+    // 1. Place 0-deg upright crystal outside NW and SE pockets, anchored to nearest corner (SW vs NE)
+    for (int ix = 0; ix < K; ++ix) {
+        for (int iy = 0; iy < K; ++iy) {
+            bool use_ne = (ix + iy >= K);
+            double x = use_ne ? (L - 0.5 - (double)(K - 1 - ix)) : (0.5 + (double)ix);
+            double y = use_ne ? (L - 0.5 - (double)(K - 1 - iy)) : (0.5 + (double)iy);
+            if (x < 0.48 || x > L - 0.48 || y < 0.48 || y > L - 0.48) continue;
+
+            // Check if inside NW or SE pocket cavity
+            bool in_nw = (x > nw_x0 + 0.15 && x < nw_x1 - 0.15 && y > nw_y0 + 0.15 && y < nw_y1 - 0.15);
+            bool in_se = (x > se_x0 + 0.15 && x < se_x1 - 0.15 && y > se_y0 + 0.15 && y < se_y1 - 0.15);
+            if (in_nw || in_se) continue;
+
+            double d_seam = std::abs((x - 0.5 * L) + (y - 0.5 * L));
+            double d_pock = std::min(
+                std::max({nw_x0 - x, x - nw_x1, nw_y0 - y, y - nw_y1}),
+                std::max({se_x0 - x, x - se_x1, se_y0 - y, y - se_y1})
+            );
+            // Keep deep corner/wall upright squares highest priority (lowest prio value); trim boundary ones first if excess
+            double prio = -std::min(d_pock, 2.5) - 0.15 * d_seam + rand_uniform(rng, -0.05, 0.05);
+            cands.push_back({{x, y, 0.0}, prio});
+        }
+    }
+
+    // 2. Fill NW and SE pockets with sheared/unsheared tilted crystals
+    auto fill_pocket = [&](double x0, double x1, double y0, double y1, double th) {
+        double cx = 0.5 * (x0 + x1), cy = 0.5 * (y0 + y1);
+        double c = std::cos(th), s = std::sin(th);
+        double ext = sq_extent(th);
+        double sh_u = (shear_m == 1) ? (0.35 * std::tan(th)) : ((shear_m == 2) ? (-0.35 * s) : 0.0);
+        double u_ph = rand_uniform(rng, -0.45, 0.45);
+        double v_ph = rand_uniform(rng, -0.45, 0.45);
+        int R = (int)std::ceil(std::hypot(x1 - x0, y1 - y0)) + 2;
+        for (int iv = -R; iv <= R; ++iv) {
+            for (int iu = -R; iu <= R; ++iu) {
+                double u = ((double)iu + u_ph + (double)iv * sh_u) * 0.995;
+                double v = ((double)iv + v_ph) * 0.995;
+                double x = cx + u * c - v * s;
+                double y = cy + u * s + v * c;
+                if (x < std::max(ext - 0.04, x0 + 0.32) || x > std::min(L - ext + 0.04, x1 - 0.32)) continue;
+                if (y < std::max(ext - 0.04, y0 + 0.32) || y > std::min(L - ext + 0.04, y1 - 0.32)) continue;
+                double d_edge = std::min({x - x0, x1 - x, y - y0, y1 - y});
+                double prio = -1.2 - 0.4 * d_edge + rand_uniform(rng, -0.05, 0.05);
+                cands.push_back({{x, y, th}, prio});
+            }
+        }
+    };
+    fill_pocket(nw_x0, nw_x1, nw_y0, nw_y1, th1);
+    fill_pocket(se_x0, se_x1, se_y0, se_y1, th2);
+
+    int diff = (int)cands.size() - n;
+    std::sort(cands.begin(), cands.end(), [](const CandSq& a, const CandSq& b) { return a.prio < b.prio; });
+    std::vector<Sq> out;
+    out.reserve(n);
+    for (int i = 0; i < std::min((int)cands.size(), n); ++i) out.push_back(cands[i].s);
+    while ((int)out.size() < n) {
+        out.push_back({rand_uniform(rng, 1.0, L - 1.0), rand_uniform(rng, 1.0, L - 1.0), (out.size() % 2 == 0) ? th1 : 0.0});
+    }
+
+    char buf[96];
+    std::snprintf(buf, sizeof(buf), "twinpock10(a=%.0f,m=%d,ch=%d,sh=%d,d=%d)", ang_deg[ia], m_wall, chiral, shear_m, diff);
+    desc = buf;
+    return out;
+}
+
+static std::vector<Sq> seed_flush_sheared_v10(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    // Flush-sheared (du = +-tan(theta)) asymmetric diagonal/off-diagonal band between corner-anchored 0-deg crystals
+    static const double th_deg[10] = {-22.619865, -26.565051, -28.072487, -36.869898, -40.50, -24.50, -31.00, -18.434949, 26.565051, 36.869898};
+    int it = slot_hint % 10;
+    int wb = 2 + ((slot_hint / 10) % 5); // band width 2..6
+    int sh_mode = (slot_hint / 50) % 3;  // 0: +tan(th), 1: -tan(th), 2: +sin(th)
+
+    double th_b = th_deg[it] * PI / 180.0 + rand_uniform(rng, -0.008, 0.008);
+    double psi = (45.0 + rand_uniform(rng, -2.5, 2.5)) * PI / 180.0;
+    double nx = -std::sin(psi), ny = std::cos(psi);
+    double tx = std::cos(psi), ty = std::sin(psi);
+
+    double off_n = rand_uniform(rng, -1.8, 1.8);
+    double cx = 0.5 * L + off_n * nx;
+    double cy = 0.5 * L + off_n * ny;
+    double half_w = 0.5 * (double)wb * 0.96;
+
+    double tan_clamped = std::max(-0.85, std::min(0.85, std::tan(th_b)));
+    double du_sh = (sh_mode == 0) ? (0.45 * tan_clamped) : ((sh_mode == 1) ? (-0.45 * tan_clamped) : (0.45 * std::sin(th_b)));
+
+    struct CandSq { Sq s; double prio; };
+    std::vector<CandSq> cands;
+    int K = (int)std::floor(L);
+
+    // 1. Corner-anchored 0-deg crystals: t_lo anchored at (L, 0), t_hi anchored at (0, L)
+    for (int ix = 0; ix < K; ++ix) {
+        for (int iy = 0; iy < K; ++iy) {
+            // Check both (L,0) and (0,L) anchors depending on side of band
+            double x_lo = L - 0.5 - (double)(K - 1 - ix);
+            double y_lo = 0.5 + (double)iy;
+            double u_lo = (x_lo - cx) * nx + (y_lo - cy) * ny;
+            if (u_lo < -half_w - 0.38 && x_lo >= 0.48 && y_lo <= L - 0.48) {
+                cands.push_back({{x_lo, y_lo, 0.0}, -( -u_lo - half_w )});
+            }
+            double x_hi = 0.5 + (double)ix;
+            double y_hi = L - 0.5 - (double)(K - 1 - iy);
+            double u_hi = (x_hi - cx) * nx + (y_hi - cy) * ny;
+            if (u_hi > half_w + 0.38 && x_hi <= L - 0.48 && y_hi >= 0.48) {
+                cands.push_back({{x_hi, y_hi, 0.0}, -( u_hi - half_w )});
+            }
+        }
+    }
+
+    // 2. Sheared tilted band along (tx, ty) / (nx, ny)
+    double cb = std::cos(th_b), sb = std::sin(th_b);
+    double ext = sq_extent(th_b);
+    int R = (int)std::ceil(1.5 * L) + 2;
+    double ph_u = rand_uniform(rng, -0.45, 0.45);
+    double ph_v = rand_uniform(rng, -0.45, 0.45);
+    for (int iv = -R; iv <= R; ++iv) {
+        for (int iu = -R; iu <= R; ++iu) {
+            double u = ((double)iu + ph_u + (double)iv * du_sh) * 0.992;
+            double v = ((double)iv + ph_v) * 0.992;
+            double x = cx + u * cb - v * sb;
+            double y = cy + u * sb + v * cb;
+            if (x < ext - 0.03 || x > L - ext + 0.03 || y < ext - 0.03 || y > L - ext + 0.03) continue;
+            double un = (x - cx) * nx + (y - cy) * ny;
+            if (std::abs(un) <= half_w + 0.12) {
+                double d_wall = std::min({x, L - x, y, L - y});
+                cands.push_back({{x, y, th_b}, -1.5 - 0.1 * d_wall + 0.3 * std::abs(un)});
+            }
+        }
+    }
+
+    int diff = (int)cands.size() - n;
+    std::sort(cands.begin(), cands.end(), [](const CandSq& a, const CandSq& b) { return a.prio < b.prio; });
+    std::vector<Sq> out;
+    out.reserve(n);
+    for (int i = 0; i < std::min((int)cands.size(), n); ++i) out.push_back(cands[i].s);
+    while ((int)out.size() < n) {
+        out.push_back({rand_uniform(rng, 1.0, L - 1.0), rand_uniform(rng, 1.0, L - 1.0), th_b});
+    }
+
+    char buf[96];
+    std::snprintf(buf, sizeof(buf), "fsh10(t=%.0f,w=%d,sh=%d,d=%d)", th_deg[it], wb, sh_mode, diff);
+    desc = buf;
+    return out;
+}
+
+// =========================================================================
 // Augmented-Lagrangian + L-BFGS float64 L-Squeezer (Fixed & Free Angles)
 // =========================================================================
 
@@ -3098,7 +3287,7 @@ int main(int argc, char** argv) {
                         ? seed_wrapped_dual_L_v6(n, L_val, rng, desc)
                         : seed_bent_band_v6(n, L_val, rng, desc);
                 }
-            } else {
+            } else if (idea == 9) {
                 // Idea 9: 55% systematic wall-anchored asym9 + 25% Pythagorean diamond clusters + 20% fband8/ftilt8/surg
                 if (!surg_pool.empty() && (b % 5 == 0)) {
                     int sidx = (b / 5) % (int)surg_pool.size();
@@ -3121,6 +3310,26 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_framed_tilted_v8(n, L_val, rng, desc);
                     } else {
                         seeds_pts[b] = seed_sheared_band_v6(n, L_val, rng, desc);
+                    }
+                }
+            } else {
+                // Idea 10: Gentle elastic-L transfer pool (100% when fast_mode==2 & surg_pool present)
+                //          + Twin off-diagonal rectangular pockets (NW/SE) + Flush-sheared bands
+                if (!surg_pool.empty() && (fast_mode == 2 || (b % 3 == 0))) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = std::min(exact_bbox_side(seeds_pts[b]), inc_L - 0.0005);
+                    const char* ops[4] = {"surg10_glide", "surg10_hole", "surg10_dual", "surg10_stoich"};
+                    desc = ops[sidx % 4];
+                } else {
+                    int fam = b % 20;
+                    int grp = b / 20;
+                    if (fam < 11) {
+                        seeds_pts[b] = seed_twin_rect_pockets_v10(n, L_val, rng, desc, grp * 11 + fam);
+                    } else if (fam < 18) {
+                        seeds_pts[b] = seed_flush_sheared_v10(n, L_val, rng, desc, grp * 7 + (fam - 11));
+                    } else {
+                        seeds_pts[b] = seed_asym_band_v9(n, L_val, rng, desc, b * 131 + fam);
                     }
                 }
             }

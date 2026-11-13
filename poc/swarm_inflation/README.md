@@ -358,8 +358,48 @@ Tested `--idea 7 --batch 1024 --fast-mode 0 --elastic-L 1` (512 LP-dual surgical
     1. **Cross-`n` seam-hole insertion (`969 -> 971` `+2`, `969 -> 972` `+3`, `971 -> 972` `+1`)** and **high-dual seam removal (`972 -> 971` `-1`, `972 -> 969` `-3`, `971 -> 969` `-2`)** placing new squares directly at the exact `r = 0.85..0.866` seam voids with local neighbor backoff.
     2. **Same-`n` LP-dual bridge slide, band-angle micro-rotation (`±0.4°..2.0°`), and `0°`-to-tilted boundary conversion** (converting 1–4 `0°` squares adjacent to `r > 0.82` seam holes into tilted band squares so `t_lo`/`t_hi` can step inward by `0.02..0.04`).
   - Run through `sat_lmin_cuda` under **`fast_mode=2` (`a: 0.945 -> 1.000` gentle elastic-L)** + C++ OpenMP AL polish + HiGHS LP/SLP polish.
-- **Track 10B (`seed_flush_sheared_v10` in `cpp_pipeline.cpp --idea 10`)**:
-  - Implement flush-sheared (`du = ±tan(theta)`) asymmetric bands and 4-quadrant stepped (`SW/NE/NW/SE`) Pythagorean clusters, plus 50% surgical pool when `--surg-dir` is supplied.
+- **Track 10B (`seed_twin_rect_pockets_v10` & `seed_flush_sheared_v10` in `cpp_pipeline.cpp --idea 10`)**:
+  - Implement **Twin Off-Diagonal Rectangular Pockets (`NW` at `+theta`, `SE` at `-theta` or `+theta`, `theta in {22.62°, 24.5°, 25.5°, 26.57°, 28.07°, 31.0°, 36.87°, 40.5°}`)** carved out of a `SW + NE` corner-anchored `0°` crystal (with outer `0°` wall frame `m in {0, 1, 2}` and optional row shear `du_shear in {0, ±tan(theta), ±sin(theta)}`), eliminating the long `45°` diagonal sawtooth interface on `n=910, 969, 971, 972, 851, 791, 796, 687, 367, 333`.
+  - Also implement flush-sheared (`du = ±tan(theta)`) diagonal bands and 50% surgical/transfer pool integration.
 
 ### Results Log (Idea 10)
+- **Track 10B (`seed_twin_rect_pockets_v10` + `seed_flush_sheared_v10` under `fast_mode=3`, `batch=640`, `s=1010` + HiGHS LP/SLP `pol_v10b_1`)**:
+  - Dropped **`n=367`** from scratch to `AL_L = 19.707263438429` -> **`pol_pd = 19.707251703133`** (`-0.005972` below Idea 8's `19.713224`, via `asym9(p=45,t=-37,w=2,diff=0)`).
+  - Twin off-diagonal rectangular pockets (`twin10`) reached `gpu_L = 19.992` (`n=367`), `31.119` (`n=910`), `32.164` (`n=971`), confirming single diagonal bands remain tighter than 2-pocket split interfaces at these `n`.
+- **Track 10A (`idea10_gentle_transfer.py` + `cpp_pipeline --idea 10 --fast-mode 2 --elastic-L 1` across 3 monotonic ratchet rounds `s=1020, 1025, 1030` + HiGHS LP/SLP polish)**:
+  - Switching surgical/stoichiometric refinement from `fast_mode=3` (`a: 0.880 -> 1.000` with void teleports) to **`fast_mode=2` (`a: 0.945 -> 1.000`, `opt_L=1`, zero teleports)** + dual-grain inward slide (`op=4`) improved **ALL 10 ASSIGNED TARGETS simultaneously** (`cand_v10_n*.csv`, all passing literal `squares.core.certify` and `pandas` roundtrip with `0.0` overlap):
+    - **`n=791`**: `28.658853` -> **`28.646799512923`** vs `inc = 28.634070751579` (**`+0.012729` gap**, **`-0.012054` drop** via `surg10_dual`)
+    - **`n=969`**: `31.649192` -> **`31.647466974754`** vs `inc = 31.633982501359` (**`+0.013484` gap**, **`-0.001725` drop** via `surg10_dual`)
+    - **`n=367`**: `19.713224` -> **`19.707112761322`** vs `inc = 19.692388155425` (**`+0.014725` gap**, **`-0.006111` drop** via `surg10_glide`)
+    - **`n=972`**: `31.708429` -> **`31.707132714296`** vs `inc = 31.683990214555` (**`+0.023142` gap**, **`-0.001296` drop** via `surg10_dual` from `n=969`)
+    - **`n=851`**: `29.717106` -> **`29.715497178580`** vs `inc = 29.684143606359` (**`+0.031354` gap**, **`-0.001609` drop** via `surg10_glide`)
+    - **`n=910`**: `30.716003` -> **`30.714612203134`** vs `inc = 30.679149464636` (**`+0.035463` gap**, **`-0.001391` drop** via `surg10_dual`)
+    - **`n=796`**: `28.761587` -> **`28.757132285967`** vs `inc = 28.721540002259` (**`+0.035592` gap**, **`-0.004455` drop** via `surg10_glide` + SLP)
+    - **`n=971`**: `31.711911` -> **`31.707477769346`** vs `inc = 31.664318325205` (**`+0.043159` gap**, **`-0.004433` drop** via `surg10_glide` from `n=969`)
+    - **`n=333`**: `18.822642` -> **`18.818682766685`** vs `inc = 18.772634113467` (**`+0.046049` gap**, **`-0.003959` drop** via `surg10_glide` + SLP)
+    - **`n=687`**: `26.804722` -> **`26.776196108364`** vs `inc = 26.723271497397` (**`+0.052925` gap**, **`-0.028526` drop** via `surg10_dual` + SLP)
+
+---
+
+## Idea 11: Symmetric Box-Squeeze & Split-Half-Crystal CUDA Kernel (`fast_mode=4`, `a: 0.965 -> 1.000`) + Active LP-Dual Force-Chain Buckling & Slip-Line Surgery
+
+### Hypothesis & Motivation
+1. **Root Cause of the `+0.0127 .. +0.0147` Floor in `sat_lmin.cu` (`fast_mode=2` + `polish_and_cert_fp64`):**
+   - Inspecting the Round 2/3 CUDA logs on `n=791` (`sh_L_init = 28.63357 < inc_L` -> `best_gpu_L = 28.647571`, `lam = 1.000023`, `pen = 2.30e-5`), `n=969` (`sh_L_init = 31.63348 < inc_L` -> `best_gpu_L = 31.648089`, `lam = 1.000023`), and `n=367` (`sh_L_init = 19.69189 < inc_L` -> `best_gpu_L = 19.707142`, `lam = 1.000003`) reveals why `best_gpu_L` consistently lands `+0.0140 .. +0.0152` above `sh_L_init` even when overlap `pen` is practically zero (`~3e-6 .. 2e-5`):
+     1. **One-way upward box ratchet in `inflate_sat_kernel` (`line 581`)**: `err_w = (sum_wall - target_w) / fmaxf(target_w, 0.015f)`. In the late stages (`a >= 0.996`), `target_w` decays to `0.0001f` while the denominator stays `0.015f`. Thus when `sum_wall == 0` (the box is larger than the crystal!), `err_w = -0.0001 / 0.015 = -0.0067` (zero inward contraction), whereas any transient wall contact (`sum_wall = 0.015`) produces `err_w = +1.0` (full-speed expansion up to `max_L_b`)!
+     2. **One-way upward box expansion in `polish_and_cert_fp64` (`lines 942–944`)**: `err_w = (swall - 1.0e-4) / 0.005` has a 50x upward asymmetry (`err_w = -0.02` when `swall == 0`, vs `+1.0` when `swall = 0.0051`) and allows `sh_L` to grow by up to `+0.015` (`0.4 * lr * 900 = +0.011`) during float64 polish!
+     3. **Coupled `g_hi U g_lo` upright cluster in `sat_lmin.cu` collective moves (`line 700`)**: When `seed_idx` is an upright square (`th ~ 0`), `|cos(2*(sth[i] - seed_th))| > 0.96f` selects **both** `g_hi` (NW `0°` crystal) and `g_lo` (SE `0°` crystal) together; their opposite wall forces (`vL/vT` vs `vR/vB`) cancel out and prevent `g_hi` and `g_lo` from gliding inward toward each other!
+2. **Active LP-Dual Force-Chain Buckling & Slip-Line Surgery (`idea11_force_chain.py`):**
+   - At a local minimum of $L$, a sparse force chain of ~35–65 squares carries 100% of the nonzero LP dual multipliers (`sq_load > 0`) from wall to wall across the tilted seam band. Perturbing zero-dual rattlers cannot lower $L$, while melting to `a = 0.880` destroys the crystal.
+   - Targeting the **active LP force chain (`sq_load > 0.02`)** with transverse buckling kicks, slip-line shear across the peak-dual bottleneck, and bottleneck-to-hole vacancy hopping — relaxed under `fast_mode=4` (`a: 0.965 -> 1.000` with symmetric inward wall pressure and split-half-crystal `g_hi`/`g_lo` glide) — directly attacks the load-bearing arches keeping `L > inc_L`.
+
+### Plan & Validation
+- **Track 11A (`fast_mode=4` in `poc/swarm_inflation/poc/sat_lmin.cu`)**:
+  - Add `stages_micro` (`fast_mode == 4`, 12 stages: `a: 0.965 -> 0.975 -> 0.983 -> 0.989 -> 0.982 -> 0.991 -> 0.995 -> 0.9975 -> 0.999 -> 1.000 x 3`, `lr: 0.0038 -> 0.00004`, `opt_L = 1` from stage 0, no random teleports).
+  - Fix the `sh_L` box-pressure controller in `fast_mode == 4` so `sum_wall < target_w` normalizes by `fmaxf(target_w, 1e-5f)` (giving full `-1.0` inward squeeze whenever `sum_wall == 0`), cap `max_L_b = sh_L_init + {-0.0002, +0.0008, +0.0025, +0.0060}`, and fix `polish_and_cert_fp64` so `swall < 1e-4` contracts inward (`denom = 2e-4`) and caps `sh_L <= sh_L_init + 0.0015`.
+  - Split the upright `0°` cluster in `cm == 0` across the box diagonal (`(x - cx0) - (y - cy0)` or `(x - cx0) + (y - cy0)`) so `g_hi` and `g_lo` translate as independent rigid half-crystals along their net wall+seam forces.
+- **Track 11B (`poc/swarm_inflation/poc/idea11_force_chain.py` + multi-round `fast_mode=4` & HiGHS LP/SLP ratchet)**:
+  - Implement 5 force-chain & slip-line surgical operators (`op=0`: force-chain transverse buckle; `op=1`: slip-line shear through peak-dual bottleneck; `op=2`: max-dual bottleneck to max-void vacancy hop; `op=3`: dual-weighted anisotropic inward squeeze + rattler void drift; `op=4`: cross-`n` stoichiometry transfer + dual-grain glide) and run across all 10 targets (`791, 969, 367, 972, 971, 851, 910, 796, 333, 687`).
+
+### Results Log (Idea 11)
 *(Pending execution)*
