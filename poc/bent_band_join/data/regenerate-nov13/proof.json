@@ -1,7 +1,7 @@
 {
   "folder": "bent_band_join",
-  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
-  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "source_main": "5ebeade65849c74170264dd47a2d222d27823d1f",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
@@ -49,6 +49,12 @@
     {
       "path": "poc/bent_band_join/data/regenerate-nov13/results.json",
       "sha256": "494ea14fca9ed56fd4ac4efe75d89be468b9c9497bfd89a2a72fc2d063de0a3e",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/source-manifest.json",
+      "sha256": "f4ea1c4f09d7c7a716aaffa2c1cd655cbe1a1e8295d95439bdf52df960de2f25",
       "decode_note": "report/metadata, not a saved coordinate-row list",
       "groups": 0
     }
