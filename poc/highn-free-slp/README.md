@@ -17,6 +17,7 @@ n=600..1000
 32 workers
 coarse pass: 30 iterations, trust 0.002
 fine pass:   60 iterations, trust 5e-4 -> 2e-6
+escape pass: 100 iterations, trust 0.002
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -27,8 +28,9 @@ portfolio and rescored from scratch.
 
 - 55 strict per-`n` wins from the 13-pass coarse schedule
 - 16 additional strict per-`n` wins from the 9-pass fine schedule
-- full literal score: `22.173715209425440`
-- full pandas score: `22.173715209425440`
+- 5 additional strict per-`n` wins from a 100-iteration trust-`0.002` escape pass
+- full literal score: `22.173715208116295`
+- full pandas score: `22.173715208116295`
 - both transports: `1000/1000` accepted
 
 The largest improvements are:
@@ -52,8 +54,12 @@ The largest improvements are:
 - `data/fine-round-gate.json` - exact old/new per-n values for the 16 fine wins.
 - `data/fine-round-rows.csv` - the 16 fine-round puzzle groups only.
 - `data/fine-round-summary.json` - fine-pass win count and group gain.
+- `data/escape-round-gate.json` - exact old/new per-n values for the 5 escape wins.
+- `data/escape-round-rows.csv` - the 5 escape-round puzzle groups only.
+- `data/escape-round-summary.json` - escape-pass win count and group gain.
 - `docs/NOTES.md` - execution and certification details.
 - `docs/MULTI_ROUND_WINS.md` - human-readable per-n comparison.
 - `docs/FINE_ROUND_WINS.md` - human-readable fine-round comparison.
+- `docs/ESCAPE_ROUND_WINS.md` - human-readable escape-round comparison.
 
 No complete 500,500-row file is committed.

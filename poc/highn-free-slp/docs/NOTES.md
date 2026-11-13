@@ -32,6 +32,10 @@ still had 8 wins, so it is a useful
 post-convergence polish rather than a new topology search. A `1..199` rerun
 with the same kink-free model produced no strict win.
 
+A final 100-iteration pass at the original `0.002` trust then found 5 more
+strict wins, showing that the fine-radius convergence had left a small
+longer-range escape available.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -47,8 +51,8 @@ The per-puzzle union keeps 55 coarse plus 16 fine high-n strict wins and has no
 regression. The final file is:
 
 ```text
-literal 22.173715209425440
-pandas  22.173715209425440
+literal 22.173715208116295
+pandas  22.173715208116295
 accepted 1000/1000
 ```
 
@@ -64,8 +68,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173715209425440 1000 0 0
-pandas  22.173715209425440 1000 0 0
+literal 22.173715208116295 1000 0 0
+pandas  22.173715208116295 1000 0 0
 ```
 
 ## Provenance
