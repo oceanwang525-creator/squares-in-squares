@@ -1,0 +1,36 @@
+{
+  "folder": "free_angle_slp",
+  "source_main": "a2e8c0ff0dd49033c5062061fb4453f836965b2d",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/free_angle_slp/data/regenerate-nov13/scan.json",
+      "sha256": "aaaf102837fb795d02340f40b242481dc0d36edf38edfb7d3d519543c410dfc0",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/free_angle_slp/data/regenerate-nov13/source-manifest.json",
+      "sha256": "4b2c603b01f249c63674795eb61c6517ddc002133e00a5de5dd670e543f79014",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/free_angle_slp/data/regenerate-nov13/wins.json",
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}
