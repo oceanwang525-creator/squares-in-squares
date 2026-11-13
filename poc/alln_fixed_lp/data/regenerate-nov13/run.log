@@ -1,0 +1,19 @@
+WIN n=904 seed=0 old=30.563119096 new=30.563116204
+100/1000 groups, 17 groups/min, wins=1
+200/1000 groups, 22 groups/min, wins=1
+300/1000 groups, 24 groups/min, wins=1
+400/1000 groups, 27 groups/min, wins=1
+500/1000 groups, 30 groups/min, wins=1
+600/1000 groups, 34 groups/min, wins=1
+700/1000 groups, 38 groups/min, wins=1
+800/1000 groups, 43 groups/min, wins=1
+900/1000 groups, 48 groups/min, wins=1
+1000/1000 groups, 54 groups/min, wins=1
+{
+ "scanned": 1000,
+ "wins": 1,
+ "reduction": "9.617868840342710039396959975E-8",
+ "jobs": 1,
+ "seconds": 1117.1,
+ "groups_per_min": 53.7
+}

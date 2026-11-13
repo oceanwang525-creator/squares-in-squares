@@ -1,0 +1,24 @@
+{
+  "folder": "alln_fixed_lp",
+  "args": [
+    "poc/alln_fixed_lp/poc/alln_fixed_lp.py",
+    "--incumbent",
+    "regeneration-proof/incumbent.csv",
+    "--report",
+    "regeneration-proof/incumbent-report.json",
+    "--output",
+    "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+    "--wins",
+    "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+    "--jobs",
+    "1",
+    "--rounds",
+    "12"
+  ],
+  "reason": "Full 1000-group 12-round normal rerun, historical serial ~minutes",
+  "timeout": 3500,
+  "pid": 422952,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 1124.98
+}
