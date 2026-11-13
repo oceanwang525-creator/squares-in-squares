@@ -3,8 +3,6 @@ name: Publish certified merge
 on:
   push:
     branches: [main]
-    paths:
-      - poc/pell_corrugation/data/border-scan/merged.csv
   workflow_dispatch:
 
 permissions:
@@ -12,80 +10,25 @@ permissions:
 
 concurrency:
   group: certified-merge
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.sha }}
+          ref: main
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
-      - run: python -m pip install mpmath==1.4.1 pandas==3.1.0
-      - name: Certify and publish exact source
-        shell: bash
-        run: |
-          set -euo pipefail
-          source_path=poc/pell_corrugation/data/border-scan/merged.csv
-          source_sha="$(git rev-parse HEAD)"
-          git fetch origin main
-          test "$(git rev-parse "FETCH_HEAD:$source_path")" = "$(git rev-parse "HEAD:$source_path")" || { echo 'Stale source, skipping'; exit 0; }
-          snapshot="$RUNNER_TEMP/merged.csv"
-          cp "$source_path" "$snapshot"
-          source_blob="$(git hash-object "$snapshot")"
-          if git ls-remote --exit-code --heads origin refs/heads/merge >/dev/null; then
-            git fetch origin +refs/heads/merge:refs/remotes/origin/merge
-            files="$(git ls-tree -r --name-only refs/remotes/origin/merge)"
-            if [ "$(printf '%s\n' "$files" | wc -l)" -eq 1 ] && [[ "$files" =~ ^merged-[0-9]+\.[0-9]{11}\.csv$ ]] && [ "$(git rev-parse "refs/remotes/origin/merge:$files")" = "$source_blob" ]; then
-              echo 'Source bytes unchanged; nothing to publish'
-              exit 0
-            fi
-          fi
-          export PYTHONPATH="$GITHUB_WORKSPACE/poc/baseline/poc/src"
-          export SNAPSHOT="$snapshot"
-          python - <<'PY'
-          import io
-          import os
-          import pandas as pd
-          from squares.core import read_submission, score
-          from squares import _official_metric as metric
-
-          path = os.environ["SNAPSHOT"]
-          literal = read_submission(path)
-          transported = metric._parse_submission_csv(
-              pd.read_csv(path).to_csv(index=False)
-          )
-          for label, puzzles in (("literal", literal), ("pandas", transported)):
-              if set(puzzles) != set(range(1, 1001)):
-                  raise ValueError(f"{label}: expected all 1000 groups")
-              report = score(puzzles)
-              if (report["accepted"], report["missing"], report["rejected"]) != (1000, 0, 0):
-                  bad = [(r["n"], r["reason"]) for r in report["results"] if r["reason"] != "ok"]
-                  raise ValueError(f"{label}: certification failed: {bad}")
-              print(label, report["score"], flush=True)
-              if label == "pandas":
-                  with open(os.environ["RUNNER_TEMP"] + "/certified-score", "w") as f:
-                      f.write(f'{report["score"]:.11f}')
-          PY
-          score="$(cat "$RUNNER_TEMP/certified-score")"
-          git fetch origin main
-          test "$(git rev-parse "FETCH_HEAD:$source_path")" = "$source_blob" || { echo 'Source changed during certification; skipping'; exit 0; }
-          [ "$(git hash-object "$snapshot")" = "$source_blob" ]
-          target="$RUNNER_TEMP/published"
-          if git show-ref --verify --quiet refs/remotes/origin/merge; then
-            git worktree add --detach "$target" refs/remotes/origin/merge
-            git -C "$target" rm -rf -- .
-          else
-            git worktree add --detach "$target" HEAD
-            git -C "$target" switch --orphan merge
-          fi
-          cp "$snapshot" "$target/merged-$score.csv"
-          git -C "$target" add -- "merged-$score.csv"
-          test "$(git -C "$target" ls-files | wc -l)" -eq 1
-          git -C "$target" -c user.name=koboshchan -c user.email=91501777+koboshchan@users.noreply.github.com commit -m "Publish $score from $source_sha"
-          git -C "$target" push origin HEAD:refs/heads/merge
+      - name: Install pinned official-check dependencies
+        run: python -m pip install mpmath==1.4.1 pandas==3.1.0
+      - name: Test guarded publisher
+        run: python -m unittest discover -s .github/scripts -p 'test_publish_certified_merge.py'
+      - name: Union, certify, commit strict gains, then publish exact canonical
+        run: python .github/scripts/publish_certified_merge.py
