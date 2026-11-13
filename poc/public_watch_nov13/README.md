@@ -24,8 +24,9 @@ Public files are read as data only, never executed. Saved wins that are no longe
 |---|---|---|
 | Incumbent `merged.csv` at `252fe8b`, certified here (1000 groups) | 22.160524920480391 | 22.160524920480395 |
 | Groups in `final.csv` certified from its exact bytes | 85 / 85 valid, 85 strict wins | 85 / 85 valid, 85 strict wins |
+| Full 1000-group union of main with this final and `poc/pocket_squeeze/final.csv` | 22.160504162214995, 1000 accepted, 0 missing, 0 rejected | 22.160504162215, 1000 accepted, 0 missing, 0 rejected |
 
-Per-n values: [docs/wins.md](docs/wins.md). The full 1000-group union gate (this final plus `poc/pocket_squeeze/final.csv`) is recorded in `docs/full_gate.json` once it has run; see the PR description for its status.
+In the full gate all 85 improved n are strictly below the incumbent in both modes and no n regresses ([docs/full_gate.json](docs/full_gate.json)); the union takes 69 rows from this final and 16 from `poc/pocket_squeeze`. Per-n values: [docs/wins.md](docs/wins.md).
 
 Two more public rows (n = 804 and 852) certified in the legacy radians format but become invalid after the degrees conversion of the final format, so they are left out.
 
