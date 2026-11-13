@@ -111,4 +111,18 @@ Disjoint target pool (`14` targets; never touch `861` or any non-owned `n`):
   - `n=860` (`112.5s`): `mpk_wall_1` `29.80243677` (`+8.053e-06`).
   - `n=545` (`30.3s`): `mpk_seam_0` `23.82517747` (`+5.136e-06`).
   - `n=703` (`63.8s`): `mpk_wall_9` `26.94701946` (`+3.608e-06`).
-- **Status**: **PASSED `#108` 15-min gate (`n=698` REAL WIN `-4.531e-06`)!** Scaling `mpk_void`/`mpk_wall`/`mpk_seam` across remaining pool targets (`918, 919, 921, 981, 805, 639, 339, 237, 269`) and re-running `698` continuation.
+- **Status**: **PASSED `#108` 15-min gate (`n=698` REAL WIN `-4.531e-06`)!**
+  - **Batch 1 (`poc/idea6_structural_masked.py --targets 918 919 921 981 --threads 4`, `448.5s`)**: `918` (`mpk_seam_3` `+4.742e-05`, `75.3s`), `919` (`mpk_wall_3` `+7.864e-06`, `100.5s`), `921` (`mpk_wall_10` `+1.779e-05`, `121.0s`), `981` (`mpk_seam_2` `+3.093e-05`, `150.6s`) -> 0 new wins.
+
+---
+
+## Idea 6 Scaling (Logged pre-test, per `#122`): Checkpointed Multi-Target Masked-Pocket Void/Wall/Seam Sweep
+
+- **Files**: `poc/idea6_scaled_checkpoint.py`, `docs/idea6_ckpt/n_<n>.json`
+- **Hypothesis**:
+  - `mpk_void_11` (a non-teleport void-centered masked pocket around void `3`, `R ~ 5.2..7.2`, `a=0.78 -> 1.00`, `cavity_relocate_orbit`) delivered `-4.531e-06` on `n=698`.
+  - Scaling Idea 6 with 4 extra non-teleport void seeds (`mpk_voidx_0..3` on top 4 voids, `R = 4.8..7.6`) and `k_keep = 8` (`mpk_void: 3, mpk_wall: 2, mpk_seam: 1, fpeel: 2`) across our remaining pool targets (`805, 639, 339, 237, 269, 698`) followed by ranked unclaimed `non0 > 0` `n >= 200` targets (excluding all claimed pools from `hydrogen`, `pockets`, `angles`, `inflation`, `bicrystal`, `replace45`, `cascades`, `walldrift`, `donor`), writing per-`n` checkpoints and halting after `12` consecutive misses/ties (`#122`).
+- **Status**: Running detached checkpointed sweep (`poc/idea6_scaled_checkpoint.py --threads 4 --max-misses 12`, checkpoints in `docs/idea6_ckpt/`):
+  - `n=698` (**REAL WIN #3 / further improvement via `mpk_void_2`, `67.2s`**): `L_lit = L_pd = 26.88109929473200608395728943762961445067668205168834` (`-6.640e-07` below `2493969` `win_n698.csv`, **`-5.195e-06`** below `merged.csv`).
+  - `n=866` (**REAL WIN #4 via `mpk_void_7`, `97.6s`**): `L_lit = L_pd = 29.87897800679794297366149428364514929102448670126127` vs `inc_L = 29.879009145769484` (**`dL = -3.113897e-05`**!).
+  - Misses so far: `805 (+2.762e-06)`, `639 (+5.027e-06)`, `339 (+3.116e-06)`, `237 (+2.435e-07)`, `269 (+4.304e-07)`, `506 (+5.848e-07)`, `924 (+7.078e-06)`, `500 (+6.106e-06)`, `984 (+4.486e-06)`.
