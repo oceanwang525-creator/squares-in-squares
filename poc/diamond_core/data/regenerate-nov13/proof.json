@@ -1,0 +1,86 @@
+{
+  "folder": "diamond_core",
+  "source_main": "c028b493e96d87656fba2a375a6c77892a8542e7",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/diamond_core/data/regenerate-nov13/generated.json",
+      "sha256": "3e1e84e02ea52fdfe0aa79924f3b8d4e2749f118e803f933eae195f26c52de36",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 11
+    },
+    {
+      "path": "poc/diamond_core/data/regenerate-nov13/source-manifest.json",
+      "sha256": "fdadcf88caad038c5566b3db5857418e3e8b9e3f02978d533fcddb13a8f903ab",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 11,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 17,
+      "key": "4ac8a07b46004e6506cb174036c529c785a6a06248bdd502d3a1fd717e502c78",
+      "official": null
+    },
+    {
+      "n": 26,
+      "key": "fe1446537327682c542c3c7aa8860f44f0d5fafddcc25f81581a878a596dbb77",
+      "official": null
+    },
+    {
+      "n": 37,
+      "key": "eddc171991180999bf9c2afb3b5ac38acde7c86beef12902d2cf610eac6a1f08",
+      "official": null
+    },
+    {
+      "n": 50,
+      "key": "d35bcec52df7ee93f5f817e0e73743e3eaf6be98121760648bc53d9819f7b150",
+      "official": null
+    },
+    {
+      "n": 65,
+      "key": "423c24371eb8122c0c35002b25e6dda4a1b7b0e33fba908b7ae29ed591475577",
+      "official": null
+    },
+    {
+      "n": 82,
+      "key": "a26985207863c6be152aa4fc4bd224275d3b8390417bce270e8e82482e4a3e44",
+      "official": null
+    },
+    {
+      "n": 101,
+      "key": "1eea895f6a50ba1188ff65abb325205e0128ff8b4b45d097362a994f5ce7dbfd",
+      "official": null
+    },
+    {
+      "n": 626,
+      "key": "6020e274b3739f6050af5f795bf539d879a111787d058468a069e47ee4653f47",
+      "official": null
+    },
+    {
+      "n": 677,
+      "key": "25be3793ac90c14bca4d8d3d943f9dfcef09bca5282078141e263b2f3bcd5228",
+      "official": null
+    },
+    {
+      "n": 730,
+      "key": "e96666196468dda006172b6a325940525635ba5a565d942dd8a0980e8c1f2327",
+      "official": null
+    },
+    {
+      "n": 901,
+      "key": "7e43e22f0eee4e8257a2d1c74c0a2e80952c73831fa2154f555411f51c9cea9a",
+      "official": null
+    }
+  ],
+  "final_results": []
+}
