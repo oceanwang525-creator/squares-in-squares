@@ -38,11 +38,11 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15743398692.csv`, the current final leaves 12 complete
-groups. The official full gate scores the merge at `22.157433986920000` and
-the candidate at `22.157430702854302`, both with `1000/1000` accepted in the
+Against `merged-22.15730741393.csv`, the current final leaves 12 complete
+groups. The official full gate scores the merge at `22.157307413930000` and
+the candidate at `22.157304665073735`, both with `1000/1000` accepted in the
 literal and pandas transports. The exact aggregate improvement is
-`dscore=-0.000003284065699`. Concurrent upstream wins superseded several
+`dscore=-0.000002748856265`. Concurrent upstream wins superseded several
 earlier mechanism results; those groups were removed rather than carried as
 snapshots.
 
@@ -51,10 +51,10 @@ Largest surviving wins:
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
 | 546 | 23.839879448679131 | 23.839850580426873 | -2.886825226e-05 |
-| 538 | 23.705915748949025 | 23.705902523574277 | -1.322537475e-05 |
 | 416 | 20.874007458659960 | 20.873999394231944 | -8.064428016e-06 |
 | 419 | 20.934136845493981 | 20.934129634819833 | -7.210674148e-06 |
 | 800 | 28.775374198878872 | 28.775369620969101 | -4.577909770e-06 |
+| 421 | 20.973694368556853 | 20.973690701748247 | -3.666808606e-06 |
 
 All exported groups:
 
@@ -67,7 +67,7 @@ All exported groups:
 | 419 | 20.934136845493981 | 20.934129634819833 | -7.210674148e-06 |
 | 421 | 20.973694368556853 | 20.973690701748247 | -3.666808606e-06 |
 | 507 | 22.960235978241307 | 22.960234570297324 | -1.407943984e-06 |
-| 538 | 23.705915748949025 | 23.705902523574277 | -1.322537475e-05 |
+| 538 | 23.705903334892447 | 23.705902523574277 | -8.113181712e-07 |
 | 546 | 23.839879448679131 | 23.839850580426873 | -2.886825226e-05 |
 | 649 | 25.911771162144994 | 25.911769787089387 | -1.375055607e-06 |
 | 703 | 26.940185788938305 | 26.940183458822116 | -2.330116191e-06 |
