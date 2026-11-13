@@ -327,7 +327,7 @@ def _highs_linprog(obj: np.ndarray, A_ub, b_ub: np.ndarray, bounds):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs", options={"threads": 1})
-        if not res.success and res.status == 0:
+        if not res.success:
             res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
     return res
 
