@@ -1,0 +1,82 @@
+{
+  "folder": "soft_to_rigid",
+  "source_main": "d6dbedeb1540f91c6739c63de0fd96a34f5b4364",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/soft_to_rigid/data/best_51.json",
+      "sha256": "50bd40e038d4253aa4f6f5f82f067c72f6872fafaaefcfb768cd6d0f685d39cd",
+      "groups": 1
+    },
+    {
+      "path": "poc/soft_to_rigid/data/best_68.json",
+      "sha256": "e3a34e3e4613331357935939049686d3b2f8a87d352499daf7795361ed60156f",
+      "groups": 1
+    },
+    {
+      "path": "poc/soft_to_rigid/data/best_86.json",
+      "sha256": "1a1c8901b5c6a42ea8af3b9592c3e0bd33fbc5be5b9c967673a13802b5a7c750",
+      "groups": 1
+    },
+    {
+      "path": "poc/soft_to_rigid/data/regenerate-nov13/source-manifest.json",
+      "sha256": "9de389e3558a0b2d91bd45bce472e881365f8f0f6d0c37c3dc9d8ed5211d68c0",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/soft_to_rigid/data/sweep_51.json",
+      "sha256": "b75c5f6b301feec908e263b995f263f263151b3a74ff55bb50d8d5e5c7483f82",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/soft_to_rigid/data/sweep_68.json",
+      "sha256": "f590589b7ed0432c88ad8b04195a799599d8436c05ca23a7491dfd068c92a277",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/soft_to_rigid/data/sweep_86.json",
+      "sha256": "4f074965814cb922e3ebd943cf3fff313afd684cbb5a4279fef4db5be9c41261",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 3,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 51,
+      "key": "6d50b7746207e0e8fb92691460a199335a92c83cfd0fa1829457345e60cf0eaf",
+      "official": [
+        "7.69039490391301472961081078502360631379370427841200",
+        "7.69039490391301463961084578485137707922998513942720"
+      ]
+    },
+    {
+      "n": 68,
+      "key": "f1d66940004a4b1730c543c20d997006e55b1421d0a3ad00bc155e4c48c5d861",
+      "official": [
+        "8.79922499989010398900722783405671011132893934595841",
+        "8.79922499989010347900722783405671011132893934595841"
+      ]
+    },
+    {
+      "n": 86,
+      "key": "fa1ef1dc6d16fc86242793ea383de5b51cd74f9167e0df4e1d9ece635578094f",
+      "official": [
+        "9.82084794258677058441986820312627279439069974739314",
+        "9.82084794258677071441986819312627279955010331976559"
+      ]
+    }
+  ],
+  "final_results": []
+}
