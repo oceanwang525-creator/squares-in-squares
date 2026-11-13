@@ -971,7 +971,7 @@ void run_masked_melt_trajectory(
                 *out_best_L_feas = bbox_L;
                 std::copy_n(q_unfreeze.data(), dim, out_best_q_feas);
             }
-            if (ls == n_L_steps - 1 || unf_E <= best_overall_E) {
+            if (unf_E <= best_overall_E) {
                 best_overall_E = unf_E;
                 std::copy_n(q_unfreeze.data(), dim, q_overall_best.data());
                 *out_best_E = unf_E;

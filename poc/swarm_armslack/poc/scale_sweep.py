@@ -80,6 +80,7 @@ def solve_one(
 ) -> dict:
     t0 = time.time()
     rng = np.random.default_rng(22000 + n)
+    x_b, y_b, th_b, best_q = ss.canonicalize_tr(x_b, y_b, th_b, L_b)
     info = ss.detect_endcap_strips(x_b, y_b, th_b, L_b)
 
     # Combine strip-junction seeds + outer-endcap+BL seeds (always include both when unslid)
@@ -99,7 +100,7 @@ def solve_one(
     n_feas = int(np.sum(lf < 1e9))
     best_feas = float(np.min(lf)) if n_feas else None
     print(
-        f"\n=== Scale n={n} | L_b={L_b:.9f} dA={info['dA']:+.5f} dB={info['dB']:+.5f} "
+        f"\n=== Scale n={n} (q={best_q}) | L_b={L_b:.9f} dA={info['dA']:+.5f} dB={info['dB']:+.5f} "
         f"r_y0={info['r_y0']:.3f} t_x0={info['t_x0']:.3f} | N={len(labels)} feas={n_feas} min_pen={float(np.min(po)):.2e} ===",
         flush=True,
     )

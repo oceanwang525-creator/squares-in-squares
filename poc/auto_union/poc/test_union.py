@@ -77,7 +77,7 @@ class UnionTests(unittest.TestCase):
    self.assertEqual(final.read_bytes(),b"id,x,y,deg\n")
    self.assertEqual(base.read_bytes(),b"incumbent")
 
- def test_export_drops_transport_tie(self):
+ def test_export_keeps_valid_transport_tie(self):
   with tempfile.TemporaryDirectory() as td:
    root=Path(td); folder=root/"poc/one";folder.mkdir(parents=True)
    (folder/"source.csv").write_text("fixture")
@@ -88,11 +88,57 @@ class UnionTests(unittest.TestCase):
     for task in tasks: cache[u.key(task)]=("0.9","1")
    with patch.object(u,"ROOT",root), patch.object(u,"baseline_checks",return_value=({1:rows},{1:(Decimal(1),Decimal(1))})), patch.object(u,"load",return_value=({1:rows},{1:rows})), patch.object(u,"certify_many",side_effect=certify):
     u.export(base,1,audit)
-   self.assertEqual((folder/"final.csv").read_bytes(),b"id,x,y,deg\n")
+   self.assertIn(b"001_0", (folder/"final.csv").read_bytes())
 
  def test_fourcol_rejects_bad_groups(self):
   for text in ["id,x,y,deg\n002_0,s0,s0,s0\n", "id,x,y,deg\n002_0,s0,s0,s0\n002_0,s2,s0,s0\n", "id,x,y,deg\n001_0,nan,0,0\n", "id,x,y,deg\n1001_0,0,0,0\n"]:
    with tempfile.TemporaryDirectory() as td:
     p=Path(td)/"final.csv";p.write_text(text)
     with self.assertRaises(ValueError):u.load(p)
+
+ def test_mixed_valid_wins_ties_losses_selects_best_without_regression(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);base=root/"merged.csv";base.write_bytes(b"baseline")
+   rows=lambda tag:[dict(square_id="0",x=tag,y="0",angle="0")]
+   incumbent={n:rows("base") for n in (1,2,3)}
+   limits={n:(Decimal(10),Decimal(10)) for n in incumbent}
+   data={}
+   for folder,tag in [("a","a"),("b","b")]:
+    p=root/("poc/"+folder+"/final.csv");p.parent.mkdir(parents=True);p.write_text(tag)
+    data[p]=({n:rows(tag) for n in incumbent},{n:rows(tag) for n in incumbent})
+   values={("a",1):("9","9"),("a",2):("10","10"),("a",3):("11","11"),
+           ("b",1):("8","8"),("b",2):("11","11"),("b",3):("10","10")}
+   checked=[]
+   def certify(tasks,workers,cache):
+    for t in tasks:
+     checked.append(t)
+     cache[u.key(t)]=values[(t[1][0]["x"],t[0])]
+   reports=[dict(score=1,results=[dict(n=n,L="8" if n==1 else "10") for n in incumbent])]*2
+   with patch.object(u,"ROOT",root),patch.object(u,"baseline_checks",return_value=(incumbent,limits)),patch.object(u,"load",side_effect=lambda p:data[p]),patch.object(u,"certify_many",side_effect=certify),patch.object(u,"full_gate",return_value=reports):
+    u.union(base,1,root)
+   self.assertEqual(len(checked),6) # Even tied/worse groups must be certified.
+   result=u.parse_text(base.read_text())
+   self.assertEqual(result[1][0]["x"],"b")
+   self.assertEqual(result[2][0]["x"],"base")
+   self.assertEqual(result[3][0]["x"],"base")
+
+ def test_invalid_nonwinning_group_aborts_and_preserves_baseline(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);base=root/"merged.csv";base.write_bytes(b"baseline")
+   p=root/"poc/worse/final.csv";p.parent.mkdir(parents=True);p.write_text("fixture")
+   rows=[dict(square_id="0",x="0",y="0",angle="0")]
+   def certify(tasks,workers,cache):
+    for t in tasks:cache[u.key(t)]=None
+   with patch.object(u,"ROOT",root),patch.object(u,"baseline_checks",return_value=({1:rows},{1:(Decimal(1),Decimal(1))})),patch.object(u,"load",return_value=({1:rows},{1:rows})),patch.object(u,"certify_many",side_effect=certify):
+    with self.assertRaisesRegex(ValueError,"Uncertified final"):u.union(base,1,root)
+   self.assertEqual(base.read_bytes(),b"baseline")
+
+ def test_full_regression_aborts_write(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=Path(td);base=root/"merged.csv";base.write_bytes(b"baseline")
+   report=dict(score=1,results=[dict(n=1,L="1.0001")])
+   with patch.object(u,"ROOT",root),patch.object(u,"baseline_checks",return_value=({1:[]},{1:(Decimal(1),Decimal(1))})),patch.object(u,"full_gate",return_value=[report,report]):
+    with self.assertRaisesRegex(ValueError,"regression"):u.union(base,1,root)
+   self.assertEqual(base.read_bytes(),b"baseline")
+
 if __name__=="__main__": unittest.main()

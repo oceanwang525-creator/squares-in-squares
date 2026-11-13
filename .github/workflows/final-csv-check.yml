@@ -4,6 +4,16 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: PR number to check using trusted main code
+        required: true
+        type: string
+      expected_head:
+        description: Exact 40-character PR head SHA
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -12,20 +22,56 @@ jobs:
   final-csv-check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      statuses: write
+      pull-requests: read
     steps:
-      # Trusted base only. PR trees are read as data, never checked out/executed.
+      # Trusted base/main only. PR trees are read as data, never executed.
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.pull_request.base.sha || github.sha }}
           fetch-depth: 0
+      - name: Resolve exact PR head
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr_number }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || inputs.expected_head }}
+          TRUSTED_BASE: ${{ github.event.pull_request.base.sha || github.sha }}
+        run: |
+          [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]
+          [[ "$EXPECTED_HEAD" =~ ^[0-9a-f]{40}$ ]]
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}" > /tmp/final-csv-pr.json
+          python3 - <<'PY'
+          import json, os
+          pr = json.load(open("/tmp/final-csv-pr.json"))
+          assert pr["state"] == "open", "PR is no longer open"
+          assert pr["base"]["ref"] == "main", "PR must target main"
+          assert pr["head"]["sha"] == os.environ["EXPECTED_HEAD"], "PR head changed"
+          with open(os.environ["GITHUB_ENV"], "a") as out:
+              out.write("BASE_SHA=" + os.environ["TRUSTED_BASE"] + "\n")
+              out.write("HEAD_SHA=" + pr["head"]["sha"] + "\n")
+              out.write("PR_NUMBER=" + str(pr["number"]) + "\n")
+          PY
       - name: Fetch PR commits
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head"
+        run: |
+          git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head"
+          test "$(git rev-parse FETCH_HEAD)" = "$HEAD_SHA"
+      - name: Trusted structure checker tests
+        run: python3 -m unittest discover -s .github/scripts -p test_check_final_csv.py
       - name: Check every touched POC final.csv structure
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: python3 .github/scripts/check_final_csv.py
-      # This does NOT certify geometry or wins. Before merge, separately certify
-      # official literal + actual pandas transport, strict wins vs fresh main.
+      # Geometry for ALL groups and full dual 1000-group nonregression are
+      # separate merge gates. Valid nonwinning complete groups are allowed.
+      - name: Record exact-head trusted dispatch status
+        if: always() && github.event_name == 'workflow_dispatch' && env.HEAD_SHA != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          state=failure
+          if [ "$JOB_STATUS" = success ]; then state=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${HEAD_SHA}" \
+            -f state="$state" -f context="final-csv-check (trusted dispatch)" \
+            -f description="Trusted-main data-only structure check; geometry audited separately" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

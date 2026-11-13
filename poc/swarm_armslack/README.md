@@ -30,4 +30,14 @@ Command: `python -u poc/swarm_armslack/poc/run_gate.py --targets 971 915 975 914
 - **`n=796` (REAL WIN, `r_slide_5`)**: `L_lit = L_pd = 28.705910015470158537059...` vs `inc = 28.705918138939055037498...` (**`dL = -8.123469e-06`**, `non0/90 = 312/796`)
 - Remaining 21 targets: `MISS` (0 ties).
 
+## Scaling Batch 2 Results (`scale_sweep.py`, `1316.9s` solver / `1335.9s` wall, 31 targets, rotated/unslid `canonicalize_tr`)
+31 targets evaluated (`908, 793, 971, 904, 694, 849, 792, 371, 542, 410, 684, 496, 268, 733, 905, 577, 530, 485, 442, 635, 789, 966, 580, 332, 336, 414, 327, 533, 745, 845, 205`):
+- **`n=542` (REAL WIN, `t_slide_0`)**: `L_lit = L_pd = 23.779285924414851...` vs `inc = 23.780902668492588...` (**`dL = -1.616744e-03`**, `ds = -2.982923e-06`)
+- **`n=530` (REAL WIN, `r_slide_1`)**: `L_lit = L_pd = 23.533043261085421...` vs `inc = 23.533704455613332...` (**`dL = -6.611945e-04`**, `ds = -1.247537e-06`)
+- **`n=577` (REAL WIN, `r_slide_3`)**: `L_lit = L_pd = 24.533050505846838...` vs `inc = 24.533704455633332...` (**`dL = -6.539498e-04`**, `ds = -1.133362e-06`)
+- **`n=442` (REAL WIN, `t_slide_2`)**: `L_lit = L_pd = 21.533079968339098...` vs `inc = 21.533704455573330...` (**`dL = -6.244872e-04`**, `ds = -1.412867e-06`)
+- **`n=485` (REAL WIN, `r_slide_1`)**: `L_lit = L_pd = 22.533083571885759...` vs `inc = 22.533704455593330...` (**`dL = -6.208837e-04`**, `ds = -1.280173e-06`)
+- **`n=789` (REAL WIN, `r_slide_4`)**: `L_lit = L_pd = 28.591332243216104...` vs `inc = 28.591344634320595...` (**`dL = -1.239110e-05`**, `ds = -1.570482e-08`)
+- Remaining 25 targets (including the final 10 consecutive misses `966..205`): `MISS` (0 ties). Total certified REAL WINs in `poc/swarm_armslack/final.csv`: 10 (`442, 485, 530, 542, 577, 789, 796, 800, 911, 915`).
+
 *(Note: an initial gate run prior to fetching `e7f910b` also compressed `50badc8`'s `win_n971` from `31.662036554` to `31.661253448`, `dL = -7.831062e-04`, via `r_slide_2`, before `e7f910b` superseded `win_n971`.)*
