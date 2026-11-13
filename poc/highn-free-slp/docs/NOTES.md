@@ -164,6 +164,18 @@ The final R39 union was certified from the unchanged incumbent with:
 gate=58/58 literal=22.173714776462209 1000/1000 pandas=22.173714776462209 1000/1000
 ```
 
+R40 moved the trust radius to `0.040`. It found 58 strict wins against the
+incumbent and replaced six existing final groups (`644, 689, 695, 740, 791,
+869`). The certified result is:
+
+```text
+gate=58/58 literal=22.173714776460457 1000/1000 pandas=22.173714776460457 1000/1000
+```
+
+The net change from R39 is only `1.752e-12`. At this point the deterministic
+trust sweep is acting as numerical polishing. Any material gain has to come
+from a different contact topology.
+
 ## Provenance
 
 Search code is from the collaborator POC `poc/claude-midn`; this folder owns

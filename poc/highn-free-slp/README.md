@@ -53,7 +53,7 @@ portfolio and rescored from scratch.
 - `final.csv` union with current merged after R32: `22.173714779017388`
 - current upstream merged baseline: `22.17371545003316`
 - R34 certified full union: `22.173714777045685`
-- R39 certified full union: `22.173714776462209`
+- R40 certified full union: `22.173714776460457`
 - both transports: `1000/1000` accepted, `gate=58/58`
 
 The largest improvements are:
@@ -87,6 +87,17 @@ groups. The rows were merged per-n only when the new literal and pandas scores
 were both lower than the current `final.csv` group. R39 replaced ten groups
 (`604, 687, 703, 748, 791, 818, 914, 971, 981, 990`) and certified the full
 union at `22.173714776462209` in both transports, with `gate=58/58`.
+
+The shared `791 -> 908` regression remains exact. Their incumbent sides differ
+by `2.000000004`, and both receive the same `-5.68090286e-9` change from the
+certified rows, so neither improvement is counted as an independent structural
+jump.
+
+R40 at trust `0.040` found 58 strict wins and replaced six R39 groups
+(`644, 689, 695, 740, 791, 869`). The full union moved from
+`22.173714776462209` to `22.173714776460457`, only `1.752e-12` lower. This is
+the numerical floor of the current deterministic SLP basin, not a topology
+change.
 
 ## Files
 
@@ -130,6 +141,7 @@ union at `22.173714776462209` in both transports, with `gate=58/58`.
 - `data/free_slp_600_1000_r34_t2p2e-2_i100_rows.csv` - R34 strict-win groups.
 - `data/free_slp_600_1000_r34_t2p2e-2_i100_gate.csv` - official-gated R34 rows.
 - `data/highn-free-slp-r39-report.json` - exact R39 SLP report.
+- `data/highn-free-slp-r40-report.json` - exact R40 SLP report.
 - `final.csv` - the best certified rows for all 58 current strict-win n groups.
 - `docs/FINAL_GATE.json` - per-n literal and pandas comparison for `final.csv`.
 - `data/long-escape-round-summary.json` - later long-pass win count and group gain.
