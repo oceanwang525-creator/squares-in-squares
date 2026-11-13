@@ -1,0 +1,16 @@
+diff --git a/poc/global_search_midn/poc/gsearch.py b/poc/global_search_midn/poc/gsearch.py
+index 106ff9c..89962ce 100644
+--- a/poc/global_search_midn/poc/gsearch.py
++++ b/poc/global_search_midn/poc/gsearch.py
+@@ -1,9 +1,9 @@
+ """Global stochastic search at mid n. usage: gsearch.py n budget_s seed"""
+ import sys, math, time, json, numpy as np, pandas as pd
+ from scipy.optimize import minimize
+-sys.path.insert(0, '/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc')
++sys.path.insert(0, '/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc')
+ from a_overlap import penalty, overlap_pairs, bbox_side, pair_depth, wall_violation
+-ROOT = '/Users/lucaszhang/squares-in-squares/'
++ROOT = '/mnt/e/squares-poc-regenerate-nov13/'
+ n = int(sys.argv[1]); budget = float(sys.argv[2]); seed = int(sys.argv[3])
+ rng = np.random.default_rng(seed)
+ m = pd.read_csv(ROOT + 'poc/pell_corrugation/data/border-scan/merged.csv')

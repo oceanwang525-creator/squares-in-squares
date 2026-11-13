@@ -1,0 +1,4 @@
+pool 16784 upright 3600
+edges 685373
+status 1 Time limit reached. (HiGHS Status 13: Time limit reached) time 240.32453083992004
+L=30.63 count=434 tilted=308 upright=126 bound=1421.0

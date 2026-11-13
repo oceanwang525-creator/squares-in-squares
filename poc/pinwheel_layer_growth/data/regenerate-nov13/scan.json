@@ -1,0 +1,560 @@
+{
+  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "cuts": 23,
+  "shortlist": 10,
+  "relax_iters": 480,
+  "lp_rounds": 18,
+  "families": [
+    {
+      "donor_n": 157,
+      "target_n": 184,
+      "incumbent_side_float": 14.0,
+      "cut_variants": 1587,
+      "max_count": 184,
+      "unique_target_seeds": 363,
+      "trials": [
+        {
+          "x": 3.0624186566078806,
+          "y": 3.0624186566078806,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.04607077933943303,
+          "side_float": 14.02684356973884,
+          "minimum_gap_float": -0.0016055950976054945
+        },
+        {
+          "x": 4.5342326490637905,
+          "y": 4.5342326490637905,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.04665856869709385,
+          "side_float": 14.026944660481124,
+          "minimum_gap_float": -0.0016044294453101404
+        },
+        {
+          "x": 10.912093283039402,
+          "y": 3.0624186566078806,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.04770865649650853,
+          "side_float": 14.033736744260272,
+          "minimum_gap_float": -0.00142243426127453
+        },
+        {
+          "x": 3.0624186566078806,
+          "y": 10.912093283039402,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.0477086564965088,
+          "side_float": 14.027945050010034,
+          "minimum_gap_float": -0.0018107634964132924
+        },
+        {
+          "x": 4.5342326490637905,
+          "y": 3.0624186566078806,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.047937119457766436,
+          "side_float": 14.047112984251985,
+          "minimum_gap_float": -0.0003658649648019541
+        },
+        {
+          "x": 3.0624186566078806,
+          "y": 4.5342326490637905,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.04798323532166309,
+          "side_float": 14.0271539296234,
+          "minimum_gap_float": -0.00150894174168692
+        },
+        {
+          "x": 3.5530233207598507,
+          "y": 3.0624186566078806,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.04809182696834785,
+          "side_float": 14.026776474190402,
+          "minimum_gap_float": -0.001605824568003733
+        },
+        {
+          "x": 3.0624186566078806,
+          "y": 3.5530233207598507,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.048111090597415036,
+          "side_float": 14.030830158308538,
+          "minimum_gap_float": -0.0013228841645065437
+        },
+        {
+          "x": 3.0624186566078806,
+          "y": 3.0624186566078806,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 184,
+          "seed_penalty": 0.04865277524446036,
+          "side_float": 14.02660409635718,
+          "minimum_gap_float": -0.001593329048114267
+        },
+        {
+          "x": 4.5342326490637905,
+          "y": 9.930883954735462,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 184,
+          "seed_penalty": 0.048705386497409756,
+          "side_float": 14.026610769812578,
+          "minimum_gap_float": -0.00166657138597881
+        }
+      ]
+    },
+    {
+      "donor_n": 183,
+      "target_n": 212,
+      "incumbent_side_float": 15.0,
+      "cut_variants": 1587,
+      "max_count": 212,
+      "unique_target_seeds": 528,
+      "trials": [
+        {
+          "x": 6.999790089368139,
+          "y": 10.217857410841669,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03928604125007136,
+          "side_float": 15.027508443217986,
+          "minimum_gap_float": 1.9998447342572945e-11
+        },
+        {
+          "x": 6.999790089368139,
+          "y": 9.681512857262748,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03944717509811944,
+          "side_float": 15.027946455408602,
+          "minimum_gap_float": 1.9998447342572945e-11
+        },
+        {
+          "x": 6.4634455357892175,
+          "y": 10.217857410841669,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03950647293701272,
+          "side_float": 15.023872017302887,
+          "minimum_gap_float": -0.00014397186508552373
+        },
+        {
+          "x": 6.999790089368139,
+          "y": 9.145168303683826,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.039541944087857696,
+          "side_float": 15.027758870241701,
+          "minimum_gap_float": -1.9606233696789488e-05
+        },
+        {
+          "x": 7.5361346429470615,
+          "y": 10.217857410841669,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03964986448531857,
+          "side_float": 15.024517211617654,
+          "minimum_gap_float": -0.000453778601804955
+        },
+        {
+          "x": 6.4634455357892175,
+          "y": 9.681512857262748,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03966760678506079,
+          "side_float": 15.024090105198141,
+          "minimum_gap_float": -0.00011763061037328715
+        },
+        {
+          "x": 6.4634455357892175,
+          "y": 9.145168303683826,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03976237577479902,
+          "side_float": 15.024311784253488,
+          "minimum_gap_float": -1.5165823332718986e-05
+        },
+        {
+          "x": 10.217857410841669,
+          "y": 10.217857410841669,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03980996999100481,
+          "side_float": 15.024767756229076,
+          "minimum_gap_float": -0.00036025885735135876
+        },
+        {
+          "x": 8.072479196525983,
+          "y": 10.217857410841669,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03981065829302813,
+          "side_float": 15.027954107264607,
+          "minimum_gap_float": 1.999822529796802e-11
+        },
+        {
+          "x": 7.5361346429470615,
+          "y": 9.681512857262748,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 212,
+          "seed_penalty": 0.03981099833336664,
+          "side_float": 15.02765167308504,
+          "minimum_gap_float": -8.67484122850648e-05
+        }
+      ]
+    },
+    {
+      "donor_n": 211,
+      "target_n": 242,
+      "incumbent_side_float": 16.0,
+      "cut_variants": 1587,
+      "max_count": 242,
+      "unique_target_seeds": 576,
+      "trials": [
+        {
+          "x": 10.404399728217792,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.023668051592456888,
+          "side_float": 16.04468792911955,
+          "minimum_gap_float": -0.0006388924856590705
+        },
+        {
+          "x": 10.985924711231403,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.023668313056157783,
+          "side_float": 16.04212167904224,
+          "minimum_gap_float": -0.0008217947275050985
+        },
+        {
+          "x": 12.148974677258627,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.024339012794168828,
+          "side_float": 16.06054921414486,
+          "minimum_gap_float": -0.0004526171303004256
+        },
+        {
+          "x": 11.567449694245015,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.02509830782227271,
+          "side_float": 16.062871410503085,
+          "minimum_gap_float": -2.9007639649192285e-05
+        },
+        {
+          "x": 6.333724847122507,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.025136076672035875,
+          "side_float": 16.04119765146444,
+          "minimum_gap_float": -0.0013333762866866161
+        },
+        {
+          "x": 12.730499660272239,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.025959253532982788,
+          "side_float": 16.055488441578557,
+          "minimum_gap_float": -0.000642531628417764
+        },
+        {
+          "x": 10.985924711231403,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 242,
+          "seed_penalty": 0.026028352390790738,
+          "side_float": 16.04204179653623,
+          "minimum_gap_float": -0.0008717775584816678
+        },
+        {
+          "x": 10.404399728217792,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 242,
+          "seed_penalty": 0.026038574095776666,
+          "side_float": 16.03619418137736,
+          "minimum_gap_float": -0.0011937169668910785
+        },
+        {
+          "x": 5.752199864108896,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.02653484728654658,
+          "side_float": 16.05092884971034,
+          "minimum_gap_float": -0.0006635523863463
+        },
+        {
+          "x": 8.659824779176956,
+          "y": 8.078299796163344,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 242,
+          "seed_penalty": 0.026689410855716876,
+          "side_float": 16.05399661937459,
+          "minimum_gap_float": -0.0005517138806301336
+        }
+      ]
+    },
+    {
+      "donor_n": 109,
+      "target_n": 132,
+      "incumbent_side_float": 11.976048383603517,
+      "cut_variants": 1590,
+      "max_count": 132,
+      "unique_target_seeds": 132,
+      "trials": [
+        {
+          "x": 2.2930849428559235,
+          "y": 2.2930849428559235,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06784015544781524,
+          "side_float": 12.017878948069537,
+          "minimum_gap_float": -0.004799981610223214
+        },
+        {
+          "x": 2.690779923807898,
+          "y": 2.2930849428559235,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06795305845519418,
+          "side_float": 12.015986840461107,
+          "minimum_gap_float": -0.004556954527471846
+        },
+        {
+          "x": 2.2930849428559235,
+          "y": 2.690779923807898,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06800979837514681,
+          "side_float": 12.018158264940974,
+          "minimum_gap_float": -0.00474276345682989
+        },
+        {
+          "x": 2.690779923807898,
+          "y": 2.690779923807898,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06812270138252582,
+          "side_float": 12.018353280841314,
+          "minimum_gap_float": -0.004777297388201873
+        },
+        {
+          "x": 2.2930849428559235,
+          "y": 9.84928958094344,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06868266517978192,
+          "side_float": 12.015781386271453,
+          "minimum_gap_float": -0.004504653173289852
+        },
+        {
+          "x": 2.690779923807898,
+          "y": 9.84928958094344,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.0688074550358167,
+          "side_float": 12.039584285963043,
+          "minimum_gap_float": -0.001573886979214123
+        },
+        {
+          "x": 9.84928958094344,
+          "y": 2.2930849428559235,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06913751083377405,
+          "side_float": 12.068633799315402,
+          "minimum_gap_float": 1.999866938717787e-11
+        },
+        {
+          "x": 9.84928958094344,
+          "y": 2.690779923807898,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.0693304466328939,
+          "side_float": 12.03044013883442,
+          "minimum_gap_float": -0.003417369975511453
+        },
+        {
+          "x": 9.84928958094344,
+          "y": 9.84928958094344,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 132,
+          "seed_penalty": 0.06998002056574129,
+          "side_float": 12.018546953097086,
+          "minimum_gap_float": -0.003991151935757831
+        },
+        {
+          "x": 2.2930849428559235,
+          "y": 2.2930849428559235,
+          "copy_overlap_limit": 0.18,
+          "shift_clearance": 0.025,
+          "seed_count": 132,
+          "seed_penalty": 0.07390647191623628,
+          "side_float": 12.025632516837344,
+          "minimum_gap_float": -0.004665596775434988
+        }
+      ]
+    },
+    {
+      "donor_n": 132,
+      "target_n": 157,
+      "incumbent_side_float": 12.993302611343342,
+      "cut_variants": 1590,
+      "max_count": 157,
+      "unique_target_seeds": 223,
+      "trials": [
+        {
+          "x": 4.654926684946734,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.03634136142762172,
+          "side_float": 13.025304375161687,
+          "minimum_gap_float": -0.002452907994842768
+        },
+        {
+          "x": 4.210560849328392,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.03842568010992444,
+          "side_float": 13.024929751280558,
+          "minimum_gap_float": -0.0024648409886962597
+        },
+        {
+          "x": 4.654926684946734,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 157,
+          "seed_penalty": 0.03872466954308619,
+          "side_float": 13.024504103264839,
+          "minimum_gap_float": -0.0024023597191622503
+        },
+        {
+          "x": 3.7661950137100506,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.040376302727082314,
+          "side_float": 13.024831040381988,
+          "minimum_gap_float": -0.002489010576895212
+        },
+        {
+          "x": 4.210560849328392,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 157,
+          "seed_penalty": 0.040818013712800194,
+          "side_float": 13.024389414058192,
+          "minimum_gap_float": -0.0025002043950819175
+        },
+        {
+          "x": 3.321829178091709,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.0415595693822316,
+          "side_float": 13.02349897580462,
+          "minimum_gap_float": -0.0025327786277378195
+        },
+        {
+          "x": 3.7661950137100506,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 157,
+          "seed_penalty": 0.042767361477088706,
+          "side_float": 13.024097095966416,
+          "minimum_gap_float": -0.002443805559208978
+        },
+        {
+          "x": 2.877463342473367,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.043670482823162805,
+          "side_float": 13.02368912925921,
+          "minimum_gap_float": -0.00261697036856523
+        },
+        {
+          "x": 3.321829178091709,
+          "y": 10.431682547985176,
+          "copy_overlap_limit": 0.15,
+          "shift_clearance": 0.01,
+          "seed_count": 157,
+          "seed_penalty": 0.04394544287453378,
+          "side_float": 13.02331289861743,
+          "minimum_gap_float": -0.002573999312393549
+        },
+        {
+          "x": 4.654926684946734,
+          "y": 9.098585041130152,
+          "copy_overlap_limit": 0.12,
+          "shift_clearance": 0.005,
+          "seed_count": 157,
+          "seed_penalty": 0.04515128297781219,
+          "side_float": 13.025248874799239,
+          "minimum_gap_float": -0.0024511611156541324
+        }
+      ]
+    }
+  ],
+  "wins": {}
+}

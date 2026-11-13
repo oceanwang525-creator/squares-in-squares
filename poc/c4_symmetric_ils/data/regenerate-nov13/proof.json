@@ -1,0 +1,36 @@
+{
+  "folder": "c4_symmetric_ils",
+  "source_main": "8dda1ff48a4239780842a19e7b90da5b49917c7c",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/c4_symmetric_ils/data/regenerate-nov13/c4/109_10.9498.json",
+      "sha256": "b4c004b30ed312c5e4765ac17cf40cea6de3cdc77431cb279cfae620a37784d8",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 1
+    },
+    {
+      "path": "poc/c4_symmetric_ils/data/regenerate-nov13/source-manifest.json",
+      "sha256": "53cc972062f5eba669817ce062553cb334d7da81ea9a53bafe8e0acf049040ca",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 1,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 109,
+      "key": "d4fa3fd758ae0b9182744dd333c1df5196c611648806f4b627fd808293339ef3",
+      "official": null
+    }
+  ],
+  "final_results": []
+}

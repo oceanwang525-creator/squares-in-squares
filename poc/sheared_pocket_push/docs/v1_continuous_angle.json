@@ -1,0 +1,92 @@
+{
+  "variant": "v1_continuous_angle",
+  "n": 634,
+  "L_ours": 25.707106781186678,
+  "L_probe": 25.70510678118668,
+  "tasks": 627,
+  "best_cap": 631,
+  "deficit": 3,
+  "best_cfg": {
+    "L_probe": 25.70510678118668,
+    "P": 6,
+    "w": 7,
+    "dth_deg": 0.0,
+    "th_deg": 26.645,
+    "signs": [
+      1,
+      1
+    ],
+    "rigid_cap": 631,
+    "feasible_cap": 631
+  },
+  "top5": [
+    {
+      "L_probe": 25.70510678118668,
+      "P": 6,
+      "w": 7,
+      "dth_deg": 0.0,
+      "th_deg": 26.645,
+      "signs": [
+        1,
+        1
+      ],
+      "rigid_cap": 631,
+      "feasible_cap": 631
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 8,
+      "w": 9,
+      "dth_deg": 0.0,
+      "th_deg": 22.329,
+      "signs": [
+        1,
+        1
+      ],
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 8,
+      "w": 9,
+      "dth_deg": 0.25,
+      "th_deg": 22.579,
+      "signs": [
+        1,
+        1
+      ],
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 9,
+      "w": 10,
+      "dth_deg": 0.0,
+      "th_deg": 20.762,
+      "signs": [
+        1,
+        -1
+      ],
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 9,
+      "w": 10,
+      "dth_deg": 0.25,
+      "th_deg": 21.012,
+      "signs": [
+        1,
+        -1
+      ],
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    }
+  ],
+  "best_L": null,
+  "certified_win": null,
+  "seconds": 19.72
+}

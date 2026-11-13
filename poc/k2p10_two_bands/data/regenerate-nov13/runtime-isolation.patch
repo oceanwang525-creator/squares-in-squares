@@ -1,0 +1,25 @@
+diff --git a/poc/k2p10_two_bands/poc/sweep.py b/poc/k2p10_two_bands/poc/sweep.py
+index 5d05b20..28beb7a 100644
+--- a/poc/k2p10_two_bands/poc/sweep.py
++++ b/poc/k2p10_two_bands/poc/sweep.py
+@@ -1,7 +1,7 @@
+ """Two thin 45deg bands (or band + pocket) MILP count. python sweep.py n L ncfg seed [tl]
+ Candidates: upright squares on 4 corner lattices + 45deg squares with centres on a (t,d) grid inside band windows."""
+ import sys, math, random, time, json
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/multi_angle_band/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/multi_angle_band/poc")
+ import numpy as np
+ from multiprocessing import Pool
+ from mab import candidates, solve, verify_local, half
+@@ -38,9 +38,9 @@ if __name__ == "__main__":
+         if c2 > 9: c2 = c1 - random.uniform(3, 8)
+         cfgs.append([(P, round(c1, 2), 1.0), (P, round(c2, 2), 1.0)])
+     t0 = time.time(); best = (-1,)
+-    with Pool(8) as p:
++    with Pool(1) as p:
+         for cnt, cfg, sel, m in p.imap_unordered(run, [(n, L, c, tl, step) for c in cfgs]):
+             print(cnt, n, cfg, m, f"{time.time()-t0:.0f}s", flush=True)
+             if cnt > best[0]: best = (cnt, cfg, sel)
+-    np.save(f"/Users/lucaszhang/squares-in-squares/poc/k2p10_two_bands/docs/best_{mode}_n{n}_L{L}.npy", best[2])
++    np.save(f"/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_two_bands/docs/best_{mode}_n{n}_L{L}.npy", best[2])
+     print("BEST", best[0], best[1])

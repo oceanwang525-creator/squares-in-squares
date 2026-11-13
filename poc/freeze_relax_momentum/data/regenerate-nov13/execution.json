@@ -1,0 +1,16 @@
+{
+  "folder": "freeze_relax_momentum",
+  "args": [
+    "poc/freeze_relax_momentum/poc/freeze_relax.py",
+    "634",
+    "2",
+    "1.5",
+    "150"
+  ],
+  "reason": "n634 normal150second momentum relaxation",
+  "timeout": 3500,
+  "pid": 426385,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 32.66
+}

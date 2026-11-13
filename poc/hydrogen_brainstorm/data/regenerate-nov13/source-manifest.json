@@ -1,0 +1,23 @@
+{
+  "source_main": "e3e4da5d33c24acf398b17a95826e2310a2a99a1",
+  "original_sources": {
+    "poc/hydrogen_brainstorm/poc/geom_utils.py": "00eca22fdd7edd6417c4d629f65809748874ed176119270c30127e1b70e7f4bf",
+    "poc/hydrogen_brainstorm/poc/poc1_sheared_pockets.py": "5d92bfc45b163587e7865be3c0333e13f1062393057b589b3ecd082ea0bc61fb",
+    "poc/hydrogen_brainstorm/poc/poc2_off45_sturmian_band.py": "dc6dd5d91fcd597dda2e41746ed65ba255af18c730022cc60c8ea2dc755f3cab",
+    "poc/hydrogen_brainstorm/poc/poc3_skyline_dp.py": "50616895cebf75ceea47eaf1ef65ad5c1f3835fa0121583b771e32436da4aa7d"
+  },
+  "execution": {
+    "folder": "hydrogen_brainstorm",
+    "args": [
+      "poc/hydrogen_brainstorm/data/regenerate-nov13/run_pipeline.py"
+    ],
+    "timeout": 3500,
+    "reason": "All three actual original brainstormCPU scripts full defaults; capacityoutputs may contain no completepacking",
+    "pid": 434443,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 188.67
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

@@ -1,0 +1,12 @@
+{
+  "folder": "constant_clusters",
+  "scripts": [
+    "poc/cluster.py",
+    "poc/match.py",
+    "poc/roots.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 3945,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

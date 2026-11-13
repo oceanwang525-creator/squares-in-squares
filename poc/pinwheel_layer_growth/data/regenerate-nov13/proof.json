@@ -1,0 +1,42 @@
+{
+  "folder": "pinwheel_layer_growth",
+  "source_main": "2b50259f86b8fdc96fb124acb73e8663d1e45a0f",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/pinwheel_layer_growth/data/ipopt.json",
+      "sha256": "a629953a7f04d40c742b22e694b8903d3aad49d7951b4de41561c4bd77d162fa",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/pinwheel_layer_growth/data/regenerate-nov13/scan.json",
+      "sha256": "2e703b0412cbc9b62b54e249eef5f860c437e67c28f2afe90c7a055bb4d43c79",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/pinwheel_layer_growth/data/regenerate-nov13/source-manifest.json",
+      "sha256": "b35d78a7d55be5c94582cb066ceaf17d6d30e9f4f294baf2c9170375dc07d480",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/pinwheel_layer_growth/data/scan.json",
+      "sha256": "f1ab4a7b614117ea8ebce9e858ce7e765f4d0eeeeca50b19f8db71f9c0c91f1b",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

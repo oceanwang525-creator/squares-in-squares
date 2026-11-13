@@ -1,0 +1,24 @@
+{
+  "folder": "freeze_big_region",
+  "source_main": "f701279bc013e25b72519253a9e71cce073af0e6",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/freeze_big_region/data/regenerate-nov13/source-manifest.json",
+      "sha256": "40441e6dc1aefdb8f5cfc6ae83e55f81af70faae78f5756bc18e7007d21df4c8",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

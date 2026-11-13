@@ -1,0 +1,5 @@
+[
+  {"n": 401, "L_ours": 20.5355339059, "L_probe": 20.5345339059, "best_cap": 400, "deficit": 1, "tag": "7B a=(20,18) w=1 th=30 sh=-0.04 nt=19 exact_up=381", "polished_L": -1, "seconds": 5.6},
+  {"n": 442, "L_ours": 21.5355339059, "L_probe": 21.5345339059, "best_cap": 441, "deficit": 1, "tag": "7B a=(21,19) w=1 th=36.87 sh=0 nt=20 exact_up=421", "polished_L": -1, "seconds": 6.4},
+  {"n": 530, "L_ours": 23.5355339059, "L_probe": 23.5345339059, "best_cap": 529, "deficit": 1, "tag": "7B a=(21,23) w=1 th=56.12 sh=-0.04 nt=22 exact_up=507", "polished_L": -1, "seconds": 8.7}
+]

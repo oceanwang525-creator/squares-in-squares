@@ -59,3 +59,13 @@ Choose the architecture for your actual GPU. CUDA runtime results are not implie
 The unmodified official metric and its separate license live in [the shared package](poc/baseline/poc/vendor/NOTICE). Proposed improvements must pass literal-decimal and actual pandas transport certification. Historical results are preserved under the relevant approach, not relabeled as new results. The hinged-band and boundary-zipper POCs produced valid but worse outputs, with zero wins.
 
 Project code is [MIT licensed](LICENSE). See [detailed baseline usage](poc/baseline/docs/USAGE.md) and each approach's docs for provenance and limits.
+
+## Contributing results
+
+Every added or changed `poc/{name}` folder in a PR must contain `final.csv` in the PR head, even when that CSV itself did not change. Use the exact header `id,x,y,deg`. A header-only file is valid when there are no exported candidates. Fully deleted POC folders are exempt.
+
+Nonempty finals may contain complete valid groups regardless of whether they improve fresh main. Incumbent snapshots, ties and worse packings are allowed; incomplete, duplicate, nonfinite or geometrically invalid groups are not. A final need not cover all 1000 n values. IDs use `001_0` through `1000_999` as applicable; decimals may use an s prefix to preserve precision through pandas.
+
+The PR workflow checks every touched POC's final structure using trusted base code and a read-only token. It never executes PR code. This is NOT geometry certification or proof of improvement. Before merging, ALL included groups must independently pass unchanged official literal-decimal and actual pandas transport certification. Independently certify the full 1000-group proposed union with zero per-n regressions in both modes against fresh main. Record source paths, incumbent revision/hash, environment and results; refresh if main changes.
+
+The union keeps the incumbent as a candidate and selects strict improvements in both transport modes. A tie or worse candidate cannot displace it. Historical finals are not automatically rewritten. The publication workflow owns canonical updates; never submit to Kaggle automatically.

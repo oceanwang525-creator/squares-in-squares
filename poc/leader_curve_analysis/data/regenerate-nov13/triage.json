@@ -1,0 +1,13 @@
+{
+  "folder": "leader_curve_analysis",
+  "scripts": [
+    "poc/analyze.py",
+    "poc/compare.py",
+    "poc/families.py",
+    "poc/waste.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 7455,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

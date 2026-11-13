@@ -1,0 +1,32 @@
+{
+  "source_main": "73ebb9d9c5d064306a400d9c60701a875b71fa83",
+  "original_sources": {
+    "poc/alln_fixed_lp/poc/alln_fixed_lp.py": "6f42573de6a194e91b5d0a721340bb5be1942f93e7c7ed3366039aaa3256829b"
+  },
+  "execution": {
+    "folder": "alln_fixed_lp",
+    "args": [
+      "poc/alln_fixed_lp/poc/alln_fixed_lp.py",
+      "--incumbent",
+      "regeneration-proof/incumbent.csv",
+      "--report",
+      "regeneration-proof/incumbent-report.json",
+      "--output",
+      "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+      "--wins",
+      "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+      "--jobs",
+      "1",
+      "--rounds",
+      "12"
+    ],
+    "reason": "Full 1000-group 12-round normal rerun, historical serial ~minutes",
+    "timeout": 3500,
+    "pid": 422952,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 1124.98
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

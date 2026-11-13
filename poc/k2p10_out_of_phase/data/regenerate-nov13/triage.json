@@ -1,0 +1,12 @@
+{
+  "folder": "k2p10_out_of_phase",
+  "scripts": [
+    "poc/build.py",
+    "poc/enumerate_cores.py",
+    "poc/holes.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 4188,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

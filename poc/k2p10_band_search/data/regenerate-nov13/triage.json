@@ -1,0 +1,14 @@
+{
+  "folder": "k2p10_band_search",
+  "scripts": [
+    "poc/bandmilp.py",
+    "poc/enum45.py",
+    "poc/enum45_L.py",
+    "poc/sweep.py",
+    "poc/try1.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 9559,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

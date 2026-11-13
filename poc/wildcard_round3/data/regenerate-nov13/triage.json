@@ -1,0 +1,12 @@
+{
+  "folder": "wildcard_round3",
+  "scripts": [
+    "poc/rate.py",
+    "poc/scan_phase.py",
+    "poc/slack.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 3692,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

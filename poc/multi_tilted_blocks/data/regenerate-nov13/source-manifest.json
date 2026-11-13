@@ -1,0 +1,24 @@
+{
+  "source_main": "d1f3fcaed2aaebb9ccf5b0eda9e828ec98ee45ad",
+  "original_sources": {
+    "poc/multi_tilted_blocks/poc/extract.py": "8b8bd3b539e7a21b30cb1607e835d4abfc8d3e061c38dc96d9eb684c85825bd6",
+    "poc/multi_tilted_blocks/poc/mis.py": "808f54a0d7ff0fe4a43c6109e0dcf05bce1778a4958d5862be09da977025170d"
+  },
+  "execution": {
+    "folder": "multi_tilted_blocks",
+    "args": [
+      "poc/multi_tilted_blocks/poc/mis.py",
+      "30.63",
+      "240",
+      "2"
+    ],
+    "reason": "Documented L30.63 candidate enumeration240secondMILP",
+    "timeout": 3500,
+    "pid": 428182,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 243.78
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

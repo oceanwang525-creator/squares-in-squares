@@ -1,0 +1,10 @@
+{
+  "folder": "gemini",
+  "scripts": [
+    "poc/gemini_full_run.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 12237,
+  "status": "skipped-deferred",
+  "reason": "CUDA solver driver, requires GPU executable and multiworker prepass; skipped to avoid disturbing swarm."
+}

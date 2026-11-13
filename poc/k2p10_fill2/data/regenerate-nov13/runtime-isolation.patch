@@ -1,0 +1,113 @@
+diff --git a/poc/k2p10_fill2/poc/a_corner.py b/poc/k2p10_fill2/poc/a_corner.py
+index a54462b..2ea57eb 100644
+--- a/poc/k2p10_fill2/poc/a_corner.py
++++ b/poc/k2p10_fill2/poc/a_corner.py
+@@ -1,6 +1,6 @@
+ """Approaches 1+2 attempt at L=25.7070: 633 base + 2 inserted squares; (1) plain relax, (2) corner b-staircases jittered/tilted before relax."""
+ import sys, time, math, numpy as np
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ from a_relax import *
+ L = 25.7070
+ q45, L45 = base633(); q0 = q45.copy(); q0[:, :2] *= L / L45
+diff --git a/poc/k2p10_fill2/poc/a_overlap.py b/poc/k2p10_fill2/poc/a_overlap.py
+index cdab538..b55fd48 100644
+--- a/poc/k2p10_fill2/poc/a_overlap.py
++++ b/poc/k2p10_fill2/poc/a_overlap.py
+@@ -130,7 +130,7 @@ if __name__ == "__main__":
+     print("grad max err", np.abs(G[sel] - Gn[sel]).max(), "scale", np.abs(G[sel]).max())
+     # incumbent
+     import pandas as pd
+-    df = pd.read_csv("/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv")
++    df = pd.read_csv("/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv")
+     d = df[df.n == 635]; qq = d[["x", "y", "angle"]].to_numpy(float).copy()
+     hh = 0.5 * (np.abs(np.cos(qq[:, 2])) + np.abs(np.sin(qq[:, 2])))
+     qq[:, 0] -= (qq[:, 0] - hh).min(); qq[:, 1] -= (qq[:, 1] - hh).min()
+diff --git a/poc/k2p10_fill2/poc/a_pockets.py b/poc/k2p10_fill2/poc/a_pockets.py
+index 97e6e2c..d7b6155 100644
+--- a/poc/k2p10_fill2/poc/a_pockets.py
++++ b/poc/k2p10_fill2/poc/a_pockets.py
+@@ -1,4 +1,4 @@
+-import sys; sys.path.insert(0,"/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++import sys; sys.path.insert(0,"/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ from a_relax import *
+ q45,L45=base633()
+ for L in (25.657, 25.705):
+diff --git a/poc/k2p10_fill2/poc/a_relax.py b/poc/k2p10_fill2/poc/a_relax.py
+index 786f2d7..6be2db7 100644
+--- a/poc/k2p10_fill2/poc/a_relax.py
++++ b/poc/k2p10_fill2/poc/a_relax.py
+@@ -1,8 +1,8 @@
+ """Build the 633 band config, insert 2 squares, relax with L-BFGS penalty. python a_relax.py L ntrials seed"""
+ import sys, math, time, numpy as np
+ from scipy.optimize import minimize
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_out_of_phase/poc")
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_out_of_phase/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ from build import build
+ from a_overlap import penalty, pairs, max_violation, pair_depth
+ 
+@@ -60,4 +60,4 @@ if __name__ == "__main__":
+         if E < best[0]: best = (E, qr)
+         print(tr, "E", E, "maxdepth,wall,npairs", mv, round(time.time() - t0, 1), flush=True)
+         if time.time() - t0 > 240: break
+-    np.save(f"/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/docs/a_best_relax_L{L}.npy", best[1])
++    np.save(f"/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/docs/a_best_relax_L{L}.npy", best[1])
+diff --git a/poc/k2p10_fill2/poc/b_fill.py b/poc/k2p10_fill2/poc/b_fill.py
+index 2eb5987..7dd0092 100644
+--- a/poc/k2p10_fill2/poc/b_fill.py
++++ b/poc/k2p10_fill2/poc/b_fill.py
+@@ -2,13 +2,13 @@
+ usage: b_fill.py cfg_index Lc trials seed [secs]   (cfg_index into the list of 633-count 45deg configs)"""
+ import sys, time, math, numpy as np
+ from scipy.optimize import minimize
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_band_search/poc")
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_out_of_phase/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_band_search/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_out_of_phase/poc")
+ import b_overlap as bo
+ from build import build
+ 
+-DOCS = "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/docs/"
++DOCS = "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/docs/"
+ 
+ 
+ CFGS = [  # (t, w, a1, a2, b1, b2, ell): 633-square 45deg staircase-band cores
+diff --git a/poc/k2p10_fill2/poc/b_hop.py b/poc/k2p10_fill2/poc/b_hop.py
+index 68664c5..67af0c5 100644
+--- a/poc/k2p10_fill2/poc/b_hop.py
++++ b/poc/k2p10_fill2/poc/b_hop.py
+@@ -1,6 +1,6 @@
+ """Basin hopping from a saved b_fill result: noise on all squares, re-relax. usage: b_hop.py file.npy Lc hops sigma seed"""
+ import sys, numpy as np
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ import b_fill as f, b_overlap as bo
+ P = np.load(sys.argv[1]); Lc = float(sys.argv[2]); hops = int(sys.argv[3]); sg = float(sys.argv[4])
+ rng = np.random.default_rng(int(sys.argv[5]))
+diff --git a/poc/k2p10_fill2/poc/b_verify.py b/poc/k2p10_fill2/poc/b_verify.py
+index dceb942..70a96fc 100644
+--- a/poc/k2p10_fill2/poc/b_verify.py
++++ b/poc/k2p10_fill2/poc/b_verify.py
+@@ -1,7 +1,7 @@
+ """Verify b_overlap against an independent polygon-projection reference, finite-difference gradient, and the incumbent 635."""
+ import sys, numpy as np, pandas as pd
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/poc")
+ import b_overlap as bo
+ 
+ def corners(x, y, a):
+@@ -40,7 +40,7 @@ for i in range(n):
+         num[i, q] = (bo.energy(Pp, 6.0, grad=False)[0] - bo.energy(Pm, 6.0, grad=False)[0]) / (2*h)
+ print("grad max abs err", np.abs(num - gr).max(), "grad scale", np.abs(gr).max())
+ # incumbent 635
+-d = pd.read_csv("/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv")
++d = pd.read_csv("/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv")
+ q = d[d.n == 635].sort_values("square_id")[["x", "y", "angle"]].to_numpy(float).copy()
+ h_ = 0.5*(np.abs(np.cos(q[:, 2])) + np.abs(np.sin(q[:, 2])))
+ lo = (q[:, :2] - h_[:, None]).min(0); q[:, :2] -= lo

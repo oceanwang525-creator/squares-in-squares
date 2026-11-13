@@ -1,0 +1,89 @@
+{
+  "folder": "fault_cut",
+  "source_main": "fcc01632c13b507573c444c3cd38949d722a8d20",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/initial-execution.json",
+      "sha256": "77e7bb2b3207b8676eeaa2829f4dd647b6ece57031386d961e313a46247145a6",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/n101.csv",
+      "sha256": "3fee473a1c60ac7f248ea83101580b231d221e4ea336459a779db5ef50947749",
+      "groups": 1
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/n26.csv",
+      "sha256": "5568879a76a4d9247b0e24a22e58e4ed6ff268b8441bfac3831228169c989ede",
+      "groups": 1
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/n50.csv",
+      "sha256": "52bf97b5cc76e4a7b4e8a303c71c57d839e9f963df509bdde520802126df2470",
+      "groups": 1
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/n634.csv",
+      "sha256": "41bda7cc0bd00b30086c71b58a17e462f514b5edc0472742bc0dccc12ae1bbeb",
+      "groups": 1
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/results.json",
+      "sha256": "e28379313ad261507899310f88f66698d3e4d8c652bdeb1aae960152971bffa7",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/fault_cut/data/regenerate-nov13/source-manifest.json",
+      "sha256": "3f5650347e32de44e9ec215ecb27d6a3b3df64095425be1cbf99bc10433c1d79",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 4,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 101,
+      "key": "9c33ad85cc67f834f435fbad4b7014eb9b427fac7e3826e4d88cc695bdbc6b66",
+      "official": [
+        "10.60582869643158860000000000000000000000000000000000",
+        "10.60582869643158800000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 26,
+      "key": "2cd1190c44100b351f9025fe36cd2c9b28d6f780dbfc10426d54f2e4409a3d37",
+      "official": [
+        "5.70710678118655240000000000000000000000000000000000",
+        "5.70710678118655200000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 50,
+      "key": "6cb24deb70c494c6a489ea3fd5dce830dda45e72c002d1bba83b7aa09ca7d4c3",
+      "official": [
+        "7.69035593728849780000000000000000000000000000000000",
+        "7.69035593728849800000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 634,
+      "key": "be6428c1d06dc3b2de4d06a28cf1953ced48626a9bed10b2dacea92077e364bf",
+      "official": [
+        "25.70710678118669700000000000000000000000000000000000",
+        "25.70710678118669700000000000000000000000000000000000"
+      ]
+    }
+  ],
+  "final_results": []
+}

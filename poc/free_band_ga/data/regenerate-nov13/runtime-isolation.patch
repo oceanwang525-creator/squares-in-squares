@@ -1,0 +1,11 @@
+diff --git a/poc/free_band_ga/poc/free_band_ga.py b/poc/free_band_ga/poc/free_band_ga.py
+index 90d709e..ad29c76 100644
+--- a/poc/free_band_ga/poc/free_band_ga.py
++++ b/poc/free_band_ga/poc/free_band_ga.py
+@@ -138,5 +138,5 @@ if __name__ == "__main__":
+                 if nx * cx + ny * cy >= T2 and cx - 0.5 >= -1e-9 and cy - 0.5 >= -1e-9:
+                     rows.append((cx, cy, 0.0))
+         rows.extend(bands)
+-        np.save("/tmp/opencode/free_band_best.npy", np.array(rows))
++        np.save("/mnt/e/squares-poc-regenerate-nov13/poc/free_band_ga/data/regenerate-nov13/free_band_best.npy", np.array(rows))
+         print("saved", len(rows), "rows")

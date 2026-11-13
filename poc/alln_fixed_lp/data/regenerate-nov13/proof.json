@@ -1,0 +1,45 @@
+{
+  "folder": "alln_fixed_lp",
+  "source_main": "689e1f55909fe83bf1392b574a15cebb18c4103c",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/scan.json",
+      "sha256": "ed7b26870dbc3a1076ebfbe02219d87419e2c6882a55f5cc9332924c0be753b4",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/source-manifest.json",
+      "sha256": "31637c68eb4ede5e9605c2c78705c128e73312656d269cb57935453b359a00d9",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/alln_fixed_lp/data/regenerate-nov13/wins.json",
+      "sha256": "490fc02329cb70b62498aabc74d87804420cd27682573cf669e58e09f59c0802",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 1,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 904,
+      "key": "ada402604e6c79f71be386bdd74ffa42cb4095d2e676dfa27169c58d5c7ea25e",
+      "official": [
+        "30.56311620380489691923132169161402817671789112465933",
+        "30.56311620380489691923132169161402817671789112465933"
+      ]
+    }
+  ],
+  "final_results": []
+}
