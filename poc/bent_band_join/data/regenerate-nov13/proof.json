@@ -1,0 +1,129 @@
+{
+  "folder": "bent_band_join",
+  "source_main": "0a6f8e58b957d0d8efae87477bcd468454f43c36",
+  "incumbent_sha256": "bcb41b0a941d33e6d3a2b1c3cbc68321644f699f2166e021a86c60805de6e1c9",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n645-literal.csv",
+      "sha256": "68e4546d4d3cb50b9ed941b21d8e7698d6f433f46962064dfbc11859e7f61cd4",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n645-pandas.csv",
+      "sha256": "a7ab6a50f7cee27c3099f55014295d2a753194f6cffffc3b6008292fad8636ec",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n751-literal.csv",
+      "sha256": "9bb7c8239e2e3596551a578f6d5d7ea2cbe88718198fbfa3de401b7ebdb34fb1",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n751-pandas.csv",
+      "sha256": "5e692d9f4d59d31e7fc7e5f4975ecbcb68f66a3cd94de5fa087d23c852c86b1a",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n925-literal.csv",
+      "sha256": "1bd735478525b3cda5f8c3696b6a135e643add137611c159172f6a11b566aa19",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n925-pandas.csv",
+      "sha256": "724f8941b6d30c8a83bbcb478112e08d7b5b9e2eabefa0b96187f269fda42e89",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n987-literal.csv",
+      "sha256": "8dacc5cb5d263d873187467d8fa9a480669c9c9b99f1b33d825281c9c1977670",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/n987-pandas.csv",
+      "sha256": "c9f24380160b2c47ff56acd99aeb4cef1ec3df80e906b848b0e9cb993d6126fe",
+      "groups": 1
+    },
+    {
+      "path": "poc/bent_band_join/data/regenerate-nov13/results.json",
+      "sha256": "494ea14fca9ed56fd4ac4efe75d89be468b9c9497bfd89a2a72fc2d063de0a3e",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 8,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 645,
+      "key": "6109deed9aab81d2556a64fe6c7c1800c70976feaa085b74324e8b47a311bd9b",
+      "official": [
+        "26.19238865927288273000000000000000000000000000000000",
+        "26.19238865927288264000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 645,
+      "key": "c028e1c2bb927c1d56b1dc24e7b3d56057e61dd25a58dd1563db4ea2d93b61bc",
+      "official": [
+        "26.19238865927288264000000000000000000000000000000000",
+        "26.19238865927288264000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 751,
+      "key": "a67fa424642728ce9bd91a13e24e980889a7d9247bfa16046e2032b08a7f83a2",
+      "official": [
+        "28.10660225993025385000000000000000000000000000000000",
+        "28.10660225993025340000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 751,
+      "key": "b51ef4e4b895542f8ef8023a567bf9f3ad5863235f111f0abaa582166e47dc7c",
+      "official": [
+        "28.10660225993025340000000000000000000000000000000000",
+        "28.10660225993025340000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 925,
+      "key": "dff2b0e7588f1faff05f65149f5ec4be8823ffe7530b57cd1d5f0c0fb9defb92",
+      "official": [
+        "31.43502945124498283000000000000000000000000000000000",
+        "31.43502945124498275000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 925,
+      "key": "c16cf26e0c3841a61bdd9f5f05911e782d6c798477d668239ebe7e599821a56f",
+      "official": [
+        "31.43502945124498275000000000000000000000000000000000",
+        "31.43502945124498275000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 987,
+      "key": "b2e62bad4fe6fb8c5c5dc2336030a6ff7f1909842cdf4dcba3982a17d87a6590",
+      "official": [
+        "32.02081590058761406000000000000000000000000000000000",
+        "32.02081590058761430000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 987,
+      "key": "659f0d8fe13b9dbab0bb85641e5355d3a0bb3138390b3ba73d3e950ce0c68f1d",
+      "official": [
+        "32.02081590058761430000000000000000000000000000000000",
+        "32.02081590058761430000000000000000000000000000000000"
+      ]
+    }
+  ],
+  "final_results": []
+}
