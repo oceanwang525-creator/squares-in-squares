@@ -1,0 +1,9 @@
+pandas 3.1.0 -> verify_dust1/candidate-pandas.csv
+[literal] squares score exit=0 in 306s
+
+[literal] score=22.17371545003316 accepted=1000 missing=0 rejected=0
+[pandas] squares score exit=0 in 570s
+
+[pandas] score=22.17371545003316 accepted=1000 missing=0 rejected=0
+strict wins in both transports: 18; n worse/not-strict: 0 []
+sum score gain 3.529272989040517e-11

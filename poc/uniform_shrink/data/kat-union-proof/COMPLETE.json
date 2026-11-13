@@ -1,0 +1,10 @@
+{
+  "score_literal": 22.17371545003316,
+  "score_pandas": 22.17371545003316,
+  "sha256": "d08670d4e517548f72ac10dc61fba5274028efacc9b305bffaf1cebc4f49557f",
+  "bytes": 27192248,
+  "source_count": 2,
+  "baseline_pandas_rejects": 0,
+  "wins": 18,
+  "all_1000_zero_rejects": true
+}
