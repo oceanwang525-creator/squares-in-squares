@@ -421,6 +421,8 @@ def run_target(
     n: int,
     incumbent: Path,
     modes_per_target: int,
+    amplitudes: list[float],
+    min_variation: float,
     threads: int,
     top_k: int,
     slp_rounds: int,
@@ -429,8 +431,9 @@ def run_target(
     x, y, theta, side = load_target(n, incumbent)
     jac, graph = contact_jacobian(x, y, theta)
     singular, modes = soft_modes(jac, k=modes_per_target)
-    amplitudes = [0.02, 0.06, 0.14, 0.30, 0.60]
-    seeds, labels = build_walk_seeds(x, y, theta, modes, amplitudes)
+    seeds, labels = build_walk_seeds(
+        x, y, theta, modes, amplitudes, min_variation=min_variation
+    )
     reports = repair_and_polish(
         n, seeds, labels, side, threads, top_k, slp_rounds
     )
@@ -453,13 +456,21 @@ def run_target(
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--targets", type=int, nargs="+", default=[971, 911, 367])
+    parser.add_argument("--targets", type=int, nargs="+")
+    parser.add_argument("--targets-file", type=Path)
     parser.add_argument(
         "--incumbent",
         type=Path,
         default=ROOT / "poc/pell_corrugation/data/border-scan/merged.csv",
     )
     parser.add_argument("--modes", type=int, default=8)
+    parser.add_argument(
+        "--amplitudes",
+        type=float,
+        nargs="+",
+        default=[0.02, 0.06, 0.14, 0.30, 0.60],
+    )
+    parser.add_argument("--min-variation", type=float, default=1e-4)
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--top-k", type=int, default=4)
     parser.add_argument("--slp-rounds", type=int, default=4)
@@ -470,15 +481,24 @@ def main() -> None:
         default=Path(__file__).resolve().parents[1] / "final.csv",
     )
     args = parser.parse_args()
+    if args.targets_file is not None:
+        targets = [
+            int(value)
+            for value in args.targets_file.read_text(encoding="utf-8").replace(",", " ").split()
+        ]
+    else:
+        targets = args.targets or [971, 911, 367]
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     wins: dict[int, dict] = {}
     all_results: dict[str, dict] = {}
-    for n in args.targets:
+    for n in targets:
         result = run_target(
             n,
             args.incumbent,
             args.modes,
+            args.amplitudes,
+            args.min_variation,
             args.threads,
             args.top_k,
             args.slp_rounds,
