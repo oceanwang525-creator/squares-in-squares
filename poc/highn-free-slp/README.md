@@ -53,6 +53,7 @@ portfolio and rescored from scratch.
 - `final.csv` union with current merged after R32: `22.173714779017388`
 - current upstream merged baseline: `22.17371545003316`
 - R34 certified full union: `22.173714777045685`
+- R39 certified full union: `22.173714776462209`
 - both transports: `1000/1000` accepted, `gate=58/58`
 
 The largest improvements are:
@@ -79,6 +80,13 @@ R34 (`trust=0.022`, 100 iterations) added `695`, `791`, `868`, and `936`;
 all four passed the per-group official gate (`4/4`). The certified union of
 `final.csv` with the current incumbent scores `22.173714777045685` in both
 literal and pandas transports, with all 58 final groups strictly better.
+
+R35-R39 continued the same search at trusts `0.024`, `0.026`, `0.028`,
+`0.032`, and `0.036`. Each pass found 56 strict wins, mostly on the same
+groups. The rows were merged per-n only when the new literal and pandas scores
+were both lower than the current `final.csv` group. R39 replaced ten groups
+(`604, 687, 703, 748, 791, 818, 914, 971, 981, 990`) and certified the full
+union at `22.173714776462209` in both transports, with `gate=58/58`.
 
 ## Files
 
@@ -121,6 +129,7 @@ literal and pandas transports, with all 58 final groups strictly better.
 - `data/free_slp_600_1000_r34_t2p2e-2_i100_report.json` - R34 SLP report.
 - `data/free_slp_600_1000_r34_t2p2e-2_i100_rows.csv` - R34 strict-win groups.
 - `data/free_slp_600_1000_r34_t2p2e-2_i100_gate.csv` - official-gated R34 rows.
+- `data/highn-free-slp-r39-report.json` - exact R39 SLP report.
 - `final.csv` - the best certified rows for all 58 current strict-win n groups.
 - `docs/FINAL_GATE.json` - per-n literal and pandas comparison for `final.csv`.
 - `data/long-escape-round-summary.json` - later long-pass win count and group gain.

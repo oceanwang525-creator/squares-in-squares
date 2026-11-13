@@ -77,6 +77,25 @@ wins (`695`, `791`, `868`, `936`), accepted `4/4`. The internal group gain was
 This is still numerical polishing, not a change of topology. It is recorded
 because the row gates and full-file certification are exact.
 
+R35 through R39 raised the trust radius from `0.024` to `0.036` in steps of
+`0.002`, `0.004`, and `0.004`. Every pass again reported 56 strict wins, but
+most were replacements on a heavily overlapping set of groups. A per-n update
+gate now compares both official transports before replacing an existing
+`final.csv` group.
+
+The overlap replacement counts were:
+
+```text
+R36  18
+R37   5
+R38   3
+R39  10
+```
+
+R39 replaced `604, 687, 703, 748, 791, 818, 914, 971, 981, 990`. It remains
+numerical polishing, but `n=971` improved by `4.034e-9`, an unusually large
+change for this late stage.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -137,6 +156,12 @@ upstream incumbent:
 
 ```text
 gate=58/58 literal=22.173714777045685 1000/1000 pandas=22.173714777045685 1000/1000
+```
+
+The final R39 union was certified from the unchanged incumbent with:
+
+```text
+gate=58/58 literal=22.173714776462209 1000/1000 pandas=22.173714776462209 1000/1000
 ```
 
 ## Provenance
