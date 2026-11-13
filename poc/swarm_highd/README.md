@@ -77,4 +77,38 @@ Disjoint target pool (`14` targets; never touch `861` or any non-owned `n`):
   1. Why did `a=0.78` and even `a=0.92` global melts re-freeze `+2e-6..+3e-6` above `L_inc`? Because melting all `n` squares shrinks/perturbs the already-optimal `~20°` L-corridor everywhere instead of concentrating rearrangement where voids (`0.30..0.40` clearance) and weak walls live.
   2. Freezing all squares outside a local pocket (`R = 4.5..7.0` around max-clearance voids, weakest-wall defects, or tilted/upright seams — `~35-95` free squares) while running C++ L-BFGS `a`-melt (`a: 0.85 -> 1.00`) + cavity relocation ONLY on the active pocket lets 1-2 squares rotate/slide into adjacent voids without disturbing the rest of the crystal, followed by full-box fine `joint_xytheta_slp` + `[1e-7, 2e-8, 5e-9]` LP tighten.
   3. Also test fine-margin (`1e-6` repair check on `n=639` + `1e-4` micro-jitter on `n=862` iterated once more / other top `n`: `860, 698, 918, 921, 981, 339, 545`).
-- **Status**: Planned (`poc/idea4_masked_pocket.py`).
+- **Status**: Completed (`poc/idea4_masked_pocket.py --targets 639 698 918 545 --threads 4`, `253.8s`, `docs/idea4_results.json`, 0 wins).
+- **Results**:
+  - `n=639` (`55.8s`): `mvoid_5` `25.7811432274468` (`+6.706e-06`).
+  - `n=698` (`71.7s`): `mpin_4` `26.8811072313141` (`+2.742e-06`).
+  - `n=918` (`101.0s`): `mseam_9` `30.7841523417815` (`+3.944e-06`).
+  - `n=545` (`24.0s`): `mvoid_9` `23.8251747009582` (`+2.365e-06`).
+- **Diagnosis & `win_n862.csv` Structural Diff**:
+  1. Diffing `win_n862.csv` vs `merged[862]` revealed how `jit0` broke through when 0-jitter (`fine`/`med`) stalled at `dL=0`: `189` squares moved (`dp > 1e-3`, `47 > 1e-2`, `max dp = 0.249` on loose upright `sq 637` and `0.240` on `sq 837`), `~15` tilted `~27°/71°` squares rotated up to `1.45°`, and wall contacts rebalanced `[28, 25, 29, 27] -> [28, 27, 26, 28]`.
+  2. By contrast, `Idea 4` (`a=0.80` melt + `±0.11 / ±14°` perturbation even inside a frozen exterior) is still too violent and re-locks `+2.3e-6..+6.7e-6` above `L_inc`.
+
+---
+
+## Idea 5 (Logged pre-test): Iterative `n=862` Continuation + Loose-Square / Tilted-Pocket Coherent Jitter Directly into Joint `(x, y, dtheta)` SLP
+
+- **Files**: `poc/idea5_coherent_slp.py`
+- **Hypothesis**:
+  1. **Continue `n=862` from `win_n862.csv`**: Since `jit0` was still moving `sq 637` by `0.249` and tilted strips by `1.45°` after 12 rounds, running another fine + micro-jitter SLP pass on `win_n862.csv` (`rounds=18`) can push `n=862` even lower!
+  2. **No-Melt Loose-Square & Tilted-Pocket Perturbations -> Direct `joint_xytheta_slp`**: Instead of shrinking `a` to `0.80` (which breaks contacts), apply small **non-destructive** nudges (`1e-4..2e-3` pos, `0.02°..0.5°` angle) specifically on: (a) loose/rattling squares near max-clearance voids, (b) tilted corridor strips & upright-tilted seams, (c) weak-wall drift + `8` multi-scale micro-jitter seeds (`tr_th0=0.012..0.020, tr_xy0=0.04..0.08`), feeding directly into `joint_xytheta_slp` + `[1e-7, 2e-8, 5e-9]` LP tighten.
+- **Status**: Completed (`poc/idea5_coherent_slp.py --targets 862 339 545 639 698 703 805 --threads 4`, `202.3s`, `docs/idea5_results.json`, 0 new wins; dropped per `#106`).
+
+---
+
+## Idea 6 (Logged pre-test): Masked-Pocket Cavity-Relocation (`L0 = L_inc + 0.032`, `a=0.78`) + Frozen-Core Border-Seam Surplus Peels (`1e-5..1e-2` Structural Track)
+
+- **Files**: `poc/highd_ils.cpp`, `poc/idea6_structural_masked.py`
+- **Hypothesis**:
+  1. **Why Idea 4 (`+2.3e-6..+6.7e-6`) didn't trigger topological pocket swaps like `n=694` (`-2.88e-4`)**: Idea 4 started too tight (`L0 = L_base + 0.004`) and had no `cavity_relocate_orbit` inside `run_masked_melt_trajectory`, so squares inside the mask could not rotate `45°`/`22°`/`0°` or swap positions with voids.
+  2. **Mechanism A — Masked-Pocket `cavity_relocate_orbit` + `+0.032` Expansion (`a: 0.78 -> 1.00`)**: Freeze `~90%` of the crystal outside `R = 4.8..7.2` around max-clearance voids, weakest walls (with wall-slack drift), and corridor junctions, while expanding the box to `L0 = L_base + 0.032` (`L_sched = [L_base+0.032, L_base+0.009, L_base-2e-4, L_base-0.002, L_base-0.005]`) and running masked `cavity_relocate_orbit` + `a=0.78 -> 1.00` melt ONLY inside the pocket, then unfreezing gently.
+  3. **Mechanism B — Frozen-Core Border-Seam Surplus Peels (`592->545`, `756->703`, `808->698`, `919->860`, `979->918`, `983->921`)**: Keep the entire intact interior (`dist_from_cut > 3.2` and `oh == 0`) frozen (`active_mask = 0`), while melting & cavity-relocating ONLY the `~60-120` squares in the peeled overhang border strip (`a=0.78 -> 1.00`) so the `0.05..0.11` overhang re-packs without shattering the donor's core!
+- **Pilot (`poc/idea6_structural_masked.py --targets 698 860 545 703 --threads 4`, `258.0s`, `docs/idea6_results.json`)**:
+  - **CERTIFIED REAL WIN `n=698`**: `mpk_void_11` (`50.2s`): `L_lit = L_pd = 26.8810999586947...` vs `inc_L = 26.8811044897729...` (**`dL = -4.531e-06`**, `38` squares shifted `> 1e-2`, `max dp = 0.3908` around `(9.5, 22.5)` + right/top wall balance!).
+  - `n=860` (`112.5s`): `mpk_wall_1` `29.80243677` (`+8.053e-06`).
+  - `n=545` (`30.3s`): `mpk_seam_0` `23.82517747` (`+5.136e-06`).
+  - `n=703` (`63.8s`): `mpk_wall_9` `26.94701946` (`+3.608e-06`).
+- **Status**: **PASSED `#108` 15-min gate (`n=698` REAL WIN `-4.531e-06`)!** Scaling `mpk_void`/`mpk_wall`/`mpk_seam` across remaining pool targets (`918, 919, 921, 981, 805, 639, 339, 237, 269`) and re-running `698` continuation.
