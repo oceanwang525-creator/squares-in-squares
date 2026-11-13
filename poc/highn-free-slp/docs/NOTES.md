@@ -40,10 +40,10 @@ A wider schedule at `0.004` and then `0.006` found the first real jump:
 `n=645` moved by `1.117e-5`. Across three wide passes, six distinct `n`
 improved and the total group gain was `1.123e-5`.
 
-After that, a trust-`0.008` pass found 5 strict wins and a trust-`0.010` pass
-found 5 more. Across the two later passes, 7 distinct `n` improved:
-`791, 816, 868, 908, 910, 912, 936`. The final R28 rows were gated against the
-current upstream incumbent and accepted `5/5`.
+After that, trust-`0.008` found 5 strict wins, trust-`0.010` found 5, and
+trust-`0.012` found 6. Across the three later passes, 8 distinct `n` improved:
+`747, 791, 816, 868, 908, 910, 912, 936`. The final R29 rows were gated against
+the current upstream incumbent and accepted `6/6`.
 
 ## Latest incumbent
 
@@ -68,8 +68,8 @@ accepted 1000/1000
 The later long-escape file is:
 
 ```text
-literal 22.173714764572708
-pandas  22.173714764572708
+literal 22.173714763845947
+pandas  22.173714763845947
 accepted 1000/1000
 ```
 
@@ -85,8 +85,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173714766133950 1000 0 0
-pandas  22.173714766133950 1000 0 0
+literal 22.173714763845947 1000 0 0
+pandas  22.173714763845947 1000 0 0
 ```
 
 ## Provenance

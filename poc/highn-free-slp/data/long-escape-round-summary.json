@@ -15,9 +15,18 @@
       "group_gain": -2.011800503964878e-08,
       "largest_n": 868,
       "largest_delta": -1.976317065555122e-08
+    },
+    {
+      "file": "free_slp_600_1000_r29_t1p2e-2_i100_report.json",
+      "trust": 0.012,
+      "wins": 6,
+      "group_gain": -2.1413221418242756e-08,
+      "largest_n": 868,
+      "largest_delta": -2.0945886802792302e-08
     }
   ],
   "distinct_n": [
+    747,
     791,
     816,
     868,
@@ -26,6 +35,6 @@
     912,
     936
   ],
-  "distinct_win_count": 7,
-  "total_group_gain": -4.605479020369785e-08
+  "distinct_win_count": 8,
+  "total_group_gain": -6.746801162194061e-08
 }
