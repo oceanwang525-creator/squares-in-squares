@@ -11,6 +11,7 @@ import os
 import re
 import subprocess
 import sys
+import warnings
 from decimal import Decimal
 from pathlib import Path
 
@@ -21,8 +22,10 @@ os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
 import numpy as np
 import pandas as pd
-from scipy.optimize import linprog
+from scipy.optimize import OptimizeWarning, linprog
 from scipy.sparse import coo_matrix, csc_matrix
+
+warnings.filterwarnings("ignore", category=OptimizeWarning, message="Unrecognized options detected.*")
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 BASELINE_SRC = REPO_ROOT / "poc" / "baseline" / "poc" / "src"
@@ -572,8 +575,12 @@ def joint_xytheta_slp(
         pen0, bbox0 = sat_max_overlap_and_bbox(cur_x, cur_y, cur_th)
 
     best_x, best_y, best_th = cur_x.copy(), cur_y.copy(), cur_th.copy()
-    best_L = bbox0 if pen0 <= 1e-9 else 1e9
-    best_ok = pen0 <= 1e-9
+    best_L = bbox0 if pen0 <= 1e-12 else 1e9
+    best_ok = pen0 <= 1e-12
+    if not best_ok and pen0 <= 1e-6:
+        tx, ty, tL, tok = fixed_angle_lp_tighten(cur_x, cur_y, cur_th, rounds=4, margin=1e-7)
+        if tok:
+            best_x, best_y, best_th, best_L, best_ok = tx, ty, cur_th.copy(), tL, True
 
     obj = np.zeros(3 * n + 1, dtype=np.float64)
     obj[3 * n] = 1.0
@@ -611,17 +618,23 @@ def joint_xytheta_slp(
             if pen_c > 1e-9:
                 target_L = max(lp_L, min(bbox_c, bbox0) - 0.0015)
                 cand_x, cand_y, cand_th, pen_c, bbox_c = cpp_lbfgs_relax(
-                    cand_x, cand_y, cand_th, target_L, full_iters=140
+                    cand_x, cand_y, cand_th, target_L, full_iters=160
                 )
                 chx = 0.5 * (np.abs(np.cos(cand_th)) + np.abs(np.sin(cand_th)))
                 cand_x = cand_x - np.min(cand_x - chx)
                 cand_y = cand_y - np.min(cand_y - chx)
                 pen_c, bbox_c = sat_max_overlap_and_bbox(cand_x, cand_y, cand_th)
 
-            if pen_c <= 1e-9 and bbox_c < best_L:
+            if pen_c <= 1e-12 and bbox_c < best_L:
                 best_L = bbox_c
                 best_x, best_y, best_th = cand_x.copy(), cand_y.copy(), cand_th.copy()
                 best_ok = True
+            elif pen_c <= 1e-7 and bbox_c < best_L + 0.002:
+                tx, ty, tL, tok = fixed_angle_lp_tighten(cand_x, cand_y, cand_th, rounds=3, margin=1e-7)
+                if tok and tL < best_L:
+                    best_L = tL
+                    best_x, best_y, best_th = tx, ty, cand_th.copy()
+                    best_ok = True
 
             if pen_c <= max(5e-4, pen0 * 0.9) and bbox_c <= bbox0 + 0.01:
                 cur_x, cur_y, cur_th = cand_x, cand_y, cand_th
@@ -638,10 +651,10 @@ def joint_xytheta_slp(
 
     for cx, cy, cth in [(best_x, best_y, best_th), (cur_x, cur_y, cur_th)]:
         pen_f, bbox_f = sat_max_overlap_and_bbox(cx, cy, cth)
-        if pen_f > 1e-10:
-            cx, cy, cth, pen_f, bbox_f = cpp_lbfgs_relax(cx, cy, cth, bbox_f, full_iters=250)
-        tx, ty, tL, tok = fixed_angle_lp_tighten(cx, cy, cth, rounds=4, margin=1e-8)
-        if tok and tL < best_L:
+        if pen_f > 1e-11:
+            cx, cy, cth, pen_f, bbox_f = cpp_lbfgs_relax(cx, cy, cth, bbox_f + 1e-4, full_iters=260)
+        tx, ty, tL, tok = fixed_angle_lp_tighten(cx, cy, cth, rounds=5, margin=1e-7)
+        if tok and (not best_ok or tL < best_L):
             best_x, best_y, best_th, best_L, best_ok = tx, ty, cth.copy(), tL, True
 
     return best_x, best_y, best_th, best_L, best_ok

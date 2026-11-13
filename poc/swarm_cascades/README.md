@@ -44,3 +44,27 @@ Resource caps: CPU only, max 4 workers/threads (`OMP_NUM_THREADS=1`, `OPENBLAS_N
   - `904_minus2_*`: `ok=True`, `L_slp = 30.564828..30.565928` (`33.6°` band spans full `30.56` width).
   - `901_plus1_*`: `pen_cpp = 1.34e-2..2.21e-2`, failed SLP.
   - `902_c2_*` (`sym=2`): best feasible `902_c2_w6_m10_33.0` (`L_slp = 30.738180`, `+0.203`).
+
+---
+
+## Idea 2: Minimum-Overlap Cross-`n` Cuts + Void-Guided `+1` Insertions + Direct Joint SLP Across Target Pool
+
+**Hypothesis:**
+1. **Direct `joint_xytheta_slp` audit on extended pool**: Several extended-pool packings (`904, 582, 263, 646, 593, 499, 695, 749, 863, 640`) may yield immediate reductions under exact signed-Jacobian joint `(dx, dy, dtheta, L)` HiGHS SLP (`slp_utils.py` fixed to enforce `margin=1e-7` final LP clearance so valid C++ outputs never regress in Shapely certification).
+2. **Minimum-`pen_raw` Cross-`n` Interior Cuts (`631/682->582`, `544/592/690->499`, `744/799->640`, `801/979->593`, `979->695`, `971->738`, `972/973->912`)**: Scanning all `(cx, cy)` cuts of width `dk` for minimal initial SAT penetration (`pen_raw ~ 0.097..0.195` instead of `0.45+`), applying a wider `4.0`-radius `seam_mask` with deeper C++ L-BFGS `a`-melt (`0.85 -> 1.00`, 6 stages, `full_iters=450`, `L_sched` easing `+0.04 -> target`) in 4-thread batch mode, then polishing with `joint_xytheta_slp`.
+3. **Void-Guided `+1` Insertions (`645->646`, `748->749`, `862->863`, `592->593`, `737->738`, `262->263`, `903->904`)**: Computing exact rotated-square SDF voids inside `merged[n-1]` (top voids have `0.27..0.315` half-width clearance) and inserting the extra square oriented to local neighbors with `4.5`-radius `seam_mask` `a`-melt (`inc_L+0.03 -> inc_L-0.004`) + `joint_xytheta_slp`.
+
+**Plan:**
+- Fix `joint_xytheta_slp` final LP clearance check (`margin=1e-7`) and silence `OptimizeWarning` in `poc/swarm_cascades/poc/slp_utils.py`.
+- Implement `poc/swarm_cascades/poc/idea2_run.py` (max 4 threads, batched C++ melt, auto-saves strict certified wins via `save_win_to_final_csv`).
+- Run on extended pool + `{912, 738}`, log results in `poc/swarm_cascades/docs/idea2_results.json` and here.
+
+**Results (2026-11-13, `405.1s`, 4 threads, 2 CERTIFIED WINS written to `poc/swarm_cascades/final.csv`):**
+- **Track A (Direct Joint `(x, y, dtheta)` SLP on all 15 targets)**:
+  - **WIN `n=904`**: `L_lit = L_pd = 30.56311909557035304999999999999124212147215762639049` vs `inc_L = 30.56313602376531346742989938739060076357606785915656` (`dL = -1.692819e-05`).
+  - **WIN `n=640`**: `L_lit = L_pd = 25.79067845964848427298328680232439095205632207915607` vs `inc_L = 25.79068777001846978308936740798418764491014080703916` (`dL = -9.310370e-06`).
+  - Matched incumbent within `1e-12`: `738, 912, 582, 593, 646, 695, 749, 863`. (`902, 786, 843, 263, 499` failed `1e-7` LP tighten at `inc_L` due to zero-slack contact).
+- **Track B (Min-pen cross-`n` cuts) & Track C (Void `+1` insertions)**:
+  - All Track B cross-cuts (`582, 499, 640, 593, 695, 738, 912`) healed overlap at `+0.020..+0.075` above `inc_L` (best: `793_to_738_c3` at `27.698507` vs `27.678648`, `973_to_912_c0` at `30.730304` vs `30.703260`, `631_to_582_c1` at `24.665683` vs `24.633983`).
+  - All Track C `+1` insertions healed at `+0.025..+0.120` above `inc_L` (best: `645_plus1_v1` at `25.905783` vs `25.880396`, `862_plus1_v1` at `29.881388` vs `29.843942`).
+  - Per fast-fail rule (`#80`), **DROPPING** interior cross-cuts and `+1` void insertions (`> +0.02` above `inc_L`) and pivoting to `7b385ca` (`inc_melt` + wall-slack drift + void-collapse + `cL/cR/cB/cT` surplus center-peels + multi-margin repair).
