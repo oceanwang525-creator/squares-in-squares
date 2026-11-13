@@ -8,12 +8,13 @@ Across `n = 600..1000`, `non0 > 0` incumbents decompose cleanly around `(cut, cu
 
 Cross-`m` homology takes `BL/TL/BR/TR` 1-unit crops (`x, y <= L - 1.05`) from donor `n_src` packings with `prot <= 1..2` protruding squares, relocates protruding squares into true outer wall gaps discovered by `wall_gap_slots()` (single inward pocket center `1.2` units inside the box), and melts the pocket with `L_inc`-anchored `sched_a`/`sched_b` schedules (`a: 0.78 -> 1.00`, `highd_ils.cpp` keeping best overall stage `unf_E <= best_overall_E`) followed by `joint_xytheta_slp` + multi-margin `fixed_angle_lp_tighten`.
 
-## Certified Real Wins (literal == pandas vs `origin/main` `4f23cbe` `merged.csv`)
+## Certified Real Wins (literal == pandas vs `origin/main` `252fe8b` `merged.csv` & all `poc/*/final.csv`)
 
-| `n` | `origin/main` `merged.csv` `L` | Best Valid `L_lit == L_pd` | `dL` vs `merged.csv` | `ds` vs `merged.csv` | Status | Source |
-|---:|---:|---:|---:|---:|---|---|
-| **686** | `26.705913986119564` | `26.701648540631480` | **`-4.265445e-03`** | `-3.320802e-04` | **REAL WIN** | `crop_739_BL_w0_top_R7.9_s1` (beats PR #20 `26.705901783` by `-4.253242e-03`) |
-| **910** | `30.679149454240586` | `30.677024325828058` | **`-2.125128e-03`** | `-1.432854e-04` | **REAL WIN** | `910_971crop_tuck1_R5.9_s4` (carried from PR #16 `c4e3272`) |
+| `n` | `origin/main` `merged.csv` `L` | Best Valid `L_lit == L_pd` | `dL` vs `merged.csv` | Status | Source |
+|---:|---:|---:|---:|---|---|
+| **850** | `29.656854249492600` | `29.649235294877550` | **`-7.618955e-03`** | **REAL WIN** | `crop_909_BL_w0_top_R10.4_s5` (beats `merged.csv` & `swarm_replace45`) |
+| **686** | `26.705913986119564` | `26.701648540631480` | **`-4.265445e-03`** | **REAL WIN** | `crop_739_BL_w0_top_R7.9_s1` (carried from PR #22 `a70ca15`) |
+| **910** | `30.679149454240586` | `30.677024325828058` | **`-2.125128e-03`** | **REAL WIN** | `910_971crop_tuck1_R5.9_s4` (carried from PR #16 `c4e3272`) |
 
 ## 15-Minute Gate Results (against `origin/main` `e7f910b` `merged.csv`)
 
@@ -27,5 +28,5 @@ Cross-`m` homology takes `BL/TL/BR/TR` 1-unit crops (`x, y <= L - 1.05`) from do
 ## Files
 - Solver: [h10_gate.py](poc/h10_gate.py), [h10_scale.py](poc/h10_scale.py), [utils.py](poc/utils.py), [joint_slp.py](poc/joint_slp.py), [cpp_wrap.py](poc/cpp_wrap.py), [highd_ils.cpp](poc/highd_ils.cpp)
 - Unit tests: [test_homology.py](poc/tests/test_homology.py)
-- Certified wins: [final.csv](final.csv), [win_n686.csv](data/win_n686.csv), [win_n910.csv](data/win_n910.csv)
+- Certified wins: [final.csv](final.csv), [win_n686.csv](data/win_n686.csv), [win_n850.csv](data/win_n850.csv), [win_n910.csv](data/win_n910.csv)
 - Logs/JSON: [gate_910.json](docs/gate_910.json), [scale_results.json](docs/scale_results.json)
