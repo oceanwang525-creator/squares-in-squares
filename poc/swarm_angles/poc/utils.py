@@ -4,6 +4,7 @@ from __future__ import annotations
 import math
 import os
 import sys
+import warnings
 from decimal import Decimal
 from pathlib import Path
 
@@ -321,6 +322,16 @@ def relax_lbfgs(
     return nx, ny, nth, max(pen, wall_pen)
 
 
+def _highs_linprog(obj: np.ndarray, A_ub, b_ub: np.ndarray, bounds):
+    """Run HiGHS linprog with threads=1 when uninitialized, falling back if HiGHS pool already exists."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs", options={"threads": 1})
+        if not res.success and res.status == 0:
+            res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+    return res
+
+
 def fixed_angle_lp_tighten(
     x: np.ndarray,
     y: np.ndarray,
@@ -382,7 +393,7 @@ def fixed_angle_lp_tighten(
         obj = np.zeros(2 * n + 1)
         obj[2 * n] = 1.0
         bounds = [(None, None)] * (2 * n) + [(0.0, None)]
-        res = linprog(obj, A_ub=A, b_ub=np.array(ub), bounds=bounds, method="highs")
+        res = _highs_linprog(obj, A_ub=A, b_ub=np.array(ub), bounds=bounds)
         if not res.success:
             return best_x, best_y, best_L, best_L < 1e17
         nx = res.x[:n]

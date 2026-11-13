@@ -330,7 +330,58 @@ Structural clues from existing `merged.csv` non-$45^\circ$ packings:
   - **#43 Shift-Law Ray Audit (`merged.csv` vs `per_n_gap.csv`, `D=1..6`, `k=15..31`)**:
     - Audited ALL `merged.csv` packings with `non45 > 5` and `L - floor(L) < 0.575`: **none** of the `(k+5m, 1+m)` or `(k+pm, 1+qm)` Shift-Law partners (`627, 678, 731, 786, 843, 902, 903, 963, 964`) or any `n <= 1000` in `merged.csv` have `f < 0.562` non-45° solutions (`627..964` are still `45°` `0.535534` in `merged.csv`; `626..962` `D=1` are `25.520815` from `17x17 @ 45°` + `{78, 78, 90, 91}` upright triangles).
     - **Constant-`f` L-border Plateaus Observed in `per_n_gap.csv` (`D=1`)**: `k=21,22` (`0.522923, 0.522903`), `k=23,24` (`0.51730492, 0.51730489`), and `k=29,30,31` (`0.502152707903, 0.502152707908, 0.502152707911`) share identical `f` plateaus within each cluster, confirming that any single winning `(k_0)^2 + 1` pocket scales upward to `(k_0 + d)^2 + 1` via `+2k+1` upright L-frame borders — while no solved Shift-Law partner exists in `merged.csv` below `f = 0.562` to contract downward from.
-  - **Status**: Complete (`poc/idea19_ils_cpp.cpp`, `poc/idea19_run.py`, `docs/idea19_results.json`, `0` wins). Ready for coordinator review / next directive.
+  - **Status**: Complete (`poc/idea19_ils_cpp.cpp`, `poc/idea19_run.py`, `docs/idea19_results.json`, `0` wins). `mpmath.identify` + small-coefficient quadratic check (`|a|<=34, |b|,|c|<=50`, tol `1e-9`) on `D=1` `k=20..31` frontier plateaus found no closed-form radical (`D=1` closed per coordinator `#61`).
+
+---
+
+## Pivot: Top-12 Unclaimed `has_non45` Targets (`{228, 340, 456, 491, 694, 748, 790, 795, 848, 852, 965, 982}`)
+
+- **Claim & Partner Audit (`#61`, vs `origin/main` `a6fbef7` `merged.csv`)**:
+  - Claimed top-12 unclaimed `non45 > 10` targets by `gap_score` (`poc/frontier_nov12/docs/per_n_gap.csv`):
+    `491 (0.642e-3)`, `852 (0.598e-3)`, `748 (0.595e-3)`, `848 (0.590e-3)`, `456 (0.583e-3)`, `795 (0.572e-3)`, `228 (0.567e-3)`, `965 (0.565e-3)`, `340 (0.564e-3)`, `982 (0.556e-3)`, `790 (0.551e-3)`, `694 (0.547e-3)`.
+  - Identified direct lower-`f` Shift-Law & L-border donors already in `merged.csv`:
+    - `790 (k=28, D=6, f=0.608713) <- 906 (30,6, f=0.591378), 967 (31,6, f=0.591378)` (`-0.017335` gap!)
+    - `694 (k=26, D=18, f=0.825234) <- 747 (27,18, f=0.810664)` (`-0.014570` gap!)
+    - `228 (k=15, D=3, f=0.604601) <- 630 (25,5, f=0.591378), 906 (30,6, f=0.591378)`
+    - `852 (29,11, 0.699596) & 795 (28,11, 0.703404) <- 972 (31,11, 0.683990)`
+    - `982 (31,21, 0.810539) <- 640 (25,15, 0.790688), 692 (26,16, 0.791756)`
+    - `340 (18,16, 0.926899) <- 504 (22,20, 0.911415), 180 (13,11, 0.915619)`
+    - `456 (21,15, 0.846667) <- 643 (25,18, 0.831782), 984 (31,23, 0.834479)`
+    - `491 (22,7, 0.684144) <- 971 (31,10, 0.664318), 793 (28,9, 0.677243)`
+
+- **Idea 20 (Logged pre-test): Shift-Law Donor Contraction/Expansion + Corridor Splice + C++ Seam ILS + `joint_xytheta_slp` (`poc/idea20_partner_shift.py`)**
+  - **Hypothesis**: Nearly all 12 claimed `has_non45` targets already have lower-`f` structural partners in `merged.csv` along `dD=0` (`L`-border contraction) or linear `(dk, dD)` diagonal-corridor / corner-strip Shift-Law rays. Performing geometric row/col + tilted-corridor strip slicing (to jump `n_don -> n` directly at `f_don < f_inc`), paired with C++ seam Cavity-Relocate ILS (`idea19_ils_cpp`) and HiGHS `joint_xytheta_slp` + `fixed_angle_lp_tighten`, will lock below `L_inc`.
+  - **Pilot Target `n` (< 5 min)**: `{790, 694, 228}` first; scale across all 12 once verified.
+  - **Status**: Planned (`poc/idea20_partner_shift.py`).
+  - **Pre-test audit (pure corner/L-border peels of donors)**: peeling `c` outer rows+cols from donors gives sub-packings with `L < L_inc` but `1..6` squares short of target, e.g. `747 -BL1-> 692 @ 26.810664` (target `694 @ 26.825234`), `906 -TR2-> 788 @ 28.591378` (`790 @ 28.608713`), `851 -TR1-> 794 @ 28.684144` (`795 @ 28.703404`), `972 -TR2-> 849 @ 29.683990` (`852 @ 29.699596`), `460 -TR3-> 336 @ 18.917181` (`340 @ 18.926899`). Also every target's own `n-1` in `merged.csv` sits `0.0145..0.047` below `L_inc` (e.g. `228: 227 @ 15.563626` vs `15.604601`; `491: 490 @ 22.637029` vs `22.684144`).
+- **Idea 20a (Logged pre-test): Deficit Insertion into Lower-`L` Donors (`n-1`, `n-2`, `n-3`, peel-donors) + Free C++ Cavity-Relocate ILS + HiGHS polish**
+  - **Hypothesis**: Since each target `n` has donor sub-packings with `L_don < L_inc` holding `n - d` squares (`d = 1..6`), inserting the `d` missing squares at the largest clearance voids (`0°`, `45°`, donor tilt angle) and running Free Cavity-Relocate ILS on `L_sched = [L_inc + 0.03, L_inc + 0.01, L_inc - 1e-5, L_inc - 0.004, max(L_front + 5e-4, L_inc - 0.01)]` (`a_start = 0.90`) may absorb the extra squares with less expansion than the incumbent's `L_inc - L_{n-1}` gap.
+  - **Pilot**: `{790, 694, 228}` (`< 5 min`), then all 12.
+  - **Results (`--targets 790 694 228 --quick --max-donors 6`, `docs/idea20_results.json`, `0` wins)**:
+    - `n=790` (`L_inc=28.608713`): `42` starts, `0` C++ feasible (`min_pen=2.263e-03`), best polished `p847TR1_d1_1` -> `28.634139` (`+0.02543`).
+    - `n=694` (`L_inc=26.825234`): `42` starts, `0` C++ feasible (`min_pen=7.082e-03`), best polished `m692_d2_6` -> `26.911806` (`+0.08657`).
+    - `n=228` (`L_inc=15.604601`): `42` starts, `0` C++ feasible (`min_pen=5.223e-03`), best polished `m227_d1_3` -> `15.665586` (`+0.06098`).
+    - **Diagnosis**: Strict wall peels (`x - hx >= c`) always dropped `1..6` too many squares (`deficit >= 1`), and random void insertion at `a_start = 0.90` into `clr = 0.16..0.29` packed lattices cannot create `1x1` voids (`feas = 0`).
+  - **Status**: Complete (`0` wins); upgraded to Idea 20b.
+
+- **Idea 20b (Logged pre-test): Surplus Center-Peels (`rem >= n`, ZERO Deficit Stuffing) + Split-Wall / Interior Strip Cuts + Soft-Core (`a_start=0.78`) Bottleneck Pocket Melts**
+  - **Hypothesis**:
+    1. **Surplus Center-Peels (`rem in [n, n+6]`)**: Peeling by center `(x, y)` instead of strict `(x - hx >= c)` yields `diff >= 0` exact or surplus subsets from lower-`L` donors (`377 BL1 -> 340 @ 18.9009`, `overhang=0.0848`; `800 TR2 -> 694 @ 26.7764`, `overhang=0.1515`; `746 TR1 -> 695 @ 26.7990`, `overhang=0.1143`; `803 BL1 -> 748 @ 27.8192`; `910 BL1 -> 855 @ 29.6791`; `545 BR2 -> 457 @ 21.8252`; `968 TR2 -> 850 @ 29.6087`; `259 BR1 -> 228 @ 15.5914`), plus split-wall `(c_L+c_R, c_B+c_T)` peels (keeping tilted corners intact) and interior upright-row/col slices. Dropping the `diff` worst seam/overhang squares hits exact `n` with zero deficit stuffing, and melting softly from `a_start = 0.78, n_melt_stages = 4, L0 = max(L_inc + 0.04, L_box + 0.04)` smoothly absorbs the `0.08..0.21` boundary overhang below `L_inc`.
+    2. **Incumbent Bottleneck & Empty-Pocket L-Melts**: On every target (`340` notably has `clr = 0.439` empty void in incumbent, `965` has `clr = 0.285`, `982` has `clr = 0.301`), locate outermost boundary-tight squares and max-clearance voids, relocate `1..3` boundary-pinning squares toward the slack void or melt local `R=3.5..6.5` neighborhoods at `a_start = 0.78 -> 1.00`, then polish with HiGHS `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
+  - **Pilot (`--targets 340 694 790 --quick --max-donors 8`, `217.44s`, `docs/idea20_results.json`)**:
+    - **`n=694` CERTIFIED WIN**: `inc_melt_16` reached `L_lit = L_pandas = 26.82497901783773939420693410310064700750508195702644` vs `L_inc = 26.8252335118387820261` (**`dL = -2.544940e-04`**); `inc_melt_2` also won (`26.825189421108444...`). `inc_melt_1` (`26.82496925`, `pen_fin=5.37e-9`), `inc_melt_13` (`26.82499438`, `pen_fin=4.18e-9`), and `inc_melt_4` (`26.82509049`, `pen_fin=1.95e-10`) were rejected solely by sub-`6e-9` HiGHS/decimal rounding overlap. Geometric diff of `win_n694.csv` vs `merged.csv[694]` shows `56` squares around `(8.6, 11.2)` shifted up to `0.226` / rotated up to `4.0°` (`non0: 185 -> 186`), balancing wall contacts from `[L=25, R=8, B=26, T=21]` to `[22, 25, 21, 25]`.
+    - `n=340` (`12.74s`): `inc_melt_13` reached `L_lit = 18.9269138340921` (`+1.493e-05` above `18.926898900`).
+    - `n=790` (`122.87s`): `s847_01_01_s1` certified `28.6343218645017` (`+2.561e-02`), while `inc_melt_18` reached `28.60873691` (`+2.43e-5`, blocked by `pen_fin=1.236e-9`).
+  - **Status**: Complete (`1` certified win on `n=694` in `data/win_n694.csv` & `final.csv`); upgraded to Idea 20c.
+
+- **Idea 20c (Logged pre-test): Wall-Unbalance & Void-Collapse Pocket Melts + Exact Margin Repair + `max_oh`-Ranked Surplus Peels (`poc/idea20_partner_shift.py`)**
+  - **Hypothesis**:
+    1. **Exact Margin Repair**: Fixing HiGHS `linprog` primal tolerance (`~1e-7`) / float-vs-Decimal polygon rounding overlaps (`1e-10..5e-9`) via `fixed_angle_lp_tighten(..., margin=5e-8..1e-6)` + minimal radial `(1+eps)` deflation fallback unlocks near-feasible basins that currently fail `verify_official`.
+    2. **Wall-Unbalance Drift + Void-Collapse Melts**: Incumbent wall-contact audit across the 12 claimed targets shows strong contact asymmetry matching pre-win `694` (`[25,8,26,21]`): `852` (`[26,9,27,18]`), `848` (`[29,14,26,28]`), `748` (`[26,26,20,21]`), `491` (`[13,18,14,16]`), `795` (`[26,24,26,21]`), `340` (`[17,16,17,14]`, `clr=0.439`). Adding wall-slack drift seeds (nudging opposite/seam subregions toward the weakest walls), void-centered pocket melts (`R=4.0..7.5`), and multi-scale pocket melts (`R=4.0..8.5`) with tighter intermediate `L_sched = [L0, L_inc+0.012, L_inc-2e-4, L_inc-0.002, L_inc-0.006]` targets the exact `694`-winning mechanism.
+    3. **`max_oh`-Sorted Surplus Peels & Safe Win Merging**: Ranking `surplus >= 0` peels by `(max_oh, surplus, L)` keeps low-overhang `surplus=1..3` donors (`378`, `852`, `968`), starting C++ ILS at `L0 = max(L_inc+0.04, peel_L + min(0.10, max_oh) + 0.015)` and merging all `data/win_n*.csv` wins cleanly into `final.csv`.
+  - **Plan**: First run quick pilot on `{228, 340, 456, 491}` (`< 3 min`), then scale across `{748, 790, 795, 848, 852, 965, 982}` + re-polish `{694}` if safe.
+  - **Status**: Planned (`poc/idea20_partner_shift.py`).
+
 
 
 

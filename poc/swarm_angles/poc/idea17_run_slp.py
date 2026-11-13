@@ -20,6 +20,7 @@ import os
 from pathlib import Path
 import sys
 import time
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -256,7 +257,7 @@ def joint_xytheta_slp(
             + [(-tr_th, tr_th)] * n
             + [(float(k) + 0.45, float(max(bbox0, k + 0.65) + 0.25))]
         )
-        res = linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds, method="highs")
+        res = u._highs_linprog(obj, A_ub=A_ub, b_ub=b_ub, bounds=bounds)
         if not res.success or res.x is None:
             tr_th *= 0.6
             tr_xy *= 0.7
