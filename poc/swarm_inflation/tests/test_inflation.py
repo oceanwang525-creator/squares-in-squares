@@ -155,3 +155,19 @@ def test_cuda_v2_synthetic_5_compresses_to_optimum():
     cert = pc.dual_certify(5, out["pos"][bi], out["th"][bi])
     assert cert["ok"]
     assert float(cert["L_lit"]) < 2.708
+
+
+def test_cuda_v2_multiwarp_n367_certification_matches_python():
+    # Regression test for N > 256 (multi-warp shared reductions in sat_lmin.cu)
+    n = 367
+    pos0, th0, box_L, _ = seeds_v2.build_seed_batch_v2(
+        n=n, L_targets=[19.671, 19.685], batch_size=4, rng_seed=7
+    )
+    out = riv2.run_cuda_batch(pos0, th0, box_L, use_elastic_L=1, fast_mode=1, seed=7)
+    for b in range(4):
+        assert pc.sat_max_penetration(out["pos"][b], out["th"][b]) <= 0.0
+        _, py_lam = pc.minimal_feasible_dilation(out["pos"][b], out["th"][b])
+        assert py_lam == 1.0
+        py_L = pc.exact_bbox_side(out["pos"][b], out["th"][b])
+        assert abs(py_L - float(out["L_cert"][b])) < 1e-6
+        assert float(out["L_cert"][b]) < 21.5

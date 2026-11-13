@@ -128,7 +128,48 @@ __device__ float block_reduce_sum(float val, float* buf) {
         if (tid < s) buf[tid] += buf[tid + s];
         __syncthreads();
     }
-    return buf[0];
+    float res = buf[0];
+    __syncthreads();
+    return res;
+}
+
+__device__ double block_reduce_sum_f64(double val, double* buf) {
+    int tid = threadIdx.x;
+    buf[tid] = val;
+    __syncthreads();
+    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) {
+        if (tid < s) buf[tid] += buf[tid + s];
+        __syncthreads();
+    }
+    double res = buf[0];
+    __syncthreads();
+    return res;
+}
+
+__device__ double block_reduce_min_f64(double val, double* buf) {
+    int tid = threadIdx.x;
+    buf[tid] = val;
+    __syncthreads();
+    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) {
+        if (tid < s) buf[tid] = fmin(buf[tid], buf[tid + s]);
+        __syncthreads();
+    }
+    double res = buf[0];
+    __syncthreads();
+    return res;
+}
+
+__device__ double block_reduce_max_f64(double val, double* buf) {
+    int tid = threadIdx.x;
+    buf[tid] = val;
+    __syncthreads();
+    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) {
+        if (tid < s) buf[tid] = fmax(buf[tid], buf[tid + s]);
+        __syncthreads();
+    }
+    double res = buf[0];
+    __syncthreads();
+    return res;
 }
 
 __device__ void rebuild_grid(
@@ -141,11 +182,13 @@ __device__ void rebuild_grid(
     for (int c = tid; c < NUM_CELLS; c += BLOCK_THREADS) {
         cell_head[c] = -1;
     }
-    gx0 = x0 - 1.0f;
-    gy0 = y0 - 1.0f;
-    cell_w = fmaxf(1.48f, (L + 2.0f) / (float)GRID_G);
-    float inv_cw = 1.0f / cell_w;
+    if (tid == 0) {
+        gx0 = x0 - 1.0f;
+        gy0 = y0 - 1.0f;
+        cell_w = fmaxf(1.48f, (L + 2.0f) / (float)GRID_G);
+    }
     __syncthreads();
+    float inv_cw = 1.0f / cell_w;
 
     for (int i = tid; i < N; i += BLOCK_THREADS) {
         int cx = max(0, min(GRID_G - 1, (int)floorf((sx[i] - gx0) * inv_cw)));
@@ -273,9 +316,8 @@ __global__ void solve_batch_fp32(
     __shared__ float red_buf[BLOCK_THREADS];
     __shared__ float red_b2[BLOCK_THREADS];
     __shared__ int32_t ired_buf[BLOCK_THREADS];
-    __shared__ float sh_L, sh_x0, sh_y0;
-    __shared__ float sh_best_L, sh_gx0, sh_gy0, sh_cw;
-    __shared__ float sh_m_x0, sh_v_x0, sh_m_y0, sh_v_y0, sh_m_L, sh_v_L;
+    __shared__ float sh_L, sh_L_init, sh_x0, sh_y0;
+    __shared__ float sh_gx0, sh_gy0, sh_cw;
     __shared__ float sh_step_sc;
 
     uint32_t rng = base_seed ^ (uint32_t)(b * 747796405u + tid * 2891336453u + 1337u);
@@ -294,10 +336,9 @@ __global__ void solve_batch_fp32(
     }
     if (tid == 0) {
         sh_L = in_L[b];
+        sh_L_init = in_L[b];
         sh_x0 = 0.0f;
         sh_y0 = 0.0f;
-        sh_best_L = 1e9f;
-        sh_m_x0 = sh_v_x0 = sh_m_y0 = sh_v_y0 = sh_m_L = sh_v_L = 0.0f;
     }
     __syncthreads();
 
@@ -321,7 +362,7 @@ __global__ void solve_batch_fp32(
         {0.910f, 350, 0.0130f, 5.0f,    0.0f, 0},
         {0.940f, 400, 0.0100f, 5.0f,    0.0f, 0},
         {0.962f, 450, 0.0075f, 5.0f,    0.0f, 0},
-        // Deflate pulse 1 + elastic L unlock
+        // Deflate pulse 1 + wall-balance L control
         {0.950f, 350, 0.0080f, 40.0f,   1.0f, 1},
         {0.975f, 550, 0.0050f, 80.0f,   1.0f, 1},
         {0.988f, 600, 0.0032f, 250.0f,  1.0f, 1},
@@ -334,26 +375,36 @@ __global__ void solve_batch_fp32(
         {1.000f, 650, 0.00014f,60000.0f,1.0f, 1},
         {1.000f, 550, 0.00006f,120000.0f,1.0f,1}
     };
-    const int n_stages = 14;
-    const float mult_steps = fast_mode ? 1.0f : 1.8f;
+    const Stage stages_gentle[10] = {
+        {0.945f, 350, 0.0055f, 15.0f,   1.0f, 1},
+        {0.962f, 400, 0.0042f, 40.0f,   1.0f, 1},
+        {0.976f, 450, 0.0030f, 120.0f,  1.0f, 1},
+        {0.986f, 500, 0.0020f, 350.0f,  1.0f, 1},
+        {0.992f, 550, 0.0013f, 1000.0f, 1.0f, 1},
+        {0.996f, 600, 0.0008f, 3000.0f, 1.0f, 1},
+        {0.9985f,600, 0.00045f,9000.0f, 1.0f, 1},
+        {1.000f, 750, 0.00025f,25000.0f,1.0f, 1},
+        {1.000f, 650, 0.00012f,60000.0f,1.0f, 1},
+        {1.000f, 550, 0.00005f,120000.0f,1.0f,1}
+    };
+    const int n_stages = (fast_mode == 2) ? 10 : 14;
+    const Stage* stages = (fast_mode == 2) ? stages_gentle : stages_fast;
+    const float mult_steps = (fast_mode == 0) ? 1.8f : 1.0f;
 
     int step_g = 0;
     float w_align_base = (b % 2 == 1) ? 0.016f : 0.0f;
 
     for (int st = 0; st < n_stages; ++st) {
-        float scale_a = stages_fast[st].a;
-        int n_steps = (int)(stages_fast[st].steps * mult_steps);
-        float lr_base = stages_fast[st].lr;
-        float w_pen = stages_fast[st].w_pen;
-        float w_L = (use_elastic_L && stages_fast[st].opt_L) ? stages_fast[st].w_L : 0.0f;
-        int opt_L = (use_elastic_L && stages_fast[st].opt_L) ? 1 : 0;
+        float scale_a = stages[st].a;
+        int n_steps = (int)(stages[st].steps * mult_steps);
+        float lr_base = stages[st].lr;
+        float w_pen = stages[st].w_pen;
+        int stage_tight = (stages[st].opt_L != 0) ? 1 : 0;
+        int opt_L = (use_elastic_L && stage_tight) ? 1 : 0;
         float half_a = 0.5f * scale_a;
         float sg_eps = (scale_a < 0.99f) ? 1e-5f : 1e-7f;
         float w_align = (scale_a < 0.968f) ? w_align_base * fmaxf(0.0f, (0.968f - scale_a) / 0.088f) : 0.0f;
 
-        if (tid == 0) {
-            sh_m_x0 *= 0.3f; sh_m_y0 *= 0.3f; sh_m_L *= 0.3f;
-        }
         for (int r = 0; r < 4; ++r) {
             mx[r] *= 0.5f; my[r] *= 0.5f; mt[r] *= 0.5f;
         }
@@ -370,9 +421,9 @@ __global__ void solve_batch_fp32(
             float gx0 = sh_gx0, gy0 = sh_gy0, cw = sh_cw, inv_cw = 1.0f / cw;
             float fx_reg[4], fy_reg[4], fth_reg[4], qe_reg[4];
             float g2_local = 0.0f;
-            float dx0_loc = 0.0f, dy0_loc = 0.0f, dL_loc = 0.0f;
-            float pen_scale = opt_L ? w_pen : 1.0f;
-            float wall_scale = opt_L ? w_pen : 5.0f;
+            float dvx_loc = 0.0f, dvy_loc = 0.0f, wall_loc = 0.0f;
+            float pen_scale = stage_tight ? w_pen : 1.0f;
+            float wall_scale = stage_tight ? w_pen : 5.0f;
 
             for (int r = 0; r < 4; ++r) {
                 int i = tid + r * BLOCK_THREADS;
@@ -395,9 +446,9 @@ __global__ void solve_batch_fp32(
                 float qe = wall_scale * (vL * vL + vR * vR + vB * vB + vT * vT);
 
                 if (opt_L) {
-                    dx0_loc += wall_scale * (2.0f * vL - 2.0f * vR);
-                    dy0_loc += wall_scale * (2.0f * vB - 2.0f * vT);
-                    dL_loc -= wall_scale * (2.0f * vR + 2.0f * vT);
+                    dvx_loc += (vR - vL);
+                    dvy_loc += (vT - vB);
+                    wall_loc += (vL + vR + vB + vT);
                 }
 
                 int cx = max(0, min(GRID_G - 1, (int)floorf((xi - gx0) * inv_cw)));
@@ -445,14 +496,14 @@ __global__ void solve_batch_fp32(
                 g2_local += fx * fx + fy * fy + fth * fth;
             }
 
-            float sum_dx0 = opt_L ? block_reduce_sum(dx0_loc, red_buf) : 0.0f;
-            float sum_dy0 = opt_L ? block_reduce_sum(dy0_loc, red_buf) : 0.0f;
-            float sum_dL  = opt_L ? block_reduce_sum(dL_loc, red_buf)  : 0.0f;
-            float g2_tot  = block_reduce_sum(g2_local, red_buf);
+            float sum_vx   = opt_L ? block_reduce_sum(dvx_loc, red_buf) : 0.0f;
+            float sum_vy   = opt_L ? block_reduce_sum(dvy_loc, red_buf) : 0.0f;
+            float sum_wall = opt_L ? block_reduce_sum(wall_loc, red_buf) : 0.0f;
+            float g2_tot   = block_reduce_sum(g2_local, red_buf);
 
             if (tid == 0) {
                 float gn = sqrtf(g2_tot + 1e-12f);
-                float clip_target = opt_L ? (10.0f * w_pen) : 10.0f;
+                float clip_target = stage_tight ? (10.0f * w_pen) : 10.0f;
                 sh_step_sc = fminf(1.0f, clip_target / gn);
             }
             __syncthreads();
@@ -493,31 +544,35 @@ __global__ void solve_batch_fp32(
             }
 
             if (opt_L && tid == 0) {
-                float gx0_s = fminf(fmaxf(sum_dx0, -5.0f * w_pen), 5.0f * w_pen);
-                float gy0_s = fminf(fmaxf(sum_dy0, -5.0f * w_pen), 5.0f * w_pen);
-                float gL_s  = fminf(fmaxf(w_L + sum_dL, -5.0f * w_pen), 5.0f * w_pen);
-
-                sh_m_x0 = b1 * sh_m_x0 + (1.0f - b1) * gx0_s;
-                sh_v_x0 = b2 * sh_v_x0 + (1.0f - b2) * gx0_s * gx0_s;
-                sh_m_y0 = b1 * sh_m_y0 + (1.0f - b1) * gy0_s;
-                sh_v_y0 = b2 * sh_v_y0 + (1.0f - b2) * gy0_s * gy0_s;
-                sh_m_L  = b1 * sh_m_L  + (1.0f - b1) * gL_s;
-                sh_v_L  = b2 * sh_v_L  + (1.0f - b2) * gL_s * gL_s;
-
-                float lr_box = fminf(0.0025f, lr_xy * 0.8f);
-                sh_x0 -= lr_box * (sh_m_x0 / bc1) / (sqrtf(sh_v_x0 / bc2) + 1e-8f);
-                sh_y0 -= lr_box * (sh_m_y0 / bc1) / (sqrtf(sh_v_y0 / bc2) + 1e-8f);
-                sh_L  -= lr_box * (sh_m_L / bc1)  / (sqrtf(sh_v_L / bc2)  + 1e-8f);
-                sh_L = fmaxf(sh_L, sqrtf((float)N) * 0.99f);
+                float sfrac = (fast_mode == 2) ? ((float)st / 9.0f) : ((float)max(0, st - 4) / 9.0f);
+                float target_w = (fast_mode == 2)
+                    ? (0.030f * (1.0f - sfrac) + 0.0001f)
+                    : (0.045f * (1.0f - sfrac) + 0.0005f);
+                float max_L_b = sh_L_init + ((fast_mode == 2)
+                    ? ((b % 3 == 0) ? 0.002f : ((b % 3 == 1) ? 0.010f : 0.025f))
+                    : ((b % 3 == 0) ? 0.003f : ((b % 3 == 1) ? 0.015f : 0.040f)));
+                float min_L_b = fmaxf(1.0f, sh_L_init * 0.75f);
+                float step_c = fminf(0.0018f, lr_xy * 0.5f);
+                sh_x0 += step_c * tanhf(sum_vx * 2.0f);
+                sh_y0 += step_c * tanhf(sum_vy * 2.0f);
+                float err_w = (sum_wall - target_w) / fmaxf(target_w, 0.015f);
+                sh_L += step_c * 0.8f * fminf(1.0f, fmaxf(-1.0f, err_w));
+                sh_L = fminf(max_L_b, fmaxf(min_L_b, sh_L));
             }
             __syncthreads();
 
             // Active discrete + collective moves during mobile inflation / anneal (a <= 0.988)
             if (scale_a <= 0.988f && ((it == n_steps / 3) || (it == (2 * n_steps) / 3))) {
                 rebuild_grid(N, sh_x0, sh_y0, sh_L, sx, sy, cell_head, cell_next, sh_gx0, sh_gy0, sh_cw);
+                float w_wall_unit = stage_tight ? 1.0f : 5.0f;
 
-                // 1) Parallel 256-thread void relocation on the 2 worst-stress squares
+                // 1) Parallel 256-thread void relocation on the 2 worst-stress squares (skip in gentle mode to preserve ordered crystal seeds)
+                if (fast_mode != 2) {
                 for (int mv = 0; mv < 2; ++mv) {
+                    compute_total_energy_f32(
+                        N, sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw,
+                        scale_a, w_wall_unit, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
+                    );
                     float my_max = -1.0f;
                     int my_idx = -1;
                     for (int r = 0; r < 4; ++r) {
@@ -536,6 +591,7 @@ __global__ void solve_batch_fp32(
                     }
                     int w_i = ired_buf[0];
                     float e_old = red_buf[0];
+                    __syncthreads();
                     if (w_i < 0 || e_old <= 1e-6f) break;
 
                     // Each thread evaluates 1 random probe inside [x0+0.5, x0+L-0.5]^2 x 3 angles
@@ -547,19 +603,14 @@ __global__ void solve_batch_fp32(
                     for (int ak = 0; ak < 3; ++ak) {
                         float ec = eval_single_sq_f32(
                             w_i, px, py, cand_a[ak], N, sh_x0, sh_y0, sh_L,
-                            sh_gx0, sh_gy0, sh_cw, scale_a, 5.0f,
+                            sh_gx0, sh_gy0, sh_cw, scale_a, w_wall_unit,
                             sx, sy, sc, ss, cell_head, cell_next
                         );
                         if (ec < best_ep) { best_ep = ec; best_ang = cand_a[ak]; }
                     }
-                    // Compare in unit penalty scale (divide out pen_scale if opt_L)
-                    float e_old_unit = opt_L ? (e_old / w_pen) : e_old;
                     red_buf[tid] = best_ep;
-                    red_b2[tid] = px;
                     ired_buf[tid] = tid;
                     __syncthreads();
-                    // Store best py/ang in unused shared scratch temporarily
-                    sqe[w_i] = e_old_unit;
                     // Parallel argmin
                     for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) {
                         if (tid < s && red_buf[tid + s] < red_buf[tid]) {
@@ -571,27 +622,27 @@ __global__ void solve_batch_fp32(
                     int win_t = ired_buf[0];
                     float e_best = red_buf[0];
                     __syncthreads();
-                    if (tid == win_t && e_best + 1e-6f < e_old_unit) {
+                    if (tid == win_t && e_best + 1e-6f < e_old) {
                         sx[w_i] = px; sy[w_i] = py; sth[w_i] = best_ang;
                         sc[w_i] = cosf(best_ang); ss[w_i] = sinf(best_ang);
-                        sqe[w_i] = e_best * (opt_L ? w_pen : 1.0f);
                     }
                     __syncthreads();
                     rebuild_grid(N, sh_x0, sh_y0, sh_L, sx, sy, cell_head, cell_next, sh_gx0, sh_gy0, sh_cw);
+                }
                 }
 
                 // 2) Collective orientation-cluster / spatial-slab rigid translation move
                 for (int cm = 0; cm < 2; ++cm) {
                     int seed_idx = (int)(xorshift32(rng) % (uint32_t)N);
-                    // Broadcast seed_idx from tid==0 so entire block uses same cluster
                     if (tid == 0) ired_buf[0] = seed_idx;
                     __syncthreads();
                     seed_idx = ired_buf[0];
+                    __syncthreads();
 
                     float seed_th = sth[seed_idx];
                     float e0 = compute_total_energy_f32(
                         N, sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw,
-                        scale_a, 5.0f, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
+                        scale_a, w_wall_unit, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
                     );
                     float loc_fx = 0.0f, loc_fy = 0.0f;
                     float ox[4], oy[4];
@@ -614,8 +665,8 @@ __global__ void solve_batch_fp32(
                             float vR = fmaxf(0.0f, xi + ext - sh_x0 - sh_L);
                             float vB = fmaxf(0.0f, sh_y0 + ext - yi);
                             float vT = fmaxf(0.0f, yi + ext - sh_y0 - sh_L);
-                            loc_fx += 5.0f * (-2.0f * vL + 2.0f * vR);
-                            loc_fy += 5.0f * (-2.0f * vB + 2.0f * vT);
+                            loc_fx += w_wall_unit * (-2.0f * vL + 2.0f * vR);
+                            loc_fy += w_wall_unit * (-2.0f * vB + 2.0f * vT);
                             int cx = max(0, min(GRID_G - 1, (int)floorf((xi - sh_gx0) * inv_cw_l)));
                             int cy = max(0, min(GRID_G - 1, (int)floorf((yi - sh_gy0) * inv_cw_l)));
                             for (int dy = -1; dy <= 1; ++dy) {
@@ -650,7 +701,7 @@ __global__ void solve_batch_fp32(
                         rebuild_grid(N, sh_x0, sh_y0, sh_L, sx, sy, cell_head, cell_next, sh_gx0, sh_gy0, sh_cw);
                         float e1 = compute_total_energy_f32(
                             N, sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw,
-                            scale_a, 5.0f, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
+                            scale_a, w_wall_unit, sx, sy, sc, ss, sqe, cell_head, cell_next, red_buf
                         );
                         if (e1 >= e0) {
                             for (int r = 0; r < 4; ++r) {
@@ -679,7 +730,7 @@ __global__ void solve_batch_fp32(
 
 // Float64 final polish + exact all-pairs uniform dilation L_cert (one block per trajectory)
 __global__ void polish_and_cert_fp64(
-    int B, int N, int n_polish_steps,
+    int B, int N, int n_polish_steps, int use_elastic_L,
     const float* __restrict__ in_x,
     const float* __restrict__ in_y,
     const float* __restrict__ in_th,
@@ -706,8 +757,7 @@ __global__ void polish_and_cert_fp64(
     __shared__ int32_t cell_head[NUM_CELLS];
     __shared__ int16_t cell_next[MAX_N];
     __shared__ double red_buf[BLOCK_THREADS];
-    __shared__ double sh_x0, sh_y0, sh_L, sh_gx0, sh_gy0, sh_cw, sh_sc;
-    __shared__ double sh_mx0, sh_vx0, sh_my0, sh_vy0, sh_mL, sh_vL;
+    __shared__ double sh_x0, sh_y0, sh_L, sh_L_init, sh_gx0, sh_gy0, sh_cw, sh_sc;
 
     for (int i = tid; i < N; i += BLOCK_THREADS) {
         sx[i] = (double)in_x[b * N + i];
@@ -720,7 +770,7 @@ __global__ void polish_and_cert_fp64(
         sh_x0 = (double)in_x0[b];
         sh_y0 = (double)in_y0[b];
         sh_L  = (double)in_L[b];
-        sh_mx0 = sh_vx0 = sh_my0 = sh_vy0 = sh_mL = sh_vL = 0.0;
+        sh_L_init = sh_L;
     }
     __syncthreads();
 
@@ -750,9 +800,8 @@ __global__ void polish_and_cert_fp64(
         double cur_x0 = sh_x0, cur_y0 = sh_y0, cur_L = sh_L;
         double gx0 = sh_gx0, gy0 = sh_gy0, cw = sh_cw, inv_cw = 1.0 / cw;
         double w_pen = 1.0e5 * (1.0 + 3.0 * ((double)it / (double)max(1, n_polish_steps - 1)));
-        double w_L = 1.0;
         double fx_r[4], fy_r[4], ft_r[4];
-        double dx0_l = 0.0, dy0_l = 0.0, dL_l = 0.0, g2_l = 0.0;
+        double dvx_l = 0.0, dvy_l = 0.0, wall_l = 0.0, g2_l = 0.0;
 
         for (int r = 0; r < 4; ++r) {
             int i = tid + r * BLOCK_THREADS;
@@ -772,9 +821,9 @@ __global__ void polish_and_cert_fp64(
             double fx = w_pen * (-2.0 * vL + 2.0 * vR);
             double fy = w_pen * (-2.0 * vB + 2.0 * vT);
             double ft = w_pen * 2.0 * (vL + vR + vB + vT) * dext;
-            dx0_l += w_pen * (2.0 * vL - 2.0 * vR);
-            dy0_l += w_pen * (2.0 * vB - 2.0 * vT);
-            dL_l  -= w_pen * (2.0 * vR + 2.0 * vT);
+            dvx_l += (vR - vL);
+            dvy_l += (vT - vB);
+            wall_l += (vL + vR + vB + vT);
 
             int cx = max(0, min(GRID_G - 1, (int)floor((xi - gx0) * inv_cw)));
             int cy = max(0, min(GRID_G - 1, (int)floor((yi - gy0) * inv_cw)));
@@ -819,22 +868,11 @@ __global__ void polish_and_cert_fp64(
             g2_l += fx * fx + fy * fy + ft * ft;
         }
 
-        // Reduce scalars
-        red_buf[tid] = dx0_l; __syncthreads();
-        for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] += red_buf[tid + s]; __syncthreads(); }
-        double sdx0 = red_buf[0];
-
-        red_buf[tid] = dy0_l; __syncthreads();
-        for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] += red_buf[tid + s]; __syncthreads(); }
-        double sdy0 = red_buf[0];
-
-        red_buf[tid] = dL_l; __syncthreads();
-        for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] += red_buf[tid + s]; __syncthreads(); }
-        double sdL = red_buf[0];
-
-        red_buf[tid] = g2_l; __syncthreads();
-        for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] += red_buf[tid + s]; __syncthreads(); }
-        if (tid == 0) sh_sc = fmin(1.0, (10.0 * w_pen) / sqrt(red_buf[0] + 1e-18));
+        double sdx = block_reduce_sum_f64(dvx_l, red_buf);
+        double sdy = block_reduce_sum_f64(dvy_l, red_buf);
+        double swall = block_reduce_sum_f64(wall_l, red_buf);
+        double g2_all = block_reduce_sum_f64(g2_l, red_buf);
+        if (tid == 0) sh_sc = fmin(1.0, (10.0 * w_pen) / sqrt(g2_all + 1e-18));
         __syncthreads();
         double gscale = sh_sc;
 
@@ -856,15 +894,13 @@ __global__ void polish_and_cert_fp64(
             sth[i] = nt; sc[i] = cos(nt); ss[i] = sin(nt);
         }
         if (tid == 0) {
-            double gx0_s = fmin(fmax(sdx0, -5.0 * w_pen), 5.0 * w_pen);
-            double gy0_s = fmin(fmax(sdy0, -5.0 * w_pen), 5.0 * w_pen);
-            double gL_s  = fmin(fmax(w_L + sdL, -5.0 * w_pen), 5.0 * w_pen);
-            sh_mx0 = b1 * sh_mx0 + (1.0 - b1) * gx0_s; sh_vx0 = b2 * sh_vx0 + (1.0 - b2) * gx0_s * gx0_s;
-            sh_my0 = b1 * sh_my0 + (1.0 - b1) * gy0_s; sh_vy0 = b2 * sh_vy0 + (1.0 - b2) * gy0_s * gy0_s;
-            sh_mL  = b1 * sh_mL  + (1.0 - b1) * gL_s;  sh_vL  = b2 * sh_vL  + (1.0 - b2) * gL_s * gL_s;
-            sh_x0 -= 0.5 * lr * (sh_mx0 / bc1) / (sqrt(sh_vx0 / bc2) + 1e-12);
-            sh_y0 -= 0.5 * lr * (sh_my0 / bc1) / (sqrt(sh_vy0 / bc2) + 1e-12);
-            sh_L  -= 0.5 * lr * (sh_mL / bc1)  / (sqrt(sh_vL / bc2)  + 1e-12);
+            sh_x0 += 0.5 * lr * tanh(sdx * 5.0);
+            sh_y0 += 0.5 * lr * tanh(sdy * 5.0);
+            if (use_elastic_L) {
+                double err_w = (swall - 1.0e-4) / 0.005;
+                sh_L += 0.4 * lr * fmin(1.0, fmax(-1.0, err_w));
+                sh_L = fmin(sh_L_init + 0.015, fmax(fmax(1.0, sh_L_init * 0.75), sh_L));
+            }
         }
         __syncthreads();
     }
@@ -878,13 +914,8 @@ __global__ void polish_and_cert_fp64(
         loc_xmin = fmin(loc_xmin, sx[i] - e);
         loc_ymin = fmin(loc_ymin, sy[i] - e);
     }
-    red_buf[tid] = loc_xmin; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmin(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double xmin_all = red_buf[0];
-
-    red_buf[tid] = loc_ymin; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmin(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double ymin_all = red_buf[0];
+    double xmin_all = block_reduce_min_f64(loc_xmin, red_buf);
+    double ymin_all = block_reduce_min_f64(loc_ymin, red_buf);
 
     for (int i = tid; i < N; i += BLOCK_THREADS) {
         sx[i] -= (xmin_all - 1e-10);
@@ -894,7 +925,7 @@ __global__ void polish_and_cert_fp64(
 
     // Exact O(N^2) all-pairs lambda & max_pen in float64
     double lam_loc = 1.0, pen_loc = 0.0;
-    const double tau = 1e-10;
+    const double tau = 1.5e-10;
     for (int i = tid; i < N; i += BLOCK_THREADS) {
         double xi = sx[i], yi = sy[i], ci = sc[i], si = ss[i];
         for (int j = i + 1; j < N; ++j) {
@@ -911,13 +942,8 @@ __global__ void polish_and_cert_fp64(
             if (req > lam_loc) lam_loc = req;
         }
     }
-    red_buf[tid] = lam_loc; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmax(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double lam_all = red_buf[0];
-
-    red_buf[tid] = pen_loc; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmax(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double pen_all = red_buf[0];
+    double lam_all = block_reduce_max_f64(lam_loc, red_buf);
+    double pen_all = block_reduce_max_f64(pen_loc, red_buf);
 
     // Exact L_cert after uniform expansion lam_all
     double lx_min = 1e18, lx_max = -1e18, ly_min = 1e18, ly_max = -1e18;
@@ -930,18 +956,10 @@ __global__ void polish_and_cert_fp64(
         out_y[b * N + i] = py;
         out_th[b * N + i] = sth[i];
     }
-    red_buf[tid] = lx_min; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmin(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double axmin = red_buf[0];
-    red_buf[tid] = lx_max; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmax(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double axmax = red_buf[0];
-    red_buf[tid] = ly_min; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmin(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double aymin = red_buf[0];
-    red_buf[tid] = ly_max; __syncthreads();
-    for (int s = BLOCK_THREADS / 2; s > 0; s >>= 1) { if (tid < s) red_buf[tid] = fmax(red_buf[tid], red_buf[tid + s]); __syncthreads(); }
-    double aymax = red_buf[0];
+    double axmin = block_reduce_min_f64(lx_min, red_buf);
+    double axmax = block_reduce_max_f64(lx_max, red_buf);
+    double aymin = block_reduce_min_f64(ly_min, red_buf);
+    double aymax = block_reduce_max_f64(ly_max, red_buf);
 
     if (tid == 0) {
         out_L_cert[b] = fmax(axmax - axmin, aymax - aymin);
@@ -1113,7 +1131,7 @@ int main(int argc, char** argv) {
 
     int polish_steps = sp.fast_mode ? 800 : 1800;
     polish_and_cert_fp64<<<sp.B, BLOCK_THREADS>>>(
-        sp.B, sp.N, polish_steps,
+        sp.B, sp.N, polish_steps, sp.use_elastic_L,
         d_ox, d_oy, d_oth, d_ox0, d_oy0, d_oL,
         d_px, d_py, d_pth, d_Lc, d_lam, d_pen
     );
