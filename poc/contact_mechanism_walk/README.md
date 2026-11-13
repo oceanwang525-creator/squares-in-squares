@@ -8,28 +8,24 @@ perturb coordinates, rotate blocks, or solve an LP on a fixed contact graph.
 Those moves generally violate many contacts at once and relax back into the
 same basin.
 
-This POC instead moves along a first-order **mechanism** of the contact graph.
-For every active square-square separating axis and wall contact, the motion
-must have zero relative normal velocity. The right singular vectors of that
-contact Jacobian with the smallest singular values are coordinated
-`(dx, dy, dtheta)` motions that preserve the existing jam to first order.
-Whole-layout rigid motions are projected out before walking each mode. A finite
-step can change which contacts are active while retaining the dense structure,
-after which a soft-core re-jam and joint `(x, y, theta, L)` SLP can settle in a
-new contact topology.
+This POC instead walks along a first-order **mechanism** of the contact graph.
+The right singular vectors of the contact Jacobian with the smallest singular
+values are coordinated `(dx, dy, dtheta)` motions that preserve the existing
+jam to first order. Whole-layout rigid motions are projected out, then finite
+steps explore new contact topologies before a soft-core re-jam and joint
+`(x, y, theta, L)` SLP.
 
 ## Method
 
-1. Load one incumbent `n` group from the current merged portfolio.
-2. Build a sparse contact Jacobian from near-active separating axes and wall
-   contacts, including rotation derivatives of both square extents and the
-   selected separating axis.
-3. Extract the smallest right singular modes with sparse SVD.
-4. Walk both signs of each mode over configurable amplitudes and re-jam each
-   seed at the incumbent side with the compiled SAT L-BFGS engine.
-5. Tighten jointly in `(x, y, theta)` with generating SLP.
-6. Certify the result with both the official literal check and pandas
-   `read_csv`/`to_csv` transport.
+1. Load one incumbent `n` group.
+2. Linearize active square-square separating axes and wall contacts, including
+   separating-axis rotation derivatives.
+3. Extract the smallest right singular modes and walk both signs at several
+   amplitudes.
+4. Re-jam with the compiled SAT L-BFGS engine and tighten jointly with
+   generating SLP.
+5. Export only strict per-`n` wins and certify both the literal and pandas
+   transports.
 
 `poc/mechanism_walk.py` supports target files, configurable walk amplitudes,
 and a minimum mechanism variation. `poc/export_final.py` compares the private
@@ -38,40 +34,17 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15730741393.csv`, the current final leaves 12 complete
-groups. The official full gate scores the merge at `22.157307413930000` and
-the candidate at `22.157304665073735`, both with `1000/1000` accepted in the
-literal and pandas transports. The exact aggregate improvement is
-`dscore=-0.000002748856265`. Concurrent upstream wins superseded several
-earlier mechanism results; those groups were removed rather than carried as
-snapshots.
-
-Largest surviving wins:
+Against `merged-22.15730466507.csv`, the current final leaves the recursive
+`n=800` improvement. The complete candidate scores `22.15730465068137` in both
+literal and pandas modes, with `1000/1000` groups accepted:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 546 | 23.839879448679131 | 23.839850580426873 | -2.886825226e-05 |
-| 416 | 20.874007458659960 | 20.873999394231944 | -8.064428016e-06 |
-| 419 | 20.934136845493981 | 20.934129634819833 | -7.210674148e-06 |
-| 800 | 28.775374198878872 | 28.775369620969101 | -4.577909770e-06 |
-| 421 | 20.973694368556853 | 20.973690701748247 | -3.666808606e-06 |
+| 800 | 28.775369620969101 | 28.775369213891515 | -4.070775861e-07 |
 
-All exported groups:
-
-| n | merge L | final L | dL |
-|---:|---:|---:|---:|
-| 127 | 11.801754813640645 | 11.801754205547709 | -6.080929361e-07 |
-| 379 | 19.929313984349374 | 19.929313326048337 | -6.583010362e-07 |
-| 413 | 20.816986590428140 | 20.816984597803071 | -1.992625067e-06 |
-| 416 | 20.874007458659960 | 20.873999394231944 | -8.064428016e-06 |
-| 419 | 20.934136845493981 | 20.934129634819833 | -7.210674148e-06 |
-| 421 | 20.973694368556853 | 20.973690701748247 | -3.666808606e-06 |
-| 507 | 22.960235978241307 | 22.960234570297324 | -1.407943984e-06 |
-| 538 | 23.705903334892447 | 23.705902523574277 | -8.113181712e-07 |
-| 546 | 23.839879448679131 | 23.839850580426873 | -2.886825226e-05 |
-| 649 | 25.911771162144994 | 25.911769787089387 | -1.375055607e-06 |
-| 703 | 26.940185788938305 | 26.940183458822116 | -2.330116191e-06 |
-| 800 | 28.775374198878872 | 28.775369620969101 | -4.577909770e-06 |
+The aggregate reduction is `-1.438863e-8`. The previous 12-group mechanism
+result is included in the merge artifact; this iteration supersedes its
+`n=800` row with a second recursive walk.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
@@ -83,6 +56,8 @@ The detailed machine-generated before/after report is in
 - Deep retries missed for `n=634` and `n=852`.
 - High-mode, wide-amplitude retries missed for `n=791`, `908`, `911`, `969`,
   `972`, and `973`.
+- Recursive amplitude retries missed for `861`, `546`, `419`, `416`, `421`,
+  `703`, `649`, `507`, and `538`; the closest was `419` at `+2.455e-9`.
 - A broad untested `700..1000` scan was interrupted after mostly zero or
   low-amplitude modes; it should not be repeated unchanged.
 - The attached `submission-kaggle-safe.csv` was rejected as a donor: its

@@ -52,7 +52,12 @@ def main() -> None:
             pair = tuple(map(Decimal, result))
             if pair[0] < sides[n][0] and pair[1] < sides[n][1]:
                 best[n], sides[n] = rows, pair
-                sources[n] = str(path.resolve().relative_to(ROOT))
+                resolved = path.resolve()
+                try:
+                    source = str(resolved.relative_to(ROOT))
+                except ValueError:
+                    source = str(resolved)
+                sources[n] = source
 
     args.out.write_text(union.csv_text(best), encoding="utf-8")
     reports = union.full_gate(args.out)
