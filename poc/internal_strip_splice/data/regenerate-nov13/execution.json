@@ -1,0 +1,14 @@
+{
+  "folder": "internal_strip_splice",
+  "args": [
+    "poc/internal_strip_splice/poc/splice.py",
+    "--output",
+    "poc/internal_strip_splice/data/regenerate-nov13/"
+  ],
+  "reason": "Normal full48graphcase default sweep",
+  "timeout": 3500,
+  "pid": 423959,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 22.73
+}

@@ -1,0 +1,109 @@
+{
+  "folder": "multi_angle_band",
+  "source_main": "ae4228a9331c3012ef20fc81e6528e3ebf6f8082",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/multi_angle_band/data/regenerate-nov13/source-manifest.json",
+      "sha256": "ac3cd783aaa58fffefa49134c4baa7adc6939ce512d7991757f7e0b5d087eabc",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.0.npy",
+      "sha256": "abd0149401171761e25d1b579b72411e24ee8083d95775cf3cb4c557b596975e",
+      "decode_note": "incomplete saved packing: 625/626",
+      "groups": 0
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.1.npy",
+      "sha256": "78a60ff74fb6af1504f609dd29da886c26694f7684821f14d88e552bc60ceb20",
+      "decode_note": "incomplete saved packing: 625/626",
+      "groups": 0
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.15.npy",
+      "sha256": "1e4ec52df9aac2818c5e77be2819ba6940fb9b59cda93ea22b9f5609daeda74f",
+      "groups": 1
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.2.npy",
+      "sha256": "dce77a45e9e7dcb2ea6d8c78174e85b33d002feca14565b2ad59509fcce374aa",
+      "groups": 1
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.3.npy",
+      "sha256": "e72294d7d26b34925c74c39c1e279f182f4ed083fa6d9e2934d274997814da62",
+      "groups": 1
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n626_dL0.4.npy",
+      "sha256": "2d6fd38063c7679031d0063bdc4447df20df07f34a101565a1cafc66d3741727",
+      "groups": 1
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n634_dL0.0.npy",
+      "sha256": "dd97fb51c2c8ed0ab5df131fa1d6b95f5373497216125fb955b8e18aab784154",
+      "decode_note": "incomplete saved packing: 629/634",
+      "groups": 0
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n634_dL0.1.npy",
+      "sha256": "2121f6a0629e570bed43bde22fd62c587d286776464e7a45dfe610d3a25850f3",
+      "decode_note": "incomplete saved packing: 633/634",
+      "groups": 0
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n634_dL0.15.npy",
+      "sha256": "8e939e07f471e934cc5c92d899d9ca6ccc913f72c29c8ccc2ee4bcc47d6d303e",
+      "groups": 1
+    },
+    {
+      "path": "poc/multi_angle_band/docs/best_n634_dL0.2.npy",
+      "sha256": "7c1fd8e3c6efc80f4f98daf665329e436898fcd9b2397d7bfba870d8431c6b84",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 6,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 626,
+      "key": "07ea4bcfdee42f586f02e782e7414c617e08fac40635828e6d7536d4ca32a967",
+      "official": null
+    },
+    {
+      "n": 626,
+      "key": "674532c8fee5794e7073ca7650caa0f08db52a68ff9594914358a9458e924968",
+      "official": null
+    },
+    {
+      "n": 626,
+      "key": "e0c4fc4bf1c7b75b5b06b074c493192ad46522f05ef619fb2318cd1c06dd96bd",
+      "official": null
+    },
+    {
+      "n": 626,
+      "key": "56b743d9710eb46cce9d93c83cc53a0d4f401574e4f12a032ff8b13a8d999c64",
+      "official": null
+    },
+    {
+      "n": 634,
+      "key": "478754cabb6e5574844c86e4dbc7d51b108d89a399aad04971f1d8f53f1ef68a",
+      "official": null
+    },
+    {
+      "n": 634,
+      "key": "ea2d170f39884299ac5bcb731dc4b245367596958e72ad8149c4a3a10ca257da",
+      "official": null
+    }
+  ],
+  "final_results": []
+}

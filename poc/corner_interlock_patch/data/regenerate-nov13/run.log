@@ -1,0 +1,7 @@
+n=908 patches={9: 1, 16: 1} trials=4 baseline=30.634070751579 control=30.636247935008 best=30.636169118604183 win=None
+n=910 patches={9: 2, 16: 2} trials=4 baseline=30.679149464636 control=30.682359166606 best=30.70164208988139 win=None
+n=911 patches={9: 0, 16: 0} trials=0 baseline=30.695622170949 control=30.699463601881 best=None win=None
+n=969 patches={9: 3, 16: 3} trials=4 baseline=31.633982501359 control=31.635987491261 best=31.63592823479253 win=None
+n=971 patches={9: 3, 16: 3} trials=4 baseline=31.664318325152 control=31.666380836827 best=31.666297375317832 win=None
+n=972 patches={9: 3, 16: 3} trials=4 baseline=31.683990214555 control=31.686960085796 best=31.686903882463344 win=None
+n=973 patches={9: 2, 16: 2} trials=4 baseline=31.696609268859 control=31.699744888597 best=31.69969880568569 win=None

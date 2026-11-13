@@ -1,0 +1,15 @@
+{
+  "folder": "soft_to_rigid",
+  "args": [
+    "sweep.py",
+    "51",
+    "300"
+  ],
+  "reason": "Normal n51 five-minute sweep",
+  "timeout": 3500,
+  "cwd": "poc/soft_to_rigid/poc",
+  "pid": 427341,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 310.06
+}

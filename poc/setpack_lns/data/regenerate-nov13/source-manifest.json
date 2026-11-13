@@ -1,0 +1,20 @@
+{
+  "source_main": "b4b56faada76d3f31cccccd2e5f17131cbce9620",
+  "original_sources": {
+    "poc/setpack_lns/poc/setpack_lns.py": "89620cb8dde15748c93bbafbec4f952895da4c480c2ebb3a5322cbebeeca5187"
+  },
+  "execution": {
+    "folder": "setpack_lns",
+    "args": [
+      "poc/setpack_lns/poc/setpack_lns.py"
+    ],
+    "reason": "Normal150iterations10secondsubMILPs <=~25min",
+    "timeout": 3500,
+    "pid": 426758,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 659.36
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

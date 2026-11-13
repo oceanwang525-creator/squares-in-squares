@@ -1,0 +1,38 @@
+{
+  "folder": "leader_poc_k2p4",
+  "source_main": "c93d4a809df8997daf85515fc2c4b3c7136d29fe",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/leader_poc_k2p4/data/regenerate-nov13/source-manifest.json",
+      "sha256": "3a326f463b8aded000313bc974d4d19f356b84bfa14a41465a86438ddf77115a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/leader_poc_k2p4/data/slp_n328.npy",
+      "sha256": "783fec7f9fbd437dc16174813afe21a99b70bd6c154414cca1d79a1435d40cea",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 1,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 328,
+      "key": "4001f45ba7a4ec59ff67290346ba619ceb735381740c07c96785a1917c24d63f",
+      "official": [
+        "18.61436893849098671812102148400498831565224351233939",
+        "18.61436893849098671812102148400498831565224351233939"
+      ]
+    }
+  ],
+  "final_results": []
+}

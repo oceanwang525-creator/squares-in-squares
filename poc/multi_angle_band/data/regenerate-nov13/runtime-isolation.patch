@@ -1,0 +1,24 @@
+diff --git a/poc/multi_angle_band/poc/certify.py b/poc/multi_angle_band/poc/certify.py
+index 7593671..3ff0818 100644
+--- a/poc/multi_angle_band/poc/certify.py
++++ b/poc/multi_angle_band/poc/certify.py
+@@ -3,7 +3,7 @@ import sys, numpy as np
+ from decimal import Decimal
+ from squares import core
+ n, dL = int(sys.argv[1]), sys.argv[2]
+-sel = np.load(f"/Users/lucaszhang/squares-in-squares/poc/multi_angle_band/docs/best_n{n}_dL{dL}.npy")[:n]
++sel = np.load(f"/mnt/e/squares-poc-regenerate-nov13/poc/multi_angle_band/docs/best_n{n}_dL{dL}.npy")[:n]
+ assert len(sel) == n
+ x0, y0 = sel[:,0].min(), sel[:,1].min()
+ F = float(sys.argv[3]) if len(sys.argv) > 3 else 1.0000002  # centre dilation opens float contact gaps
+diff --git a/poc/multi_angle_band/poc/search.py b/poc/multi_angle_band/poc/search.py
+index adad1fb..fe0bbae 100644
+--- a/poc/multi_angle_band/poc/search.py
++++ b/poc/multi_angle_band/poc/search.py
+@@ -19,5 +19,5 @@ while time.time() - t0 < budget:
+         best = (cnt, sel, bands); print(f"n={n} L={L:.6f} count={cnt} target={n} cands={len(cand)} t={time.time()-t0:.0f}s", flush=True)
+ cnt, sel, bands = best
+ import numpy as np
+-np.save(f"/Users/lucaszhang/squares-in-squares/poc/multi_angle_band/docs/best_n{n}_dL{dL}.npy", sel)
++np.save(f"/mnt/e/squares-poc-regenerate-nov13/poc/multi_angle_band/docs/best_n{n}_dL{dL}.npy", sel)
+ print("FINAL", n, L, cnt, "valid_local", verify_local(L, sel), "gap_to_n", n - cnt)

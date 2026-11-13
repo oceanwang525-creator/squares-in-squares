@@ -1,0 +1,470 @@
+{
+ "submission": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv",
+ "margin": "1e-9",
+ "min_crop": 4,
+ "max_crop": 16,
+ "targets": {
+  "686": {
+   "target": 686,
+   "side": "26.707106780186706",
+   "grid_side": 26,
+   "grid_capacity": 676,
+   "needed_gain": 10,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 5,
+   "capacity": 681,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 523,
+     "corner": "br",
+     "capacity": 40,
+     "width": "10",
+     "height": "4",
+     "cut": [
+      13,
+      23,
+      0,
+      4
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 230,
+     "corner": "tr",
+     "capacity": 230,
+     "width": "15.682926829268308",
+     "height": "15.682926829268308",
+     "cut": [
+      -8,
+      8,
+      -8,
+      8
+     ],
+     "gain": 5
+    }
+   ],
+   "incumbent_L": "26.70710678118670600000000000000000000000000000000000",
+   "strict_win": false
+  },
+  "687": {
+   "target": 687,
+   "side": "26.723271496397416",
+   "grid_side": 26,
+   "grid_capacity": 676,
+   "needed_gain": 11,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 6,
+   "capacity": 682,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 523,
+     "corner": "br",
+     "capacity": 40,
+     "width": "10",
+     "height": "4",
+     "cut": [
+      13,
+      23,
+      0,
+      4
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 974,
+     "corner": "tr",
+     "capacity": 231,
+     "width": "15.707106781186667",
+     "height": "15.707106781186667",
+     "cut": [
+      0,
+      16,
+      0,
+      16
+     ],
+     "gain": 6
+    }
+   ],
+   "incumbent_L": "26.72327149739741452573736753634140121089419869381267",
+   "strict_win": false
+  },
+  "908": {
+   "target": 908,
+   "side": "30.634070750579077",
+   "grid_side": 30,
+   "grid_capacity": 900,
+   "needed_gain": 8,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 3,
+   "capacity": 903,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 199,
+     "corner": "tl",
+     "capacity": 199,
+     "width": "14.614689853283782",
+     "height": "14.61468985328378",
+     "cut": [
+      -1,
+      15,
+      -1,
+      15
+     ],
+     "gain": 3
+    }
+   ],
+   "incumbent_L": "30.63407075157907730000000000000000000000000000000000",
+   "strict_win": false
+  },
+  "910": {
+   "target": 910,
+   "side": "30.679149463635977",
+   "grid_side": 30,
+   "grid_capacity": 900,
+   "needed_gain": 10,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 4,
+   "capacity": 904,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 200,
+     "corner": "tl",
+     "capacity": 173,
+     "width": "13.656854249492415",
+     "height": "13.656854249492415",
+     "cut": [
+      -1,
+      14,
+      -14,
+      1
+     ],
+     "gain": 4
+    }
+   ],
+   "incumbent_L": "30.67914946463597526326799436204979857114102745277229",
+   "strict_win": false
+  },
+  "911": {
+   "target": 911,
+   "side": "30.69562216994861",
+   "grid_side": 30,
+   "grid_capacity": 900,
+   "needed_gain": 11,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 5,
+   "capacity": 905,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 523,
+     "corner": "br",
+     "capacity": 40,
+     "width": "10",
+     "height": "4",
+     "cut": [
+      13,
+      23,
+      0,
+      4
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 230,
+     "corner": "tl",
+     "capacity": 230,
+     "width": "15.682926829268308",
+     "height": "15.682926829268308",
+     "cut": [
+      -8,
+      8,
+      -8,
+      8
+     ],
+     "gain": 5
+    }
+   ],
+   "incumbent_L": "30.69562217094861118134418086958029323373422574951377",
+   "strict_win": false
+  },
+  "969": {
+   "target": 969,
+   "side": "31.63398250035948",
+   "grid_side": 31,
+   "grid_capacity": 961,
+   "needed_gain": 8,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 3,
+   "capacity": 964,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 172,
+     "corner": "tr",
+     "capacity": 172,
+     "width": "13.614689853283783",
+     "height": "13.614689853283785",
+     "cut": [
+      -1,
+      14,
+      -1,
+      14
+     ],
+     "gain": 3
+    }
+   ],
+   "incumbent_L": "31.63398250135948081923132169163951471838370271210243",
+   "strict_win": false
+  },
+  "970": {
+   "target": 970,
+   "side": "31.638982144344254",
+   "grid_side": 31,
+   "grid_capacity": 961,
+   "needed_gain": 9,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 3,
+   "capacity": 964,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 791,
+     "corner": "tl",
+     "capacity": 168,
+     "width": "11.634070750573315",
+     "height": "15.634070749573477",
+     "cut": [
+      -1,
+      12,
+      13,
+      29
+     ],
+     "gain": 3
+    }
+   ],
+   "incumbent_L": "31.63898214534425343216625964534655711973550698439763",
+   "strict_win": false
+  },
+  "971": {
+   "target": 971,
+   "side": "31.664318324151626",
+   "grid_side": 31,
+   "grid_capacity": 961,
+   "needed_gain": 10,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 4,
+   "capacity": 965,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 148,
+     "corner": "tr",
+     "capacity": 148,
+     "width": "12.656854249492415",
+     "height": "12.656854249492415",
+     "cut": [
+      0,
+      13,
+      0,
+      13
+     ],
+     "gain": 4
+    }
+   ],
+   "incumbent_L": "31.66431832515162747971347060000000000000000000000000",
+   "strict_win": false
+  },
+  "972": {
+   "target": 972,
+   "side": "31.683990213554889",
+   "grid_side": 31,
+   "grid_capacity": 961,
+   "needed_gain": 11,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 5,
+   "capacity": 966,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 230,
+     "corner": "tr",
+     "capacity": 230,
+     "width": "15.682926829268308",
+     "height": "15.682926829268308",
+     "cut": [
+      -8,
+      8,
+      -8,
+      8
+     ],
+     "gain": 5
+    }
+   ],
+   "incumbent_L": "31.68399021455488766964471103202211206196773609087251",
+   "strict_win": false
+  },
+  "973": {
+   "target": 973,
+   "side": "31.69660926785852",
+   "grid_side": 31,
+   "grid_capacity": 961,
+   "needed_gain": 12,
+   "crop_counts": [
+    293981,
+    294377
+   ],
+   "max_gain": 5,
+   "capacity": 966,
+   "reaches_target": false,
+   "crops": [
+    {
+     "donor_n": 1000,
+     "corner": "br",
+     "capacity": 256,
+     "width": "16",
+     "height": "16",
+     "cut": [
+      16,
+      32,
+      0,
+      16
+     ],
+     "gain": 0
+    },
+    {
+     "donor_n": 230,
+     "corner": "tr",
+     "capacity": 230,
+     "width": "15.682926829268308",
+     "height": "15.682926829268308",
+     "cut": [
+      -8,
+      8,
+      -8,
+      8
+     ],
+     "gain": 5
+    }
+   ],
+   "incumbent_L": "31.69660926885852005149654003150938443927823942818249",
+   "strict_win": false
+  }
+ },
+ "accepted_n": [],
+ "accepted": 0
+}

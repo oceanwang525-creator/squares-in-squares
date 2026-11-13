@@ -1,0 +1,101 @@
+{
+  "expand": 2.0,
+  "final_count": 965,
+  "initial_count": 965,
+  "input": "poc/corner-pocket-chirality/data/probe-972x971-965.csv",
+  "probe": "poc/corner-pocket-chirality/data/probe-972x971-965.json",
+  "results": [
+    {
+      "accepted": false,
+      "candidates": 82,
+      "gain": -10,
+      "index": 0,
+      "new_upright": 6,
+      "old_upright": 16,
+      "source_gap_area": 3.248263888888889,
+      "window": [
+        0.0,
+        7.791666666666667,
+        0.0,
+        4.625
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 1058,
+      "gain": -9,
+      "index": 1,
+      "new_upright": 45,
+      "old_upright": 54,
+      "source_gap_area": 3.2309027777777777,
+      "window": [
+        7.541666666666666,
+        15.25,
+        18.0,
+        26.416666666666668
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 35,
+      "gain": -3,
+      "index": 2,
+      "new_upright": 4,
+      "old_upright": 7,
+      "source_gap_area": 3.1197916666666665,
+      "window": [
+        27.75,
+        31.664318324151626,
+        25.833333333333332,
+        31.664318324151626
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 370,
+      "gain": -8,
+      "index": 3,
+      "new_upright": 16,
+      "old_upright": 24,
+      "source_gap_area": 1.875,
+      "window": [
+        16.666666666666668,
+        21.666666666666668,
+        0.0,
+        4.0
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 590,
+      "gain": -9,
+      "index": 4,
+      "new_upright": 30,
+      "old_upright": 39,
+      "source_gap_area": 1.8003472222222223,
+      "window": [
+        5.166666666666667,
+        11.666666666666666,
+        15.0,
+        22.208333333333332
+      ]
+    },
+    {
+      "accepted": false,
+      "candidates": 325,
+      "gain": -8,
+      "index": 5,
+      "new_upright": 18,
+      "old_upright": 26,
+      "source_gap_area": 1.2170138888888888,
+      "window": [
+        3.208333333333333,
+        9.541666666666668,
+        18.625,
+        23.666666666666668
+      ]
+    }
+  ],
+  "side": 31.664318324151626,
+  "step": 0.2
+}

@@ -1,0 +1,21 @@
+{
+  "source_main": "a649394e8f9cc563796c20faba7da019a1dcf56d",
+  "original_sources": {
+    "poc/setpack367/poc/gadget_search.py": "f6ab5a48780307c489fb281b311dcaf2986327d08cec285c0e97160c69000074",
+    "poc/setpack367/poc/setpack367.py": "48971d4c1982ee4d73e776096270ad44306e662fa75ce67ef80a0cfc6c627940"
+  },
+  "execution": {
+    "folder": "setpack367",
+    "args": [
+      "poc/setpack367/poc/setpack367.py"
+    ],
+    "reason": "Normal n367 MILP300second cap, no gadget32pool",
+    "timeout": 3500,
+    "pid": 426638,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 570.75
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

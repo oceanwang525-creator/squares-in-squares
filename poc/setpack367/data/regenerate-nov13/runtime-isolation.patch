@@ -1,0 +1,48 @@
+diff --git a/poc/setpack367/poc/gadget_search.py b/poc/setpack367/poc/gadget_search.py
+index 442464d..35f7077 100644
+--- a/poc/setpack367/poc/gadget_search.py
++++ b/poc/setpack367/poc/gadget_search.py
+@@ -2,7 +2,7 @@ import os
+ for v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS","NUMEXPR_NUM_THREADS"): os.environ[v]="1"
+ import sys, math, json, numpy as np, torch, time
+ from decimal import Decimal
+-sys.path.insert(0,'/mnt/e/squares-in-squares/poc/baseline/poc/src')
++sys.path.insert(0,'/mnt/e/squares-poc-regenerate-nov13/poc/baseline/poc/src')
+ from squares import core
+ from squares import _official_metric as metric
+ metric.KAGGLE_CORES=1
+@@ -59,7 +59,7 @@ def run(args):
+         try:
+             lit=Decimal(core.certify(N,rr)); tr=core.kaggle_roundtrip({N:rr}); pan=Decimal(core.certify(N,tr[N]))
+         except Exception: continue
+-        np.save(f'/tmp/opencode/gadget_{m}.npy',a2)
++        np.save(f'/mnt/e/squares-poc-regenerate-nov13/poc/setpack367/data/regenerate-nov13/gadget_{m}.npy',a2)
+         return (m,N,str(lit),str(pan),eps)
+     return None
+ if __name__=='__main__':
+diff --git a/poc/setpack367/poc/setpack367.py b/poc/setpack367/poc/setpack367.py
+index 133d967..83b98ba 100644
+--- a/poc/setpack367/poc/setpack367.py
++++ b/poc/setpack367/poc/setpack367.py
+@@ -5,7 +5,7 @@ from decimal import Decimal
+ from scipy.optimize import milp, LinearConstraint, Bounds
+ from scipy.sparse import coo_matrix
+ from scipy.spatial import cKDTree
+-sys.path.insert(0,'/mnt/e/squares-in-squares/poc/baseline/poc/src')
++sys.path.insert(0,'/mnt/e/squares-poc-regenerate-nov13/poc/baseline/poc/src')
+ from squares import core
+ from squares import _official_metric as metric
+ metric.KAGGLE_CORES=1
+@@ -60,10 +60,10 @@ if len(sel)>=367:
+             lit=Decimal(core.certify(367,rr)); tr=core.kaggle_roundtrip({367:rr}); pan=Decimal(core.certify(367,tr[367]))
+             print('CERT',lit,pan,'eps',eps,flush=True)
+             import csv
+-            ours=Decimal(core.certify(367,[r for r in csv.DictReader(open('/mnt/e/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv')) if int(r['n'])==367]))
++            ours=Decimal(core.certify(367,[r for r in csv.DictReader(open('/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv')) if int(r['n'])==367]))
+             print('ours',ours,flush=True)
+             if lit<ours and pan<ours:
+-                json.dump({'367':dict(old_L=str(ours),new_L=str(max(lit,pan)),literal_L=str(lit),pandas_L=str(pan),rows=rr)},open('/tmp/opencode/setpack367_win.json','w'),indent=1)
++                json.dump({'367':dict(old_L=str(ours),new_L=str(max(lit,pan)),literal_L=str(lit),pandas_L=str(pan),rows=rr)},open('/mnt/e/squares-poc-regenerate-nov13/poc/setpack367/data/regenerate-nov13/setpack367_win.json','w'),indent=1)
+                 print('WIN',flush=True)
+             break
+         except Exception as ex:

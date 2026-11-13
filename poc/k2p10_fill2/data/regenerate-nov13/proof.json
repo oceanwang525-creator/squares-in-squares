@@ -1,0 +1,111 @@
+{
+  "folder": "k2p10_fill2",
+  "source_main": "d1e13aabe0a1ed2c9af0a87a8516c1e1b2c39fb8",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/k2p10_fill2/data/regenerate-nov13/initial-execution.json",
+      "sha256": "8646b5f30a585dce446d3dcc9ddfd94e1692a590fd27e456a5a672ab98c3adb6",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/k2p10_fill2/data/regenerate-nov13/source-manifest.json",
+      "sha256": "84235770fe099f92f131339d9f782b12d8bf365874fdffc9d5463e6db6a83eae",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/a_best_relax_L25.705.npy",
+      "sha256": "95c69302d902ff2a602be540b178a7658f23c83cd525c4a25480cfe453e9d0cb",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.705_s1.npy",
+      "sha256": "6cd343421dc82f7b2758867af7a3f6fe540fff639fa24e19b01b4b74e4c7a68b",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.705_s4.npy",
+      "sha256": "92e3f8351d82917fe50365db76a930477f8ba7df68d0fc012f35cb2df0c825b8",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.7071_s5.npy",
+      "sha256": "4050131b16c566f05a3bdf24ee52b06e622bf6b929b7db910b0b15198935f658",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg0_L25.7_s1.npy",
+      "sha256": "eeaae93c90f207aacc51ec9f6fb1226044a13318fa009413c381b0abf2a52a6d",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg1_L25.7_s2.npy",
+      "sha256": "5a58d9ea946e51ba01cd98ed29b413451f4df2d995e765d22a38a81fbfe56d7d",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg1_L25.7_s2_hop.npy",
+      "sha256": "3be2c184c163bd53e5a528a4b4edc517a345709b42a4b7f93c8b8e30cd73e0d7",
+      "groups": 1
+    },
+    {
+      "path": "poc/k2p10_fill2/docs/b_best_cfg2_L25.7_s3.npy",
+      "sha256": "bbca87758ad96a8bb9d53a2e91e2012a5757a8a62f757b8ac6793c30720d6c0c",
+      "groups": 1
+    }
+  ],
+  "candidate_groups": 8,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 635,
+      "key": "01b4a212aa88e04cc757011486e02c11bf4cd89347ab160e1333d8c59cf16223",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "2dfdf6541dafea74c383be1b9d72c50c201beb6129bc59afcf0d8300ce7fa4f1",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "5975178c9862f678a05e0366354ca406213ece6df15d507f19fb389b7cfc1612",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "05ea038caab2fb9f928ef386e2f64b409e16ae48f4c8f43cfb1347a91db97c2a",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "92a88f3c25ec3a1d291af8af4ea891b39b635b9163a0a30007809312f03e2300",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "699a52255cb7776e620da014eee152cd7228e5977250cd715b713b364aeed7c6",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "6578530f24b43d588ba4eec90a4985bce8174f5f88f0342ba7b1e39bc9dd2610",
+      "official": null
+    },
+    {
+      "n": 635,
+      "key": "6531dece7e92f83bdfe5b9fbc8125e35ee21f34235089575d3c8931c031035a3",
+      "official": null
+    }
+  ],
+  "final_results": []
+}

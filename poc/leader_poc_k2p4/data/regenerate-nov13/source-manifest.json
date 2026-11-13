@@ -1,0 +1,25 @@
+{
+  "source_main": "87329f921e79eaa2a9e0cff34afef2c5153829b1",
+  "original_sources": {
+    "poc/leader_poc_k2p4/poc/hop.py": "b6255945b91e22480a244ff59c0ade8f777332f6e0c437f21720802ee2b71987",
+    "poc/leader_poc_k2p4/poc/slp.py": "788e1c0ab6634139cf381ea19e302be645adeb87e1b0592862340203739af778"
+  },
+  "execution": {
+    "folder": "leader_poc_k2p4",
+    "args": [
+      "poc/leader_poc_k2p4/poc/slp.py",
+      "328",
+      "120",
+      "0.05",
+      "0.02"
+    ],
+    "reason": "Documented n328120secondSLP",
+    "timeout": 3500,
+    "pid": 427726,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 13.57
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

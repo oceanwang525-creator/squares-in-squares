@@ -1,0 +1,34 @@
+diff --git a/poc/neighbour_deletion/poc/nd.py b/poc/neighbour_deletion/poc/nd.py
+index c6f2ff9..01816ab 100644
+--- a/poc/neighbour_deletion/poc/nd.py
++++ b/poc/neighbour_deletion/poc/nd.py
+@@ -2,10 +2,10 @@
+ import sys, os, math, time, json
+ import numpy as np, pandas as pd
+ from scipy.optimize import minimize
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ import a_overlap as ao
+ from scipy.spatial import cKDTree
+-ROOT = "/Users/lucaszhang/squares-in-squares/poc/"
++ROOT = "/mnt/e/squares-poc-regenerate-nov13/poc/"
+ MERGED = ROOT + "pell_corrugation/data/border-scan/merged.csv"
+ CMP = pd.read_csv(ROOT + "leader_curve_analysis/docs/per_n_comparison.csv").set_index("n")
+ 
+diff --git a/poc/neighbour_deletion/poc/nd_fine.py b/poc/neighbour_deletion/poc/nd_fine.py
+index 465bf2a..485b095 100644
+--- a/poc/neighbour_deletion/poc/nd_fine.py
++++ b/poc/neighbour_deletion/poc/nd_fine.py
+@@ -2,10 +2,10 @@
+ import sys, os, math, time, json
+ import numpy as np, pandas as pd
+ from scipy.optimize import minimize
+-sys.path.insert(0, "/Users/lucaszhang/squares-in-squares/poc/k2p10_fill2/poc")
++sys.path.insert(0, "/mnt/e/squares-poc-regenerate-nov13/poc/k2p10_fill2/poc")
+ import a_overlap as ao
+ from scipy.spatial import cKDTree
+-ROOT = "/Users/lucaszhang/squares-in-squares/poc/"
++ROOT = "/mnt/e/squares-poc-regenerate-nov13/poc/"
+ MERGED = ROOT + "pell_corrugation/data/border-scan/merged.csv"
+ CMP = pd.read_csv(ROOT + "leader_curve_analysis/docs/per_n_comparison.csv").set_index("n")
+ 

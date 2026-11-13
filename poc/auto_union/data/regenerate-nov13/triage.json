@@ -1,0 +1,10 @@
+{
+  "folder": "auto_union",
+  "scripts": [
+    "poc/union.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 11919,
+  "status": "skipped-deferred",
+  "reason": "Infrastructure/certification tooling, not a packing-search experiment; export guard separately tested, not a search rerun."
+}

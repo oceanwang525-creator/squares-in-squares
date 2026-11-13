@@ -10,7 +10,7 @@
 
 The union keeps a local row only when the official metric gives a strictly
 smaller `L`. It has 28 wins, no regressions, and scores
-`22.173715450253` in both literal and pandas-round-trip certification.
+`22.173715449653` in both literal and pandas-round-trip certification.
 
 The source coordinates come from repeated support/corner SLP passes on the
 local portfolio. The dominant gains in this contribution are:

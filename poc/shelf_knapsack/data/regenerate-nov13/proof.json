@@ -1,0 +1,79 @@
+{
+  "folder": "shelf_knapsack",
+  "source_main": "21c7cab08a937f3db6793b5ffeb4c3d6824f5b97",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/shelf_knapsack/data/regenerate-nov13/generated.json",
+      "sha256": "45470fd8fa6281062c2524ba78bcd96c0d2f13b3dd21021f189f4ceda5907496",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 6
+    },
+    {
+      "path": "poc/shelf_knapsack/data/regenerate-nov13/source-manifest.json",
+      "sha256": "d539c62239edf2d57afceafbeec0c7e33348796e09cd537d7e38b01261494ba7",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 6,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 17,
+      "key": "e1f2649fc99b11f8418923e0cef886ad576922195962f8f79b37b41316bd6365",
+      "official": [
+        "5.00000400000000000000000000000000000000000000000000",
+        "5.00000400000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 26,
+      "key": "e3909ecf893032620af18d419ed41fec130ffe6159941f711ba1015d82f2a3d2",
+      "official": [
+        "6.00000500000000000000000000000000000000000000000000",
+        "6.00000500000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 37,
+      "key": "a6fa31b855414522196df9722a30211ed0effe50d24873cfcf7120768d7a0a39",
+      "official": [
+        "7.00000600000000000000000000000000000000000000000000",
+        "7.00000600000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 50,
+      "key": "8163f051f1c92f038dafd6b190140be8574d44de89ab0bb1cda30ba9f140732f",
+      "official": [
+        "8.00000700000000000000000000000000000000000000000000",
+        "8.00000700000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 65,
+      "key": "9b082c7a2483daff2320adc1003d522ccf68182835bc6d6e5f4e0925f9fe7e8f",
+      "official": [
+        "9.00000800000000000000000000000000000000000000000000",
+        "9.00000800000000000000000000000000000000000000000000"
+      ]
+    },
+    {
+      "n": 101,
+      "key": "93b2ae3d66c9441c303ecc5844eb06c059bb775d4c2a02c8380f6710eec9b6db",
+      "official": [
+        "11.00001000000000000000000000000000000000000000000000",
+        "11.00001000000000000000000000000000000000000000000000"
+      ]
+    }
+  ],
+  "final_results": []
+}

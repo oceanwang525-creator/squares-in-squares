@@ -1,0 +1,69 @@
+{
+  "n": 805,
+  "L_inc": 28.84344105476938,
+  "seeds": {
+    "805_749cap_v0": {
+      "seed_pen": 0.20611812716981248,
+      "n_overlaps": 5,
+      "L_seed": 28.838330372549972
+    },
+    "805_749cap_v1": {
+      "seed_pen": 0.3169092956057955,
+      "n_overlaps": 5,
+      "L_seed": 28.838330372549972
+    },
+    "805_749cap_v2": {
+      "seed_pen": 0.21406655851259604,
+      "n_overlaps": 5,
+      "L_seed": 28.838330372549972
+    }
+  },
+  "polished": [
+    {
+      "label": "805_749cap_v2_R4.6_s1",
+      "cpp_Lf": 1e+18,
+      "pen": 0.00756317876834256,
+      "L": null,
+      "dL": null
+    },
+    {
+      "label": "805_749cap_v2_R5.7_s0",
+      "cpp_Lf": 1e+18,
+      "pen": 0.007565710648889112,
+      "L": null,
+      "dL": null
+    },
+    {
+      "label": "805_749cap_v2_R5.5_s4",
+      "cpp_Lf": 1e+18,
+      "pen": 0.007590532195514643,
+      "L": null,
+      "dL": null
+    },
+    {
+      "label": "805_749cap_v1_R6.2_s1",
+      "cpp_Lf": 1e+18,
+      "pen": 0.007710672935765883,
+      "L": null,
+      "dL": null
+    },
+    {
+      "label": "805_749cap_v1_R4.5_s3",
+      "cpp_Lf": 1e+18,
+      "pen": 0.007814554097179682,
+      "L": null,
+      "dL": null
+    },
+    {
+      "label": "805_749cap_v2_R5.4_s5",
+      "cpp_Lf": 1e+18,
+      "pen": 0.007965511524358426,
+      "L": null,
+      "dL": null
+    }
+  ],
+  "dt": 82.56,
+  "best_L": null,
+  "best_dL": null,
+  "best_label": null
+}

@@ -1,0 +1,22 @@
+{
+  "folder": "pinwheel_layer_growth",
+  "args": [
+    "poc/pinwheel_layer_growth/poc/search.py",
+    "--incumbent",
+    "regeneration-proof/incumbent.csv",
+    "--out",
+    "poc/pinwheel_layer_growth/data/regenerate-nov13/",
+    "--family",
+    "157:184",
+    "183:212",
+    "211:242",
+    "109:132",
+    "132:157"
+  ],
+  "reason": "Full documented five-family normal sweep",
+  "timeout": 3500,
+  "pid": 423268,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 81.55
+}

@@ -1,0 +1,16 @@
+{
+  "folder": "c4_symmetric_ils",
+  "args": [
+    "poc/c4_symmetric_ils/poc/c4run.py",
+    "109",
+    "10.9498",
+    "240",
+    "1"
+  ],
+  "reason": "Documented n109 C4 240second singleworker",
+  "timeout": 3500,
+  "pid": 428390,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 244.63
+}

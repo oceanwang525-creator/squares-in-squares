@@ -1,0 +1,12 @@
+{
+  "folder": "free_band_ga",
+  "args": [
+    "poc/free_band_ga/poc/free_band_ga.py"
+  ],
+  "reason": "Normal300generation64population",
+  "timeout": 3500,
+  "pid": 426383,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 1.43
+}

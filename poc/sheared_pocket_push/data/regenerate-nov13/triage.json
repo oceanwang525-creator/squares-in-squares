@@ -1,0 +1,17 @@
+{
+  "folder": "sheared_pocket_push",
+  "scripts": [
+    "poc/certify_merged.py",
+    "poc/pocket_core.py",
+    "poc/v1_continuous_angle.py",
+    "poc/v2_end_taper.py",
+    "poc/v3_miter_corner.py",
+    "poc/v4_arm_phases.py",
+    "poc/v5_asymmetric_arms.py",
+    "poc/v6_slp_squeeze.py"
+  ],
+  "final_bytes": 11,
+  "script_bytes": 80156,
+  "status": "skipped-deferred",
+  "reason": "Six variants perform many multiprocess nonlinear optimizations. Conservative single-thread full replay estimated >1h; no huge all-core replay while swarm active."
+}

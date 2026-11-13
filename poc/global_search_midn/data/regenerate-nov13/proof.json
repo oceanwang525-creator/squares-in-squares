@@ -1,0 +1,94 @@
+{
+  "folder": "global_search_midn",
+  "source_main": "343e56e74e6b4d5fb1efeb2b97dc8a9768dd5e13",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/global_search_midn/data/best_328.npy",
+      "sha256": "41a9d9b1a8fae313594522153b61c578a511dcef0109fb77f53aa63be9e11836",
+      "groups": 1
+    },
+    {
+      "path": "poc/global_search_midn/data/best_492.npy",
+      "sha256": "5fdbcc971c8a02749df943c05ff3ff54fbce80f99274dc9d3bc0cf8e8063e77d",
+      "groups": 1
+    },
+    {
+      "path": "poc/global_search_midn/data/best_497.npy",
+      "sha256": "07d086a4575315b29b33870277f5b6d1d1c555c38b027dbfca9b6b47589de3d0",
+      "groups": 1
+    },
+    {
+      "path": "poc/global_search_midn/data/regenerate-nov13/source-manifest.json",
+      "sha256": "d7a8696167c030292df07df1bfea84ba517f8cebb9fe98e5486db18b3071e8ca",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/global_search_midn/data/run_328_0.json",
+      "sha256": "e9106fc232a4c771b9a16546df5a5d55a768db7e707d3b7f8125c6128bd0778a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/global_search_midn/data/run_328_1.json",
+      "sha256": "d86da89e541975f74cc87e6fe93f0c44d1ff0da2ea4aa0d1185cfcc90d0b5e0e",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/global_search_midn/data/run_328_42.json",
+      "sha256": "b8f4aceea7a8f7b355cdd4259e4c48fbcea5e658849420851679db954083604b",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/global_search_midn/data/run_492_1.json",
+      "sha256": "5f2106b93c593014f7f6370dca89e1b0e9febdd996e074e4edaf4fa06cd63046",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/global_search_midn/data/run_497_1.json",
+      "sha256": "d35657b912a87514f8a5d31660e9c09c28107c68c9aa445af96f231e20f1291b",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 3,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [
+    {
+      "n": 328,
+      "key": "e362ca92337acce0c9c6b3e78ee82bdb0f63f6e95b39bb5df19c4d7c9a0dc8db",
+      "official": [
+        "18.73128170769607574647291933413010236069799343511879",
+        "18.73128170769607574647291933413010236069799343511879"
+      ]
+    },
+    {
+      "n": 492,
+      "key": "5bf9af540e6923ba1725716b8c7bd4220df1a9be1af9359bf1cd478c1417a930",
+      "official": [
+        "22.88976278796362475856074387183971539770423989519575",
+        "22.88976278796362475856074387183971539770423989519575"
+      ]
+    },
+    {
+      "n": 497,
+      "key": "c3bd4d885aa6bb054d55579735b275be393c4d98bb08071596b153fb09264465",
+      "official": [
+        "23.28091170571864510723672326810908338974160647797494",
+        "23.28091170571864510723672326810908338974160647797494"
+      ]
+    }
+  ],
+  "final_results": []
+}

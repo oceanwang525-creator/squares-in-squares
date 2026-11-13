@@ -1,0 +1,31 @@
+{
+  "source_main": "db4cf4cb0f2e30277d67b29c44a9626c7eef4012",
+  "original_sources": {
+    "poc/pinwheel_layer_growth/poc/ipopt.py": "e6aaba4b2f18869cbe23bcfbb0024e312dd6f4acae7c8f1fe37cebcba7b9b878",
+    "poc/pinwheel_layer_growth/poc/search.py": "88ac69ae2f054cdba7cf9ee5fddc8e29628572447400fb4c83226cf1fb2ac996"
+  },
+  "execution": {
+    "folder": "pinwheel_layer_growth",
+    "args": [
+      "poc/pinwheel_layer_growth/poc/search.py",
+      "--incumbent",
+      "regeneration-proof/incumbent.csv",
+      "--out",
+      "poc/pinwheel_layer_growth/data/regenerate-nov13/",
+      "--family",
+      "157:184",
+      "183:212",
+      "211:242",
+      "109:132",
+      "132:157"
+    ],
+    "reason": "Full documented five-family normal sweep",
+    "timeout": 3500,
+    "pid": 423268,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 81.55
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}

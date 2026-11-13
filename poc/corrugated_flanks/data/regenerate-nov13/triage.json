@@ -1,0 +1,16 @@
+{
+  "folder": "corrugated_flanks",
+  "scripts": [
+    "poc/cell.py",
+    "poc/check.py",
+    "poc/full635.py",
+    "poc/phase_scan.py",
+    "poc/run_cell.py",
+    "poc/scan_km.py",
+    "poc/scan_w.py"
+  ],
+  "final_bytes": 0,
+  "script_bytes": 8766,
+  "status": "skipped-no-complete-packing-exporter",
+  "reason": "Reviewed source is analytical, capacity-only, incomplete-layout exploration, or prints relaxation diagnostics without a complete saved packing exporter. Not presented as a completed packing regeneration."
+}

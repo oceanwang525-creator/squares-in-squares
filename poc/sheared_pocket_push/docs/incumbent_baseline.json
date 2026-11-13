@@ -1,0 +1,15 @@
+{
+  "literal": {
+    "score": 22.173715450068453,
+    "accepted": 1000,
+    "missing": 0,
+    "rejected": 0
+  },
+  "pandas": {
+    "score": 22.173715450068453,
+    "accepted": 1000,
+    "missing": 0,
+    "rejected": 0
+  },
+  "elapsed_s": 758.62
+}

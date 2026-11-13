@@ -1,0 +1,368 @@
+{
+  "targets": [
+    {
+      "attempts": [
+        {
+          "certified": {
+            "dilation": 1e-12,
+            "literal": "25.53553390595753930000000000000000000000000000000000",
+            "pandas": "25.53553390595753930000000000000000000000000000000000"
+          },
+          "count": 628,
+          "delta": 0.0
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "25.53553391810076750000000000000000000000000000000000",
+            "pandas": "25.53553391810076750000000000000000000000000000000000"
+          },
+          "count": 628,
+          "delta": 1e-10
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "25.53553391800076950000000000000000000000000000000000",
+            "pandas": "25.53553391800076950000000000000000000000000000000000"
+          },
+          "count": 628,
+          "delta": 2e-10
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 5e-10
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 1e-09
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 2e-09
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 5e-09
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 1e-08
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 2e-08
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 5e-08
+        },
+        {
+          "certified": null,
+          "count": 628,
+          "delta": 1e-07
+        }
+      ],
+      "current_literal": "25.53553390593287706923132169163902856428894147391627",
+      "n": 627,
+      "side": 25.535533905932876,
+      "tilted": 75
+    },
+    {
+      "attempts": [
+        {
+          "certified": {
+            "dilation": 1e-12,
+            "literal": "26.53553390595853845000000000000000000000000000000000",
+            "pandas": "26.53553390595853845000000000000000000000000000000000"
+          },
+          "count": 679,
+          "delta": 0.0
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "26.53553391860076764000000000000000000000000000000000",
+            "pandas": "26.53553391860076764000000000000000000000000000000000"
+          },
+          "count": 679,
+          "delta": 1e-10
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "26.53553391850076664000000000000000000000000000000000",
+            "pandas": "26.53553391850076664000000000000000000000000000000000"
+          },
+          "count": 679,
+          "delta": 2e-10
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 5e-10
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 1e-09
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 2e-09
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 5e-09
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 1e-08
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 2e-08
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 5e-08
+        },
+        {
+          "certified": null,
+          "count": 679,
+          "delta": 1e-07
+        }
+      ],
+      "current_literal": "26.53553390593285346923132169163963010308195645811009",
+      "n": 678,
+      "side": 26.53553390593285,
+      "tilted": 75
+    },
+    {
+      "attempts": [
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 0.0
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 1e-10
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 2e-10
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 5e-10
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 1e-09
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 2e-09
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 5e-09
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 1e-08
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 2e-08
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 5e-08
+        },
+        {
+          "certified": null,
+          "count": 844,
+          "delta": 1e-07
+        }
+      ],
+      "current_literal": "29.53553390593293031923132169163838125645851856330159",
+      "n": 843,
+      "side": 29.53553390593293,
+      "tilted": 79
+    },
+    {
+      "attempts": [
+        {
+          "certified": {
+            "dilation": 1e-12,
+            "literal": "30.53553390596253863000000000000000000000000000000000",
+            "pandas": "30.53553390596253863000000000000000000000000000000000"
+          },
+          "count": 903,
+          "delta": 0.0
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "30.53553392060076370000000000000000000000000000000000",
+            "pandas": "30.53553392060076370000000000000000000000000000000000"
+          },
+          "count": 903,
+          "delta": 1e-10
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "30.53553392050076970000000000000000000000000000000000",
+            "pandas": "30.53553392050076970000000000000000000000000000000000"
+          },
+          "count": 903,
+          "delta": 2e-10
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 5e-10
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 1e-09
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 2e-09
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 5e-09
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 1e-08
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 2e-08
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 5e-08
+        },
+        {
+          "certified": null,
+          "count": 903,
+          "delta": 1e-07
+        }
+      ],
+      "current_literal": "30.53553390593295247542193978527945313614802396437858",
+      "n": 902,
+      "side": 30.53553390593295,
+      "tilted": 95
+    },
+    {
+      "attempts": [
+        {
+          "certified": {
+            "dilation": 1e-12,
+            "literal": "31.53553390596353956000000000000000000000000000000000",
+            "pandas": "31.53553390596353956000000000000000000000000000000000"
+          },
+          "count": 964,
+          "delta": 0.0
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "31.53553392110076964000000000000000000000000000000000",
+            "pandas": "31.53553392110076964000000000000000000000000000000000"
+          },
+          "count": 964,
+          "delta": 1e-10
+        },
+        {
+          "certified": {
+            "dilation": 5e-10,
+            "literal": "31.53553392100076764000000000000000000000000000000000",
+            "pandas": "31.53553392100076764000000000000000000000000000000000"
+          },
+          "count": 964,
+          "delta": 2e-10
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 5e-10
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 1e-09
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 2e-09
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 5e-09
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 1e-08
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 2e-08
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 5e-08
+        },
+        {
+          "certified": null,
+          "count": 964,
+          "delta": 1e-07
+        }
+      ],
+      "current_literal": "31.53553390593298315961566084581985024389010510204494",
+      "n": 963,
+      "side": 31.535533905932986,
+      "tilted": 75
+    }
+  ],
+  "wins": []
+}

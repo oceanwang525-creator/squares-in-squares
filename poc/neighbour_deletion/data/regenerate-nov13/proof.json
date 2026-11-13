@@ -1,0 +1,48 @@
+{
+  "folder": "neighbour_deletion",
+  "source_main": "b4325461a14ce7ba241ae4e402d7dc5b0de59fce",
+  "incumbent_sha256": "5a510cb09b3bc1bbfbabdab5cf584aaddbc6f974fe05af9e9f331bd9e358af21",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/neighbour_deletion/data/regenerate-nov13/scan.json",
+      "sha256": "b08765b93beb1b276e9ee18769ecf916e7be4654a80614b857df198e98cf4598",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/neighbour_deletion/data/regenerate-nov13/source-manifest.json",
+      "sha256": "528de90791a0ad795aeea94d0a310520384f80981c29d071f50d12e6dfda678f",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/neighbour_deletion/data/run1.json",
+      "sha256": "7ad4b6bd8c680427b141815e1a5a063bf859108717a07df9fb1a7b9926a7a23a",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/neighbour_deletion/data/run2.json",
+      "sha256": "fc0cbedd5227df577e456fc6791255b4866dafdaa24f0616b329afd6eadd85be",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    },
+    {
+      "path": "poc/neighbour_deletion/data/t1.json",
+      "sha256": "6e7cc9e5e0d263de70b815f3e3c86c937ea6d1343e03e9fe5f8c3db2ae20f721",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}

@@ -1,0 +1,24 @@
+diff --git a/poc/soft_to_rigid/poc/incumbent.py b/poc/soft_to_rigid/poc/incumbent.py
+index c219563..40d218b 100644
+--- a/poc/soft_to_rigid/poc/incumbent.py
++++ b/poc/soft_to_rigid/poc/incumbent.py
+@@ -1,5 +1,5 @@
+ import pandas as pd, numpy as np, math, sys
+-INC='/Users/lucaszhang/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv'
++INC='/mnt/e/squares-poc-regenerate-nov13/poc/pell_corrugation/data/border-scan/merged.csv'
+ def load():
+     return pd.read_csv(INC)
+ def side(g):
+diff --git a/poc/soft_to_rigid/poc/s2r.py b/poc/soft_to_rigid/poc/s2r.py
+index 06415f3..480c3ac 100644
+--- a/poc/soft_to_rigid/poc/s2r.py
++++ b/poc/soft_to_rigid/poc/s2r.py
+@@ -8,7 +8,7 @@ side compressed by continuation, then dilated and certified by the official metr
+ import math, sys, time, json
+ import numpy as np
+ from scipy.optimize import minimize
+-sys.path.insert(0, '/Users/lucaszhang/squares-in-squares/poc/baseline/poc/src')
++sys.path.insert(0, '/mnt/e/squares-poc-regenerate-nov13/poc/baseline/poc/src')
+ from squares.core import evaluate
+ 
+ K = 40

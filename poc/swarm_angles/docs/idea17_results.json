@@ -1,0 +1,502 @@
+{
+  "elapsed_s": 917.28,
+  "total_tasks": 268,
+  "wins": 0,
+  "per_n": {
+    "401": {
+      "L_base": 20.535534,
+      "total": 56,
+      "feasible": 45,
+      "best_L": 20.535534,
+      "best_dL": 0.0,
+      "best_name": "pocket_bridge_+3.0",
+      "families": {
+        "surg": {
+          "total": 28,
+          "feasible": 28,
+          "best_L": 20.564672,
+          "best_dL": 0.029138,
+          "best_name": "surg_403_lo_dth-7.5",
+          "min_pen": 0.0
+        },
+        "skew": {
+          "total": 16,
+          "feasible": 5,
+          "best_L": 20.619687,
+          "best_dL": 0.084153,
+          "best_name": "skew_w3_th34.0_v0.0",
+          "min_pen": 0.0
+        },
+        "pin4": {
+          "total": 0,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": null,
+          "min_pen": 99.0
+        },
+        "pocket": {
+          "total": 12,
+          "feasible": 12,
+          "best_L": 20.535534,
+          "best_dL": 0.0,
+          "best_name": "pocket_bridge_+3.0",
+          "min_pen": 0.0
+        }
+      },
+      "top5": [
+        {
+          "n": 401,
+          "fam": "pocket",
+          "name": "pocket_bridge_+3.0",
+          "ok": true,
+          "L": 20.53553409835948,
+          "dL": 1.9242667903540678e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 14.65
+        },
+        {
+          "n": 401,
+          "fam": "pocket",
+          "name": "pocket_rot_-6.0",
+          "ok": true,
+          "L": 20.53553409835993,
+          "dL": 1.924271266773303e-07,
+          "pen": 0.0,
+          "n_non45": 0,
+          "elapsed": 16.06
+        },
+        {
+          "n": 401,
+          "fam": "pocket",
+          "name": "pocket_rot_-3.5",
+          "ok": true,
+          "L": 20.53553409836003,
+          "dL": 1.92427229706027e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 15.84
+        },
+        {
+          "n": 401,
+          "fam": "pocket",
+          "name": "pocket_rot_+3.5",
+          "ok": true,
+          "L": 20.53553409836198,
+          "dL": 1.9242917659312297e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 16.03
+        },
+        {
+          "n": 401,
+          "fam": "pocket",
+          "name": "pocket_bridge_+1.2",
+          "ok": true,
+          "L": 20.535534098386467,
+          "dL": 1.9245366544851095e-07,
+          "pen": 0.0,
+          "n_non45": 4,
+          "elapsed": 12.33
+        }
+      ]
+    },
+    "442": {
+      "L_base": 21.535534,
+      "total": 52,
+      "feasible": 37,
+      "best_L": 21.535534,
+      "best_dL": 0.0,
+      "best_name": "pocket_rot_-0.6",
+      "families": {
+        "surg": {
+          "total": 24,
+          "feasible": 24,
+          "best_L": 21.535534,
+          "best_dL": 0.0,
+          "best_name": "surg_443_hi_dth0.0",
+          "min_pen": 0.0
+        },
+        "skew": {
+          "total": 16,
+          "feasible": 2,
+          "best_L": 21.881921,
+          "best_dL": 0.346387,
+          "best_name": "skew_w3_th22.0_v-0.6",
+          "min_pen": 0.0
+        },
+        "pin4": {
+          "total": 0,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": null,
+          "min_pen": 99.0
+        },
+        "pocket": {
+          "total": 12,
+          "feasible": 11,
+          "best_L": 21.535534,
+          "best_dL": 0.0,
+          "best_name": "pocket_rot_-0.6",
+          "min_pen": 0.0
+        }
+      },
+      "top5": [
+        {
+          "n": 442,
+          "fam": "pocket",
+          "name": "pocket_rot_-0.6",
+          "ok": true,
+          "L": 21.535534108075947,
+          "dL": 2.0214311646782335e-07,
+          "pen": 0.0,
+          "n_non45": 0,
+          "elapsed": 15.77
+        },
+        {
+          "n": 442,
+          "fam": "pocket",
+          "name": "pocket_rot_+0.6",
+          "ok": true,
+          "L": 21.53553410835937,
+          "dL": 2.0242654130697701e-07,
+          "pen": 0.0,
+          "n_non45": 0,
+          "elapsed": 15.16
+        },
+        {
+          "n": 442,
+          "fam": "surg",
+          "name": "surg_443_hi_dth0.0",
+          "ok": true,
+          "L": 21.53553410836012,
+          "dL": 2.0242729092956324e-07,
+          "pen": 0.0,
+          "n_non45": 3,
+          "elapsed": 19.53
+        },
+        {
+          "n": 442,
+          "fam": "surg",
+          "name": "surg_443_lo_dth-2.5",
+          "ok": true,
+          "L": 21.53553410836036,
+          "dL": 2.0242752896137972e-07,
+          "pen": 0.0,
+          "n_non45": 0,
+          "elapsed": 16.97
+        },
+        {
+          "n": 442,
+          "fam": "surg",
+          "name": "surg_443_lo_dth-5.0",
+          "ok": true,
+          "L": 21.53553410836205,
+          "dL": 2.0242922005309083e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 19.56
+        }
+      ]
+    },
+    "530": {
+      "L_base": 23.535534,
+      "total": 56,
+      "feasible": 42,
+      "best_L": 23.535534,
+      "best_dL": 1e-06,
+      "best_name": "pocket_rot_+0.6",
+      "families": {
+        "surg": {
+          "total": 28,
+          "feasible": 28,
+          "best_L": 23.562623,
+          "best_dL": 0.027089,
+          "best_name": "surg_532_lo_dth-7.5",
+          "min_pen": 0.0
+        },
+        "skew": {
+          "total": 16,
+          "feasible": 3,
+          "best_L": 23.829592,
+          "best_dL": 0.294058,
+          "best_name": "skew_w2_th31.5_v-0.6",
+          "min_pen": 0.0
+        },
+        "pin4": {
+          "total": 0,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": null,
+          "min_pen": 99.0
+        },
+        "pocket": {
+          "total": 12,
+          "feasible": 11,
+          "best_L": 23.535534,
+          "best_dL": 1e-06,
+          "best_name": "pocket_rot_+0.6",
+          "min_pen": 0.0
+        }
+      },
+      "top5": [
+        {
+          "n": 530,
+          "fam": "pocket",
+          "name": "pocket_rot_+0.6",
+          "ok": true,
+          "L": 23.535534434112417,
+          "dL": 5.281795623091057e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 36.4
+        },
+        {
+          "n": 530,
+          "fam": "pocket",
+          "name": "pocket_bridge_+1.2",
+          "ok": true,
+          "L": 23.53553462478967,
+          "dL": 7.188568140747975e-07,
+          "pen": 0.0,
+          "n_non45": 2,
+          "elapsed": 35.98
+        },
+        {
+          "n": 530,
+          "fam": "pocket",
+          "name": "pocket_bridge_+3.0",
+          "ok": true,
+          "L": 23.535550649585485,
+          "dL": 1.674365262971378e-05,
+          "pen": 6.889712800273173e-09,
+          "n_non45": 21,
+          "elapsed": 38.04
+        },
+        {
+          "n": 530,
+          "fam": "pocket",
+          "name": "pocket_rot_-3.5",
+          "ok": true,
+          "L": 23.535550722812705,
+          "dL": 1.6816879849557154e-05,
+          "pen": 8.129460216110829e-09,
+          "n_non45": 8,
+          "elapsed": 39.52
+        },
+        {
+          "n": 530,
+          "fam": "pocket",
+          "name": "pocket_rot_-1.5",
+          "ok": true,
+          "L": 23.535557485645736,
+          "dL": 2.357971288091676e-05,
+          "pen": 3.3133251697847754e-10,
+          "n_non45": 23,
+          "elapsed": 34.94
+        }
+      ]
+    },
+    "626": {
+      "L_base": 25.520815,
+      "total": 56,
+      "feasible": 36,
+      "best_L": 25.520816,
+      "best_dL": 0.0,
+      "best_name": "pocket_bridge_-3.0",
+      "families": {
+        "surg": {
+          "total": 28,
+          "feasible": 26,
+          "best_L": 25.535534,
+          "best_dL": 0.014719,
+          "best_name": "surg_628_hi_dth0.0",
+          "min_pen": 0.0
+        },
+        "skew": {
+          "total": 16,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": "skew_w2_th22.0_v-0.6",
+          "min_pen": 0.013811
+        },
+        "pin4": {
+          "total": 0,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": null,
+          "min_pen": 99.0
+        },
+        "pocket": {
+          "total": 12,
+          "feasible": 10,
+          "best_L": 25.520816,
+          "best_dL": 0.0,
+          "best_name": "pocket_bridge_-3.0",
+          "min_pen": 0.0
+        }
+      },
+      "top5": [
+        {
+          "n": 626,
+          "fam": "pocket",
+          "name": "pocket_bridge_-3.0",
+          "ok": true,
+          "L": 25.52081552245157,
+          "dL": 2.4228014439131584e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 37.44
+        },
+        {
+          "n": 626,
+          "fam": "pocket",
+          "name": "pocket_bridge_+1.2",
+          "ok": true,
+          "L": 25.52081552245714,
+          "dL": 2.422857150463642e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 40.0
+        },
+        {
+          "n": 626,
+          "fam": "pocket",
+          "name": "pocket_bridge_-1.2",
+          "ok": true,
+          "L": 25.520815522457582,
+          "dL": 2.422861555828604e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 37.39
+        },
+        {
+          "n": 626,
+          "fam": "pocket",
+          "name": "pocket_bridge_+3.0",
+          "ok": true,
+          "L": 25.520817781709045,
+          "dL": 2.5015376188264327e-06,
+          "pen": 0.0,
+          "n_non45": 2,
+          "elapsed": 43.39
+        },
+        {
+          "n": 626,
+          "fam": "pocket",
+          "name": "pocket_bridge_+5.5",
+          "ok": true,
+          "L": 25.520849278217373,
+          "dL": 3.399804594650391e-05,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 43.85
+        }
+      ]
+    },
+    "842": {
+      "L_base": 29.520815,
+      "total": 48,
+      "feasible": 29,
+      "best_L": 29.520816,
+      "best_dL": 0.0,
+      "best_name": "pocket_bridge_-3.0",
+      "families": {
+        "surg": {
+          "total": 20,
+          "feasible": 20,
+          "best_L": 29.535558,
+          "best_dL": 0.014743,
+          "best_name": "surg_843_hi_dth0.0",
+          "min_pen": 0.0
+        },
+        "skew": {
+          "total": 16,
+          "feasible": 1,
+          "best_L": 30.126262,
+          "best_dL": 0.605447,
+          "best_name": "skew_w3_th34.0_v0.0",
+          "min_pen": 0.0
+        },
+        "pin4": {
+          "total": 0,
+          "feasible": 0,
+          "best_L": null,
+          "best_dL": null,
+          "best_name": null,
+          "min_pen": 99.0
+        },
+        "pocket": {
+          "total": 12,
+          "feasible": 8,
+          "best_L": 29.520816,
+          "best_dL": 0.0,
+          "best_name": "pocket_bridge_-3.0",
+          "min_pen": 0.0
+        }
+      },
+      "top5": [
+        {
+          "n": 842,
+          "fam": "pocket",
+          "name": "pocket_bridge_-3.0",
+          "ok": true,
+          "L": 29.520815562451585,
+          "dL": 2.8228012283193493e-07,
+          "pen": 0.0,
+          "n_non45": 1,
+          "elapsed": 135.66
+        },
+        {
+          "n": 842,
+          "fam": "pocket",
+          "name": "pocket_bridge_+5.5",
+          "ok": true,
+          "L": 29.52081556245175,
+          "dL": 2.8228028980947784e-07,
+          "pen": 0.0,
+          "n_non45": 2,
+          "elapsed": 97.94
+        },
+        {
+          "n": 842,
+          "fam": "pocket",
+          "name": "pocket_bridge_+3.0",
+          "ok": true,
+          "L": 29.520815562636106,
+          "dL": 2.8246464367498447e-07,
+          "pen": 0.0,
+          "n_non45": 2,
+          "elapsed": 143.27
+        },
+        {
+          "n": 842,
+          "fam": "pocket",
+          "name": "pocket_rot_+0.6",
+          "ok": true,
+          "L": 29.520817019962013,
+          "dL": 1.7397905516247647e-06,
+          "pen": 1.4299135209228098e-08,
+          "n_non45": 2,
+          "elapsed": 270.61
+        },
+        {
+          "n": 842,
+          "fam": "pocket",
+          "name": "pocket_bridge_+1.2",
+          "ok": true,
+          "L": 29.520826118213314,
+          "dL": 1.083804185242343e-05,
+          "pen": 7.599985085704475e-10,
+          "n_non45": 6,
+          "elapsed": 169.16
+        }
+      ]
+    }
+  }
+}

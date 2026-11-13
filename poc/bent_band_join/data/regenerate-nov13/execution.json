@@ -1,0 +1,14 @@
+{
+  "folder": "bent_band_join",
+  "args": [
+    "poc/bent_band_join/poc/run.py",
+    "--out-dir",
+    "poc/bent_band_join/data/regenerate-nov13/"
+  ],
+  "reason": "Full finite four-target construction",
+  "timeout": 3500,
+  "pid": 422953,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 115.18
+}

@@ -1,0 +1,15 @@
+{
+  "folder": "rotated_midrange_windows",
+  "args": [
+    "poc/rotated_midrange_windows/poc/search.py",
+    "regeneration-proof/incumbent.csv",
+    "poc/rotated_midrange_windows/data/regenerate-nov13/report.json",
+    "poc/rotated_midrange_windows/data/regenerate-nov13/output.csv"
+  ],
+  "reason": "Full normal donor sweep100..265",
+  "timeout": 3500,
+  "pid": 423204,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 13.31
+}

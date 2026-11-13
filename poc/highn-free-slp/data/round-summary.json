@@ -1,0 +1,109 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "report": "free_slp_600_1000_report.json",
+      "wins": 47,
+      "group_gain": -3.239518129305452e-07,
+      "largest_n": 936,
+      "largest_delta": -1.325188669909494e-07
+    },
+    {
+      "round": 2,
+      "report": "free_slp_600_1000_r2_report.json",
+      "wins": 38,
+      "group_gain": -3.2132202143486666e-06,
+      "largest_n": 862,
+      "largest_delta": -2.3788849574657434e-06
+    },
+    {
+      "round": 3,
+      "report": "free_slp_600_1000_r3_report.json",
+      "wins": 29,
+      "group_gain": -1.9169288663078987e-06,
+      "largest_n": 862,
+      "largest_delta": -1.5522274274815118e-06
+    },
+    {
+      "round": 4,
+      "report": "free_slp_600_1000_r4_report.json",
+      "wins": 22,
+      "group_gain": -2.1015383921962894e-07,
+      "largest_n": 970,
+      "largest_delta": -5.095804667121229e-08
+    },
+    {
+      "round": 5,
+      "report": "free_slp_600_1000_r5_report.json",
+      "wins": 21,
+      "group_gain": -1.2456912301672673e-07,
+      "largest_n": 970,
+      "largest_delta": -4.47373302847609e-08
+    },
+    {
+      "round": 6,
+      "report": "free_slp_600_1000_r6_report.json",
+      "wins": 21,
+      "group_gain": -9.979150306094198e-08,
+      "largest_n": 970,
+      "largest_delta": -4.24451052083441e-08
+    },
+    {
+      "round": 7,
+      "report": "free_slp_600_1000_r7_report.json",
+      "wins": 18,
+      "group_gain": -8.993421829472936e-08,
+      "largest_n": 970,
+      "largest_delta": -3.990892238903143e-08
+    },
+    {
+      "round": 8,
+      "report": "free_slp_600_1000_r8_report.json",
+      "wins": 15,
+      "group_gain": -9.502603859345982e-08,
+      "largest_n": 970,
+      "largest_delta": -3.953953253699183e-08
+    },
+    {
+      "round": 9,
+      "report": "free_slp_600_1000_r9_report.json",
+      "wins": 14,
+      "group_gain": -6.468780355817216e-08,
+      "largest_n": 997,
+      "largest_delta": -2.926097053546073e-08
+    },
+    {
+      "round": 10,
+      "report": "free_slp_600_1000_r10_report.json",
+      "wins": 13,
+      "group_gain": -6.167898192188659e-08,
+      "largest_n": 997,
+      "largest_delta": -2.8149074182692857e-08
+    },
+    {
+      "round": 11,
+      "report": "free_slp_600_1000_r11_report.json",
+      "wins": 12,
+      "group_gain": -4.334388492566177e-08,
+      "largest_n": 970,
+      "largest_delta": -1.7707460386873208e-08
+    },
+    {
+      "round": 12,
+      "report": "free_slp_600_1000_r12_report.json",
+      "wins": 11,
+      "group_gain": -3.9956987052391923e-08,
+      "largest_n": 970,
+      "largest_delta": -1.834892771057639e-08
+    },
+    {
+      "round": 13,
+      "report": "free_slp_600_1000_r13_report.json",
+      "wins": 11,
+      "group_gain": -2.3828825135296938e-08,
+      "largest_n": 970,
+      "largest_delta": -1.2939342042272983e-08
+    }
+  ],
+  "stop_threshold": 1e-09
+}

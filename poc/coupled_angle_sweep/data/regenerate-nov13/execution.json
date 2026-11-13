@@ -1,0 +1,19 @@
+{
+  "folder": "coupled_angle_sweep",
+  "args": [
+    "poc/coupled_angle_sweep/poc/sweep.py",
+    "regeneration-proof/incumbent.csv",
+    "poc/coupled_angle_sweep/data/regenerate-nov13/candidate.csv",
+    "poc/coupled_angle_sweep/data/regenerate-nov13/results.json",
+    "635",
+    "686",
+    "--workers",
+    "1"
+  ],
+  "reason": "Both documented family probes, bounded one worker",
+  "timeout": 3500,
+  "pid": 423151,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 8.89
+}

@@ -1,0 +1,12 @@
+{
+  "folder": "vacancy_diamonds",
+  "args": [
+    "poc/vacancy_diamonds/data/regenerate-nov13/run_pipeline.py"
+  ],
+  "reason": "Reextract n401 then normal240second SLP with fullrawarray",
+  "timeout": 3500,
+  "pid": 433483,
+  "status": "completed",
+  "returncode": 0,
+  "seconds": 8.95
+}

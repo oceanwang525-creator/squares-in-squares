@@ -1,0 +1,22 @@
+{
+  "source_main": "1a71e4040d9da8f0ffc1a59e4d30515b621bb2f3",
+  "original_sources": {
+    "poc/leader_poc_k2p10/poc/repolish.py": "273386e1d380cbe90b9c3fe0a654c212e0b0cfcf2edff94077140cee470feea2"
+  },
+  "execution": {
+    "folder": "leader_poc_k2p10",
+    "args": [
+      "poc/leader_poc_k2p10/poc/repolish.py",
+      "635",
+      "6"
+    ],
+    "reason": "Documented six-round n635fullpacking polish",
+    "timeout": 3500,
+    "pid": 433075,
+    "status": "completed",
+    "returncode": 0,
+    "seconds": 27.39
+  },
+  "blas_threads": 1,
+  "max_new_parallel_cpu_jobs": 4
+}
