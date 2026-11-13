@@ -1,0 +1,110 @@
+{
+  "variant": "v3_miter_corner",
+  "n": 634,
+  "L_ours": 25.707106781186678,
+  "L_probe": 25.70510678118668,
+  "tasks": 640,
+  "best_cap": 628,
+  "deficit": 6,
+  "best_cfg": {
+    "L_probe": 25.70510678118668,
+    "P": 5,
+    "w": 6,
+    "th_deg": 29.758,
+    "signs": [
+      1,
+      -1
+    ],
+    "sw_u": 0,
+    "miter_mode": "diag_clip",
+    "b_miter": -0.4,
+    "y_phase": 0.0,
+    "rigid_cap": 628,
+    "feasible_cap": 628
+  },
+  "top5": [
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "th_deg": 29.758,
+      "signs": [
+        1,
+        -1
+      ],
+      "sw_u": 0,
+      "miter_mode": "diag_clip",
+      "b_miter": -0.4,
+      "y_phase": 0.0,
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "th_deg": 29.758,
+      "signs": [
+        1,
+        -1
+      ],
+      "sw_u": 0,
+      "miter_mode": "diag_clip",
+      "b_miter": 0.0,
+      "y_phase": 0.0,
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "th_deg": 29.758,
+      "signs": [
+        1,
+        -1
+      ],
+      "sw_u": 0,
+      "miter_mode": "diag_clip",
+      "b_miter": 0.4,
+      "y_phase": 0.0,
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "th_deg": 29.758,
+      "signs": [
+        -1,
+        1
+      ],
+      "sw_u": 0,
+      "miter_mode": "diag_clip",
+      "b_miter": -0.4,
+      "y_phase": 0.0,
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "th_deg": 29.758,
+      "signs": [
+        -1,
+        1
+      ],
+      "sw_u": 0,
+      "miter_mode": "diag_clip",
+      "b_miter": 0.0,
+      "y_phase": 0.0,
+      "rigid_cap": 628,
+      "feasible_cap": 628
+    }
+  ],
+  "best_L": null,
+  "certified_win": null,
+  "seconds": 17.24
+}

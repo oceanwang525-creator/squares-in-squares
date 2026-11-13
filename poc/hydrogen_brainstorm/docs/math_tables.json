@@ -1,0 +1,277 @@
+{
+  "d1_shear_table": [
+    {
+      "k": 10,
+      "n": 101,
+      "L_front": 10.535534,
+      "f_front": 0.53553,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5355,
+        "th_deg": 38.501,
+        "drho": -0.087,
+        "end_waste_1end": 8.182,
+        "net_gain_1end_est": -9.098
+      }
+    },
+    {
+      "k": 15,
+      "n": 226,
+      "L_front": 15.535534,
+      "f_front": 0.53553,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5355,
+        "th_deg": 38.501,
+        "drho": -0.087,
+        "end_waste_1end": 8.182,
+        "net_gain_1end_est": -9.533
+      }
+    },
+    {
+      "k": 20,
+      "n": 401,
+      "L_front": 20.526135,
+      "f_front": 0.52614,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5261,
+        "th_deg": 38.731,
+        "drho": -0.0995,
+        "end_waste_1end": 8.215,
+        "net_gain_1end_est": -10.258
+      }
+    },
+    {
+      "k": 23,
+      "n": 530,
+      "L_front": 23.517305,
+      "f_front": 0.5173,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5173,
+        "th_deg": 38.945,
+        "drho": -0.1113,
+        "end_waste_1end": 8.246,
+        "net_gain_1end_est": -10.863
+      }
+    },
+    {
+      "k": 25,
+      "n": 626,
+      "L_front": 25.511049,
+      "f_front": 0.51105,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.511,
+        "th_deg": 39.097,
+        "drho": -0.1196,
+        "end_waste_1end": 8.268,
+        "net_gain_1end_est": -11.318
+      }
+    },
+    {
+      "k": 29,
+      "n": 842,
+      "L_front": 29.502153,
+      "f_front": 0.50215,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5022,
+        "th_deg": 39.31,
+        "drho": -0.1314,
+        "end_waste_1end": 8.298,
+        "net_gain_1end_est": -12.174
+      }
+    },
+    {
+      "k": 31,
+      "n": 962,
+      "L_front": 31.502153,
+      "f_front": 0.50215,
+      "best_shear": {
+        "P": 4,
+        "w": 5,
+        "W": 4.5022,
+        "th_deg": 39.31,
+        "drho": -0.1314,
+        "end_waste_1end": 8.298,
+        "net_gain_1end_est": -12.437
+      }
+    }
+  ],
+  "pythagorean": [
+    {
+      "triple": "3-4-5",
+      "th_deg": 36.8699,
+      "cos_th": 0.8,
+      "sin_th": 0.6,
+      "cos_plus_sin": 1.4,
+      "exact_cell_W_for_m1": 1.4,
+      "m_for_delta_W_c": "3+4=5 squares span width 5.0=5",
+      "gap_mod1_per_tilted_side": 0.4
+    },
+    {
+      "triple": "5-12-13",
+      "th_deg": 22.6199,
+      "cos_th": 0.923077,
+      "sin_th": 0.384615,
+      "cos_plus_sin": 1.307692,
+      "exact_cell_W_for_m1": 1.307692,
+      "m_for_delta_W_c": "5+12=13 squares span width 13.0=13",
+      "gap_mod1_per_tilted_side": 0.30769
+    },
+    {
+      "triple": "8-15-17",
+      "th_deg": 28.0725,
+      "cos_th": 0.882353,
+      "sin_th": 0.470588,
+      "cos_plus_sin": 1.352941,
+      "exact_cell_W_for_m1": 1.352941,
+      "m_for_delta_W_c": "8+15=17 squares span width 17.0=17",
+      "gap_mod1_per_tilted_side": 0.35294
+    },
+    {
+      "triple": "7-24-25",
+      "th_deg": 16.2602,
+      "cos_th": 0.96,
+      "sin_th": 0.28,
+      "cos_plus_sin": 1.24,
+      "exact_cell_W_for_m1": 1.24,
+      "m_for_delta_W_c": "7+24=25 squares span width 25.0=25",
+      "gap_mod1_per_tilted_side": 0.24
+    },
+    {
+      "triple": "20-21-29",
+      "th_deg": 43.6028,
+      "cos_th": 0.724138,
+      "sin_th": 0.689655,
+      "cos_plus_sin": 1.413793,
+      "exact_cell_W_for_m1": 1.413793,
+      "m_for_delta_W_c": "20+21=29 squares span width 29.0=29",
+      "gap_mod1_per_tilted_side": 0.41379
+    }
+  ],
+  "incumbent_angle_modes": {
+    "50": [
+      [
+        0.0,
+        34
+      ],
+      [
+        36.87,
+        16
+      ]
+    ],
+    "269": [
+      [
+        0.0,
+        217
+      ],
+      [
+        41.97,
+        34
+      ],
+      [
+        0.101,
+        2
+      ],
+      [
+        42.057,
+        2
+      ],
+      [
+        0.001,
+        1
+      ],
+      [
+        0.009,
+        1
+      ]
+    ],
+    "598": [
+      [
+        0.0,
+        342
+      ],
+      [
+        18.606,
+        35
+      ],
+      [
+        18.611,
+        20
+      ],
+      [
+        17.922,
+        18
+      ],
+      [
+        0.003,
+        12
+      ],
+      [
+        18.984,
+        9
+      ]
+    ],
+    "913": [
+      [
+        0.0,
+        501
+      ],
+      [
+        19.085,
+        232
+      ],
+      [
+        0.007,
+        4
+      ],
+      [
+        0.009,
+        4
+      ],
+      [
+        0.004,
+        3
+      ],
+      [
+        0.005,
+        3
+      ]
+    ],
+    "971": [
+      [
+        0.0,
+        681
+      ],
+      [
+        25.202,
+        164
+      ],
+      [
+        24.859,
+        20
+      ],
+      [
+        25.698,
+        6
+      ],
+      [
+        0.091,
+        4
+      ],
+      [
+        25.587,
+        4
+      ]
+    ]
+  }
+}

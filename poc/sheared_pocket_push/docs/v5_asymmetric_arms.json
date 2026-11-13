@@ -1,0 +1,134 @@
+{
+  "variant": "v5_asymmetric_arms",
+  "n": 634,
+  "L_ours": 25.707106781186678,
+  "L_probe": 25.70510678118668,
+  "tasks": 1444,
+  "best_cap": 631,
+  "deficit": 3,
+  "best_cfg": {
+    "mode": "2arm_asym",
+    "L_probe": 25.70510678118668,
+    "P1": 6,
+    "P2": 6,
+    "u1_u2": [
+      0,
+      0
+    ],
+    "signs": [
+      1,
+      1
+    ],
+    "yp": [
+      0.0,
+      0.0
+    ],
+    "rigid_cap": 631,
+    "feasible_cap": 631
+  },
+  "top5": [
+    {
+      "mode": "2arm_asym",
+      "L_probe": 25.70510678118668,
+      "P1": 6,
+      "P2": 6,
+      "u1_u2": [
+        0,
+        0
+      ],
+      "signs": [
+        1,
+        1
+      ],
+      "yp": [
+        0.0,
+        0.0
+      ],
+      "rigid_cap": 631,
+      "feasible_cap": 631
+    },
+    {
+      "mode": "2arm_asym",
+      "L_probe": 25.70510678118668,
+      "P1": 9,
+      "P2": 4,
+      "u1_u2": [
+        0,
+        0
+      ],
+      "signs": [
+        -1,
+        -1
+      ],
+      "yp": [
+        0.0,
+        0.5
+      ],
+      "rigid_cap": 631,
+      "feasible_cap": 631
+    },
+    {
+      "mode": "2arm_asym",
+      "L_probe": 25.70510678118668,
+      "P1": 5,
+      "P2": 9,
+      "u1_u2": [
+        0,
+        0
+      ],
+      "signs": [
+        -1,
+        -1
+      ],
+      "yp": [
+        0.0,
+        0.0
+      ],
+      "rigid_cap": 630,
+      "feasible_cap": 630
+    },
+    {
+      "mode": "2arm_asym",
+      "L_probe": 25.70510678118668,
+      "P1": 6,
+      "P2": 5,
+      "u1_u2": [
+        0,
+        0
+      ],
+      "signs": [
+        1,
+        -1
+      ],
+      "yp": [
+        0.0,
+        0.0
+      ],
+      "rigid_cap": 630,
+      "feasible_cap": 630
+    },
+    {
+      "mode": "2arm_asym",
+      "L_probe": 25.70510678118668,
+      "P1": 6,
+      "P2": 6,
+      "u1_u2": [
+        0,
+        0
+      ],
+      "signs": [
+        1,
+        -1
+      ],
+      "yp": [
+        0.0,
+        0.5
+      ],
+      "rigid_cap": 630,
+      "feasible_cap": 630
+    }
+  ],
+  "best_L": null,
+  "certified_win": null,
+  "seconds": 42.19
+}

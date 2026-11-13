@@ -1,0 +1,116 @@
+{
+  "variant": "v2_end_taper",
+  "n": 634,
+  "L_ours": 25.707106781186678,
+  "L_probe": 25.70510678118668,
+  "tasks": 2304,
+  "best_cap": 629,
+  "deficit": 5,
+  "best_cfg": {
+    "L_probe": 25.70510678118668,
+    "P": 5,
+    "w": 6,
+    "u_cols": 0,
+    "th_deg": 29.758,
+    "signs": [
+      1,
+      1
+    ],
+    "taper_bot": 0,
+    "taper_top": 1,
+    "y_phase": 0.75,
+    "mode": "splice",
+    "rigid_cap": 629,
+    "feasible_cap": 629
+  },
+  "top5": [
+    {
+      "L_probe": 25.70510678118668,
+      "P": 5,
+      "w": 6,
+      "u_cols": 0,
+      "th_deg": 29.758,
+      "signs": [
+        1,
+        1
+      ],
+      "taper_bot": 0,
+      "taper_top": 1,
+      "y_phase": 0.75,
+      "mode": "splice",
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 6,
+      "w": 7,
+      "u_cols": 0,
+      "th_deg": 26.645,
+      "signs": [
+        1,
+        1
+      ],
+      "taper_bot": 0,
+      "taper_top": 1,
+      "y_phase": 0.0,
+      "mode": "splice",
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 6,
+      "w": 7,
+      "u_cols": 0,
+      "th_deg": 26.645,
+      "signs": [
+        1,
+        1
+      ],
+      "taper_bot": 0,
+      "taper_top": 1,
+      "y_phase": 0.5,
+      "mode": "splice",
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 6,
+      "w": 7,
+      "u_cols": 0,
+      "th_deg": 26.645,
+      "signs": [
+        1,
+        1
+      ],
+      "taper_bot": 0,
+      "taper_top": 2,
+      "y_phase": 0.0,
+      "mode": "splice",
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    },
+    {
+      "L_probe": 25.70510678118668,
+      "P": 6,
+      "w": 7,
+      "u_cols": 0,
+      "th_deg": 26.645,
+      "signs": [
+        -1,
+        -1
+      ],
+      "taper_bot": 0,
+      "taper_top": 2,
+      "y_phase": 0.0,
+      "mode": "splice",
+      "rigid_cap": 629,
+      "feasible_cap": 629
+    }
+  ],
+  "best_L": null,
+  "certified_win": null,
+  "seconds": 58.82
+}
