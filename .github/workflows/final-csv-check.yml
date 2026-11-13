@@ -25,6 +25,7 @@ jobs:
     permissions:
       contents: read
       statuses: write
+      pull-requests: read
     steps:
       # Trusted base/main only. PR trees are read as data, never executed.
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
