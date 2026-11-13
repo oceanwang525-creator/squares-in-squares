@@ -447,3 +447,27 @@ def test_idea17_mixed_deltas_and_floor_guard():
     )
     assert sx.shape == (12, 144) and smob.dtype == np.uint8
     assert 0.05 < float(smob.mean()) < 0.90
+
+def test_idea18_detect_strip_gap_and_batch():
+    repo_root = str(Path(__file__).resolve().parents[3])
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+    from poc.swarm_inflation.poc import idea18_strip_gpu_melt as i18
+
+    # Construct a 12x12 grid where the rightmost upright column is shifted up by 0.65
+    gx, gy = np.meshgrid(np.arange(12) + 0.5, np.arange(12) + 0.5)
+    x = gx.ravel().astype(np.float64)
+    y = gy.ravel().astype(np.float64)
+    th = np.zeros(144, dtype=np.float64)
+    r_col = x > 11.3
+    L = 12.65
+    x[r_col] = L - 0.5
+    y[r_col] += 0.65
+    traps = i18.detect_wall_strip_gaps(x, y, th, L)
+    assert any(t["wall"] == "R" and t["kind"] == "lo_corner" and abs(t["gap"] - 0.65) < 1e-6 for t in traps)
+
+    mats = {144: (x, y, th, L)}
+    sx, sy, st, smob, n_traps = i18.build_strip_batch_for_n(144, mats, batch=16, rng_seed=99)
+    assert n_traps >= 1
+    assert sx.shape == (16, 144) and smob.dtype == np.uint8
+    assert 0.05 < float(smob.mean()) < 0.95

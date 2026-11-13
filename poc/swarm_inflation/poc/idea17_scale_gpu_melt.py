@@ -200,7 +200,7 @@ def run_one_target(
         "n_basins": len(tasks),
         "dt": round(time.time() - t0, 2),
     }
-    if (real_win or safe_tie) and best_cert is not None:
+    if real_win and best_cert is not None:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         pc.core.write_submission(DATA_DIR / f"win_n{n}.csv", {n: best_cert["rows"]}, validate=True)
         h15.write_final_csv_from_wins([{"n": n, "win": True, "deg_rows": best_cert["deg_rows"]}])
