@@ -58,6 +58,25 @@ R32 moved the trust radius to `0.018` for 100 iterations from the complete
 move is small (`1.077e-12` in `L`) but is the first strict SLP improvement at
 that count in this POC.
 
+R33 moved the trust radius to `0.020` for 100 iterations from the R32 union.
+It found three strict wins (`791, 868, 936`), accepted `3/3` against the
+upstream incumbent. The internal group gain was `9.577504056198076e-10`; `868`
+supplied most of it with `dL = 2.798e-8`.
+
+R34 moved the trust radius to `0.022` for 100 iterations and found four strict
+wins (`695`, `791`, `868`, `936`), accepted `4/4`. The internal group gain was
+`1.0139526745110658e-9`. The per-group literal changes were:
+
+```text
+695  -1.8768938915684757e-12
+791  -5.653345294808802e-9
+868  -3.1058414782230857e-7
+936  -2.9987539359681513e-7
+```
+
+This is still numerical polishing, not a change of topology. It is recorded
+because the row gates and full-file certification are exact.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -111,6 +130,13 @@ round trip:
 ```text
 literal 22.173714779017388 1000 0 0
 pandas  22.173714779017388 1000 0 0
+```
+
+R33 and R34 were then folded into `final.csv` and re-certified from the latest
+upstream incumbent:
+
+```text
+gate=58/58 literal=22.173714777045685 1000/1000 pandas=22.173714777045685 1000/1000
 ```
 
 ## Provenance

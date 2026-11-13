@@ -25,6 +25,8 @@ long pass:   100 iterations, trust 0.012
 long pass:   100 iterations, trust 0.014
 long pass:   100 iterations, trust 0.016
 long pass:   100 iterations, trust 0.018
+long pass:   100 iterations, trust 0.020
+long pass:   100 iterations, trust 0.022
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -44,11 +46,14 @@ portfolio and rescored from scratch.
 - 5 additional strict per-`n` wins from the trust-`0.014` long pass
 - 4 additional strict per-`n` wins from the trust-`0.016` long pass
 - 5 additional strict per-`n` wins from the trust-`0.018` long pass
+- 3 additional strict per-`n` wins from the trust-`0.020` long pass
+- 4 additional strict per-`n` wins from the trust-`0.022` long pass
 - standalone R30 full literal score: `22.173714763006313`
 - standalone R30 full pandas score: `22.173714763006313`
 - `final.csv` union with current merged after R32: `22.173714779017388`
 - current upstream merged baseline: `22.17371545003316`
-- both transports: `1000/1000` accepted
+- R34 certified full union: `22.173714777045685`
+- both transports: `1000/1000` accepted, `gate=58/58`
 
 The largest improvements are:
 
@@ -67,10 +72,20 @@ against the current upstream incumbent.
 R32 (`trust=0.018`, 100 iterations) added `791`, `868`, `908`, `910`, and
 `936`; all five passed the per-group official gate (`5/5`).
 
+R33 (`trust=0.020`, 100 iterations) added `791`, `868`, and `936`; all three
+passed the per-group official gate (`3/3`).
+
+R34 (`trust=0.022`, 100 iterations) added `695`, `791`, `868`, and `936`;
+all four passed the per-group official gate (`4/4`). The certified union of
+`final.csv` with the current incumbent scores `22.173714777045685` in both
+literal and pandas transports, with all 58 final groups strictly better.
+
 ## Files
 
 - `poc/run.py` - reproducible runner; requires the collaborator POC at
   `poc/claude-midn/poc/free_slp.py`.
+- `poc/certify_final.py` - rebuilds the full union, checks every final group is
+  a strict non-fallback win, and runs both official transports.
 - `data/multi-round-gate.json` - exact old/new per-n values for all 55 coarse wins.
 - `data/multi-round-rows.csv` - the 55 improved puzzle groups only.
 - `data/round-summary.json` - per-pass win count and group gain.
@@ -100,6 +115,12 @@ R32 (`trust=0.018`, 100 iterations) added `791`, `868`, `908`, `910`, and
 - `data/free_slp_600_1000_r32_t1p8e-2_i100_report.json` - R32 SLP report.
 - `data/free_slp_600_1000_r32_t1p8e-2_i100_rows.csv` - R32 strict-win groups.
 - `data/free_slp_600_1000_r32_t1p8e-2_i100_gate.csv` - official-gated R32 rows.
+- `data/free_slp_600_1000_r33_t2p0e-2_i100_report.json` - R33 SLP report.
+- `data/free_slp_600_1000_r33_t2p0e-2_i100_rows.csv` - R33 strict-win groups.
+- `data/free_slp_600_1000_r33_t2p0e-2_i100_gate.csv` - official-gated R33 rows.
+- `data/free_slp_600_1000_r34_t2p2e-2_i100_report.json` - R34 SLP report.
+- `data/free_slp_600_1000_r34_t2p2e-2_i100_rows.csv` - R34 strict-win groups.
+- `data/free_slp_600_1000_r34_t2p2e-2_i100_gate.csv` - official-gated R34 rows.
 - `final.csv` - the best certified rows for all 58 current strict-win n groups.
 - `docs/FINAL_GATE.json` - per-n literal and pandas comparison for `final.csv`.
 - `data/long-escape-round-summary.json` - later long-pass win count and group gain.
