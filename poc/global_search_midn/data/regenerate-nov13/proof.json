@@ -1,7 +1,7 @@
 {
   "folder": "global_search_midn",
-  "source_main": "95a49d99281b5166e49ca945109c16d8a733d087",
-  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "source_main": "b2e2bd23db5e59285a14044c94c75446c12e10e0",
+  "incumbent_sha256": "ce863c41956af5ad609183dc2f88a057cc64e326387c388aa73dc330fcc85e2e",
   "canonical_unchanged": true,
   "pandas": "3.1.0",
   "literal_and_actual_pandas": true,
