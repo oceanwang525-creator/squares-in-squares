@@ -77,3 +77,19 @@ The static two-corner family is 5-7 squares short throughout this frontier.
 SQUISH's published certificates identify the missing operation: narrow each
 piece inside its own rectangle before composition, then repair the new seam.
 The raw bounded scan is in `data/mondrian-summary.json`.
+
+`poc/seamscan.py` then takes the highest bounding-box pairs and reruns the
+remaining upright cells with the exact staircase-candidate MIS from
+`fillfast.py`. This checks whether a concave pocket outline can recover cells
+lost by the bounding-box capacity estimate. `fillfast.py` is vendored from
+Evan Daniel's local `refs/evand/search/packer` helper so the scan is
+self-contained. `seamscan.py --transforms` additionally tries all eight
+dihedral transforms for each piece and inward lattice phases of 0 and 0.5 on
+both axes.
+
+The exact refill scan is also negative. On `n=971`, the best of 200
+highest-bound untransformed pairs still had capacity `965` (six short). The
+transformed/phase scan over the top 20 pairs and 32 variants per pair also
+topped out at `965`. On `n=908`, transformed/phase scanning over the top 20
+pairs topped out at `903`, five short. These are bounded pair scopes, not
+global impossibility claims.

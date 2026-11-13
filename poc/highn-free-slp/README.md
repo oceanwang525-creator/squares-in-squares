@@ -24,6 +24,7 @@ long pass:   100 iterations, trust 0.010
 long pass:   100 iterations, trust 0.012
 long pass:   100 iterations, trust 0.014
 long pass:   100 iterations, trust 0.016
+long pass:   100 iterations, trust 0.018
 ```
 
 The SLP's own official group gate requires both literal and pandas-roundtrip
@@ -42,9 +43,10 @@ portfolio and rescored from scratch.
 - 6 additional strict per-`n` wins from the trust-`0.012` long pass
 - 5 additional strict per-`n` wins from the trust-`0.014` long pass
 - 4 additional strict per-`n` wins from the trust-`0.016` long pass
+- 5 additional strict per-`n` wins from the trust-`0.018` long pass
 - standalone R30 full literal score: `22.173714763006313`
 - standalone R30 full pandas score: `22.173714763006313`
-- `final.csv` union with current merged: `22.173714779607618`
+- `final.csv` union with current merged after R32: `22.173714779017388`
 - current upstream merged baseline: `22.17371545003316`
 - both transports: `1000/1000` accepted
 
@@ -61,6 +63,9 @@ The largest improvements are:
 
 The later long passes additionally improved `747`, `791`, `816`, and `868`
 against the current upstream incumbent.
+
+R32 (`trust=0.018`, 100 iterations) added `791`, `868`, `908`, `910`, and
+`936`; all five passed the per-group official gate (`5/5`).
 
 ## Files
 
@@ -92,6 +97,9 @@ against the current upstream incumbent.
 - `data/long-escape-r31-report.json` - exact SLP report for the trust-`0.016` pass.
 - `data/long-escape-r31-rows.csv` - the 4 trust-`0.016` puzzle groups only.
 - `data/long-escape-r31-gate.csv` - incumbent-gated rows for the final pass.
+- `data/free_slp_600_1000_r32_t1p8e-2_i100_report.json` - R32 SLP report.
+- `data/free_slp_600_1000_r32_t1p8e-2_i100_rows.csv` - R32 strict-win groups.
+- `data/free_slp_600_1000_r32_t1p8e-2_i100_gate.csv` - official-gated R32 rows.
 - `final.csv` - the best certified rows for all 58 current strict-win n groups.
 - `docs/FINAL_GATE.json` - per-n literal and pandas comparison for `final.csv`.
 - `data/long-escape-round-summary.json` - later long-pass win count and group gain.

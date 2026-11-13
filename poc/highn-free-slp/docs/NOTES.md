@@ -52,6 +52,12 @@ wins (`791, 868, 910, 936`), all accepted `4/4` against the R30 union. The
 R30/R31 progress shows that the larger trust radius is still productive after
 the fine passes have converged.
 
+R32 moved the trust radius to `0.018` for 100 iterations from the complete
+`merged.csv` plus `final.csv` union. It found five strict wins (`791, 868,
+908, 910, 936`), accepted `5/5` against the upstream incumbent. The `908`
+move is small (`1.077e-12` in `L`) but is the first strict SLP improvement at
+that count in this POC.
+
 ## Latest incumbent
 
 The file was re-merged against the upstream PR4/PR5 union. The new upstream
@@ -86,8 +92,8 @@ against the current `merged.csv`. Unioning `final.csv` into the current
 incumbent gives:
 
 ```text
-literal 22.173714779607618
-pandas  22.173714779607618
+literal 22.173714779017388
+pandas  22.173714779017388
 accepted 1000/1000
 ```
 
@@ -103,8 +109,8 @@ literal strings and after an actual `pandas.read_csv(...).to_csv(index=False)`
 round trip:
 
 ```text
-literal 22.173714779607618 1000 0 0
-pandas  22.173714779607618 1000 0 0
+literal 22.173714779017388 1000 0 0
+pandas  22.173714779017388 1000 0 0
 ```
 
 ## Provenance

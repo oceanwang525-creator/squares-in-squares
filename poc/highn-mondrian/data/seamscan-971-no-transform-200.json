@@ -1,0 +1,678 @@
+{
+ "submission": "/Users/xiekuan/Documents/ChatGPT/Square/squares-in-squares/poc/pell_corrugation/data/border-scan/merged.csv",
+ "margin": "1e-9",
+ "min_crop": 4,
+ "max_crop": 16,
+ "keep_crops": 600,
+ "top_pairs": 200,
+ "targets": {
+  "971": {
+   "side": "31.66431832415162747971347060",
+   "best": [
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 16,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 229,
+      "corner": "tr",
+      "capacity": 229,
+      "width": 15.650161513876462,
+      "height": 15.650161513876462,
+      "cut": [
+       -8,
+       8,
+       -8,
+       8
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 17,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 229,
+      "corner": "tr",
+      "capacity": 214,
+      "width": 14.650161513876462,
+      "height": 15.650161513876462,
+      "cut": [
+       -7,
+       8,
+       -8,
+       8
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 18,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 229,
+      "corner": "tl",
+      "capacity": 229,
+      "width": 15.650161513876462,
+      "height": 15.650161513876462,
+      "cut": [
+       -8,
+       8,
+       -8,
+       8
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 19,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tr",
+      "capacity": 200,
+      "width": 14.656854249492419,
+      "height": 14.656854249492419,
+      "cut": [
+       -1,
+       15,
+       -15,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 20,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tr",
+      "capacity": 186,
+      "width": 14.656854249492419,
+      "height": 13.656854249492415,
+      "cut": [
+       -1,
+       15,
+       -14,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 21,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tr",
+      "capacity": 186,
+      "width": 13.656854249492417,
+      "height": 14.656854249492419,
+      "cut": [
+       0,
+       15,
+       -15,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 22,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tr",
+      "capacity": 173,
+      "width": 13.656854249492417,
+      "height": 13.656854249492415,
+      "cut": [
+       0,
+       15,
+       -14,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 23,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tl",
+      "capacity": 200,
+      "width": 14.656854249492419,
+      "height": 14.656854249492419,
+      "cut": [
+       -1,
+       15,
+       -15,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 24,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tl",
+      "capacity": 186,
+      "width": 14.656854249492419,
+      "height": 13.656854249492415,
+      "cut": [
+       -1,
+       15,
+       -14,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 25,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tl",
+      "capacity": 186,
+      "width": 13.656854249492415,
+      "height": 14.656854249492419,
+      "cut": [
+       -1,
+       14,
+       -15,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 26,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 200,
+      "corner": "tl",
+      "capacity": 173,
+      "width": 13.656854249492415,
+      "height": 13.656854249492415,
+      "cut": [
+       -1,
+       14,
+       -14,
+       1
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 27,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tr",
+      "capacity": 173,
+      "width": 13.656854249492392,
+      "height": 13.656854249492392,
+      "cut": [
+       -7,
+       7,
+       -7,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 28,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tr",
+      "capacity": 160,
+      "width": 13.656854249492392,
+      "height": 12.65685424949239,
+      "cut": [
+       -7,
+       7,
+       -6,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 29,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tr",
+      "capacity": 160,
+      "width": 12.65685424949239,
+      "height": 13.656854249492392,
+      "cut": [
+       -6,
+       7,
+       -7,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 30,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tr",
+      "capacity": 148,
+      "width": 12.65685424949239,
+      "height": 12.65685424949239,
+      "cut": [
+       -6,
+       7,
+       -6,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 31,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tl",
+      "capacity": 173,
+      "width": 13.656854249492392,
+      "height": 13.656854249492392,
+      "cut": [
+       -7,
+       7,
+       -7,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 32,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 173,
+      "corner": "tl",
+      "capacity": 160,
+      "width": 13.656854249492392,
+      "height": 12.65685424949239,
+      "cut": [
+       -7,
+       7,
+       -6,
+       7
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 33,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 148,
+      "corner": "tr",
+      "capacity": 148,
+      "width": 12.656854249492415,
+      "height": 12.656854249492415,
+      "cut": [
+       0,
+       13,
+       0,
+       13
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 34,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 48,
+      "width": 8.0,
+      "height": 6.0,
+      "cut": [
+       0,
+       8,
+       0,
+       6
+      ]
+     },
+     "crop_b": {
+      "donor_n": 148,
+      "corner": "tl",
+      "capacity": 148,
+      "width": 12.656854249492415,
+      "height": 12.656854249492415,
+      "cut": [
+       0,
+       13,
+       0,
+       13
+      ]
+     }
+    },
+    {
+     "bound": 965,
+     "gain": 4,
+     "capacity": 965,
+     "short": 6,
+     "serial": 616,
+     "crop_a": {
+      "donor_n": 61,
+      "corner": "br",
+      "capacity": 40,
+      "width": 8.0,
+      "height": 5.0,
+      "cut": [
+       0,
+       8,
+       0,
+       5
+      ]
+     },
+     "crop_b": {
+      "donor_n": 229,
+      "corner": "tr",
+      "capacity": 229,
+      "width": 15.650161513876462,
+      "height": 15.650161513876462,
+      "cut": [
+       -8,
+       8,
+       -8,
+       8
+      ]
+     }
+    }
+   ],
+   "winner": null
+  }
+ },
+ "accepted_n": [],
+ "accepted": 0
+}

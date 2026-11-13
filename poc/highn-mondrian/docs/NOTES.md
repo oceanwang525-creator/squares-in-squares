@@ -43,6 +43,23 @@ No candidate was emitted: every target fell below its capacity threshold.
 Static composition is therefore not the promising part of Mondrian at this
 frontier.
 
+## Exact refill
+
+`poc/seamscan.py` replaces the bounding-box grid count with `fillfast`'s
+staircase candidates and exact upright MIS. Results:
+
+```text
+target  scope                              capacity  need  short
+971     top 200 pairs, original orientation       965   971      6
+971     top 20 pairs, 8 transforms, 0/.5 phase    965   971      6
+908     top 20 pairs, 8 transforms, 0/.5 phase    903   908      5
+```
+
+The `971` exact MIS selected 561 simplicial lattice candidates and left no
+MILP kernel. Its result therefore equals the bounding-box estimate rather
+than merely timing out. The transformed scans use the 32 highest-bound
+variants per pair and are bounded, not exhaustive.
+
 ## Paper and certificate check
 
 The public SQUISH certificate repository reports 24 small-`n` Mondrian com-
