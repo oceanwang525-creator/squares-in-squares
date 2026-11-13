@@ -297,4 +297,37 @@ def test_idea11_force_chain_and_fast_mode4():
     assert pc.sat_max_penetration(out4["pos"][int(np.argmin(out4["L_cert"]))], out4["th"][int(np.argmin(out4["L_cert"]))]) == 0.0
 
 
+def test_idea12_lpocket_and_bridge_identities():
+    # Verify exact sheared strip width w*cos(th)+sin(th)=W and algebraic bridge root (a+f)^2+(b+f)^2=w^2
+    # Example 1: P=7, w=8 sheared row across W = 7.664318 (n=971 scale)
+    W = 7.664318
+    w = 8
+    R = math.hypot(w, 1.0)
+    th = math.acos(W / R) + math.atan2(1.0, float(w))
+    assert abs(w * math.cos(th) + math.sin(th) - W) < 1e-12
+    # Place 1 sheared row of w=8 squares strictly inside [0, W] x [0, 5] and verify 0 overlap
+    c, s = math.cos(th), math.sin(th)
+    hx = 0.5 * (c + s)
+    pos = np.array([[hx + q * c, hx + q * s] for q in range(w)], dtype=np.float64)
+    ths = np.full(w, th, dtype=np.float64)
+    assert np.min(pos[:, 0] - hx) >= -1e-12
+    assert np.max(pos[:, 0] + hx) <= W + 1e-12
+    assert pc.sat_max_penetration(pos, ths) < 1e-12
+
+    # Example 2: Exact algebraic bridge roots (w=4, a=1, b=3 -> sqrt(7)-2; w=8, a=5, b=5 -> 4*sqrt(2)-5)
+    for w_b, a, b in [(4, 1, 3), (8, 5, 5), (9, 4, 7), (5, 1, 4)]:
+        f_r = 0.5 * (math.sqrt(2 * w_b * w_b - (a - b) ** 2) - (a + b))
+        assert abs((a + f_r) ** 2 + (b + f_r) ** 2 - w_b * w_b) < 1e-12
+        th_r = math.atan2(a + f_r, b + f_r)
+        cr, sr = math.cos(th_r), math.sin(th_r)
+        # w_b tilted squares touching end-to-end span exact vector (b+f_r, a+f_r)
+        span_x = w_b * cr
+        span_y = w_b * sr
+        assert abs(span_x - (b + f_r)) < 1e-12
+        assert abs(span_y - (a + f_r)) < 1e-12
+        chain = np.array([[1.0 + (i + 0.5) * cr, 1.0 + (i + 0.5) * sr] for i in range(w_b)], dtype=np.float64)
+        assert pc.sat_max_penetration(chain, np.full(w_b, th_r)) < 1e-12
+
+
+
 

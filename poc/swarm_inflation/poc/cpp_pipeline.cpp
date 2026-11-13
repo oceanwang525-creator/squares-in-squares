@@ -2683,6 +2683,366 @@ static std::vector<Sq> seed_flush_sheared_v10(
 }
 
 // =========================================================================
+// Idea 12: Mitered Flush Sheared-Row L-Pockets & Exact Algebraic Bridges
+// =========================================================================
+
+static std::vector<Sq> seed_mitered_Lpockets_v12(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    int k = (int)std::floor(L);
+    struct LCfg {
+        int P1, w1, P2, w2;
+        double th1, th2;
+        int raw_est, score_gap;
+    };
+    std::vector<LCfg> cfgs;
+    int pmax = std::min(14, std::max(4, k - 4));
+    for (int P1 = 3; P1 <= pmax; ++P1) {
+        int Kx = k - P1;
+        double W1 = L - (double)Kx;
+        if (W1 < 2.2) continue;
+        for (int dw1 : {1, 2}) {
+            int w1 = (int)std::floor(W1) + dw1;
+            double th1 = 0.0;
+            if (!solve_shear_angle(w1, W1 - 1e-4, th1) || th1 < 0.17 || th1 > 0.72) continue;
+            double c1 = std::cos(th1), s1_v = std::sin(th1);
+            for (int P2 = 3; P2 <= pmax; ++P2) {
+                int Ky = k - P2;
+                double W2 = L - (double)Ky;
+                if (W2 < 2.2) continue;
+                for (int dw2 : {1, 2}) {
+                    int w2 = (int)std::floor(W2) + dw2;
+                    double th2 = 0.0;
+                    if (!solve_shear_angle(w2, W2 - 1e-4, th2) || th2 < 0.17 || th2 > 0.72) continue;
+                    double c2 = std::cos(th2), s2_v = std::sin(th2);
+                    // Analytic mitered capacity check at pre-compression ~0.988 (fast O(1))
+                    int est_w = 0;
+                    double hx1 = 0.5 * 0.90 * (c1 + s1_v);
+                    double xpad1 = 0.5 * std::max(0.0, W1 - (w1 * c1 + s1_v) * 0.988);
+                    double dy1 = 0.988 / c1;
+                    int r1_hi = (int)std::ceil(L / dy1) + w1 + 2;
+                    for (int r = -w1 - 1; r <= r1_hi; ++r) {
+                        double yb = hx1 + r * dy1;
+                        for (int q = 0; q < w1; ++q) {
+                            double ux = xpad1 + 0.5 * (c1 + s1_v) * 0.988 + q * c1 * 0.988;
+                            double vy = yb + q * s1_v * 0.988;
+                            if (ux >= hx1 && ux <= W1 - hx1 && vy >= hx1 && vy <= L - hx1) {
+                                if (vy >= W2 - 0.1 || vy / W2 >= ux / W1) est_w++;
+                            }
+                        }
+                    }
+                    int est_s = 0;
+                    double hx2 = 0.5 * 0.90 * (c2 + s2_v);
+                    double ypad2 = 0.5 * std::max(0.0, W2 - (w2 * c2 + s2_v) * 0.988);
+                    double dx2 = 0.988 / c2;
+                    int r2_hi = (int)std::ceil(L / dx2) + w2 + 2;
+                    for (int r = -w2 - 1; r <= r2_hi; ++r) {
+                        double xb = hx2 + r * dx2;
+                        for (int q = 0; q < w2; ++q) {
+                            double uy = ypad2 + 0.5 * (c2 + s2_v) * 0.988 + q * c2 * 0.988;
+                            double vx = xb + q * s2_v * 0.988;
+                            if (vx >= hx2 && vx <= L - hx2 && uy >= hx2 && uy <= W2 - hx2) {
+                                if (vx >= W1 - 0.1 || vx / W1 > uy / W2) est_s++;
+                            }
+                        }
+                    }
+                    int raw_est = Kx * Ky + est_w + est_s;
+                    if (raw_est >= n - 14) {
+                        // Prefer slight raw_est >= n - 3 and close to n
+                        int gap = std::abs(raw_est - (n - 1));
+                        if (raw_est < n - 3) gap += 4;
+                        cfgs.push_back({P1, w1, P2, w2, th1, th2, raw_est, gap});
+                    }
+                }
+            }
+        }
+    }
+    if (cfgs.empty()) {
+        return seed_flush_sheared_v10(n, L, rng, desc, slot_hint);
+    }
+    std::sort(cfgs.begin(), cfgs.end(), [](const LCfg& a, const LCfg& b) {
+        if (a.score_gap != b.score_gap) return a.score_gap < b.score_gap;
+        return a.raw_est > b.raw_est;
+    });
+    int pool_n = std::min(24, (int)cfgs.size());
+    int pick = (slot_hint >= 0) ? (slot_hint % pool_n) : (int)(rng() % pool_n);
+    const auto& cd = cfgs[pick];
+
+    int Kx = k - cd.P1, Ky = k - cd.P2;
+    double W1 = L - (double)Kx, W2 = L - (double)Ky;
+    const double lat_opts[4] = {0.976, 0.985, 0.992, 0.998};
+    int lat_i = (slot_hint >= 0) ? ((slot_hint / 24) % 4) : (int)(rng() % 4);
+    double a_lat = lat_opts[lat_i];
+    double a_sat = 0.892;
+
+    // s1*s2 = -1 (aligned lattice angles around SW corner) 75% of the time; +1 (chevron) 25%
+    int mode_s = (slot_hint >= 0) ? ((slot_hint / 96) % 4) : (int)(rng() % 4);
+    int s1 = (mode_s % 2 == 0) ? 1 : -1;
+    int s2 = (mode_s == 3) ? s1 : -s1;
+    double ph1 = rand_uniform(rng, -0.45, 0.45);
+    double ph2 = rand_uniform(rng, -0.45, 0.45);
+
+    std::vector<Sq> pts;
+    pts.reserve((size_t)n + 32);
+    // 1. NE 0-deg crystal (anchored at (L, L), flush with x >= W1, y >= W2)
+    for (int ix = 0; ix < Kx; ++ix) {
+        for (int iy = 0; iy < Ky; ++iy) {
+            pts.push_back({W1 + 0.5 + (double)ix, W2 + 0.5 + (double)iy, 0.0});
+        }
+    }
+
+    // 2. Build West & South candidate strips cleanly
+    std::vector<Sq> west, south;
+    {
+        double c1 = std::cos(cd.th1), s_1 = std::sin(cd.th1);
+        double hx1 = 0.5 * a_sat * (c1 + s_1);
+        double xpad1 = 0.5 * std::max(0.0, W1 - (cd.w1 * c1 + s_1) * a_lat);
+        double dy1 = a_lat / c1;
+        int r0 = -cd.w1 - 2, r1 = (int)std::ceil(L / dy1) + cd.w1 + 2;
+        for (int r = r0; r <= r1; ++r) {
+            double yb = hx1 + (r + ph1) * dy1;
+            for (int q = 0; q < cd.w1; ++q) {
+                double ux = xpad1 + 0.5 * (c1 + s_1) * a_lat + q * c1 * a_lat;
+                double vy = yb + (double)s1 * q * s_1 * a_lat;
+                if (ux >= hx1 - 1e-4 && ux <= W1 - hx1 + 0.15 && vy >= hx1 - 1e-4 && vy <= L - hx1 + 1e-4) {
+                    if (!(ux > W1 - 0.35 && vy > W2 - 0.35)) west.push_back({ux, vy, s1 * cd.th1});
+                }
+            }
+        }
+    }
+    {
+        double c2 = std::cos(cd.th2), s_2 = std::sin(cd.th2);
+        double hx2 = 0.5 * a_sat * (c2 + s_2);
+        double ypad2 = 0.5 * std::max(0.0, W2 - (cd.w2 * c2 + s_2) * a_lat);
+        double dx2 = a_lat / c2;
+        int r0 = -cd.w2 - 2, r1 = (int)std::ceil(L / dx2) + cd.w2 + 2;
+        for (int r = r0; r <= r1; ++r) {
+            double xb = hx2 + (r + ph2) * dx2;
+            for (int q = 0; q < cd.w2; ++q) {
+                double uy = ypad2 + 0.5 * (c2 + s_2) * a_lat + q * c2 * a_lat;
+                double vx = xb + (double)s2 * q * s_2 * a_lat;
+                if (vx >= hx2 - 1e-4 && vx <= L - hx2 + 1e-4 && uy >= hx2 - 1e-4 && uy <= W2 - hx2 + 0.15) {
+                    if (!(vx > W1 - 0.35 && uy > W2 - 0.35)) south.push_back({vx, uy, -s2 * cd.th2});
+                }
+            }
+        }
+    }
+
+    // Mitered SAT merge around SW corner y/W2 = x/W1
+    for (const auto& q : west) {
+        if (q.y >= W2 - 0.15 || (q.y / W2 >= q.x / W1)) {
+            if (sat_ok_point(q.x, q.y, q.th, pts, a_sat)) pts.push_back(q);
+        }
+    }
+    for (const auto& q : south) {
+        if (q.x >= W1 - 0.15 || (q.x / W1 >= q.y / W2)) {
+            if (sat_ok_point(q.x, q.y, q.th, pts, a_sat)) pts.push_back(q);
+        }
+    }
+    for (const auto& q : west) {
+        if (sat_ok_point(q.x, q.y, q.th, pts, a_sat)) pts.push_back(q);
+    }
+    for (const auto& q : south) {
+        if (sat_ok_point(q.x, q.y, q.th, pts, a_sat)) pts.push_back(q);
+    }
+
+    // 3. Targeted end-wedge & SW-miter void filling (only inside strips + wedges, NEVER disrupting NE core!)
+    if ((int)pts.size() < n) {
+        const double angs[5] = {0.0, s1 * cd.th1, -s2 * cd.th2, 0.5 * s1 * cd.th1, PI * 0.25};
+        std::vector<Sq> probes;
+        // Extend NE 0-deg grid lines slightly into end triangles
+        for (int ix = -cd.P1; ix < Kx; ++ix) {
+            for (int iy = -cd.P2; iy < Ky; ++iy) {
+                if (ix >= 0 && iy >= 0) continue;
+                double gx = W1 + 0.5 + (double)ix, gy = W2 + 0.5 + (double)iy;
+                if (gx >= 0.44 && gx <= L - 0.44 && gy >= 0.44 && gy <= L - 0.44) {
+                    probes.push_back({gx, gy, 0.0});
+                }
+            }
+        }
+        // Fine grid probes in (0,L) top-west wedge, (L,0) bottom-south wedge, and (0,0) SW corner
+        for (double py = L - 0.45; py >= std::max(0.45, L - W1 - 2.0); py -= 0.48) {
+            for (double px = 0.45; px <= std::min(L - 0.45, W1 + 1.5); px += 0.48) {
+                for (double ang : angs) probes.push_back({px, py, ang});
+            }
+        }
+        for (double px = L - 0.45; px >= std::max(0.45, L - W2 - 2.0); px -= 0.48) {
+            for (double py = 0.45; py <= std::min(L - 0.45, W2 + 1.5); py += 0.48) {
+                for (double ang : angs) probes.push_back({px, py, ang});
+            }
+        }
+        for (double px = 0.45; px <= W1 + 0.8; px += 0.50) {
+            for (double py = 0.45; py <= W2 + 0.8; py += 0.50) {
+                for (double ang : angs) probes.push_back({px, py, ang});
+            }
+        }
+        std::shuffle(probes.begin(), probes.end(), rng);
+        for (const auto& q : probes) {
+            if ((int)pts.size() >= n) break;
+            double ext = 0.5 * 0.885 * (std::abs(std::cos(q.th)) + std::abs(std::sin(q.th)));
+            if (q.x - ext < -1e-4 || q.x + ext > L + 1e-4 || q.y - ext < -1e-4 || q.y + ext > L + 1e-4) continue;
+            if (sat_ok_point(q.x, q.y, q.th, pts, 0.885)) pts.push_back(q);
+        }
+    }
+
+    int pre_fill = (int)pts.size();
+    pts = fill_wedges_and_complete(std::move(pts), n, L, rng, 0.882);
+
+    // Optional mirror flip (x <-> L-x or y <-> L-y) for D4 coverage without changing geometry
+    if ((slot_hint / 384) % 2 == 1) {
+        for (auto& q : pts) { q.x = L - q.x; q.th = -q.th; }
+    }
+
+    char buf[96];
+    std::snprintf(buf, sizeof(buf), "lpok12(P=%d/%d,w=%d/%d,a=%.3f,pre=%d)", cd.P1, cd.P2, cd.w1, cd.w2, a_lat, pre_fill);
+    desc = buf;
+    return pts;
+}
+
+static std::vector<Sq> seed_exact_bridge_v12(
+    int n, double L, std::mt19937_64& rng, std::string& desc, int slot_hint
+) {
+    int k = (int)std::floor(L);
+    double f_box = L - (double)k;
+    struct BRoot { int w, a, b; double f_r, th_r; };
+    std::vector<BRoot> roots;
+    for (int w = 2; w <= 10; ++w) {
+        for (int a = 0; a < w; ++a) {
+            for (int b = a; b < w; ++b) {
+                double disc = 2.0 * (double)(w * w) - (double)((a - b) * (a - b));
+                if (disc < 0.0) continue;
+                double f_r = 0.5 * (std::sqrt(disc) - (double)(a + b));
+                if (f_r >= 0.22 && f_r <= f_box + 0.025) {
+                    double th_r = std::atan2((double)a + f_r, (double)b + f_r);
+                    roots.push_back({w, a, b, f_r, th_r});
+                }
+            }
+        }
+    }
+    // Prioritize roots closest to and just below f_box (especially w=3,5,8,9 high-match bridges)
+    std::sort(roots.begin(), roots.end(), [&](const BRoot& x, const BRoot& y) {
+        bool x_ok = (x.f_r <= f_box + 0.002);
+        bool y_ok = (y.f_r <= f_box + 0.002);
+        if (x_ok != y_ok) return x_ok > y_ok;
+        return std::abs(x.f_r - (f_box - 0.02)) < std::abs(y.f_r - (f_box - 0.02));
+    });
+    if (roots.empty()) return seed_asym_band_v9(n, L, rng, desc, slot_hint);
+
+    int pool_n = std::min(20, (int)roots.size());
+    int ridx = (slot_hint >= 0) ? (slot_hint % pool_n) : (int)(rng() % pool_n);
+    const auto& br = roots[ridx];
+
+    const double dpsi_opts[5] = {-4.0, -2.0, 0.0, 2.0, 4.0};
+    double dpsi = dpsi_opts[(slot_hint >= 0 ? (slot_hint / pool_n) : (int)rng()) % 5] * (PI / 180.0);
+    double th_b = ((slot_hint / (pool_n * 5)) % 2 == 0) ? br.th_r : (PI * 0.5 - br.th_r);
+    double psi = th_b + dpsi;
+
+    // Band tangent t=(cos psi, sin psi), normal n=(-sin psi, cos psi)
+    double dpx = std::cos(psi), dpy = std::sin(psi);
+    double dnx = -dpy, dny = dpx;
+    double cb = std::cos(th_b), sb = std::sin(th_b);
+
+    // Step along TRUE square axis of th_b (never sheared across rows unless explicit small shear!)
+    const double lat_opts[3] = {0.978, 0.990, 0.998};
+    double a_lat = lat_opts[(slot_hint / (pool_n * 10)) % 3];
+    double a_sat = 0.888;
+    double sh_layer = ((slot_hint % 3) == 0) ? 0.0 : rand_uniform(rng, -0.10, 0.10);
+
+    double ax1x = cb, ax1y = sb, ax2x = -sb, ax2y = cb;
+    if (std::abs(ax1x * dpx + ax1y * dpy) < std::abs(ax2x * dpx + ax2y * dpy)) {
+        std::swap(ax1x, ax2x);
+        std::swap(ax1y, ax2y);
+    }
+    if (ax1x * dpx + ax1y * dpy < 0.0) { ax1x = -ax1x; ax1y = -ax1y; }
+    if (ax2x * dnx + ax2y * dny < 0.0) { ax2x = -ax2x; ax2y = -ax2y; }
+
+    double vx = a_lat * ax1x, vy = a_lat * ax1y;
+    double rx = a_lat * (ax2x + sh_layer * ax1x), ry = a_lat * (ax2y + sh_layer * ax1y);
+
+    double u_shift = rand_uniform(rng, -0.75, 0.75);
+    double mid_x = 0.5 * L + u_shift * dnx, mid_y = 0.5 * L + u_shift * dny;
+    double vp = rand_uniform(rng, -0.45, 0.45);
+    double ext_b = 0.5 * a_sat * (std::abs(cb) + std::abs(sb));
+
+    std::vector<Sq> pts;
+    pts.reserve((size_t)n + 32);
+    int m = (int)std::ceil(L * 1.6);
+    for (int iu = 0; iu < br.w; ++iu) {
+        double su = (double)iu - 0.5 * (double)(br.w - 1);
+        double bx0 = mid_x + su * rx, by0 = mid_y + su * ry;
+        for (int iv = -m; iv <= m; ++iv) {
+            double sv = (double)iv + vp;
+            double px = bx0 + sv * vx, py = by0 + sv * vy;
+            if (px >= ext_b && px <= L - ext_b && py >= ext_b && py <= L - ext_b) {
+                if (sat_ok_point(px, py, th_b, pts, a_sat)) pts.push_back({px, py, th_b});
+            }
+        }
+    }
+
+    double u_band_c = mid_x * dnx + mid_y * dny;
+    if (!pts.empty()) {
+        u_band_c = 0.0;
+        for (const auto& q : pts) u_band_c += q.x * dnx + q.y * dny;
+        u_band_c /= (double)pts.size();
+    }
+
+    double sp_u = rand_uniform(rng, 0.990, 1.000);
+    int k_max = (int)std::floor(L / sp_u) + 1;
+    std::vector<Sq> up;
+    up.reserve((size_t)k * k + 16);
+    // t_hi at (0, L) where dot(dn) > u_band_c
+    for (int ix = 0; ix < k_max; ++ix) {
+        double gx = (0.50 + ix) * sp_u;
+        if (gx > L - 0.45 * sp_u) continue;
+        for (int iy = 0; iy < k_max; ++iy) {
+            double gy = L - (0.50 + iy) * sp_u;
+            if (gy < 0.45 * sp_u) continue;
+            if (gx * dnx + gy * dny > u_band_c) up.push_back({gx, gy, 0.0});
+        }
+    }
+    // t_lo at (L, 0) where dot(dn) <= u_band_c
+    for (int ix = 0; ix < k_max; ++ix) {
+        double gx = L - (0.50 + ix) * sp_u;
+        if (gx < 0.45 * sp_u) continue;
+        for (int iy = 0; iy < k_max; ++iy) {
+            double gy = (0.50 + iy) * sp_u;
+            if (gy > L - 0.45 * sp_u) continue;
+            if (gx * dnx + gy * dny <= u_band_c) up.push_back({gx, gy, 0.0});
+        }
+    }
+    auto ok = sat_filter_against(up, pts, a_sat, L);
+    pts.insert(pts.end(), ok.begin(), ok.end());
+
+    // Sawtooth seam + corner plug insertion at a_sat = 0.882
+    if ((int)pts.size() < n) {
+        add_corner_wedge_plugs(pts, n, L, 0.882, rng);
+        const double p_angs[4] = {0.0, th_b, 0.5 * th_b, PI * 0.25};
+        std::vector<Sq> seam_probes;
+        for (int iv = -m; iv <= m; ++iv) {
+            for (double du : {-0.5 * br.w - 0.55, 0.5 * br.w + 0.55}) {
+                double px = mid_x + du * dnx + (double)iv * dpx * 0.65;
+                double py = mid_y + du * dny + (double)iv * dpy * 0.65;
+                if (px >= 0.44 && px <= L - 0.44 && py >= 0.44 && py <= L - 0.44) {
+                    for (double pa : p_angs) seam_probes.push_back({px, py, pa});
+                }
+            }
+        }
+        std::shuffle(seam_probes.begin(), seam_probes.end(), rng);
+        for (const auto& q : seam_probes) {
+            if ((int)pts.size() >= n) break;
+            if (sat_ok_point(q.x, q.y, q.th, pts, 0.882)) pts.push_back(q);
+        }
+    }
+    int pre_fill = (int)pts.size();
+    pts = fill_wedges_and_complete(std::move(pts), n, L, rng, 0.882);
+
+    char buf[96];
+    std::snprintf(buf, sizeof(buf), "brg12(w=%d,%d_%d,f=%.3f,pre=%d)", br.w, br.a, br.b, br.f_r, pre_fill);
+    desc = buf;
+    return pts;
+}
+
+// =========================================================================
 // Augmented-Lagrangian + L-BFGS float64 L-Squeezer (Fixed & Free Angles)
 // =========================================================================
 
@@ -3332,7 +3692,7 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_asym_band_v9(n, L_val, rng, desc, b * 131 + fam);
                     }
                 }
-            } else {
+            } else if (idea == 11) {
                 // Idea 11: Active LP-dual force-chain buckling & slip-line surgery under fast_mode=4/2
                 if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 2 == 0))) {
                     int sidx = b % (int)surg_pool.size();
@@ -3349,6 +3709,23 @@ int main(int argc, char** argv) {
                         seeds_pts[b] = seed_flush_sheared_v10(n, L_val, rng, desc, grp * 5 + (fam - 12));
                     } else {
                         seeds_pts[b] = seed_pyth_diamond_v9(n, L_val, rng, desc, grp * 3 + (fam - 17));
+                    }
+                }
+            } else {
+                // Idea 12: Mitered Flush Sheared-Row L-Pockets (65%) + True-Axis Algebraic Bridges w=2..10 (35%)
+                if (!surg_pool.empty() && (fast_mode == 4 || fast_mode == 2 || (b % 4 == 0))) {
+                    int sidx = b % (int)surg_pool.size();
+                    seeds_pts[b] = surg_pool[sidx];
+                    L_val = exact_bbox_side(seeds_pts[b]);
+                    const char* ops[5] = {"surg12_buckle", "surg12_slipline", "surg12_vachop", "surg12_aniso", "surg12_xfer"};
+                    desc = ops[sidx % 5];
+                } else {
+                    int fam = b % 20;
+                    int grp = b / 20;
+                    if (fam < 13) {
+                        seeds_pts[b] = seed_mitered_Lpockets_v12(n, L_val, rng, desc, grp * 13 + fam);
+                    } else {
+                        seeds_pts[b] = seed_exact_bridge_v12(n, L_val, rng, desc, grp * 7 + (fam - 13));
                     }
                 }
             }
