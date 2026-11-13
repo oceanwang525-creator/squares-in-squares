@@ -4,17 +4,22 @@ Tested Hypothesis **H16**: `dm = 1` homology projections `(n_donor = m_d^2 + r -
 
 ## Summary of Results vs. `origin/main` (`4478e04d`)
 
-- **3 Certified REAL WINs** (`literal == pandas` via `poc/auto_union/poc/union.py`, **total `ds = -2.869930e-05`** vs. `origin/main` `4478e04d`):
-  - **`n=485`** (`peel_530_BL_clamp_rot45_direct`, `m=22, r=+1`, `prot=1` with `prot_amt=0.00766`):
-    - `L = 22.5330402775912109878636418370519266726786852883551`
-    - `dL = -4.329429e-05`, `ds = -1.965895e-06` vs `4478e04d` (`22.533083571885758`)
-    - Also beats `origin/swarm-sametilt` PR #29 (`22.533079978339103103705`) by `dL = -3.970075e-05` (`ds = -1.802718e-06`)!
-  - **`n=442`** (`peel_485_BL_clean0_raw`, `m=21, r=+1`, `prot=0, tilt=0` cascade from `n=485` win):
-    - `L = 21.5330402831450951026491945625973010750792970855948`
-    - `dL = -3.968519e-05`, `ds = -1.887632e-06` vs `4478e04d` (`21.533079968339098062363`)
-  - **`n=401`** (`peel_442_BL_clamp_keepAng_from442raw`, `m=20, r=+1`, cascade from `n=442` win; initial win `20.5330798775` also came directly from `peel1_442_BL` `prot=0, tilt=0`):
+- **5 Certified REAL WINs** (`literal == pandas` via `poc/auto_union/poc/union.py`, **total `ds = -3.047247e-05`** vs. `origin/main` `4478e04d`):
+  - **`n=401`** (`peel_442_BL_clamp_keepAng_from442raw`, `m=20, r=+1`, downward clean-peel cascade from `n=530 -> 485 -> 442 -> 401`, `non0/90=204/401`):
     - `L = 20.5330293030942054381522428790826518657223353010434`
     - `dL = -5.008038e-04`, `ds = -2.500895e-05` vs `4478e04d` (`20.533530106866359326964`)
+  - **`n=442`** (`ext_442_from401_raw`, `m=21, r=+1`, upward 1x1 L-border extension from `n=401`, `non0/90=204/442`):
+    - `L = 21.5330303030942080727094078291914736661023331035685`
+    - `dL = -4.966524e-05`, `ds = -2.362335e-06` vs `4478e04d` (`21.533079968339098062363`)
+  - **`n=485`** (`ext_485_from401_raw`, `m=22, r=+1`, upward 1x1 L-border extension from `n=442`, `non0/90=204/485`):
+    - `L = 22.5330313030942100727094078291914736661023331035685`
+    - `dL = -4.867524e-05`, `ds = -2.210229e-06` vs `4478e04d` (`22.533079978339103103705`; also beats PR #29 by `-4.867524e-05`)
+  - **`n=530`** (`ext_530_from401_raw`, `m=23, r=+1`, upward 1x1 L-border extension from `n=485`, `non0/90=204/530`):
+    - `L = 23.5330323030942100727094078291914736661023331035685`
+    - `dL = -1.095799e-05`, `ds = -4.759847e-07` vs `4478e04d` (`23.533043261085421207070`)
+  - **`n=577`** (`ext_577_from401_raw`, `m=24, r=+1`, upward 1x1 L-border extension from `n=530`, `non0/90=204/577`):
+    - `L = 24.5330333030942100727094078291914736661023331035685`
+    - `dL = -9.967991e-06`, `ds = -4.149729e-07` vs `4478e04d` (`24.533043271085422099354`; also beats PR #29 by `-9.967991e-06`)
 
 ## 15-Minute Falsification Gate (3 `n`s)
 
@@ -61,5 +66,5 @@ Tested all 4 corners (`BL, TL, BR, TR`) with BOTH (a) direct boundary clamp (`ke
 
 ## Verification
 
-- `poc/swarm_cleanpeel/final.csv`: 3 complete groups (`401, 442, 485`), `literal == pandas` via `poc/auto_union/poc/union.py`.
+- `poc/swarm_cleanpeel/final.csv`: 5 complete groups (`401, 442, 485, 530, 577`), `literal == pandas` via `poc/auto_union/poc/union.py`.
 - `.github/scripts/check_final_csv.py` + `pytest` on `poc/baseline/poc/tests/`, `poc/auto_union/poc/`, `poc/swarm_cleanpeel/tests/`.

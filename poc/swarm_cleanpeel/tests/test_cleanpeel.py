@@ -15,8 +15,18 @@ for _p in (str(POC_DIR), str(ROOT / "poc" / "auto_union" / "poc"), str(ROOT / "p
         sys.path.insert(0, _p)
 
 import cleanpeel_lib as cp  # noqa: E402
+import extend_upward as eu  # noqa: E402
 import peel_engine as pe  # noqa: E402
 import union as auto_union  # noqa: E402
+
+
+def test_extend_one_layer_exact():
+    gx, gy = np.meshgrid([0.5, 1.5], [0.5, 1.5])
+    x, y, th, L = eu.extend_one_layer(gx.ravel(), gy.ravel(), np.zeros(4), 2.0)
+    assert len(x) == 9
+    pen, bb = cp.cpp_eval_sat_pen_bbox(x, y, th)
+    assert pen <= 1e-12
+    assert abs(bb - 3.0) < 1e-4
 
 
 def test_hx_and_norm_pack():
