@@ -1,0 +1,24 @@
+{
+  "folder": "setpack367",
+  "source_main": "eb2e3c01dd378c05290445fb9c2a7f322ed7d9de",
+  "incumbent_sha256": "70d6811b0cfa884e39fd83d5537ca373922112b27431d245bb524f93d635994a",
+  "canonical_unchanged": true,
+  "pandas": "3.1.0",
+  "literal_and_actual_pandas": true,
+  "candidate_files": [
+    {
+      "path": "poc/setpack367/data/regenerate-nov13/source-manifest.json",
+      "sha256": "3b6cdffc6709c5ce64fe928a74fe05d0bb8d60d0fe7e95c05c0f9235bca2b4bd",
+      "decode_note": "report/metadata, not a saved coordinate-row list",
+      "groups": 0
+    }
+  ],
+  "candidate_groups": 0,
+  "winning_ns": [],
+  "preserved_ns": [],
+  "conversion_excluded": [],
+  "final_sha256": "68ba01f1d099f2277319d75d5f018a5b9ed9cd4c759f36d77a3a1bea67f90276",
+  "sources": {},
+  "candidate_results": [],
+  "final_results": []
+}
