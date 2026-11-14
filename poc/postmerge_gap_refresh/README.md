@@ -22,12 +22,12 @@ For each complete `n` group in the current `upstream/merge` artifact:
 
 ## Result
 
-Win. Against `upstream/merge` (`be377e1`, artifact
-`merged-22.15330692498.csv`), **80 complete groups** are strictly smaller in
+Win. Against `upstream/merge` (`e3c11f7`, artifact
+`merged-22.15326971562.csv`), **77 complete groups** are strictly smaller in
 both literal and actual pandas certification.
 
-The uniform pass reduced the score by
-**`6.032982278591945611098263809e-7`**.
+Against the original merge snapshot, the uniform pass reduced the side-length
+score by **`6.032982278591945611098263809e-7`**.
 
 Largest side reductions:
 
@@ -47,13 +47,20 @@ literal final-CSV structure check.
 ### Follow-up fixed-angle LP
 
 A 12-round, no-trust-region fixed-angle LP was then run over the full 1,000
-groups in the current upstream merge. It found 28 strict groups, including
-three outside the softened set (`n=333`, `740`, `861`). The tested LP reduction
-on those complete groups is
-**`1.515274578189450651025466411e-6`**.
+groups in the original merge snapshot. It found 28 strict groups, including
+three outside the softened set (`n=333`, `740`, `861`). Its reduction against
+that snapshot was **`1.515274578189450651025466411e-6`**.
 
-After merging the two stages, there are **81 strict groups**. The projected
-union score is **`22.15330461280231`**, down by
-**`2.3121733860875793e-6`** from the current merge. `docs/lp-wins.json` and
-`docs/full-lp-wins.json` contain the LP rows, and `docs/lp-merge.json` records
-the replacement set.
+Four groups from those stages (`796`, `853`, `909`, `972`) were superseded by
+the newer upstream merge and were removed by `poc/rebase_current.py`. The
+remaining **81 strict groups** were then re-certified against
+`merged-22.15326971562.csv`; **77 are still strictly smaller in both
+transports**.
+
+The certified full-union score is **`22.15326747482295`** after the pandas
+round trip (`22.153267474822947` literal), down by
+**`2.24079705e-6`** from the merge-branch filename baseline. Both modes accept
+all 1,000 groups. `docs/final-gate.json` is the current gate,
+`docs/per-n.md` contains every exact per-`n` before/after length, and
+`docs/lp-wins.json`, `docs/full-lp-wins.json`, and `docs/lp-merge.json` retain
+the construction-stage evidence.
