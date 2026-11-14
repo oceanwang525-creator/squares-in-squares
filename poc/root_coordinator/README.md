@@ -129,6 +129,32 @@ assemble multiple periods and certify the full n. This is distinct from failed
 single-period strip cells and rigid 45-degree bands because both phase and
 period can vary and the assembler may use different end pieces.
 **Quick test:** 1-3 high-gap n selected from 380, 701, 846, 979.  
+**Outcome:** still running; partial result not yet available.
+
+### 6. `newgadget_closure`
+
+**Rank:** high.  
+**Hypothesis:** the upstream merge added enough new pocket/gadget primitives to
+make another composition-closure pass worthwhile. Extract reusable pocket and
+gadget primitives from recent successful POCs, then rescan current high-gap n
+rows with exact/DP composition.  
+**Quick test:** recomputed current gaps from the new merge and scanned the top 30
+plus the `n=960..978` neighborhood.  
+**Outcome:** one certified strict win at `n=974`: incumbent `L=31.705886745787048`
+to `L=31.70588236820239466613381477509345626574081318069471`, dual-transport
+`dL=-4.3775846521043604e-6`, score gain `-1.402668598699e-7`. The construction
+uses the `(18,9,+6)T` primitive from `n=538` and the new `(10,22,+7)T` primitive
+from `n=974`. The extended scan produced no additional strict win. Agent commit:
+`c1f2ced`; folder retained because it has a real win.
+
+### 7. `multiscale_block_rebuild`
+
+**Rank:** high.  
+**Hypothesis:** high-n failures are dominated by rigid grain boundaries. Release
+whole coherent blocks and seams at multiple scales, then solve exact set packing
+or SLP reattachment and certify. This is more aggressive than the earlier failed
+single-square ownership release.  
+**Quick test:** 1-3 still-relevant high-gap n, using substantial CPU batches.  
 **Outcome:** running.
 
 ## Rules given to every subagent
