@@ -34,24 +34,20 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15406754142.csv`, the current final leaves five strict
-improvements from iterated mechanism passes over the merged structural seeds.
-The complete score is `22.154066002562505` literal and
-`22.15406600256251` pandas, with all `1000/1000` groups accepted by both
-transports and no rejects or missing groups:
+Against `merged-22.15332685366.csv`, the current final leaves two strict
+improvements from a sixth mechanism pass over the merged structural seeds. The
+complete score is `22.15332683563477` literal and `22.153326835634772` pandas,
+with all `1000/1000` groups accepted and no rejects or missing groups:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 687 | 26.717920906484127 | 26.717919107334627 | -1.799149500e-06 |
-| 736 | 27.634367487849832 | 27.634365755677692 | -1.732172140e-06 |
-| 793 | 28.659309154049116 | 28.659281475945289 | -2.767810383e-05 |
-| 851 | 29.666036666640738 | 29.666034291320278 | -2.375320463e-06 |
-| 910 | 30.656437491823008 | 30.656427173119178 | -1.031870383e-05 |
+| 687 | 26.717919107334627 | 26.717919008812192 | -9.852243422e-08 |
+| 736 | 27.634365755677692 | 27.634365368612369 | -3.870653230e-07 |
 
-The earlier recursive `n=800` result is now part of the upstream merge
-artifact and is no longer exported. The `n=909` group was removed after the
-new upstream merge improved that record. The aggregate certified reduction is
-`-0.000001538855470510808301954211774`.
+The upstream auto-union absorbed the earlier `n=793`, `n=851`, and `n=910`
+records, so they are no longer exported. The aggregate certified reduction
+against the latest merge artifact is
+`-0.00000001802628241185196697774927032609414515636425568543473716003364373`.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
@@ -84,6 +80,8 @@ The detailed machine-generated before/after report is in
   `+1.311409144e-7`.
 - Further middle-band searches missed for `742`, `691`, `758`, `690`, and
   `644`; the closest was `690` at `+8.986538134e-7`.
+- A six-round mechanism pass from the updated `n=793` record missed by
+  `+4.439093485672131e-5`.
 - A broad untested `700..1000` scan was interrupted after mostly zero or
   low-amplitude modes; it should not be repeated unchanged.
 - The attached `submission-kaggle-safe.csv` was rejected as a donor: its
