@@ -53,8 +53,8 @@ _G_ROWS_ALL = None
 
 
 def _run_cell_fork(args_tuple) -> dict:
-    cell, L_inc_str, run_mechwalk, max_seams, keep_self = args_tuple
-    return process_cell((cell, _G_BY_KEY, _G_ROWS_ALL, L_inc_str, run_mechwalk, max_seams, keep_self))
+    cell, L_inc_str, run_mechwalk, max_seams, keep_self, fast = args_tuple
+    return process_cell((cell, _G_BY_KEY, _G_ROWS_ALL, L_inc_str, run_mechwalk, max_seams, keep_self, fast))
 
 
 def load_pockets_index(paths: list[str]) -> dict[tuple[int, int, int, int], list[dict]]:
@@ -295,6 +295,7 @@ def screen_layout(
     y: np.ndarray,
     th: np.ndarray,
     L_inc_dec: Decimal,
+    fast: bool = False,
 ) -> tuple[dict | None, list[str]]:
     """Fast screen: raw cert + fast 1-mode lpslack (+ joint_xytheta_slp check)."""
     notes = []
@@ -302,8 +303,11 @@ def screen_layout(
     if best_cert is not None:
         notes.append(f"init={best_cert['L_float']:.7f}({best_cert['dL']:+.2e})")
 
+    oi = 5 if fast else 6
+    fr = 5 if fast else 6
+    tl = 4.0 if fast else 6.0
     c_lp = _run_lpslack_fast(
-        n, x, y, th, L_inc_dec, cycles=1, outer_iters=6, fixed_rounds=6, slp_modes=("dual_non90",), time_limit=6.0
+        n, x, y, th, L_inc_dec, cycles=1, outer_iters=oi, fixed_rounds=fr, slp_modes=("dual_non90",), time_limit=tl
     )
     if c_lp is not None:
         notes.append(f"lpslack={c_lp['L_float']:.7f}({c_lp['dL']:+.2e})")
@@ -323,7 +327,7 @@ def screen_layout(
                 notes.append(f"slp={c_slp['L_float']:.7f}({c_slp['dL']:+.2e})")
             if improved or best_cert is None:
                 c_lp2 = _run_lpslack_fast(
-                    n, xs, ys, ts, L_inc_dec, cycles=1, outer_iters=6, fixed_rounds=6, slp_modes=("dual_non90",), time_limit=6.0
+                    n, xs, ys, ts, L_inc_dec, cycles=1, outer_iters=oi, fixed_rounds=fr, slp_modes=("dual_non90",), time_limit=tl
                 )
                 if c_lp2 is not None:
                     notes.append(f"slp+lp={c_lp2['L_float']:.7f}({c_lp2['dL']:+.2e})")
@@ -338,7 +342,7 @@ def _is_self_split(n: int, seam: dict) -> bool:
 
 
 def process_cell(args_tuple) -> dict:
-    cell, by_key, rows_all, L_inc_str, run_mechwalk, max_seams, keep_self = args_tuple
+    cell, by_key, rows_all, L_inc_str, run_mechwalk, max_seams, keep_self, fast = args_tuple
     n = int(cell["n"])
     K = int(cell["K"])
     D = int(cell["D"])
@@ -379,7 +383,7 @@ def process_cell(args_tuple) -> dict:
         tried_feas = False
         best_seam_dL = None
         notes_all = []
-        for l_idx, (_, _, xs, ys, ths, S_f, n_pk, raw_tot, exact_rows) in enumerate(candidates_geom[:2]):
+        for l_idx, (_, _, xs, ys, ths, S_f, n_pk, raw_tot, exact_rows) in enumerate(candidates_geom[: (1 if fast else 2)]):
             cert_init = None
             if raw_tot >= n and exact_rows is not None:
                 try:
@@ -391,7 +395,7 @@ def process_cell(args_tuple) -> dict:
 
             if cert_init is not None:
                 tried_feas = True
-                c_res, notes = screen_layout(n, xs, ys, ths, L_inc_dec)
+                c_res, notes = screen_layout(n, xs, ys, ths, L_inc_dec, fast=fast)
                 notes_all.extend(notes)
             else:
                 melted = melt_overlapping_seam(n, xs, ys, ths, n_pk, L_inc_dec, rng)
@@ -401,7 +405,7 @@ def process_cell(args_tuple) -> dict:
                     continue
                 tried_feas = True
                 mx, my, mth, _ = melted
-                c_res, notes = screen_layout(n, mx, my, mth, L_inc_dec)
+                c_res, notes = screen_layout(n, mx, my, mth, L_inc_dec, fast=fast)
                 notes_all.extend([f"L{l_idx}:melted"] + notes)
 
             if c_res is not None:
@@ -429,7 +433,8 @@ def process_cell(args_tuple) -> dict:
             break
 
     # Phase 2: Deep polish (lpslack cycles=2 dual_non90+non90, plus mechwalk if enabled) on near-wins/wins
-    if best_cert is not None and best_cert["dL"] < 1.5e-3:
+    deep_thresh = 5.0e-4 if fast else 1.5e-3
+    if best_cert is not None and best_cert["dL"] < deep_thresh:
         bx, by, bt, _ = hlib._rows_to_arrays(best_cert["rows"])
         c_deep = _run_lpslack_fast(
             n, bx, by, bt, L_inc_dec, cycles=2, outer_iters=10, fixed_rounds=8, slp_modes=("dual_non90", "non90"), time_limit=8.0
@@ -516,6 +521,7 @@ def main() -> None:
     ap.add_argument("--max-dL-rigid", type=float, default=None)
     ap.add_argument("--keep-self", action="store_true", help="Also try pure self-split seams")
     ap.add_argument("--resume", action="store_true", help="Skip cells already in --out or docs/ckpt")
+    ap.add_argument("--fast", action="store_true", help="Fast 1-layout screening per seam")
     ap.add_argument("--no-mechwalk", action="store_true")
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--out", required=True)
@@ -560,7 +566,7 @@ def main() -> None:
         flush=True,
     )
 
-    tasks = [(c, rep[c["n"]], not args.no_mechwalk, args.max_seams, args.keep_self) for c in cells]
+    tasks = [(c, rep[c["n"]], not args.no_mechwalk, args.max_seams, args.keep_self, args.fast) for c in cells]
 
     def _record(r: dict) -> None:
         results_by_n[int(r["n"])] = r
