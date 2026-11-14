@@ -176,26 +176,32 @@ kept paying for 4 rounds. Next: push the fine scan to step 0.0625, run more
 cascade rounds on the newly won n (492 especially), and apply the same cascade
 to any n where a narrow sub-pocket lifts onto a *top-gap* row.
 
-### Cycle-4 hypotheses (running)
+### Cycle-4/5 outcomes (final state: merge-branch 22.15248431115)
 
-Upstream main after PR #71 + auto-union: **22.152957456** (session start
-22.153257205; banked so far **2.997e-4**). Remaining gap to target: **0.05306**.
+Session start 22.15325720501 → merged **22.15248431115** (verified on the
+develop/merge branch): banked **7.733e-4**. Target 22.0999 still needs
+**0.052584**. Six PRs merged (#67,#71,#73,#74,#75).
 
-| # | idea | folder | expected |
-|---|---|---|---|
-| E1 | Finer scan (step 0.0625, four phases), wider cap/fmax, more seam layouts, iterate | `poc/pocket_lift_scan3` | 5e-5–3e-4 |
-| E2 | Deeper polish cascade (6-8 rounds) on the current best rows, esp. n=492 | `poc/lift_polish2` | 5e-5–3e-4 |
-| E3 | Rational-slope pocket library: n=492 won at `22+12/17`; search more `p/q` pockets for the top-gap rows | untried | uncertain |
-| E4 | 3-pocket and non-rectangular (staircase) seam gadgets | untried | uncertain |
+- **E1 `pocket_lift_scan3` — positive but saturating.** Step-0.0625 scan found
+  n=588 (-1.49e-3), n=799 (-8.46e-4), n=803 (-1.28e-4), n=538 (-1.83e-5).
+  Measured saturation: phase 2 (+1.02M gadgets) moved the DP by 1.2e-7; phase 3
+  (+0.99M) by **zero**. The supply is no longer binding.
+  Bug found: C1's raw library had 13 fabricated records; `sanitize.py` now
+  re-derives every record from its donor row.
+- **E2 `lift_polish2` — positive, then converged.** n=492 (never polished) drops
+  4.353e-3; 485/530/577 add ~1.5e-6. Rounds 3-6 gave ≤3e-8; the re-cut/re-lift
+  lever is structurally dead (0 DP cells on polished rows).
+- **E3 `rational_zipper` — negative with an exact proof.** A single-layer slope
+  `q:p` seam has axis cost `c_zip = sqrt(p²+q²)/(p+q) ≥ 1/√2`, equality only at
+  `p=q`; no rational slope beats `1/√2`, which the top-gap rows already have.
+  The tracked constants are dense-slab constants `p/(p+q)` (1/2, 3/5), not seam
+  constants — reaching them is a density-0.96 free-form packing problem.
 
-**Note on scale.** Banked wins are ~3e-4 and cycles are adding ~1-2e-4 each.
-The remaining 0.053 is ~180x that, so the stated target is **not reachable by
-this mechanical track alone**; it would require matching top-team private
-free-form packings on ~half the puzzles. I keep cycling because the pocket-lift
-and cascade levers are still paying, but I am not claiming the target is close.
-
-
-
+**Every family is now provably/measurably closed:** fixed-angle LP, Lipschitz
+SLP, swarm lpslack, pocket composition (saturated), polish cascade (converged),
+rational zippers (`≥1/√2`), rigid minus-E (`≥K+1`), rigid rotation (no gain),
+grid+tilted band (≤ grid). The remaining 0.0526 is the all-team **private**
+free-form frontier.
 
 
 ## Honest assessment
