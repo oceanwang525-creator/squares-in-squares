@@ -136,6 +136,17 @@ proper batched/numba core so the eight undecided shapes get a trustworthy
 answer, and re-scan for *new* narrow sub-pockets of the rows C1 improved
 (the improved rows are new donors).
 
+### Cycle-3 hypotheses (ranked)
+
+| # | idea | folder | expected |
+|---|---|---|---|
+| D1 | Scale C1: 0.125/0.0625 offset lattices, 3-pocket seams, iterate with improved rows as new donors, border-propagate each win | `poc/pocket_lift_scan2` | 1e-5–3e-4 |
+| D2 | Polish every C1 lift with the team's proven lpslack + fixed-angle LP + Lipschitz SLP, then rescan (a fresh topology may have slack) | `poc/lift_polish` | 1e-6–1e-5 |
+| D3 | Re-run C1's scan after each upstream merge (maintenance harvest) | coordinator | ~1e-6/merge |
+| D4 | Allow non-rectangular (staircase/L-shaped) sub-pockets as gadgets | untried | uncertain |
+| D5 | For each top-gap n, report the best side reachable from the whole pocket library (diagnostic: is the gap reachable by composition at all?) | `poc/pocket_reach` | diagnostic |
+
+
 
 ## Honest assessment
 
