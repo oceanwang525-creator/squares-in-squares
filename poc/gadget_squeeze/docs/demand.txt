@@ -1,0 +1,48 @@
+n=367 K=19 j=6 ours f=0.692388 frontier f=0.670857 gap_score=0.0011239277599229716
+   need +1 more gain at f<=0.670857: budget dw=3, dh=2, dsum=4 (current gain 5 at f<=0.666034)
+   composition at f<=0.666034: 12x12+4 + 4x5+1
+n=791 K=28 j=7 ours f=0.634071 frontier f=0.605885 gap_score=0.001002187264860702
+   need +2 more gain at f<=0.605885: budget dw=8, dh=0, dsum=7 (current gain 5 at f<=0.605829)
+   composition at f<=0.605829: 12x17+3 + 11x8+2T
+n=908 K=30 j=8 ours f=0.634071 frontier f=0.605885 gap_score=0.0009353931740052153
+   need +2 more gain at f<=0.605885: budget dw=3, dh=0, dsum=1 (current gain 6 at f<=0.605829)
+   composition at f<=0.605829: 10x9+2T + 10x9+2T + 10x9+2T
+n=969 K=31 j=8 ours f=0.633983 frontier f=0.605571 gap_score=0.0009127121571855408
+   need +2 more gain at f<=0.605571: budget dw=4, dh=1, dsum=3 (current gain 6 at f<=0.604601)
+   composition at f<=0.604601: 11x8+2T + 11x8+2T + 11x8+2
+n=803 K=28 j=19 ours f=0.817412 frontier f=0.793943 gap_score=0.0008282051002059961
+   need +2 more gain at f<=0.793943: budget dw=0, dh=0, dsum=0 (current gain 17 at f<=0.793380)
+   composition at f<=0.793380: 28x28+17
+n=328 K=18 j=4 ours f=0.614369 frontier f=0.599535 gap_score=0.0008190415679842709
+   need +1 more gain at f<=0.599535: budget dw=1, dh=-2, dsum=-1 (current gain 3 at f<=0.598620)
+   composition at f<=0.598620: 20x17+1T
+n=492 K=22 j=8 ours f=0.707107 frontier f=0.690540 gap_score=0.000746866727943206
+   need +1 more gain at f<=0.690540: budget dw=0, dh=0, dsum=0 (current gain 7 at f<=0.690356)
+   composition at f<=0.690356: 22x22+7
+n=861 K=29 j=20 ours f=0.817034 frontier f=0.795415 gap_score=0.0007367790953949287
+   need +2 more gain at f<=0.795415: budget dw=1, dh=0, dsum=1 (current gain 18 at f<=0.794962)
+   composition at f<=0.794962: 28x29+18
+n=365 K=19 j=4 ours f=0.612856 frontier f=0.598824 gap_score=0.000734473093521251
+   need +1 more gain at f<=0.598824: budget dw=-1, dh=-1, dsum=-2 (current gain 3 at f<=0.598620)
+   composition at f<=0.598620: 20x20+3
+n=902 K=30 j=2 ours f=0.535534 frontier f=0.514079 gap_score=0.0007143777472205294
+   None
+   no composition below the frontier level
+n=963 K=31 j=2 ours f=0.535534 frontier f=0.514079 gap_score=0.0006913819597237687
+   None
+   no composition below the frontier level
+n=530 K=23 j=1 ours f=0.533032 frontier f=0.517305 gap_score=0.0006831538696095052
+   None
+   no composition below the frontier level
+n=577 K=24 j=1 ours f=0.533033 frontier f=0.517305 gap_score=0.0006547824640977715
+   None
+   no composition below the frontier level
+n=842 K=29 j=1 ours f=0.520815 frontier f=0.502153 gap_score=0.000643154713385227
+   None
+   no composition below the frontier level
+n=491 K=22 j=7 ours f=0.684144 frontier f=0.669927 gap_score=0.0006415896043941432
+   need +1 more gain at f<=0.669927: budget dw=4, dh=0, dsum=3 (current gain 6 at f<=0.666034)
+   composition at f<=0.666034: 10x6+2T + 12x12+4
+n=975 K=31 j=14 ours f=0.721540 frontier f=0.701629 gap_score=0.0006376638867096889
+   need +2 more gain at f<=0.701629: budget dw=0, dh=0, dsum=0 (current gain 12 at f<=0.699131)
+   composition at f<=0.699131: 31x31+12

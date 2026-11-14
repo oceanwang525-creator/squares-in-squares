@@ -53,6 +53,18 @@ def write_final(path, groups):            # groups: {n: [dict(square_id,x,y,angl
                     w.writerow([f"{n:03}_{r['square_id']}", "s"+r["x"], "s"+r["y"], "s"+deg])
 ```
 
+## Free win: L-border propagation
+
+In the incumbent, **470 pairs** satisfy `L(n') = L(n)+1` with
+`n' = n + 2*K + 1`, `K = floor(sqrt(n))`. Mechanism: if a packing of `n`
+squares has side `L` and `ceil(L) = K+1`, an axis-aligned L-border of
+`2*ceil(L)-1 = 2K+1` unit squares (a full new column at `x = L+0.5`, plus the
+matching new row minus the corner) gives `n' = n+2K+1` squares at side `L+1`.
+So **whenever you improve a base `n`, also emit the border-extended
+`n' = n+2*K+1` group** (same `dL`, and it cascades). Certify the extended group
+in both modes; the border is exact geometry (axis-aligned, outside the old
+bbox). Do this before declaring the win.
+
 ## Rules
 
 - Work ONLY inside your own `poc/{idea}/` folder. Do not modify other folders.
