@@ -64,7 +64,11 @@ def test_build_h13_seeds_shapes():
 
 
 def test_presets_are_target_specific():
-    family = (442, 485, 528, 529, 530, 531, 532, 533, 576, 577, 578, 785, 786, 842, 901, 962)
+    family = (
+        441, 442, 443, 447, 484, 485, 486, 491, 528, 529, 530, 531, 532,
+        533, 538, 576, 577, 578, 588, 740, 743, 785, 786, 798, 799, 803,
+        842, 901, 962,
+    )
     seeds = {ps.preset_for(n).seed for n in family}
     assert len(seeds) == len(family)
     assert ps.preset_for(530).radius_min == ps.preset_for(531).radius_min
