@@ -34,26 +34,20 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15406754142.csv`, the current final leaves five strict
-improvements from iterated mechanism passes over the merged structural seeds.
-The complete score is `22.154065984536224` in both literal and pandas modes,
+Against `merged-22.15332685366.csv`, the current final leaves two strict
+improvements from a sixth mechanism pass over the merged structural seeds. The
+complete score is `22.15332683563477` literal and `22.153326835634772` pandas,
 with all `1000/1000` groups accepted and no rejects or missing groups:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 687 | 26.717920906484127 | 26.717919008812192 | -1.897671934e-06 |
-| 736 | 27.634367487849832 | 27.634365368612369 | -2.119237463e-06 |
-| 793 | 28.659309154049116 | 28.659281475945289 | -2.767810383e-05 |
-| 851 | 29.666036666640738 | 29.666034291320278 | -2.375320463e-06 |
-| 910 | 30.656437491823008 | 30.656427173119178 | -1.031870383e-05 |
+| 687 | 26.717919107334627 | 26.717919008812192 | -9.852243422e-08 |
+| 736 | 27.634365755677692 | 27.634365368612369 | -3.870653230e-07 |
 
-The earlier recursive `n=800` result is now part of the upstream merge
-artifact and is no longer exported. The `n=909` group was removed after the
-new upstream merge improved that record. The aggregate certified reduction is
-`-0.00000155688175292266026893196104488673560330283596292085054021504651867`.
-
-A sixth-pass beam run on the exported records added
-`-9.852243421950985e-8` at `n=687` and `-3.870653229518633e-7` at `n=736`.
+The upstream auto-union absorbed the earlier `n=793`, `n=851`, and `n=910`
+records, so they are no longer exported. The aggregate certified reduction
+against the latest merge artifact is
+`-0.00000001802628241185196697774927032609414515636425568543473716003364373`.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
