@@ -15,8 +15,17 @@ for p in (BREADTH_POC, HIGHD_POC):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
 
-import pocket_seeds as ps  # noqa: E402
 import idea1_highd_pilot as i1  # noqa: E402
+
+_POCKET_SPEC = importlib.util.spec_from_file_location(
+    "h132_masked_melt_breadth_pocket_seeds",
+    BREADTH_POC / "pocket_seeds.py",
+)
+if _POCKET_SPEC is None or _POCKET_SPEC.loader is None:
+    raise RuntimeError("cannot load H132 pocket_seeds.py")
+ps = importlib.util.module_from_spec(_POCKET_SPEC)
+sys.modules[_POCKET_SPEC.name] = ps
+_POCKET_SPEC.loader.exec_module(ps)
 
 MERGED_CSV = REPO_ROOT / "poc" / "pell_corrugation" / "data" / "border-scan" / "merged.csv"
 FINAL_CSV = Path(__file__).resolve().parents[1] / "final.csv"
@@ -55,10 +64,33 @@ def test_build_h13_seeds_shapes():
 
 
 def test_presets_are_target_specific():
-    seeds = {ps.preset_for(n).seed for n in (367, 902, 530)}
-    expands = {ps.preset_for(n).l_expand for n in (367, 902, 530)}
-    assert len(seeds) == 3
-    assert len(expands) == 3
+    family = (442, 485, 528, 529, 530, 531, 532, 533, 576, 577, 578, 785, 786, 842, 901, 962)
+    seeds = {ps.preset_for(n).seed for n in family}
+    assert len(seeds) == len(family)
+    assert ps.preset_for(530).radius_min == ps.preset_for(531).radius_min
+    assert ps.preset_for(842).l_expand == ps.preset_for(962).l_expand
+
+
+def test_expansion_sweep_builds_48_starts():
+    x, y, th, L = _load_norm(842)
+    preset = ps.preset_for(842)
+    rng = np.random.default_rng(preset.seed + 84200)
+    q_list, m_list, ls_list, labels = ps.build_h13_seeds(
+        842,
+        x,
+        y,
+        th,
+        L,
+        rng,
+        waves=2,
+        l_expand_values=(0.044, 0.050),
+    )
+    assert len(q_list) == 48
+    assert len(m_list) == 48
+    assert any(abs(ls[0] - (L + 0.044)) < 1e-12 for ls in ls_list)
+    assert any(abs(ls[0] - (L + 0.050)) < 1e-12 for ls in ls_list)
+    assert any("w0" in label for label in labels)
+    assert any("w1" in label for label in labels)
 
 
 def test_final_csv_schema_if_present():
