@@ -9,14 +9,21 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 8 Summary (H62 Stage 5: 2 Certified REAL WINs in `final.csv`, total `ds = -1.992869e-05`)
+## Batch 9 Summary (H62 Stage 6: 1 Certified REAL WINs in `final.csv`, total `ds = -3.265679e-05`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
-| 741 | `-5.760222e-05` | `-2.116070e-06` | `27.7077647489777837728` | `27.7078223511930757781` (merged.csv) | `rejam_r4_b0_m1_t4e-04_m_0.008` |
-| 971 | `-5.550566e-04` | `-1.781262e-05` | `31.6418814314893443518` | `31.6424364881247324311` (merged.csv) | `rejam_r4_b0_m5_t4e-04_m_0.008` |
+| 970 | `-1.017090e-03` | `-3.265679e-05` | `31.6379647080018451838` | `31.6389817979899159371` (merged.csv) | `rejam_r1_b0_m8_t2e-04_m_0.008` |
 
-## Batch 8 Run Log (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
+## Batch 9 Run Log (1 REAL WINs, 2 Ties/Misses across 3 `n`s)
+
+| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
+|---:|---|---|---:|---:|---|
+| 737 | `b6_s6_results.json` | **MISS** | `+2.772276e-06` | 207.16 | `rejam_r3_b0_m1_t4e-04_p_0.008` |
+| 796 | `b6_s6_results.json` | **MISS** | `+8.627150e-06` | 268.93 | `mmelt_r4_b0_m0_t5e-05_m_0.008` |
+| 970 | `b6_s6_results.json` | **REAL_WIN** | `-6.761522e-06` | 711.86 | `rejam_r1_b0_m8_t2e-04_m_0.008` |
+
+## Batch 8 Archive (Merged in PR #50 / `bdfda15`) (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
 
 | `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
 |---:|---|---|---:|---:|---|
