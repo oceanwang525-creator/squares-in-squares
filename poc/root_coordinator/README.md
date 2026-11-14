@@ -111,7 +111,13 @@ growth may reveal a first-order path missed by uniform shrink and all-square
 SLP. The solver should keep orientation groups fixed but allow blocks anchored
 to opposite walls to move independently.
 **Quick test:** 1-3 high-gap n selected from 259, 414, 445, 555, 604.  
-**Outcome:** running.
+**Outcome:** negative.  Across `259, 414, 445`, the fixed-orientation dual-wall
+block LP produced zero strict dual-transport wins; the all-square fixed-angle
+control also produced zero.  With the final `1e-9` safety margin, all nine
+dual-wall tasks were LP-infeasible, while earlier zero-margin runs produced
+only ties or exact-certification failures from overlap.  Final `final.csv` was
+header-only.  Final agent commit: `5584344`.  I removed the completed folder
+from the working tree after that commit, preserving its history.
 
 ### 5. `periodic_frontier_refit`
 
