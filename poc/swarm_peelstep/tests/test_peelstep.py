@@ -66,11 +66,14 @@ def test_build_pinwheel_kxky_counts() -> None:
 def test_pick_pairs_for_n_filter_and_kxky() -> None:
     # n=913 -> m=30, r=+13
     b1 = _make_dummy_brick(9, 21, 6)
-    b2 = _make_dummy_brick(22, 9, 7)  # kx=+1, ky=0, g=13
-    b3 = _make_dummy_brick(22, 10, 6)  # kx=+1, ky=+1, g=12 == r-1
+    b2 = _make_dummy_brick(22, 9, 7)   # kx=+1, ky=0, g=13
+    b3 = _make_dummy_brick(21, 10, 7)  # kx=0, ky=+1, g=13
+    b4 = _make_dummy_brick(22, 10, 6)  # kx=+1, ky=+1, g=12 == r-1
     b_bad = _make_dummy_brick(20, 9, 7)  # f too high when overridden
     b_bad["f"] = 0.75
     pairs = pl.pick_pairs_for_n(913, [b1, b2, b3, b_bad], f_inc=0.707, max_excess=0.005, top_k=10)
-    assert len(pairs) >= 2
-    dms = {p[3] for p in pairs}
-    assert "none" in dms
+    assert len(pairs) == 2
+    assert all(p[3] == "none" for p in pairs)
+    # Fallback to (1,1) when no non-(1,1) exists
+    pairs_11 = pl.pick_pairs_for_n(913, [b1, b4], f_inc=0.707, max_excess=0.005, top_k=10)
+    assert len(pairs_11) == 1

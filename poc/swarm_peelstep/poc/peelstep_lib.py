@@ -262,12 +262,18 @@ def pick_pairs_for_n(
                     best_by_shape[sk] = cand
 
     ranked = sorted(best_by_shape.values(), key=lambda t: (t[0], t[1]))
+    has_non11 = any(
+        not (b1["w"] + b2["w"] - m == 1 and b1["h"] + b2["h"] - m == 1)
+        for _, _, b1, b2, _ in ranked
+    )
     # Keep up to top_k, capping identical (kx, ky) geometry class slightly so we get variety
     out: list[tuple[float, dict, dict, str]] = []
     kxky_cnt: dict[tuple[int, int], int] = {}
     for score, _, b1, b2, dm in ranked:
         kx = b1["w"] + b2["w"] - m
         ky = b1["h"] + b2["h"] - m
+        if has_non11 and kx == 1 and ky == 1:
+            continue
         if kxky_cnt.get((kx, ky), 0) >= max(3, top_k // 2):
             continue
         kxky_cnt[(kx, ky)] = kxky_cnt.get((kx, ky), 0) + 1
