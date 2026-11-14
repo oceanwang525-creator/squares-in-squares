@@ -1,0 +1,14 @@
+{
+ "submission": "poc/pell_corrugation/data/border-scan/merged.csv",
+ "targets": {
+  "791": {
+   "incumbent": "28.63407074697788036810301145818560905438545822924758",
+   "probe_side": "1e-9",
+   "pairs": 20,
+   "best": null,
+   "best_bound": 969,
+   "win": false
+  }
+ },
+ "wins": {}
+}
