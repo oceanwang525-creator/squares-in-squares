@@ -2,14 +2,15 @@
 
 Hypotheses **H25 + H28 + H33 + H34 + H49 + H60** targeting modular rectangular sub-brick extraction, standalone sub-brick Contact-Jacobian SVD mechanism walks (single singular modes + H34 diagonal mode pairs `(v_i ± v_j) / sqrt(2)`), shake-free SAT L-BFGS re-jamming (`slp_utils.cpp_batch_melt`, `n_ruin_iters=0`), and zero-overlap / pre-shifted pinwheel + joint `(x, y, theta)` SLP polish.
 
-## Certified REAL WINs in `final.csv` (vs `origin/main` `d12df26`)
+## Certified REAL WIN in `final.csv` (vs `origin/main` `dd456ac`)
 
-| `n` | `L_inc` (`d12df26`) | `L_new` (`literal == pandas`) | `dL` | `ds = d(L^2 / n)` | Method / Recipe |
+| `n` | `L_inc` (`dd456ac`) | `L_new` (`literal == pandas`) | `dL` | `ds = d(L^2 / n)` | Method / Recipe |
 |---:|---:|---:|---:|---:|:---|
-| **737** | `27.6388918153424434365` | **`27.6388323441686609773`** | **`-5.947117e-05`** | **`-4.460558e-06`** | Zero-overlap H60 pinwheel `B4_10x16_mw632_raw` (`10x16`, `f_y=0.637919516`) + `B4_11x16_n849_T` (`16x11`, `f=0.637029402`), `sf=0.8` + `joint_xytheta_slp_tight` (`non0/90 = 233/737`) |
-| **909** | `30.6388990056089411951` | **`30.6388383433187260455`** | **`-6.066229e-05`** | **`-4.089382e-06`** | Zero-overlap H60 pinwheel `B4_10x16_mw632_raw` (`10x16`, `f_y=0.637919516`) + `B5_20x11_n970` (`20x11`, walked `0.638711143 -> 0.638335771`), `sf=0.0` + `joint_xytheta_slp_tight` (`non0/90 = 253/909`) |
+| **970** | `31.637964708001846` | **`31.6377011355106805596`** | **`-2.635725e-04`** | **`-1.719353e-05`** | Zero-overlap H64 pinwheel `B4_11x16_n849` (`11x16`, `f=0.637029402`) + compressed `H60_B5_20x11_n970s6` (`20x11`, walked `0.637963595 -> 0.637701132`), `sf=0.0` + `joint_xytheta_slp_tight` (`non0/90 = 240/970`) |
 
 ## Earlier Gate / Scale / Merged Wins (Superseded or Already in `origin/main`, Not Exported in `final.csv`)
+
+- **`n=737, 909`** (`PR #54`, merged in `origin/main`): `n=737` reached `L = 27.6388323441686609773` (`dL = -5.947117e-05` vs `d12df26`, `B4_10x16_mw632_raw` + `B4_11x16_n849_T`); `n=909` reached `L = 30.6388383433187260455` (`dL = -6.066229e-05` vs `d12df26`, `B4_10x16_mw632_raw` + `B5_20x11_n970`).
 
 - **`n=639`** (`PR #46`, merged in `origin/main` `ead0ace`): reached `L = 25.774498196051952238` (`dL = -3.153415e-06` vs `62aed22`, `x639_flipx` direct BR `10x18 (+8)` swap with compressed `brick_B8_10x18_NEW.json`).
 - **`n=800`** (H25 15-min Gate `xplant800_flipx_r5` vs `31dab295`): reached `L = 28.774609387604921545` (`dL = -7.648570e-04` vs `28.77537424459916150`), later superseded by `PR #40` (`28.774579276819314902`). Direct brick swap against `PR #40` reached `28.774582606564784804` (`dL = +3.330e-06`, miss).
@@ -28,6 +29,9 @@ Hypotheses **H25 + H28 + H33 + H34 + H49 + H60** targeting modular rectangular s
 | `B10_22x11` | `(22, 11, +10)` | `0.756006961` | **`0.755888311`** | **`-1.186502e-04`** |
 | `B6_10x21_n972` | `(10, 21, +6)` | `0.656669406` | **`0.656551588`** | **`-1.178183e-04`** |
 | `B8_10x18_NEW` | `(10, 18, +8)` | `0.774500649` | **`0.774495438`** | **`-5.211308e-06`** |
+| `H60_B5_20x11_n970s6` | `(20, 11, +5)` | `0.637963595` | **`0.637701132`** | **`-2.624628e-04`** |
+| `H60_B4_11x16_n970s6` | `(11, 16, +4)` | `0.637963194` | **`0.637036640`** | **`-9.265540e-04`** |
+| `H60_B4_10x16_n909` | `(10, 16, +4)` | `0.641738711` | **`0.638902096`** | **`-2.836614e-03`** |
 | `H60_B5_20x11_n970` | `(20, 11, +5)` | `0.638711143` | **`0.638335771`** | **`-3.753723e-04`** |
 | `H60_B4_10x16_mw632` | `(10, 16, +4)` | `0.638907019` | **`0.638897523`** | **`-9.495794e-06`** |
 | `H60_B4_12x16_n849` | `(12, 16, +4)` | `0.636883125` | `0.636883125` | `0.0` (locked) |
@@ -52,5 +56,5 @@ Hypotheses **H25 + H28 + H33 + H34 + H49 + H60** targeting modular rectangular s
 - `poc/b8_lib.py`: `B8_10x18_NEW` extractor/transformers, TRUE frontier loader, localized contact-Jacobian SVD modes, canonical dual certifier.
 - `poc/brick_rect_lib.py`: self-contained rectangular L-BFGS / SLP and pinwheel assembly helpers.
 - `poc/run_gate.py`, `poc/run_scale.py`, `poc/run_track_e_h49.py`, `poc/run_h60_pingpong.py`, `poc/run_polish_800_639.py`: gate, standalone brick walk (with H34 diagonal pairs), Track E broadcast, H60 pinwheel ping-pong, and direct swap polish.
-- `data/`: `B8_10x18_NEW.json`, walked brick checkpoints (`brick_*.json`), and certified wins `win_n737.json`, `win_n909.json`.
+- `data/`: `B8_10x18_NEW.json`, walked brick checkpoints (`brick_*.json`), and certified win `win_n970.json`.
 - `tests/test_b8xplant.py`: unit & `final.csv` dual-certification checks.
