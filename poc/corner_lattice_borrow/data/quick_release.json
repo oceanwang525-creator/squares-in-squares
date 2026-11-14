@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "best_count": 876,
+      "best_release": [],
+      "donor": 876,
+      "n": 877,
+      "probes": 30,
+      "seconds": 7.222095,
+      "short": 1,
+      "window": "2x2"
+    },
+    {
+      "best_count": 876,
+      "best_release": [],
+      "donor": 876,
+      "n": 877,
+      "probes": 30,
+      "seconds": 7.2767550000000005,
+      "short": 1,
+      "window": "3x3"
+    },
+    {
+      "best_count": 978,
+      "best_release": [],
+      "donor": 978,
+      "n": 979,
+      "probes": 30,
+      "seconds": 12.872857999999999,
+      "short": 1,
+      "window": "2x2"
+    },
+    {
+      "best_count": 978,
+      "best_release": [],
+      "donor": 978,
+      "n": 979,
+      "probes": 30,
+      "seconds": 13.655827000000002,
+      "short": 1,
+      "window": "3x3"
+    }
+  ],
+  "targets": [
+    877,
+    979
+  ],
+  "windows": [
+    "2x2",
+    "3x3"
+  ]
+}
