@@ -2,9 +2,10 @@
 
 ## Provenance
 
-This POC carries the six certified rows from the unmerged H75 `lpslack`
-branch commit `55a3886` so they can be proposed against the current
-`upstream/main` without editing another team's folder.
+This POC carries verified rows from H75 `lpslack` branch commit `fcdaaf0`
+without editing another team's folder. The source branch produced 71
+candidates against `merged-22.15325798628.csv`. Two were removed after the
+current frontier superseded them: `n=740` and `n=861`.
 
 The source construction alternates:
 
@@ -17,19 +18,20 @@ actual pandas `read_csv` / `to_csv` transport are included.
 
 ## Result
 
-Six strict wins against `merged-22.15325798628.csv`:
+69 strict wins against `merged-22.15325720501.csv`. The largest per-`n`
+improvements are:
 
 | n | Before L | After L | dL |
 |---:|---:|---:|---:|
-| 740 | 27.70590090058340010 | 27.70590067479485247 | -2.257885e-7 |
-| 796 | 28.70588863249223658 | 28.70588238054323134 | -6.251949e-6 |
-| 853 | 29.70588590302593463 | 29.70588248048808351 | -3.422538e-6 |
-| 861 | 29.81703563083121357 | 29.81703379352127731 | -1.837310e-6 |
-| 909 | 30.63883438428050745 | 30.63882860042838675 | -5.783852e-6 |
-| 911 | 30.67698912254937767 | 30.67698369769481214 | -5.424855e-6 |
+| 793 | 28.65928114610129269 | 28.65923071103240149 | -5.043507e-5 |
+| 978 | 31.75387397150769273 | 31.75385305931283115 | -2.091219e-5 |
+| 970 | 31.63770113551068056 | 31.63768686928383889 | -1.426623e-5 |
+| 499 | 22.82717217391051682 | 22.82716214030662807 | -1.003360e-5 |
+| 971 | 31.64188135677304787 | 31.64187137042664394 | -9.986346e-6 |
+| 700 | 26.90312716482531069 | 26.90311842677951513 | -8.738046e-6 |
 
-The combined score reduction is `7.812671440564168e-7`, giving
-`22.153257204712842`.
+The combined score reduction is `1.0073704799507465e-5`, giving
+`22.15324713130520049253465719`.
 
 ## Verification
 
@@ -38,6 +40,6 @@ The combined score reduction is `7.812671440564168e-7`, giving
 - the exact four-column header;
 - complete `n` groups with contiguous square ids;
 - strict improvement in both literal and pandas-certified side lengths; and
-- official certification of the six groups.
+- official certification of all 69 groups.
 
 See `docs/verify_summary.json` for the machine-readable proof.

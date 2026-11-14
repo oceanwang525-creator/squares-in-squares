@@ -20,7 +20,8 @@ def main() -> None:
     base_literal, base_pandas = auto_union.load(auto_union.BASE)
     literal, pandas = auto_union.load(final)
     assert set(literal) == set(pandas)
-    assert sorted(literal) == [740, 796, 853, 861, 909, 911]
+    assert len(literal) == 69
+    assert {740, 861}.isdisjoint(literal)
 
     wins = []
     total_ds = Decimal(0)
@@ -52,8 +53,8 @@ def main() -> None:
     summary = {
         "count": len(wins),
         "total_ds": str(total_ds),
-        "score_before": "22.15325798628",
-        "score_after": str(Decimal("22.15325798628") - total_ds),
+        "score_before": "22.15325720501",
+        "score_after": str(Decimal("22.15325720501") - total_ds),
         "wins": wins,
     }
     docs = POC / "docs"

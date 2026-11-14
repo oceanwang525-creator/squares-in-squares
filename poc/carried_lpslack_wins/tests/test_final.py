@@ -22,6 +22,7 @@ def test_header_and_complete_groups() -> None:
     for row in rows:
         n, square_id = map(int, row["id"].split("_"))
         groups.setdefault(n, set()).add(square_id)
-    assert sorted(groups) == [740, 796, 853, 861, 909, 911]
+    assert len(groups) == 69
+    assert {740, 861}.isdisjoint(groups)
     for n, ids in groups.items():
         assert ids == set(range(n))
