@@ -50,41 +50,35 @@ def main() -> None:
             "label": label,
         })
 
-    batch1_runs: dict[int, dict] = {}
-    for name in ("gate_results.json", "scale_s1_results.json", "scale_s2_results.json"):
-        p = ml.DOCS_DIR / name
-        if not p.exists():
-            continue
-        for row in json.loads(p.read_text(encoding="utf-8")):
-            row["run_file"] = name
-            batch1_runs[int(row["n"])] = row
+    def _load_runs(files: tuple[str, ...]) -> dict[int, dict]:
+        runs: dict[int, dict] = {}
+        for name in files:
+            p = ml.DOCS_DIR / name
+            if not p.exists():
+                continue
+            for row in json.loads(p.read_text(encoding="utf-8")):
+                row["run_file"] = name
+                runs[int(row["n"])] = row
+        return runs
 
-    batch4_runs: dict[int, dict] = {}
-    for name in ("b4_s1_results.json",):
-        p = ml.DOCS_DIR / name
-        if not p.exists():
-            continue
-        for row in json.loads(p.read_text(encoding="utf-8")):
-            row["run_file"] = name
-            batch4_runs[int(row["n"])] = row
+    def _append_run_table(title: str, runs: dict[int, dict]) -> None:
+        wins_r = [runs[n] for n in sorted(runs) if runs[n]["status"] == "REAL_WIN"]
+        misses_r = [runs[n] for n in sorted(runs) if runs[n]["status"] != "REAL_WIN"]
+        lines.extend([
+            "",
+            f"## {title} ({len(wins_r)} REAL WINs, {len(misses_r)} Ties/Misses across {len(runs)} `n`s)",
+            "",
+            "| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |",
+            "|---:|---|---|---:|---:|---|",
+        ])
+        for n in sorted(runs):
+            r = runs[n]
+            dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
+            lines.append(
+                f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
+            )
 
-    batch3_runs: dict[int, dict] = {}
-    for name in ("b3_s1_results.json", "b3_s2_results.json"):
-        p = ml.DOCS_DIR / name
-        if not p.exists():
-            continue
-        for row in json.loads(p.read_text(encoding="utf-8")):
-            row["run_file"] = name
-            batch3_runs[int(row["n"])] = row
-
-    batch2_runs: dict[int, dict] = {}
-    for name in ("scale_b2_s1_results.json", "scale_b2_s2_results.json"):
-        p = ml.DOCS_DIR / name
-        if not p.exists():
-            continue
-        for row in json.loads(p.read_text(encoding="utf-8")):
-            row["run_file"] = name
-            batch2_runs[int(row["n"])] = row
+    batch5_runs = _load_runs(("b5_s1_results.json",))
 
     lines = [
         "# H22 / H31 / H39 / H45: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt",
@@ -98,7 +92,7 @@ def main() -> None:
         "  - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.",
         "- **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).",
         "",
-        f"## Batch 4 Summary (H45: {len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
+        f"## Batch 5 Summary ({len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
         "",
         "| `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |",
         "|---:|---:|---:|---|---|---|",
@@ -108,69 +102,14 @@ def main() -> None:
             f"| {w['n']} | `{w['dL']:+.6e}` | `{w['ds']:+.6e}` | `{w['L_lit'][:22]}` | `{w['L_inc'][:22]}` ({w['inc_src']}) | `{w['label']}` |"
         )
 
-    b4_wins = [batch4_runs[n] for n in sorted(batch4_runs) if batch4_runs[n]["status"] == "REAL_WIN"]
-    b4_misses = [batch4_runs[n] for n in sorted(batch4_runs) if batch4_runs[n]["status"] != "REAL_WIN"]
-    lines.extend([
-        "",
-        f"## Batch 4 Run Log ({len(batch4_runs)} Evaluated `n`s: {len(b4_wins)} REAL WINs vs seed, {len(verified_wins)} strict vs `origin/main`, {len(b4_misses)} Ties/Misses)",
-        "",
-        "| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |",
-        "|---:|---|---|---:|---:|---|",
-    ])
-    for n in sorted(batch4_runs):
-        r = batch4_runs[n]
-        dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
-        lines.append(
-            f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
-        )
-
-    b3_wins = [batch3_runs[n] for n in sorted(batch3_runs) if batch3_runs[n]["status"] == "REAL_WIN"]
-    b3_misses = [batch3_runs[n] for n in sorted(batch3_runs) if batch3_runs[n]["status"] != "REAL_WIN"]
-    lines.extend([
-        "",
-        f"## Batch 3 Archive (Merged in PR #40 / `37be2a8`: {len(b3_wins)} REAL WINs, {len(b3_misses)} Ties/Misses across {len(batch3_runs)} `n`s)",
-        "",
-        "| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |",
-        "|---:|---|---|---:|---:|---|",
-    ])
-    for n in sorted(batch3_runs):
-        r = batch3_runs[n]
-        dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
-        lines.append(
-            f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
-        )
-
-    b2_wins = [batch2_runs[n] for n in sorted(batch2_runs) if batch2_runs[n]["status"] == "REAL_WIN"]
-    b2_misses = [batch2_runs[n] for n in sorted(batch2_runs) if batch2_runs[n]["status"] != "REAL_WIN"]
-    lines.extend([
-        "",
-        f"## Batch 2 Archive (Merged in PR #35 / `34fd019`: {len(b2_wins)} REAL WINs, {len(b2_misses)} Ties/Misses in post-restart shard logs + pre-restart `372, 798`)",
-        "",
-        "| `n` | Run | Status | Best `dL` | Time (s) | Best Label |",
-        "|---:|---|---|---:|---:|---|",
-    ])
-    for n in sorted(batch2_runs):
-        r = batch2_runs[n]
-        dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
-        lines.append(
-            f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
-        )
-
-    b1_wins = [batch1_runs[n] for n in sorted(batch1_runs) if batch1_runs[n]["status"] == "REAL_WIN"]
-    b1_misses = [batch1_runs[n] for n in sorted(batch1_runs) if batch1_runs[n]["status"] != "REAL_WIN"]
-    lines.extend([
-        "",
-        f"## Batch 1 Archive (Merged in PR #32 / `e5751c5`: {len(b1_wins)} REAL WINs, {len(b1_misses)} Ties/Misses across {len(batch1_runs)} `n`s)",
-        "",
-        "| `n` | Run | Status | Best `dL` | Time (s) | Best Label |",
-        "|---:|---|---|---:|---:|---|",
-    ])
-    for n in sorted(batch1_runs):
-        r = batch1_runs[n]
-        dL_s = f"`{r['best_dL']:+.6e}`" if r.get("best_dL") is not None else "N/A"
-        lines.append(
-            f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
-        )
+    _append_run_table("Batch 5 Run Log", batch5_runs)
+    for title, files in (
+        ("Batch 4 Archive (Merged in PR #42 / `e241efd`)", ("b4_s1_results.json",)),
+        ("Batch 3 Archive (Merged in PR #40 / `37be2a8`)", ("b3_s1_results.json", "b3_s2_results.json")),
+        ("Batch 2 Archive (Merged in PR #35 / `34fd019`)", ("scale_b2_s1_results.json", "scale_b2_s2_results.json")),
+        ("Batch 1 Archive (Merged in PR #32 / `e5751c5`)", ("gate_results.json", "scale_s1_results.json", "scale_s2_results.json")),
+    ):
+        _append_run_table(title, _load_runs(files))
 
     lines.append("")
     (ml.MECHWALK_DIR / "README.md").write_text("\n".join(lines), encoding="utf-8")
