@@ -9,14 +9,30 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 8 Summary (H62 Stage 5: 2 Certified REAL WINs in `final.csv`, total `ds = -1.992869e-05`)
+## Batch 10 Summary (H65 Stage 7: 2 Certified REAL WINs in `final.csv`, total `ds = -1.929108e-06`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
-| 741 | `-5.760222e-05` | `-2.116070e-06` | `27.7077647489777837728` | `27.7078223511930757781` (merged.csv) | `rejam_r4_b0_m1_t4e-04_m_0.008` |
-| 971 | `-5.550566e-04` | `-1.781262e-05` | `31.6418814314893443518` | `31.6424364881247324311` (merged.csv) | `rejam_r4_b0_m5_t4e-04_m_0.008` |
+| 741 | `-1.145189e-07` | `-4.206957e-09` | `27.7077646344588946832` | `27.7077647489777837728` (merged.csv) | `mmelt_r1_b0_m7_t2e-05_p_0.008` |
+| 909 | `-5.803505e-05` | `-1.924901e-06` | `30.6388343842805074497` | `30.6388924193297404742` (merged.csv) | `rejam_r4_b0_m0_t5e-05_p_0.008` |
 
-## Batch 8 Run Log (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
+## Batch 10 Run Log (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
+
+| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
+|---:|---|---|---:|---:|---|
+| 741 | `b6_s7_results.json` | **REAL_WIN** | `-1.145189e-07` | 281.35 | `mmelt_r1_b0_m7_t2e-05_p_0.008` |
+| 909 | `b6_s7_results.json` | **REAL_WIN** | `-3.959038e-06` | 526.48 | `rejam_r4_b0_m0_t5e-05_p_0.008` |
+| 970 | `b6_s7_results.json` | **MISS** | `+3.001572e-06` | 797.07 | `rejam_r4_b0_m4_t4e-04_m_0.008` |
+
+## Batch 9 Archive (Merged in PR #52 / `86b6e34`) (1 REAL WINs, 2 Ties/Misses across 3 `n`s)
+
+| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
+|---:|---|---|---:|---:|---|
+| 737 | `b6_s6_results.json` | **MISS** | `+2.772276e-06` | 207.16 | `rejam_r3_b0_m1_t4e-04_p_0.008` |
+| 796 | `b6_s6_results.json` | **MISS** | `+8.627150e-06` | 268.93 | `mmelt_r4_b0_m0_t5e-05_m_0.008` |
+| 970 | `b6_s6_results.json` | **REAL_WIN** | `-6.761522e-06` | 711.86 | `rejam_r1_b0_m8_t2e-04_m_0.008` |
+
+## Batch 8 Archive (Merged in PR #50 / `bdfda15`) (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
 
 | `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
 |---:|---|---|---:|---:|---|
