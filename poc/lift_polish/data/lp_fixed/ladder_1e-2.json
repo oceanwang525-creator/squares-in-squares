@@ -1,0 +1,52 @@
+[
+ {
+  "n": 442,
+  "seed": 0,
+  "base_side": 21.32778133549935,
+  "lp_side": 21.533023129389214,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "seed": 0,
+  "base_side": 21.451442160211492,
+  "lp_side": 21.65642096709699,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "seed": 0,
+  "base_side": 22.31778133450935,
+  "lp_side": 22.533023130415398,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "seed": 0,
+  "base_side": 23.307781333519348,
+  "lp_side": 23.533023130517766,
+  "status": "no-gain"
+ },
+ {
+  "n": 577,
+  "seed": 0,
+  "base_side": 24.297781332529347,
+  "lp_side": 24.533023132426354,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "seed": 0,
+  "base_side": 27.48811204433147,
+  "lp_side": 27.753852841848158,
+  "status": "certify-fail",
+  "error": "n=743: infeasible: Squares 190 and 398 overlap (float check)"
+ },
+ {
+  "n": 798,
+  "seed": 0,
+  "base_side": 28.464542647766713,
+  "lp_side": 28.740334249578815,
+  "status": "no-gain"
+ }
+]

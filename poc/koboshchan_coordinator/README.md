@@ -8,7 +8,7 @@ folder, review outcomes, and manage git/PRs. I do not run packing experiments.
 
 | quantity | value |
 |---|---|
-| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.15324713130751** (upstream 8c623fc; was 22.153257205012313 at cycle-1 start) |
+| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.153247131307516** (upstream b1fae0c; was 22.153257205012313 at cycle-1 start) |
 | merge-branch `merged-22.15325720501.csv` | identical SHA256 `61004c6f…` |
 | official certification | 1000/1000 accepted, missing 0, rejected 0 |
 | goal | **≤ 22.0999** (need Δ ≤ −0.053357) |
@@ -99,9 +99,85 @@ test of whether small high-density pockets exist.
 
 | # | idea | folder | expected | status |
 |---|---|---|---|---|
-| C1 | Exhaustive proper-pocket scan (all rows × all window placements) + DP lift | `poc/pocket_lift_scan` | 1e-6–1e-4 | queued |
-| C2 | Exact minimal-rectangle search for pay-line pockets `(3,2,+1)`, `(4,7,+3)`, small `g=2` | `poc/small_pocket_exact` | up to 1e-3 (n=367) | queued |
-| C3 | Long-budget hybrid lpslack+basin-hop on the top-8 gap rows at the frontier side | `poc/deep_gap_search` | low | queued |
+| C1 | Exhaustive proper-pocket scan (all rows × all window placements) + DP lift | `poc/pocket_lift_scan` | 1e-6–1e-4 | **positive: 7 wins, 2.86e-5** |
+| C2 | Exact minimal-rectangle search for pay-line pockets `(3,2,+1)`, `(4,7,+3)`, small `g=2` | `poc/small_pocket_exact` | up to 1e-3 (n=367) | negative + prize debunked |
+| C3 | All-`n` rigid-rotation audit (min over θ of max(W,H)) | `poc/hull_rotation_all` | free-win audit | negative (none) |
+
+### Cycle-2 outcomes
+
+- **C1 `pocket_lift_scan` — positive, 7 certified wins, score gain `2.8624e-5`.**
+  Exhaustive proper sub-pocket scan (7 offset lattices, 1.42M gadget instances,
+  9899 distinct `(w,h,g)`) + the staircase DP. Key mechanism: a *narrow* sub-pocket
+  of a big row fits a *smaller* `K`, where the incumbent's `c(D)` family is worse.
+  - n=447: `(11,21,+6)` from n=910 at `f=0.656421` beats the incumbent's √2-zipper
+    `c=0.656854` at K=21 → `dL=-4.33e-4` (score `-2.05e-5`).
+  - n=798: `dL=-1.39e-4` (score `-4.92e-6`); n=743 `dL=-4.58e-5`.
+  - n=442/485/530/577: a tighter `(20,18,+1)` from n=401 (`dL=-7.2e-6..-1.0e-5`).
+  - Supersedes `faultline_dp2`/`gadget_squeeze` (same n, larger `dL`); `smallD_lift`
+    keeps the unique n=853 win.
+  - Nominal union: `22.153247131307513 - 2.86242e-05 = 22.1532185`.
+- **C2 `small_pocket_exact` — negative for the shopping list.** `(3,2,+1)` bottoms
+  out at exactly `1/√2` from thousands of restarts; its real pay line is
+  `f<1/√2` (worth 4.76e-4 at n=10,38,492,974), **not** 0.6709. The n=367 1.1e-3
+  prize is **debunked**: its remaining seam budget is `dw=3,dh=2,dsum=4`, so an
+  added gadget needs `w+h≤3`, and `(3,2,+1)` has `w+h=5`. The engine is still
+  too weak on the 65+ square shapes (calibration gap +0.03..+0.47 in `f`), so
+  those eight shapes are *inconclusive*, not negative.
+- **C3 `hull_rotation_all` — negative.** Exhaustive convex-hull event audit over
+  all 1000 rows (plus two independent brute-force checks and 50-digit re-checks):
+  **no** rigid rotation lowers `L = max(W,H)`; best reduction `1.8e-14`.
+
+### Cycle-3 plan
+
+C1 is the only productive mechanical track. Cycle 3 scales it: more offset
+lattices (0.125/0.0625), larger `cap`/`fmax`, 2-pocket seams, and a periodic
+re-run after each upstream merge. Also: rebuild the C2 search engine with a
+proper batched/numba core so the eight undecided shapes get a trustworthy
+answer, and re-scan for *new* narrow sub-pockets of the rows C1 improved
+(the improved rows are new donors).
+
+### Cycle-3 hypotheses (ranked)
+
+| # | idea | folder | expected |
+|---|---|---|---|
+| D1 | Scale C1: 0.125/0.0625 offset lattices, 3-pocket seams, iterate with improved rows as new donors, border-propagate each win | `poc/pocket_lift_scan2` | 1e-5–3e-4 |
+| D2 | Polish every C1 lift with the team's proven lpslack + fixed-angle LP + Lipschitz SLP, then rescan (a fresh topology may have slack) | `poc/lift_polish` | 1e-6–1e-5 |
+| D3 | Re-run C1's scan after each upstream merge (maintenance harvest) | coordinator | ~1e-6/merge |
+| D4 | Allow non-rectangular (staircase/L-shaped) sub-pockets as gadgets | untried | uncertain |
+| D5 | For each top-gap n, report the best side reachable from the whole pocket library (diagnostic: is the gap reachable by composition at all?) | `poc/pocket_reach` | diagnostic |
+
+### Cycle-3 outcomes (union: 11 wins, score gain 1.81e-4)
+
+- **D1 `pocket_lift_scan2` — positive, 10 wins, `8.4507e-5` (2.95x C1).** Finer
+  offset lattices (step 0.125, phase 0.03125) find the decisive `(9,16,+5)`
+  pocket of n=686 at `f=0.696716582`; with a seam-layout search it builds a
+  2-pocket seam for **n=492 at `22.705882`** (`dL=-1.22e-3`, the single biggest
+  win) — a rational-slope pocket that beats the incumbent's `22+1/√2` zipper.
+  Also n=740 (`-1.83e-5`), plus the C1 family with larger `dL`. The "iterate with
+  built rows as donors" and "L-border propagation" levers were negative.
+  Fine scan cost ≈23 min wall on 32 cores.
+- **D2 `lift_polish` — positive, 6 wins, `9.6567e-5` (3.4x C1).** The C1 lifts
+  are rigid and *do* have slack: `swarm_lpslack` (soft-angle SLP + unbounded
+  fixed-angle LP + shrink) moves n=485/530/577 by `-1.8e-4` each and n=442/798
+  too. The improved row is then a **better donor**: re-cutting n=485 gives
+  `(18,21,+1)` at `f=0.532830036` (vs C1's `(20,18,+1)` at 0.533023120) and the
+  DP re-lifts it to every `K` — a 4-round cascade. Fixed-angle LP and Lipschitz
+  SLP alone found 0 wins.
+- **Union of all finals (best per n), verified in both transports vs fresh main:**
+  n=442,447,485,492,530,577,740,743,798 (585 and 853 were superseded by upstream);
+  total score gain **`1.7957e-4`**; new score **≈22.1530676**. (`gadget_squeeze`/`faultline_dp2`
+  are superseded; `smallD_lift` keeps n=853.)
+
+### Cycle-4 direction
+
+The two live levers are now (a) finer/shifted lattices for the pocket scan — the
+`0.03125` phase was decisive — and (b) the polish→re-cut→re-lift cascade, which
+kept paying for 4 rounds. Next: push the fine scan to step 0.0625, run more
+cascade rounds on the newly won n (492 especially), and apply the same cascade
+to any n where a narrow sub-pocket lifts onto a *top-gap* row.
+
+
+
 
 ## Honest assessment
 
