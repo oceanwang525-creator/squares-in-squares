@@ -1,0 +1,86 @@
+[
+  {
+    "tag": "n852_BR_11x20_g6_peel_left_slp_walk",
+    "w": 10,
+    "h": 20,
+    "g": 6,
+    "f": 0.687248
+  },
+  {
+    "tag": "n852_BR_11x20_g6_peel_top_slp_walk",
+    "w": 11,
+    "h": 19,
+    "g": 6,
+    "f": 0.699777
+  },
+  {
+    "tag": "n852_TL_18x10_g5_peel_left_slp",
+    "w": 17,
+    "h": 10,
+    "g": 5,
+    "f": 0.741255
+  },
+  {
+    "tag": "n852_TL_18x10_g5_peel_top_slp_walk",
+    "w": 18,
+    "h": 9,
+    "g": 5,
+    "f": 0.721195
+  },
+  {
+    "tag": "n912gs_BR_21x9_g6_peel_left_slp_walk",
+    "w": 20,
+    "h": 9,
+    "g": 6,
+    "f": 0.706668
+  },
+  {
+    "tag": "n912gs_BR_21x9_g6_peel_top_slp_walk",
+    "w": 21,
+    "h": 8,
+    "g": 6,
+    "f": 0.705924
+  },
+  {
+    "tag": "n912gs_TL_9x21_g6_peel_left_slp_walk",
+    "w": 8,
+    "h": 21,
+    "g": 6,
+    "f": 0.705867
+  },
+  {
+    "tag": "n912gs_TL_9x21_g6_peel_top_slp_walk",
+    "w": 9,
+    "h": 20,
+    "g": 6,
+    "f": 0.706668
+  },
+  {
+    "tag": "n974cp2_BR_22x10_g7_peel_left_slp_walk",
+    "w": 21,
+    "h": 10,
+    "g": 7,
+    "f": 0.716746
+  },
+  {
+    "tag": "n974cp2_BR_22x10_g7_peel_bottom_slp_walk",
+    "w": 22,
+    "h": 9,
+    "g": 7,
+    "f": 0.715774
+  },
+  {
+    "tag": "n974cp2_TL_9x21_g6_peel_left_slp_walk",
+    "w": 8,
+    "h": 21,
+    "g": 6,
+    "f": 0.706025
+  },
+  {
+    "tag": "n974cp2_TL_9x21_g6_peel_bottom_slp",
+    "w": 9,
+    "h": 20,
+    "g": 6,
+    "f": 0.708435
+  }
+]
