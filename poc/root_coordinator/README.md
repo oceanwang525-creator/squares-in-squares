@@ -75,7 +75,13 @@ MILP. This differs from donor-slice and transplant work because ownership can
 move in both directions and the refilled region is constrained by the new
 contact graph rather than a rectangular crop.
 **Quick test:** 1-3 high-gap n selected from 682, 744, 844, 877, 979.  
-**Outcome:** running.
+**Outcome:** negative, quick-test boundary reached.  Release scans on donors
+`681, 743, 843, 876, 978` all stopped exactly one square short.  Tested 80
+single-square releases per target, plus 30 each of `2x2` and `3x3` windows on
+`877` and `979`.  No candidate reached a required group size, so no strict-win
+claim was possible.  The agent committed `ed94194` before stopping.  I removed
+the completed folder from the working tree after the failure commit, preserving
+its history.
 
 ### 4. `dualwall_asymmetry_lp`
 
