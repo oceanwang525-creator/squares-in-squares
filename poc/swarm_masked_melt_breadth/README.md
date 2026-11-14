@@ -16,11 +16,11 @@ actual pandas CSV transports.
 
 ## Baseline
 
-- `upstream/main`: `331b307fbf67fc721609b121b9606b399b2359b9`
-- `upstream/merge`: `2554d5b96b64b6d633daf922446331d8f35044da`
-- Artifact: `merged-22.15258085489.csv`
+- `upstream/main`: `48224c2763685b8b9a1af456e471c61fd7df1bed`
+- `upstream/merge`: `cd6d332d8be60069c5c7161a35220f59ba91f281`
+- Artifact: `merged-22.15248431115.csv`
 - Tracked baseline SHA256:
-  `c9e5398775e31b536cbfa1519ab9c6066c95f98edf1d7bc9bec3a54a85cafd9e`
+  `4e389092778d942333311e53fcce9711562409811d197695fcdc1fa6613109e3`
 
 ## Result
 
@@ -33,6 +33,7 @@ produced three more:
 | 485 | `mpk_hot_w0_2` | 22.532422372157410469 | 22.528854267098848927 | -3.568105058562e-3 |
 | 530 | `mpk_seam_5` | 23.532365554880189139 | 23.525757668744916601 | -6.607886135273e-3 |
 | 577 | `mpk_hot_5` | 24.532365557227169901 | 24.526057369540529144 | -6.308187686641e-3 |
+| 588 | `mpk_void_w0_4` | 24.755996411093902658 | 24.755329545414228986 | -6.668656796737e-4 |
 
 Both the official literal transport and the actual `pandas.read_csv` /
 `to_csv` transport pass against the refreshed merge artifact.
@@ -48,6 +49,12 @@ not strict wins, or failed to polish; the exact per-`n` values remain in
 (`+2.724334e-7`), and `785` (`+2.730591e-7`). A fresh 48-start `842` sweep at
 expansions `0.044` and `0.050` produced no valid polished candidate (minimum
 penetration `1.46e-4`).
+
+The final rigid/lift-produced transfer batch exhausted without new exports:
+`447`, `740`, `743`, `798`, `484`, `486`, `441`, `443`, and `491` all remained
+above their incumbents. The subsequent focused batch on the newly merged rows
+found `588`; `538` missed by `+1.016400e-5`, `799` by `+8.351515e-6`, and `803`
+by `+2.394851e-5`.
 
 ## Run
 
