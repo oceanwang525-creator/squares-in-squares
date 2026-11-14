@@ -20,24 +20,25 @@
    - True zero-overlap pinwheel assembly requires `w1 + w2 <= m`, `h1 + h2 <= m`, and strict slack along at least one axis (`w1 + w2 < m` or `h1 + h2 < m`) so opposite `TL`/`BR` corners avoid colliding in the central `f x f` square.
    - Pre-shifts opposite `TL`/`BR` pairs across `shift_fracs` along slack axes, applies `run_cpp_masked_melt` seam-targeted perturbations (`build_thinb4_melt_seeds`) + `joint_xytheta_slp_tight`, and polishes certified wins with `mechwalk` nullspace kicks (`polish_and_export.py --polish --prune`).
 
-## Certified Results (Batch 2 — H61 vs `origin/main` @ `b52bd03`)
+## Certified Results (Batch 3 — H61 vs `origin/main` @ `72fcc0d`)
 
-Batch 1 (H52) delivered **4 strict REAL WINs** (`n=632, 683, 849, 850`, `total_ds = -1.001487e-04` `L^2/n` vs `ead0ace`), which merged in PR #47 and were folded into `poc/pell_corrugation/data/border-scan/merged.csv` (those 4 `data/win_n*.json` snapshots were pruned from this branch).
+Batch 1 (H52: `n=632, 683, 849, 850`, PR #47 @ `ead0ace`) and Batch 2 (H61: `n=972`, PR #56 @ `409b443b`) are merged into `origin/main:poc/pell_corrugation/data/border-scan/merged.csv` (those prior `data/win_n*.json` snapshots were pruned from this branch).
 
-Batch 2 (H61, `poc/run_h61_broadcast.py`) extracts ratcheted corner sub-bricks from newly landed wins (including `B5_10x20_n971` from `h53_win_n971.json`) and exports **1 strict REAL WIN** vs `origin/main` (`b52bd03`, `literal == pandas`, `dL <= -1e-9`):
+Batch 3 (H61 `--force-highr`, `poc/run_h61_broadcast.py`) extracts and standalone-SLP-compresses `B6_18x9_mw741_slp` (`0.707764 -> 0.705902`, `df = -1.862e-03`) from `win_n741.json` and exports **1 strict REAL WIN** vs `origin/main` (`72fcc0d`, `literal == pandas`, `dL <= -1e-9`):
 
 | `n` | `m` | `r` | Incumbent `L` (`origin/main`) | New `L` (`literal == pandas`) | `dL` | `ds` (`L^2/n`) | Non-`0/90` | Seed / Method |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
-| **972** | 31 | +11 | `31.6565336143412...` | `31.6565325460975803093` | `-1.068244e-06` | `-6.958208e-08` | 280/972 | `B5_10x20_n971+B6_10x21_b4_T_z_sf0.0_direct` |
+| **796** | 28 | +12 | `28.7059025286906...` | `28.7058886324922365764` | `-1.389620e-05` | `-1.002268e-06` | 268/796 | `B6_18x9_mw741_slp_T+B6_18x9_mw741_slp_z_sf0.5_tb4m_b2_left_edge_4` |
 
-### Previous Batch 1 (H52, merged in PR #47 @ `ead0ace`)
+### Previous Batches (merged in `origin/main`)
 
-| `n` | `m` | `r` | Incumbent `L` (`ead0ace`) | Certified `L` | `dL` | `ds` (`L^2/n`) | Non-`0/90` | Seed / Method |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
-| **632** | 25 | +7 | `25.6388918166912...` | `25.6379246123087816155` | `-9.672044e-04` | `-7.847336e-05` | 193/632 | `B3_14x9_n632_cmp+B4_10x16_n737_zw_sf0.8_s00_tb4m_bl_quad_13_mw` |
-| **683** | 26 | +7 | `26.6370294017538...` | `26.6368843610871182471` | `-1.450407e-04` | `-1.131315e-05` | 190/683 | `B3_14x9_n632_cmp+B4_12x16_n908_cmp_zw_sf0.0_s00_direct` |
-| **849** | 29 | +8 | `29.6370294017538...` | `29.6368833849497471318` | `-1.460168e-04` | `-1.019433e-05` | 214/849 | `B4_12x16_n908_cmp+B4_12x16_n908_cmp_T_zw_sf0.0_s00_b5m_bl_quad_5` |
-| **850** | 29 | +9 | `29.6425721155181...` | `29.6425697086158730688` | `-2.406902e-06` | `-1.678748e-07` | 242/850 | `B4_9x16_n684+B5_11x20_b4_cmp_T_zw_sf0.0_s00_direct` |
+| Batch | `n` | `m` | `r` | Incumbent `L` | Certified `L` | `dL` | `ds` (`L^2/n`) | Seed / Method |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
+| PR #47 | **632** | 25 | +7 | `25.6388918166912...` | `25.6379246123087816155` | `-9.672044e-04` | `-7.847336e-05` | `B3_14x9_n632_cmp+B4_10x16_n737_zw_sf0.8_s00_tb4m_bl_quad_13_mw` |
+| PR #47 | **683** | 26 | +7 | `26.6370294017538...` | `26.6368843610871182471` | `-1.450407e-04` | `-1.131315e-05` | `B3_14x9_n632_cmp+B4_12x16_n908_cmp_zw_sf0.0_s00_direct` |
+| PR #47 | **849** | 29 | +8 | `29.6370294017538...` | `29.6368833849497471318` | `-1.460168e-04` | `-1.019433e-05` | `B4_12x16_n908_cmp+B4_12x16_n908_cmp_T_zw_sf0.0_s00_b5m_bl_quad_5` |
+| PR #47 | **850** | 29 | +9 | `29.6425721155181...` | `29.6425697086158730688` | `-2.406902e-06` | `-1.678748e-07` | `B4_9x16_n684+B5_11x20_b4_cmp_T_zw_sf0.0_s00_direct` |
+| PR #56 | **972** | 31 | +11 | `31.6565336143412...` | `31.6565325460975803093` | `-1.068244e-06` | `-6.958208e-08` | `B5_10x20_n971+B6_10x21_b4_T_z_sf0.0_direct` |
 
 ## Layout & Reproduction
 

@@ -259,6 +259,13 @@ def build_h61_banks(packs: dict) -> tuple[dict[str, dict], dict[str, dict]]:
                 print(f"[H61 compress] {orig_tag}: already minimal at f={f0:.6f}", flush=True)
         H61_CACHE.write_text(json.dumps(cache), encoding="utf-8")
 
+    # Also load any cached H61 bricks whose source JSON was removed after merge
+    for slp_tag, item in cache.items():
+        if slp_tag not in h61_bricks:
+            cb = _deser_brick(item)
+            if cb is not None:
+                h61_bricks[slp_tag] = cb
+
     # Add transposes for h61 bricks
     h61_with_t: dict[str, dict] = {}
     for k, b in h61_bricks.items():
@@ -408,7 +415,12 @@ def main() -> None:
         if H61_CKPT.exists():
             ckpt = json.loads(H61_CKPT.read_text(encoding="utf-8"))
 
-        for idx, n in enumerate(TARGETS, 1):
+        if "--force-highr" in sys.argv:
+            for rn in (796, 852, 912, 688, 795, 911):
+                ckpt.pop(str(rn), None)
+
+        run_targets = [796, 852, 912, 688, 795, 911] if "--force-highr" in sys.argv else TARGETS
+        for idx, n in enumerate(run_targets, 1):
             sn = str(n)
             if sn in ckpt and ckpt[sn].get("status") in ("WIN", "OK"):
                 print(f"[H61 {idx}/{len(TARGETS)}] n={n} already in ckpt ({ckpt[sn]['status']}), skip", flush=True)
@@ -417,7 +429,7 @@ def main() -> None:
             r = n - m * m
             L_inc_dec = inc_decs[n]
             L_inc = float(L_inc_dec)
-            print(f"\n[H61 {idx}/{len(TARGETS)}] n={n} (m={m}, r=+{r}), L_inc={L_inc:.9f}", flush=True)
+            print(f"\n[H61 {idx}/{len(run_targets)}] n={n} (m={m}, r=+{r}), L_inc={L_inc:.9f}", flush=True)
             cands = find_h61_candidates(n, h61_keys, full_bank, L_inc, max_cands=4)
             if not cands:
                 print(f"  [n={n}] 0 candidates matched", flush=True)
