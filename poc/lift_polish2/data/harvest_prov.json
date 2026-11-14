@@ -1,0 +1,47 @@
+{
+ "492": {
+  "dL_float": -0.0012244270340566743,
+  "source": "poc/pocket_lift_scan2/final.csv",
+  "L": 22.705882354152596
+ },
+ "530": {
+  "dL_float": -0.0006563223915705407,
+  "source": "poc/lift_polish/final.csv",
+  "L": 23.532367090941506
+ },
+ "577": {
+  "dL_float": -0.0006564325759477185,
+  "source": "poc/lift_polish/final.csv",
+  "L": 24.532367091853395
+ },
+ "485": {
+  "dL_float": -0.000586591467246933,
+  "source": "poc/lift_polish/final.csv",
+  "L": 22.53243663004898
+ },
+ "447": {
+  "dL_float": -0.0004332902098980185,
+  "source": "poc/lift_polish/final.csv",
+  "L": 21.656420959282578
+ },
+ "442": {
+  "dL_float": -0.0002941006595662543,
+  "source": "poc/lift_polish/final.csv",
+  "L": 21.532729164093023
+ },
+ "798": {
+  "dL_float": -0.0001429821149621091,
+  "source": "poc/lift_polish/final.csv",
+  "L": 28.74033009257095
+ },
+ "743": {
+  "dL_float": -4.577612663325681e-05,
+  "source": "poc/pocket_lift_scan/final.csv",
+  "L": 27.753852984553397
+ },
+ "740": {
+  "dL_float": -1.8254827626407177e-05,
+  "source": "poc/pocket_lift_scan2/final.csv",
+  "L": 27.705882419967228
+ }
+}
