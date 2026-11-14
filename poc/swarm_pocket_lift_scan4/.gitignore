@@ -1,0 +1,6 @@
+/data/*
+!/data/.gitkeep
+/*.log
+/logs/
+__pycache__/
+/.pytest_cache/
