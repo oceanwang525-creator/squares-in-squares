@@ -1,0 +1,53 @@
+[
+ {
+  "n": 442,
+  "seed": 0,
+  "base_side": 21.53302302236219,
+  "lp_side": 21.53302303429127,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "seed": 0,
+  "base_side": 21.656420962933097,
+  "lp_side": 21.65642097066405,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "seed": 0,
+  "base_side": 22.532830036125496,
+  "lp_side": 22.532830038787992,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "seed": 0,
+  "base_side": 23.532839850926532,
+  "lp_side": 23.532836861030376,
+  "status": "certify-fail",
+  "error": "n=530: infeasible: Squares 293 and 509 overlap (float check)"
+ },
+ {
+  "n": 577,
+  "seed": 0,
+  "base_side": 24.532840282821816,
+  "lp_side": 24.532840290061486,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "seed": 0,
+  "base_side": 27.753852984553397,
+  "lp_side": 27.75385284145229,
+  "status": "certify-fail",
+  "error": "n=743: infeasible: Squares 190 and 398 overlap (float check)"
+ },
+ {
+  "n": 798,
+  "seed": 0,
+  "base_side": 28.740330645824482,
+  "lp_side": 28.74033067366799,
+  "status": "no-gain"
+ }
+]

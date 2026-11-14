@@ -1,0 +1,128 @@
+{
+ "492": {
+  "base_side": 22.707106781186653,
+  "trials": [
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 22.707106804600766,
+    "literal_L": "22.70710680260076600000000000000000000000000000000001",
+    "literal_ok": true,
+    "pandas_L": "22.70710680260076600000000000000000000000000000000001"
+   },
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 22.707106804600766,
+    "literal_L": "22.70710680260076600000000000000000000000000000000001",
+    "literal_ok": true,
+    "pandas_L": "22.70710680260076600000000000000000000000000000000001"
+   },
+   {
+    "theta": 0.08726646259971647,
+    "theta_deg": 5.0,
+    "lp_side": 23.412869534218874,
+    "literal_ok": false,
+    "literal_error": "n=492: infeasible: Squares 0 and 477 overlap (float check)"
+   },
+   {
+    "theta": 0.39269908169872414,
+    "theta_deg": 22.5,
+    "lp_side": 23.832425344474714,
+    "literal_ok": false,
+    "literal_error": "n=492: infeasible: Squares 0 and 91 overlap (float check)"
+   },
+   {
+    "theta": 0.7853981633974483,
+    "theta_deg": 45.0,
+    "lp_side": 24.68807719508387,
+    "literal_ok": false,
+    "literal_error": "n=492: infeasible: Squares 0 and 298 overlap (float check)"
+   }
+  ]
+ },
+ "908": {
+  "base_side": 30.634070746951185,
+  "trials": [
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 30.63407077828081,
+    "literal_L": "30.63407077628081451556514759544849240576531355918616",
+    "literal_ok": true,
+    "pandas_L": "30.63407077628081451556514759544849240576531355918616"
+   },
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 30.63407077828081,
+    "literal_L": "30.63407077628081451556514759544849240576531355918616",
+    "literal_ok": true,
+    "pandas_L": "30.63407077628081451556514759544849240576531355918616"
+   },
+   {
+    "theta": 0.08726646259971647,
+    "theta_deg": 5.0,
+    "lp_side": 31.6225678440396,
+    "literal_ok": false,
+    "literal_error": "n=908: infeasible: Squares 604 and 626 overlap (float check)"
+   },
+   {
+    "theta": 0.39269908169872414,
+    "theta_deg": 22.5,
+    "lp_side": 26.074056530228255,
+    "literal_ok": false,
+    "literal_error": "n=908: infeasible: Squares 10 and 811 overlap (float check)"
+   },
+   {
+    "theta": 0.7853981633974483,
+    "theta_deg": 45.0,
+    "lp_side": 21.20539570506453,
+    "literal_ok": false,
+    "literal_error": "n=908: infeasible: Squares 19 and 210 overlap (float check)"
+   }
+  ]
+ },
+ "791": {
+  "base_side": 28.63407074697788,
+  "trials": [
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 28.6340707761489,
+    "literal_L": "28.63407077486126969235628315985602345778736560421950",
+    "literal_ok": true,
+    "pandas_L": "28.63407077486126969235628315985602345778736560421950"
+   },
+   {
+    "theta": 0.0,
+    "theta_deg": 0.0,
+    "lp_side": 28.6340707761489,
+    "literal_L": "28.63407077486126969235628315985602345778736560421950",
+    "literal_ok": true,
+    "pandas_L": "28.63407077486126969235628315985602345778736560421950"
+   },
+   {
+    "theta": 0.08726646259971647,
+    "theta_deg": 5.0,
+    "lp_side": 29.456917363377702,
+    "literal_ok": false,
+    "literal_error": "n=791: infeasible: Squares 9 and 114 overlap (float check)"
+   },
+   {
+    "theta": 0.39269908169872414,
+    "theta_deg": 22.5,
+    "lp_side": 30.332856113827486,
+    "literal_ok": false,
+    "literal_error": "n=791: infeasible: Squares 88 and 591 overlap (float check)"
+   },
+   {
+    "theta": 0.7853981633974483,
+    "theta_deg": 45.0,
+    "lp_side": 23.628750594064716,
+    "literal_ok": false,
+    "literal_error": "n=791: infeasible: Squares 10 and 21 overlap (float check)"
+   }
+  ]
+ }
+}

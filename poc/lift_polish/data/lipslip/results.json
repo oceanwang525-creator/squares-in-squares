@@ -1,0 +1,37 @@
+[
+ {
+  "n": 442,
+  "base_side": 21.533023120317424,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "base_side": 21.65642096552947,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "base_side": 22.533023120317424,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "base_side": 23.533023120317424,
+  "status": "no-gain"
+ },
+ {
+  "n": 577,
+  "base_side": 24.533023120317424,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "base_side": 27.753852984553397,
+  "status": "no-gain"
+ },
+ {
+  "n": 798,
+  "base_side": 28.74033424858493,
+  "status": "no-gain"
+ }
+]

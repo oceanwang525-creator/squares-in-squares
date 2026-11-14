@@ -520,9 +520,10 @@ def optimize_group(
     base_rows: list[dict[str, str]],
     old_L_str: str,
     outer_iters: int = 8,
-    fixed_rounds: int = 10,
+    fixed_rounds: int = 8,
     slp_modes: tuple[str, ...] = ("dual_non90", "non90", "all"),
-    tr_th_schedule: tuple[float, ...] = (5e-4, 2e-4, 5e-5),
+    tr_th_schedule: tuple[float, ...] = (5e-4, 5e-5),
+    cycles: int = 1,
     time_limit: float = 15.0,
 ) -> dict:
     t0 = time.time()
@@ -547,64 +548,91 @@ def optimize_group(
                 history.append(f"fixed0(m={margin:.0e}):{s_fx:.12f}")
 
     # Step 1: Alternating Soft-Angle Dual-Contact Release SLP + Fixed-Angle LP
-    for mode in slp_modes:
-        for tr_th0 in tr_th_schedule:
-            cur_c = best_centers.copy()
-            cur_a = best_angles.copy()
-            cur_pairs, cur_marg = None, None
-            fx_init = solve_fixed_lp(cur_a, cur_c, margin=1e-10, time_limit=time_limit)
-            if fx_init is not None:
-                _, _, cur_pairs, cur_marg = fx_init
+    for cyc in range(cycles):
+        cyc_improved = False
+        for mode in slp_modes:
+            for tr_th0 in tr_th_schedule:
+                cur_c = best_centers.copy()
+                cur_a = best_angles.copy()
+                cur_pairs, cur_marg = None, None
+                fx_init = solve_fixed_lp(cur_a, cur_c, margin=1e-10, time_limit=time_limit)
+                if fx_init is not None:
+                    _, _, cur_pairs, cur_marg = fx_init
 
-            tr_th = tr_th0
-            tr_xy = min(0.02, max(2e-3, 10.0 * tr_th))
-            for it in range(outer_iters):
-                free_mask = select_free_mask(cur_a, mode, cur_pairs, cur_marg, top_k=150)
-                if not np.any(free_mask):
-                    break
-                slp_ok = False
-                for _ in range(2):
-                    curv_pad = 1e-8 + 2.0 * tr_th * tr_xy
-                    slp_out = solve_soft_angle_slp(
-                        cur_a, cur_c, free_mask, tr_th=tr_th, tr_xy=tr_xy, margin=curv_pad, time_limit=time_limit
-                    )
-                    if slp_out is None:
+                # Skip redundant modes if masks are identical to an already-run broader/narrower mask
+                probe_mask = select_free_mask(cur_a, mode, cur_pairs, cur_marg, top_k=150)
+                if not np.any(probe_mask):
+                    continue
+                if mode == "non90":
+                    m_dual = select_free_mask(cur_a, "dual_non90", cur_pairs, cur_marg, top_k=150)
+                    if np.array_equal(probe_mask, m_dual):
+                        continue
+                elif mode == "all":
+                    m_non90 = select_free_mask(cur_a, "non90", cur_pairs, cur_marg, top_k=150)
+                    if np.array_equal(probe_mask, m_non90):
+                        continue
+
+                tr_th = tr_th0 * (0.5 ** cyc)
+                tr_xy = min(0.02, max(2e-3, 10.0 * tr_th))
+                no_imp = 0
+                for it in range(outer_iters):
+                    free_mask = select_free_mask(cur_a, mode, cur_pairs, cur_marg, top_k=150)
+                    if not np.any(free_mask):
+                        break
+                    slp_ok = False
+                    for _ in range(2):
+                        curv_pad = 1e-8 + 2.0 * tr_th * tr_xy
                         slp_out = solve_soft_angle_slp(
-                            cur_a, cur_c, free_mask, tr_th=tr_th, tr_xy=None, margin=1e-8, time_limit=time_limit
+                            cur_a, cur_c, free_mask, tr_th=tr_th, tr_xy=tr_xy, margin=curv_pad, time_limit=time_limit
                         )
-                    if slp_out is None:
-                        break
-                    _, prop_c, prop_a, max_dth = slp_out
-                    cur_c, cur_a = prop_c, prop_a
-                    slp_ok = True
-                    if max_dth < 1e-9:
-                        break
-                if not slp_ok:
-                    tr_th *= 0.5
-                    tr_xy *= 0.5
-                    continue
+                        if slp_out is None:
+                            slp_out = solve_soft_angle_slp(
+                                cur_a, cur_c, free_mask, tr_th=tr_th, tr_xy=None, margin=1e-8, time_limit=time_limit
+                            )
+                        if slp_out is None:
+                            break
+                        _, prop_c, prop_a, max_dth = slp_out
+                        cur_c, cur_a = prop_c, prop_a
+                        slp_ok = True
+                        if max_dth < 1e-9:
+                            break
+                    if not slp_ok:
+                        tr_th *= 0.5
+                        tr_xy *= 0.5
+                        no_imp += 1
+                        if no_imp >= 4 or tr_th < 1e-6:
+                            break
+                        continue
 
-                # Follow immediately with unbounded fixed-angle LP rounds
-                fx_out = fixed_lp_loop(cur_a, cur_c, rounds=fixed_rounds, margin=1e-10, time_limit=time_limit)
-                if fx_out is None:
-                    fx_out = fixed_lp_loop(cur_a, cur_c, rounds=fixed_rounds, margin=1e-9, time_limit=time_limit)
-                if fx_out is None:
-                    tr_th *= 0.5
-                    continue
-                s_fx, c_fx, cur_pairs, cur_marg = fx_out
-                cur_c = c_fx
-                gap_fx = min_sat_gap(cur_c, cur_a)
+                    # Follow immediately with unbounded fixed-angle LP rounds
+                    fx_out = fixed_lp_loop(cur_a, cur_c, rounds=fixed_rounds, margin=1e-10, time_limit=time_limit)
+                    if fx_out is None:
+                        fx_out = fixed_lp_loop(cur_a, cur_c, rounds=fixed_rounds, margin=1e-9, time_limit=time_limit)
+                    if fx_out is None:
+                        tr_th *= 0.5
+                        no_imp += 1
+                        if no_imp >= 4 or tr_th < 1e-6:
+                            break
+                        continue
+                    s_fx, c_fx, cur_pairs, cur_marg = fx_out
+                    cur_c = c_fx
+                    gap_fx = min_sat_gap(cur_c, cur_a)
 
-                if gap_fx > 1e-12 and s_fx < best_L_float - 1e-12:
-                    best_L_float = s_fx
-                    best_centers = cur_c.copy()
-                    best_angles = cur_a.copy()
-                    history.append(f"{mode}(tr={tr_th:.1e},it={it}):{best_L_float:.12f}")
-                else:
-                    tr_th *= 0.5
-                    tr_xy = min(0.02, max(1e-3, 10.0 * tr_th))
-                    if tr_th < 1e-6:
-                        break
+                    if gap_fx > 1e-12 and s_fx < best_L_float - 1e-12:
+                        best_L_float = s_fx
+                        best_centers = cur_c.copy()
+                        best_angles = cur_a.copy()
+                        cyc_improved = True
+                        no_imp = 0
+                        history.append(f"c{cyc}:{mode}(tr={tr_th:.1e},it={it}):{best_L_float:.12f}")
+                    else:
+                        tr_th *= 0.5
+                        tr_xy = min(0.02, max(1e-3, 10.0 * tr_th))
+                        no_imp += 1
+                        if no_imp >= 4 or tr_th < 1e-6:
+                            break
+        if not cyc_improved:
+            break
 
     # Step 2: Final uniform separating-axis shrink + official literal & pandas certification
     best_cert = None
@@ -637,10 +665,22 @@ def optimize_group(
     }
 
 
-def load_targets_from_portfolio(targets: set[int]) -> dict[int, tuple[list[dict[str, str]], Decimal]]:
-    """Load target n from origin/main portfolio (merged.csv + all poc/*/final.csv) fast."""
+def _certify_candidate(item: tuple[int, int, list[dict[str, str]]]) -> tuple[int, int, str | None]:
+    n, idx, rows = item
+    res = certify_pair(n, rows)
+    if res is None:
+        return n, idx, None
+    return n, idx, str(max(res[0], res[1]))
+
+
+def load_targets_from_portfolio(
+    targets: set[int],
+    jobs: int = 16,
+    include_self: bool = False,
+    fast_portfolio: bool = False,
+) -> dict[int, tuple[list[dict[str, str]], Decimal]]:
+    """Load target n from origin/main portfolio (merged.csv + poc/*/final.csv) fast."""
     import pandas as pd
-    import mpmath as mp
 
     candidates: dict[int, list[list[dict[str, str]]]] = {n: [] for n in targets}
     merged_path = REPO / "poc" / "pell_corrugation" / "data" / "border-scan" / "merged.csv"
@@ -655,8 +695,15 @@ def load_targets_from_portfolio(targets: set[int]) -> dict[int, tuple[list[dict[
         for n, rows in tmp.items():
             candidates[n].append(rows)
 
-    for p in sorted((REPO / "poc").glob("*/final.csv")):
-        if "swarm_lpslack" in p.parts:
+    final_paths = (
+        [REPO / "poc" / "swarm_lpslack" / "final.csv"]
+        if fast_portfolio and include_self
+        else ([] if fast_portfolio else sorted((REPO / "poc").glob("*/final.csv")))
+    )
+    for p in final_paths:
+        if not p.exists():
+            continue
+        if "swarm_lpslack" in p.parts and not include_self:
             continue
         text = p.read_text(encoding="utf-8")
         lines = text.splitlines()
@@ -673,47 +720,97 @@ def load_targets_from_portfolio(targets: set[int]) -> dict[int, tuple[list[dict[
             if n in targets and len(a[n]) == n and len(b.get(n, [])) == n:
                 candidates[n].append(a[n])
 
+    cert_tasks = [(n, idx, rows) for n in sorted(targets) for idx, rows in enumerate(candidates[n])]
+    best_idx: dict[int, tuple[int, Decimal]] = {}
+    with mp.get_context("fork").Pool(min(jobs, max(1, len(cert_tasks)))) as pool:
+        for n, idx, val in pool.imap_unordered(_certify_candidate, cert_tasks, chunksize=1):
+            if val is None:
+                continue
+            cur_L = Decimal(val)
+            if n not in best_idx or cur_L < best_idx[n][1]:
+                best_idx[n] = (idx, cur_L)
+
     best: dict[int, tuple[list[dict[str, str]], Decimal]] = {}
     for n in sorted(targets):
-        best_rows = None
-        best_L = None
-        for rows in candidates[n]:
-            res = certify_pair(n, rows)
-            if res is None:
-                continue
-            cur_L = max(res[0], res[1])
-            if best_L is None or cur_L < best_L:
-                best_L = cur_L
-                best_rows = rows
-        if best_rows is None or best_L is None:
+        if n not in best_idx:
             raise RuntimeError(f"No valid incumbent found for n={n}")
-        best[n] = (best_rows, best_L)
+        idx, best_L = best_idx[n]
+        best[n] = (candidates[n][idx], best_L)
     return best
+
+
+def _run_task(args):
+    n, base_rows, old_L_str, outer_iters, fixed_rounds, tr_sched, cycles = args
+    return optimize_group(
+        n,
+        base_rows,
+        old_L_str,
+        outer_iters=outer_iters,
+        fixed_rounds=fixed_rounds,
+        tr_th_schedule=tr_sched,
+        cycles=cycles,
+    )
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--n-list", default="911,740,861,796,853,909")
-    parser.add_argument("--jobs", type=int, default=6)
-    parser.add_argument("--out", default=str(REPO / "poc/swarm_lpslack/data/gate_results.json"))
+    parser.add_argument("--jobs", type=int, default=24)
+    parser.add_argument("--outer-iters", type=int, default=8)
+    parser.add_argument("--fixed-rounds", type=int, default=8)
+    parser.add_argument("--cycles", type=int, default=1)
+    parser.add_argument("--tr-sched", default="5e-4,5e-5")
+    parser.add_argument("--include-self", action="store_true")
+    parser.add_argument("--fast-portfolio", action="store_true")
+    parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--out", default=str(REPO / "poc/swarm_lpslack/data/scale_results.json"))
+    parser.add_argument("--jsonl", default=str(REPO / "poc/swarm_lpslack/data/scale_results.jsonl"))
     args = parser.parse_args()
 
-    targets = [int(x) for x in args.n_list.split(",") if x.strip()]
-    portfolio = load_targets_from_portfolio(set(targets))
-    tasks = [(n, portfolio[n][0], str(portfolio[n][1])) for n in targets]
-
+    targets = sorted({int(x) for x in args.n_list.split(",") if x.strip()}, reverse=True)
+    jsonl_path = Path(args.jsonl)
+    jsonl_path.parent.mkdir(parents=True, exist_ok=True)
     results = []
-    with mp.get_context("fork").Pool(min(args.jobs, len(tasks))) as pool:
-        for res in pool.starmap(optimize_group, tasks):
-            results.append(res)
-            dL = res.get("dL", "0")
-            print(
-                f"n={res['n']} status={res['status']} old={res['old_L'][:16]} "
-                f"new={res.get('new_L', str(res.get('best_float_L', '')))[:16]} "
-                f"dL={dL} t={res['elapsed_s']}s hist={res['history']}",
-                flush=True,
-            )
+    done_ns: set[int] = set()
+    if args.resume and jsonl_path.exists():
+        for ln in jsonl_path.read_text(encoding="utf-8").splitlines():
+            if ln.strip():
+                row = json.loads(ln)
+                results.append(row)
+                done_ns.add(int(row["n"]))
+        targets = [n for n in targets if n not in done_ns]
+        print(f"Resuming: {len(done_ns)} already done, {len(targets)} remaining", flush=True)
+    else:
+        jsonl_path.write_text("", encoding="utf-8")
 
+    tr_sched = tuple(float(x) for x in args.tr_sched.split(",") if x.strip())
+    if targets:
+        portfolio = load_targets_from_portfolio(
+            set(targets),
+            jobs=args.jobs,
+            include_self=args.include_self,
+            fast_portfolio=args.fast_portfolio,
+        )
+        tasks = [
+            (n, portfolio[n][0], str(portfolio[n][1]), args.outer_iters, args.fixed_rounds, tr_sched, args.cycles)
+            for n in targets
+        ]
+
+        total_all = len(done_ns) + len(tasks)
+        with mp.get_context("fork").Pool(min(args.jobs, len(tasks))) as pool:
+            for res in pool.imap_unordered(_run_task, tasks, chunksize=1):
+                results.append(res)
+                with jsonl_path.open("a", encoding="utf-8") as jf:
+                    jf.write(json.dumps(res) + "\n")
+                dL = res.get("dL", "0")
+                print(
+                    f"[{len(results)}/{total_all}] n={res['n']} status={res['status']} "
+                    f"old={res['old_L'][:16]} new={res.get('new_L', str(res.get('best_float_L', '')))[:16]} "
+                    f"dL={dL} t={res['elapsed_s']}s",
+                    flush=True,
+                )
+
+    results.sort(key=lambda r: r["n"])
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1), encoding="utf-8")
 
