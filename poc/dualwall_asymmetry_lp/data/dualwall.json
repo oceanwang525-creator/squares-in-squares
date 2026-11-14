@@ -1,0 +1,248 @@
+{
+ "targets": [
+  259,
+  414,
+  445
+ ],
+ "modes": [
+  "orientation",
+  "anchor",
+  "grid-2"
+ ],
+ "rounds": 6,
+ "trust": "none",
+ "seconds": 1.8267629146575928,
+ "results": [
+  {
+   "n": 259,
+   "mode": "orientation",
+   "blocks": 6,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "side": 16.591378145497735,
+     "shift": 8.295689072748864
+    },
+    {
+     "round": 2,
+     "side": 16.591378145497735,
+     "shift": 0.0
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=259: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 259,
+   "mode": "anchor",
+   "blocks": 13,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "side": 16.591378145497735,
+     "shift": 0.0
+    }
+   ],
+   "literal_L": "16.59137814549773602790309137238184190465154052676621",
+   "status": "literal-tie-or-worse"
+  },
+  {
+   "n": 259,
+   "mode": "grid-2",
+   "blocks": 11,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "side": 16.591378145497735,
+     "shift": 0.0
+    }
+   ],
+   "literal_L": "16.59137814549773602790309137238184190465154052676621",
+   "status": "literal-tie-or-worse"
+  },
+  {
+   "n": 414,
+   "mode": "orientation",
+   "blocks": 82,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "side": 20.840664048103783,
+     "shift": 0.07135109743876544
+    },
+    {
+     "round": 2,
+     "side": 20.840664048103786,
+     "shift": 0.010930761583717086
+    },
+    {
+     "round": 3,
+     "side": 20.840664048103783,
+     "shift": 0.010931124467719044
+    },
+    {
+     "round": 4,
+     "side": 20.840664048103783,
+     "shift": 0.010926984723289124
+    },
+    {
+     "round": 5,
+     "side": 20.840664048103783,
+     "shift": 0.010957129761854034
+    },
+    {
+     "round": 6,
+     "side": 20.840664048103783,
+     "shift": 0.005724818562967471
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=414: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 414,
+   "mode": "anchor",
+   "blocks": 90,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "side": 20.840664048103786,
+     "shift": 10.481196250599146
+    },
+    {
+     "round": 2,
+     "side": 20.840664048103786,
+     "shift": 0.12471593684052706
+    },
+    {
+     "round": 3,
+     "side": 20.840664048103786,
+     "shift": 0.011554691138814022
+    },
+    {
+     "round": 4,
+     "side": 20.840664048103786,
+     "shift": 0.059587033127344924
+    },
+    {
+     "round": 5,
+     "side": 20.840664048103786,
+     "shift": 0.01758095212586852
+    },
+    {
+     "round": 6,
+     "side": 20.840664048103786,
+     "shift": 0.08481389358306579
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=414: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 414,
+   "mode": "grid-2",
+   "blocks": 87,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "side": 20.840664048103786,
+     "shift": 0.06423183407894051
+    },
+    {
+     "round": 2,
+     "side": 20.840664048103786,
+     "shift": 0.012147450585362485
+    },
+    {
+     "round": 3,
+     "side": 20.840664048103783,
+     "shift": 0.059587033127344924
+    },
+    {
+     "round": 4,
+     "status": "infeasible"
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=414: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 445,
+   "mode": "orientation",
+   "blocks": 151,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "side": 21.59137814549783,
+     "shift": 0.10866481459886757
+    },
+    {
+     "round": 2,
+     "side": 21.59137814549783,
+     "shift": 0.15624315251822551
+    },
+    {
+     "round": 3,
+     "side": 21.591378145498247,
+     "shift": 0.04772707723173042
+    },
+    {
+     "round": 4,
+     "side": 21.591378145498247,
+     "shift": 0.16163524498627635
+    },
+    {
+     "round": 5,
+     "side": 21.591378145498247,
+     "shift": 0.1369965252924903
+    },
+    {
+     "round": 6,
+     "status": "infeasible"
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=445: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 445,
+   "mode": "anchor",
+   "blocks": 156,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "side": 21.59137814549783,
+     "shift": 0.10061876750854282
+    },
+    {
+     "round": 2,
+     "status": "infeasible"
+    }
+   ],
+   "status": "certify-fail",
+   "error": "n=445: infeasible: Squares overlap (certified)"
+  },
+  {
+   "n": 445,
+   "mode": "grid-2",
+   "blocks": 154,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  }
+ ],
+ "wins": {}
+}

@@ -1,0 +1,135 @@
+{
+ "targets": [
+  259,
+  414,
+  445
+ ],
+ "modes": [
+  "orientation",
+  "anchor",
+  "grid-2"
+ ],
+ "rounds": 6,
+ "trust": "none",
+ "seconds": 0.7563672065734863,
+ "results": [
+  {
+   "n": 259,
+   "mode": "orientation",
+   "blocks": 6,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 259,
+   "mode": "anchor",
+   "blocks": 13,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 259,
+   "mode": "grid-2",
+   "blocks": 11,
+   "old_L": "16.59137814549773602790309137238184190465154052676621",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 414,
+   "mode": "orientation",
+   "blocks": 82,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 414,
+   "mode": "anchor",
+   "blocks": 90,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 414,
+   "mode": "grid-2",
+   "blocks": 87,
+   "old_L": "20.84066404810378346647400790352280059516729995306992",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 445,
+   "mode": "orientation",
+   "blocks": 151,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 445,
+   "mode": "anchor",
+   "blocks": 156,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  },
+  {
+   "n": 445,
+   "mode": "grid-2",
+   "blocks": 154,
+   "old_L": "21.59137814549783261923132169162108279309693609978327",
+   "history": [
+    {
+     "round": 1,
+     "status": "infeasible"
+    }
+   ],
+   "status": "lp-infeasible"
+  }
+ ],
+ "wins": {}
+}
