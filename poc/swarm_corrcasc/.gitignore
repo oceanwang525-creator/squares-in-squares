@@ -1,0 +1,5 @@
+docs/audit_diagonal_pairs.json
+docs/*.log
+data/.win_lock
+__pycache__/
+*.pyc
