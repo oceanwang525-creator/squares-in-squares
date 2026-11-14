@@ -9,11 +9,11 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 7 Summary (H56 Stages 2-4: 3 Certified REAL WINs in `final.csv`, total `ds = -7.776222e-04`)
+## Batch 7 Summary (H56 Stages 2-4: 3 Certified REAL WINs in `final.csv`, total `ds = -7.391489e-04`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
-| 632 | `-9.713953e-04` | `-3.864003e-05` | `25.6379204213902485224` | `25.6388918166912541192` (merged.csv) | `rejam_r3_b1_m1_t5e-05_p_0.008` |
+| 632 | `-4.190919e-06` | `-1.667058e-07` | `25.6379204213902485224` | `25.6379246123087816155` (merged.csv) | `rejam_r3_b1_m1_t5e-05_p_0.008` |
 | 741 | `-2.009971e-02` | `-7.383813e-04` | `27.7078223511930757781` | `27.7279220613579946195` (merged.csv) | `mmelt_r4_b0_m0_t2e-03_p_0.025` |
 | 853 | `-1.754978e-05` | `-6.008929e-07` | `29.7058876665656286135` | `29.7059052163408758528` (merged.csv) | `rejam_r4_b0_m1_t5e-05_p_0.008` |
 
