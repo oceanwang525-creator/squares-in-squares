@@ -120,11 +120,13 @@ def main() -> None:
             if n in groups and len(groups[n]) == n:
                 cands_by_n[n].append((s, rel, groups[n]))
 
-    # Certify only candidates strictly better in float than report_now (top 3 per n)
+    # Certify merged.csv if updated vs report_now, plus strictly better poc/*/final.csv challengers
     to_cert = []
     for n in range(1, 1001):
+        m_side, m_src, m_rows = cands_by_n[n][0]
+        if m_side < float(rep_now[n]) - 1e-10:
+            to_cert.append((n, m_src, m_rows))
         if len(cands_by_n[n]) > 1:
-            # Skip merged.csv itself (already certified in rep_now), certify top 3 challengers
             challengers = sorted(cands_by_n[n][1:], key=lambda t: t[0])[:3]
             for _, src, rows in challengers:
                 to_cert.append((n, src, rows))
