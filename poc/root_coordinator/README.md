@@ -52,7 +52,13 @@ seam solver. Unlike failed strip-cell work, this does not require one cell to
 have more density than the current long arm; it searches for a different cell
 whose finite block can replace a topological seam and pay for its ends.
 **Quick test:** 1-3 high-gap n selected from 380, 684, 702, 801, 846.  
-**Outcome:** running.
+**Outcome:** negative, quick-test boundary reached.  Direct whole-cell SLP was
+saturated on `846`, `380`, `702` and `801`; `684` produced only a dual-valid
+improvement of `1.07e-15`, below the strict-win threshold and not exported.
+Perturbed full/pocket/tilted-grain seeds and a C++ masked-melt probe on `846`
+reached lower float sides but retained SAT penetration and failed exact
+certification.  The agent committed `f493df1`; I removed the completed folder
+from the working tree after that commit, preserving its history.
 
 ### 2. `contactbraid_reset`
 
