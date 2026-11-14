@@ -17,11 +17,11 @@ check and the actual `pandas.read_csv` / `to_csv` transport.
 
 ## Baselines
 
-- `upstream/main`: `331b307fbf67fc721609b121b9606b399b2359b9`
-- `upstream/merge`: `cd6d332`
-- Required upstream artifact: `merged-22.15248431115.csv`
+- `upstream/main`: `f542119fc80ab8410654c8116caff5d034563fe0`
+- `upstream/merge`: `2714efd981190e83db228f1b0a4f300de4e4122a`
+- Required upstream artifact: `merged-22.15248431101.csv`
 - Tracking file SHA256:
-  `c9e5398775e31b536cbfa1519ab9c6066c95f98edf1d7bc9bec3a54a85cafd9e`
+  `5c9bad10cc9a74147d4423ab2b134915156da1f7814474ca224d8c69ffd32db4`
 - H128 child POC: `poc/swarm_masked_melt_bootstrap/`
 
 ## Gate
@@ -71,7 +71,7 @@ targets (`633,635,696,697,860,862,863`) did not beat their current rows.
 
 `final.csv` therefore contains only the complete `n=634`, `n=695`, and
 `n=861` groups. All three remain strict wins against
-`merged-22.15248431115.csv`; no row was superseded by the new merge artifact.
+`merged-22.15248431101.csv`; no row was superseded by the new merge artifact.
 Independent verification is recorded in `docs/verification.json`.
 
 ## Files
