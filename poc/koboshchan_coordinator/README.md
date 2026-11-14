@@ -176,6 +176,25 @@ kept paying for 4 rounds. Next: push the fine scan to step 0.0625, run more
 cascade rounds on the newly won n (492 especially), and apply the same cascade
 to any n where a narrow sub-pocket lifts onto a *top-gap* row.
 
+### Cycle-4 hypotheses (running)
+
+Upstream main after PR #71 + auto-union: **22.152957456** (session start
+22.153257205; banked so far **2.997e-4**). Remaining gap to target: **0.05306**.
+
+| # | idea | folder | expected |
+|---|---|---|---|
+| E1 | Finer scan (step 0.0625, four phases), wider cap/fmax, more seam layouts, iterate | `poc/pocket_lift_scan3` | 5e-5–3e-4 |
+| E2 | Deeper polish cascade (6-8 rounds) on the current best rows, esp. n=492 | `poc/lift_polish2` | 5e-5–3e-4 |
+| E3 | Rational-slope pocket library: n=492 won at `22+12/17`; search more `p/q` pockets for the top-gap rows | untried | uncertain |
+| E4 | 3-pocket and non-rectangular (staircase) seam gadgets | untried | uncertain |
+
+**Note on scale.** Banked wins are ~3e-4 and cycles are adding ~1-2e-4 each.
+The remaining 0.053 is ~180x that, so the stated target is **not reachable by
+this mechanical track alone**; it would require matching top-team private
+free-form packings on ~half the puzzles. I keep cycling because the pocket-lift
+and cascade levers are still paying, but I am not claiming the target is close.
+
+
 
 
 
