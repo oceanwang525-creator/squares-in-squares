@@ -1,26 +1,28 @@
 # Hypothesis H78: Constant-`r` Homology L-Border Cascade (`swarm_homocasc2`)
 
-## Summary (PR #1 — Gate Breakthrough)
-- **Branch**: `swarm-homocasc2` / `swarm-homocasc2-pr1` (based on `origin/main` @ `8c623fc`)
-- **Result**: **2 strict REAL WINs (`n=852, 911`)**, **total `ds = -1.590375e-4`** (`literal == pandas` dual-certified against the full `origin/main` `8c623fc` portfolio).
+## Summary
+- **Branch**: `swarm-homocasc2` / `swarm-homocasc2-pr2` (merged with `origin/main` @ `aea8dc0`)
+- **PR #1 (`origin/swarm-homocasc2-pr1`, merged into `origin/main`)**: Landed `n=911` (`30.676984 -> 30.675847568497090971`, `dL = -1.136128e-3`) and initial `n=852` (`29.699128 -> 29.695584615062476056`, `dL = -3.543429e-3`).
+- **PR #2 (`origin/swarm-homocasc2-pr2`, vs `origin/main` `aea8dc0`)**: **3 strict REAL WINs (`n=852, 853, 912`)**, **total `ds = -3.849438e-4` (`L/sqrt(n)`), `ds_L2n = -7.829781e-4` (`L^2/n`)**, `literal == pandas` dual-certified against the full `origin/main` (`aea8dc0`) portfolio (`n=911` omitted here as already merged into `origin/main`):
 
-| `n` | `(m, r)` | `L_inc` (`origin/main` `8c623fc`) | `L_win` (`literal == pandas`) | `dL` | `ds = dL / sqrt(n)` | Cascade Path |
+| `n` | `(m, r)` | `L_inc` (`origin/main` `aea8dc0`) | `L_win` (`literal == pandas`) | `dL` | `ds = dL / sqrt(n)` | Cascade Path |
 |---:|:---:|---:|---:|---:|---:|---|
-| 852 | `(29, +11)` | `29.699128044056555137` | `29.695584615062476056` | `-3.543429e-3` | `-1.213959e-4` | `911 -> 852` (`peel1_911_BL_k1.010_clamp_keepAng` + melt + `joint_xytheta_slp` + `mechwalk_compress` + `lpslack`) |
-| 911 | `(30, +11)` | `30.676983696661892525` | `30.675847568497090971` | `-1.136128e-3` | `-3.764161e-5` | `972 -> 911` (`xcross_972_x20.0_y21.0_rt1` + melt + `joint_xytheta_slp` + `mechwalk_compress` + `lpslack`) |
+| 852 | `(29, +11)` | `29.695584606875173959` | `29.688527389492101859` | `-7.057217e-3` | `-2.417763e-4` | `911 (30.675848) -> 852` (`peel1_911_TR_k1.010_dropProt_clamp` + melt + `joint_xytheta_slp` + `mechwalk_compress` + `lpslack`) |
+| 853 | `(29, +12)` | `29.705882380544231341` | `29.705882376792042049` | `-3.752189e-9` | `-1.284725e-10` | `796 (28.705882376) -> 853` (`extTR` 1-unit upright L-border with `1e-9` spacing + direct SLP + `lpslack`) |
+| 912 | `(30, +12)` | `30.703259882007011852` | `30.698936322874302400` | `-4.323559e-3` | `-1.431673e-4` | `973 (31.679167) -> 912` (`peel1_973_BL_k1.010_clamp_rot45` + melt + `joint_xytheta_slp` + `mechwalk_compress` + `lpslack`) |
 
-## Geometric Mechanism & Gate Findings
-1. **Why the H78 cascade broke through on `r = +11`**:
-   - Newly tightened donors (`n=972` at `31.656512`, `n=911` at `30.676984`) carry `-20.5` to `-22.1` milli-units of fractional excess slack relative to `(m-1, +11)` incumbents (`911`, `852`).
-   - On `972 -> 911`, scanning interior upright row+column excisions (`xcross_972_x20.0_y21.0_rt1`, removing only `1` tilted square) landed at `30.677162` (`dL = +1.78e-4`) after masked melt + `joint_xytheta_slp`, and chaining `mechwalk_compress` + `lpslack` (selective soft-angle SLP + unbounded fixed-angle LP + 80-digit uniform shrink) compressed the basin by `-1.314e-3` to **`30.675847568497` (`dL = -1.136e-3`)**.
-   - On `911 -> 852`, peeling the `BL` `1x1` L-border (`remT=0`, `prot=2`) + clamping + masked melt + `joint_xytheta_slp` reached `29.703437` (`dL = +4.31e-3`), and chaining `mechwalk_compress` + `lpslack` compressed the basin by `-7.852e-3` to **`29.695584615062` (`dL = -3.543e-3`)**.
-2. **Negative Gate Pairs (`docs/gate_results.json`, `docs/gate.log`)**:
-   - `909 <- 970`: `970` had `f` slack of only `-1.14e-3` and `xcross` seeds (`rt3`) filled the `top_polish=8` queue ahead of `BL`/`TR` peel seeds, yielding `0` polished feasible seeds (`L_inc` unchanged at `30.638829`).
-   - `912 <- 973`: `clamp` seeds reached `30.743179` (`dL = +3.99e-2`, above the `L_inc + 0.025` `mechwalk` trigger), while `reloc` seeds were ranked behind `clamp` by penetration.
-   - `850 <- 970 + 909`: Best polished seed (`peel1_909_TR_reloc_v2_u0`) reached `29.692670` (`dL = +5.01e-2`).
+## Geometric Mechanism & Scale-Up Findings
+1. **Why the H78 cascade broke through on `r = +11` and `r = +12`**:
+   - **Gate (`972 -> 911 -> 852`)**: `xcross_972_x20.0_y21.0_rt1` + `mechwalk_compress` + `lpslack` cut `n=911` to `30.675847568497` (`-1.136e-3`), unlocking an extra `-20.5` milli-units of `(m-1, +11)` slack for `n=852`.
+   - **Scale-Up Wave 1 (`n=852` further drop & `973 -> 912`)**:
+     - Using the new `30.675848` `n=911` donor, peeling the `TR` L-border (`peel1_911_TR_k1.010_dropProt_clamp`) reached `29.698142`, and 4-round SVD `mechwalk_compress` + `lpslack` compressed the basin by `-9.615e-3` to **`29.688527389492`** (`-7.057e-3` below PR #1 / `aea8dc0`, `-1.060e-2` below pre-gate `8c623fc`).
+     - On `973 -> 912`, `peel1_973_BL_k1.010_clamp_rot45` + melt + `joint_xytheta_slp` reached `30.710556` (`dL = +7.30e-3`), and 4-round `mechwalk_compress` + `lpslack` drove it `-1.162e-2` down to **`30.698936322874`** (`dL = -4.324e-3`).
+   - **Upward Extension (`796 -> 853`)**: Adding a 1-unit upright L-border with `1e-9` clearance spacing (`extend_one_layer_all_corners`) around `n=796` (`28.705882375792`) eliminates exact-touching rejection in `auto_union.check`, yielding a strict win on `n=853` (`29.705882376792042049`, `dL = -3.752e-9`).
+2. **Non-Winning Scale-Up Targets (`docs/scale_results.json`, `docs/scale2_results.json`)**:
+   - Closest near-misses after `mechwalk_compress + lpslack`: `n=738<-793` (`+7.330e-3`), `n=795<-852` (`+7.980e-3`), `n=910<-971` (`+8.203e-3`), `n=688<-741` (`+1.131e-2`), `n=855<-914` (`+1.352e-2`), `n=854<-913` (`+1.412e-2`), `n=794<-851` (`+1.727e-2`).
 
 ## Files & Verification
-- `poc/homocasc2_lib.py`: fast float-presorted `origin/main` + `lpslack` portfolio loader, `literal` + `pandas` + `kaggle_roundtrip` dual certifier, atomic win saver, `joint_xytheta_slp` + `lpslack` + `mechwalk_compress` pipeline.
-- `poc/cascade_engine2.py`: 4-corner L-border extension, multi-cut L-border peel + interior-void relocation + seam-cell surgery, 0.5-step interior cross excision scanner, C++ masked melt + polish.
-- `poc/run_gate.py`, `poc/run_scale.py`: gate and scale-up runners.
+- `poc/homocasc2_lib.py`: fast float-presorted `origin/main` portfolio loader, `literal` + `pandas` + `kaggle_roundtrip` dual certifier, atomic win saver, `joint_xytheta_slp` (with zero-pen LP/lpslack fallback) + `lpslack` + `mechwalk_compress` pipeline.
+- `poc/cascade_engine2.py`: 4-corner L-border extension (`1e-9` gap spacing), multi-cut L-border peel + interior-void relocation + seam-cell surgery, 0.5-step interior cross excision scanner, C++ masked melt + polish.
+- `poc/run_gate.py`, `poc/run_scale.py`: gate and `max_workers=2` scale-up runners.
 - `tests/test_homocasc2.py`: unit and `final.csv` dual-certification tests.

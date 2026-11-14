@@ -444,7 +444,10 @@ def polish_candidate(
 
     xs, ys, ts, Ls, ok = joint_xytheta_slp(x, y, th, rounds=10, tr_th0=0.022, tr_xy0=0.09, margin=1e-8, tol=1e-8, patience=2)
     if not ok:
-        return None, None
+        if pen <= 1e-6:
+            xs, ys, ts, Ls = x, y, th, bb
+        else:
+            return None, None
     if Ls < L_inc + 0.015:
         xs2, ys2, ts2, Ls2, ok2 = joint_xytheta_slp(
             xs, ys, ts, rounds=12, tr_th0=0.007, tr_xy0=0.025, margin=1e-8, tol=1e-11, patience=3
