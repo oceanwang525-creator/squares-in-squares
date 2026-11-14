@@ -1,0 +1,7 @@
+gadlib items: 643 after pareto
+scanned pockets: 555 distinct oriented items (555 oriented types)
+  of which 224 new oriented shapes, 0 improve an existing one
+merged items after pareto: 863
+predicted cells 555; DP strictly better at 1 n; score gain 1.4027e-07
+  n=974 K=31 j=13: ours 31.705886746 -> 31.705882368 (gain 1.4027e-07)  (18,9,+6)@0.705882<n=538> + (10,22,+7)@0.688507<n=974>
+wrote poc/newgadget_closure/data/pred_p0125.json

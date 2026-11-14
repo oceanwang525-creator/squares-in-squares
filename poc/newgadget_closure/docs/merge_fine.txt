@@ -1,0 +1,5 @@
+gadlib: 763 oriented items, 763 oriented types
+183277 raw gadgets -> 8623 distinct oriented (w,h,g)
+  new oriented shapes 8128; improve an existing shape 0
+merged Pareto set: 959 items; scanned pockets surviving: 451
+wrote poc/newgadget_closure/data/pockets_fine.json (451 gadgets with geometry)

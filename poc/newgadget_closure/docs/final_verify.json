@@ -1,0 +1,20 @@
+{
+  "incumbent": "/tmp/incumbent.csv",
+  "groups": {
+    "974": {
+      "count": 974,
+      "complete": true,
+      "literal": true,
+      "pandas": true,
+      "literal_L": "31.70588236820239466613381477509345626574081318069471",
+      "pandas_L": "31.70588236820239466613381477509345626574081318069471",
+      "literal_why": "ok",
+      "pandas_why": "ok",
+      "incumbent_L": 31.705886745787048,
+      "dL_literal": -4.3775846521043604e-06,
+      "dL_pandas": -4.3775846521043604e-06,
+      "strict_win": true
+    }
+  },
+  "score_gain": -1.4026685986989748e-07
+}

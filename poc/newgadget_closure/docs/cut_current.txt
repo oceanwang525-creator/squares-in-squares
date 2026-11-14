@@ -1,0 +1,30 @@
+878 pockets, 684 with <= 700 squares
+  100/684 pockets -> 162 cuts
+  200/684 pockets -> 371 cuts
+  300/684 pockets -> 521 cuts
+  400/684 pockets -> 849 cuts
+  500/684 pockets -> 1018 cuts
+  600/684 pockets -> 1170 cuts
+1316 cut gadgets; 571 distinct (w,h,g)
+  of which 86 shapes are new and 0 improve an existing shape
+   new (25,26,+1) f=0.520815 from n=677 cut of 26x26
+   new (21,22,+1) f=0.525758 from n=485 cut of 22x22
+   new (18,22,+1) f=0.525758 from n=485 cut of 22x22
+   new (23,22,+1) f=0.525758 from n=530 cut of 23x23
+   new (22,23,+1) f=0.525758 from n=530 cut of 23x23
+   new (19,23,+1) f=0.525758 from n=530 cut of 23x23
+   new (19,22,+1) f=0.525758 from n=530 cut of 23x23
+   new (16,23,+1) f=0.525758 from n=530 cut of 23x23
+   new (24,23,+1) f=0.525758 from n=577 cut of 24x24
+   new (24,22,+1) f=0.525758 from n=577 cut of 24x24
+   new (23,24,+1) f=0.525758 from n=577 cut of 24x24
+   new (20,24,+1) f=0.525758 from n=577 cut of 24x24
+   new (20,23,+1) f=0.525758 from n=577 cut of 24x24
+   new (20,22,+1) f=0.525758 from n=577 cut of 24x24
+   new (16,24,+1) f=0.525758 from n=577 cut of 24x24
+   new (20,21,+1) f=0.525795 from n=442 cut of 21x21
+   new (10,11,+1) f=0.535534 from n=122 cut of 11x11
+   new (11,10,+1) f=0.535534 from n=122 cut of 11x11
+   new (11,9,+1) f=0.535534 from n=122 cut of 11x11
+   new (9,11,+1) f=0.535534 from n=122 cut of 11x11
+wrote poc/newgadget_closure/data/lib_cut_current.json 1449

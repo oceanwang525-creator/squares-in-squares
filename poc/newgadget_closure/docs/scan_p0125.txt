@@ -1,0 +1,4 @@
+30 rows, step=0.125 fmax=0.9 nmax=31 cap=2000 off=(0.0,0.0)
+29.6s  58812 gadgets -> 7252 distinct (w,h,g)  mean stage A 2.42s B 1.38s C 2.47s seeds 24861 used 1914
+sums: windows 3258507 ypass 650834 masks 184021 seeds 745831 used 57434
+wrote poc/newgadget_closure/data/scan_p0125.json
