@@ -8,7 +8,7 @@ folder, review outcomes, and manage git/PRs. I do not run packing experiments.
 
 | quantity | value |
 |---|---|
-| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.15324713130751** (upstream 8c623fc; was 22.153257205012313 at cycle-1 start) |
+| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.153247131307516** (upstream b1fae0c; was 22.153257205012313 at cycle-1 start) |
 | merge-branch `merged-22.15325720501.csv` | identical SHA256 `61004c6f…` |
 | official certification | 1000/1000 accepted, missing 0, rejected 0 |
 | goal | **≤ 22.0999** (need Δ ≤ −0.053357) |
@@ -164,8 +164,8 @@ answer, and re-scan for *new* narrow sub-pockets of the rows C1 improved
   DP re-lifts it to every `K` — a 4-round cascade. Fixed-angle LP and Lipschitz
   SLP alone found 0 wins.
 - **Union of all finals (best per n), verified in both transports vs fresh main:**
-  n=442,447,485,492,530,577,585,740,743,798,853; total score gain
-  **`1.8108e-4`**; new score **≈22.153066**. (`gadget_squeeze`/`faultline_dp2`
+  n=442,447,485,492,530,577,740,743,798 (585 and 853 were superseded by upstream);
+  total score gain **`1.7957e-4`**; new score **≈22.1530676**. (`gadget_squeeze`/`faultline_dp2`
   are superseded; `smallD_lift` keeps n=853.)
 
 ### Cycle-4 direction
