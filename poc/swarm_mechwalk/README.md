@@ -9,14 +9,14 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 6 Summary (H56: 4 Certified REAL WINs in `final.csv`, total `ds = -8.388041e-04`)
+## Batch 6 Summary (H56: 4 Certified REAL WINs in `final.csv`, total `ds = -1.702575e-04`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
 | 909 | `-1.185314e-03` | `-3.931439e-05` | `30.6388990056089366455` | `30.6400843199400181830` (merged.csv) | `mmelt_r1_b0_m0_t2e-04_p_0.008` |
-| 911 | `-7.154829e-03` | `-2.370501e-04` | `30.6769957514431805206` | `30.6841505804990773282` (merged.csv) | `rejam_r4_b0_m3_t4e-04_p_0.008` |
-| 971 | `-1.127737e-04` | `-3.619080e-06` | `31.6424364881247324311` | `31.6425492618212468848` (merged.csv) | `rejam_r3_b0_m3_t5e-05_p_0.008` |
-| 973 | `-1.743126e-02` | `-5.588206e-04` | `31.6791750555548563474` | `31.6966063160911159475` (merged.csv) | `mmelt_r3_b1_m1_t2e-03_m_0.008` |
+| 911 | `-1.334570e-03` | `-4.421627e-05` | `30.6769957514431805206` | `30.6783303213147234149` (poc/swarm_b5xplant/final.csv) | `rejam_r4_b0_m3_t4e-04_p_0.008` |
+| 971 | `-4.863259e-05` | `-1.560694e-06` | `31.6424364881247324311` | `31.6424851207162927578` (poc/swarm_b5xplant/final.csv) | `rejam_r3_b0_m3_t5e-05_p_0.008` |
+| 973 | `-2.656582e-03` | `-8.516611e-05` | `31.6791750555548563474` | `31.6818316376285653133` (poc/swarm_b5xplant/final.csv) | `mmelt_r3_b1_m1_t2e-03_m_0.008` |
 
 ## Batch 6 Run Log (4 REAL WINs, 2 Ties/Misses across 6 `n`s)
 
