@@ -1,0 +1,266 @@
+{
+ "492": {
+  "n": 492,
+  "ours": "22.707106781186653",
+  "frontier": "22.6905404757633",
+  "bound_K_plus_inv_sqrt2": 22.707106781186546,
+  "bound_minus_frontier": 0.016566305423246774,
+  "bound_minus_ours": -1.0658141036401503e-13,
+  "patterns": {
+   "topL": {
+    "base_side": 23.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 239,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 217,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 22,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 30,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "corner4_4": {
+    "base_side": 23.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 235,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 214,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 24,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 26,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "outer": {
+    "base_side": 23.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 239,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 216,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 26,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 26,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   }
+  },
+  "K": 22,
+  "D": 8,
+  "G": 23
+ },
+ "908": {
+  "n": 908,
+  "ours": "30.634070746951185",
+  "frontier": "30.6058845085697",
+  "bound_K_plus_inv_sqrt2": 30.707106781186546,
+  "bound_minus_frontier": 0.10122227261684458,
+  "bound_minus_ours": 0.07303603423536131,
+  "patterns": {
+   "topL": {
+    "base_side": 31.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 443,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 413,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 30,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 38,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "corner4_4": {
+    "base_side": 31.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 439,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 410,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 32,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 34,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "outer": {
+    "base_side": 31.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 443,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 412,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 34,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 34,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   }
+  },
+  "K": 30,
+  "D": 8,
+  "G": 31
+ },
+ "328": {
+  "n": 328,
+  "ours": "18.614368938490983",
+  "frontier": "18.5995354648065",
+  "bound_K_plus_inv_sqrt2": 18.707106781186546,
+  "bound_minus_frontier": 0.1075713163800458,
+  "bound_minus_ours": 0.09273784269556273,
+  "patterns": {
+   "topL": {
+    "base_side": 19.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 157,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 139,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 18,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 22,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "corner4_4": {
+    "base_side": 19.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 155,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 138,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 20,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 20,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   },
+   "outer": {
+    "base_side": 19.0,
+    "cuts": {
+     "halfTR(i+j>=G-1)": {
+      "block": 157,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "stripUp(i+j>=G)": {
+      "block": 138,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "rightStrip(i>=G-2)": {
+      "block": 20,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     },
+     "topStrip(j>=G-2)": {
+      "block": 20,
+      "deepest_bbox_reducing_slide": 0.0,
+      "lp_side_at_that_slide": null
+     }
+    }
+   }
+  },
+  "K": 18,
+  "D": 4,
+  "G": 19
+ }
+}

@@ -1,0 +1,25 @@
+  chain seed: 0/22 feasible, best 0.608712579 (pocket)
+  chain seed: 0/22 feasible, best 0.608712579 (pocket)
+  chain seed: 0/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 0/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 1/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 3/22 feasible, best 0.608712579 (pocket)
+  chain seed: 0/22 feasible, best 0.608712579 (pocket)
+  chain seed: 4/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+  chain seed: 2/22 feasible, best 0.608712579 (pocket)
+(9,15,+3): 0.608712579 -> 0.608712579 (no improvement)
+wall 47s
+9x15g3: 0.608712579 -> 0.608712579
+no pocket for 11,16,4 in ../data/targets.json
+no pocket for 10,6,2 in ../data/targets.json
