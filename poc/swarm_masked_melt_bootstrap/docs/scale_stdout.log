@@ -1,0 +1,23 @@
+[CACHED] n=459 status=MISS dL=8.817196106314554e-06 consec_nonreal=1/12
+[CACHED] n=634 status=REAL_WIN dL=-5.0580758870674715e-06 consec_nonreal=0/12
+[CACHED] n=695 status=REAL_WIN dL=-9.027113583915365e-05 consec_nonreal=0/12
+
+=== H128 n=861 | L_b=29.817033760 | N=24 feas=0 best_Lf=None min_pen=4.66e-04 ===
+  [REAL_WIN] n=861: mpk_seam_3 dL=-7.160962e-04 L_lit=29.8163176635068290610 [96.9s]
+
+=== H128 n=978 | L_b=31.753853024 | N=24 feas=0 best_Lf=None min_pen=7.64e-04 ===
+  [NO VALID POLISHED] n=978 min_pen_fin=2.45e-04 [164.9s]
+
+=== H128 n=499 | L_b=22.827161994 | N=24 feas=0 best_Lf=None min_pen=5.68e-04 ===
+  [MISS] n=499: mpk_void_9 dL=+1.011039e-05 L_lit=22.8271721046897205410 [36.0s]
+
+=== H128 n=804 | L_b=28.827155402 | N=24 feas=0 best_Lf=None min_pen=4.91e-04 ===
+  [MISS] n=804: mpk_hot_0 dL=+5.170699e-06 L_lit=28.8271605729179506906 [100.9s]
+
+=== H128 n=920 | L_b=30.801847095 | N=24 feas=0 best_Lf=None min_pen=3.57e-04 ===
+  [MISS] n=920: mpk_seam_4 dL=+5.816096e-06 L_lit=30.8018529109059134885 [167.4s]
+
+=== H128 n=926 | L_b=30.870628505 | N=24 feas=0 best_Lf=None min_pen=7.44e-04 ===
+  [REAL_WIN] n=926: mpk_seam_4 dL=-2.789243e-04 L_lit=30.8703495805573396127 [139.1s]
+
+H128 run done in 719.3s | REAL_WINS=[634, 695, 861, 926] | TIES=[]

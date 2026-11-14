@@ -1,0 +1,11 @@
+
+=== H128 n=459 | L_b=21.899541865 | N=24 feas=0 best_Lf=None min_pen=4.68e-04 ===
+  [MISS] n=459: mpk_hot_5 dL=+8.817196e-06 L_lit=21.8995506818768804615 [28.9s]
+
+=== H128 n=634 | L_b=25.688381146 | N=24 feas=0 best_Lf=None min_pen=7.11e-04 ===
+  [REAL_WIN] n=634: mpk_void_9 dL=-5.058076e-06 L_lit=25.6883760881578541171 [43.2s]
+
+=== H128 n=695 | L_b=26.831780320 | N=24 feas=0 best_Lf=None min_pen=5.83e-04 ===
+  [REAL_WIN] n=695: mpk_hot_1 dL=-9.027114e-05 L_lit=26.8316900492115940650 [54.5s]
+
+H128 run done in 132.7s | REAL_WINS=[634, 695] | TIES=[]
