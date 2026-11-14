@@ -34,17 +34,24 @@ are strictly better in both certification modes.
 
 ## Result
 
-Against `merged-22.15496211934.csv`, the current final leaves one strict
-improvement from a second mechanism pass over the newly merged `n=909` seed.
-The projected complete score is `22.15496203092410`, with `1000/1000` groups
-accepted in both literal and pandas modes:
+Against `merged-22.15406754142.csv`, the current final leaves five strict
+improvements from iterated mechanism passes over the merged structural seeds.
+The complete score is `22.154066002562505` literal and
+`22.15406600256251` pandas, with all `1000/1000` groups accepted by both
+transports and no rejects or missing groups:
 
 | n | merge L | final L | dL |
 |---:|---:|---:|---:|
-| 909 | 30.640084505984516 | 30.640081840278218 | -2.665706299e-06 |
+| 687 | 26.717920906484127 | 26.717919107334627 | -1.799149500e-06 |
+| 736 | 27.634367487849832 | 27.634365755677692 | -1.732172140e-06 |
+| 793 | 28.659309154049116 | 28.659281475945289 | -2.767810383e-05 |
+| 851 | 29.666036666640738 | 29.666034291320278 | -2.375320463e-06 |
+| 910 | 30.656437491823008 | 30.656427173119178 | -1.031870383e-05 |
 
-The aggregate reduction is `-8.841590e-8`. The earlier recursive `n=800`
-result is now part of the upstream merge artifact and is no longer exported.
+The earlier recursive `n=800` result is now part of the upstream merge
+artifact and is no longer exported. The `n=909` group was removed after the
+new upstream merge improved that record. The aggregate certified reduction is
+`-0.000001538855470510808301954211774`.
 
 The detailed machine-generated before/after report is in
 `docs/final_export.json`.
@@ -65,8 +72,18 @@ The detailed machine-generated before/after report is in
   `+6.617691448e-7`.
 - A second mechanism pass from the newly merged `n=972` seed missed by
   `+3.424031143e-6`.
-- A third pass from the new `n=909` record missed by `+2.617814852e-6`, so the
-  second-pass result remains the exported record.
+- Third and fourth passes from the new `n=909` and `n=910` records missed,
+  while a third pass from `n=851` added `-1.001444740e-6`.
+- A further `n=800` pass missed by `+3.854627353e-7`.
+- Stage-three searches missed for `n=803` (`+1.942898518e-5`), `n=685`
+  (`+7.775807283e-6`), and `n=913` (`+6.850939862e-6`).
+- A first search from the recovered `n=842` boundary packing came within
+  `+2.822802410e-7`, but did not certify a strict win.
+- The remaining `k^2+1` and nearby middle-band sweep missed for `962`, `901`,
+  `785`, `730`, `677`, and `626`; the closest of these was `730` at
+  `+1.311409144e-7`.
+- Further middle-band searches missed for `742`, `691`, `758`, `690`, and
+  `644`; the closest was `690` at `+8.986538134e-7`.
 - A broad untested `700..1000` scan was interrupted after mostly zero or
   low-amplitude modes; it should not be repeated unchanged.
 - The attached `submission-kaggle-safe.csv` was rejected as a donor: its
