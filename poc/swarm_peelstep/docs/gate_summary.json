@@ -1,0 +1,106 @@
+{
+  "targets": {
+    "913": {
+      "n": 913,
+      "m": 30,
+      "r": 13,
+      "L_inc": "30.70710678120618109939917301033939112250167747187636",
+      "inc_src": "merged.csv",
+      "win": true,
+      "best_L": "30.70606229465212489517420965787324684403044605744130",
+      "dL": -0.0010444865540562042,
+      "label": "ps913_B6_9x20_n853_BRT+B7_10x22_vstrip_T_none_flipy_rot180_fhi_melt+lpslack",
+      "pairs_tested": [
+        {
+          "pair": "B6_10x21_n972_BR+B6_10x21_n972_BR_T",
+          "kx": 1,
+          "ky": 1,
+          "dm": "none",
+          "f_hi": 0.656497,
+          "L": null,
+          "dL": null,
+          "win": false
+        },
+        {
+          "pair": "n912gs_TL_9x21_g6_peel_left_slp_walk+B7_10x22_vstrip_T",
+          "kx": 0,
+          "ky": 1,
+          "dm": "none",
+          "f_hi": 0.705867,
+          "L": "30.94128323537458590",
+          "dL": 0.2341764541684048,
+          "win": false
+        },
+        {
+          "pair": "B7_10x22_vstrip+n912gs_TL_9x21_g6_peel_left_slp_walk_T",
+          "kx": 1,
+          "ky": 0,
+          "dm": "none",
+          "f_hi": 0.705867,
+          "L": null,
+          "dL": null,
+          "win": false
+        },
+        {
+          "pair": "B6_9x19_n585_TL+B7_10x22_vstrip_T",
+          "kx": 1,
+          "ky": -1,
+          "dm": "none",
+          "f_hi": 0.705882,
+          "L": "30.73872270311571261",
+          "dL": 0.03161592190953151,
+          "win": false
+        },
+        {
+          "pair": "B7_10x22_vstrip+B6_9x19_n585_TL_T",
+          "kx": -1,
+          "ky": 1,
+          "dm": "none",
+          "f_hi": 0.705882,
+          "L": "30.73938803031350400",
+          "dL": 0.032281249107322905,
+          "win": false
+        },
+        {
+          "pair": "B6_9x20_n853_BRT+B7_10x22_vstrip_T",
+          "kx": 1,
+          "ky": 0,
+          "dm": "none",
+          "f_hi": 0.705882,
+          "L": "30.70606229465212489",
+          "dL": -0.0010444865540562042,
+          "win": true
+        }
+      ],
+      "dt": 1408.0
+    },
+    "854": {
+      "n": 854,
+      "m": 29,
+      "r": 13,
+      "L_inc": "29.72154000327154226393776136143477368948299088690787",
+      "inc_src": "poc/postmerge_gap_refresh/final.csv",
+      "win": false,
+      "best_L": null,
+      "dL": null,
+      "label": null,
+      "pairs_tested": [
+        {
+          "pair": "B6_9x18_n538_TL+B7_11x21_n913_BR_T",
+          "kx": 1,
+          "ky": 0,
+          "dm": "none",
+          "f_hi": 0.707107,
+          "L": null,
+          "dL": null,
+          "win": false
+        }
+      ],
+      "dt": 178.3
+    }
+  },
+  "wins": [
+    913
+  ],
+  "total_dt": 1709.1
+}
