@@ -129,7 +129,12 @@ assemble multiple periods and certify the full n. This is distinct from failed
 single-period strip cells and rigid 45-degree bands because both phase and
 period can vary and the assembler may use different end pieces.
 **Quick test:** 1-3 high-gap n selected from 380, 701, 846, 979.  
-**Outcome:** still running; partial result not yet available.
+**Outcome:** negative.  Joint `x/y/angle` SLP on `380, 701, 846, 979` produced no
+side reduction from the incumbent.  Isolated non-axis patches could sometimes
+compress, but reinsertion caused seam collisions, so no valid assembly existed.
+`final.csv` remained header-only.  Final agent commit: `4431220`; I removed the
+completed folder from the working tree after that commit, preserving its
+history.
 
 ### 6. `newgadget_closure`
 
