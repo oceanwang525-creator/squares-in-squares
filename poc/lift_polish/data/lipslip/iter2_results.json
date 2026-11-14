@@ -1,0 +1,37 @@
+[
+ {
+  "n": 442,
+  "base_side": 21.533023032177713,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "base_side": 21.65642096864663,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "base_side": 22.532830037352575,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "base_side": 23.532836858748865,
+  "status": "win"
+ },
+ {
+  "n": 577,
+  "base_side": 24.53284028866893,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "base_side": 27.753852984553397,
+  "status": "no-gain"
+ },
+ {
+  "n": 798,
+  "base_side": 28.740330671668694,
+  "status": "no-gain"
+ }
+]

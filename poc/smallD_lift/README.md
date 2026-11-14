@@ -207,12 +207,15 @@ above are all elsewhere.)
   found 5 strict certified wins worth `1.209e−6` of score, concentrated where
   the tracked table is internally inconsistent (`n = 442, 485, 530, 577, 853`).
   `final.csv` contains exactly those complete groups.
-* **`poc/rectangle_gadgets`' "closure" claim is slightly too strong**: its DP
-  uses integer pocket shapes and the strict `Σ(w+1) ≤ K+1` rule, so it misses
-  the whole-row gadgets this lift uses; those give the 5 wins above.  Re-running
-  `gaddp.py` with the exact `(W,H)` excess of every tracked row (this POC's
-  `scan_lift.py`) is the right way to re-check closure after a merge — it takes
-  ~10 s.
+* **`poc/rectangle_gadgets`' "0 n improved" closure result deserves a re-check.**
+  Our lift is exactly a *single-pocket* staircase composition (one donor plus
+  two full arms), which is the same count formula `gaddp.py` uses, so a gadget
+  `(w, h, g) = (20, 20, +1)` at `f = 0.533025` — which is just the tracked
+  `n = 401` row — should have produced `n = 442` at `K = 21`.  It did not, so
+  either whole-row gadgets with their exact `(W, H)` excess are dropped from
+  `gadlib`, or the rule still forces an extra column/row.  Running
+  `scan_lift.py` (~10 s) is the reliable closure test after any merge, and it is
+  the reason these 5 wins were still available.
 * **Practical warning for whoever works on the big rows next:** exact tangency
   between squares from *different* constructions is rejected by the interval
   certifier (re-emitted decimals move by ~1e-60).  Assemble multi-piece
@@ -254,10 +257,10 @@ $PY poc/smallD_lift/poc/make_final.py
 | `poc/scan_lift.py` | exact lift construction, exhaustive enumeration, dual-transport certification |
 | `poc/closure.py` | iterated (transitive) lift until closure |
 | `poc/make_final.py` | writes `final.csv` and re-certifies it from disk |
-| `data/quicktest{2,3}.json`, `data/quicktest*.log` | gadget-search results per `(D,m)` |
+| `data/quicktest3.json`, `data/quicktest3.log` | gadget-search results per `(D,m)` (final run) |
 | `data/at_target_n*.log` | searches started exactly at the target side (all infeasible) |
 | `data/lift_candidates.json` | every lift candidate with `dL < −1e−9` |
-| `data/closure_wins.{json,pkl}`, `data/certified_wins.json` | accepted lifts with certified sides |
+| `data/closure_wins.{json,pkl}`, `data/certified_wins.json`, `data/wins_rows.pkl` | accepted lifts with certified sides; `wins_rows.pkl` holds the certified rows |
 | `data/wins_summary.json` | per-`n` `L`, `dL` in both transports, score gain (source of the §4 table) |
 | `data/bbox_tracked.json` | `(W,H)` of all 1000 tracked rows (the donor library) |
 | `data/gadget_D*_m*.csv` | the best certified small-`m` packings found (evidence for §3) |

@@ -146,6 +146,37 @@ answer, and re-scan for *new* narrow sub-pockets of the rows C1 improved
 | D4 | Allow non-rectangular (staircase/L-shaped) sub-pockets as gadgets | untried | uncertain |
 | D5 | For each top-gap n, report the best side reachable from the whole pocket library (diagnostic: is the gap reachable by composition at all?) | `poc/pocket_reach` | diagnostic |
 
+### Cycle-3 outcomes (union: 11 wins, score gain 1.81e-4)
+
+- **D1 `pocket_lift_scan2` — positive, 10 wins, `8.4507e-5` (2.95x C1).** Finer
+  offset lattices (step 0.125, phase 0.03125) find the decisive `(9,16,+5)`
+  pocket of n=686 at `f=0.696716582`; with a seam-layout search it builds a
+  2-pocket seam for **n=492 at `22.705882`** (`dL=-1.22e-3`, the single biggest
+  win) — a rational-slope pocket that beats the incumbent's `22+1/√2` zipper.
+  Also n=740 (`-1.83e-5`), plus the C1 family with larger `dL`. The "iterate with
+  built rows as donors" and "L-border propagation" levers were negative.
+  Fine scan cost ≈23 min wall on 32 cores.
+- **D2 `lift_polish` — positive, 6 wins, `9.6567e-5` (3.4x C1).** The C1 lifts
+  are rigid and *do* have slack: `swarm_lpslack` (soft-angle SLP + unbounded
+  fixed-angle LP + shrink) moves n=485/530/577 by `-1.8e-4` each and n=442/798
+  too. The improved row is then a **better donor**: re-cutting n=485 gives
+  `(18,21,+1)` at `f=0.532830036` (vs C1's `(20,18,+1)` at 0.533023120) and the
+  DP re-lifts it to every `K` — a 4-round cascade. Fixed-angle LP and Lipschitz
+  SLP alone found 0 wins.
+- **Union of all finals (best per n), verified in both transports vs fresh main:**
+  n=442,447,485,492,530,577,585,740,743,798,853; total score gain
+  **`1.8108e-4`**; new score **≈22.153066**. (`gadget_squeeze`/`faultline_dp2`
+  are superseded; `smallD_lift` keeps n=853.)
+
+### Cycle-4 direction
+
+The two live levers are now (a) finer/shifted lattices for the pocket scan — the
+`0.03125` phase was decisive — and (b) the polish→re-cut→re-lift cascade, which
+kept paying for 4 rounds. Next: push the fine scan to step 0.0625, run more
+cascade rounds on the newly won n (492 especially), and apply the same cascade
+to any n where a narrow sub-pocket lifts onto a *top-gap* row.
+
+
 
 
 ## Honest assessment
