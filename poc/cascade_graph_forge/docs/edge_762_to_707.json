@@ -1,0 +1,88 @@
+{
+  "n": 707,
+  "L_inc": 26.995195834837368,
+  "n_seeds": 10,
+  "n_jobs": 40,
+  "n_feas": 0,
+  "best_cpp_Lf": null,
+  "best_seen_L": 27.000000000952042,
+  "win": false,
+  "best_label": null,
+  "L_win": null,
+  "dL": 0.004804166114674047,
+  "polish_logs": [
+    {
+      "label": "xcross_762_x10.6_y16.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.000338898806376,
+      "dL": 0.005143063969009057,
+      "ok": true
+    },
+    {
+      "label": "xcross_762_x10.6_y14.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.000000471173966,
+      "dL": 0.004804636336598664,
+      "ok": true
+    },
+    {
+      "label": "peel1_762_TL_k1.010_dropProtEdge_clean_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.000000089115467,
+      "dL": 0.00480425427809843,
+      "ok": true
+    },
+    {
+      "label": "peel1_762_TR_k1.010_clean0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 5.21655925123099e-08,
+      "ok": false
+    },
+    {
+      "label": "peel1_762_TL_k1.010_dropProtEdge_clean_R9.8_s2",
+      "cppLf": 1e+18,
+      "L": 27.000000088841226,
+      "dL": 0.004804254003856886,
+      "ok": true
+    },
+    {
+      "label": "peel1_762_TR_k1.010_clean0_R7.6_s0",
+      "cppLf": 1e+18,
+      "L": 27.000000044484224,
+      "dL": 0.004804209646856099,
+      "ok": true
+    },
+    {
+      "label": "xcross_762_x10.6_y15.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.002120981498688,
+      "dL": 0.00692514666131986,
+      "ok": true
+    },
+    {
+      "label": "xcross_762_x10.6_y11.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.002679794377677,
+      "dL": 0.007483959540311002,
+      "ok": true
+    },
+    {
+      "label": "xcross_762_x10.6_y17.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.00000075051332,
+      "dL": 0.004804915675953235,
+      "ok": true
+    },
+    {
+      "label": "xcross_762_x10.6_y13.1_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 27.000023866068016,
+      "dL": 0.004828031230649653,
+      "ok": true
+    }
+  ],
+  "elapsed_s": 1237.1,
+  "donor": 762,
+  "target_source": "merged.csv",
+  "donor_source": "merged.csv"
+}

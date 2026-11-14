@@ -1,0 +1,82 @@
+{
+  "n": 791,
+  "L_inc": 28.63407074697788,
+  "n_seeds": 24,
+  "n_jobs": 96,
+  "n_feas": 0,
+  "best_cpp_Lf": null,
+  "best_seen_L": 28.67911313716054,
+  "win": false,
+  "best_label": null,
+  "L_win": null,
+  "dL": 0.04504239018266176,
+  "polish_logs": [
+    {
+      "label": "xcross_848_x19.8_y14.8_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.0038261924884726017,
+      "ok": false
+    },
+    {
+      "label": "xcross_848_x19.8_y15.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.004783155095126168,
+      "ok": false
+    },
+    {
+      "label": "peel1_848_BR_k1.010_relocRep_v0_tilt_R8.0_s0",
+      "cppLf": 1e+18,
+      "pen": 0.007265398053348804,
+      "ok": false
+    },
+    {
+      "label": "peel1_848_TR_k1.010_reloc_v2_u0_R7.8_s0",
+      "cppLf": 1e+18,
+      "pen": 0.013449379520497295,
+      "ok": false
+    },
+    {
+      "label": "peel1_848_TR_k1.010_seamSurg_tilt_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.014237501233952177,
+      "ok": false
+    },
+    {
+      "label": "peel1_848_TR_k1.010_seamSurg_u0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.01425671737241796,
+      "ok": false
+    },
+    {
+      "label": "xcross_848_x19.8_y14.8_rt0_R6.9_s0",
+      "cppLf": 1e+18,
+      "L": 28.690263884914405,
+      "dL": 0.05619313793652315,
+      "ok": true
+    },
+    {
+      "label": "xcross_848_x19.8_y15.3_rt0_R7.2_s1",
+      "cppLf": 1e+18,
+      "L": 28.682435408969546,
+      "dL": 0.048364661991665565,
+      "ok": true
+    },
+    {
+      "label": "xcross_848_x19.8_y15.3_rt0_R12.1_s2",
+      "cppLf": 1e+18,
+      "L": 28.67911313716054,
+      "dL": 0.04504239018266,
+      "ok": true
+    },
+    {
+      "label": "xcross_848_x19.8_y21.8_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.005315795482606633,
+      "ok": false
+    }
+  ],
+  "elapsed_s": 585.3,
+  "donor": 848,
+  "target_source": "merged.csv",
+  "donor_source": "merged.csv"
+}

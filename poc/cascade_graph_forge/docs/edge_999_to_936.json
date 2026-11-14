@@ -1,0 +1,86 @@
+{
+  "n": 936,
+  "L_inc": 30.995521349508383,
+  "n_seeds": 10,
+  "n_jobs": 40,
+  "n_feas": 0,
+  "best_cpp_Lf": null,
+  "best_seen_L": 31.0000000010281,
+  "win": false,
+  "best_label": null,
+  "L_win": null,
+  "dL": 0.004478651519715271,
+  "polish_logs": [
+    {
+      "label": "xcross_999_x12.2_y16.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 3.132329617905327e-08,
+      "ok": false
+    },
+    {
+      "label": "xcross_999_x12.2_y14.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 31.000351284242893,
+      "dL": 0.004829934734510131,
+      "ok": true
+    },
+    {
+      "label": "peel1_999_TR_k1.010_clean0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 31.000001746488074,
+      "dL": 0.0044803969796906925,
+      "ok": true
+    },
+    {
+      "label": "peel1_999_TL_k1.010_dropProtEdge_clean_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 6.055056944731518e-08,
+      "ok": false
+    },
+    {
+      "label": "peel1_999_TR_k1.010_clean0_R12.8_s2",
+      "cppLf": 1e+18,
+      "L": 31.000000051259978,
+      "dL": 0.004478701751594125,
+      "ok": true
+    },
+    {
+      "label": "peel1_999_TL_k1.010_dropProtEdge_clean_R8.1_s0",
+      "cppLf": 1e+18,
+      "L": 31.000000102528368,
+      "dL": 0.004478753019983964,
+      "ok": true
+    },
+    {
+      "label": "xcross_999_x12.2_y17.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 31.00015602239708,
+      "dL": 0.00463467288869532,
+      "ok": true
+    },
+    {
+      "label": "xcross_999_x12.2_y18.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 31.003133631262827,
+      "dL": 0.007612281754445646,
+      "ok": true
+    },
+    {
+      "label": "xcross_999_x12.2_y15.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 31.000026988436645,
+      "dL": 0.004505638928261926,
+      "ok": true
+    },
+    {
+      "label": "xcross_999_x12.2_y13.2_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 4.923567109571536e-08,
+      "ok": false
+    }
+  ],
+  "elapsed_s": 2187.0,
+  "donor": 999,
+  "target_source": "merged.csv",
+  "donor_source": "merged.csv"
+}

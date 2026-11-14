@@ -1,0 +1,81 @@
+{
+  "n": 803,
+  "L_inc": 28.817284788017158,
+  "n_seeds": 17,
+  "n_jobs": 68,
+  "n_feas": 0,
+  "best_cpp_Lf": null,
+  "best_seen_L": 28.87475934180051,
+  "win": false,
+  "best_label": null,
+  "L_win": null,
+  "dL": 0.05747455378335076,
+  "polish_logs": [
+    {
+      "label": "peel1_860_BL_k1.010_clamp_rot45_R6.0_s0",
+      "cppLf": 1e+18,
+      "pen": 0.0059481453363615655,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BL_k1.010_clamp_keepAng_R6.0_s0",
+      "cppLf": 1e+18,
+      "pen": 0.007561855058887956,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_clamp_keepAng_R7.3_s1",
+      "cppLf": 1e+18,
+      "pen": 0.008756334366654572,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_clamp_rot0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.008885062675791144,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_relocRep_v0_u0_R9.9_s2",
+      "cppLf": 1e+18,
+      "pen": 0.010717960191284015,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_relocRep_v0_tilt_R12.3_s2",
+      "cppLf": 1e+18,
+      "L": 29.005411448892676,
+      "dL": 0.18812666087551957,
+      "ok": true
+    },
+    {
+      "label": "peel1_860_BR_k1.010_seamSurg_tilt_R6.7_s0",
+      "cppLf": 1e+18,
+      "pen": 0.013191613472455455,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_seamSurg_u0_R100_s3",
+      "cppLf": 1e+18,
+      "pen": 0.01410023924952486,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BL_k1.010_clamp_keepAng_R9.7_s2",
+      "cppLf": 1e+18,
+      "pen": 0.008271137154101105,
+      "ok": false
+    },
+    {
+      "label": "peel1_860_BR_k1.010_clamp_keepAng_R7.8_s0",
+      "cppLf": 1e+18,
+      "L": 28.87475934180051,
+      "dL": 0.057474553783353005,
+      "ok": true
+    }
+  ],
+  "elapsed_s": 444.0,
+  "donor": 860,
+  "target_source": "merged.csv",
+  "donor_source": "merged.csv"
+}

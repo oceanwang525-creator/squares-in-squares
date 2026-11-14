@@ -1,0 +1,89 @@
+{
+  "n": 876,
+  "L_inc": 29.99755946537208,
+  "n_seeds": 10,
+  "n_jobs": 40,
+  "n_feas": 0,
+  "best_cpp_Lf": null,
+  "best_seen_L": 30.000000001915694,
+  "win": false,
+  "best_label": null,
+  "L_win": null,
+  "dL": 0.002440536543613092,
+  "polish_logs": [
+    {
+      "label": "xcross_937_x11.8_y15.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.000186132929958,
+      "dL": 0.0026266675578785277,
+      "ok": true
+    },
+    {
+      "label": "peel1_937_TR_k1.010_clean0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.00000011534403,
+      "dL": 0.002440649971950528,
+      "ok": true
+    },
+    {
+      "label": "xcross_937_x11.8_y12.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.000002245133047,
+      "dL": 0.002442779760966038,
+      "ok": true
+    },
+    {
+      "label": "peel1_937_TL_k1.010_dropProtEdge_clean_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.000401621135765,
+      "dL": 0.0028421557636854238,
+      "ok": true
+    },
+    {
+      "label": "peel1_937_TL_k1.010_dropProtEdge_clean_R11.3_s2",
+      "cppLf": 1e+18,
+      "L": 30.000000099095946,
+      "dL": 0.0024406337238659687,
+      "ok": true
+    },
+    {
+      "label": "peel1_937_TR_k1.010_clean0_R10.8_s2",
+      "cppLf": 1e+18,
+      "L": 30.000000101558932,
+      "dL": 0.0024406361868505627,
+      "ok": true
+    },
+    {
+      "label": "xcross_937_x11.8_y16.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.00418869052821,
+      "dL": 0.0066292251561275595,
+      "ok": true
+    },
+    {
+      "label": "xcross_937_x11.8_y18.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.004393089829353,
+      "dL": 0.006833624457270834,
+      "ok": true
+    },
+    {
+      "label": "xcross_937_x11.8_y14.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.000159391570158,
+      "dL": 0.002599926198076866,
+      "ok": true
+    },
+    {
+      "label": "xcross_937_x11.8_y13.3_rt0_R100_s3",
+      "cppLf": 1e+18,
+      "L": 30.000004080893248,
+      "dL": 0.0024446155211683457,
+      "ok": true
+    }
+  ],
+  "elapsed_s": 2401.7,
+  "donor": 937,
+  "target_source": "merged.csv",
+  "donor_source": "merged.csv"
+}
