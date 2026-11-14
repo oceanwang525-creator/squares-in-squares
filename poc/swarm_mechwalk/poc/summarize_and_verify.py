@@ -78,7 +78,7 @@ def main() -> None:
                 f"| {n} | `{r['run_file']}` | **{r['status']}** | {dL_s} | {r['dt_s']} | `{r.get('best_label')}` |"
             )
 
-    batch9_runs = _load_runs(("b6_s6_results.json",))
+    batch10_runs = _load_runs(("b6_s7_results.json",))
 
     lines = [
         "# H22 / H31 / H39 / H45 / H56: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt",
@@ -92,7 +92,7 @@ def main() -> None:
         "  - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.",
         "- **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).",
         "",
-        f"## Batch 9 Summary (H62 Stage 6: {len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
+        f"## Batch 10 Summary (H65 Stage 7: {len(verified_wins)} Certified REAL WINs in `final.csv`, total `ds = {float(tot_ds):+.6e}`)",
         "",
         "| `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |",
         "|---:|---:|---:|---|---|---|",
@@ -102,8 +102,9 @@ def main() -> None:
             f"| {w['n']} | `{w['dL']:+.6e}` | `{w['ds']:+.6e}` | `{w['L_lit'][:22]}` | `{w['L_inc'][:22]}` ({w['inc_src']}) | `{w['label']}` |"
         )
 
-    _append_run_table("Batch 9 Run Log", batch9_runs)
+    _append_run_table("Batch 10 Run Log", batch10_runs)
     for title, files in (
+        ("Batch 9 Archive (Merged in PR #52 / `86b6e34`)", ("b6_s6_results.json",)),
         ("Batch 8 Archive (Merged in PR #50 / `bdfda15`)", ("b6_s5_results.json",)),
         ("Batch 7 Archive (Merged in PR #49 / `201ab37`)", ("b6_s2_results.json", "b6_s3_results.json", "b6_s4_results.json")),
         ("Batch 6 Archive (Merged in PR #45 / `e6910c3`)", ("b6_s1_results.json",)),
