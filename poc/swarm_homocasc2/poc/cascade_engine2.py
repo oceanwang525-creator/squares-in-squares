@@ -47,17 +47,18 @@ def extend_one_layer_all_corners(
 ) -> list[tuple[str, np.ndarray, np.ndarray, np.ndarray, float]]:
     """Extend normalized [0, L]^2 packing by one 1x1 upright L-border along each of the 4 corners."""
     m = int(math.floor(L))
-    b = np.arange(0.5, m, 1.0)
-    off = L + 0.5 + 1e-6
+    b = 0.5 + np.arange(m, dtype=np.float64) * (1.0 + 1e-9)
+    gap = 1e-9
+    off = L + 0.5 + gap
     out = []
     for tag, sx, sy, bx, by in [
         ("extTR", 0.0, 0.0, off, off),
-        ("extTL", 1.0 + 1e-6, 0.0, 0.5, off),
-        ("extBR", 0.0, 1.0 + 1e-6, off, 0.5),
-        ("extBL", 1.0 + 1e-6, 1.0 + 1e-6, 0.5, 0.5),
+        ("extTL", 1.0 + gap, 0.0, 0.5, off),
+        ("extBR", 0.0, 1.0 + gap, off, 0.5),
+        ("extBL", 1.0 + gap, 1.0 + gap, 0.5, 0.5),
     ]:
-        hx_off = 1.0 + 1e-6 if bx == 0.5 else 0.0
-        hy_off = 1.0 + 1e-6 if by == 0.5 else 0.0
+        hx_off = 1.0 + gap if bx == 0.5 else 0.0
+        hy_off = 1.0 + gap if by == 0.5 else 0.0
         cx = np.concatenate([x + sx, np.full(m, bx), b + hx_off, [bx]])
         cy = np.concatenate([y + sy, b + hy_off, np.full(m, by), [by]])
         ct = np.concatenate([th, np.zeros(2 * m + 1)])
@@ -504,7 +505,31 @@ def solve_target(
             flush=True,
         )
 
-        order = sorted(range(len(alll)), key=lambda i: (0 if lf[i] < 1e9 else 1, lf[i] if lf[i] < 1e9 else po[i]))[:top_polish]
+        ranked_all = sorted(range(len(alll)), key=lambda i: (0 if lf[i] < 1e9 else 1, lf[i] if lf[i] < 1e9 else po[i]))
+        # Pick diverse best representatives across seed families so xcross/clamp don't crowd out reloc/BL/TR
+        order: list[int] = []
+        fam_counts: dict[str, int] = {}
+        for i in ranked_all:
+            lb_i = alll[i]
+            fam = "xcross" if "xcross" in lb_i else (
+                "ext" if "ext" in lb_i else (
+                    "reloc" if "reloc" in lb_i else (
+                        "seam" if "seamSurg" in lb_i else (
+                            next((c for c in ("BL", "TL", "BR", "TR") if f"_{c}_" in lb_i), "other")
+                        )
+                    )
+                )
+            )
+            if fam_counts.get(fam, 0) < 2:
+                order.append(i)
+                fam_counts[fam] = fam_counts.get(fam, 0) + 1
+            if len(order) >= top_polish:
+                break
+        for i in ranked_all:
+            if len(order) >= top_polish:
+                break
+            if i not in order:
+                order.append(i)
         for idx_rank, i in enumerate(order):
             use_f = lf[i] < 1e9
             Lr = float(lf[i]) if use_f else alls[i][-1]
@@ -529,9 +554,9 @@ def solve_target(
                 )
 
     # 3. Contact-Jacobian SVD mechanism walk + lpslack on best feasible basin
-    if run_mechwalk and best_pack is not None and best_seen_L < L_inc + 0.025:
+    if run_mechwalk and best_pack is not None and best_seen_L < L_inc + 0.045:
         bx, by, bt, bL = best_pack
-        mw_rounds = 4 if best_seen_L < L_inc + 0.012 else 2
+        mw_rounds = 4 if best_seen_L < L_inc + 0.015 else 2
         print(f"[{n_target}] Running mechwalk_compress + lpslack (rounds={mw_rounds}) from best_seen_L={bL:.12f}...", flush=True)
         mw_cert, mw_pack = hc.mechwalk_compress(n_target, bx, by, bt, L_inc_dec, rng, rounds=mw_rounds, threads=min(4, threads))
         if mw_pack is not None and mw_pack[3] < best_seen_L:

@@ -69,9 +69,9 @@ def _run_job(spec: tuple) -> dict:
         L_inc_dec,
         threads=4,
         rng=rng,
-        n_seeds_per_spec=4,
-        masked_iters=180,
-        full_iters=220,
+        n_seeds_per_spec=1 if mode == "upward" else 4,
+        masked_iters=80 if mode == "upward" else 180,
+        full_iters=120 if mode == "upward" else 220,
         top_polish=10,
         run_mechwalk=True,
     )
@@ -89,7 +89,11 @@ def main() -> None:
     hc.DATA_DIR.mkdir(parents=True, exist_ok=True)
     hc.rebuild_final_csv()
 
-    all_ns = {685, 688, 738, 740, 741, 793, 794, 795, 796, 850, 851, 852, 853, 909, 910, 911, 912, 970, 971, 972, 973}
+    all_ns = {
+        685, 688, 738, 740, 741, 793, 794, 795, 796, 797,
+        850, 851, 852, 853, 854, 855, 909, 910, 911, 912, 913, 914,
+        970, 971, 972, 973, 975,
+    }
     loaded = hc.load_portfolio(all_ns, include_pr2=True)
     targets = loaded["targets"]
     donors = loaded["donors"]
@@ -117,10 +121,14 @@ def main() -> None:
         ("peel", 741, [d_tup(796, 1, "peel")], targets[741]["L_dec"], 20263110),
         ("peel", 794, [d_tup(851, 1, "peel")], targets[794]["L_dec"], 20263111),
         ("peel", 910, [d_tup(971, 1, "peel")], targets[910]["L_dec"], 20263112),
+        ("peel", 854, [d_tup(913, 1, "peel")], targets[854]["L_dec"], 20263113),
+        ("peel", 914, [d_tup(975, 1, "peel")], targets[914]["L_dec"], 20263114),
+        ("peel", 797, [d_tup(854, 1, "peel")], targets[797]["L_dec"], 20263115),
+        ("peel", 855, [d_tup(914, 1, "peel")], targets[855]["L_dec"], 20263116),
     ]
 
     results = []
-    with ProcessPoolExecutor(max_workers=4) as pool:
+    with ProcessPoolExecutor(max_workers=2) as pool:
         for res in pool.map(_run_job, wave1):
             results.append(_strip(res))
             (hc.DOCS_DIR / "scale_results.json").write_text(json.dumps(results, indent=2))
@@ -144,7 +152,7 @@ def main() -> None:
         wave2.append(("upward", 912, [d_tup(853, 1, "upward")], targets[912]["L_dec"], 20263206))
 
     if wave2:
-        with ProcessPoolExecutor(max_workers=4) as pool:
+        with ProcessPoolExecutor(max_workers=2) as pool:
             for res in pool.map(_run_job, wave2):
                 results.append(_strip(res))
                 (hc.DOCS_DIR / "scale_results.json").write_text(json.dumps(results, indent=2))
