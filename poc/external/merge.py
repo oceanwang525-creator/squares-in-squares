@@ -205,6 +205,92 @@ def certify(tasks, runtime, seconds, workers, log):
             stop(proc, pipe)
 
 
+def score_only(rows):
+    """Bounding side only, no pairwise geometry or feasibility certification."""
+    with u.mp.workdps(65):
+        boxes = []
+        for row in rows:
+            x, y, angle = (u.mp.mpf(row[k]) for k in ("x", "y", "angle"))
+            half = (abs(u.mp.cos(angle)) + abs(u.mp.sin(angle))) / 2
+            boxes.append((x-half, x+half, y-half, y+half))
+        side = max(max(b[1] for b in boxes)-min(b[0] for b in boxes),
+                   max(b[3] for b in boxes)-min(b[2] for b in boxes))
+        return Decimal(u.mp.nstr(side, 60))
+
+
+def ranked_candidates(tasks, limits):
+    ranked = collections.defaultdict(list)
+    for key, n, a, b in tasks:
+        sides = (score_only(a), score_only(b))
+        # Skip provably noncompetitive approximations with a rounding cushion.
+        if any(sides[i] > limits[i][n] + Decimal("1e-45") for i in range(2)):
+            continue
+        ranked[n].append((max(sides), key, n, a, b))
+    for n in ranked:
+        ranked[n].sort(key=lambda entry: (entry[0], entry[1]))
+    return ranked
+
+
+def export_certificate(n, rows):
+    text = u.final_text({n: rows})
+    a = u.parse_text(text)[n]
+    b = u.parse_text(u.pd.read_csv(io.StringIO(text)).to_csv(index=False))[n]
+    return official(n, a, b)
+
+
+def merge_first(tasks, runtime, limits, seconds, workers, log):
+    """At most one current candidate per n; failures advance only that n."""
+    ranked = ranked_candidates(tasks, limits)
+    print("MERGE_FIRST", len(ranked), "competitive n;", sum(map(len, ranked.values())),
+          "ranked candidates; certifying only each current best", flush=True)
+    while ranked:
+        batch, rest = [], {}
+        for n, entries in sorted(ranked.items(),
+                                 key=lambda item: -(limits[0][item[0]] - item[1][0][0])):
+            _, key, _, a, b = entries[0]
+            batch.append((key, n, a, b))
+            rest[n] = entries[1:]
+        ranked = {}
+        by_key = {task[0]: task for task in batch}
+        for key, pair in certify(batch, runtime, seconds, workers, log):
+            _, n, a, b = by_key[key]
+            if pair and all(Decimal(pair[i][2]) < limits[i][n] for i in range(2)):
+                try:
+                    exported = bounded(export_certificate, (n, a), seconds)
+                except (TimeoutError, ValueError, EOFError):
+                    exported = None
+                if exported and all(Decimal(exported[i][2]) < limits[i][n] for i in range(2)):
+                    yield key, pair
+                    continue
+            if rest[n]:
+                ranked[n] = rest[n]
+
+
+def restore_completed(work, tasks, runtime):
+    """Reuse only matching parsed-byte keys from this invocation's input set."""
+    path = work / "groups.jsonl"
+    count = 0
+    if not path.exists():
+        return count
+    for line in path.read_text().splitlines():
+        try:
+            entry = json.loads(line)
+            task = tasks.get(entry["key"])
+            pair = entry.get("result")
+            if not task or entry.get("status") != "ok" or not pair:
+                continue
+            _, n, a, b = task
+            if not all(v[0] == n and v[3] == "ok" and v[2] is not None for v in pair):
+                continue
+            for rows, value in zip((a, b), pair):
+                runtime.cache[group_key((n, rows))] = value
+            count += 1
+        except (ValueError, KeyError, TypeError):
+            continue
+    print("REUSED_COMPLETED", count, "exact parsed pairs", flush=True)
+    return count
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--competition", default="squares-in-squares")
@@ -215,9 +301,13 @@ def main():
     parser.add_argument("--max-csv-mb", type=int, default=128)
     parser.add_argument("--baseline", type=Path, default=u.BASE)
     parser.add_argument("--output", type=Path, default=ROOT / "poc/external/final.csv")
+    parser.add_argument("--reuse-work", type=Path, help="reuse downloads and completed exact-key certificates from an interrupted local run")
     parser.add_argument("--work", type=Path, required=True,
                         help="fresh directory outside the checkout, keeps downloads and proofs")
     args = parser.parse_args()
+    def cancelled(signum, frame):
+        raise KeyboardInterrupt("importer cancelled")
+    signal.signal(signal.SIGTERM, cancelled)
     if not (1 <= args.limit <= 10 and 1 <= args.workers <= 16
             and args.group_seconds > 0 and args.io_seconds > 0 and args.max_csv_mb > 0):
         parser.error("positive limits required; --limit <=10 and --workers <=16")
@@ -236,7 +326,12 @@ def main():
     runtime.workers, runtime.seconds = args.workers, args.group_seconds
     before = runtime.full_gate(baseline)
     limits = [{x["n"]: Decimal(x["L"]) for x in report["results"]} for report in before]
-    listing = bounded(discover, (args.competition, args.limit), args.io_seconds)
+    reuse = args.reuse_work.resolve() if args.reuse_work else None
+    if reuse:
+        listing = json.loads((reuse / "download-index.json").read_text())[:args.limit]
+    else:
+        listing = bounded(discover, (args.competition, args.limit), args.io_seconds)
+    (work / "download-index.json").write_text(json.dumps(listing, indent=2))
     sources, tasks, origins, files = [], {}, {}, {}
     for rank, metadata in enumerate(listing, 1):
         ref = metadata.get("ref", "")
@@ -249,7 +344,16 @@ def main():
         destination = work / "downloads" / str(rank)
         destination.mkdir(parents=True)
         try:
-            paths = bounded(fetch, (ref, destination), args.io_seconds)
+            if reuse:
+                import shutil
+                old = reuse / "downloads" / str(rank)
+                for existing in old.rglob("*.csv"):
+                    target = destination / existing.relative_to(old)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(existing, target)
+                paths = [str(p) for p in sorted(destination.rglob("*.csv"))]
+            else:
+                paths = bounded(fetch, (ref, destination), args.io_seconds)
         except (TimeoutError, ValueError, EOFError) as error:
             source["error"] = type(error).__name__
             continue
@@ -275,8 +379,10 @@ def main():
         print("downloaded rank", rank, ref, "CSV files", len(source["files"]), flush=True)
     # Exact parsed-byte de-duplication, no trust in notebook claims.
     chosen, winners = {}, {}
+    if reuse:
+        restore_completed(reuse, tasks, runtime)
     with (work / "groups.jsonl").open("w") as log:
-        for key, pair in certify(tasks.values(), runtime, args.group_seconds, args.workers, log):
+        for key, pair in merge_first(tasks.values(), runtime, limits, args.group_seconds, args.workers, log):
             _, n, a, b = tasks[key]
             for file_key in origins[key]:
                 files[file_key][2][n] = pair
@@ -287,7 +393,7 @@ def main():
     for entry, ns, results in files.values():
         accepted = {n: pair for n, pair in results.items() if pair}
         entry["certified_groups"] = len(accepted)
-        entry["uncertified_groups"] = sorted(ns - set(accepted))
+        entry["uncertified_or_unselected_groups"] = sorted(ns - set(accepted))
         entry["certified_full_scores"] = ([sum(accepted[n][i][1] for n in range(1,1001))
                                             for i in range(2)]
                                            if set(accepted) == set(range(1,1001)) else None)

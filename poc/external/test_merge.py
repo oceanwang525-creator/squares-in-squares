@@ -3,6 +3,9 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
+from decimal import Decimal
+import io
 
 spec = importlib.util.spec_from_file_location("external", Path(__file__).with_name("merge.py"))
 m = importlib.util.module_from_spec(spec)
@@ -43,6 +46,33 @@ class ExternalTests(unittest.TestCase):
         with self.assertRaises(TimeoutError):
             m.bounded(time.sleep, (10,), .1)
         self.assertLess(time.monotonic()-start, 3)
+
+    def test_merge_first_only_best_and_fallback(self):
+        rows = lambda x: [{"square_id": 0, "x": str(x), "y": "0", "angle": "0"}]
+        tasks = [("worse", 1, rows(2), rows(2)), ("best", 1, rows(1), rows(1))]
+        calls = []
+        def fake_cert(batch, *args):
+            batch = list(batch)
+            calls.append([t[0] for t in batch])
+            for key, n, a, b in batch:
+                yield key, None if key == "best" else [(1, 0., "2", "ok")]*2
+        with patch.object(m, "score_only", side_effect=lambda rows: Decimal(rows[0]["x"])), patch.object(m, "certify", side_effect=fake_cert), patch.object(m, "bounded", return_value=[(1, 0., "1", "ok")]*2):
+            results = list(m.merge_first(tasks, None, [{1: Decimal(3)}]*2, 1, 1, io.StringIO()))
+        self.assertEqual(calls, [["best"], ["worse"]])
+        self.assertEqual(results[0][0], "worse")
+
+    def test_merge_first_does_not_certify_losers(self):
+        rows = lambda x: [{"square_id": 0, "x": str(x), "y": "0", "angle": "0"}]
+        tasks = [("worse", 1, rows(2), rows(2)), ("best", 1, rows(1), rows(1)), ("behind_main", 2, rows(9), rows(9))]
+        calls = []
+        def fake_cert(batch, *args):
+            batch = list(batch)
+            calls.extend(t[0] for t in batch)
+            for key, n, a, b in batch:
+                yield key, [(n, 0., "1", "ok")]*2
+        with patch.object(m, "score_only", side_effect=lambda rows: Decimal(rows[0]["x"])), patch.object(m, "certify", side_effect=fake_cert), patch.object(m, "bounded", return_value=[(1, 0., "1", "ok")]*2):
+            list(m.merge_first(tasks, None, [{1: Decimal(3), 2: Decimal(4)}]*2, 1, 1, io.StringIO()))
+        self.assertEqual(calls, ["best"])
 
     def test_size_limit(self):
         with tempfile.TemporaryDirectory() as directory:
