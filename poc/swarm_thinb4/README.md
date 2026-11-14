@@ -20,13 +20,19 @@
    - True zero-overlap pinwheel assembly requires `w1 + w2 <= m`, `h1 + h2 <= m`, and strict slack along at least one axis (`w1 + w2 < m` or `h1 + h2 < m`) so opposite `TL`/`BR` corners avoid colliding in the central `f x f` square.
    - Pre-shifts opposite `TL`/`BR` pairs across `shift_fracs` along slack axes, applies `run_cpp_masked_melt` seam-targeted perturbations (`build_thinb4_melt_seeds`) + `joint_xytheta_slp_tight`, and polishes certified wins with `mechwalk` nullspace kicks (`polish_and_export.py --polish --prune`).
 
-## Certified Results (vs `origin/main` @ `ead0ace`)
+## Certified Results (Batch 2 — H61 vs `origin/main` @ `b52bd03`)
 
-Run over 28 targets across `r = +7, +8, +9, +10` (`docs/scale.log`, `docs/scale_ckpt.json`) initially yielded 7 wins (`632, 683, 793, 849, 850, 909, 910`), of which `n=793, 909, 910` were superseded by PR #43 / PR #45 merged into `origin/main` (`ead0ace`) and pruned from `data/` and `final.csv`.
+Batch 1 (H52) delivered **4 strict REAL WINs** (`n=632, 683, 849, 850`, `total_ds = -1.001487e-04` `L^2/n` vs `ead0ace`), which merged in PR #47 and were folded into `poc/pell_corrugation/data/border-scan/merged.csv` (those 4 `data/win_n*.json` snapshots were pruned from this branch).
 
-The remaining **4 strict REAL WINs** (`dL <= -1e-9`, verified in both `literal` and `pandas` modes via `poc/auto_union/poc/union.py`) total **`ds = -1.001487e-04`**:
+Batch 2 (H61, `poc/run_h61_broadcast.py`) extracts ratcheted corner sub-bricks from newly landed wins (including `B5_10x20_n971` from `h53_win_n971.json`) and exports **1 strict REAL WIN** vs `origin/main` (`b52bd03`, `literal == pandas`, `dL <= -1e-9`):
 
-| `n` | `m` | `r` | Incumbent `L` (`origin/main`) | New `L` (`literal == pandas`) | `dL` | `ds` | Non-`0/90` | Seed / Method |
+| `n` | `m` | `r` | Incumbent `L` (`origin/main`) | New `L` (`literal == pandas`) | `dL` | `ds` (`L^2/n`) | Non-`0/90` | Seed / Method |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
+| **972** | 31 | +11 | `31.6565336143412...` | `31.6565325460975803093` | `-1.068244e-06` | `-6.958208e-08` | 280/972 | `B5_10x20_n971+B6_10x21_b4_T_z_sf0.0_direct` |
+
+### Previous Batch 1 (H52, merged in PR #47 @ `ead0ace`)
+
+| `n` | `m` | `r` | Incumbent `L` (`ead0ace`) | Certified `L` | `dL` | `ds` (`L^2/n`) | Non-`0/90` | Seed / Method |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | :--- |
 | **632** | 25 | +7 | `25.6388918166912...` | `25.6379246123087816155` | `-9.672044e-04` | `-7.847336e-05` | 193/632 | `B3_14x9_n632_cmp+B4_10x16_n737_zw_sf0.8_s00_tb4m_bl_quad_13_mw` |
 | **683** | 26 | +7 | `26.6370294017538...` | `26.6368843610871182471` | `-1.450407e-04` | `-1.131315e-05` | 190/683 | `B3_14x9_n632_cmp+B4_12x16_n908_cmp_zw_sf0.0_s00_direct` |
@@ -38,6 +44,7 @@ The remaining **4 strict REAL WINs** (`dL <= -1e-9`, verified in both `literal` 
 - [poc/thinb4_lib.py](poc/thinb4_lib.py): corner sub-brick extraction, standalone brick compression, zero-overlap/pre-shifted assembly, masked melt seeds, certification.
 - [poc/run_gate.py](poc/run_gate.py): 15-minute Step 1 falsification gate (`{684, 849, 737}` -> [docs/gate_report.json](docs/gate_report.json)).
 - [poc/run_scale.py](poc/run_scale.py): Step 2 scale-up across 28 targets in `r = +7, +8, +9, +10` (`docs/scale.log`, `docs/scale_ckpt.json`).
+- [poc/run_h61_broadcast.py](poc/run_h61_broadcast.py): H61 sub-brick extraction + zero-overlap/tight pinwheel broadcast (`n=972`).
 - [poc/polish_and_export.py](poc/polish_and_export.py): polish, prune superseded groups vs `origin/main`, verify, and export [final.csv](final.csv).
 - [tests/test_thinb4.py](tests/test_thinb4.py): unit tests for corner extraction and zero-overlap pinwheel assembly.
 
@@ -45,5 +52,6 @@ The remaining **4 strict REAL WINs** (`dL <= -1e-9`, verified in both `literal` 
 /tmp/highrpeel_venv/bin/pytest -v poc/swarm_thinb4/tests/test_thinb4.py
 /tmp/highrpeel_venv/bin/python -u poc/swarm_thinb4/poc/run_gate.py
 /tmp/highrpeel_venv/bin/python -u poc/swarm_thinb4/poc/run_scale.py
-/tmp/highrpeel_venv/bin/python -u poc/swarm_thinb4/poc/polish_and_export.py --polish --prune
+/tmp/highrpeel_venv/bin/python -u poc/swarm_thinb4/poc/run_h61_broadcast.py
+/tmp/highrpeel_venv/bin/python -u poc/swarm_thinb4/poc/polish_and_export.py --prune
 ```

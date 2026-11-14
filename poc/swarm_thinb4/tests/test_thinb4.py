@@ -17,7 +17,11 @@ from cpp_wrap import cpp_eval_sat_pen_bbox  # noqa: E402
 
 def test_extract_corner_bricks_and_zero_overlap_pinwheel():
     packs, _ = tl.fast_load_frontier(target_ns=[684, 737, 848, 849, 908, 969])
-    bank = tl.build_h52_bank(packs, compress=False)
+    raw_bank = tl.build_h52_bank(packs, compress=False)
+    for name in ["B4_9x16_n684", "B4_17x9_n684", "B4_13x16_n908", "B4_17x13_n908", "B4_16x14_n969", "B3_9x15_n848"]:
+        assert name in raw_bank, f"Missing live-extracted {name}"
+
+    bank = tl.build_h52_bank(packs, compress=True)
 
     expected = [
         ("B4_9x16_n684", 9, 16, 4),
