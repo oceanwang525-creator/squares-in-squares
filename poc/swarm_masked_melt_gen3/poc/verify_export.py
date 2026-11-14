@@ -19,8 +19,8 @@ union = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = union
 SPEC.loader.exec_module(union)
 
-UPSTREAM_ARTIFACT = "merged-22.15258085489.csv"
-UPSTREAM_SHA256 = "c9e5398775e31b536cbfa1519ab9c6066c95f98edf1d7bc9bec3a54a85cafd9e"
+UPSTREAM_ARTIFACT = "merged-22.15248431115.csv"
+UPSTREAM_SHA256 = "4e389092778d942333311e53fcce9711562409811d197695fcdc1fa6613109e3"
 
 
 def certified_pair(path: Path, n: int) -> tuple[Decimal, Decimal]:
