@@ -175,26 +175,39 @@ def solve_target(
     full_iters: int = 180,
     a_start: float | None = None,
     top_k: int = 6,
+    seed_offset: int = 0,
+    seed_waves: int = 1,
+    l_expand_sweep: list[float] | None = None,
 ) -> dict:
     t0 = time.time()
     # Each row gets its own deterministic stream and a pocket scale chosen for
     # the density of that incumbent topology.
     preset = ps.preset_for(n)
-    rng = np.random.default_rng(preset.seed)
-    q_list, m_list, ls_list, labels = ps.build_h13_seeds(n, x_b, y_b, th_b, L_b, rng)
+    rng = np.random.default_rng(preset.seed + seed_offset)
+    q_list, m_list, ls_list, labels = ps.build_h13_seeds(
+        n,
+        x_b,
+        y_b,
+        th_b,
+        L_b,
+        rng,
+        waves=seed_waves,
+        l_expand_values=l_expand_sweep,
+    )
     ils_iters = [4, 9, 13, 17]
     if a_start is None:
         a_start = preset.a_start
+    expansions = l_expand_sweep or [preset.l_expand] * seed_waves
 
     qb, qf, lf, _, po, lb = run_cpp_masked_melt(
         n, 1, q_list, m_list, ls_list, ils_iters,
         a_start=a_start, n_melt_stages=4, masked_iters=masked_iters, full_iters=full_iters,
-        n_threads=n_threads, base_seed=preset.cpp_seed,
+        n_threads=n_threads, base_seed=preset.cpp_seed + seed_offset,
     )
     n_feas = int(np.sum(lf < 1e9))
     best_feas = float(np.min(lf)) if n_feas else None
     print(
-        f"\n=== H132 n={n} | L_b={L_b:.9f} | expand={preset.l_expand:.3f} "
+        f"\n=== H132 n={n} | L_b={L_b:.9f} | expand={expansions} "
         f"| N={len(labels)} feas={n_feas} best_Lf={best_feas} "
         f"min_pen={float(np.min(po)):.2e} ===",
         flush=True,
@@ -306,6 +319,9 @@ def main() -> None:
     ap.add_argument("--full-iters", type=int, default=180)
     ap.add_argument("--a-start", type=float, default=None)
     ap.add_argument("--top-k", type=int, default=6)
+    ap.add_argument("--seed-offset", type=int, default=0)
+    ap.add_argument("--seed-waves", type=int, default=1)
+    ap.add_argument("--l-expand-sweep", type=float, nargs="+", default=None)
     ap.add_argument("--stop-consec-nonreal", type=int, default=12)
     ap.add_argument("--out-json", type=Path, default=DOCS_DIR / "gate_results.json")
     ap.add_argument("--rerun", action="store_true")
@@ -352,6 +368,9 @@ def main() -> None:
             full_iters=args.full_iters,
             a_start=args.a_start,
             top_k=args.top_k,
+            seed_offset=args.seed_offset,
+            seed_waves=args.seed_waves,
+            l_expand_sweep=args.l_expand_sweep,
         )
         w = res.pop("win")
         ckpt.write_text(json.dumps(res, indent=2), encoding="utf-8")
