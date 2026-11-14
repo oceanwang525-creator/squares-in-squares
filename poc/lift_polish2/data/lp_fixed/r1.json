@@ -1,0 +1,66 @@
+[
+ {
+  "n": 442,
+  "seed": 0,
+  "base_side": 21.532729070625024,
+  "lp_side": 21.53272907951454,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "seed": 0,
+  "base_side": 21.656420959282578,
+  "lp_side": 21.656420966933947,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "seed": 0,
+  "base_side": 22.532428950779725,
+  "lp_side": 22.53242895681382,
+  "status": "no-gain"
+ },
+ {
+  "n": 492,
+  "seed": 0,
+  "base_side": 22.701529387556885,
+  "lp_side": 22.7015294012887,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "seed": 0,
+  "base_side": 23.53236555488019,
+  "lp_side": 23.532365564126707,
+  "status": "no-gain"
+ },
+ {
+  "n": 577,
+  "seed": 0,
+  "base_side": 24.532365557227173,
+  "lp_side": 24.532365563314315,
+  "status": "no-gain"
+ },
+ {
+  "n": 740,
+  "seed": 0,
+  "base_side": 27.705882372102007,
+  "lp_side": 27.70588238194098,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "seed": 0,
+  "base_side": 27.753852984553397,
+  "lp_side": 27.75385284164232,
+  "status": "certify-fail",
+  "error": "n=743: infeasible: Squares 190 and 398 overlap (float check)"
+ },
+ {
+  "n": 798,
+  "seed": 0,
+  "base_side": 28.740330087946372,
+  "lp_side": 28.74033010823661,
+  "status": "no-gain"
+ }
+]

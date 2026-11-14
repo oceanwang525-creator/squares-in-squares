@@ -1,0 +1,164 @@
+{
+ "442": {
+  "L": 21.532729164093023,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    21.532830036,
+    "poc/lift_polish/data/built2/n442.json"
+   ],
+   [
+    21.53302312,
+    "poc/pocket_lift_scan/final.csv"
+   ],
+   [
+    21.53302312,
+    "poc/pocket_lift_scan2/final.csv"
+   ]
+  ]
+ },
+ "447": {
+  "L": 21.656420959282578,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    21.656420966,
+    "poc/pocket_lift_scan/final.csv"
+   ],
+   [
+    21.656420966,
+    "poc/pocket_lift_scan2/final.csv"
+   ],
+   [
+    21.656420966,
+    "poc/pocket_lift_scan/data/built/n447.json"
+   ]
+  ]
+ },
+ "485": {
+  "L": 22.53243663004898,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    22.532731526,
+    "poc/lift_polish/data/built3/n485.json"
+   ],
+   [
+    22.53302312,
+    "poc/pocket_lift_scan/final.csv"
+   ],
+   [
+    22.53302312,
+    "poc/pocket_lift_scan2/final.csv"
+   ]
+  ]
+ },
+ "492": {
+  "L": 22.705882354152596,
+  "source": "poc/pocket_lift_scan2/final.csv",
+  "runners_up": [
+   [
+    22.705882354,
+    "poc/pocket_lift_scan2/data/built/n492.json"
+   ],
+   [
+    22.707106781,
+    "merged.csv"
+   ],
+   [
+    22.707106781,
+    "poc/dual-pocket/final.csv"
+   ]
+  ]
+ },
+ "530": {
+  "L": 23.532367090941506,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    23.532367091,
+    "poc/lift_polish/data/built_r7/n530.json"
+   ],
+   [
+    23.532731526,
+    "poc/lift_polish/data/built3/n530.json"
+   ],
+   [
+    23.532830036,
+    "poc/lift_polish/data/built2/n530.json"
+   ]
+  ]
+ },
+ "577": {
+  "L": 24.532367091853395,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    24.532417292,
+    "poc/lift_polish/data/built_r6/n577.json"
+   ],
+   [
+    24.532731526,
+    "poc/lift_polish/data/built3/n577.json"
+   ],
+   [
+    24.532830036,
+    "poc/lift_polish/data/built2/n577.json"
+   ]
+  ]
+ },
+ "740": {
+  "L": 27.705882419967228,
+  "source": "poc/pocket_lift_scan2/final.csv",
+  "runners_up": [
+   [
+    27.70588242,
+    "poc/pocket_lift_scan2/data/built/n740.json"
+   ],
+   [
+    27.705900675,
+    "merged.csv"
+   ],
+   [
+    27.705900901,
+    "poc/postmerge_gap_refresh/final.csv"
+   ]
+  ]
+ },
+ "743": {
+  "L": 27.753852984553397,
+  "source": "poc/pocket_lift_scan/final.csv",
+  "runners_up": [
+   [
+    27.753852985,
+    "poc/pocket_lift_scan2/final.csv"
+   ],
+   [
+    27.753852985,
+    "poc/pocket_lift_scan/data/built/n743.json"
+   ],
+   [
+    27.753852985,
+    "poc/pocket_lift_scan2/data/built/n743.json"
+   ]
+  ]
+ },
+ "798": {
+  "L": 28.74033009257095,
+  "source": "poc/lift_polish/final.csv",
+  "runners_up": [
+   [
+    28.740334237,
+    "poc/pocket_lift_scan/final.csv"
+   ],
+   [
+    28.740334237,
+    "poc/pocket_lift_scan2/final.csv"
+   ],
+   [
+    28.740334237,
+    "poc/pocket_lift_scan/data/built/n798.json"
+   ]
+  ]
+ }
+}
