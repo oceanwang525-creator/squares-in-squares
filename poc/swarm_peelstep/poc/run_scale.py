@@ -15,8 +15,12 @@ if str(HERE) not in sys.path:
 
 import run_gate as rg  # noqa: E402
 
-# Priority sweep targets from brief, followed by remaining r=+10..+15, m=25..31 cells
-PRIORITY_TARGETS = [854, 973, 853, 797, 914, 855, 795, 796, 740, 741, 742, 976]
+# Ordered by highest headroom (f_inc - f_hi) among priority + m=25..31, r=+10..+15 cells
+PRIORITY_TARGETS = [
+    973, 854, 795, 797, 914, 911, 910, 640, 639, 686,
+    799, 798, 638, 687, 637, 690, 971, 855, 851, 976,
+    853, 796, 740, 741, 743, 742,
+]
 FULL_GRID_TARGETS = [
     m * m + r
     for m in range(31, 24, -1)
@@ -26,15 +30,16 @@ FULL_GRID_TARGETS = [
 
 
 def main() -> None:
-    all_targets = PRIORITY_TARGETS + FULL_GRID_TARGETS
-    sys.argv = [
-        sys.argv[0],
-        "--targets", ",".join(str(x) for x in all_targets),
-        "--top-k", "6",
-        "--max-excess", "0.005",
-        "--time-limit", "5400",
-        "--out", str(rg.pl.DOCS_DIR / "scale_summary.json"),
-    ]
+    if len(sys.argv) <= 1:
+        all_targets = PRIORITY_TARGETS + FULL_GRID_TARGETS
+        sys.argv = [
+            sys.argv[0],
+            "--targets", ",".join(str(x) for x in all_targets),
+            "--top-k", "4",
+            "--max-excess", "0.002",
+            "--time-limit", "5400",
+            "--out", str(rg.pl.DOCS_DIR / "scale_summary.json"),
+        ]
     rg.main()
 
 
