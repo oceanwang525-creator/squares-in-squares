@@ -1,0 +1,47 @@
+[
+ {
+  "n": 442,
+  "base_side": 21.532729077458217,
+  "status": "no-gain"
+ },
+ {
+  "n": 447,
+  "base_side": 21.65642096470574,
+  "status": "no-gain"
+ },
+ {
+  "n": 485,
+  "base_side": 22.532428955844754,
+  "status": "no-gain"
+ },
+ {
+  "n": 492,
+  "base_side": 22.70152939923661,
+  "status": "no-gain"
+ },
+ {
+  "n": 530,
+  "base_side": 23.532365562091794,
+  "status": "no-gain"
+ },
+ {
+  "n": 577,
+  "base_side": 24.532365561858974,
+  "status": "no-gain"
+ },
+ {
+  "n": 740,
+  "base_side": 27.70588237977715,
+  "status": "no-gain"
+ },
+ {
+  "n": 743,
+  "base_side": 27.753852984553397,
+  "status": "no-gain"
+ },
+ {
+  "n": 798,
+  "base_side": 28.740330106615033,
+  "status": "no-gain"
+ }
+]
