@@ -99,9 +99,43 @@ test of whether small high-density pockets exist.
 
 | # | idea | folder | expected | status |
 |---|---|---|---|---|
-| C1 | Exhaustive proper-pocket scan (all rows × all window placements) + DP lift | `poc/pocket_lift_scan` | 1e-6–1e-4 | queued |
-| C2 | Exact minimal-rectangle search for pay-line pockets `(3,2,+1)`, `(4,7,+3)`, small `g=2` | `poc/small_pocket_exact` | up to 1e-3 (n=367) | queued |
-| C3 | Long-budget hybrid lpslack+basin-hop on the top-8 gap rows at the frontier side | `poc/deep_gap_search` | low | queued |
+| C1 | Exhaustive proper-pocket scan (all rows × all window placements) + DP lift | `poc/pocket_lift_scan` | 1e-6–1e-4 | **positive: 7 wins, 2.86e-5** |
+| C2 | Exact minimal-rectangle search for pay-line pockets `(3,2,+1)`, `(4,7,+3)`, small `g=2` | `poc/small_pocket_exact` | up to 1e-3 (n=367) | negative + prize debunked |
+| C3 | All-`n` rigid-rotation audit (min over θ of max(W,H)) | `poc/hull_rotation_all` | free-win audit | negative (none) |
+
+### Cycle-2 outcomes
+
+- **C1 `pocket_lift_scan` — positive, 7 certified wins, score gain `2.8624e-5`.**
+  Exhaustive proper sub-pocket scan (7 offset lattices, 1.42M gadget instances,
+  9899 distinct `(w,h,g)`) + the staircase DP. Key mechanism: a *narrow* sub-pocket
+  of a big row fits a *smaller* `K`, where the incumbent's `c(D)` family is worse.
+  - n=447: `(11,21,+6)` from n=910 at `f=0.656421` beats the incumbent's √2-zipper
+    `c=0.656854` at K=21 → `dL=-4.33e-4` (score `-2.05e-5`).
+  - n=798: `dL=-1.39e-4` (score `-4.92e-6`); n=743 `dL=-4.58e-5`.
+  - n=442/485/530/577: a tighter `(20,18,+1)` from n=401 (`dL=-7.2e-6..-1.0e-5`).
+  - Supersedes `faultline_dp2`/`gadget_squeeze` (same n, larger `dL`); `smallD_lift`
+    keeps the unique n=853 win.
+  - Nominal union: `22.153247131307513 - 2.86242e-05 = 22.1532185`.
+- **C2 `small_pocket_exact` — negative for the shopping list.** `(3,2,+1)` bottoms
+  out at exactly `1/√2` from thousands of restarts; its real pay line is
+  `f<1/√2` (worth 4.76e-4 at n=10,38,492,974), **not** 0.6709. The n=367 1.1e-3
+  prize is **debunked**: its remaining seam budget is `dw=3,dh=2,dsum=4`, so an
+  added gadget needs `w+h≤3`, and `(3,2,+1)` has `w+h=5`. The engine is still
+  too weak on the 65+ square shapes (calibration gap +0.03..+0.47 in `f`), so
+  those eight shapes are *inconclusive*, not negative.
+- **C3 `hull_rotation_all` — negative.** Exhaustive convex-hull event audit over
+  all 1000 rows (plus two independent brute-force checks and 50-digit re-checks):
+  **no** rigid rotation lowers `L = max(W,H)`; best reduction `1.8e-14`.
+
+### Cycle-3 plan
+
+C1 is the only productive mechanical track. Cycle 3 scales it: more offset
+lattices (0.125/0.0625), larger `cap`/`fmax`, 2-pocket seams, and a periodic
+re-run after each upstream merge. Also: rebuild the C2 search engine with a
+proper batched/numba core so the eight undecided shapes get a trustworthy
+answer, and re-scan for *new* narrow sub-pockets of the rows C1 improved
+(the improved rows are new donors).
+
 
 ## Honest assessment
 

@@ -1,0 +1,4 @@
+# raw scan outputs (234 MB, regenerable: see README section 7)
+data/pockets_s025_o*.json
+data/pockets_s025_q*.json
+data/pockets_s025.json
