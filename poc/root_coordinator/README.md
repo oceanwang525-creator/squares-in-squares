@@ -160,7 +160,80 @@ whole coherent blocks and seams at multiple scales, then solve exact set packing
 or SLP reattachment and certify. This is more aggressive than the earlier failed
 single-square ownership release.  
 **Quick test:** 1-3 still-relevant high-gap n, using substantial CPU batches.  
-**Outcome:** running.
+**Outcome:** negative.  Three 96-seed batches on `791, 908, 969` all missed.
+The closest lower-bbox candidates retained SAT penetration around
+`3.4e-4..5.7e-4` (`cpp_pen` around `1.2e-3..1.6e-3`), so none was certifiable.
+The agent committed the scaffold at `ecd0e72`; final writeup pending cleanup.
+
+## Cycle 2 hypotheses
+
+The current gap to `22.0999` is `0.05084331648`.  The upstream coordinator's
+history shows that local descent, rectangular gadget closure, rigid 45-degree
+bands, rational zippers and proper-pocket scans have saturated.  These five
+hypotheses therefore change search topology rather than polishing an incumbent.
+
+### 8. `cascade_graph_forge`
+
+**Rank:** highest.  
+**Hypothesis:** L-border peel/add operations form a donor-child graph over the
+whole 1000-row portfolio.  Instead of manually choosing a few cascade targets,
+enumerate every geometrically plausible donor-child transition, rank paths by
+`dL/sqrt(n)` after a projected peel, and run the proven melt + joint SLP +
+lpslack pipeline on the best graph edges.  This generalizes the selected H78
+`homocasc2` successes into a graph-wide closure search.  
+**Expected gain:** up to several `1e-3`, potentially more if a new long cascade
+is discovered.  
+**Quick test:** the highest projected edges from current donors into
+`791, 908, 969` and the best remaining high-K gap rows.
+
+### 9. `dual_axis_contact_forge`
+
+**Rank:** high.  
+**Hypothesis:** exact LP dual values identify which active contacts are
+load-bearing and which rows/columns have near-degenerate alternatives.  Use a
+contact-sensitivity atlas to choose coherent groups of low-dual constraints,
+release only those, and jointly re-optimize under a smaller box.  This differs
+from broad contact walks and from the failed whole-packing dual-wall model by
+selecting groups from exact sensitivity rather than wall orientation.  
+**Expected gain:** `1e-4..1e-2` across many top-gap rows if a repeatable axis
+opens.  
+**Quick test:** top 30 current gap rows, starting with `367, 791, 908`.
+
+### 10. `multiphase_edge_lattice`
+
+**Rank:** high.  
+**Hypothesis:** the D=1/D=2 band failure assumed one corner-anchored upright
+lattice.  Build a patchwork of independent upright lattice patches anchored to
+all four walls, with multiple phases and L-shaped cutbacks, and optimize tilted
+edge bands between them.  Use exact set packing over the patch union plus
+continuous SLP at the seams.  This is a multi-phase lattice construction, not a
+single grid plus one band.  
+**Expected gain:** `1e-3..1e-2` if the missing square in the small-D family can
+be recovered.  
+**Quick test:** `367, 901, 962, 328`.
+
+### 11. `mixed_irregular_seam`
+
+**Rank:** medium-high.  
+**Hypothesis:** rectangular pocket composition is saturated, but the seam can
+be irregular.  Crossbreed fragments from two donor pockets and solve a local
+MIS only in the non-rectangular seam, allowing staircase and L-shaped overlap
+zones.  Unlike prior rectangular DP, capacity is measured from the actual
+seam, not `(w,h,g)` boxes.  
+**Expected gain:** `1e-4..3e-3` from unlocking new `(w,h,g)` primitives.  
+**Quick test:** library rows feeding `367, 791, 969`, plus current winner
+`n=974`.
+
+### 12. `annealed_lattice_ownership`
+
+**Rank:** medium-high.  
+**Hypothesis:** let rectangular lattice patches exchange ownership of boundary
+cells under an annealed objective, then re-solve exact packing in only the
+ownership-changing seam.  This is block and row reassignment at lattice scale,
+not the failed single-square release.  
+**Expected gain:** `1e-4..1e-2`, concentrated in rows with visible lattice
+misalignment near a seam.  
+**Quick test:** `791, 908, 969` plus the highest-gap K=31 neighbors.
 
 ## Rules given to every subagent
 
