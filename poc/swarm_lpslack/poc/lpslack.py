@@ -637,10 +637,17 @@ def optimize_group(
     }
 
 
-def load_targets_from_portfolio(targets: set[int]) -> dict[int, tuple[list[dict[str, str]], Decimal]]:
+def _certify_candidate(item: tuple[int, int, list[dict[str, str]]]) -> tuple[int, int, str | None]:
+    n, idx, rows = item
+    res = certify_pair(n, rows)
+    if res is None:
+        return n, idx, None
+    return n, idx, str(max(res[0], res[1]))
+
+
+def load_targets_from_portfolio(targets: set[int], jobs: int = 16) -> dict[int, tuple[list[dict[str, str]], Decimal]]:
     """Load target n from origin/main portfolio (merged.csv + all poc/*/final.csv) fast."""
     import pandas as pd
-    import mpmath as mp
 
     candidates: dict[int, list[list[dict[str, str]]]] = {n: [] for n in targets}
     merged_path = REPO / "poc" / "pell_corrugation" / "data" / "border-scan" / "merged.csv"
@@ -673,47 +680,75 @@ def load_targets_from_portfolio(targets: set[int]) -> dict[int, tuple[list[dict[
             if n in targets and len(a[n]) == n and len(b.get(n, [])) == n:
                 candidates[n].append(a[n])
 
+    cert_tasks = [(n, idx, rows) for n in sorted(targets) for idx, rows in enumerate(candidates[n])]
+    best_idx: dict[int, tuple[int, Decimal]] = {}
+    with mp.get_context("fork").Pool(min(jobs, max(1, len(cert_tasks)))) as pool:
+        for n, idx, val in pool.imap_unordered(_certify_candidate, cert_tasks, chunksize=1):
+            if val is None:
+                continue
+            cur_L = Decimal(val)
+            if n not in best_idx or cur_L < best_idx[n][1]:
+                best_idx[n] = (idx, cur_L)
+
     best: dict[int, tuple[list[dict[str, str]], Decimal]] = {}
     for n in sorted(targets):
-        best_rows = None
-        best_L = None
-        for rows in candidates[n]:
-            res = certify_pair(n, rows)
-            if res is None:
-                continue
-            cur_L = max(res[0], res[1])
-            if best_L is None or cur_L < best_L:
-                best_L = cur_L
-                best_rows = rows
-        if best_rows is None or best_L is None:
+        if n not in best_idx:
             raise RuntimeError(f"No valid incumbent found for n={n}")
-        best[n] = (best_rows, best_L)
+        idx, best_L = best_idx[n]
+        best[n] = (candidates[n][idx], best_L)
     return best
+
+
+def _run_task(args):
+    n, base_rows, old_L_str, outer_iters, fixed_rounds, tr_sched = args
+    return optimize_group(
+        n,
+        base_rows,
+        old_L_str,
+        outer_iters=outer_iters,
+        fixed_rounds=fixed_rounds,
+        tr_th_schedule=tr_sched,
+    )
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--n-list", default="911,740,861,796,853,909")
-    parser.add_argument("--jobs", type=int, default=6)
-    parser.add_argument("--out", default=str(REPO / "poc/swarm_lpslack/data/gate_results.json"))
+    parser.add_argument("--jobs", type=int, default=24)
+    parser.add_argument("--outer-iters", type=int, default=8)
+    parser.add_argument("--fixed-rounds", type=int, default=8)
+    parser.add_argument("--tr-sched", default="5e-4,5e-5")
+    parser.add_argument("--out", default=str(REPO / "poc/swarm_lpslack/data/scale_results.json"))
+    parser.add_argument("--jsonl", default=str(REPO / "poc/swarm_lpslack/data/scale_results.jsonl"))
     args = parser.parse_args()
 
-    targets = [int(x) for x in args.n_list.split(",") if x.strip()]
-    portfolio = load_targets_from_portfolio(set(targets))
-    tasks = [(n, portfolio[n][0], str(portfolio[n][1])) for n in targets]
+    targets = sorted({int(x) for x in args.n_list.split(",") if x.strip()}, reverse=True)
+    tr_sched = tuple(float(x) for x in args.tr_sched.split(",") if x.strip())
+    portfolio = load_targets_from_portfolio(set(targets), jobs=args.jobs)
+    tasks = [
+        (n, portfolio[n][0], str(portfolio[n][1]), args.outer_iters, args.fixed_rounds, tr_sched)
+        for n in targets
+    ]
+
+    jsonl_path = Path(args.jsonl)
+    jsonl_path.parent.mkdir(parents=True, exist_ok=True)
+    jsonl_path.write_text("", encoding="utf-8")
 
     results = []
     with mp.get_context("fork").Pool(min(args.jobs, len(tasks))) as pool:
-        for res in pool.starmap(optimize_group, tasks):
+        for res in pool.imap_unordered(_run_task, tasks, chunksize=1):
             results.append(res)
+            with jsonl_path.open("a", encoding="utf-8") as jf:
+                jf.write(json.dumps(res) + "\n")
             dL = res.get("dL", "0")
             print(
-                f"n={res['n']} status={res['status']} old={res['old_L'][:16]} "
-                f"new={res.get('new_L', str(res.get('best_float_L', '')))[:16]} "
-                f"dL={dL} t={res['elapsed_s']}s hist={res['history']}",
+                f"[{len(results)}/{len(tasks)}] n={res['n']} status={res['status']} "
+                f"old={res['old_L'][:16]} new={res.get('new_L', str(res.get('best_float_L', '')))[:16]} "
+                f"dL={dL} t={res['elapsed_s']}s",
                 flush=True,
             )
 
+    results.sort(key=lambda r: r["n"])
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(results, indent=1), encoding="utf-8")
 
