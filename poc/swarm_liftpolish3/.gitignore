@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+data/combined_gadlib.json
+data/combined_incumbent.csv
+data/partb_donors.csv
+data/partb_gadlib.json
+data/partb_incumbent.csv
+data/scan_00625_p1.json
+data/scan_00625_p2.json
+data/scan4_lpslack.json
+data/scan4_lpslack.jsonl
+data/partA_lpslack.jsonl
