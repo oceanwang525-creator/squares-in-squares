@@ -211,25 +211,29 @@ def solve_target(
     full_iters: int = 220,
     a_start: float = 0.81,
     top_k: int = 8,
+    rng_offset: int = 131100,
+    base_seed_offset: int = 131700,
+    l_expand: float = 0.042,
+    generation: str = "H131",
 ) -> dict:
     t0 = time.time()
     # H128 solved these child geometries. Generation 3 deliberately uses a new
     # deterministic stream, wider masked neighborhoods, and a five-stage retreat.
-    rng = np.random.default_rng(131100 + n)
+    rng = np.random.default_rng(rng_offset + n)
     q_list, m_list, ls_list, labels = ps.build_h131_seeds(
-        n, x_b, y_b, th_b, L_b, rng, L_expand=0.042
+        n, x_b, y_b, th_b, L_b, rng, L_expand=l_expand
     )
     ils_iters = [6, 10, 15, 19, 22]
 
     qb, qf, lf, _, po, lb = run_cpp_masked_melt(
         n, 1, q_list, m_list, ls_list, ils_iters,
         a_start=a_start, n_melt_stages=4, masked_iters=masked_iters, full_iters=full_iters,
-        n_threads=n_threads, base_seed=131700 + n,
+        n_threads=n_threads, base_seed=base_seed_offset + n,
     )
     n_feas = int(np.sum(lf < 1e9))
     best_feas = float(np.min(lf)) if n_feas else None
     print(
-        f"\n=== H131 n={n} | L_H128={L_b:.9f} | N={len(labels)} feas={n_feas} "
+        f"\n=== {generation} n={n} | L_seed={L_b:.9f} | N={len(labels)} feas={n_feas} "
         f"best_Lf={best_feas} min_pen={float(np.min(po)):.2e} ===",
         flush=True,
     )

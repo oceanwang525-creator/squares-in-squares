@@ -2,7 +2,9 @@
 """Certify H131 exports against both upstream and H128 in two transports."""
 from __future__ import annotations
 
+import argparse
 from decimal import Decimal
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -17,6 +19,9 @@ union = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = union
 SPEC.loader.exec_module(union)
 
+UPSTREAM_ARTIFACT = "merged-22.15258085489.csv"
+UPSTREAM_SHA256 = "c9e5398775e31b536cbfa1519ab9c6066c95f98edf1d7bc9bec3a54a85cafd9e"
+
 
 def certified_pair(path: Path, n: int) -> tuple[Decimal, Decimal]:
     literal, transported = union.load(path)
@@ -29,9 +34,19 @@ def certified_pair(path: Path, n: int) -> tuple[Decimal, Decimal]:
 
 
 def main() -> None:
-    upstream_path = (
-        REPO_ROOT / "poc/pell_corrugation/data/border-scan/merged.csv"
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--upstream",
+        type=Path,
+        default=REPO_ROOT / "poc/pell_corrugation/data/border-scan/merged.csv",
     )
+    args = parser.parse_args()
+    upstream_path = args.upstream
+    digest = hashlib.sha256(upstream_path.read_bytes()).hexdigest()
+    if digest != UPSTREAM_SHA256:
+        raise ValueError(
+            f"upstream baseline is not {UPSTREAM_ARTIFACT}: sha256={digest}"
+        )
     h128_path = REPO_ROOT / "poc/swarm_masked_melt_bootstrap"
     final_path = Path(__file__).resolve().parents[1] / "final.csv"
     literal, _ = union.load(final_path)
@@ -61,7 +76,17 @@ def main() -> None:
             }
         )
 
-    print(json.dumps({"rows": rows, "count": len(rows)}, indent=2))
+    print(
+        json.dumps(
+            {
+                "upstream_artifact": UPSTREAM_ARTIFACT,
+                "upstream_sha256": digest,
+                "rows": rows,
+                "count": len(rows),
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
