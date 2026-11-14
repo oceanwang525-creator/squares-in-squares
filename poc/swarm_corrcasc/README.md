@@ -1,12 +1,20 @@
 # Hypothesis H107: Diagonal `(m+1, r+k) -> (m, r)` Arm-Tip + L-Border Peel Cascade (`swarm_corrcasc`)
 
-## Summary (Gate PR1 — `3/8` Big-Move Certified Wins)
+## Summary
 
-Peeling constant-`r` `(m+1, r) -> (m, r)` (`dn = 2m+1`) often fails because the donor's tilted arm extends into the outer 1-unit L-border, leaving `k in {1, 2, 3}` protruding tilted squares (`2m+1+k` total intersecting squares). Mapping **diagonally `(m+1, r+k) -> (m, r)`** (`dn = 2m+1+k`) removes the outer 1-unit L-border **plus** the protruding arm-tip square(s), then applies C++ masked penalty melt (`batch_masked_melt_solve`), `joint_xytheta_slp`, 4-round SVD `mechwalk_compress`, and `lpslack`.
+Peeling constant-`r` `(m+1, r) -> (m, r)` (`dn = 2m+1`) often fails because the donor's tilted arm extends into the outer 1-unit L-border, leaving `k in {1, 2, 3}` protruding tilted squares (`2m+1+k` total intersecting squares). Mapping **diagonally `(m+1, r+k) -> (m, r)`** (`dn = 2m+1+k`) removes the outer 1-unit L-border **plus** the protruding arm-tip square(s), then applies C++ masked penalty melt (`batch_masked_melt_solve`), `joint_xytheta_slp`, SVD `mechwalk_compress`, and `lpslack`.
 
-### Gate Results (`poc/swarm_corrcasc/docs/gate_results.json`, vs `origin/main` `772dfc2`)
+### PR2 Scale-Up Result (`1` Big-Move Certified Win vs `origin/main` `cc58c7e`)
 
-| Target `n` <- Donor `n_d` | `(m, r, k)` | `L_inc` (`merged.csv`) | `L_new` | `dL` | Method |
+| Target `n` <- Donor `n_d` | `(m, r, k)` | `L_inc` (`merged.csv`) | `L_new` (`literal == pandas`) | `dL` | Method |
+|---:|---:|:---:|:---:|:---:|:---|
+| **`934 <- 996`** | `(30, 34, 1)` | `30.964143149166` | **`30.962413358186`** | **`-1.729791e-03`** | `diag_996_L_BR_bbox_raw` basin + 3-round `mechwalk_compress` + `lpslack` |
+
+PR1 (`3` gate wins: `687`, `758`, `876`) was merged into `origin/main` (`1f337f9`, PR #89); for PR2 `poc/swarm_corrcasc/final.csv` exports strictly the new `n=934` win (`687` and `876` are preserved identically in `origin/main:merged.csv`, and `758` was improved further on `origin/main` to `27.954008431539`).
+
+### PR1 Gate Results (`poc/swarm_corrcasc/docs/gate_results.json`, vs `origin/main` `772dfc2`)
+
+| Target `n` <- Donor `n_d` | `(m, r, k)` | `L_inc` (`772dfc2`) | `L_new` | `dL` | Method |
 |---:|---:|:---:|:---:|:---:|:---|
 | **`687 <- 741`** | `(26, 11, 1)` | `26.717912747968` | **`26.710374831985`** | **`-7.537916e-03`** | `peel1_741_BR_k0.985_dropProt_clamp` + `mechwalk` + `lpslack` |
 | **`758 <- 814`** | `(27, 29, 1)` | `27.958641416318` | **`27.957108739080`** | **`-1.532677e-03`** | `diag_814_L_TL_bbox_raw` + `mechwalk` + `lpslack` |
@@ -17,10 +25,14 @@ Peeling constant-`r` `(m+1, r) -> (m, r)` (`dn = 2m+1`) often fails because the 
 | `602 <- 652` | `(24, 26, 1)` | `24.970896866569` | `24.982871525501` | `+1.197e-02` | — |
 | `420 <- 462` | `(20, 20, 1)` | `20.960692680488` | `20.974624089275` | `+1.393e-02` | — |
 
+### Scale-Up Runs (`run_scale.py`, `docs/scale_results.json`, `docs/scale2_results.json`)
+- `scale_results.json`: `936 <- 998` (`+4.479e-3`), `934 <- 996` (**`-1.729791e-03`** win).
+- `scale2_results.json`: `874 <- 934` (`+5.983e-3`), `873 <- 933` (`+5.255e-3`), `875 <- 935` (`+1.393e-2`), `870 <- 930` (`+1.450e-2`), `929 <- 991` (`+7.653e-3`), `814 <- 872` (`+4.657e-3`).
+
 ### Audit (`poc/swarm_corrcasc/poc/audit_diagonal_pairs.py`)
 - Scanned `4,473` 1-step `(m+1, r+k)->(m, r)` (`k=1,2,3`) and 2-step `(m+2, r+k)->(m, r)` (`k=2,3,4`) pairs across `m = 12..30`.
 - `2,358` pairs satisfy `dL_raw <= +0.005`; `2,267` also have boundary/seam protrusion/overlap `score <= 0.12`, including **`224` pairs with `dL_raw < -1e-4`**.
 
 ### Verification
-- All 3 wins in `poc/swarm_corrcasc/final.csv` (`687, 758, 876`) pass dual certification (`literal == pandas == kaggle_roundtrip`).
+- `poc/swarm_corrcasc/final.csv` (`n=934`) passes dual certification (`literal == pandas == kaggle_roundtrip`).
 - Structure & tests: `.github/scripts/check_final_csv.py` PASS; `pytest poc/swarm_corrcasc/tests/test_corrcasc.py -v` PASS.
