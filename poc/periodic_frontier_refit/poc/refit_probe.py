@@ -17,7 +17,7 @@ from joint_slp import joint_xytheta_slp
 from brick_slp import rect_bbox, relax_rect_lbfgs
 
 def read_baseline(tree, filename):
-    return core.read_submission(subprocess.check_output(["git", "show", f"{tree}:{filename}"], text=True))
+    return core.metric._parse_submission_csv(subprocess.check_output(["git", "show", f"{tree}:{filename}"], text=True))
 
 def components(x, y, th):
     non = np.minimum(np.abs(np.cos(th)), np.abs(np.sin(th))) > 1e-5
