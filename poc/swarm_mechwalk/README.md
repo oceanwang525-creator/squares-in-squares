@@ -1,4 +1,4 @@
-# H22 / H31 / H39 / H45: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt
+# H22 / H31 / H39 / H45 / H56: Iterated Sparse Contact-Jacobian SVD Soft-Mode Mechanism Walk + C++ Masked Melt
 
 ## Method
 
@@ -9,16 +9,27 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 5 Summary (4 Certified REAL WINs in `final.csv`, total `ds = -6.465985e-06`)
+## Batch 6 Summary (H56: 4 Certified REAL WINs in `final.csv`, total `ds = -1.702575e-04`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
-| 686 | `-1.783609e-06` | `-6.809852e-08` | `26.6967209889941365408` | `26.6967227726035104825` (merged.csv) | `rejam_r2_b0_m2_t2e-05_p_0.008` |
-| 793 | `-8.833295e-05` | `-3.136795e-06` | `28.6593091540491160275` | `28.6593974870022634749` (merged.csv) | `rejam_r2_b1_m4_t2e-04_p_0.008` |
-| 909 | `-1.860445e-07` | `-6.170706e-09` | `30.6400843199400181830` | `30.6400845059845161158` (merged.csv) | `mmelt_r1_b0_m3_t2e-04_m_0.008` |
-| 910 | `-9.818861e-05` | `-3.254921e-06` | `30.6564374918230081100` | `30.6565356804301738637` (merged.csv) | `rejam_r4_b1_m4_t5e-05_p_0.008` |
+| 909 | `-1.185314e-03` | `-3.931439e-05` | `30.6388990056089366455` | `30.6400843199400181830` (merged.csv) | `mmelt_r1_b0_m0_t2e-04_p_0.008` |
+| 911 | `-1.334570e-03` | `-4.421627e-05` | `30.6769957514431805206` | `30.6783303213147234149` (merged.csv) | `rejam_r4_b0_m3_t4e-04_p_0.008` |
+| 971 | `-4.863259e-05` | `-1.560694e-06` | `31.6424364881247324311` | `31.6424851207162927578` (merged.csv) | `rejam_r3_b0_m3_t5e-05_p_0.008` |
+| 973 | `-2.656582e-03` | `-8.516611e-05` | `31.6791750555548563474` | `31.6818316376285653133` (merged.csv) | `mmelt_r3_b1_m1_t2e-03_m_0.008` |
 
-## Batch 5 Run Log (4 REAL WINs, 4 Ties/Misses across 8 `n`s)
+## Batch 6 Run Log (4 REAL WINs, 2 Ties/Misses across 6 `n`s)
+
+| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
+|---:|---|---|---:|---:|---|
+| 849 | `b6_s1_results.json` | **MISS** | `+3.943240e-06` | 380.51 | `rejam_r1_b0_m0_t1e-03_m_0.008` |
+| 850 | `b6_s1_results.json` | **MISS** | `+4.655099e-06` | 370.61 | `rejam_r2_b0_m1_t2e-05_p_0.008` |
+| 909 | `b6_s1_results.json` | **REAL_WIN** | `-4.273562e-06` | 455.03 | `mmelt_r1_b0_m0_t2e-04_p_0.008` |
+| 911 | `b6_s1_results.json` | **REAL_WIN** | `-1.334570e-03` | 464.59 | `rejam_r4_b0_m3_t4e-04_p_0.008` |
+| 971 | `b6_s1_results.json` | **REAL_WIN** | `-4.863259e-05` | 480.09 | `rejam_r3_b0_m3_t5e-05_p_0.008` |
+| 973 | `b6_s1_results.json` | **REAL_WIN** | `-2.656582e-03` | 469.51 | `mmelt_r3_b1_m1_t2e-03_m_0.008` |
+
+## Batch 5 Archive (Merged in PR #43 / `985a1e2`) (4 REAL WINs, 4 Ties/Misses across 8 `n`s)
 
 | `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
 |---:|---|---|---:|---:|---|
