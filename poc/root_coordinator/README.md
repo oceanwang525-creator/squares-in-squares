@@ -6,11 +6,14 @@
 - Fork remote: `https://github.com/oceanwang525-creator/squares-in-squares.git`.
 - Upstream target: `https://github.com/koboshcom/squares-in-squares.git`.
 - Cycle 1 sync: fast-forwarded local `main` from `5a09141` to `5f62a66` using `upstream/main`.
-- Current merge artifact: `upstream/merge:merged-22.15325720501.csv`.
-- Current best union in history: `poc/carried_lpslack_wins` lowers the merge score to
-  `22.153257204712842`, dual-transport certified.
+- Mid-cycle sync: local `main` merged upstream `main` through `cf838aa`.
+- Current merge artifact: `upstream/merge:merged-22.15074331648.csv`, published
+  from upstream `cf838aae586858e357338b6d429ec7a22928baf4`.
+- Current best known union: `22.15074331648` in the upstream merge artifact;
+  the earlier `22.153257204712842` union is superseded.
 - Target score: `22.0999` or lower.
-- Required additional certified score reduction from the best union: about `0.0533572`.
+- Required additional certified score reduction from the new merge baseline:
+  `0.05084331648`.
 - Open PRs owned by the authenticated account: none at cycle start.
 
 ## Frontier gap summary
