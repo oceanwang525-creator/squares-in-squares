@@ -8,7 +8,7 @@ folder, review outcomes, and manage git/PRs. I do not run packing experiments.
 
 | quantity | value |
 |---|---|
-| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.153257205012313** |
+| incumbent `poc/pell_corrugation/data/border-scan/merged.csv` | **22.15324713130751** (upstream 8c623fc; was 22.153257205012313 at cycle-1 start) |
 | merge-branch `merged-22.15325720501.csv` | identical SHA256 `61004c6f…` |
 | official certification | 1000/1000 accepted, missing 0, rejected 0 |
 | goal | **≤ 22.0999** (need Δ ≤ −0.053357) |
@@ -77,7 +77,7 @@ scale up.
   binding pockets found **no** lower `f` (the pockets are rigid jams: 0-2 of 22
   hop trials re-polish feasibly, returning the same `f`). But the composition DP
   over a richer library certifies n=442/485/530/577 (the `(20,17,+1)` proper
-  sub-pocket of n=401) and n=585. Total score gain `1.23e-6`. The valuable
+  sub-pocket of n=401) Total score gain `1.20e-6` (n=585 was later superseded by upstream `8c623fc` and dropped). The valuable
   output is `docs/demand.txt`: the big-gap rows have **saturated seam budgets**
   and need a *replacement* pocket with better gain density at `f≈0.60-0.67`
   (small footprint `w+h+1≤12`, `g≥2`). Notably n=367 could pay 1.1e-3 if a
