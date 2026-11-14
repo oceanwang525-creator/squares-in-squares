@@ -69,7 +69,17 @@ row/column of contacts, and solve a bounded reattachment LP. This is a
 topology reset, not local descent. The target family is high-n rows where the
 gap appears in a narrow shear corridor rather than a large pocket.
 **Quick test:** 1-3 high-gap n selected from 508, 592, 632, 813, 928.  
-**Outcome:** running.
+**Outcome:** negative.  `592` has a 27-square left/right contact braid but no
+bottom/top active contact path; `928` has a 29-square bottom/top braid but no
+left/right path.  Braid-mask reset missed in both quick and deeper runs, and a
+direct donor strip-deletion comparison was worse.  No candidate was close
+enough to export, so `final.csv` remained header-only.  Final agent commit:
+`11ec138`.  I removed the completed folder from the working tree after that
+commit, preserving its history.
+
+The two remaining agents (`dualwall_asymmetry_lp` and
+`periodic_frontier_refit`) hit provider rate limits mid-turn.  Their folders
+and partial state are being preserved; I am resuming them with follow-up tasks.
 
 ### 3. `corner_lattice_borrow`
 
