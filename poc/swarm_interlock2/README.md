@@ -28,6 +28,17 @@ Hypothesis **H101** composes two `(w_i, h_i, g_i)` sub-pockets (including 90-deg
 - **Regime 1 (`zero_gap`)**: `849` (`+1.9605e-4`), `791` (`+1.2340e-3`), `640` (`+1.4342e-3`), `454` (`+2.4192e-3`), `795` (`+2.4785e-3`), `912` (`+2.6225e-3`).
 - **Regime 2 (`seam_touch`)**: All 6 tested gate targets stalled above `L_inc` (`n=738`: `+1.8242e-2`, `n=852`: `+3.3635e-2`, `n=414`: `+3.3844e-2`, `n=973`: `+3.4652e-2`, `n=336`: `+6.5565e-2`, `n=579`: `+1.5166e-1`), showing that exact-touch (`h_1 + h_2 = K`) overhang seams lack the 1-unit corridor slack required to relax `L` below `L_inc`.
 
+## Scale-Up Results (`poc/swarm_interlock2/poc/run_scale.py`, 8156.7s, 25 `zero_gap` targets)
+
+Expanding the pocket pool with `pockets_partb_sane.json`, `poc/swarm_b8xplant/`, `poc/swarm_cleanpeel2/`, and evaluating all 4 `D2` corner symmetries `(0,0), (3,0), (0,3), (3,3)` + soft-mode `mechwalk_compress` yielded **2 additional Big-Move wins** in high-excess thin-strip (`w` or `h <= 8`) `zero_gap` pinwheels:
+
+| `n` | `(K, D)` | `(kx, ky)` | Formula | `L_inc` | `L_lit` | `dL` |
+|---:|:---:|:---:|:---|---:|---:|---:|
+| `863` | `(29, 22)` | `(0, 1)` | `e3_n750_20x8_g11 + e3_n985_8x22_g12` (`s03_mw`) | `29.8439416619937890` | `29.8428057136543115` | **`-1.135948e-03`** |
+| `924` | `(30, 24)` | `(0, 1)` | `e3_n807_21x8_g12 + e3_n986_8x23_g13` (`s00_mw`) | `30.8553010538996188` | `30.8550590032779526` | **`-2.420506e-04`** |
+
+Notable near-miss in scale-up: `n=918` (`(30, 18)`, `brick_B8_18x8_g8 + e3_n980_11x23_g11`, `s30_mw`) reached `+6.4803e-04`.
+
 ## Checks
 
 - Unit tests: `/tmp/highrpeel_venv/bin/pytest -v poc/swarm_interlock2/tests/test_interlock2.py`
