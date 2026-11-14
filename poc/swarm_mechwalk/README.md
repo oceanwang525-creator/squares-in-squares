@@ -9,14 +9,22 @@
   - **`mmelt` (Hybrid)**: Mode-activity pocket mask (top moving squares + spatial neighbors within `R=2.4`, capped at `<= 50%` of `n`) -> `run_cpp_masked_melt` (`ils=[0, 5, 10]`, `a_start=0.82`) -> 2-stage `joint_xytheta_slp` + `fixed_angle_lp_tighten`.
 - **Certification**: Every exported group in `final.csv` is certified in BOTH `literal` and `pandas` roundtrip modes via `poc/auto_union/poc/union.py` against the full `origin/main` portfolio (`merged.csv` + all `poc/*/final.csv`), keeping only strict REAL WINs (`dL <= -1e-9`).
 
-## Batch 10 Summary (H65 Stage 7: 2 Certified REAL WINs in `final.csv`, total `ds = -1.929108e-06`)
+## Batch 11 Summary (H65 Stage 8: 1 Certified REAL WINs in `final.csv`, total `ds = -1.078650e-08`)
 
 | `n` | `dL` | `ds = dL / sqrt(n)` | Certified `L` (`literal == pandas`) | Incumbent `L` (`origin/main`) | Method Label |
 |---:|---:|---:|---|---|---|
-| 741 | `-1.145189e-07` | `-4.206957e-09` | `27.7077646344588946832` | `27.7077647489777837728` (merged.csv) | `mmelt_r1_b0_m7_t2e-05_p_0.008` |
-| 909 | `-5.803505e-05` | `-1.924901e-06` | `30.6388343842805074497` | `30.6388924193297404742` (merged.csv) | `rejam_r4_b0_m0_t5e-05_p_0.008` |
+| 853 | `-3.150322e-07` | `-1.078650e-08` | `29.7058859030259346296` | `29.7058862180581697233` (merged.csv) | `rejam_r3_b1_m3_t5e-05_p_0.008` |
 
-## Batch 10 Run Log (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
+## Batch 11 Run Log (1 REAL WINs, 3 Ties/Misses across 4 `n`s)
+
+| `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
+|---:|---|---|---:|---:|---|
+| 737 | `b6_s8_results.json` | **MISS** | `+1.994351e-06` | 249.31 | `mmelt_r2_b1_m5_t2e-05_p_0.008` |
+| 796 | `b6_s8_results.json` | **MISS** | `+9.930011e-06` | 362.02 | `mmelt_r2_b1_m3_t2e-05_m_0.008` |
+| 853 | `b6_s8_results.json` | **REAL_WIN** | `-3.150322e-07` | 713.53 | `rejam_r3_b1_m3_t5e-05_p_0.008` |
+| 909 | `b6_s8_results.json` | **MISS** | `+2.582995e-06` | 534.63 | `mmelt_r4_b1_m1_t5e-05_m_0.008` |
+
+## Batch 10 Archive (Merged in PR #55 / `0b1fab6`) (2 REAL WINs, 1 Ties/Misses across 3 `n`s)
 
 | `n` | Run | Status | Best `dL` (vs seed) | Time (s) | Best Label |
 |---:|---|---|---:|---:|---|
