@@ -1,0 +1,26 @@
+
+=== H131-adjacent-v1 n=633 | L_seed=25.656854249 | N=30 feas=0 best_Lf=None min_pen=3.05e-04 ===
+  [MISS] n=633: mpk_hot_2 dUp=+2.436400e-07 dH128=+2.436400e-07 L_lit=25.6568544931325337999 [77.6s]
+
+=== H131-adjacent-v1 n=634 | L_seed=25.688376088 | N=30 feas=0 best_Lf=None min_pen=7.53e-04 ===
+  [REAL_WIN] n=634: mpk_void_11 dUp=-1.117357e-05 dH128=-6.115492e-06 L_lit=25.6883699726659374618 [58.3s]
+
+=== H131-adjacent-v1 n=635 | L_seed=25.707106781 | N=30 feas=0 best_Lf=None min_pen=3.26e-04 ===
+  [MISS] n=635: mpk_void_1 dUp=+4.527107e-06 dH128=+4.527107e-06 L_lit=25.7071113082938078081 [110.5s]
+
+=== H131-adjacent-v1 n=696 | L_seed=26.847630366 | N=30 feas=0 best_Lf=None min_pen=5.61e-04 ===
+  [MISS] n=696: mpk_void_11 dUp=+3.235155e-06 dH128=+3.235155e-06 L_lit=26.8476336014563608656 [91.6s]
+
+=== H131-adjacent-v1 n=697 | L_seed=26.860374738 | N=30 feas=0 best_Lf=None min_pen=4.10e-04 ===
+  [MISS] n=697: mpk_hot_6 dUp=+1.273001e-04 dH128=+1.273001e-04 L_lit=26.8605020381791551989 [88.3s]
+
+=== H131-adjacent-v1 n=860 | L_seed=29.802428717 | N=30 feas=0 best_Lf=None min_pen=9.89e-04 ===
+  [MISS] n=860: mpk_void_11 dUp=+4.284125e-06 dH128=+4.284125e-06 L_lit=29.8024330010585347308 [153.4s]
+
+=== H131-adjacent-v1 n=862 | L_seed=29.827133251 | N=30 feas=0 best_Lf=None min_pen=8.11e-04 ===
+  [MISS] n=862: mpk_hot_1 dUp=+8.037262e-06 dH128=+8.037262e-06 L_lit=29.8271412882531515100 [120.6s]
+
+=== H131-adjacent-v1 n=863 | L_seed=29.843941662 | N=30 feas=0 best_Lf=None min_pen=9.15e-04 ===
+  [MISS] n=863: mpk_hot_0 dUp=+4.928100e-06 dH128=+4.928100e-06 L_lit=29.8439465900936374961 [113.6s]
+
+H131 adjacent run done in 827.4s | REAL_WINS=[634] | protected=[695, 861]

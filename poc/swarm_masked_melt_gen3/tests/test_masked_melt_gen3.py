@@ -9,14 +9,13 @@ import numpy as np
 import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-NEW159_POC = Path(__file__).resolve().parents[1] / "poc"
-HIGHD_POC = REPO_ROOT / "poc" / "swarm_highd" / "poc"
-for p in (NEW159_POC, HIGHD_POC):
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
-
-import pocket_seeds as ps  # noqa: E402
-import idea1_highd_pilot as i1  # noqa: E402
+SEEDS_PATH = Path(__file__).resolve().parents[1] / "poc" / "pocket_seeds.py"
+SPEC = importlib.util.spec_from_file_location("h131_pocket_seeds_test", SEEDS_PATH)
+if SPEC is None or SPEC.loader is None:
+    raise RuntimeError(f"cannot load {SEEDS_PATH}")
+ps = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = ps
+SPEC.loader.exec_module(ps)
 
 MERGED_CSV = REPO_ROOT / "poc" / "pell_corrugation" / "data" / "border-scan" / "merged.csv"
 FINAL_CSV = Path(__file__).resolve().parents[1] / "final.csv"
@@ -25,7 +24,19 @@ FINAL_CSV = Path(__file__).resolve().parents[1] / "final.csv"
 def _load_norm(n: int):
     df = pd.read_csv(MERGED_CSV)
     sub = df[df["n"] == n].sort_values("square_id")
-    return i1._norm(sub)
+    x = sub["x"].to_numpy(np.float64).copy()
+    y = sub["y"].to_numpy(np.float64).copy()
+    th = sub["angle"].to_numpy(np.float64).copy()
+    hx = 0.5 * (np.abs(np.cos(th)) + np.abs(np.sin(th)))
+    x -= float((x - hx).min())
+    y -= float((y - hx).min())
+    L = float(max((x + hx).max(), (y + hx).max()))
+    return x, y, th, L
+
+
+def test_seed_module_is_private_to_h131():
+    assert ps.__name__ == "h131_pocket_seeds_test"
+    assert ps.__file__ == str(SEEDS_PATH)
 
 
 def test_tightest_contact_clusters():
