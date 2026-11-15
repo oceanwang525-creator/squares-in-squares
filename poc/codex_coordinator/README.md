@@ -307,3 +307,13 @@ endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
   `2.3e-15` apparent difference at 791). Shared star motifs largely encode
   repeated local lattice symmetry rather than portable capacity. Failure
   commit: `5015828` (preserved through `6e18afa`).
+- **H10 `contact_graph_evolution`: negative.** At `L_inc - 1e-4`, 48
+  single-edge rewritten graphs per target were relaxed and optimized. Their
+  best maximum penetrations were `5.84e-6`, `5.62e-6`, and `6.76e-6`, but the
+  best sparse cases for 803/791/908 still had 768/886/2,561 penetrating pairs.
+  These are dense conflicting states, not repairable seams. Failure commit:
+  `1c74a12`.
+- **H12 `multiresolution_cell_dictionary`: negative for disjoint band cells.**
+  With 8/10/12 bands and all dihedral transforms, the best covers were
+  672/803, 672/791, and 900/908. The 908 case had spare height but lost at
+  least eight squares at band cutoffs. Failure commit: `3595989`.
