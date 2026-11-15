@@ -1,0 +1,392 @@
+{
+  "method": "multi-donor Sinkhorn mass barycenter plus fixed-side repair",
+  "targets": [
+    791
+  ],
+  "results": [
+    {
+      "n": 791,
+      "incumbent_side": 28.62652394833957,
+      "donor_offsets": [
+        3,
+        4
+      ],
+      "maps": 10,
+      "weight_schedules": 6,
+      "screened_starts": 1050,
+      "repaired_starts": 53,
+      "attempts": [
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.8
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.006409378064772122,
+          "transport_value": 0.02590009813959613,
+          "final_penalty": 4.796247754077692e-08,
+          "max_violation": 2.7101237766835595e-05,
+          "dilation": 1.0000252432939722,
+          "dilated_side": 28.626958758818102,
+          "small_dilation": 1.0000252432939722,
+          "small_dilation_side": 28.626958758818102
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.005949678864876267,
+          "transport_value": 0.019803797481624957,
+          "final_penalty": 9.231502044922745e-08,
+          "max_violation": 3.26405866557522e-05,
+          "dilation": 1.0000301338773516,
+          "dilated_side": 28.627104642355594,
+          "small_dilation": 1.0000301338773516,
+          "small_dilation_side": 28.627104642355594
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.8
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.006419885253818206,
+          "transport_value": 0.02590009813959613,
+          "final_penalty": 9.846955088050663e-08,
+          "max_violation": 3.730626873288401e-05,
+          "dilation": 1.0000342570107008,
+          "dilated_side": 28.62712241441456,
+          "small_dilation": 1.0000342570107008,
+          "small_dilation_side": 28.62712241441456
+        },
+        {
+          "epsilon": 0.014,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.00636108699605571,
+          "transport_value": 0.028039331002871655,
+          "final_penalty": 9.980405290508242e-08,
+          "max_violation": 3.554853319698292e-05,
+          "dilation": 1.0000322786400355,
+          "dilated_side": 28.62716518796565,
+          "small_dilation": 1.0000322786400355,
+          "small_dilation_side": 28.62716518796565
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.8
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.006303053617998515,
+          "transport_value": 0.02094203975054757,
+          "final_penalty": 1.1786748523110818e-07,
+          "max_violation": 3.3492591437145336e-05,
+          "dilation": 1.0000307064129241,
+          "dilated_side": 28.627125399808516,
+          "small_dilation": 1.0000307064129241,
+          "small_dilation_side": 28.627125399808516
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.7
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.006061674688228577,
+          "transport_value": 0.020406396329878104,
+          "final_penalty": 1.2351964499996254e-07,
+          "max_violation": 3.5164706225554454e-05,
+          "dilation": 1.0000320770817899,
+          "dilated_side": 28.627165295269176,
+          "small_dilation": 1.0000320770817899,
+          "small_dilation_side": 28.627165295269176
+        },
+        {
+          "epsilon": 0.014,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.7
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.006444830132093264,
+          "transport_value": 0.028643734018809864,
+          "final_penalty": 1.2372231548223836e-07,
+          "max_violation": 3.751859485090492e-05,
+          "dilation": 1.0000359329169843,
+          "dilated_side": 28.627268596367326,
+          "small_dilation": 1.0000359329169843,
+          "small_dilation_side": 28.627268596367326
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.025,
+          "initial_penalty": 0.0063911540358329594,
+          "transport_value": 0.024760197853783424,
+          "final_penalty": 1.3573331894444627e-07,
+          "max_violation": 3.65671866150441e-05,
+          "dilation": 1.0000337341727437,
+          "dilated_side": 28.627212464259816,
+          "small_dilation": 1.0000337341727437,
+          "small_dilation_side": 28.627212464259816
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.006401305131713541,
+          "transport_value": 0.024760197853783424,
+          "final_penalty": 1.436206866454902e-07,
+          "max_violation": 3.995341197904345e-05,
+          "dilation": 1.0000370733862438,
+          "dilated_side": 28.62720715177159,
+          "small_dilation": 1.0000370733862438,
+          "small_dilation_side": 28.62720715177159
+        },
+        {
+          "epsilon": 0.014,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.7
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.006455494312097035,
+          "transport_value": 0.028643734018809864,
+          "final_penalty": 1.4911506791317603e-07,
+          "max_violation": 4.406210926405363e-05,
+          "dilation": 1.0000409887035118,
+          "dilated_side": 28.627315396836824,
+          "small_dilation": 1.0000409887035118,
+          "small_dilation_side": 28.627315396836824
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.005958973210852183,
+          "transport_value": 0.019803797481624957,
+          "final_penalty": 1.5259204876641035e-07,
+          "max_violation": 4.1695246320694324e-05,
+          "dilation": 1.0000381212597962,
+          "dilated_side": 28.62723846983005,
+          "small_dilation": 1.0000381212597962,
+          "small_dilation_side": 28.62723846983005
+        },
+        {
+          "epsilon": 0.014,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.7
+            ]
+          ],
+          "delta": 0.0005,
+          "alpha": 0.025,
+          "initial_penalty": 0.006466193318058474,
+          "transport_value": 0.028643734018809864,
+          "final_penalty": 1.5436819504006462e-07,
+          "max_violation": 4.57977428673928e-05,
+          "dilation": 1.0000421788446945,
+          "dilated_side": 28.627252056905064,
+          "small_dilation": 1.0000421788446945,
+          "small_dilation_side": 28.627252056905064
+        },
+        {
+          "epsilon": 0.014,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.006371565203295411,
+          "transport_value": 0.028039331002871655,
+          "final_penalty": 1.5668284618575956e-07,
+          "max_violation": 4.2953283401647724e-05,
+          "dilation": 1.0000390511216402,
+          "dilated_side": 28.62726345144014,
+          "small_dilation": 1.0000390511216402,
+          "small_dilation_side": 28.62726345144014
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.8
+            ]
+          ],
+          "delta": 0.0005,
+          "alpha": 0.025,
+          "initial_penalty": 0.006430428023046008,
+          "transport_value": 0.02590009813959613,
+          "final_penalty": 1.6318435523614384e-07,
+          "max_violation": 4.597751710777587e-05,
+          "dilation": 1.0000426281919996,
+          "dilated_side": 28.627264930856906,
+          "small_dilation": 1.0000426281919996,
+          "small_dilation_side": 28.627264930856906
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.7
+            ]
+          ],
+          "delta": 0.0004,
+          "alpha": 0.025,
+          "initial_penalty": 0.006071220420381705,
+          "transport_value": 0.020406396329878104,
+          "final_penalty": 1.8186883473609414e-07,
+          "max_violation": 4.22881589716706e-05,
+          "dilation": 1.0000387142151128,
+          "dilated_side": 28.62725739213238,
+          "small_dilation": 1.0000387142151128,
+          "small_dilation_side": 28.62725739213238
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.6
+            ]
+          ],
+          "delta": 0.0005,
+          "alpha": 0.025,
+          "initial_penalty": 0.005968303672852776,
+          "transport_value": 0.019803797481624957,
+          "final_penalty": 1.8504554779370105e-07,
+          "max_violation": 4.888021308518953e-05,
+          "dilation": 1.0000444432731375,
+          "dilated_side": 28.627322316460493,
+          "small_dilation": 1.0000444432731375,
+          "small_dilation_side": 28.627322316460493
+        }
+      ],
+      "elapsed_seconds": 601.2038848750017
+    }
+  ],
+  "wins": {}
+}

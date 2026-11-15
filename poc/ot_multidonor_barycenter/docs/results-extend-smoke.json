@@ -1,0 +1,70 @@
+{
+  "method": "multi-donor Sinkhorn mass barycenter plus fixed-side repair",
+  "targets": [
+    791
+  ],
+  "results": [
+    {
+      "n": 791,
+      "incumbent_side": 28.627434433035795,
+      "donor_offsets": [
+        2,
+        3
+      ],
+      "maps": 2,
+      "weight_schedules": 1,
+      "screened_starts": 2,
+      "repaired_starts": 2,
+      "attempts": [
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.9299288422458537,
+          "transport_value": 0.05043934778192091,
+          "final_penalty": 8.267204057332393e-07,
+          "max_violation": 7.07598247676744e-05,
+          "dilation": 1.000070764849719,
+          "dilated_side": 28.62950112872938,
+          "small_dilation": 1.000070764849719,
+          "small_dilation_side": 28.62950112872938
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 0.9302430583403671,
+          "transport_value": 0.05043934778192091,
+          "final_penalty": 1.0392444228674866e-06,
+          "max_violation": 8.971312802752429e-05,
+          "dilation": 1.0000897212770947,
+          "dilated_side": 28.629834604530206,
+          "small_dilation": 1.0000897212770947,
+          "small_dilation_side": 28.629834604530206
+        }
+      ],
+      "elapsed_seconds": 2.657119750001584
+    }
+  ],
+  "wins": {}
+}

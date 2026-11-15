@@ -193,36 +193,38 @@ def certify_candidate(q: np.ndarray, n: int, incumbent_side: float):
     }
 
 
-def schedules(offsets: list[int]) -> list[tuple[tuple[int, float], ...]]:
+def schedules(
+    offsets: list[int],
+    weight_ratios: list[tuple[float, float]],
+    include_triples: bool = True,
+) -> list[tuple[tuple[int, float], ...]]:
     result: list[tuple[tuple[int, float], ...]] = []
     for left in offsets:
         for right in offsets:
             if left < right:
                 result.extend(
+                    ((left, left_weight), (right, right_weight))
+                    for left_weight, right_weight in weight_ratios
+                )
+    if include_triples:
+        triples = [
+            (-3, -1, 1),
+            (-2, -1, 1),
+            (-1, 1, 2),
+            (-1, 1, 3),
+            (-2, 1, 2),
+            (-3, -1, 2),
+            (-2, 1, 3),
+        ]
+        for a, b, c in triples:
+            if all(x in offsets for x in (a, b, c)):
+                result.extend(
                     [
-                        ((left, 1.0), (right, 1.0)),
-                        ((left, 2.0), (right, 1.0)),
-                        ((left, 1.0), (right, 2.0)),
+                        ((a, 1.0), (b, 1.0), (c, 1.0)),
+                        ((a, 2.0), (b, 1.0), (c, 1.0)),
+                        ((a, 1.0), (b, 1.0), (c, 2.0)),
                     ]
                 )
-    triples = [
-        (-3, -1, 1),
-        (-2, -1, 1),
-        (-1, 1, 2),
-        (-1, 1, 3),
-        (-2, 1, 2),
-        (-3, -1, 2),
-        (-2, 1, 3),
-    ]
-    for a, b, c in triples:
-        if all(x in offsets for x in (a, b, c)):
-            result.extend(
-                [
-                    ((a, 1.0), (b, 1.0), (c, 1.0)),
-                    ((a, 2.0), (b, 1.0), (c, 1.0)),
-                    ((a, 1.0), (b, 1.0), (c, 2.0)),
-                ]
-            )
     return result
 
 
@@ -232,14 +234,21 @@ def probe_target(
     seconds: float,
     repair_iterations: int,
     top_starts: int,
+    donor_offsets: list[int],
+    epsilons: list[float],
+    alphas: list[float],
+    deltas: list[float],
+    weight_ratios: list[tuple[float, float]],
+    include_triples: bool,
+    incumbent_sides: dict[int, float],
 ) -> dict:
     started = time.monotonic()
     current = groups[n]
-    incumbent_side = side(current)
-    offsets = [k for k in (-4, -3, -2, -1, 1, 2, 3, 4) if n + k in groups]
+    incumbent_side = incumbent_sides[n]
+    offsets = [k for k in donor_offsets if n + k in groups]
     maps: dict[tuple[int, float], tuple[np.ndarray, np.ndarray, float]] = {}
     for offset in offsets:
-        for epsilon in (0.025, 0.06):
+        for epsilon in epsilons:
             if time.monotonic() - started >= seconds:
                 break
             maps[(offset, epsilon)] = transport_map(
@@ -249,8 +258,8 @@ def probe_target(
             break
 
     screened = []
-    valid_schedules = schedules(offsets)
-    for epsilon in (0.025, 0.06):
+    valid_schedules = schedules(offsets, weight_ratios, include_triples)
+    for epsilon in epsilons:
         for schedule in valid_schedules:
             if not all((offset, epsilon) in maps for offset, _ in schedule):
                 continue
@@ -267,9 +276,9 @@ def probe_target(
                 sin_sum += w * np.sin(2 * mapped_angles)
                 transport_value += w * value
             mixed_angles = 0.5 * np.arctan2(sin_sum, cos_sum)
-            for delta in (1e-6, 1e-5, 1e-4, 2e-4):
+            for delta in deltas:
                 target_side = incumbent_side - delta
-                for alpha in (0.2, 0.4, 0.65):
+                for alpha in alphas:
                     q0 = place_centered(
                         current, mixed_xy, mixed_angles, target_side, alpha
                     )
@@ -380,10 +389,60 @@ def main() -> None:
     parser.add_argument("--repair-iterations", type=int, default=5000)
     parser.add_argument("--top-starts", type=int, default=24)
     parser.add_argument("--workers", type=int, default=3)
+    parser.add_argument(
+        "--donor-offsets", default="-4,-3,-2,-1,1,2,3,4",
+        help="comma-separated donor offsets to n",
+    )
+    parser.add_argument(
+        "--epsilons", default="0.025,0.06",
+        help="comma-separated Sinkhorn regularizations",
+    )
+    parser.add_argument(
+        "--alphas", default="0.2,0.4,0.65",
+        help="comma-separated interpolation strengths",
+    )
+    parser.add_argument(
+        "--deltas", default="1e-6,1e-5,1e-4,2e-4",
+        help="comma-separated reductions from the effective incumbent side",
+    )
+    parser.add_argument(
+        "--weight-ratios", default="1:1,2:1,1:2",
+        help="comma-separated left:right donor weights",
+    )
+    parser.add_argument(
+        "--no-triples", action="store_true",
+        help="search only two-donor schedules",
+    )
     parser.add_argument("--out", default=str(DOCS / "results.json"))
     args = parser.parse_args()
     targets = [int(item) for item in args.targets.split(",") if item]
     groups = load_groups()
+    existing = union.parse_text(FINAL.read_text(encoding="utf-8"))
+    incumbent_sides = {}
+    for n in targets:
+        best_side = side(groups[n])
+        if n in existing:
+            rows = sorted(existing[n], key=lambda row: int(row["square_id"]))
+            existing_q = np.asarray(
+                [
+                    (float(row["x"]), float(row["y"]), float(row["angle"]))
+                    for row in rows
+                ],
+                dtype=np.float64,
+            )
+            best_side = min(best_side, side(existing_q))
+        incumbent_sides[n] = best_side
+    donor_offsets = [int(item) for item in args.donor_offsets.split(",") if item]
+    epsilons = [float(item) for item in args.epsilons.split(",") if item]
+    alphas = [float(item) for item in args.alphas.split(",") if item]
+    deltas = [float(item) for item in args.deltas.split(",") if item]
+    weight_ratios = [
+        tuple(float(value) for value in item.split(":"))
+        for item in args.weight_ratios.split(",")
+        if item
+    ]
+    if any(len(ratio) != 2 for ratio in weight_ratios):
+        raise ValueError("weight ratios must use left:right")
     if args.workers > 1:
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
             results = list(
@@ -394,6 +453,13 @@ def main() -> None:
                     [args.seconds_per_target] * len(targets),
                     [args.repair_iterations] * len(targets),
                     [args.top_starts] * len(targets),
+                    [donor_offsets] * len(targets),
+                    [epsilons] * len(targets),
+                    [alphas] * len(targets),
+                    [deltas] * len(targets),
+                    [weight_ratios] * len(targets),
+                    [not args.no_triples] * len(targets),
+                    [incumbent_sides] * len(targets),
                 )
             )
     else:
@@ -404,6 +470,13 @@ def main() -> None:
                 args.seconds_per_target,
                 args.repair_iterations,
                 args.top_starts,
+                donor_offsets,
+                epsilons,
+                alphas,
+                deltas,
+                weight_ratios,
+                not args.no_triples,
+                incumbent_sides,
             )
             for n in targets
         ]
@@ -413,7 +486,6 @@ def main() -> None:
         for result in results
         if result["certified"] is not None
     }
-    existing = union.parse_text(FINAL.read_text(encoding="utf-8"))
     for n, item in wins.items():
         existing[n] = union.parse_text(item["final_text"])[n]
     FINAL.write_text(union.final_text(existing), encoding="utf-8")
