@@ -442,6 +442,10 @@ H18 showed is counterproductive.
   melts reduced local penetrations to `8.8e-8..3.0e-7`, but the residual
   networks were large enough that safe dilation exceeded the target side on
   all tested rows, including 791/908 controls. Failure commit: `9f3b2e2`.
+- **H25 `angle_class_reassignment`: negative.** Screening 36,288 starts per
+  target after center transport still left connected interface overlaps.
+  Best safe sides exceeded incumbents at 803/328/791; the 791 control needed
+  `1.63e-3` extra side. Failure commit: `db5187d`.
 - **H23 `near_plateau_source_selection`: POSITIVE.** Selecting donors by
   side-length/contact similarity chose 790 and 792 for `n=791` and produced
   a complete group at `28.626405023313754301...`. It improves the certified
