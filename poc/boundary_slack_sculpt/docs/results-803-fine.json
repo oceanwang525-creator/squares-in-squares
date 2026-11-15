@@ -1,0 +1,4612 @@
+{
+  "targets": [
+    {
+      "n": 803,
+      "incumbent_L": "28.817265876824088",
+      "target_L": "28.817264876824087",
+      "wall_contacts": {
+        "left": 17,
+        "right": 19,
+        "bottom": 10,
+        "top": 6
+      },
+      "attempts": 144,
+      "best": {
+        "residual": 1.6519987711127726e-08,
+        "local_side": 28.817265876824088,
+        "lp_side": 28.817265878310888,
+        "seed": {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 1.6519987711127726e-08,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817265878310888,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        }
+      },
+      "win": null,
+      "records": [
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 1.349637782532831e-06,
+          "local_side": 28.817264955582868,
+          "lp_side": 28.817265091074322,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 1.0060355308816327e-06,
+          "local_side": 28.817264942048187,
+          "lp_side": 28.817265068688368,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.729592789746832e-07,
+          "local_side": 28.817264947859293,
+          "lp_side": 28.817265008687226,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 7.197052294127815e-07,
+          "local_side": 28.8172649301644,
+          "lp_side": 28.81726499137928,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 9.276445120942611e-07,
+          "local_side": 28.817264930622954,
+          "lp_side": 28.81726503453929,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 1.117372122938498e-06,
+          "local_side": 28.817264940822707,
+          "lp_side": 28.81726506187747,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 9.419705172541981e-07,
+          "local_side": 28.817264936477883,
+          "lp_side": 28.817265041571172,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 1.0796775591348506e-06,
+          "local_side": 28.817264951318414,
+          "lp_side": 28.81726508860291,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 1.2083679235219691e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817267520676747,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 2.5218750585143113e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817269039918926,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 2.3435717191766514e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817269135751275,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 2.4866787130206625e-05,
+          "local_side": 28.81726646888347,
+          "lp_side": 28.817269087858122,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                117
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 2.1523051963789896e-05,
+          "local_side": 28.817265947375404,
+          "lp_side": 28.817268926697604,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 2.0924831672930466e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817268343463965,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 1.7976409009134997e-05,
+          "local_side": 28.817266538871948,
+          "lp_side": 28.81726817286257,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 2.474157217191575e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817268623189825,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 2.270123420566872e-05,
+          "local_side": 28.81726593784483,
+          "lp_side": 28.817268799113528,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 4.146245739966581e-05,
+          "local_side": 28.817267992851296,
+          "lp_side": 28.81726986954086,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 3.5600857537954056e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.81727069647533,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 3.299930586875277e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817270245155925,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                112
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 3.29600375388317e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817270750419187,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 2.799326511149225e-05,
+          "local_side": 28.817266685876888,
+          "lp_side": 28.817269323062625,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                117
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 2.753432825097768e-05,
+          "local_side": 28.81726662651912,
+          "lp_side": 28.81726944635751,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 2.8025043144586093e-05,
+          "local_side": 28.817266112028133,
+          "lp_side": 28.817269241300682,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 4.0134798676039196e-05,
+          "local_side": 28.817266693857277,
+          "lp_side": 28.817269745994736,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                117
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 3.5277613011253095e-05,
+          "local_side": 28.8172670221386,
+          "lp_side": 28.8172700898184,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                117
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 4.19719766777682e-05,
+          "local_side": 28.817266817041546,
+          "lp_side": 28.817270732607177,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 4.350272642694719e-05,
+          "local_side": 28.817265932210383,
+          "lp_side": 28.817271786444444,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 4.444821855664749e-05,
+          "local_side": 28.817266063074054,
+          "lp_side": 28.817271517807253,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 4.722935290857322e-05,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817272706179892,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 3.889610613727612e-05,
+          "local_side": 28.81726643048527,
+          "lp_side": 28.81727134971357,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109,
+                117
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 3.7592935409502815e-05,
+          "local_side": 28.81726684380314,
+          "lp_side": 28.817270684618705,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 4.6981633652798394e-05,
+          "local_side": 28.81726730273321,
+          "lp_side": 28.817271815414582,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                112
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 5.1661807243919e-05,
+          "local_side": 28.817266641134598,
+          "lp_side": 28.81727287575733,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104
+              ],
+              "gained": [
+                115
+              ]
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 6.523461692142796e-05,
+          "local_side": 28.817270340187246,
+          "lp_side": 28.817279425996105,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "left",
+          "chain": 17,
+          "active": 35,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 5.1590314557259376e-05,
+          "local_side": 28.817266288532096,
+          "lp_side": 28.817272949857134,
+          "lp_feasible": true,
+          "ownership_delta": {
+            "left": {
+              "left": [
+                103,
+                104,
+                109
+              ],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.204620510239181e-08,
+          "local_side": 28.817264886139803,
+          "lp_side": 28.817264891771064,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 7.849396677084286e-08,
+          "local_side": 28.81726488737987,
+          "lp_side": 28.817264896064497,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.188387767837924e-08,
+          "local_side": 28.81726488592328,
+          "lp_side": 28.817264890640857,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.497174541766128e-08,
+          "local_side": 28.817264887104777,
+          "lp_side": 28.81726489362374,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 8.448745680844638e-08,
+          "local_side": 28.81726488913269,
+          "lp_side": 28.81726489380041,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 8.778010163190686e-08,
+          "local_side": 28.817264888018197,
+          "lp_side": 28.817264892187353,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 8.896658276746905e-08,
+          "local_side": 28.817264889288804,
+          "lp_side": 28.817264894085415,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.521257854887665e-08,
+          "local_side": 28.817264887116583,
+          "lp_side": 28.81726489077325,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 9.011803037139998e-08,
+          "local_side": 28.81726488619816,
+          "lp_side": 28.817264890725152,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.731410888225156e-08,
+          "local_side": 28.81726488873751,
+          "lp_side": 28.817264894718026,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 8.738669654562159e-08,
+          "local_side": 28.81726488643096,
+          "lp_side": 28.81726489521729,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 1.2286764217162016e-07,
+          "local_side": 28.817264894513848,
+          "lp_side": 28.817264905129136,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.554259589566016e-08,
+          "local_side": 28.817264886488047,
+          "lp_side": 28.817264892190014,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 8.82731610030163e-08,
+          "local_side": 28.817264886526996,
+          "lp_side": 28.817264892067247,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 8.131970208324901e-08,
+          "local_side": 28.817264889189207,
+          "lp_side": 28.81726489387603,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 9.36026079978447e-08,
+          "local_side": 28.817264888596704,
+          "lp_side": 28.81726489360171,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.898539505253211e-08,
+          "local_side": 28.817264891384085,
+          "lp_side": 28.817264898760317,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 8.646916849208708e-08,
+          "local_side": 28.817264887317542,
+          "lp_side": 28.8172648911878,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.121885402585406e-08,
+          "local_side": 28.817264885510586,
+          "lp_side": 28.817264890602576,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 7.911243271596646e-08,
+          "local_side": 28.817264886936673,
+          "lp_side": 28.817264892438526,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.258976458286327e-08,
+          "local_side": 28.817264887678963,
+          "lp_side": 28.81726489324498,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.486712976818467e-08,
+          "local_side": 28.81726488909662,
+          "lp_side": 28.81726489401147,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 1.0215763812659873e-07,
+          "local_side": 28.81726488722169,
+          "lp_side": 28.81726489208253,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 9.04435669690784e-08,
+          "local_side": 28.817264886017423,
+          "lp_side": 28.817264891455554,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 9.55547623249231e-08,
+          "local_side": 28.81726488709761,
+          "lp_side": 28.817264891616794,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.762236602954943e-08,
+          "local_side": 28.817264889276586,
+          "lp_side": 28.817264897226046,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 8.605169743436392e-08,
+          "local_side": 28.81726488656578,
+          "lp_side": 28.81726489182749,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.539222833865324e-08,
+          "local_side": 28.817264885921105,
+          "lp_side": 28.817264893680637,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 8.043083643549664e-08,
+          "local_side": 28.81726488723865,
+          "lp_side": 28.81726489341298,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.92706646382635e-08,
+          "local_side": 28.817264887721,
+          "lp_side": 28.817264894178933,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.915254423591534e-08,
+          "local_side": 28.81726489057713,
+          "lp_side": 28.817264896707844,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 1.2824659656462956e-07,
+          "local_side": 28.81726489881764,
+          "lp_side": 28.817264912029067,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 8.918642879773842e-08,
+          "local_side": 28.81726488938397,
+          "lp_side": 28.81726489468557,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 9.328575722999943e-08,
+          "local_side": 28.81726488753915,
+          "lp_side": 28.817264894649337,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.657061556505141e-08,
+          "local_side": 28.817264886770847,
+          "lp_side": 28.81726489372366,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "right",
+          "chain": 19,
+          "active": 38,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 8.749163971089047e-08,
+          "local_side": 28.817264890990042,
+          "lp_side": 28.81726489715035,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 0.0008085577643184294,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 1.6519987711127726e-08,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817265878310888,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 1.9366300119116886e-08,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817265882122214,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 1.77914938337409e-08,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.817265880875645,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 0.0008038169238941961,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 0.0008048369620929918,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 1.7978956656783396e-08,
+          "local_side": 28.817265876824088,
+          "lp_side": 28.81726587873966,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 0.0008051999616451866,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 0.0008046902584670779,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 0.0008046317783541035,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 0.0008055673396492047,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 0.0008043619667661428,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 0.0008057024748546748,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 0.0008055090569145662,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 0.0008048451518654076,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 0.0011634581025322666,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289,
+                413
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 0.0011655525656049104,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 0.0008045477076670249,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 0.0008059032195644189,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 0.0008053472281577267,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 0.0008054701856710089,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 0.0008042039449855931,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 0.0008059460316134359,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 0.0008051923451943832,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 0.0008053987758616099,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 0.0011632659654806643,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 0.0011634673146100338,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 0.0008027519377349357,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 0.0008059763672001452,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 0.0008038160357903834,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 0.0008056004781926696,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 0.0008050148758875775,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 0.0008050143078328631,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 0.0008072749905143617,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289,
+                294
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 0.0011655010483369033,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "bottom",
+          "chain": 10,
+          "active": 18,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 0.0011634238845018574,
+          "local_side": 28.817265876824088,
+          "lp_side": Infinity,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [
+                289
+              ],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.149744073511101e-08,
+          "local_side": 28.81726488728706,
+          "lp_side": 28.817264892469844,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 9.375309861781034e-08,
+          "local_side": 28.817264886539586,
+          "lp_side": 28.817264892435574,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.104458548707782e-08,
+          "local_side": 28.81726488740209,
+          "lp_side": 28.81726489188328,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.969662035340775e-08,
+          "local_side": 28.817264885707754,
+          "lp_side": 28.817264889861054,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 8.432525944179758e-08,
+          "local_side": 28.817264886191158,
+          "lp_side": 28.81726489094685,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 8.870260104210104e-08,
+          "local_side": 28.817264887344912,
+          "lp_side": 28.817264890620518,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": [
+                132
+              ]
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 8.789418326493603e-08,
+          "local_side": 28.817264885020613,
+          "lp_side": 28.817264889599883,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.838713039249768e-08,
+          "local_side": 28.817264886007926,
+          "lp_side": 28.8172648902144,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.004,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 9.026731828676304e-08,
+          "local_side": 28.81726488427663,
+          "lp_side": 28.81726488899133,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 8.23202934707723e-08,
+          "local_side": 28.817264884568033,
+          "lp_side": 28.817264888987594,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 9.248659771365908e-08,
+          "local_side": 28.81726488516948,
+          "lp_side": 28.817264890370613,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 8.165235998447429e-08,
+          "local_side": 28.817264885847127,
+          "lp_side": 28.81726489037837,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 8.700688070018003e-08,
+          "local_side": 28.81726488818613,
+          "lp_side": 28.817264893821093,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": [
+                132
+              ]
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 8.993239175580925e-08,
+          "local_side": 28.817264886346322,
+          "lp_side": 28.817264891190337,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 9.095648922929911e-08,
+          "local_side": 28.81726488637481,
+          "lp_side": 28.81726489022766,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 8.512594051879319e-08,
+          "local_side": 28.81726488637361,
+          "lp_side": 28.81726489095117,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.089185499216e-08,
+          "local_side": 28.817264886245933,
+          "lp_side": 28.817264890908238,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.01,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 8.656262284745253e-08,
+          "local_side": 28.817264886051216,
+          "lp_side": 28.817264890358405,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 9.175003334860321e-08,
+          "local_side": 28.81726488589235,
+          "lp_side": 28.817264890823306,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 9.213766771765108e-08,
+          "local_side": 28.817264885212865,
+          "lp_side": 28.817264891019352,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 9.590985672325303e-08,
+          "local_side": 28.81726488576881,
+          "lp_side": 28.817264890214677,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 9.308093917859139e-08,
+          "local_side": 28.817264886455632,
+          "lp_side": 28.81726489195036,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 8.263654827089795e-08,
+          "local_side": 28.81726488739223,
+          "lp_side": 28.81726489259664,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 8.984962773794791e-08,
+          "local_side": 28.817264887581775,
+          "lp_side": 28.81726489135615,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 9.146246648938927e-08,
+          "local_side": 28.81726488440788,
+          "lp_side": 28.81726488891118,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 8.741393064948255e-08,
+          "local_side": 28.817264885950262,
+          "lp_side": 28.817264890778016,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.02,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 9.574436865555924e-08,
+          "local_side": 28.81726488753703,
+          "lp_side": 28.817264892482672,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": -0.0025,
+          "residual": 1.5889418292225344e-07,
+          "local_side": 28.817264890596878,
+          "lp_side": 28.81726489407589,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0,
+          "residual": 1.6415791859181184e-07,
+          "local_side": 28.81726488831053,
+          "lp_side": 28.81726489496417,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.0,
+          "rotation": 0.0025,
+          "residual": 1.5471466019434388e-07,
+          "local_side": 28.817264888177487,
+          "lp_side": 28.81726489199237,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": -0.0025,
+          "residual": 1.5618985194087998e-07,
+          "local_side": 28.81726488635195,
+          "lp_side": 28.8172648924206,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0,
+          "residual": 1.3916097740818145e-07,
+          "local_side": 28.817264887763237,
+          "lp_side": 28.8172648913078,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.25,
+          "rotation": 0.0025,
+          "residual": 1.2562988005448972e-07,
+          "local_side": 28.81726488597119,
+          "lp_side": 28.81726489247435,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": -0.0025,
+          "residual": 1.5481419612939362e-07,
+          "local_side": 28.817264887605983,
+          "lp_side": 28.81726489387189,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0,
+          "residual": 1.5129671471214579e-07,
+          "local_side": 28.817264886307616,
+          "lp_side": 28.817264893329362,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        },
+        {
+          "wall": "top",
+          "chain": 6,
+          "active": 13,
+          "amp": 0.035,
+          "phase": 0.5,
+          "rotation": 0.0025,
+          "residual": 1.5333578962106742e-07,
+          "local_side": 28.817264888349143,
+          "lp_side": 28.817264895339257,
+          "lp_feasible": false,
+          "ownership_delta": {
+            "left": {
+              "left": [],
+              "gained": []
+            },
+            "right": {
+              "left": [],
+              "gained": []
+            },
+            "bottom": {
+              "left": [],
+              "gained": []
+            },
+            "top": {
+              "left": [],
+              "gained": []
+            }
+          }
+        }
+      ],
+      "elapsed_seconds": 41.42549920082092
+    }
+  ]
+}
