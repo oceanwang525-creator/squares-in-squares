@@ -225,6 +225,14 @@ not coordinate mutation alone.
 
 ### Cycle 2 outcome
 
+- **H7 `optimal_transport_basin_transfer`: POSITIVE.** A Sinkhorn transport
+  from `n=789` into the `n=791` basin produced a strict dual-certified win.
+  The measured side falls from `28.627635758531549059...` to
+  `28.627533748315897057...`, so `dL=-1.020102156488e-4` and the official
+  score gain is `-3.627065712784e-6`. The complete 791-square group passed a
+  fresh coordinator re-check in both transports. Two 6-target scale waves
+  (`790,792,804,848,861,969` and `328,365,367,456,747,982`) found no second
+  win. Commit: `967402b`. PR: #134.
 - **H6 `parametric_frontier_continuation`: negative.** No shared rational-band
   `(p,q,W)` template reached any tested `D=7/8` row below its incumbent; the
   closest screen was still 2-7 squares short and expanded to 98 overlaps at
