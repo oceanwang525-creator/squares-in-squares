@@ -7,7 +7,20 @@ Why it works:
 - In multi-pocket assemblies (e.g., `n=852` pairing `(9,17,+5)<739>` with `f=0.6841436` and `(20,11,+6)<3007T>` with `f=0.6862194`), freeing angles across the boundary allows the wider sub-pocket to compress right down to the narrower sub-pocket's bounding span (`29.686219 -> 29.6841436094`), yielding an extra `-2.075e-3` compression beyond rigid staircase composition.
 - Furthermore, even positive-slack DP seams like `n=793` (`dL_rigid = +1.707e-3`, `(9,16,+4)<684T> + (19,10,+5)<793T>`) unlock a `-2.673e-3` big-move drop (`4.380e-3` total compression below rigid!) once `lpslack` is followed by `mechwalk_compress`.
 
-## PR3 Certified Wins (vs `origin/main` `0e74cfc`, `literal == pandas`)
+## PR4 Certified Wins (vs `origin/main` `310ff68`, `literal == pandas`)
+
+After rebuilding the union incumbent against `99c95bd` (`180` bricks including `77` from `swarm_pocketpeel` and `45` from `swarm_b7xplant`, plus `67` rescanned donors -> `1,332` Pareto pocket records and `240` qualifying DP cells) and pairing `build_and_polish` with multi-kick `pslp.squeeze` (`center=0.08..0.4` + angle perturbations) + `lpslack`, PR4 lands **5 strict wins** (`literal == pandas`, all strictly beating `origin/main` `310ff68` `merged.csv`):
+
+| `n` | `K` | `D` | Seam Composition | `L_inc` (`origin/main` `310ff68`) | `L_new` (`softseamdp`) | `dL` | `ds_L2n` (`L^2/n`) |
+| ---: | ---: | ---: | :--- | :--- | :--- | ---: | ---: |
+| **405** | 20 | 5 | `(4,5,+1)<26> + (16,14,+4)<4582>` | `20.633982502101998000` (`merged.csv`) | `20.633946160768035211` | **`-3.634133e-05`** | `-3.703041e-06` |
+| **582** | 24 | 6 | `(6,10,+2)<293> + (16,14,+4)<4582>` | `24.633947688045686680` (`merged.csv`) | `24.633946160805644070` | **`-1.527240e-06`** | `-1.292851e-07` |
+| **632** | 25 | 7 | `(14,9,+3)<683> + (10,16,+4)<909>` | `25.637915636585048401` (`merged.csv`) | `25.637914616487726357` | **`-1.020097e-06`** | `-8.276319e-08` |
+| **798** | 28 | 14 | `(15,7,+5)<450> + (12,21,+9)<3169>` | `28.740330075437663539` (`merged.csv`) | `28.740330041124812218` | **`-3.431285e-08`** | `-2.471586e-09` |
+| **740** | 27 | 11 | `(9,16,+5)<3110> + (18,9,+6)<740>` | `27.705882355525172264` (`merged.csv`) | `27.705882352943844090` | **`-2.581328e-09`** | `-1.932918e-10` |
+| **Total (5)** | | | | | | **`-3.892556e-05`** | **`-3.917754e-06`** |
+
+## PR3 Merged Wins (PR #106, `7d14a37`, already in `origin/main` `310ff68`)
 
 After rescanning 117 donors updated through `cc58c7e` (`67,183` gadgets -> `245` qualifying DP cells, including `32` new non-self negative-`dL_rigid` compositions) and integrating kink-safe `pslp.squeeze` (`poc/row_ratchet_980/poc/pslp.py`) into `pslp_ratchet.py`, Batch A1 landed 5 strict wins (`literal == pandas`):
 
