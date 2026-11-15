@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+data/harvest/
+data/synth/
+data/.final.lock

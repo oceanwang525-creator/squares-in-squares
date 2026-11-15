@@ -1,0 +1,196 @@
+{
+  "baseline_sha256": "06291624652822751c86f3b832302061d932bc49912925ea3cb63663d675ed22",
+  "candidate_sha256": "bf90b5de1689801edbfa83532182266d088f41a98c783c2a4c78f0d67f1c94be",
+  "final_sha256": "d5756fb8c9b4b64d03f53e0c8055c0c5fb06c5f7ed8d62409c82577ea2091756",
+  "before_scores": [
+    22.146268736973262,
+    22.146268736973266
+  ],
+  "after_scores": [
+    22.146167653538928,
+    22.146167653538928
+  ],
+  "accepted_each_mode": 1000,
+  "regressions": 0,
+  "chosen": {
+    "332": "2/submission.csv",
+    "409": "2/submission.csv",
+    "642": "2/submission.csv",
+    "977": "1/submission.csv",
+    "933": "1/submission.csv",
+    "932": "1/submission.csv",
+    "853": "1/submission.csv",
+    "803": "1/submission.csv",
+    "871": "1/submission.csv",
+    "872": "1/submission.csv",
+    "856": "1/submission.csv",
+    "818": "1/submission.csv",
+    "812": "1/submission.csv",
+    "813": "1/submission.csv",
+    "756": "1/submission.csv",
+    "761": "1/submission.csv",
+    "599": "1/submission.csv",
+    "598": "1/submission.csv",
+    "587": "1/submission.csv",
+    "585": "1/submission.csv",
+    "550": "1/submission.csv",
+    "503": "1/submission.csv",
+    "499": "1/submission.csv",
+    "746": "1/submission.csv",
+    "701": "1/submission.csv",
+    "707": "1/submission.csv",
+    "651": "1/submission.csv",
+    "646": "1/submission.csv",
+    "757": "1/submission.csv",
+    "814": "1/submission.csv",
+    "654": "1/submission.csv",
+    "297": "1/submission.csv",
+    "791": "1/submission.csv",
+    "201": "1/submission.csv",
+    "147": "1/submission.csv",
+    "148": "1/submission.csv",
+    "265": "1/submission.csv",
+    "850": "1/submission.csv",
+    "908": "1/submission.csv",
+    "691": "1/submission.csv",
+    "735": "1/submission.csv",
+    "682": "1/submission.csv",
+    "631": "1/submission.csv",
+    "650": "1/submission.csv",
+    "923": "1/submission.csv",
+    "594": "1/submission.csv",
+    "374": "1/submission.csv",
+    "379": "9/submission.csv",
+    "462": "9/submission.csv",
+    "450": "9/submission.csv",
+    "689": "9/submission.csv",
+    "655": "1/submission.csv",
+    "845": "1/submission.csv",
+    "904": "1/submission.csv",
+    "343": "1/submission.csv",
+    "543": "1/submission.csv",
+    "929": "9/submission.csv",
+    "986": "9/submission.csv"
+  },
+  "dropped_export": [],
+  "sources": [
+    {
+      "rank": 1,
+      "url": "https://www.kaggle.com/code/navneetprabhat/squares-in-squares-compilation-by-instinct",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "2586516293ff5eea114835cca9a9324e3369c05e8133e9cb3ebf7df99ffd39d4",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 49,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "url": "https://www.kaggle.com/code/penguin069/squares-boxed51-certified-current-union",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "d33666739529098cd7cc9bdf6c776e5e317089a3a21cc14f54cdab07257063b0",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 29,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "url": "https://www.kaggle.com/code/samanyu1808/sis-submit-v2-certified-search",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "54f97ce73a6fa6a52af0a2750572c7706e87de522450d0b282e04f651ccb3f31",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 0,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "url": "https://www.kaggle.com/code/penguin069/squares-gpu-whole-packing-glide",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "b2a8c230030257f223552ae21f6e6442199c3f8aea107f5bc555cc3173612a14",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 0,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "url": "https://www.kaggle.com/code/nilanjansaha123/its-a-secret",
+      "files": []
+    },
+    {
+      "rank": 6,
+      "url": "https://www.kaggle.com/code/penguin069/squares-boxed50-certified-recomposition",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "2605bf96b119fe1ade56b341176ecdc3ffd79d4a0d0824c0530cd4580cd6314d",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 0,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "url": "https://www.kaggle.com/code/malyshevdanil/squares-in-squares-living-atlas-of-tight-packings",
+      "files": []
+    },
+    {
+      "rank": 8,
+      "url": "https://www.kaggle.com/code/jazivxt/boxed-in-sub",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "5d2cb8974d152c602edf0839b5667b2dc144fac210755a2fe8cb4a002258aed7",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 41,
+          "certified_full_scores": null
+        }
+      ]
+    },
+    {
+      "rank": 9,
+      "url": "https://www.kaggle.com/code/alexchilton/squares-101-the-starter-kit-12-100-downloads",
+      "files": [
+        {
+          "file": "submission.csv",
+          "sha256": "c93cd843f67a2526a82967e353716db19fa81ae5291916951b78a96d09146231",
+          "complete_groups": 1000,
+          "dropped_structure": [],
+          "certified_groups": 6,
+          "certified_full_scores": null
+        },
+        {
+          "file": "submission_details.csv",
+          "sha256": "0613c9f239ff5a3b3510ed3b7aa0c5a9683f37182b9f058cb416c12d7b201546",
+          "error": "ValueError"
+        }
+      ]
+    },
+    {
+      "rank": 10,
+      "url": "https://www.kaggle.com/code/alexchilton/fault-line-dp-basin-hopping-lb-22-2620",
+      "files": []
+    }
+  ]
+}

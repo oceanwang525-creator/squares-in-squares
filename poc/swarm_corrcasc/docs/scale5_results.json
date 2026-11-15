@@ -1,0 +1,56 @@
+[
+  {
+    "n": 759,
+    "L_inc": 27.97023765466428,
+    "n_seeds": 10,
+    "n_jobs": 30,
+    "n_feas": 0,
+    "best_cpp_Lf": null,
+    "best_seen_L": 27.9818777061966,
+    "win": false,
+    "best_label": null,
+    "L_win": null,
+    "dL": 0.011640051532317841,
+    "polish_logs": [
+      {
+        "label": "peel1_815_BR_k0.985_dropProt_clamp_R6.2_s0",
+        "cppLf": 1e+18,
+        "L": 27.9818777061966,
+        "dL": 0.011640051532316308,
+        "ok": true
+      },
+      {
+        "label": "peel1_815_BL_k0.985_dropProt_clamp_R8.1_s0",
+        "cppLf": 1e+18,
+        "L": 28.00042332446168,
+        "dL": 0.030185669797395485,
+        "ok": true
+      },
+      {
+        "label": "diag_815_L_BR_bbox_raw_R5.8_s2",
+        "cppLf": 1e+18,
+        "L": 27.982270468428617,
+        "dL": 0.012032813764334049,
+        "ok": true
+      },
+      {
+        "label": "diag_815_L_TL_bbox_raw_R12.6_s1",
+        "cppLf": 1e+18,
+        "L": 28.002114677861098,
+        "dL": 0.0318770231968173,
+        "ok": true
+      },
+      {
+        "label": "peel1_815_BL_k0.985_dropProt_clamp_R11.3_s1",
+        "cppLf": 1e+18,
+        "L": 28.051153951904688,
+        "dL": 0.08091629724040623,
+        "ok": true
+      }
+    ],
+    "elapsed_s": 632.0,
+    "donor": 815,
+    "step": 1,
+    "dL_raw": -0.00597458544816476
+  }
+]

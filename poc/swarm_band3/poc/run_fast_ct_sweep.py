@@ -33,6 +33,7 @@ def solve_pair_1batch(
 ) -> tuple[dict | None, list]:
     best_cert: dict | None = None
     seeds, masks, scheds, labels = [], [], [], []
+    inc_f = float(inc_dec)
     for m1 in ("id", "flipx", "flipy", "rot180"):
         b1 = b3.bl.transform_brick(b1_base, m1)
         for m2 in ("id", "flipx", "flipy", "rot180"):
@@ -42,9 +43,17 @@ def solve_pair_1batch(
             if built is None:
                 continue
             ax, ay, at, L_tgt, sm = built
+            # Widen seam mask around inner corner so corner-touching squares can slide/rotate
+            w1, h1, w2, h2 = b1["w"], b1["h"], b2["w"], b2["h"]
+            corner_sm = (
+                (sm > 0)
+                | ((np.abs(ax - w1) <= 3.2) & (np.abs(ay - (m - h1)) <= 3.2))
+                | ((np.abs(ax - (m - w2)) <= 3.2) & (np.abs(ay - h2) <= 3.2))
+            ).astype(np.uint8)
+            L_final = min(inc_f - 3e-4, L_tgt + 0.0018) if L_tgt + 0.0018 < inc_f else 0.5 * (L_tgt + inc_f)
             seeds.append((ax, ay, at))
-            masks.append(sm)
-            scheds.append([L_tgt + 0.015, L_tgt + 0.004, L_tgt - 2e-4])
+            masks.append(corner_sm)
+            scheds.append([L_tgt + 0.018, L_tgt + 0.006, L_final])
             labels.append(f"{tag}_{m1}_{m2}")
 
     if not seeds:
@@ -74,10 +83,10 @@ def solve_pair_1batch(
     pool.sort(key=lambda t: (t[0], t[1]))
     diag = [(t[0] == 0.0, round(t[1], 6), round(t[2], 6), t[6]) for t in pool[:3]]
 
-    for _, _, pen, cx, cy, cth, lbl in pool[:2]:
-        if pen > 0.03:
+    for _, _, pen, cx, cy, cth, lbl in pool[:3]:
+        if pen > 0.04:
             continue
-        cert = b3.bl.polish_and_certify(n, cx, cy, cth, inc_dec, slp_rounds=12)
+        cert = b3.bl.polish_and_certify(n, cx, cy, cth, inc_dec, slp_rounds=14)
         if cert is not None:
             cert["label"] = lbl
             if best_cert is None or cert["L_float"] < best_cert["L_float"]:

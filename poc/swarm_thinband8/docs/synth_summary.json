@@ -1,0 +1,672 @@
+{
+  "dt_s": 1906.7,
+  "n_compressed": 118,
+  "n_mechwalked": 62,
+  "catalog": [
+    {
+      "w": 7,
+      "h": 15,
+      "g": 4,
+      "f": 0.7290686117233882,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x15g4.json"
+    },
+    {
+      "w": 7,
+      "h": 15,
+      "g": 5,
+      "f": 0.7323968070287332,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x15g5.json"
+    },
+    {
+      "w": 7,
+      "h": 16,
+      "g": 4,
+      "f": 0.6960346567021958,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x16g4.json"
+    },
+    {
+      "w": 7,
+      "h": 16,
+      "g": 5,
+      "f": 0.7327803622582323,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x16g5.json"
+    },
+    {
+      "w": 7,
+      "h": 17,
+      "g": 4,
+      "f": 0.6960349313171612,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x17g4.json"
+    },
+    {
+      "w": 7,
+      "h": 17,
+      "g": 5,
+      "f": 0.7244654147109593,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x17g5.json"
+    },
+    {
+      "w": 7,
+      "h": 18,
+      "g": 4,
+      "f": 0.6960350170844798,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x18g4.json"
+    },
+    {
+      "w": 7,
+      "h": 18,
+      "g": 5,
+      "f": 0.7224779207528318,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x18g5.json"
+    },
+    {
+      "w": 7,
+      "h": 18,
+      "g": 6,
+      "f": 0.7447847911064516,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_8x17g5_k4r_7x18g6.json"
+    },
+    {
+      "w": 7,
+      "h": 19,
+      "g": 4,
+      "f": 0.696035720289478,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x19g4.json"
+    },
+    {
+      "w": 7,
+      "h": 19,
+      "g": 5,
+      "f": 0.7234819297390231,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x19g5.json"
+    },
+    {
+      "w": 7,
+      "h": 19,
+      "g": 6,
+      "f": 0.7426809000571382,
+      "path": "poc/swarm_thinband8/data/synth/brick_P2_9x19g6_lr_7x19g6.json"
+    },
+    {
+      "w": 7,
+      "h": 19,
+      "g": 7,
+      "f": 0.766137652601703,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_8x18g6_k4r_7x19g7.json"
+    },
+    {
+      "w": 7,
+      "h": 20,
+      "g": 4,
+      "f": 0.6960362004029879,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x20g4.json"
+    },
+    {
+      "w": 7,
+      "h": 20,
+      "g": 5,
+      "f": 0.7234812058309634,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x20g5.json"
+    },
+    {
+      "w": 7,
+      "h": 20,
+      "g": 6,
+      "f": 0.7426808973931545,
+      "path": "poc/swarm_thinband8/data/synth/brick_P2_9x20g6_lr_7x20g6.json"
+    },
+    {
+      "w": 7,
+      "h": 20,
+      "g": 7,
+      "f": 0.7660787743341384,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_8x19g6_k4r_7x20g7.json"
+    },
+    {
+      "w": 7,
+      "h": 21,
+      "g": 4,
+      "f": 0.6637936373537734,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSrm_7x22g5_k3_7x21g4.json"
+    },
+    {
+      "w": 7,
+      "h": 21,
+      "g": 5,
+      "f": 0.721713034824182,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x21g5.json"
+    },
+    {
+      "w": 7,
+      "h": 21,
+      "g": 6,
+      "f": 0.7832850234705742,
+      "path": "poc/swarm_thinband8/data/synth/brick_LS2_8x23g6_bl_7x21g6.json"
+    },
+    {
+      "w": 7,
+      "h": 21,
+      "g": 7,
+      "f": 0.766137400835234,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_8x20g6_k4r_7x21g7.json"
+    },
+    {
+      "w": 7,
+      "h": 22,
+      "g": 4,
+      "f": 0.6960367214738312,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x22g4.json"
+    },
+    {
+      "w": 7,
+      "h": 22,
+      "g": 5,
+      "f": 0.6793812503334955,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_7x22_g5_r0_B5_22x7_T.json"
+    },
+    {
+      "w": 7,
+      "h": 22,
+      "g": 6,
+      "f": 0.7577112399240962,
+      "path": "poc/swarm_thinband8/data/synth/brick_P2_9x22g6_rr_7x22g6.json"
+    },
+    {
+      "w": 7,
+      "h": 22,
+      "g": 7,
+      "f": 0.7660787262727613,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_8x21g6_k4r_7x22g7.json"
+    },
+    {
+      "w": 7,
+      "h": 23,
+      "g": 4,
+      "f": 0.6960369600056922,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x23g4.json"
+    },
+    {
+      "w": 7,
+      "h": 23,
+      "g": 5,
+      "f": 0.7019990738734023,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x23g5.json"
+    },
+    {
+      "w": 7,
+      "h": 23,
+      "g": 6,
+      "f": 0.6977508528349494,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_7x23g6.json"
+    },
+    {
+      "w": 7,
+      "h": 23,
+      "g": 7,
+      "f": 0.7608983683720902,
+      "path": "poc/swarm_thinband8/data/synth/brick_P2_9x23g7_rr_7x23g7.json"
+    },
+    {
+      "w": 8,
+      "h": 15,
+      "g": 4,
+      "f": 0.7044738270536239,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x15g4.json"
+    },
+    {
+      "w": 8,
+      "h": 15,
+      "g": 5,
+      "f": 0.7316822151382407,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x15g5.json"
+    },
+    {
+      "w": 8,
+      "h": 16,
+      "g": 4,
+      "f": 0.6859781879134061,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x16g4.json"
+    },
+    {
+      "w": 8,
+      "h": 16,
+      "g": 5,
+      "f": 0.7316851789172887,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x16g5.json"
+    },
+    {
+      "w": 8,
+      "h": 17,
+      "g": 4,
+      "f": 0.6859795786059149,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x17g4.json"
+    },
+    {
+      "w": 8,
+      "h": 17,
+      "g": 5,
+      "f": 0.7112166887561013,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x17g5.json"
+    },
+    {
+      "w": 8,
+      "h": 17,
+      "g": 6,
+      "f": 0.7418442793216258,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x17_g6_r0_B6_8x17_m587_TLV.json"
+    },
+    {
+      "w": 8,
+      "h": 17,
+      "g": 7,
+      "f": 0.7615364017006705,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x17_g7_r0_B7_17x8_T.json"
+    },
+    {
+      "w": 8,
+      "h": 18,
+      "g": 4,
+      "f": 0.6859790515667434,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x18g4.json"
+    },
+    {
+      "w": 8,
+      "h": 18,
+      "g": 5,
+      "f": 0.711184201161835,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x18g5.json"
+    },
+    {
+      "w": 8,
+      "h": 18,
+      "g": 6,
+      "f": 0.7320372870596934,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x18_g6_r0_B6_18x8_m539_TLH_T.json"
+    },
+    {
+      "w": 8,
+      "h": 18,
+      "g": 7,
+      "f": 0.7648301486648776,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x17g6_k5l_8x18g7.json"
+    },
+    {
+      "w": 8,
+      "h": 18,
+      "g": 8,
+      "f": 0.7761109856366097,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x18_g8_r0_B8_18x8_walk_T.json"
+    },
+    {
+      "w": 8,
+      "h": 19,
+      "g": 4,
+      "f": 0.6859784083365383,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x19g4.json"
+    },
+    {
+      "w": 8,
+      "h": 19,
+      "g": 5,
+      "f": 0.7094113659111052,
+      "path": "poc/swarm_thinband8/data/synth/brick_P2_10x19g5_lr_8x19g5.json"
+    },
+    {
+      "w": 8,
+      "h": 19,
+      "g": 6,
+      "f": 0.7320372870597076,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x19_g6_r0_B6_19x8_m539_TLH_T.json"
+    },
+    {
+      "w": 8,
+      "h": 19,
+      "g": 7,
+      "f": 0.759995592668055,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x18g6_k3l_8x19g7.json"
+    },
+    {
+      "w": 8,
+      "h": 20,
+      "g": 4,
+      "f": 0.6859789065852588,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x20g4.json"
+    },
+    {
+      "w": 8,
+      "h": 20,
+      "g": 5,
+      "f": 0.6919412159303882,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x20g5.json"
+    },
+    {
+      "w": 8,
+      "h": 20,
+      "g": 6,
+      "f": 0.7320372870597254,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x20_g6_r0_B6_20x8_m539_TLH_T.json"
+    },
+    {
+      "w": 8,
+      "h": 20,
+      "g": 7,
+      "f": 0.7599813743730817,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x19g6_k3l_8x20g7.json"
+    },
+    {
+      "w": 8,
+      "h": 21,
+      "g": 4,
+      "f": 0.6628295735050429,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSrm_8x22g5_k3_8x21g4.json"
+    },
+    {
+      "w": 8,
+      "h": 21,
+      "g": 5,
+      "f": 0.7111847256298365,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x21g5.json"
+    },
+    {
+      "w": 8,
+      "h": 21,
+      "g": 6,
+      "f": 0.7104214978066743,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x21g6.json"
+    },
+    {
+      "w": 8,
+      "h": 21,
+      "g": 7,
+      "f": 0.7599810512461005,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x20g6_k3l_8x21g7.json"
+    },
+    {
+      "w": 8,
+      "h": 22,
+      "g": 4,
+      "f": 0.6859796859878813,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x22g4.json"
+    },
+    {
+      "w": 8,
+      "h": 22,
+      "g": 5,
+      "f": 0.6781552763193712,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x22g5.json"
+    },
+    {
+      "w": 8,
+      "h": 22,
+      "g": 6,
+      "f": 0.7320372870597538,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x22_g6_r0_B6_22x8_m539_TLH_T.json"
+    },
+    {
+      "w": 8,
+      "h": 22,
+      "g": 7,
+      "f": 0.7240209334675018,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x22_g7_r0_B7_8x22_vs_right.json"
+    },
+    {
+      "w": 8,
+      "h": 22,
+      "g": 8,
+      "f": 0.7696736165391371,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x21g7_k3r_8x22g8.json"
+    },
+    {
+      "w": 8,
+      "h": 23,
+      "g": 4,
+      "f": 0.6859810348136595,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x23g4.json"
+    },
+    {
+      "w": 8,
+      "h": 23,
+      "g": 5,
+      "f": 0.6731420123282508,
+      "path": "poc/swarm_thinband8/data/synth/brick_L1_8x24g5_b_8x23g5.json"
+    },
+    {
+      "w": 8,
+      "h": 23,
+      "g": 6,
+      "f": 0.6866297656095135,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_8x23_g6_r0_B6_23x8_left_T.json"
+    },
+    {
+      "w": 8,
+      "h": 23,
+      "g": 7,
+      "f": 0.72421272770152,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_8x23g7.json"
+    },
+    {
+      "w": 8,
+      "h": 23,
+      "g": 8,
+      "f": 0.7426653963086203,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSaddP_9x22g7_k3r_8x23g8.json"
+    },
+    {
+      "w": 9,
+      "h": 15,
+      "g": 4,
+      "f": 0.6796255264032105,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x15g4.json"
+    },
+    {
+      "w": 9,
+      "h": 15,
+      "g": 5,
+      "f": 0.7316842560082062,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x15g5.json"
+    },
+    {
+      "w": 9,
+      "h": 16,
+      "g": 4,
+      "f": 0.6425692505904976,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x16_g4_r0_B4_16x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 16,
+      "g": 5,
+      "f": 0.7022735266652536,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x16g5.json"
+    },
+    {
+      "w": 9,
+      "h": 17,
+      "g": 4,
+      "f": 0.6425692511597845,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x17_g4_r0_B4_17x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 17,
+      "g": 5,
+      "f": 0.6841436079811452,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x17_g5_r0_B5_9x17_m739_TLV.json"
+    },
+    {
+      "w": 9,
+      "h": 17,
+      "g": 6,
+      "f": 0.7324598795192436,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x17_g6_r0_B6_9x17_n796_bottom.json"
+    },
+    {
+      "w": 9,
+      "h": 18,
+      "g": 4,
+      "f": 0.6425692512097854,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x18_g4_r0_B4_18x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 18,
+      "g": 5,
+      "f": 0.6841436080886645,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x18_g5_r0_B5_9x18_m739_TLV.json"
+    },
+    {
+      "w": 9,
+      "h": 18,
+      "g": 6,
+      "f": 0.7058823681409834,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x18_g6_r0_B6_9x18_m796_TLV.json"
+    },
+    {
+      "w": 9,
+      "h": 19,
+      "g": 4,
+      "f": 0.6425692512597863,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x19_g4_r0_B4_19x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 19,
+      "g": 5,
+      "f": 0.68414360822144,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x19_g5_r0_B5_19x9_m739_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 19,
+      "g": 6,
+      "f": 0.7058823682465274,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x19_g6_r0_B6_19x9_m796_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 20,
+      "g": 4,
+      "f": 0.64256925130978,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x20_g4_r0_B4_20x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 20,
+      "g": 5,
+      "f": 0.6841436082973971,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x20_g5_r0_B5_20x9_m739_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 20,
+      "g": 6,
+      "f": 0.7058823692161837,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x20_g6_r0_B6_20x9_m796_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 20,
+      "g": 7,
+      "f": 0.7519570494870358,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSadd_9x19g6_k3_9x20g7.json"
+    },
+    {
+      "w": 9,
+      "h": 21,
+      "g": 4,
+      "f": 0.6425692513597809,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x21_g4_r0_B4_21x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 21,
+      "g": 5,
+      "f": 0.6841436083996157,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x21_g5_r0_B5_21x9_m739_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 21,
+      "g": 6,
+      "f": 0.6925709689236221,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x21g6.json"
+    },
+    {
+      "w": 9,
+      "h": 21,
+      "g": 7,
+      "f": 0.7243442206949275,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x21g7.json"
+    },
+    {
+      "w": 9,
+      "h": 22,
+      "g": 4,
+      "f": 0.6425692514097818,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x22_g4_r0_B4_22x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 22,
+      "g": 5,
+      "f": 0.6841436085139456,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x22_g5_r0_B5_22x9_m739_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 22,
+      "g": 6,
+      "f": 0.6925709170512455,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x22g6.json"
+    },
+    {
+      "w": 9,
+      "h": 22,
+      "g": 7,
+      "f": 0.7158029668451853,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x22g7.json"
+    },
+    {
+      "w": 9,
+      "h": 22,
+      "g": 8,
+      "f": 0.7466057432783941,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSadd_9x21g7_k3_9x22g8.json"
+    },
+    {
+      "w": 9,
+      "h": 23,
+      "g": 4,
+      "f": 0.6425692514597827,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x23_g4_r0_B4_23x9_m684_TLH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 23,
+      "g": 5,
+      "f": 0.6841436086056838,
+      "path": "poc/swarm_thinband8/data/harvest/brick_H_9x23_g5_r0_B5_23x9_m739_BRH_T.json"
+    },
+    {
+      "w": 9,
+      "h": 23,
+      "g": 6,
+      "f": 0.6925736188922809,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x23g6.json"
+    },
+    {
+      "w": 9,
+      "h": 23,
+      "g": 7,
+      "f": 0.7158028631503761,
+      "path": "poc/swarm_thinband8/data/synth/brick_MW_9x23g7.json"
+    },
+    {
+      "w": 9,
+      "h": 23,
+      "g": 8,
+      "f": 0.7456672851685298,
+      "path": "poc/swarm_thinband8/data/synth/brick_VSadd_9x22g7_k3_9x23g8.json"
+    }
+  ]
+}

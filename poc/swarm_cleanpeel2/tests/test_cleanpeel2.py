@@ -33,10 +33,10 @@ def test_final_csv_structure_and_certify():
     pd_text = pd.read_csv(FINAL_CSV).to_csv(index=False)
     pd_groups = auto_union.parse_text(pd_text)
 
-    assert sorted(lit.keys()) == [972]
-    assert sorted(pd_groups.keys()) == [972]
+    assert sorted(lit.keys()) == [974]
+    assert sorted(pd_groups.keys()) == [974]
 
-    res = auto_union.check((972, lit[972], pd_groups[972]))
-    assert res is not None, "n=972 failed auto_union certification"
+    res = auto_union.check((974, lit[974], pd_groups[974]))
+    assert res is not None, "n=974 failed auto_union certification"
     assert res[0] == res[1], "literal and pandas bounding boxes must match"
-    assert Decimal(res[0]) < Decimal("31.65651217859088684474960132018240325435968880086005")
+    assert Decimal(res[0]) < Decimal("31.70588674578704613076867830826556069883066765387483")

@@ -1,0 +1,37 @@
+{
+  "targets": {
+    "914": {
+      "n": 914,
+      "m": 30,
+      "r": 14,
+      "L_inc": "30.73111626861411572024978804394509903427202681081244",
+      "win": true,
+      "best_L": "30.72975466987644734709949348012170182579138210627932",
+      "dL": -0.001361598737668373,
+      "label": "n914_B7_8x22_vs_right+B7_8x22_vs_right_T_id_flipy_sf0.0_fhi_melt_lpslack_lpslack_mw_lp2",
+      "pairs": [
+        {
+          "pair": "p_n854_19x11_g7_T+p_n854_19x11_g7",
+          "kx": 0,
+          "ky": 0,
+          "L": null,
+          "dL": null,
+          "win": false
+        },
+        {
+          "pair": "B7_8x22_vs_right+B7_8x22_vs_right_T",
+          "kx": 0,
+          "ky": 0,
+          "L": "30.729754669876447",
+          "dL": -0.001361598737668373,
+          "win": true,
+          "label": "n914_B7_8x22_vs_right+B7_8x22_vs_right_T_id_flipy_sf0.0_fhi_melt_lpslack_lpslack_mw_lp2"
+        }
+      ],
+      "dt": 3783.6
+    }
+  },
+  "wins": [
+    914
+  ]
+}
