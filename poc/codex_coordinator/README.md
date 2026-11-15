@@ -8,11 +8,11 @@ POC folder; the coordinator does not run packing searches.
 
 | quantity | value |
 |---|---|
-| synced upstream `main` | `b5ad5368c408e5940d8e1fc6a62c2cbcf243c47f` |
-| merge artifact | `merged-22.14341046689.csv` |
-| certified score | **22.143410466888355** |
+| synced upstream `main` | `ddcef3407faba663d2dd994b4b014fbd95dfbbd3` |
+| merge artifact | `merged-22.14333595647.csv` |
+| certified score | **22.14333595647** |
 | goal | **<= 22.0999** |
-| remaining required reduction | **0.043510466888355** |
+| remaining required reduction | **0.04343595647** |
 | median-aware leader snapshot | `poc/leader_curve_analysis/data/perpuzzle_best.csv` |
 
 The fresh audit uses the synced canonical
