@@ -7,7 +7,26 @@ Why it works:
 - In multi-pocket assemblies (e.g., `n=852` pairing `(9,17,+5)<739>` with `f=0.6841436` and `(20,11,+6)<3007T>` with `f=0.6862194`), freeing angles across the boundary allows the wider sub-pocket to compress right down to the narrower sub-pocket's bounding span (`29.686219 -> 29.6841436094`), yielding an extra `-2.075e-3` compression beyond rigid staircase composition.
 - Furthermore, even positive-slack DP seams like `n=793` (`dL_rigid = +1.707e-3`, `(9,16,+4)<684T> + (19,10,+5)<793T>`) unlock a `-2.673e-3` big-move drop (`4.380e-3` total compression below rigid!) once `lpslack` is followed by `mechwalk_compress`.
 
-## PR4 Certified Wins (vs `origin/main` `310ff68`, `literal == pandas`)
+## PR5 Certified Wins (vs `origin/main` `10a15e8`, `literal == pandas`, Final PR before Retirement)
+
+After refreshing the union incumbent against `310ff68` (`312` bricks across `gstep`, `pocketpeel`, `b7xplant`, `vstrip492`, and `watchxplant` + `75` rescanned donors -> `1,315` Pareto pocket records and `240` qualifying DP cells, including `55` cells with new non-self compositions), Wave 6 Batch A (`pslp_ratchet.py`) landed **4 strict wins** (`literal == pandas`, verified against full `origin/main` `10a15e8` portfolio):
+
+| `n` | `K` | `D` | Seam Composition | `L_inc` (`origin/main` `10a15e8`) | `L_new` (`softseamdp`) | `dL` | `ds_L2n` (`L^2/n`) |
+| ---: | ---: | ---: | :--- | :--- | :--- | ---: | ---: |
+| **970** | 31 | 9 | `(10,19,+4)<908> + (20,11,+5)<970>` | `31.637686864998290171` (`merged.csv`) | `31.637086208288271655` | **`-6.006567e-04`** | `-3.918187e-05` |
+| **908** | 30 | 8 | `(19,11,+4)<791> + (10,19,+4)<908>` | `30.627807750446854375` (`merged.csv`) | `30.627635758528806102` | **`-1.719919e-04`** | `-1.160291e-05` |
+| **977** | 31 | 16 | `(20,9,+7)<3026> + (11,21,+9)<689>` | `31.744187861759593775` (`merged.csv`) | `31.744087108776062180` | **`-1.007530e-04`** | `-6.547219e-06` |
+| **915** | 30 | 15 | `(18,8,+6)<3180> + (12,21,+9)<3205>` | `30.740322728302614957` (`merged.csv`) | `30.740322725768730590` | **`-2.533884e-09`** | `-1.702567e-10` |
+| **Total (4)** | | | | | | **`-8.734041e-04`** | **`-5.733217e-05`** |
+
+### Retirement Summary (`WORKED` / `FAILED`)
+- **WORKED**:
+  - Cross-donor 2-pocket/3-pocket staircase DP with positive rigid slack (`dL_rigid <= +8.0e-3`), masked C++ seam-overlap melting, `lpslack` (`dual_non90`), and kink-safe `pslp.squeeze` (including multi-kick `center=0.08..0.4` + angle perturbations to escape local `lpslack` stalls, e.g., `n=632`, `n=798`).
+  - Delivered 28 strict dual-certified wins across PR1–PR5 (`n=852` `-4.384e-3`, `n=793` `-2.673e-3`, `n=970` `-6.01e-4`, `n=492` `-2.31e-4`, `n=908` `-1.72e-4`, `n=977` `-1.01e-4`, `n=910` `-6.85e-5`, `n=405` `-3.63e-5`, etc.).
+- **FAILED**:
+  - Remaining positive-slack DP cells at `10a15e8` either fail rigid/melt seam feasibility (`849, 538, 739, 852, 913, 853` in Wave 6 Batch A) or stall above `L_inc` (e.g., `n=850` at `+2.613e-3`); multi-pocket seam recomposition no longer yields `>= 1e-3` wins without new `band3`/`peel` sub-brick families (`RETIRED` per `#717` / `#725`).
+
+## PR4 Merged Wins (PR #118, `79fd5e2`, already in `origin/main` `10a15e8`)
 
 After rebuilding the union incumbent against `99c95bd` (`180` bricks including `77` from `swarm_pocketpeel` and `45` from `swarm_b7xplant`, plus `67` rescanned donors -> `1,332` Pareto pocket records and `240` qualifying DP cells) and pairing `build_and_polish` with multi-kick `pslp.squeeze` (`center=0.08..0.4` + angle perturbations) + `lpslack`, PR4 lands **5 strict wins** (`literal == pandas`, all strictly beating `origin/main` `310ff68` `merged.csv`):
 
