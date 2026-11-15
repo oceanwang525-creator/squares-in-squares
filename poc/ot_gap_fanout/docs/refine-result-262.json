@@ -1,0 +1,554 @@
+{
+  "n": 262,
+  "incumbent_side": 16.707106781186564,
+  "maps": 24,
+  "screened_starts": 13230,
+  "repaired_starts": 40,
+  "attempts": [
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -3,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.009732121029033317,
+      "final_penalty": 8.04653966553882e-12,
+      "max_violation": 4.812194231984535e-07,
+      "dilation": 1.0000004124094013,
+      "dilated_side": 16.707113863665082,
+      "fixed_angle_lp_side": 16.70711127255117,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -3,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.009732265048036039,
+      "final_penalty": 1.6958237247945316e-11,
+      "max_violation": 7.166587936424662e-07,
+      "dilation": 1.000000593784966,
+      "dilated_side": 16.707116091951647,
+      "fixed_angle_lp_side": 16.707111265164233,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.009226852543248776,
+      "final_penalty": 2.184191233536159e-11,
+      "max_violation": 5.981399293641942e-07,
+      "dilation": 1.0000004956001902,
+      "dilated_side": 16.707115234081385,
+      "fixed_angle_lp_side": 16.707111341746963,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00922699311438549,
+      "final_penalty": 2.805563506967805e-11,
+      "max_violation": 6.940124355203636e-07,
+      "dilation": 1.0000005750239866,
+      "dilated_side": 16.707115567282045,
+      "fixed_angle_lp_side": 16.70711138680409,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.009694365000266027,
+      "final_penalty": 4.467804794919832e-11,
+      "max_violation": 1.162881112737324e-06,
+      "dilation": 1.0000011537516031,
+      "dilated_side": 16.707126791709662,
+      "fixed_angle_lp_side": 16.707120088626525,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          1.0
+        ],
+        [
+          3,
+          1.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.008513987757980675,
+      "final_penalty": 4.842431206761214e-11,
+      "max_violation": 1.0303358197738532e-06,
+      "dilation": 1.0000008536467315,
+      "dilated_side": 16.707121257938006,
+      "fixed_angle_lp_side": 16.707115085960478,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.009694505822578695,
+      "final_penalty": 5.409293955056451e-11,
+      "max_violation": 1.0942507324696038e-06,
+      "dilation": 1.0000010260614833,
+      "dilated_side": 16.707123634952346,
+      "fixed_angle_lp_side": 16.707120030535197,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          1.0
+        ],
+        [
+          3,
+          1.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00851412311636695,
+      "final_penalty": 6.336874100693186e-11,
+      "max_violation": 1.1787143066044337e-06,
+      "dilation": 1.0000009765684523,
+      "dilated_side": 16.707122253347872,
+      "fixed_angle_lp_side": 16.707114964767364,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -3,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.009732905158677366,
+      "final_penalty": 7.789119841887962e-11,
+      "max_violation": 9.944318868360114e-07,
+      "dilation": 1.0000008239008509,
+      "dilated_side": 16.707116078866598,
+      "fixed_angle_lp_side": 16.707111219111543,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00922761790716908,
+      "final_penalty": 1.1109294810528016e-10,
+      "max_violation": 1.242053051075942e-06,
+      "dilation": 1.0000010290381078,
+      "dilated_side": 16.707119532984805,
+      "fixed_angle_lp_side": 16.707111649050454,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.009695131731762932,
+      "final_penalty": 1.6727688926681843e-10,
+      "max_violation": 1.6043993424919023e-06,
+      "dilation": 1.0000015156540802,
+      "dilated_side": 16.7071284652652,
+      "fixed_angle_lp_side": 16.70712007090979,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          1.0
+        ],
+        [
+          3,
+          1.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00851472473955214,
+      "final_penalty": 1.6771819376879107e-10,
+      "max_violation": 1.4228251226100497e-06,
+      "dilation": 1.0000011787985632,
+      "dilated_side": 16.7071224513572,
+      "fixed_angle_lp_side": 16.707115012162046,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.009228398972019079,
+      "final_penalty": 2.833728348598391e-10,
+      "max_violation": 1.7239313339079132e-06,
+      "dilation": 1.0000014282414256,
+      "dilated_side": 16.70712139802641,
+      "fixed_angle_lp_side": 16.707112089921498,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -3,
+          1.0
+        ],
+        [
+          1,
+          2.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.00973370535709682,
+      "final_penalty": 2.8463839497329607e-10,
+      "max_violation": 1.8498855012261117e-06,
+      "dilation": 1.0000018499889234,
+      "dilated_side": 16.707128966284376,
+      "fixed_angle_lp_side": 16.707111168527668,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.009695914192263061,
+      "final_penalty": 3.5417782319134135e-10,
+      "max_violation": 2.373311923431487e-06,
+      "dilation": 1.0000019662242368,
+      "dilated_side": 16.707130885576746,
+      "fixed_angle_lp_side": 16.7071200607865,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          -1,
+          1.0
+        ],
+        [
+          1,
+          1.0
+        ],
+        [
+          3,
+          1.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.008515476838230306,
+      "final_penalty": 4.0741073710902e-10,
+      "max_violation": 2.4276132295497632e-06,
+      "dilation": 1.0000020111989785,
+      "dilated_side": 16.70713180834891,
+      "fixed_angle_lp_side": 16.707115524579468,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.008952649910038725,
+      "final_penalty": 1.6172973344032816e-09,
+      "max_violation": 5.239170578041907e-06,
+      "dilation": 1.0000043405259813,
+      "dilated_side": 16.707182029750207,
+      "fixed_angle_lp_side": 16.70715075908652,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00895277508548007,
+      "final_penalty": 1.7256988159655557e-09,
+      "max_violation": 5.621007577172321e-06,
+      "dilation": 1.0000046568629826,
+      "dilated_side": 16.707186382743295,
+      "fixed_angle_lp_side": 16.707150472637146,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          3,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-07,
+      "alpha": 0.05,
+      "initial_penalty": 0.00956161590296081,
+      "final_penalty": 1.8411043748216416e-09,
+      "max_violation": 4.648901625436963e-06,
+      "dilation": 1.000003851500342,
+      "dilated_side": 16.707172449572116,
+      "fixed_angle_lp_side": 16.707148354284385,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          3,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.00956176707233447,
+      "final_penalty": 1.93913809343281e-09,
+      "max_violation": 4.724026693381234e-06,
+      "dilation": 1.0000039137386088,
+      "dilated_side": 16.707173667998088,
+      "fixed_angle_lp_side": 16.7071481840525,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.008953331455929968,
+      "final_penalty": 2.145531862531735e-09,
+      "max_violation": 5.456891195132485e-06,
+      "dilation": 1.0000045208589874,
+      "dilated_side": 16.70718034245093,
+      "fixed_angle_lp_side": 16.707150630119486,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          3,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 5e-06,
+      "alpha": 0.05,
+      "initial_penalty": 0.009562438968703513,
+      "final_penalty": 2.485185628677005e-09,
+      "max_violation": 5.464672393706849e-06,
+      "dilation": 1.0000045273282951,
+      "dilated_side": 16.707180114617458,
+      "fixed_angle_lp_side": 16.70714854475854,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          1,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.00895402699983637,
+      "final_penalty": 2.6325815894636407e-09,
+      "max_violation": 6.004256317027057e-06,
+      "dilation": 1.0000049743266133,
+      "dilated_side": 16.707183391694898,
+      "fixed_angle_lp_side": 16.707149948432658,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    },
+    {
+      "epsilon": 0.018,
+      "schedule": [
+        [
+          3,
+          2.0
+        ],
+        [
+          4,
+          1.0
+        ]
+      ],
+      "delta": 1e-05,
+      "alpha": 0.05,
+      "initial_penalty": 0.00956327891375075,
+      "final_penalty": 3.106134911769862e-09,
+      "max_violation": 5.664401108385064e-06,
+      "dilation": 1.0000046927953876,
+      "dilated_side": 16.707177502324104,
+      "fixed_angle_lp_side": 16.707148135282406,
+      "fixed_angle_lp_violation": 1.000088900582341e-11
+    }
+  ],
+  "elapsed_seconds": 50.80575745799979
+}
