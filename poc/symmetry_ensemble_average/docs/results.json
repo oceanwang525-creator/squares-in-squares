@@ -1,0 +1,433 @@
+{
+  "method": "dihedral Hungarian alignment plus contact-weighted consensus",
+  "targets": [
+    803,
+    328,
+    908
+  ],
+  "results": [
+    {
+      "n": 803,
+      "incumbent_side": 28.81726587682309,
+      "alternatives": [
+        {
+          "path": "poc/postmerge_gap_refresh/final.csv",
+          "transform": 0,
+          "alignment_score": 0.0002578642361807691
+        },
+        {
+          "path": "poc/guestdata_atlas/final.csv",
+          "transform": 0,
+          "alignment_score": 0.0002578642361836233
+        },
+        {
+          "path": "poc/public_watch_nov13/final.csv",
+          "transform": 0,
+          "alignment_score": 0.0005099605921687869
+        }
+      ],
+      "attempts": [
+        {
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "energy": 0.09120183481643435,
+          "max_violation": 0.06225783446375621,
+          "overlap_pairs": 1557,
+          "repair_side": 28.901270836759306,
+          "dilation": 1.25,
+          "feasible_side": 35.876586678262065
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.2,
+          "energy": 0.10007207483122565,
+          "max_violation": 0.06083566217321479,
+          "overlap_pairs": 1610,
+          "repair_side": 28.901891009785874,
+          "dilation": 1.25,
+          "feasible_side": 35.87736093615821
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.2,
+          "energy": 0.17485000308197443,
+          "max_violation": 0.06490407187817404,
+          "overlap_pairs": 1557,
+          "repair_side": 28.94047472533567,
+          "dilation": 1.25,
+          "feasible_side": 35.925589317712706
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "energy": 0.30149433279305143,
+          "max_violation": 0.11420619682745187,
+          "overlap_pairs": 1557,
+          "repair_side": 29.003106134380317,
+          "dilation": 1.25,
+          "feasible_side": 36.000633096873216
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "energy": 0.27022572822338814,
+          "max_violation": 0.1217041787269868,
+          "overlap_pairs": 1543,
+          "repair_side": 29.009437179082713,
+          "dilation": 1.25,
+          "feasible_side": 36.01179288716408
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.4,
+          "energy": 4.4276262921488865,
+          "max_violation": 0.19024288199943207,
+          "overlap_pairs": 1937,
+          "repair_side": 29.104101284403843,
+          "dilation": 1.25,
+          "feasible_side": 36.12934015421928
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.4,
+          "energy": 3.9891723410224613,
+          "max_violation": 0.1902434138968292,
+          "overlap_pairs": 1944,
+          "repair_side": 29.1334376983753,
+          "dilation": 1.25,
+          "feasible_side": 36.16672964226192
+        },
+        {
+          "delta": 1e-06,
+          "alpha": 0.4,
+          "energy": 5.081695010010605,
+          "max_violation": 0.2269238533982587,
+          "overlap_pairs": 1851,
+          "repair_side": 29.164617147300753,
+          "dilation": 1.25,
+          "feasible_side": 36.20561811424675
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.4,
+          "energy": 4.654295278755212,
+          "max_violation": 0.24149389857548442,
+          "overlap_pairs": 1860,
+          "repair_side": 29.208199499921264,
+          "dilation": 1.25,
+          "feasible_side": 36.260200694417996
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.4,
+          "energy": 5.203671844912799,
+          "max_violation": 0.24435956770953404,
+          "overlap_pairs": 1822,
+          "repair_side": 29.231199117299397,
+          "dilation": 1.25,
+          "feasible_side": 36.28898062488116
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.9,
+          "energy": 9.962238542136776,
+          "max_violation": 0.2994726452869708,
+          "overlap_pairs": 1844,
+          "repair_side": 29.25194673862344,
+          "dilation": 1.25,
+          "feasible_side": 36.31482815357549
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.9,
+          "energy": 13.594419608970778,
+          "max_violation": 0.33247810874126693,
+          "overlap_pairs": 1901,
+          "repair_side": 29.301250445472828,
+          "dilation": 1.25,
+          "feasible_side": 36.3765505099126
+        }
+      ],
+      "best": null,
+      "certification_error": null,
+      "elapsed_seconds": 19.09405041699938
+    },
+    {
+      "n": 328,
+      "incumbent_side": 18.614368938490983,
+      "alternatives": [],
+      "attempts": [
+        {
+          "delta": 1e-06,
+          "alpha": 0.4,
+          "energy": 0.0007306803866357853,
+          "max_violation": 0.005914079853702958,
+          "overlap_pairs": 715,
+          "repair_side": 18.62305493985426,
+          "dilation": 1.25,
+          "feasible_side": 23.028814944522185
+        },
+        {
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "energy": 0.003054625371988714,
+          "max_violation": 0.01536247113304623,
+          "overlap_pairs": 676,
+          "repair_side": 18.638169619993263,
+          "dilation": 1.25,
+          "feasible_side": 23.047711323184966
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.2,
+          "energy": 0.004776577112928789,
+          "max_violation": 0.02000810299187028,
+          "overlap_pairs": 659,
+          "repair_side": 18.64648798282666,
+          "dilation": 1.25,
+          "feasible_side": 23.058107331228786
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.2,
+          "energy": 0.004767789472679674,
+          "max_violation": 0.02021268361794759,
+          "overlap_pairs": 586,
+          "repair_side": 18.646574053753984,
+          "dilation": 1.25,
+          "feasible_side": 23.058216230466414
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "energy": 0.004672066355931847,
+          "max_violation": 0.019927387825973808,
+          "overlap_pairs": 619,
+          "repair_side": 18.646997043060974,
+          "dilation": 1.25,
+          "feasible_side": 23.058745926287397
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "energy": 0.006530967861586975,
+          "max_violation": 0.022640176298040382,
+          "overlap_pairs": 654,
+          "repair_side": 18.651046884603417,
+          "dilation": 1.25,
+          "feasible_side": 23.06380723442199
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.4,
+          "energy": 0.04839278706991358,
+          "max_violation": 0.05120216563142599,
+          "overlap_pairs": 640,
+          "repair_side": 18.694826063476704,
+          "dilation": 1.25,
+          "feasible_side": 23.11849938746658
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.4,
+          "energy": 0.10252143480341036,
+          "max_violation": 0.0557683255164233,
+          "overlap_pairs": 758,
+          "repair_side": 18.69660359541155,
+          "dilation": 1.25,
+          "feasible_side": 23.120753737939086
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.4,
+          "energy": 0.10868000912257186,
+          "max_violation": 0.06871994450296626,
+          "overlap_pairs": 692,
+          "repair_side": 18.696999567423646,
+          "dilation": 1.25,
+          "feasible_side": 23.121240226430718
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.4,
+          "energy": 0.11854291214955681,
+          "max_violation": 0.0734831260914025,
+          "overlap_pairs": 675,
+          "repair_side": 18.708360609258882,
+          "dilation": 1.25,
+          "feasible_side": 23.135386085731014
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.65,
+          "energy": 0.7356510825347533,
+          "max_violation": 0.15092827689694077,
+          "overlap_pairs": 648,
+          "repair_side": 18.815914400343736,
+          "dilation": 1.25,
+          "feasible_side": 23.269865382926824
+        },
+        {
+          "delta": 1e-06,
+          "alpha": 0.65,
+          "energy": 0.6820034159461474,
+          "max_violation": 0.12470645635461014,
+          "overlap_pairs": 679,
+          "repair_side": 18.82584770850773,
+          "dilation": 1.25,
+          "feasible_side": 23.28230864800172
+        }
+      ],
+      "best": null,
+      "certification_error": null,
+      "elapsed_seconds": 8.033036165999874
+    },
+    {
+      "n": 908,
+      "incumbent_side": 30.627635758528807,
+      "alternatives": [
+        {
+          "path": "poc/guestdata_atlas/final.csv",
+          "transform": 3,
+          "alignment_score": 0.010403902505186023
+        },
+        {
+          "path": "poc/dual-pocket/final.csv",
+          "transform": 3,
+          "alignment_score": 0.010405104850519183
+        },
+        {
+          "path": "poc/public_watch_nov14/final.csv",
+          "transform": 3,
+          "alignment_score": 0.011933436678318208
+        }
+      ],
+      "attempts": [
+        {
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "energy": 0.06116158118334097,
+          "max_violation": 0.028625425764899015,
+          "overlap_pairs": 2170,
+          "repair_side": 30.66607939186484,
+          "dilation": 1.25,
+          "feasible_side": 38.08255844859547
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.2,
+          "energy": 0.0754550573236335,
+          "max_violation": 0.04525268844529884,
+          "overlap_pairs": 2104,
+          "repair_side": 30.667673270322926,
+          "dilation": 1.25,
+          "feasible_side": 38.08458528550062
+        },
+        {
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "energy": 0.09726806434523542,
+          "max_violation": 0.04264163065489179,
+          "overlap_pairs": 2095,
+          "repair_side": 30.671697533122273,
+          "dilation": 1.25,
+          "feasible_side": 38.089582296441804
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "energy": 0.11260641915292455,
+          "max_violation": 0.040636781124226085,
+          "overlap_pairs": 2107,
+          "repair_side": 30.674099773375804,
+          "dilation": 1.25,
+          "feasible_side": 38.0925756828094
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.2,
+          "energy": 0.13969047286168645,
+          "max_violation": 0.03760144326744497,
+          "overlap_pairs": 2034,
+          "repair_side": 30.699155808498208,
+          "dilation": 1.25,
+          "feasible_side": 38.123879182701714
+        },
+        {
+          "delta": 1e-08,
+          "alpha": 0.4,
+          "energy": 7.285430956537203,
+          "max_violation": 0.25356195295936945,
+          "overlap_pairs": 2143,
+          "repair_side": 30.983903284805823,
+          "dilation": 1.25,
+          "feasible_side": 38.47987199829675
+        },
+        {
+          "delta": 1e-07,
+          "alpha": 0.4,
+          "energy": 7.719908352976224,
+          "max_violation": 0.2306048219733733,
+          "overlap_pairs": 2131,
+          "repair_side": 31.03544939311034,
+          "dilation": 1.25,
+          "feasible_side": 38.544273834645374
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.9,
+          "energy": 10.665894689844432,
+          "max_violation": 0.25904075989640574,
+          "overlap_pairs": 2165,
+          "repair_side": 31.067761533995128,
+          "dilation": 1.25,
+          "feasible_side": 38.584571453533464
+        },
+        {
+          "delta": 1e-06,
+          "alpha": 0.4,
+          "energy": 6.405618657798655,
+          "max_violation": 0.2669855626765101,
+          "overlap_pairs": 2122,
+          "repair_side": 31.093177290587555,
+          "dilation": 1.25,
+          "feasible_side": 38.61646786350801
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.9,
+          "energy": 14.021983720178742,
+          "max_violation": 0.3007647879120392,
+          "overlap_pairs": 2173,
+          "repair_side": 31.102745845776408,
+          "dilation": 1.25,
+          "feasible_side": 38.62803036995853
+        },
+        {
+          "delta": 1e-05,
+          "alpha": 0.4,
+          "energy": 8.223350995247797,
+          "max_violation": 0.30456655719202436,
+          "overlap_pairs": 2120,
+          "repair_side": 31.109470884103917,
+          "dilation": 1.25,
+          "feasible_side": 38.636828444210146
+        },
+        {
+          "delta": 0.0001,
+          "alpha": 0.4,
+          "energy": 7.356653776806288,
+          "max_violation": 0.35391987692549753,
+          "overlap_pairs": 2140,
+          "repair_side": 31.146702811545044,
+          "dilation": 1.25,
+          "feasible_side": 38.68336390278096
+        }
+      ],
+      "best": null,
+      "certification_error": null,
+      "elapsed_seconds": 21.5980794169991
+    }
+  ],
+  "wins": {}
+}
