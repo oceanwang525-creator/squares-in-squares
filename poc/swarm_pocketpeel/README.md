@@ -27,6 +27,13 @@
 | **795** | `28, +11` | `n852_9x17_g5_peel_top(9x16+5) + n852_20x11_g6_peel_right(19x11+6)` (`kx=0, ky=-1`, direct + `lpslack` + `mw` + `pslp`) | `28.70340392291307166515` | `28.70273024996269759297` | **`-6.736730e-04`** | `-2.389272e-05` | `-4.864523e-05` |
 | **Total (2)** | | | | | | **`-6.894264e-05`** | **`-1.402292e-04`** |
 
+## PR2 Certified Win (vs `origin/main` `ccdac8f`, `literal == pandas`)
+PR1 (`n=914`, `30.72975429984269149810`) merged in PR #97 (`015db05`) and is preserved in `origin/main:merged.csv`. PR2 adds a newly synthesized zero-overlap win for `n=795` beating PR #104 (`vstrip492` `28.69912621005546637760`):
+
+| `n` | `K, D` | Pair & Method | `L_inc` (`origin/main` `ccdac8f`) | `L_new` (`pocketpeel`) | `dL` | `ds_L2n` (`d(L^2/n)`) |
+| ---: | :---: | :--- | :--- | :--- | ---: | ---: |
+| **795** | `28, +11` | `n852_9x17_g5_peel_top(9x16+5) + n852_BR_11x20_g6_peel_top_slp_walk_T(19x11+6)` (`kx=0, ky=-1`, direct + `mw` + `lpslack` + `pslp`) | `28.69912621005546637760` | `28.69912487031809005953` | **`-1.339737e-06`** | `-9.672778e-08` |
+
 ## Verification
 ```bash
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /tmp/highrpeel_venv/bin/python -m pytest -v poc/swarm_pocketpeel/tests/test_pocketpeel.py
