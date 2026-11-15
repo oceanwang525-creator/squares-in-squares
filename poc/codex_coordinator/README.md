@@ -317,3 +317,7 @@ endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
   With 8/10/12 bands and all dihedral transforms, the best covers were
   672/803, 672/791, and 900/908. The 908 case had spare height but lost at
   least eight squares at band cutoffs. Failure commit: `3595989`.
+- **H13 `symmetry_ensemble_average`: negative.** Dihedral contact-weighted
+  averaging of same-`n` alternatives produced 1,557 overlap pairs at 803,
+  715 at 328, and 2,170 at 908. The closest candidates were copies/micro-
+  perturbations, not complementary basins. Failure commit: `5365c5d`.
