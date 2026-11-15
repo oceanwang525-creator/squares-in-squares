@@ -1,0 +1,81 @@
+{
+  "tag": "pilot2",
+  "results": [
+    {
+      "n": 459,
+      "m": 21,
+      "r": 18,
+      "inc_L": "21.89499828173165578516614629249828218007886507984216",
+      "inc_source": "merged.csv",
+      "best_L": "21.89499783005804004511938527216958877886952251276065",
+      "dL": -4.5167361574004676e-07,
+      "win": true,
+      "win_label": "mw_m5_t2e-04_p_0.015",
+      "elapsed_s": 448.61,
+      "stages": {
+        "stage0": {
+          "L": 21.894998281731656,
+          "viol": 4.440892098500626e-16,
+          "dL": -1.4e-15,
+          "imp": true,
+          "trace": "init:L=21.894998282(v=4.4e-16)"
+        },
+        "track1_overinflate": {
+          "n_raw": 18,
+          "n_pol": 4,
+          "best_dL": 0.00011112910415035665,
+          "imp": false
+        },
+        "track2_walldrift": {
+          "n_raw": 28,
+          "n_pol": 4,
+          "best_dL": 1.0621924622568597e-06,
+          "imp": false
+        },
+        "track3_mechwalk": {
+          "n_pol": 3,
+          "best_dL": -4.5167361574004676e-07,
+          "imp": true
+        }
+      }
+    },
+    {
+      "n": 916,
+      "m": 30,
+      "r": 16,
+      "inc_L": "30.75023944175759502588226997073349783808019866118315",
+      "inc_source": "merged.csv",
+      "best_L": "30.75023944175759502588226997073349783808019866118315",
+      "dL": 0.0,
+      "win": false,
+      "win_label": null,
+      "elapsed_s": 1610.57,
+      "stages": {
+        "stage0": {
+          "L": 30.750239441757596,
+          "viol": 0.0,
+          "dL": 5.950140211011291e-12,
+          "imp": false,
+          "trace": "init:L=30.750239442(v=0.0e+00)"
+        },
+        "track1_overinflate": {
+          "n_raw": 18,
+          "n_pol": 4,
+          "best_dL": 0.007811315291281094,
+          "imp": false
+        },
+        "track2_walldrift": {
+          "n_raw": 28,
+          "n_pol": 4,
+          "best_dL": 3.923114526465188e-07,
+          "imp": false
+        },
+        "track3_mechwalk": {
+          "n_pol": 3,
+          "best_dL": 9.858333967909678e-08,
+          "imp": false
+        }
+      }
+    }
+  ]
+}
