@@ -100,7 +100,7 @@ def _solve_phase2_target(args: tuple[int, str, list[dict], bool, int]) -> dict:
             max_ov=1 if use_melt else 0,
             do_melt=use_melt,
             do_lpslack=True,
-            do_mechwalk=True,
+            do_mechwalk=False,
             do_pslp=True,
             n_threads=1,
         )
@@ -138,7 +138,8 @@ def main() -> None:
     frontier = vl.fast_load_true_frontier(targets)
     print(f"Loaded {len(bricks)} brick shapes across K=20..31, D=7..16 ({len(targets)} targets).", flush=True)
 
-    _squeeze_existing_wins(frontier)
+    if "--squeeze" in sys.argv:
+        _squeeze_existing_wins(frontier)
 
     ckpt_p1 = vl.DOCS_DIR / "scale_results.json"
     done_p1 = json.loads(ckpt_p1.read_text(encoding="utf-8")) if ckpt_p1.exists() else {}
@@ -160,9 +161,8 @@ def main() -> None:
         if z_pairs and str(n) not in done_p1 and key_z not in results:
             zero_jobs.append((z_pairs[0][0] - f_inc, n))
 
-        m_pairs = _select_candidate_pairs(m, r, f_inc, bricks, max_fm_margin=0.0015)
-        # Run melt on targets whose best pair is ct=1 or ov=1 with df <= +0.0005
-        has_non_zero = [p for p in m_pairs if (p[0] > 0 or p[2] > 0) and (p[1] - f_inc) <= 0.0005]
+        m_pairs = _select_candidate_pairs(m, r, f_inc, bricks, max_fm_margin=0.0005)
+        has_non_zero = [p for p in m_pairs if (p[0] > 0 or p[2] > 0) and (p[1] - f_inc) <= 0.0002]
         key_m = f"melt_{n}"
         if has_non_zero and key_m not in results:
             melt_jobs.append((has_non_zero[0][1] - f_inc, n))
@@ -171,8 +171,8 @@ def main() -> None:
     melt_jobs.sort()
     print(f"Queued {len(zero_jobs)} zero_ct0 targets + {len(melt_jobs)} ct=1/ov=1 melt targets.", flush=True)
 
-    all_job_args = [(n, str(frontier[n]["L_dec"]), bricks, False, 4) for _, n in zero_jobs] + [
-        (n, str(frontier[n]["L_dec"]), bricks, True, 3) for _, n in melt_jobs
+    all_job_args = [(n, str(frontier[n]["L_dec"]), bricks, False, 3) for _, n in zero_jobs] + [
+        (n, str(frontier[n]["L_dec"]), bricks, True, 2) for _, n in melt_jobs
     ]
 
     with ProcessPoolExecutor(max_workers=2) as pool:
