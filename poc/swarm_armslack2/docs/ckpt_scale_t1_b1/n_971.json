@@ -1,0 +1,14 @@
+{
+ "n": 971,
+ "m": 31,
+ "r": 10,
+ "L_inc": "31.63866488650004514827777588892423598718460053042150",
+ "inc_source": "poc/swarm_peelstep/final.csv",
+ "L_best": "31.63846960874984278718435037519681211815932068538096",
+ "dL": -0.00019527775020236108,
+ "status": "REAL_WIN",
+ "best_label": "direct_pslp+lpslack",
+ "melt_seeds": 0,
+ "melt_feas": 0,
+ "dt_s": 164.11
+}

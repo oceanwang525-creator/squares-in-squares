@@ -26,9 +26,17 @@ import portfolio as pf  # noqa: E402
 GATE_TARGETS = [974, 973, 969, 934, 914, 913, 908, 857, 856, 791, 687, 640, 634]
 
 
-def _worker_solve(task: tuple[int, dict, int, bool, Path]) -> dict:
-    n, inc, n_threads, enable_mw, ckpt_dir = task
-    summary, _ = a2.solve_target(n, inc, n_threads=n_threads, enable_mechwalk=enable_mw)
+def _worker_solve(task: tuple[int, dict, int, bool, bool, bool, tuple[float, ...], Path]) -> dict:
+    n, inc, n_threads, enable_mw, tier1_only, deep_melt, reaches, ckpt_dir = task
+    summary, _ = a2.solve_target(
+        n,
+        inc,
+        n_threads=n_threads,
+        enable_mechwalk=enable_mw,
+        tier1_only=tier1_only,
+        deep_melt=deep_melt,
+        reaches=reaches,
+    )
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     tmp_p = ckpt_dir / f".n_{n}.json.tmp"
     out_p = ckpt_dir / f"n_{n}.json"
@@ -43,6 +51,9 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--threads", type=int, default=1, help="C++ threads per worker (workers*threads <= 2)")
     ap.add_argument("--no-mechwalk", action="store_true")
+    ap.add_argument("--tier1-only", action="store_true")
+    ap.add_argument("--deep-melt", action="store_true")
+    ap.add_argument("--reaches", type=float, nargs="+", default=[3.5, 2.6])
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--tag", default="gate")
     args = ap.parse_args()
@@ -67,9 +78,14 @@ def main() -> None:
         else:
             todo_ns.append(n)
 
+    reaches = tuple(float(r) for r in args.reaches)
     if todo_ns:
         port = pf.load_live_portfolio(todo_ns)
-        tasks = [(n, port[n], n_threads, not args.no_mechwalk, ckpt_dir) for n in todo_ns if n in port]
+        tasks = [
+            (n, port[n], n_threads, not args.no_mechwalk, args.tier1_only, args.deep_melt, reaches, ckpt_dir)
+            for n in todo_ns
+            if n in port
+        ]
         if workers == 1:
             for t in tasks:
                 results.append(_worker_solve(t))

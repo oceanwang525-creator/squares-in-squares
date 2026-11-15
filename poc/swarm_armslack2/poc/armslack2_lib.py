@@ -358,8 +358,11 @@ def solve_target(
     incumbent: dict,
     n_threads: int = 2,
     enable_mechwalk: bool = True,
+    tier1_only: bool = False,
+    deep_melt: bool = False,
+    reaches: tuple[float, ...] = (3.5, 2.6),
 ) -> tuple[dict, dict | None]:
-    """Run full H125 pipeline on target n against incumbent dict."""
+    """Run H125 pipeline on target n against incumbent dict."""
     t0 = time.time()
     L_inc_dec: Decimal = incumbent["L_dec"]
     L_b = incumbent["L"]
@@ -404,8 +407,9 @@ def solve_target(
 
     print(f"\n=== H125 n={n} (m={K}, r={n-K*K:+d}) L_inc={str(L_inc_dec)[:18]} ({incumbent['source']}) ===", flush=True)
 
-    # Stage 1: Direct 4-corner reduced pslp (act_reach=3.5, 2.6) + full pslp + lpslack(dual_all)
-    a_p0, L_p0 = run_pslp_cascade(a0, L0, K, max_restarts=6, reaches=(3.5, 2.6))
+    # Stage 1: Direct 4-corner reduced pslp + full pslp + lpslack(dual_all)
+    cascade_reaches = (4.2, 3.5, 2.6) if (deep_melt and reaches == (3.5, 2.6)) else reaches
+    a_p0, L_p0 = run_pslp_cascade(a0, L0, K, max_restarts=6, reaches=cascade_reaches)
     if L_p0 < L0 - 1e-11:
         try_update(a_p0, "direct_pslp")
     a_lp0, _ = run_lpslack_polish(n, best_a, str(best_dec))
@@ -413,46 +417,56 @@ def solve_target(
         try_update(a_lp0, "direct_pslp+lpslack")
 
     # Stage 2: Arm-adjacent 0-deg layer liberation + Masked C++ Interface Melt (from best_a)
-    rng = np.random.default_rng(12500 + n)
-    q_list, m_list, ls_list, labels = build_interface_melt_seeds(best_a[:, 0], best_a[:, 1], best_a[:, 2], best_L, rng)
+    q_list: list = []
     n_feas = 0
-    if q_list:
-        qb, qf, lf, _, po, lb = run_cpp_masked_melt(
-            n, 1, q_list, m_list, ls_list, [4, 6, 8, 10],
-            a_start=0.94, n_melt_stages=3, masked_iters=140, full_iters=120,
-            n_threads=n_threads, base_seed=55000 + n,
-        )
-        n_feas = int(np.sum(lf < 1e9))
-        order = sorted(
-            range(len(labels)),
-            key=lambda i: (0 if lf[i] < 1e9 else 1, float(lf[i]) if lf[i] < 1e9 else float(po[i])),
-        )
-        picked: list[tuple[np.ndarray, float, str]] = []
-        for i in order:
-            if len(picked) >= 3:
-                break
-            use_f = lf[i] < 1e9
-            if not use_f and float(po[i]) > 0.015:
-                continue
-            L_ref = float(lf[i]) if use_f else ls_list[i][-1]
-            cx, cy, cth = cpp_expand_sym(n, 1, L_ref, qf[i] if use_f else qb[i])
-            a_r, L_r, fv = _relax_candidate(cx, cy, cth, float(lb[i]) if not use_f else L_ref, 0.0 if use_f else float(po[i]))
-            if fv <= 1e-11 and all(_state_dist(a_r, p[0]) > 3e-4 for p in picked):
-                picked.append((a_r, L_r, labels[i]))
+    if not tier1_only:
+        rng = np.random.default_rng(12500 + n)
+        q_list, m_list, ls_list, labels = build_interface_melt_seeds(best_a[:, 0], best_a[:, 1], best_a[:, 2], best_L, rng)
+        if deep_melt and ls_list:
+            ls_list = [
+                [best_L + 0.025, best_L + 0.006, best_L + 0.0005, best_L - (0.00005 if idx % 2 == 0 else 0.0008)]
+                for idx in range(len(ls_list))
+            ]
+        if q_list:
+            qb, qf, lf, _, po, lb = run_cpp_masked_melt(
+                n, 1, q_list, m_list, ls_list, [4, 6, 8, 10],
+                a_start=0.85 if deep_melt else 0.94,
+                n_melt_stages=4 if deep_melt else 3,
+                masked_iters=180 if deep_melt else 140,
+                full_iters=150 if deep_melt else 120,
+                n_threads=n_threads, base_seed=55000 + n,
+            )
+            n_feas = int(np.sum(lf < 1e9))
+            order = sorted(
+                range(len(labels)),
+                key=lambda i: (0 if lf[i] < 1e9 else 1, float(lf[i]) if lf[i] < 1e9 else float(po[i])),
+            )
+            picked: list[tuple[np.ndarray, float, str]] = []
+            for i in order:
+                if len(picked) >= 3:
+                    break
+                use_f = lf[i] < 1e9
+                if not use_f and float(po[i]) > 0.015:
+                    continue
+                L_ref = float(lf[i]) if use_f else ls_list[i][-1]
+                cx, cy, cth = cpp_expand_sym(n, 1, L_ref, qf[i] if use_f else qb[i])
+                a_r, L_r, fv = _relax_candidate(cx, cy, cth, float(lb[i]) if not use_f else L_ref, 0.0 if use_f else float(po[i]))
+                if fv <= 1e-11 and all(_state_dist(a_r, p[0]) > 3e-4 for p in picked):
+                    picked.append((a_r, L_r, labels[i]))
 
-        for a_r, L_r, lbl in picked:
-            a_ps, L_ps = run_pslp_cascade(a_r, L_r, K, max_restarts=5, reaches=(3.5, 2.6))
-            if L_ps < float(best_dec) - 1e-10:
-                try_update(a_ps, f"{lbl}+pslp")
-                a_lp, _ = run_lpslack_polish(n, best_a, str(best_dec))
-                if a_lp is not None:
-                    try_update(a_lp, f"{lbl}+pslp+lpslack")
+            for a_r, L_r, lbl in picked:
+                a_ps, L_ps = run_pslp_cascade(a_r, L_r, K, max_restarts=5, reaches=cascade_reaches)
+                if L_ps < float(best_dec) - 1e-10:
+                    try_update(a_ps, f"{lbl}+pslp")
+                    a_lp, _ = run_lpslack_polish(n, best_a, str(best_dec))
+                    if a_lp is not None:
+                        try_update(a_lp, f"{lbl}+pslp+lpslack")
 
     # Stage 3: mechwalk + pslp + lpslack on the current best state
-    if enable_mechwalk:
+    if enable_mechwalk and not tier1_only:
         mw_cands = _run_mechwalk_step(n, best_a, best_L, K, n_threads=n_threads, seed_offset=77000 + n)
         for a_m, L_m, lbl in mw_cands[:2]:
-            a_ps, L_ps = run_pslp_cascade(a_m, L_m, K, max_restarts=5, reaches=(3.5, 2.6))
+            a_ps, L_ps = run_pslp_cascade(a_m, L_m, K, max_restarts=5, reaches=cascade_reaches)
             if L_ps < float(best_dec) - 1e-10:
                 try_update(a_ps, f"{lbl}+pslp")
                 a_lp, _ = run_lpslack_polish(n, best_a, str(best_dec))
