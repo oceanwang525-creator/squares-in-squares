@@ -29,9 +29,10 @@ CP2_POC = REPO_ROOT / "poc" / "swarm_cleanpeel2" / "poc"
 GSTEP_POC = REPO_ROOT / "poc" / "swarm_gstep" / "poc"
 LPSLACK_POC = REPO_ROOT / "poc" / "swarm_lpslack" / "poc"
 HOMOCASC2_POC = REPO_ROOT / "poc" / "swarm_homocasc2" / "poc"
+PSLP_POC = REPO_ROOT / "poc" / "row_ratchet_980" / "poc"
 AUTO_UNION_POC = REPO_ROOT / "poc" / "auto_union" / "poc"
 
-for _p in (B8_POC, CP2_POC, GSTEP_POC, LPSLACK_POC, HOMOCASC2_POC, AUTO_UNION_POC):
+for _p in (B8_POC, CP2_POC, GSTEP_POC, LPSLACK_POC, HOMOCASC2_POC, PSLP_POC, AUTO_UNION_POC):
     if _p.exists() and str(_p) not in sys.path:
         sys.path.insert(0, str(_p))
 
@@ -41,6 +42,7 @@ import cleanpeel2_lib as cp2  # noqa: E402
 import gstep_lib as gl  # noqa: E402
 import homocasc2_lib as hc2  # noqa: E402
 import lpslack  # noqa: E402
+import pslp  # noqa: E402
 import union as auto_union  # noqa: E402
 from cpp_wrap import cpp_eval_sat_pen_bbox  # noqa: E402
 
@@ -48,6 +50,8 @@ EXTERNAL_BRICK_DIRS = [
     REPO_ROOT / "poc" / "swarm_gstep" / "data",
     REPO_ROOT / "poc" / "swarm_cleanpeel2" / "data",
     REPO_ROOT / "poc" / "swarm_peelstep" / "data",
+    REPO_ROOT / "poc" / "swarm_pocketpeel" / "data" / "bricks",
+    REPO_ROOT / "poc" / "swarm_stepdown" / "data",
     REPO_ROOT / "poc" / "swarm_b7xplant" / "data",
     REPO_ROOT / "poc" / "swarm_b8xplant" / "data",
 ]
@@ -478,8 +482,41 @@ def build_pinwheel(
         | ((ay >= m - h1 - 2.0) & (ay <= m - h1 + 2.0))
         | ((ax >= m - w2 - 2.0) & (ax <= m - w2 + 2.0))
         | ((ay >= h2 - 1.8) & (ay <= h2 + f + 2.0))
+        | ((np.abs(ax - w1) <= 3.4) & (np.abs(ay - (m - h1)) <= 3.4))
+        | ((np.abs(ax - (m - w2)) <= 3.4) & (np.abs(ay - h2) <= 3.4))
     ).astype(np.uint8)
     return ax, ay, at, L, seam
+
+
+def pslp_squeeze_cert(
+    n: int,
+    cert: dict,
+    inc_dec: Decimal,
+    shake_rounds: int = 4,
+    seed: int = 123,
+) -> dict:
+    """Run kink-safe free-angle pslp squeeze + shake_squeeze + polish + lpslack on a cert."""
+    m = int(math.floor(float(inc_dec)))
+    rs = sorted(cert["rows"], key=lambda r: int(r["square_id"]))
+    x0 = np.array([float(r["x"]) for r in rs], dtype=np.float64)
+    y0 = np.array([float(r["y"]) for r in rs], dtype=np.float64)
+    t0 = np.array([float(r["angle"]) for r in rs], dtype=np.float64)
+    nx, ny, nth, L0 = bl.normalize(x0, y0, t0)
+    f0 = L0 - m
+    f1, X1, Y1, T1, v1, _ = pslp.squeeze(nx, ny, nth, m, m, f0, max_it=200)
+    bx, by, bt, bf = (X1, Y1, T1, f1) if v1 <= 1e-12 else (nx, ny, nth, f0)
+    if shake_rounds > 0:
+        rng = np.random.default_rng(seed)
+        f2, X2, Y2, T2 = pslp.shake_squeeze(bx, by, bt, m, m, bf, rounds=shake_rounds, rng=rng)
+        if f2 < bf - 1e-10 and pslp.viol(X2, Y2, T2, m, m, f2) <= 1e-12:
+            bx, by, bt, bf = X2, Y2, T2, f2
+    pcert = bl.polish_and_certify(n, bx, by, bt, inc_dec, slp_rounds=14)
+    if pcert is not None:
+        pcert["label"] = cert["label"] + "+pslp"
+        pcert = _apply_lpslack(n, pcert, inc_dec)
+        if max(Decimal(pcert["L_lit"]), Decimal(pcert["L_pandas"])) < max(Decimal(cert["L_lit"]), Decimal(cert["L_pandas"])):
+            return pcert
+    return cert
 
 
 def _apply_lpslack(n: int, cert: dict, inc_dec: Decimal) -> dict:
@@ -524,6 +561,7 @@ def solve_pair(
     do_melt: bool = True,
     do_lpslack: bool = True,
     do_mechwalk: bool = True,
+    do_pslp: bool = True,
     n_threads: int = 2,
 ) -> dict | None:
     """Assemble pinwheel (zero-ov or corner-touch/ov<=1), C++ seam melt, SLP, lpslack, and mechwalk_compress."""
@@ -553,9 +591,18 @@ def solve_pair(
                             if best_cert is None or cert["L_float"] < best_cert["L_float"]:
                                 best_cert = cert
                 if do_melt and ftag == "fhi":
+                    inc_f = float(inc_dec)
+                    if inc_f - L_tgt > 0.005:
+                        L_end = min(inc_f - 0.001, max(L_tgt + 0.001, inc_f - 0.004))
+                        L_mid = max(L_tgt + 0.008, L_end + 0.006)
+                        L_start = max(L_tgt + 0.022, L_end + 0.016)
+                    else:
+                        L_end = min(inc_f - 3e-4, L_tgt + 0.001) if L_tgt + 0.001 < inc_f else 0.5 * (L_tgt + inc_f)
+                        L_mid = L_tgt + 0.005
+                        L_start = L_tgt + 0.018
                     seeds.append((ax, ay, at))
                     masks.append(sm)
-                    scheds.append([L_tgt + 0.012, L_tgt + 0.003, L_tgt - 3e-4])
+                    scheds.append([L_start, L_mid, L_end])
                     labels.append(f"{tag}_{m1}_{m2}_{ftag}")
 
     if do_melt and seeds and (best_cert is None or best_cert["dL"] > -5e-4):
@@ -565,11 +612,11 @@ def solve_pair(
                 seeds[start:end],
                 scheds[start:end],
                 sym_mode=1,
-                a_start=0.965,
+                a_start=0.962,
                 n_melt_stages=3,
                 seam_masks=masks[start:end],
-                seam_iters=180,
-                full_iters=220,
+                seam_iters=220,
+                full_iters=260,
                 n_ruin_iters=0,
                 n_threads=min(2, max(1, n_threads)),
                 base_seed=base_seed + start,
@@ -584,7 +631,9 @@ def solve_pair(
                     pool.append((1.0 + float(row["pen"]), Lm, nx, ny, nth, lbl))
             pool.sort(key=lambda t: (t[0], t[1]))
             for _, _, cx, cy, cth, lbl in pool[:2]:
-                cert = bl.polish_and_certify(n, cx, cy, cth, inc_dec, slp_rounds=12)
+                sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(cx, cy, cth)
+                ux, uy, ut = (sx, sy, st) if ok else (cx, cy, cth)
+                cert = bl.polish_and_certify(n, ux, uy, ut, inc_dec, slp_rounds=14)
                 if cert is not None:
                     cert["label"] = lbl
                     if best_cert is None or cert["L_float"] < best_cert["L_float"]:
@@ -592,6 +641,9 @@ def solve_pair(
 
     if do_lpslack and best_cert is not None:
         best_cert = _apply_lpslack(n, best_cert, inc_dec)
+
+    if do_pslp and best_cert is not None and best_cert["L_float"] < float(inc_dec) + 0.002:
+        best_cert = pslp_squeeze_cert(n, best_cert, inc_dec, shake_rounds=3, seed=base_seed + 55)
 
     if do_mechwalk and best_cert is not None and best_cert["L_float"] < float(inc_dec) + 0.0005:
         rs = sorted(best_cert["rows"], key=lambda r: int(r["square_id"]))
