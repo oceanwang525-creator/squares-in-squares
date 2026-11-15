@@ -379,6 +379,12 @@ rewrite; high-entropy conflicts are rejected before expensive repair.
 
 ### Cycle 4 outcome
 
+- **H16 `ot_multidonor_barycenter`: POSITIVE.** Mixing donors `n+2` and
+  `n+3` at weights `1:2` improves the already certified 791 row again. The
+  full group certifies at `28.627434433035796152...` in both transports,
+  `dL=-9.931531524e-5` versus H7 and `-2.013255495746e-4` versus the
+  upstream row. H16 adds about `-3.5326e-6` score on top of H7. It was folded
+  into existing PR #134. Commit: `fc8aab4`.
 - **H17 `ot_residual_patch`: negative.** H7's near-feasible rows are globally
   distributed failures, not small end defects. At 328/365/367 the initial
   violations `9.51e-6/2.05e-5/1.63e-6` affected 767/726/593 pairs in one
