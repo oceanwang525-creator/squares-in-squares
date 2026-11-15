@@ -41,6 +41,8 @@ def load_thinband_bricks(extra_comp_dirs: bool = True) -> list[dict]:
             tb.REPO_ROOT / "poc" / "swarm_band3" / "data",
             tb.REPO_ROOT / "poc" / "swarm_stepdown" / "data",
             tb.REPO_ROOT / "poc" / "swarm_pocketpeel" / "data" / "bricks",
+            tb.REPO_ROOT / "poc" / "swarm_b7xplant" / "data",
+            tb.REPO_ROOT / "poc" / "swarm_vstrip492" / "data",
         ):
             if not folder.exists():
                 continue
@@ -100,7 +102,9 @@ def pick_pairs_for_n(
             if kx < -2 or ky < -2:
                 continue
             fmax = max(b1["f"], b2["f"])
-            if fmax > f_inc + 0.006:
+            if fmax > f_inc + 0.004:
+                continue
+            if (kx > 0 or ky > 0) and fmax > f_inc - 0.012:
                 continue
 
             # Canonical symmetry deduplication: (b1, b2) vs (b2_T, b1_T)
