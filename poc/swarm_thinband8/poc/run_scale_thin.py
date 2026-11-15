@@ -19,7 +19,23 @@ sys.path.insert(0, str(HERE))
 import thinband8_lib as tb  # noqa: E402
 import run_gate_thin as rgt  # noqa: E402
 
-ALL_TARGETS = [m * m + r for m in range(29, 21, -1) for r in range(9, 16)]
+ALL_TARGETS = [
+    # Wave 1: tightest near-misses and top negative-df targets across m=22..29, r=+9..+15
+    635, 539, 636, 687, 587, 741, 637, 638, 639, 640,
+    540, 689, 738, 798, 851, 854, 494, 495, 541, 686,
+    688, 691, 742, 796, 855, 852, 853, 740, 797, 685,
+    690, 739, 744, 794, 850, 856, 743, 795, 793,
+] + [
+    m * m + r
+    for m in range(29, 21, -1)
+    for r in range(9, 16)
+    if (m * m + r) not in {
+        635, 539, 636, 687, 587, 741, 637, 638, 639, 640,
+        540, 689, 738, 798, 851, 854, 494, 495, 541, 686,
+        688, 691, 742, 796, 855, 852, 853, 740, 797, 685,
+        690, 739, 744, 794, 850, 856, 743, 795, 793,
+    }
+]
 
 
 def main() -> None:
@@ -29,28 +45,36 @@ def main() -> None:
 
     bricks = rgt.load_thinband_bricks()
     print(f"Loaded {len(bricks)} oriented bricks for scale-up", flush=True)
-    frontier = tb.fast_load_true_frontier(ALL_TARGETS, certify=True)
-    print(f"Loaded certified frontier for {len(frontier)} targets in {time.time()-t0:.1f}s", flush=True)
+    frontier = tb.fast_load_true_frontier(ALL_TARGETS, certify=False)
+    print(f"Loaded fast frontier for {len(frontier)} targets in {time.time()-t0:.1f}s", flush=True)
 
-    # Include any existing gate wins as initial incumbent
-    for wp in sorted(tb.DATA_DIR.glob("win_n*.json")):
-        wd = json.loads(wp.read_text(encoding="utf-8"))
-        wn = int(wd["n"])
-        if wn in frontier:
-            wdec = max(Decimal(wd["L_lit"]), Decimal(wd["L_pandas"]))
-            if wdec < frontier[wn]["L_dec"]:
-                frontier[wn]["L_dec"] = wdec
-                frontier[wn]["L"] = float(wdec)
-                frontier[wn]["source"] = "thinband8_gate"
-
-    summary = {"targets": {}, "wins": []}
+    summary_path = tb.DOCS_DIR / "scale_summary.json"
+    if summary_path.exists():
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    else:
+        summary = {"targets": {}, "wins": []}
     for n in ALL_TARGETS:
+        if str(n) in summary["targets"]:
+            continue
         tn = time.time()
         m = int(math.isqrt(n))
         r = n - m * m
+        f_inc_fast = float(frontier[n]["L_dec"]) - m
+        pairs = rgt.pick_pairs_for_n(n, bricks, f_inc_fast, top_k=4)
+        if not pairs:
+            continue
+        cert_n = tb.fast_load_true_frontier([n], certify=True)[n]
+        wp = tb.DATA_DIR / f"win_n{n}.json"
+        if wp.exists():
+            wd = json.loads(wp.read_text(encoding="utf-8"))
+            wdec = max(Decimal(wd["L_lit"]), Decimal(wd["L_pandas"]))
+            if wdec < cert_n["L_dec"]:
+                cert_n["L_dec"] = wdec
+                cert_n["L"] = float(wdec)
+                cert_n["source"] = "thinband8_saved"
+        frontier[n] = cert_n
         inc_dec = frontier[n]["L_dec"]
         f_inc = float(inc_dec) - m
-        pairs = rgt.pick_pairs_for_n(n, bricks, f_inc, top_k=6)
         if not pairs:
             continue
 

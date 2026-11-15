@@ -33,10 +33,14 @@ def load_thinband_bricks(extra_comp_dirs: bool = True) -> list[dict]:
             raw.append(tb.load_brick_json(p))
 
     if extra_comp_dirs:
-        # Include top-1 h=10 bricks from cleanpeel2/gstep/thinb4 as companions
+        # Include companion bricks from cleanpeel2/gstep/peelstep/band3/stepdown/pocketpeel
         for folder in (
             tb.REPO_ROOT / "poc" / "swarm_cleanpeel2" / "data",
             tb.REPO_ROOT / "poc" / "swarm_gstep" / "data",
+            tb.REPO_ROOT / "poc" / "swarm_peelstep" / "data",
+            tb.REPO_ROOT / "poc" / "swarm_band3" / "data",
+            tb.REPO_ROOT / "poc" / "swarm_stepdown" / "data",
+            tb.REPO_ROOT / "poc" / "swarm_pocketpeel" / "data" / "bricks",
         ):
             if not folder.exists():
                 continue
@@ -96,7 +100,7 @@ def pick_pairs_for_n(
             if kx < -2 or ky < -2:
                 continue
             fmax = max(b1["f"], b2["f"])
-            if fmax > f_inc + 0.015:
+            if fmax > f_inc + 0.006:
                 continue
 
             # Canonical symmetry deduplication: (b1, b2) vs (b2_T, b1_T)
@@ -113,9 +117,9 @@ def pick_pairs_for_n(
 
             ov_pen = 0.0
             if kx > 0 or ky > 0:
-                ov_pen = 0.004
+                ov_pen = 0.008
             elif kx == 0 and ky == 0:
-                ov_pen = 0.0015
+                ov_pen = 0.0002
             score = fmax + ov_pen
             cands.append((score, b1, b2))
 
