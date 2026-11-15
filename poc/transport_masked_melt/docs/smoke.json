@@ -1,0 +1,454 @@
+{
+  "method": "transport-seeded contact-local masked repair",
+  "results": [
+    {
+      "n": 328,
+      "seed_source": "transport",
+      "recorded_attempt": {
+        "epsilon": 0.025,
+        "schedule": [
+          [
+            1,
+            1.0
+          ],
+          [
+            3,
+            2.0
+          ]
+        ],
+        "delta": 1e-06,
+        "alpha": 0.2,
+        "initial_penalty": 0.162394191780168,
+        "transport_value": 0.04999579653597723,
+        "final_penalty": 7.436387932198598e-10,
+        "max_violation": 4.455621023691236e-06,
+        "dilation": 1.000004368633345,
+        "dilated_side": 18.614449963863226,
+        "small_dilation": 1.000004368633345,
+        "small_dilation_side": 18.614449963863226
+      },
+      "incumbent_side": 18.614368938490983,
+      "initial_penalty": 1.6473081393234198e-07,
+      "local_penalty": 1.714264423681855e-07,
+      "max_overlap": 6.144029967503073e-05,
+      "max_wall": 4.327927782304952e-05,
+      "overlap_pairs": 808,
+      "history": [
+        {
+          "round": 0,
+          "radius": 2.0,
+          "active": 79,
+          "penalty": 1.7220949424923724e-07,
+          "max_overlap": 6.217450089773813e-05,
+          "max_wall": 4.4102039453652875e-05,
+          "pairs": 799
+        },
+        {
+          "round": 1,
+          "radius": 3.0,
+          "active": 130,
+          "penalty": 1.720832480505666e-07,
+          "max_overlap": 6.204616530802731e-05,
+          "max_wall": 4.385085246033649e-05,
+          "pairs": 804
+        },
+        {
+          "round": 2,
+          "radius": 4.5,
+          "active": 228,
+          "penalty": 1.7184752055586137e-07,
+          "max_overlap": 6.193629183892657e-05,
+          "max_wall": 4.37647211262715e-05,
+          "pairs": 807
+        },
+        {
+          "round": 3,
+          "radius": 6.0,
+          "active": 291,
+          "penalty": 1.7142736718829982e-07,
+          "max_overlap": 6.144039161948278e-05,
+          "max_wall": 4.327924759023327e-05,
+          "pairs": 808
+        },
+        {
+          "round": 4,
+          "radius": 2.0,
+          "active": 74,
+          "penalty": 1.7142735759667194e-07,
+          "max_overlap": 6.144036754640592e-05,
+          "max_wall": 4.327924991132104e-05,
+          "pairs": 808
+        },
+        {
+          "round": 5,
+          "radius": 3.0,
+          "active": 137,
+          "penalty": 1.714270212599933e-07,
+          "max_overlap": 6.144032793287124e-05,
+          "max_wall": 4.327926183822495e-05,
+          "pairs": 808
+        },
+        {
+          "round": 6,
+          "radius": 4.5,
+          "active": 238,
+          "penalty": 1.7142661164610425e-07,
+          "max_overlap": 6.144030973564973e-05,
+          "max_wall": 4.3279273765128856e-05,
+          "pairs": 808
+        },
+        {
+          "round": 7,
+          "radius": 6.0,
+          "active": 294,
+          "penalty": 1.714264754838743e-07,
+          "max_overlap": 6.144031129429184e-05,
+          "max_wall": 4.327927713349e-05,
+          "pairs": 808
+        },
+        {
+          "round": 8,
+          "radius": 2.0,
+          "active": 74,
+          "penalty": 1.7142646860733953e-07,
+          "max_overlap": 6.144029589083555e-05,
+          "max_wall": 4.327927735431336e-05,
+          "pairs": 808
+        },
+        {
+          "round": 9,
+          "radius": 3.0,
+          "active": 137,
+          "penalty": 1.714264589629144e-07,
+          "max_overlap": 6.144030268329104e-05,
+          "max_wall": 4.3279277494256974e-05,
+          "pairs": 808
+        },
+        {
+          "round": 10,
+          "radius": 4.5,
+          "active": 238,
+          "penalty": 1.7142645065908616e-07,
+          "max_overlap": 6.144029923893513e-05,
+          "max_wall": 4.327927767883155e-05,
+          "pairs": 808
+        },
+        {
+          "round": 11,
+          "radius": 6.0,
+          "active": 294,
+          "penalty": 1.714264423681855e-07,
+          "max_overlap": 6.144029967503073e-05,
+          "max_wall": 4.327927782304952e-05,
+          "pairs": 808
+        }
+      ],
+      "certification": {
+        "dilation": 1.0000614441748226,
+        "safe_side": 18.61543766367311,
+        "reason": "safe dilation over incumbent"
+      },
+      "elapsed_seconds": 1.276765250000608
+    },
+    {
+      "n": 367,
+      "seed_source": "transport",
+      "recorded_attempt": {
+        "epsilon": 0.025,
+        "schedule": [
+          [
+            -1,
+            2.0
+          ],
+          [
+            1,
+            1.0
+          ]
+        ],
+        "delta": 1e-05,
+        "alpha": 0.2,
+        "initial_penalty": 0.24430504429908848,
+        "transport_value": 0.046265806516032106,
+        "final_penalty": 1.6122899639261322e-09,
+        "max_violation": 7.689400786992096e-06,
+        "dilation": 1.0000076375225995,
+        "dilated_side": 19.692528398751932,
+        "small_dilation": 1.0000076375225995,
+        "small_dilation_side": 19.692528398751932
+      },
+      "incumbent_side": 19.6923881554252,
+      "initial_penalty": 2.4467687904034695e-08,
+      "local_penalty": 2.5727915512079893e-08,
+      "max_overlap": 1.7368413881113653e-05,
+      "max_wall": 1.2004962527789598e-05,
+      "overlap_pairs": 855,
+      "history": [
+        {
+          "round": 0,
+          "radius": 2.0,
+          "active": 70,
+          "penalty": 2.5728440075191365e-08,
+          "max_overlap": 1.7369065862471444e-05,
+          "max_wall": 1.2005294451555848e-05,
+          "pairs": 855
+        },
+        {
+          "round": 1,
+          "radius": 3.0,
+          "active": 120,
+          "penalty": 2.572839440016587e-08,
+          "max_overlap": 1.736881760661113e-05,
+          "max_wall": 1.2005193653019663e-05,
+          "pairs": 855
+        },
+        {
+          "round": 2,
+          "radius": 4.5,
+          "active": 173,
+          "penalty": 2.57283869318393e-08,
+          "max_overlap": 1.7368863159616943e-05,
+          "max_wall": 1.2005188752106655e-05,
+          "pairs": 855
+        },
+        {
+          "round": 3,
+          "radius": 6.0,
+          "active": 216,
+          "penalty": 2.572803331059072e-08,
+          "max_overlap": 1.736848170907912e-05,
+          "max_wall": 1.2005030020578733e-05,
+          "pairs": 855
+        },
+        {
+          "round": 4,
+          "radius": 2.0,
+          "active": 70,
+          "penalty": 2.5728011134716475e-08,
+          "max_overlap": 1.736845574851209e-05,
+          "max_wall": 1.2004972843038253e-05,
+          "pairs": 855
+        },
+        {
+          "round": 5,
+          "radius": 3.0,
+          "active": 120,
+          "penalty": 2.5727972566047242e-08,
+          "max_overlap": 1.736851700973041e-05,
+          "max_wall": 1.2005037064333202e-05,
+          "pairs": 855
+        },
+        {
+          "round": 6,
+          "radius": 4.5,
+          "active": 173,
+          "penalty": 2.5727937832965987e-08,
+          "max_overlap": 1.7368386454386098e-05,
+          "max_wall": 1.2004970076529009e-05,
+          "pairs": 855
+        },
+        {
+          "round": 7,
+          "radius": 6.0,
+          "active": 216,
+          "penalty": 2.572793436142233e-08,
+          "max_overlap": 1.736852821232482e-05,
+          "max_wall": 1.2004996858716588e-05,
+          "pairs": 855
+        },
+        {
+          "round": 8,
+          "radius": 2.0,
+          "active": 70,
+          "penalty": 2.5727926970518883e-08,
+          "max_overlap": 1.736845618105498e-05,
+          "max_wall": 1.2004964629996895e-05,
+          "pairs": 855
+        },
+        {
+          "round": 9,
+          "radius": 3.0,
+          "active": 120,
+          "penalty": 2.5727922810828088e-08,
+          "max_overlap": 1.7368400486494906e-05,
+          "max_wall": 1.2004963962752857e-05,
+          "pairs": 855
+        },
+        {
+          "round": 10,
+          "radius": 4.5,
+          "active": 173,
+          "penalty": 2.5727919202440267e-08,
+          "max_overlap": 1.7368407472906355e-05,
+          "max_wall": 1.2004963214296005e-05,
+          "pairs": 855
+        },
+        {
+          "round": 11,
+          "radius": 6.0,
+          "active": 216,
+          "penalty": 2.5727915512079893e-08,
+          "max_overlap": 1.7368413881113653e-05,
+          "max_wall": 1.2004962527789598e-05,
+          "pairs": 855
+        }
+      ],
+      "certification": {
+        "dilation": 1.000017368815549,
+        "safe_side": 19.692634975632306,
+        "reason": "safe dilation over incumbent"
+      },
+      "elapsed_seconds": 0.9440089999989141
+    },
+    {
+      "n": 791,
+      "seed_source": "transport",
+      "recorded_attempt": {
+        "epsilon": 0.0125,
+        "schedule": [
+          [
+            2,
+            0.5
+          ],
+          [
+            3,
+            1.0
+          ]
+        ],
+        "delta": 2e-05,
+        "alpha": 0.1,
+        "initial_penalty": 0.1170445846911073,
+        "transport_value": 0.024039501578371508,
+        "final_penalty": 3.1187839254888546e-15,
+        "max_violation": 2.163034562574495e-08,
+        "dilation": 1.0000000217303457,
+        "dilated_side": 28.627414999640727,
+        "fixed_angle_lp_side": 28.627402728535408,
+        "small_dilation": 1.0000000217303457,
+        "small_dilation_side": 28.627414999640727
+      },
+      "incumbent_side": 28.62652394833957,
+      "initial_penalty": 1.8907212187903295e-07,
+      "local_penalty": 1.9510911875886045e-07,
+      "max_overlap": 5.221258084575631e-05,
+      "max_wall": 5.5953326166369166e-05,
+      "overlap_pairs": 1123,
+      "history": [
+        {
+          "round": 0,
+          "radius": 2.0,
+          "active": 63,
+          "penalty": 1.953639870335812e-07,
+          "max_overlap": 5.305955313050781e-05,
+          "max_wall": 5.638109080841058e-05,
+          "pairs": 1116
+        },
+        {
+          "round": 1,
+          "radius": 3.0,
+          "active": 118,
+          "penalty": 1.9523319627694508e-07,
+          "max_overlap": 5.225567792821462e-05,
+          "max_wall": 5.596416937181381e-05,
+          "pairs": 1116
+        },
+        {
+          "round": 2,
+          "radius": 4.5,
+          "active": 201,
+          "penalty": 1.9511681579136208e-07,
+          "max_overlap": 5.2213866179817714e-05,
+          "max_wall": 5.5953422252730256e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 3,
+          "radius": 6.0,
+          "active": 290,
+          "penalty": 1.951092231399273e-07,
+          "max_overlap": 5.22125416482222e-05,
+          "max_wall": 5.595332757757365e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 4,
+          "radius": 2.0,
+          "active": 61,
+          "penalty": 1.9510918061642992e-07,
+          "max_overlap": 5.221255905851763e-05,
+          "max_wall": 5.5953326950408666e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 5,
+          "radius": 3.0,
+          "active": 116,
+          "penalty": 1.9510917950713797e-07,
+          "max_overlap": 5.22125683035668e-05,
+          "max_wall": 5.5953326617674826e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 6,
+          "radius": 4.5,
+          "active": 204,
+          "penalty": 1.9510913251271868e-07,
+          "max_overlap": 5.221257774601362e-05,
+          "max_wall": 5.595332627794658e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 7,
+          "radius": 6.0,
+          "active": 290,
+          "penalty": 1.951091263977665e-07,
+          "max_overlap": 5.2212578707688806e-05,
+          "max_wall": 5.595332624330762e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 8,
+          "radius": 2.0,
+          "active": 61,
+          "penalty": 1.9510912406448616e-07,
+          "max_overlap": 5.2212579241928125e-05,
+          "max_wall": 5.5953326224100763e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 9,
+          "radius": 3.0,
+          "active": 116,
+          "penalty": 1.951091223408501e-07,
+          "max_overlap": 5.2212579767507705e-05,
+          "max_wall": 5.595332620522697e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 10,
+          "radius": 4.5,
+          "active": 204,
+          "penalty": 1.951091212533809e-07,
+          "max_overlap": 5.221258014609376e-05,
+          "max_wall": 5.595332619157123e-05,
+          "pairs": 1123
+        },
+        {
+          "round": 11,
+          "radius": 6.0,
+          "active": 290,
+          "penalty": 1.9510911875886045e-07,
+          "max_overlap": 5.221258084575631e-05,
+          "max_wall": 5.5953326166369166e-05,
+          "pairs": 1123
+        }
+      ],
+      "certification": {
+        "dilation": 1.0000522072420583,
+        "safe_side": 28.6279368771216,
+        "reason": "safe dilation over incumbent"
+      },
+      "elapsed_seconds": 2.114794583998446
+    }
+  ],
+  "wins": {}
+}
