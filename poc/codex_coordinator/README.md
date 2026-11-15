@@ -230,3 +230,8 @@ not coordinate mutation alone.
   closest screen was still 2-7 squares short and expanded to 98 overlaps at
   `n=791`. The `328/365` pair also required different parameters and remained
   4/5 squares short. Failure commit: `9c580f5` (preserved through `eacd46c`).
+- **H8 `dual_cycle_compensation`: negative.** At 969/908, 40 nearby face pairs
+  per target yielded 480 transforms and 64 fully re-jammed candidates each.
+  The best penetration at `L_inc - 2e-5` was only `1.16e-8` and `7.34e-9`;
+  no pair produced a complementary vacancy or a lower valid side. Failure
+  commit: `d1066bd` (preserved through `8eec198`).
