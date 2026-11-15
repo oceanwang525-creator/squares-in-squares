@@ -376,3 +376,12 @@ fanout, not a public-coordinate transplant.
 Rank near-feasible candidates by contact-label entropy and patch count rather
 than dilation alone. Low-entropy conflicts should admit an attractor-local
 rewrite; high-entropy conflicts are rejected before expensive repair.
+
+### Cycle 4 outcome
+
+- **H17 `ot_residual_patch`: negative.** H7's near-feasible rows are globally
+  distributed failures, not small end defects. At 328/365/367 the initial
+  violations `9.51e-6/2.05e-5/1.63e-6` affected 767/726/593 pairs in one
+  dominant component. Twenty-four separated patches per target changed the
+  residual by at most about 1%, leaving it thousands of times above local
+  feasibility. Failure commit: `216616b`.
