@@ -326,3 +326,53 @@ endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
   fixed-angle LP returned the incumbent side. At 908/969 the best residuals
   were `1.67e-5`/`2.11e-5`. No one-square near miss survived. Failure commit:
   `9106a20`.
+
+## Cycle 4 hypotheses
+
+These are follow-ons to the one verified H7 mechanism, but each changes a
+search variable that can produce a distinct basin. They do not repeat a failed
+local polish stack.
+
+### H16 `ot_multidonor_barycenter`
+
+**Rank:** 1. **Expected gain:** 0.001-0.005.
+
+Build an unbalanced barycenter from several donors on both sides of a target
+row, with donor weights optimized for wall/seam fit. H7 used one donor at a
+time; mixed donor mass can preserve a good bulk from one row and an endcap
+from another.
+
+### H17 `ot_residual_patch`
+
+**Rank:** 2. **Expected gain:** 0.0002-0.002.
+
+Start from H7's near-feasible transported candidates whose safe dilation
+exceeded the side budget, identify the small set of penetration pairs, and
+exchange one or two squares only inside that conflict patch. This avoids the
+global dilation that killed the 328/367 near misses.
+
+### H18 `oriented_mass_transport`
+
+**Rank:** 3. **Expected gain:** 0.0005-0.003.
+
+Transport square centers jointly with a folded-orientation label and a
+small-cost angle ground metric. Group the resulting assignments into coherent
+orientation patches before realizing coordinates. This tests whether
+Sinkhorn's center-only matching destroyed useful angle structure.
+
+### H19 `champion_transform_fanout`
+
+**Rank:** 4. **Expected gain:** 0.0001-0.001.
+
+Apply the exact transform family of the certified n=791 winner to neighboring
+and same-`D` rows, allowing integer card-count shifts at the transformed
+boundary. The donor remains our own construction; this is a verified-basin
+fanout, not a public-coordinate transplant.
+
+### H20 `contact_entropy_targeting`
+
+**Rank:** 5. **Expected gain:** diagnostic, then 0.0005-0.003.
+
+Rank near-feasible candidates by contact-label entropy and patch count rather
+than dilation alone. Low-entropy conflicts should admit an attractor-local
+rewrite; high-entropy conflicts are rejected before expensive repair.
