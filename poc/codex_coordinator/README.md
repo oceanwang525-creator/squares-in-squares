@@ -446,6 +446,11 @@ H18 showed is counterproductive.
   target after center transport still left connected interface overlaps.
   Best safe sides exceeded incumbents at 803/328/791; the 791 control needed
   `1.63e-3` extra side. Failure commit: `db5187d`.
+- **H21 `localized_donor_weights`: POSITIVE.** A spatial field over the
+  n+3/n+4 donor mixture lowered the certified 791 group from
+  `28.626523948339...` to `28.626213659843...`, a further
+  `dL=-3.102884960217e-4` and about `-1.103258882e-5` score. A 45,000-start
+  extended wave was tie-only. Commit: `8880f33`; folded into PR #134.
 - **H23 `near_plateau_source_selection`: POSITIVE.** Selecting donors by
   side-length/contact similarity chose 790 and 792 for `n=791` and produced
   a complete group at `28.626405023313754301...`. It improves the certified
