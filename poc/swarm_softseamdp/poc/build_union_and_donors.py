@@ -192,8 +192,8 @@ def main() -> None:
                 w.writerow([rid, n, r["square_id"], r["x"], r["y"], r["angle"]])
                 rid += 1
 
-    # Write donors_rescan.csv (for n=492, 852, 911, 914, 974, 975 using src=4000+n so no collision with merged.csv)
-    rescan_ns = [492, 852, 911, 914, 974, 975]
+    # Write donors_rescan.csv (for key improved / high-gap ns using src=4000+n so no collision)
+    rescan_ns = [492, 686, 748, 793, 852, 863, 910, 911, 912, 914, 915, 924, 972, 974, 975, 980]
     with (DATA_DIR / "donors_rescan.csv").open("w", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "n", "square_id", "x", "y", "angle"])
@@ -203,14 +203,14 @@ def main() -> None:
                 w.writerow([rid, 4000 + n, r["square_id"], r["x"], r["y"], r["angle"]])
                 rid += 1
 
-    # Write donors_all.csv (merged 1..1000 + n=2006 + bricks 3000+ + rescan 4000+n)
+    # Write donors_all.csv (union best 1..1000 + n=2006 + bricks 3000+ + rescan 4000+n)
     brick_pockets = []
     with (DATA_DIR / "donors_all.csv").open("w", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "n", "square_id", "x", "y", "angle"])
         rid = 0
         for n in range(1, 1001):
-            for r in sorted(merged[n], key=lambda x: int(x["square_id"])):
+            for r in sorted(best_rows[n], key=lambda x: int(x["square_id"])):
                 w.writerow([rid, n, r["square_id"], r["x"], r["y"], r["angle"]])
                 rid += 1
         for n in rescan_ns:
