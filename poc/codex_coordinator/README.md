@@ -146,3 +146,9 @@ commit before its experiment folder is removed from the working tree.
   A 4.4-5.1M-placement completion probe also failed to place the missing
   square. Repairing with the known local stack would have violated the
   hypothesis. Failure commit: `732a2b3` (preserved through `8d74bba`).
+- **H3 `continuous_rowstate_transfer`: negative for the vertical ribbon
+  decomposition.** At sides no larger than the incumbent, the best three-ribbon
+  assemblies held 842/861, 729/747, and 784/804 squares. Adjusted angle and
+  phase did not overcome the fractional side-ribbon clipping. This is a
+  defensible structural stop, not a general proof against all row-state models.
+  Failure commit: `e64f8f5` (preserved through `ad53584`).
