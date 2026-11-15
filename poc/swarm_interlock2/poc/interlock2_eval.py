@@ -157,6 +157,7 @@ def eval_zero_gap_candidate(
     syms: tuple[tuple[int, int], ...] = ((0, 0), (3, 0)),
     try_mechwalk: bool = True,
     n_threads: int = 1,
+    return_rows: bool = False,
 ) -> dict:
     """Evaluate a Regime 1 (zero_gap) 2-D overhang candidate across symmetries."""
     t0 = time.time()
@@ -212,7 +213,7 @@ def eval_zero_gap_candidate(
         return {"n": n, "status": "FAIL", "dt": round(time.time() - t0, 1)}
     if best_res["is_real_win"]:
         save_win(n, best_res, best_label)
-    return {
+    out = {
         "n": n,
         "K": K,
         "D": cand["D"],
@@ -227,6 +228,9 @@ def eval_zero_gap_candidate(
         "label": best_label,
         "dt": round(time.time() - t0, 1),
     }
+    if return_rows:
+        out["rows"] = best_res["rows"]
+    return out
 
 
 def eval_seam_touch_candidate(

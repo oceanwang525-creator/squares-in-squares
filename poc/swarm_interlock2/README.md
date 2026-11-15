@@ -39,6 +39,16 @@ Expanding the pocket pool with `pockets_partb_sane.json`, `poc/swarm_b8xplant/`,
 
 Notable near-miss in scale-up: `n=918` (`(30, 18)`, `brick_B8_18x8_g8 + e3_n980_11x23_g11`, `s30_mw`) reached `+6.4803e-04`.
 
+## Round 3 Results (`H116 kx=1,ky=1` + `H121 w x 8` Synthesis + `pslp` Squeeze)
+
+- **Kink-Free Free-Angle `pslp.squeeze` Tightening (`n=748`)**:
+  - Applying `poc/row_ratchet_980/poc/pslp.py` (`pslp.squeeze`) + `lpslack` + `mechwalk_compress` to our `n=748` `(K=27, D=19, kx=1, ky=0)` `zero_gap` pinwheel tightened `n=748` from `27.826809269177901828` to **`27.826777074593507336`**, beating `origin/main` (`0e74cfc`: `27.826786853461192225`) by **`dL = -9.778868e-06`** (`literal == pandas`).
+  - Superseded PR1/PR2 groups `[863, 910, 924]` are preserved and improved in `origin/main:merged.csv` (`0e74cfc`) and dropped from `final.csv` for PR3.
+- **H116 (`kx=1, ky=1` 2-axis diagonal overhang, `poc/swarm_interlock2/poc/run_round3.py`)**:
+  - Swept `14` targets across `del_cnt in {1, 2, 3}` deleted corner squares (`n in {300, 301, 305, 306, 377, 417, 418, 499, 500, 505, 754, 911, 974, 991}`) with C++ masked corner melt + `pslp.squeeze` (`0/14` wins; best realizations stalled at `sqL - L_inc >= +0.0538` for `del_cnt=1`, `>= +0.0114` for `del_cnt=2`, and `>= +0.0065` for `del_cnt=3` on `n=991`), confirming the diagonal `1x1` overlap corner cannot compress below `L_inc` without vertical/horizontal corridor slack.
+- **H121 (`synth_wx8.py` + `scan_watch89.py`)**:
+  - Synthesized `132` `w x 8` / `w x 7` peeled/`vstrip` bricks (`data/bricks_wx8.json`, excluded `>1MB`) and scanned `17,623` clean pockets from `88` `public_watch_nov14` / `row_ratchet_980` / `corrcasc` rows (`data/scanned_watch89.json`, excluded `>1MB`).
+
 ## Checks
 
 - Unit tests: `/tmp/highrpeel_venv/bin/pytest -v poc/swarm_interlock2/tests/test_interlock2.py`
