@@ -58,6 +58,10 @@ EXTERNAL_BRICK_DIRS = [
     REPO_ROOT / "poc" / "swarm_b7xplant" / "data",
     REPO_ROOT / "poc" / "swarm_b8xplant" / "data",
     REPO_ROOT / "poc" / "swarm_thinband8" / "data",
+    REPO_ROOT / "poc" / "swarm_vstrip492" / "data",
+    REPO_ROOT / "poc" / "swarm_vstrip852" / "data",
+    REPO_ROOT / "poc" / "swarm_band3" / "data",
+    REPO_ROOT / "poc" / "swarm_brickslp" / "data",
     WORKTREES_ROOT / "swarm-vstrip492-96e978de" / "poc" / "swarm_vstrip492" / "data",
     WORKTREES_ROOT / "swarm-vstrip852-39f88515" / "poc" / "swarm_vstrip852" / "data",
     WORKTREES_ROOT / "swarm-b7xplant-a586260b" / "poc" / "swarm_b7xplant" / "data",
@@ -288,21 +292,24 @@ def pslp_and_certify(
     label: str,
     shake_rounds: int = 2,
     seed: int = 123,
+    fast: bool = False,
 ) -> dict | None:
     """Apply kink-safe pslp squeeze (+ optional shake_squeeze) and dual-certify."""
     m = int(math.isqrt(n))
     nx, ny, nth, L0 = bl.normalize(x, y, th)
     f0 = L0 - m
-    f1, X1, Y1, T1, v1, _ = pslp.squeeze(nx, ny, nth, m, m, f0, max_it=250)
+    max_it = 120 if fast else 250
+    f1, X1, Y1, T1, v1, _ = pslp.squeeze(nx, ny, nth, m, m, f0, max_it=max_it)
     best_x, best_y, best_t, best_f = X1, Y1, T1, f1
     if v1 > 1e-12:
         best_x, best_y, best_t, best_f = nx, ny, nth, f0
-    if shake_rounds > 0:
+    eff_shake = 0 if fast else shake_rounds
+    if eff_shake > 0:
         rng = np.random.default_rng(seed)
-        f2, X2, Y2, T2 = pslp.shake_squeeze(best_x, best_y, best_t, m, m, best_f, rounds=shake_rounds, rng=rng)
+        f2, X2, Y2, T2 = pslp.shake_squeeze(best_x, best_y, best_t, m, m, best_f, rounds=eff_shake, rng=rng)
         if f2 < best_f - 1e-10 and pslp.viol(X2, Y2, T2, m, m, f2) <= 1e-12:
             best_x, best_y, best_t, best_f = X2, Y2, T2, f2
-    cert = bl.polish_and_certify(n, best_x, best_y, best_t, inc_dec, slp_rounds=16)
+    cert = bl.polish_and_certify(n, best_x, best_y, best_t, inc_dec, slp_rounds=(12 if fast else 16))
     if cert is not None:
         cert["label"] = f"{label}+pslp"
     return cert
@@ -327,6 +334,7 @@ def solve_pinwheel_pair(
     tag: str,
     base_seed: int,
     n_threads: int = 2,
+    fast: bool = False,
 ) -> tuple[dict | None, list]:
     """Direct SLP + masked C++ corner/seam melt + pslp + lpslack."""
     best_cert: dict | None = None
@@ -335,6 +343,10 @@ def solve_pinwheel_pair(
     kx = b1_base["w"] + b2_base["w"] - m
     ky = b1_base["h"] + b2_base["h"] - m
     is_zero_ov = (kx <= 0 and ky <= 0)
+    slp_rounds_direct = 12 if fast else 16
+    slp_rounds_pool = 12 if fast else 18
+    pool_limit = 2 if fast else 3
+    lpslack_margin = 0.0025 if fast else 0.008
 
     drop_cands = ("b1_BR", "b2_TL") if drop_mode == "b1_BR" else (drop_mode,)
     for dm in drop_cands:
@@ -353,12 +365,24 @@ def solve_pinwheel_pair(
                     if is_zero_ov and ftag == "fhi" and (m1, m2) in (("id", "id"), ("flipx", "flipy"), ("rot180", "rot180")):
                         pen, _ = cpp_eval_sat_pen_bbox(ax, ay, at)
                         if pen <= 1e-10:
-                            sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(ax, ay, at)
-                            use_x, use_y, use_t = (sx, sy, st) if ok else (ax, ay, at)
-                            cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=16)
-                            if cert is not None:
-                                cert["label"] = f"{tag}_{m1}_{m2}_direct"
-                                best_cert = _update_cert(best_cert, cert)
+                            if fast:
+                                sx, sy, st, Ls, ok = bl.joint_xytheta_slp(
+                                    ax, ay, at, rounds=8, tr_th0=0.02, tr_xy0=0.08, margin=1e-8, tol=1e-9, patience=2
+                                )
+                                use_x, use_y, use_t = (sx, sy, st) if ok else (ax, ay, at)
+                                cand_L = Ls if ok else L_tgt
+                                if cand_L < inc_f + 0.005:
+                                    cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=slp_rounds_direct)
+                                    if cert is not None:
+                                        cert["label"] = f"{tag}_{m1}_{m2}_direct"
+                                        best_cert = _update_cert(best_cert, cert)
+                            else:
+                                sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(ax, ay, at)
+                                use_x, use_y, use_t = (sx, sy, st) if ok else (ax, ay, at)
+                                cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=slp_rounds_direct)
+                                if cert is not None:
+                                    cert["label"] = f"{tag}_{m1}_{m2}_direct"
+                                    best_cert = _update_cert(best_cert, cert)
 
                     if ftag == "fhi" or len(seeds) < 24:
                         w1, h1, w2, h2 = b1["w"], b1["h"], b2["w"], b2["h"]
@@ -408,27 +432,38 @@ def solve_pinwheel_pair(
         pool.sort(key=lambda t: (t[0], t[1]))
         diag = [(t[0] == 0.0, round(t[1], 6), round(t[2], 6), t[6]) for t in pool[:3]]
 
-        for rank_i, (_, _, pen, cx, cy, cth, lbl) in enumerate(pool[:3]):
-            if pen > 0.03:
+        for rank_i, (_, _, pen, cx, cy, cth, lbl) in enumerate(pool[:pool_limit]):
+            if pen > (0.005 if fast else 0.03):
                 continue
-            sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(cx, cy, cth)
-            use_x, use_y, use_t = (sx, sy, st) if ok else (cx, cy, cth)
-            cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=18)
-            if cert is not None:
-                cert["label"] = lbl
-                best_cert = _update_cert(best_cert, cert)
+            if fast:
+                sx, sy, st, Ls, ok = bl.joint_xytheta_slp(
+                    cx, cy, cth, rounds=8, tr_th0=0.02, tr_xy0=0.08, margin=1e-8, tol=1e-9, patience=2
+                )
+                use_x, use_y, use_t = (sx, sy, st) if ok else (cx, cy, cth)
+                if (ok and Ls < inc_f + 0.003) or pen <= 1e-6:
+                    cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=slp_rounds_pool)
+                    if cert is not None:
+                        cert["label"] = lbl
+                        best_cert = _update_cert(best_cert, cert)
+            else:
+                sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(cx, cy, cth)
+                use_x, use_y, use_t = (sx, sy, st) if ok else (cx, cy, cth)
+                cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=slp_rounds_pool)
+                if cert is not None:
+                    cert["label"] = lbl
+                    best_cert = _update_cert(best_cert, cert)
             if rank_i == 0 and pen <= 1e-6:
                 c_pslp = pslp_and_certify(
-                    n, use_x, use_y, use_t, inc_dec, lbl, shake_rounds=2, seed=base_seed + 500
+                    n, use_x, use_y, use_t, inc_dec, lbl, shake_rounds=2, seed=base_seed + 500, fast=fast
                 )
                 best_cert = _update_cert(best_cert, c_pslp)
 
-    if best_cert is not None and best_cert["L_float"] < inc_f + 0.008:
+    if best_cert is not None and best_cert["L_float"] < inc_f + lpslack_margin:
         best_cert = pl.run_lpslack_polish(n, best_cert, inc_dec)
         # Final pslp squeeze on best certified result
         fx, fy, ft = _rows_to_arrays(best_cert["rows"])
         c_pslp2 = pslp_and_certify(
-            n, fx, fy, ft, inc_dec, best_cert["label"], shake_rounds=2, seed=base_seed + 900
+            n, fx, fy, ft, inc_dec, best_cert["label"], shake_rounds=2, seed=base_seed + 900, fast=fast
         )
         best_cert = _update_cert(best_cert, c_pslp2)
 

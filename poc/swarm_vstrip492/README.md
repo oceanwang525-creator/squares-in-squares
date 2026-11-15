@@ -6,6 +6,18 @@
 2. **Periodic-strip splicing & peeling (`run_synth_bricks.py`)**: Synthesizes 93 relaxed bricks in `poc/swarm_vstrip492/data/brick_*.json` via `vstrip` insertion (`g -> g+1`), `vstrip` removal (`remove_vertical_strip`, `g -> g-1`), `hcol` splicing, and 1-row/1-column outer peeling (`peel_outer_unit_layer`), compressing each with `compress_brick_slp` and `brick_mechwalk`.
 3. **Pinwheel Assembly & Polishing (`run_gate_probe.py`, `run_scale.py`, `run_phase2.py`)**: Composes zero-overlap (`ov=0, ct=0`) and corner/seam-melted (`max_ov=1`) pinwheels across `K = 20..31, D = 7..16`, polishing with `joint_xytheta_slp_tight`, `lpslack`, `pslp` (`squeeze` + `shake_squeeze`), and `mechwalk_compress`.
 
+## Certified PR4 Big-Move Win (vs `origin/main` `fb533ce`, `literal == pandas`)
+
+| `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
+|---:|:---:|---:|---:|---:|---:|:---|
+| **973** | `(31, +12)` | `31.67330922358059414916` | **`31.67202707235603316343`** | **`-1.282151e-03`** | `-8.347205e-05` | `10x21(g=+6, n=972)` + `21x10(g=+6, n=972)` (`ov=0, ct=1` corner melt) + `lpslack` + `pslp` |
+
+**Total across 1 strict PR4 win**: `d(L^2/n) = -8.347205e-05`, `d(L/sqrt(n)) = -4.110388e-05` (PR3 wins `{538, 800, 849, 970}` are staged separately in PR #128 on `origin/swarm-vstrip492-pr3`; PR1/PR2 wins `{585, 686, 739, 795, 796, 852}` are preserved/improved in `origin/main` `merged.csv`).
+
+### Corner-Melt Findings (`run_phase2.py`, `docs/phase2_results.json`)
+- **WORKED**: `ov=0, ct=1` single-corner touch (`w1 + k2 = m + 1`) with high-density `10x21 g=+6` (`n=972`) sub-brick + C++ penalty melt + `lpslack` + `pslp` broke `n=973 (31,+12)` by **`-1.282151e-03`**.
+- **FAILED / High-cost**: `ov=1` edge-overlap melts (`n=584, 638, 692, 738`) stalled at `dL = +0.0206..+0.0385` due to full-row/col boundary collisions; `df >= -1e-4` `zero_ct0` micro-polish was frozen per `#717`/`#725`.
+
 ## Certified PR3 Wins (vs `origin/main` `10a15e8`, `literal == pandas`)
 
 | `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
@@ -17,7 +29,7 @@
 
 **Total across 4 strict PR3 wins**: `d(L^2/n) = -5.442445e-06` (prior PR1/PR2 wins `{585, 686, 739, 795, 796, 852}` are preserved/improved in `origin/main` `merged.csv`).
 
-## Certified PR2 Wins (Merged in PR #114)
+## Certified PR2 Wins (vs `origin/main` `ccdac8f`, `literal == pandas`)
 
 | `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
 |---:|:---:|---:|---:|---:|---:|:---|

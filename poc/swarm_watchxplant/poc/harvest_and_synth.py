@@ -22,7 +22,10 @@ if str(HERE) not in sys.path:
 
 import watchxplant_lib as wx  # noqa: E402
 
-NEW_CHAMPION_NS = [973, 795, 793, 974, 743, 914, 912, 975, 854, 863, 924, 585, 634]
+NEW_CHAMPION_NS = [
+    973, 795, 793, 974, 743, 914, 912, 975, 854, 863, 924, 585, 634,
+    971, 637, 748, 805, 686, 635, 539, 908, 405, 582, 632, 798,
+]
 
 
 def load_donor_packs() -> dict[int, tuple[np.ndarray, np.ndarray, np.ndarray, float, str]]:

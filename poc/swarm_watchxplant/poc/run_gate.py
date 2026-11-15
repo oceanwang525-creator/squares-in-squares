@@ -29,6 +29,8 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=6, help="Max pairs per target n")
     parser.add_argument("--max-excess", type=float, default=0.004, help="Max f_hi - f_inc threshold")
     parser.add_argument("--time-limit", type=float, default=1500.0, help="Soft wallclock cap in seconds")
+    parser.add_argument("--fast", action="store_true", help="Fast polish mode for broader sweeps")
+    parser.add_argument("--resume", action="store_true", help="Resume from existing --out JSON")
     parser.add_argument("--out", default=str(wx.DOCS_DIR / "gate_summary.json"))
     args = parser.parse_args()
 
@@ -51,10 +53,19 @@ def main() -> None:
     frontier = wx.fast_load_true_frontier(targets, certify=True)
     print(f"Loaded certified frontier for {len(targets)} targets in {time.time() - t0:.1f}s", flush=True)
 
-    summary: dict = {"targets": {}, "wins": []}
     out_path = Path(args.out)
+    if args.resume and out_path.exists():
+        summary: dict = json.loads(out_path.read_text(encoding="utf-8"))
+        summary.setdefault("targets", {})
+        summary.setdefault("wins", [])
+        print(f"Resuming from {out_path} ({len(summary['targets'])} targets done)", flush=True)
+    else:
+        summary = {"targets": {}, "wins": []}
 
     for n in targets:
+        if args.resume and str(n) in summary["targets"]:
+            print(f"[SKIP] n={n} already in {out_path.name}", flush=True)
+            continue
         if time.time() - t0 > args.time_limit:
             print(f"\n[STOP] Reached time limit {args.time_limit:.0f}s before n={n}", flush=True)
             break
@@ -93,7 +104,7 @@ def main() -> None:
             tag = f"wx{n}_{b1['tag']}+{b2['tag']}"
             cert, diag = wx.solve_pinwheel_pair(
                 n, m, r, b1, b2, dm, inc_dec, tag,
-                base_seed=122000 + n * 10 + idx * 100, n_threads=2,
+                base_seed=122000 + n * 10 + idx * 100, n_threads=2, fast=args.fast,
             )
             if diag:
                 print(f"    diag={diag}", flush=True)

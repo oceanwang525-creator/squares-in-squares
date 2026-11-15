@@ -30,6 +30,8 @@ def main() -> None:
             "--top-k", "4",
             "--max-excess", "0.002",
             "--time-limit", "5400",
+            "--fast",
+            "--resume",
             "--out", str(rg.wx.DOCS_DIR / "scale_summary.json"),
         ]
     rg.main()
