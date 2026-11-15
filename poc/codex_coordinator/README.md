@@ -321,3 +321,8 @@ endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
   averaging of same-`n` alternatives produced 1,557 overlap pairs at 803,
   715 at 328, and 2,170 at 908. The closest candidates were copies/micro-
   perturbations, not complementary basins. Failure commit: `5365c5d`.
+- **H14 `boundary_slack_sculpt`: negative.** Across 144 coherent wall waves
+  per target, the best 803 residual was `1.65e-8`, but full re-jamming and
+  fixed-angle LP returned the incumbent side. At 908/969 the best residuals
+  were `1.67e-5`/`2.11e-5`. No one-square near miss survived. Failure commit:
+  `9106a20`.
