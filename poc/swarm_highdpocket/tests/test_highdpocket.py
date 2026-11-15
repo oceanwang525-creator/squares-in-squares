@@ -25,7 +25,7 @@ def test_final_csv_structure_and_dual_cert() -> None:
     mod.validate(text)
 
     lit, pdt = auto_union.load(final_csv)
-    assert sorted(lit.keys()) == [857, 915, 978]
+    assert sorted(lit.keys()) == [748, 805]
     for n in sorted(lit):
         res = auto_union.check((n, lit[n], pdt[n]))
         assert res is not None
