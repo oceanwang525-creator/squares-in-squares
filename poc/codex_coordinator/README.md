@@ -433,6 +433,11 @@ H18 showed is counterproductive.
   incumbent, below the `-1e-9` win threshold; the next shrink retained
   `7.4e-11` to `1.6e-10` overlap. The row is locally closed for this family.
   Commits: `147ea03`, `f9188bf`. Folder removed after preserving both.
+- **H22 `transport_sequence_beam`: negative.** Two transport/repair stages
+  were screened on 803/367/328 plus 791/908 controls. Stage one sometimes
+  reached low residual (e.g. `1.35e-8` at 791), but stage two destroyed the
+  useful wall placement; all best safe sides exceeded incumbents. Failure
+  commit: `8425350`.
 
 ### Cycle 4 outcome
 
