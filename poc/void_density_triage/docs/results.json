@@ -1,0 +1,35 @@
+[
+  {
+    "n": 803,
+    "incumbent_L": "28.81726587682309",
+    "target_L": "28.81726577682309",
+    "source_n": 802,
+    "source_L": "28.798826933645305",
+    "angles": 37,
+    "coarse_points_tested": 11220259,
+    "found": null,
+    "status": "no-insertion"
+  },
+  {
+    "n": 328,
+    "incumbent_L": "18.614368938490987",
+    "target_L": "18.614368838490986",
+    "source_n": 327,
+    "source_L": "18.583782190151954",
+    "angles": 33,
+    "coarse_points_tested": 3952817,
+    "found": null,
+    "status": "no-insertion"
+  },
+  {
+    "n": 791,
+    "incumbent_L": "28.62763575853155",
+    "target_L": "28.62763565853155",
+    "source_n": 790,
+    "source_L": "28.608712578447843",
+    "angles": 33,
+    "coarse_points_tested": 9845593,
+    "found": null,
+    "status": "no-insertion"
+  }
+]
