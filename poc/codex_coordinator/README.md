@@ -241,3 +241,52 @@ not coordinate mutation alone.
   step of the `n-2 + 2` route also failed after 64.3M checks. This closes the
   direct insertion audit, not arbitrary rearrangement. Failure commit:
   `50f11d1` (preserved through `17baee8`).
+
+## Cycle 3 hypotheses
+
+### H11 `crossn_graph_motif_alignment`
+
+**Rank:** 1. **Expected gain:** 0.001-0.005.
+
+Match repeated labeled subgraphs (orientation classes, wall attachments, seam
+roles) between packings at different `n`, not merely contiguous coordinate
+components. Reassemble aligned motifs and certify the complete group. This is
+a graph-edit continuation across `n`, distinct from H2's cluster exchange and
+H10's same-`n` single-edge rewrites.
+
+Quick targets: `803, 791, 908`.
+
+### H12 `multiresolution_cell_dictionary`
+
+**Rank:** 2. **Expected gain:** 0.002-0.006.
+
+Build a dictionary of exact local cell states from the current portfolio, with
+wall, seam, empty, and orientation signatures. Solve a coarse cell-cover DP
+followed by exact coordinate realization. The coarse states are reusable
+macrocells rather than rectangles or one-layer gadgets.
+
+### H13 `symmetry_ensemble_average`
+
+**Rank:** 3. **Expected gain:** 0.001-0.004.
+
+Take dihedral copies of several asymmetric high-performance packings, align in
+a common frame, and build a consensus geometry by contact-weighted medians.
+Break degenerate averaging only where the resulting contact pattern remains
+realizable. This is ensemble continuation, not a single-parent SLP.
+
+### H14 `boundary_slack_sculpt`
+
+**Rank:** 4. **Expected gain:** 0.0005-0.003.
+
+Parameterize the four wall profiles and move slack in coherent waves across
+chains of wall-adjacent squares. Use exact collision events to change ownership
+of wall contacts rather than applying uniform dilation or random jitter.
+
+### H15 `basin_switch_dag`
+
+**Rank:** 5. **Expected gain:** 0.001-0.004.
+
+Enumerate short sequences of already-measured feasible topology moves and treat
+them as directed basin edges. Search two- and three-move paths whose
+intermediate penetrations are nonzero but decreasing, then certify only the
+endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
