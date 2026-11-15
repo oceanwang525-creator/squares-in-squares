@@ -98,12 +98,17 @@ def sinkhorn(cost: np.ndarray, epsilon: float, rounds: int = 80) -> np.ndarray:
     return u[:, None] * kernel * v[None, :]
 
 
-def transport_barycenter(source: np.ndarray, donor: np.ndarray, epsilon: float):
+def transport_barycenter(
+    source: np.ndarray,
+    donor: np.ndarray,
+    epsilon: float,
+    angle_weight: float = 0.08,
+):
     xs = normalize_centers(source)
     xd = normalize_centers(donor)
     spatial = cdist(xs, xd, metric="euclidean")
     angle_delta = wrap_angle(source[:, None, 2] - donor[None, :, 2])
-    cost = spatial + 0.08 * np.abs(angle_delta)
+    cost = spatial + angle_weight * np.abs(angle_delta)
     coupling = sinkhorn(cost, epsilon=epsilon)
     weights = coupling / np.maximum(coupling.sum(axis=1, keepdims=True), 1e-300)
     centers = weights @ xd
@@ -188,23 +193,35 @@ def probe_target(
     seconds: float,
     repair_iterations: int = 900,
     top_starts: int = 18,
+    donor_offsets: tuple[int, ...] = (-2, -1, 1, 2),
+    epsilons: tuple[float, ...] = (0.025, 0.06),
+    deltas: tuple[float, ...] = (1e-8, 1e-7, 1e-6, 1e-5, 1e-4),
+    alphas: tuple[float, ...] = (0.2, 0.4, 0.65, 0.9),
+    angle_weight: float = 0.08,
+    include_same_d: bool = False,
 ) -> dict:
     started = time.monotonic()
     current = groups[n]
     incumbent_side = side(current)
-    donors = [m for m in (n - 2, n - 1, n + 1, n + 2) if m in groups]
+    donors = [n + offset for offset in donor_offsets if n + offset in groups]
+    if include_same_d:
+        defect = n - math.isqrt(n) ** 2
+        same_d = [
+            k * k + defect
+            for k in range(max(1, math.isqrt(n) - 3), math.isqrt(n) + 4)
+            if 1 <= k * k + defect <= 1000 and k * k + defect != n
+        ]
+        donors.extend(same_d)
+    donors = sorted(set(donors))
     # Begin at a barely perceptible reduction so a genuinely more flexible
     # transport topology can be separated from a mere penalty-margin failure.
-    deltas = (1e-8, 1e-7, 1e-6, 1e-5, 1e-4)
-    alphas = (0.2, 0.4, 0.65, 0.9)
-    epsilons = (0.025, 0.06)
     screened = []
     transports = 0
     for donor_n in donors:
         donor = groups[donor_n]
         for epsilon in epsilons:
             mapped_xy, mapped_angles, coupling, cost = transport_barycenter(
-                current, donor, epsilon
+                current, donor, epsilon, angle_weight
             )
             transports += 1
             transport_mass = float(coupling.sum())
@@ -329,9 +346,21 @@ def main() -> None:
     parser.add_argument("--repair-iterations", type=int, default=900)
     parser.add_argument("--top-starts", type=int, default=18)
     parser.add_argument("--workers", type=int, default=3)
+    parser.add_argument("--donor-offsets", default="-2,-1,1,2")
+    parser.add_argument("--epsilons", default="0.025,0.06")
+    parser.add_argument("--deltas", default="1e-8,1e-7,1e-6,1e-5,1e-4")
+    parser.add_argument("--alphas", default="0.2,0.4,0.65,0.9")
+    parser.add_argument("--angle-weight", type=float, default=0.08)
+    parser.add_argument("--include-same-d", action="store_true")
     parser.add_argument("--out", default=str(DOCS / "results.json"))
     args = parser.parse_args()
     targets = [int(item) for item in args.targets.split(",") if item]
+    donor_offsets = tuple(
+        int(item) for item in args.donor_offsets.split(",") if item
+    )
+    epsilons = tuple(float(item) for item in args.epsilons.split(",") if item)
+    deltas = tuple(float(item) for item in args.deltas.split(",") if item)
+    alphas = tuple(float(item) for item in args.alphas.split(",") if item)
     groups = load_groups()
 
     if args.workers > 1:
@@ -344,6 +373,12 @@ def main() -> None:
                     [args.seconds_per_target] * len(targets),
                     [args.repair_iterations] * len(targets),
                     [args.top_starts] * len(targets),
+                    [donor_offsets] * len(targets),
+                    [epsilons] * len(targets),
+                    [deltas] * len(targets),
+                    [alphas] * len(targets),
+                    [args.angle_weight] * len(targets),
+                    [args.include_same_d] * len(targets),
                 )
             )
     else:
@@ -354,6 +389,12 @@ def main() -> None:
                 args.seconds_per_target,
                 args.repair_iterations,
                 args.top_starts,
+                donor_offsets,
+                epsilons,
+                deltas,
+                alphas,
+                args.angle_weight,
+                args.include_same_d,
             )
             for n in targets
         ]

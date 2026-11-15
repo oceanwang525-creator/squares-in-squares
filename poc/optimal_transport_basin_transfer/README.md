@@ -39,22 +39,26 @@ No public coordinates or Kaggle submission are used.
 
 ## Results
 
-### Certified win
+### Certified wins
 
-`n=791` is a strict win in both official transports:
+`n=791` and `n=908` are strict wins in both official transports:
 
-| mode | side |
-|---|---:|
-| incumbent | `28.627635758531547` |
-| literal transport | `28.62753374831589705670429064973889809731966994229864` |
-| pandas `read_csv` / `to_csv` | `28.62753374831589705670429064973889809731966994229864` |
+| n | incumbent | literal L | pandas L |
+|---:|---:|---:|---:|
+| 791 | `28.627635758531547` | `28.627533748315897057` | `28.627533748315897057` |
+| 908 | `30.627635758528807` | `30.627535212069181892` | `30.627535212069181892` |
 
-The reduction is `dL = -1.020102156488e-4`, worth
+The 791 reduction is `dL = -1.020102156488e-4`, worth
 `ds = -3.627065712784e-6`. The donor map came from `n=789`, with
 `epsilon=0.025`, target delta `1e-4`, and interpolation `alpha=0.2`.
 After the transport solve, the minimum isotropic repair required only a
 `1.000000073914` dilation; fixed-angle LP then shortened the exact box to the
 reported value.
+
+The 908 extension used donor `n=912`, `epsilon=0.01`, target delta `1e-4`,
+and interpolation `alpha=0.1`. Its best repaired residual was
+`3.822e-8`; fixed-angle LP reduced the safe side to `30.62753521206918`.
+The reduction is `dL=-1.00546459603e-4`, worth `ds=-3.329e-6`.
 
 ### Criterion and initial target set
 
@@ -80,6 +84,12 @@ existing `final.csv` win:
 - `790,792,804,848,861,969`: no certified win.
 - `328,365,367,456,747,982`: no certified win.
 
+The extended wave used 84 donor/regularization maps and 3,528 starts per
+target across `367,328,803,908,969,861`. Only `n=908` produced a certified
+win; the other five rows remained tie-only or above their incumbents. A still
+longer follow-up on the winning 791 row is recorded by the multi-donor
+`ot_multidonor_barycenter` POC.
+
 The closest misses in the scale-up were `n=367` (`1.63e-6` initial max
 violation, but its minimum safe dilation exceeded the incumbent) and
 `n=328` (`9.51e-6`, also over budget after safe dilations). This is a narrow
@@ -87,10 +97,10 @@ one-row result, not a broad transport family.
 
 ### Verification
 
-The final file contains exactly one complete 791-square group. Its literal
-and pandas official certification results are identical to all displayed
-digits above. The `final.csv` SHA256 is
-`bf7f2ba8a5901bebf1b071b31d4f4aece8911af96892360844bc88eb06bad71a`.
+The final file contains two complete groups, 791 and 908. Their literal and
+pandas official certification results are identical to all displayed digits
+above. The current `final.csv` SHA256 is
+`26276b3be52c2bb080d380825b8fc46cd8b7312cdcf47c76bf17432058304b43`.
 
 ### Limits
 
