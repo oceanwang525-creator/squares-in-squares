@@ -158,6 +158,12 @@ commit before its experiment folder is removed from the working tree.
   324/328, 361/365, and 361/367. The observed per-layer sawtooth loss is too
   large to justify a larger DP. Failure commit: `dafaff9` (preserved through
   `879dd49`).
+- **H4 `face_cycle_flip`: negative.** The sampled contact graphs are nearly
+  fully triangulated (1,813-2,362 elementary faces at 908/969). Across
+  672/633/780 transforms, 22/22/35 candidates were valid at only
+  `L_inc - 2e-5`, but every one re-jammed to the incumbent; the best apparent
+  difference was `2.4e-15`, below the strict-win gate. Failure commit:
+  `8f21585` (preserved through `2116b2a`).
 
 ## Cycle 2 hypotheses
 
