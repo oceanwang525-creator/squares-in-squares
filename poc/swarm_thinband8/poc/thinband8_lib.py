@@ -604,7 +604,36 @@ def build_pinwheel_kxky(
     return ax, ay, at, L, seam
 
 
-def run_lpslack_polish(n: int, cert: dict, inc_dec: Decimal, time_limit: float = 12.0) -> dict:
+def run_pslp_polish(n: int, m: int, cert: dict, inc_dec: Decimal) -> dict:
+    """Apply kink-safe free-angle pslp.squeeze polish to a certified candidate."""
+    if not cert.get("rows"):
+        return cert
+    try:
+        pslp_dir = REPO_ROOT / "poc" / "row_ratchet_980" / "poc"
+        if str(pslp_dir) not in sys.path:
+            sys.path.insert(0, str(pslp_dir))
+        import pslp as pslp_mod  # type: ignore
+    except Exception:
+        return cert
+
+    xs = np.array([float(str(r["x"]).lstrip("s")) for r in cert["rows"]], dtype=np.float64)
+    ys = np.array([float(str(r["y"]).lstrip("s")) for r in cert["rows"]], dtype=np.float64)
+    ths = np.array([math.radians(float(str(r["angle"]).lstrip("s"))) for r in cert["rows"]], dtype=np.float64)
+    x0, x1, y0, y1 = pslp_mod.box_of(xs, ys, ths)
+    xs = xs - x0
+    ys = ys - y0
+    f0 = max(float(x1 - x0) - m, float(y1 - y0) - m)
+    fn, xn, yn, tn, vn, _ = pslp_mod.squeeze(xs, ys, ths, m, m, f0, max_it=250)
+    if vn > 1e-10 or fn >= f0 - 1e-10:
+        return cert
+    pcert = bl.polish_and_certify(n, xn, yn, tn, inc_dec, slp_rounds=8)
+    if pcert is not None and pcert["L_float"] < cert["L_float"] - 1e-11:
+        pcert["label"] = f"{cert['label']}+pslp"
+        return pcert
+    return cert
+
+
+def run_lpslack_polish(n: int, cert: dict, inc_dec: Decimal, time_limit: float = 25.0) -> dict:
     """Apply poc/swarm_lpslack/poc/lpslack.py to a certified candidate, returning best cert."""
     if not cert.get("rows"):
         return cert
@@ -655,9 +684,9 @@ def solve_pinwheel_pair(
     n_threads: int = 2,
     do_lpslack: bool = True,
 ) -> dict | None:
-    """Solve K=2 pinwheel (kx, ky in {-1,0,+1}) via direct SLP (if feasible) + 1-corner C++ melt + SLP + lpslack."""
+    """Solve K=2 pinwheel via direct SLP (if feasible) + 1-corner C++ melt + SLP + pslp + lpslack."""
     best_cert: dict | None = None
-    seeds, masks, scheds, labels = [], [], [], []
+    cand_seeds = []
     w1, h1, w2, h2 = b1_base["w"], b1_base["h"], b2_base["w"], b2_base["h"]
     kx, ky = w1 + w2 - m, h1 + h2 - m
     is_zero_ov = (kx <= 0 and ky <= 0 and kx + ky < 0)
@@ -669,37 +698,37 @@ def solve_pinwheel_pair(
             f_hi = max(b1["fx"], b1["fy"], b2["fx"], b2["fy"])
             f_lo = min(b1["fx"], b1["fy"], b2["fx"], b2["fy"])
             f_avg = 0.5 * (max(b1["fx"], b1["fy"]) + max(b2["fx"], b2["fy"]))
-            f_list = ((f_hi, "fhi"),) if abs(f_hi - f_lo) < 5e-4 else ((f_avg, "favg"), (f_hi, "fhi"))
+            f_list = ((f_hi, "fhi"),) if abs(f_hi - f_lo) < 5e-4 else ((f_hi, "fhi"), (f_avg, "favg"))
 
             for f_use, ftag in f_list:
                 built = build_pinwheel_kxky(m, b1, b2, sf=0.0, f_override=f_use)
                 if built is None:
                     continue
                 ax, ay, at, _, sm = built
-                if is_zero_ov and ftag == "fhi" and (m1, m2) in (("id", "id"), ("flipx", "flipy"), ("rot180", "rot180")):
-                    pen, _ = cpp_eval_sat_pen_bbox(ax, ay, at)
-                    if pen <= 1e-10:
-                        sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(ax, ay, at)
-                        use_x, use_y, use_t = (sx, sy, st) if ok else (ax, ay, at)
-                        cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=16)
-                        if cert is not None:
-                            cert["label"] = f"{tag}_{m1}_{m2}_direct"
-                            if best_cert is None or cert["L_float"] < best_cert["L_float"]:
-                                best_cert = cert
+                pen0, _ = cpp_eval_sat_pen_bbox(ax, ay, at)
+                if is_zero_ov and ftag == "fhi" and pen0 <= 1e-10:
+                    sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(ax, ay, at)
+                    use_x, use_y, use_t = (sx, sy, st) if ok else (ax, ay, at)
+                    cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=10)
+                    if cert is not None:
+                        cert["label"] = f"{tag}_{m1}_{m2}_direct"
+                        if best_cert is None or cert["L_float"] < best_cert["L_float"]:
+                            best_cert = cert
 
-                # Queue corner/seam melts for promising orientations
-                if ftag == "fhi" or (m1, m2) in (("id", "id"), ("flipx", "flipy"), ("id", "flipx"), ("rot180", "rot180")):
+                # Queue corner/seam melts prioritized by initial penalty (keeping all 16 orientations)
+                if ftag == "fhi" or (m1, m2) in (("id", "id"), ("flipx", "flipy"), ("rot180", "rot180")):
                     L_tgt = m + f_use
                     off = (0.018, 0.005, 0.0005) if (kx > 0 or ky > 0 or (kx == 0 and ky == 0)) else (0.010, 0.002, -3e-4)
-                    seeds.append((ax, ay, at))
-                    masks.append(sm)
-                    scheds.append([L_tgt + off[0], L_tgt + off[1], L_tgt + off[2]])
-                    labels.append(f"{tag}_{m1}_{m2}_{ftag}")
+                    prio = (0 if ftag == "fhi" else 1, float(pen0))
+                    cand_seeds.append((prio, (ax, ay, at), sm, [L_tgt + off[0], L_tgt + off[1], L_tgt + off[2]], f"{tag}_{m1}_{m2}_{ftag}"))
 
-    if seeds:
-        # Cap at 20 diverse seeds to keep runtime lean
-        if len(seeds) > 20:
-            seeds, masks, scheds, labels = seeds[:20], masks[:20], scheds[:20], labels[:20]
+    if cand_seeds:
+        cand_seeds.sort(key=lambda z: z[0])
+        cand_seeds = cand_seeds[:14]
+        seeds = [c[1] for c in cand_seeds]
+        masks = [c[2] for c in cand_seeds]
+        scheds = [c[3] for c in cand_seeds]
+        labels = [c[4] for c in cand_seeds]
         relaxed = bl.su.cpp_batch_melt(
             seeds,
             scheds,
@@ -707,8 +736,8 @@ def solve_pinwheel_pair(
             a_start=0.960,
             n_melt_stages=3,
             seam_masks=masks,
-            seam_iters=160,
-            full_iters=220,
+            seam_iters=140,
+            full_iters=180,
             n_ruin_iters=0,
             n_threads=n_threads,
             base_seed=base_seed,
@@ -722,17 +751,20 @@ def solve_pinwheel_pair(
             elif row["pen"] < 0.02:
                 pool.append((1.0 + float(row["pen"]), Lm, nx, ny, nth, lbl))
         pool.sort(key=lambda t: (t[0], t[1]))
-        for _, _, cx, cy, cth, lbl in pool[:3]:
+        for _, _, cx, cy, cth, lbl in pool[:2]:
             sx, sy, st, _, ok = bslp.joint_xytheta_slp_tight(cx, cy, cth)
             use_x, use_y, use_t = (sx, sy, st) if ok else (cx, cy, cth)
-            cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=16)
+            cert = bl.polish_and_certify(n, use_x, use_y, use_t, inc_dec, slp_rounds=10)
             if cert is not None:
                 cert["label"] = lbl
                 if best_cert is None or cert["L_float"] < best_cert["L_float"]:
                     best_cert = cert
 
-    if do_lpslack and best_cert is not None and best_cert["L_float"] < float(inc_dec) + 0.005:
-        best_cert = run_lpslack_polish(n, best_cert, inc_dec, time_limit=12.0)
+    if best_cert is not None and best_cert["L_float"] < float(inc_dec) + 0.008:
+        best_cert = run_pslp_polish(n, m, best_cert, inc_dec)
+
+    if do_lpslack and best_cert is not None and best_cert["L_float"] < float(inc_dec) + 0.004:
+        best_cert = run_lpslack_polish(n, best_cert, inc_dec, time_limit=25.0)
 
     return best_cert
 
