@@ -1,0 +1,1160 @@
+{
+  "method": "multi-donor Sinkhorn mass barycenter plus fixed-side repair",
+  "targets": [
+    803,
+    367,
+    328
+  ],
+  "results": [
+    {
+      "n": 803,
+      "incumbent_side": 28.81726587682309,
+      "donor_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maps": 16,
+      "weight_schedules": 105,
+      "screened_starts": 2520,
+      "repaired_starts": 24,
+      "attempts": [
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 1.1235826781513598,
+          "transport_value": 0.050993070009110214,
+          "final_penalty": 4.730627161010811e-06,
+          "max_violation": 0.0003569281794320034,
+          "dilation": 1.000299176353496,
+          "dilated_side": 28.82599035007108
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 1.123902730576724,
+          "transport_value": 0.050993070009110214,
+          "final_penalty": 6.076850035515179e-06,
+          "max_violation": 0.0004146559553679374,
+          "dilation": 1.0003476923222114,
+          "dilated_side": 28.82719847287659
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 1.1235971500112456,
+          "transport_value": 0.050993070009110214,
+          "final_penalty": 6.307068381366794e-06,
+          "max_violation": 0.0004416948890888506,
+          "dilation": 1.000370549024854,
+          "dilated_side": 28.82806376842881
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 1.1237418835778845,
+          "transport_value": 0.050993070009110214,
+          "final_penalty": 7.051813218631186e-06,
+          "max_violation": 0.00045967631838728096,
+          "dilation": 1.000385712626558,
+          "dilated_side": 28.82841226913444
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 1.1156487112825322,
+          "transport_value": 0.05216543771277614,
+          "final_penalty": 1.2317513232957573e-05,
+          "max_violation": 0.0007312572073008283,
+          "dilation": 1.0007199379752034,
+          "dilated_side": 28.83814600759048
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 1.1158034376883044,
+          "transport_value": 0.05216543771277614,
+          "final_penalty": 1.2478058325996652e-05,
+          "max_violation": 0.00068046451945869,
+          "dilation": 1.0006706986323763,
+          "dilated_side": 28.836685930890205
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 1.1159597593912107,
+          "transport_value": 0.05216543771277614,
+          "final_penalty": 1.3420650793201908e-05,
+          "max_violation": 0.0007561550377612747,
+          "dilation": 1.0007426557412002,
+          "dilated_side": 28.83860393065691
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 1.1962383519718212,
+          "transport_value": 0.051640647877266736,
+          "final_penalty": 2.925407192036628e-05,
+          "max_violation": 0.0007797625316192658,
+          "dilation": 1.0007628965633342,
+          "dilated_side": 28.839508946961185
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 1.196074083849808,
+          "transport_value": 0.051640647877266736,
+          "final_penalty": 2.9561097048382436e-05,
+          "max_violation": 0.0007832867614916417,
+          "dilation": 1.0007752148475082,
+          "dilated_side": 28.839966802851364
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 1.1477147523630369,
+          "transport_value": 0.05095716958224658,
+          "final_penalty": 2.9641230908643724e-05,
+          "max_violation": 0.0008537902293768163,
+          "dilation": 1.000854519860429,
+          "dilated_side": 28.842198440699068
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 1.147554791333083,
+          "transport_value": 0.05095716958224658,
+          "final_penalty": 2.9925920484374855e-05,
+          "max_violation": 0.0008731322432386501,
+          "dilation": 1.0008698198208033,
+          "dilated_side": 28.842718658829465
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 1.1475693318974782,
+          "transport_value": 0.05095716958224658,
+          "final_penalty": 3.046659403272869e-05,
+          "max_violation": 0.0008793524008043896,
+          "dilation": 1.0008801263390221,
+          "dilated_side": 28.843004636264833
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 1.1478763622646295,
+          "transport_value": 0.05095716958224658,
+          "final_penalty": 3.084092262400675e-05,
+          "max_violation": 0.0008768505024738804,
+          "dilation": 1.0008754629283065,
+          "dilated_side": 28.842698091230286
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 1.1964043120224204,
+          "transport_value": 0.051640647877266736,
+          "final_penalty": 3.12028313119166e-05,
+          "max_violation": 0.0008153341859167273,
+          "dilation": 1.0007995782755548,
+          "dilated_side": 28.840423560668
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 1.196089015986281,
+          "transport_value": 0.051640647877266736,
+          "final_penalty": 3.21312742116924e-05,
+          "max_violation": 0.0008146145336380695,
+          "dilation": 1.0007986203512507,
+          "dilated_side": 28.840664230463254
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 1.1156627760007072,
+          "transport_value": 0.05216543771277614,
+          "final_penalty": 4.3053224271238925e-05,
+          "max_violation": 0.0012275564417456586,
+          "dilation": 1.001222042685191,
+          "dilated_side": 28.85299400825387
+        }
+      ],
+      "elapsed_seconds": 135.18113041700053
+    },
+    {
+      "n": 367,
+      "incumbent_side": 19.692388155425203,
+      "donor_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maps": 16,
+      "weight_schedules": 105,
+      "screened_starts": 2520,
+      "repaired_starts": 24,
+      "attempts": [
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.20573775595288202,
+          "transport_value": 0.04320127408705335,
+          "final_penalty": 7.354648705277497e-09,
+          "max_violation": 1.9870825297418904e-05,
+          "dilation": 1.0000197367672035,
+          "dilated_side": 19.692766805310228,
+          "small_dilation": 1.0000197367672035,
+          "small_dilation_side": 19.692766805310228
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.19871501731161512,
+          "transport_value": 0.04378458661261292,
+          "final_penalty": 1.2566906329030249e-08,
+          "max_violation": 2.40122991721492e-05,
+          "dilation": 1.000023813912145,
+          "dilated_side": 19.692861978874728,
+          "small_dilation": 1.000023813912145,
+          "small_dilation_side": 19.692861978874728
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.19872222192069527,
+          "transport_value": 0.04378458661261292,
+          "final_penalty": 1.566007689480212e-08,
+          "max_violation": 2.711357398266223e-05,
+          "dilation": 1.0000269784577673,
+          "dilated_side": 19.692912610935583,
+          "small_dilation": 1.0000269784577673,
+          "small_dilation_side": 19.692912610935583
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.20179260746614158,
+          "transport_value": 0.0533489726106567,
+          "final_penalty": 2.111544478844871e-08,
+          "max_violation": 3.192011223696056e-05,
+          "dilation": 1.000031680232069,
+          "dilated_side": 19.69301419524293,
+          "small_dilation": 1.000031680232069,
+          "small_dilation_side": 19.69301419524293
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.20179950530414736,
+          "transport_value": 0.0533489726106567,
+          "final_penalty": 2.3643589805341583e-08,
+          "max_violation": 3.215688483138024e-05,
+          "dilation": 1.000032158018897,
+          "dilated_side": 19.69301532746456,
+          "small_dilation": 1.000032158018897,
+          "small_dilation_side": 19.69301532746456
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.2058118076133593,
+          "transport_value": 0.04320127408705335,
+          "final_penalty": 2.991254961689271e-08,
+          "max_violation": 2.675404617979993e-05,
+          "dilation": 1.0000267530687723,
+          "dilated_side": 19.69281862130081,
+          "small_dilation": 1.0000267530687723,
+          "small_dilation_side": 19.69281862130081
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.1987942832700852,
+          "transport_value": 0.04378458661261292,
+          "final_penalty": 3.8020458993659134e-08,
+          "max_violation": 3.395560919683405e-05,
+          "dilation": 1.0000339059030554,
+          "dilated_side": 19.69296052017791,
+          "small_dilation": 1.0000339059030554,
+          "small_dilation_side": 19.69296052017791
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.20849745518984908,
+          "transport_value": 0.058798957352873715,
+          "final_penalty": 4.646423157845439e-08,
+          "max_violation": 4.7340317158806045e-05,
+          "dilation": 1.0000470073860144,
+          "dilated_side": 19.693304897129288,
+          "small_dilation": 1.0000470073860144,
+          "small_dilation_side": 19.693304897129288
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.2085046132571966,
+          "transport_value": 0.058798957352873715,
+          "final_penalty": 4.9910249404233575e-08,
+          "max_violation": 5.020971265612406e-05,
+          "dilation": 1.0000502123336605,
+          "dilated_side": 19.693359284971528,
+          "small_dilation": 1.0000502123336605,
+          "small_dilation_side": 19.693359284971528
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -1,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.20186849751936037,
+          "transport_value": 0.0533489726106567,
+          "final_penalty": 5.1287636582771954e-08,
+          "max_violation": 4.236366144594328e-05,
+          "dilation": 1.0000423655551054,
+          "dilated_side": 19.693124079393204,
+          "small_dilation": 1.0000423655551054,
+          "small_dilation_side": 19.693124079393204
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.20592983217147404,
+          "transport_value": 0.044834455439460914,
+          "final_penalty": 5.33859431398111e-08,
+          "max_violation": 5.420041865256131e-05,
+          "dilation": 1.0000540793446548,
+          "dilated_side": 19.693457370254087,
+          "small_dilation": 1.0000540793446548,
+          "small_dilation_side": 19.693457370254087
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.20593701330303696,
+          "transport_value": 0.044834455439460914,
+          "final_penalty": 5.798852610792934e-08,
+          "max_violation": 5.581675791188623e-05,
+          "dilation": 1.0000556246073575,
+          "dilated_side": 19.693480338017608,
+          "small_dilation": 1.0000556246073575,
+          "small_dilation_side": 19.693480338017608
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 0.20589412078361063,
+          "transport_value": 0.04320127408705335,
+          "final_penalty": 8.725395762766212e-08,
+          "max_violation": 3.4368396364836684e-05,
+          "dilation": 1.0000341790610416,
+          "dilated_side": 19.692872872411577,
+          "small_dilation": 1.0000341790610416,
+          "small_dilation_side": 19.692872872411577
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -2,
+              1.0
+            ],
+            [
+              1,
+              1.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.20857620762927942,
+          "transport_value": 0.058798957352873715,
+          "final_penalty": 9.449147743888242e-08,
+          "max_violation": 6.795526598168955e-05,
+          "dilation": 1.000067197290606,
+          "dilated_side": 19.693597250415692,
+          "small_dilation": 1.000067197290606,
+          "small_dilation_side": 19.693597250415692
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              1,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 0.1988743839740307,
+          "transport_value": 0.04378458661261292,
+          "final_penalty": 9.776450519291081e-08,
+          "max_violation": 4.3878945492847876e-05,
+          "dilation": 1.0000437596236804,
+          "dilated_side": 19.693056913306105,
+          "small_dilation": 1.0000437596236804,
+          "small_dilation_side": 19.693056913306105
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              2,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.20600884065858885,
+          "transport_value": 0.044834455439460914,
+          "final_penalty": 9.853753217712731e-08,
+          "max_violation": 6.534954171533158e-05,
+          "dilation": 1.000065268568598,
+          "dilated_side": 19.69358240171353,
+          "small_dilation": 1.000065268568598,
+          "small_dilation_side": 19.69358240171353
+        }
+      ],
+      "elapsed_seconds": 51.41338600000017
+    },
+    {
+      "n": 328,
+      "incumbent_side": 18.614368938490983,
+      "donor_offsets": [
+        -4,
+        -3,
+        -2,
+        -1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maps": 16,
+      "weight_schedules": 105,
+      "screened_starts": 2520,
+      "repaired_starts": 24,
+      "attempts": [
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.162394191780168,
+          "transport_value": 0.04999579653597723,
+          "final_penalty": 7.436387932198598e-10,
+          "max_violation": 4.455621023691236e-06,
+          "dilation": 1.000004368633345,
+          "dilated_side": 18.614449963863226,
+          "small_dilation": 1.000004368633345,
+          "small_dilation_side": 18.614449963863226
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.16239952384117878,
+          "transport_value": 0.04999579653597723,
+          "final_penalty": 1.219412358656533e-09,
+          "max_violation": 4.790044911273661e-06,
+          "dilation": 1.0000047901678553,
+          "dilated_side": 18.614448272409238,
+          "small_dilation": 1.0000047901678553,
+          "small_dilation_side": 18.614448272409238
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.15004312181651835,
+          "transport_value": 0.048168536332588184,
+          "final_penalty": 6.2625568026839634e-09,
+          "max_violation": 1.1628473386871008e-05,
+          "dilation": 1.000011603340715,
+          "dilated_side": 18.614576402077414,
+          "small_dilation": 1.000011603340715,
+          "small_dilation_side": 18.614576402077414
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.15003836566347578,
+          "transport_value": 0.048168536332588184,
+          "final_penalty": 1.7242685803784586e-08,
+          "max_violation": 2.015918105735537e-05,
+          "dilation": 1.0000199344006635,
+          "dilated_side": 18.614741842275468,
+          "small_dilation": 1.0000199344006635,
+          "small_dilation_side": 18.614741842275468
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.16245285938753917,
+          "transport_value": 0.04999579653597723,
+          "final_penalty": 1.9484976274492115e-08,
+          "max_violation": 1.6776193544565388e-05,
+          "dilation": 1.0000166627368139,
+          "dilated_side": 18.614582869987522,
+          "small_dilation": 1.0000166627368139,
+          "small_dilation_side": 18.614582869987522
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.15009069802636937,
+          "transport_value": 0.048168536332588184,
+          "final_penalty": 2.7348294253206086e-08,
+          "max_violation": 2.2884670739964363e-05,
+          "dilation": 1.0000225198412007,
+          "dilated_side": 18.614692551138145,
+          "small_dilation": 1.0000225198412007,
+          "small_dilation_side": 18.614692551138145
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 0.16251215309845235,
+          "transport_value": 0.04999579653597723,
+          "final_penalty": 6.969801477513697e-08,
+          "max_violation": 3.560599014873489e-05,
+          "dilation": 1.0000356073579808,
+          "dilated_side": 18.61484939665142,
+          "small_dilation": 1.0000356073579808,
+          "small_dilation_side": 18.61484939665142
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "initial_penalty": 0.15014359181645553,
+          "transport_value": 0.048168536332588184,
+          "final_penalty": 7.598104002806736e-08,
+          "max_violation": 4.0724887921284036e-05,
+          "dilation": 1.0000406737683891,
+          "dilated_side": 18.6149180579842,
+          "small_dilation": 1.0000406737683891,
+          "small_dilation_side": 18.6149180579842
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.14048529113388242,
+          "transport_value": 0.05003823247298239,
+          "final_penalty": 4.2592467810527155e-07,
+          "max_violation": 8.455170872734286e-05,
+          "dilation": 1.0000845589581915,
+          "dilated_side": 18.615962682028815,
+          "small_dilation": 1.0000845589581915,
+          "small_dilation_side": 18.615962682028815
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.14048972556463626,
+          "transport_value": 0.05003823247298239,
+          "final_penalty": 4.4324916231961944e-07,
+          "max_violation": 8.381689203074139e-05,
+          "dilation": 1.0000838240177337,
+          "dilated_side": 18.615952027851506,
+          "small_dilation": 1.0000838240177337,
+          "small_dilation_side": 18.615952027851506
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.14053407883835486,
+          "transport_value": 0.05003823247298239,
+          "final_penalty": 5.765225766270169e-07,
+          "max_violation": 9.442587100516597e-05,
+          "dilation": 1.0000944348876535,
+          "dilated_side": 18.616061327134865,
+          "small_dilation": 1.0000944348876535,
+          "small_dilation_side": 18.616061327134865
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.1623769786324441,
+          "transport_value": 0.05540601923512105,
+          "final_penalty": 5.983491769132401e-07,
+          "max_violation": 0.00010146527657584059,
+          "dilation": 1.0001006972118167,
+          "dilated_side": 18.616286180721488
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "initial_penalty": 0.15863050387598052,
+          "transport_value": 0.05473866272362605,
+          "final_penalty": 6.23113861604088e-07,
+          "max_violation": 0.000125865274504533,
+          "dilation": 1.000125881217409,
+          "dilated_side": 18.616699928840134
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.1586250152760456,
+          "transport_value": 0.05473866272362605,
+          "final_penalty": 6.346106624105965e-07,
+          "max_violation": 0.00011814511815955164,
+          "dilation": 1.0001181591758523,
+          "dilated_side": 18.616560579115355
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "initial_penalty": 0.1624333497583919,
+          "transport_value": 0.05540601923512105,
+          "final_penalty": 6.633975073196099e-07,
+          "max_violation": 0.00010467002775460532,
+          "dilation": 1.0001046810822916,
+          "dilated_side": 18.616266196017154
+        },
+        {
+          "epsilon": 0.025,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "initial_penalty": 0.16237134301483944,
+          "transport_value": 0.05540601923512105,
+          "final_penalty": 6.741346774772325e-07,
+          "max_violation": 0.0001125791293399292,
+          "dilation": 1.0001111962487288,
+          "dilated_side": 18.616472618468965
+        }
+      ],
+      "elapsed_seconds": 62.17296600000009
+    }
+  ],
+  "wins": {}
+}
