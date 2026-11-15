@@ -2,5 +2,6 @@ data/bricks/*
 !data/bricks/brick_pw_791_TL_11x19_g4.json
 !data/bricks/brick_pw_791_TL_11x19_g4_pr_slp.json
 !data/bricks/brick_pw_791_TL_11x20_g4.json
+!data/bricks/brick_ch_908_TL_10x20_g4_pb_slp.json
 *.log
 __pycache__/
