@@ -152,6 +152,12 @@ commit before its experiment folder is removed from the working tree.
   phase did not overcome the fractional side-ribbon clipping. This is a
   defensible structural stop, not a general proof against all row-state models.
   Failure commit: `e64f8f5` (preserved through `ad53584`).
+- **H5 `multiscale_corner_tiles`: negative.** Across 180 exact MIS probes at
+  `L_inc - 1e-4`, two/three-layer boundary tiles held only 44-46 squares while
+  the same strip of upright grid held 72-76. The best combined layouts held
+  324/328, 361/365, and 361/367. The observed per-layer sawtooth loss is too
+  large to justify a larger DP. Failure commit: `dafaff9` (preserved through
+  `879dd49`).
 
 ## Cycle 2 hypotheses
 
