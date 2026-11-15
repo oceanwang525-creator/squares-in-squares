@@ -456,6 +456,10 @@ H18 showed is counterproductive.
   Minimum safe dilation exceeded the incumbent by about `1.0e-3..1.5e-3`,
   so there was no one-square/near-feasible sign for the remaining neighbors.
   Failure commit: `42e4ac0`.
+- **H28 `localized_topgaps`: negative.** Localized transport on
+  969/861/747/804/848 found best residuals of `3.50e-5..8.08e-5`, but safe
+  dilation missed the incumbent by at least `1.1e-3`. Failure commit:
+  `1cdd0fa`.
 - **H28 `localized_topgaps`: negative.** The H21 localized-weight sweep was
   applied to 969/861/747/804/848 with 27,000 starts per row. Best residuals
   were `3.50e-5..8.08e-5`; safe dilation exceeded every incumbent by at least
