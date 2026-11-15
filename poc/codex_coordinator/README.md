@@ -379,6 +379,11 @@ rewrite; high-entropy conflicts are rejected before expensive repair.
 
 ### Cycle 4 outcome
 
+- **H7 extended scale-up: POSITIVE, second row.** A 3,528-start sweep across
+  `367,328,803,908,969,861` produced a strict `n=908` win from donor 912.
+  The complete group certifies at `30.627535212069181892...` in both modes,
+  `dL=-1.005464596e-4` and score gain about `-3.329e-6`. The other five rows
+  were tie-only or above incumbent. Commit: `6126a2c`; folded into PR #134.
 - **H16 `ot_multidonor_barycenter`: POSITIVE.** Mixing donors `n+2` and
   `n+3` at weights `1:2` improves the already certified 791 row again. The
   full group certifies at `28.627434433035796152...` in both transports,
