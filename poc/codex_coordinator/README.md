@@ -377,6 +377,53 @@ Rank near-feasible candidates by contact-label entropy and patch count rather
 than dilation alone. Low-entropy conflicts should admit an attractor-local
 rewrite; high-entropy conflicts are rejected before expensive repair.
 
+## Cycle 5 hypotheses
+
+H16 proves that local transport geometry can carry meaningful improvements
+well beyond the first win. The next cycle keeps that mechanism while changing
+how donor mass and target rows are selected.
+
+### H21 `localized_donor_weights`
+
+**Rank:** 1. **Expected gain:** 0.0002-0.003 across related rows.
+
+Let multi-donor barycenter weights vary by wall quadrant or contact region
+instead of using one global weight vector. One donor may supply the bulk while
+another supplies only an endcap or seam.
+
+### H22 `transport_sequence_beam`
+
+**Rank:** 2. **Expected gain:** 0.0002-0.002.
+
+Treat successive donor maps and small repairs as states in a short beam
+search, keeping candidates by residual and topology diversity. H7/H16 use one
+map then one repair; this tests two or three alternating map/repair steps.
+
+### H23 `near_plateau_source_selection`
+
+**Rank:** 3. **Expected gain:** 0.0001-0.001 in aggregate.
+
+Choose transport sources by chord-count and seam compatibility among rows
+whose side lengths are within `0.02`, rather than only by index distance. This
+targets rows with close geometric plateaus but different cardinalities.
+
+### H24 `transport_masked_melt`
+
+**Rank:** 4. **Expected gain:** 0.0001-0.001.
+
+Use the best transport seed as a topology, freeze its coherent bulk, and run a
+masked soft-a melt only around the transport residual. This is a hybrid of the
+proven transport seed and the previously effective masked-pocket melt.
+
+### H25 `angle_class_reassignment`
+
+**Rank:** 5. **Expected gain:** diagnostic, then up to 0.001.
+
+After center transport, reassign squares to folded-angle classes by a global
+minimum-cost matching, then rebuild only interfaces between orientation
+classes. This avoids putting angle directly into the Sinkhorn metric, which
+H18 showed is counterproductive.
+
 ### Cycle 4 outcome
 
 - **H7 extended scale-up: POSITIVE, second row.** A 3,528-start sweep across
