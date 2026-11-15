@@ -22,11 +22,14 @@ DATA_DIR = REPO / "poc" / "swarm_highdpocket" / "data"
 def main() -> None:
     inputs = [
         DATA_DIR / "base_pockets_sane.json",
+        DATA_DIR / "bricks_pockets.json",
         DATA_DIR / "scan_b1_valid.json",
         DATA_DIR / "scan_b2_a.json",
         DATA_DIR / "scan_b2_b.json",
         DATA_DIR / "scan_005_a.json",
         DATA_DIR / "scan_005_b.json",
+        DATA_DIR / "scan_b3_a.json",
+        DATA_DIR / "scan_b3_b.json",
     ]
     all_recs = []
     for p in inputs:
