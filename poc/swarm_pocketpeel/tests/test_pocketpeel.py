@@ -31,9 +31,8 @@ def _load_check_final_csv():
 
 
 def test_peel_n852_donors():
-    fr = pp.load_merged_frontier([852], certify=False)
-    b6 = pp.cp2.extract_corner_brick(fr[852]["x"], fr[852]["y"], fr[852]["th"], fr[852]["L"], "BR", 20, 11, 6, "t_20x11")
-    b5 = pp.cp2.extract_corner_brick(fr[852]["x"], fr[852]["y"], fr[852]["th"], fr[852]["L"], "TL", 9, 17, 5, "t_9x17")
+    b6 = pp.load_brick(pp.BRICKS_DIR / "brick_n852_20x11_g6.json", tag="t_20x11")
+    b5 = pp.load_brick(pp.BRICKS_DIR / "brick_n852_9x17_g5.json", tag="t_9x17")
     assert b6 is not None and b5 is not None
     p_top = pp.peel_outer_unit_layer(b6, "top", "p_top")
     p_right = pp.peel_outer_unit_layer(b5, "right", "p_right")

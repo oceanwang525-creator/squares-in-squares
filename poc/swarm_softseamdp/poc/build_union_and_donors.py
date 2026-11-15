@@ -201,9 +201,9 @@ def main() -> None:
 
     # Write donors_rescan.csv (for key improved / high-gap ns using src=4000+n so no collision)
     base_rescan = {
-        270, 305, 379, 419, 420, 492, 495, 535, 585, 604, 634, 640, 650, 654,
-        686, 703, 706, 743, 748, 758, 761, 793, 795, 800, 818, 852, 854, 857,
-        863, 873, 874, 875, 910, 911, 912, 914, 915, 924, 934, 972, 973, 974,
+        270, 305, 379, 419, 420, 492, 495, 535, 539, 585, 604, 634, 635, 637, 640, 650, 654,
+        686, 703, 706, 739, 743, 748, 758, 761, 793, 795, 800, 818, 852, 854, 857,
+        863, 873, 874, 875, 908, 910, 911, 912, 914, 915, 924, 934, 971, 972, 973, 974,
         975, 978, 980, 983, 990, 996,
     }
     newly_changed = {
@@ -243,11 +243,13 @@ def main() -> None:
                 w.writerow([rid, 2006, r["square_id"], r["x"], r["y"], r["angle"]])
                 rid += 1
 
-        # Add bricks from swarm_gstep, swarm_pocketpeel, swarm_b7xplant
+        # Add bricks from swarm_gstep, swarm_pocketpeel, swarm_b7xplant, swarm_vstrip492, swarm_watchxplant
         brick_paths = sorted(
             glob.glob(str(REPO / "poc" / "swarm_gstep" / "data" / "brick_*.json"))
             + glob.glob(str(REPO / "poc" / "swarm_pocketpeel" / "data" / "bricks" / "brick_*.json"))
             + glob.glob(str(REPO / "poc" / "swarm_b7xplant" / "data" / "brick_*.json"))
+            + glob.glob(str(REPO / "poc" / "swarm_vstrip492" / "data" / "brick_*.json"))
+            + glob.glob(str(REPO / "poc" / "swarm_watchxplant" / "data" / "bricks" / "brick_*.json"))
         )
         for bi, bp in enumerate(brick_paths):
             d = json.loads(Path(bp).read_text())

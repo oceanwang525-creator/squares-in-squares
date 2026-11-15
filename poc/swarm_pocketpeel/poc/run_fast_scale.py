@@ -70,6 +70,8 @@ def load_extended_bricks() -> list[dict]:
         ("b7xplant", pp.REPO_ROOT / "poc" / "swarm_b7xplant" / "data"),
         ("b8xplant", pp.REPO_ROOT / "poc" / "swarm_b8xplant" / "data"),
         ("stepdown", pp.REPO_ROOT / "poc" / "swarm_stepdown" / "data"),
+        ("vstrip492", pp.REPO_ROOT / "poc" / "swarm_vstrip492" / "data"),
+        ("vstrip852", pp.REPO_ROOT / "poc" / "swarm_vstrip852" / "data"),
     )
     for sg, d in ext_dirs:
         if d.exists():

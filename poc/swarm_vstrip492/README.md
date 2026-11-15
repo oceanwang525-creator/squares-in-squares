@@ -18,6 +18,17 @@
 - **WORKED**: `ov=0, ct=1` single-corner touch (`w1 + k2 = m + 1`) with high-density `10x21 g=+6` (`n=972`) sub-brick + C++ penalty melt + `lpslack` + `pslp` broke `n=973 (31,+12)` by **`-1.282151e-03`**.
 - **FAILED / High-cost**: `ov=1` edge-overlap melts (`n=584, 638, 692, 738`) stalled at `dL = +0.0206..+0.0385` due to full-row/col boundary collisions; `df >= -1e-4` `zero_ct0` micro-polish was frozen per `#717`/`#725`.
 
+## Certified PR3 Wins (vs `origin/main` `10a15e8`, `literal == pandas`)
+
+| `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
+|---:|:---:|---:|---:|---:|---:|:---|
+| **800** | `(28, +16)` | `28.77457810035783470455` | **`28.77450261627168216271`** | **`-7.548409e-05`** | `-5.430050e-06` | `18x9(n=800)` + `10x18(NEW)` + `lpslack` + `pslp` |
+| **849** | `(29, +8)` | `29.63688171337221016936` | **`29.63688154086398901216`** | **`-1.725082e-07`** | `-1.204383e-08` | `12x16(n=849)` + `12x16(n=849)` + `lpslack` + `pslp` |
+| **970** | `(31, +9)` | `31.63768686499829017102` | **`31.63768686184327810742`** | **`-3.155012e-09`** | `-2.058088e-10` | `16x11(g=+4, n=490)` + `20x11(n=970s6)` + `lpslack` + `pslp` |
+| **538** | `(23, +9)` | `23.70588235542379963937` | **`23.70588235377292491020`** | **`-1.650875e-09`** | `-1.454849e-10` | `5x13(n=492)` + `9x18(g=+6, n=538)` + `lpslack` + `pslp` |
+
+**Total across 4 strict PR3 wins**: `d(L^2/n) = -5.442445e-06` (prior PR1/PR2 wins `{585, 686, 739, 795, 796, 852}` are preserved/improved in `origin/main` `merged.csv`).
+
 ## Certified PR2 Wins (vs `origin/main` `ccdac8f`, `literal == pandas`)
 
 | `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
