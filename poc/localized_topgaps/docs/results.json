@@ -1,0 +1,503 @@
+{
+  "method": "H21 position-localized two-donor transport on top gaps",
+  "targets": [
+    969,
+    861,
+    747,
+    804,
+    848
+  ],
+  "results": [
+    {
+      "n": 969,
+      "incumbent_side": 31.62763575853136,
+      "maps": 12,
+      "screened_starts": 27000,
+      "repaired_starts": 4,
+      "attempts": [
+        {
+          "penalty": 0.013402236176168305,
+          "schedule": [
+            2,
+            4,
+            0.75,
+            2.5,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 31.62762575853136,
+          "transport_value": 0.019415640590656716,
+          "final_penalty": 1.2628239558103995e-07,
+          "violation": 3.497493736781543e-05,
+          "dilation": 1.000033975030735,
+          "safe_side": 31.628711291542565,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.01341465287486542,
+          "schedule": [
+            2,
+            4,
+            0.75,
+            2.5,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0001,
+          "alpha": 0.04,
+          "target_side": 31.62753575853136,
+          "transport_value": 0.019415640590656716,
+          "final_penalty": 3.5494201951234825e-07,
+          "violation": 5.8384010491852045e-05,
+          "dilation": 1.0000579513914503,
+          "safe_side": 31.629393371322806,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.013442356523457996,
+          "schedule": [
+            2,
+            4,
+            0.75,
+            2.5,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0003,
+          "alpha": 0.04,
+          "target_side": 31.62733575853136,
+          "transport_value": 0.019415640590656716,
+          "final_penalty": 5.431598030507322e-07,
+          "violation": 7.301242162127686e-05,
+          "dilation": 1.0000707619319722,
+          "safe_side": 31.629600100485213,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.013484204449999933,
+          "schedule": [
+            2,
+            4,
+            0.75,
+            2.5,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0006,
+          "alpha": 0.04,
+          "target_side": 31.62703575853136,
+          "transport_value": 0.019415640590656716,
+          "final_penalty": 1.0338028295662912e-06,
+          "violation": 9.250102919100556e-05,
+          "dilation": 1.000089216510742,
+          "safe_side": 31.629885391400627,
+          "safe_violation": 1.000088900582341e-11
+        }
+      ],
+      "elapsed_seconds": 257.6876200830011
+    },
+    {
+      "n": 861,
+      "incumbent_side": 29.815764558940618,
+      "maps": 12,
+      "screened_starts": 27000,
+      "repaired_starts": 4,
+      "attempts": [
+        {
+          "penalty": 0.01549260478055515,
+          "schedule": [
+            1,
+            4,
+            0.75,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 29.81575455894062,
+          "transport_value": 0.019733468822356846,
+          "final_penalty": 1.375891546794082e-07,
+          "violation": 5.59177445567105e-05,
+          "dilation": 1.0000507863655923,
+          "safe_side": 29.817283459500146,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.015506858582355162,
+          "schedule": [
+            1,
+            4,
+            0.75,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0001,
+          "alpha": 0.04,
+          "target_side": 29.815664558940618,
+          "transport_value": 0.019733468822356846,
+          "final_penalty": 2.147289322949072e-07,
+          "violation": 6.658610506682372e-05,
+          "dilation": 1.0000609378255247,
+          "safe_side": 29.817499435376202,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.015538650903195462,
+          "schedule": [
+            1,
+            4,
+            0.75,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0003,
+          "alpha": 0.04,
+          "target_side": 29.81546455894062,
+          "transport_value": 0.019733468822356846,
+          "final_penalty": 4.416172014309243e-07,
+          "violation": 9.048354564678007e-05,
+          "dilation": 1.0000828716372097,
+          "safe_side": 29.81795689414035,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.015586650499046081,
+          "schedule": [
+            1,
+            4,
+            0.75,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0006,
+          "alpha": 0.04,
+          "target_side": 29.81516455894062,
+          "transport_value": 0.019733468822356846,
+          "final_penalty": 9.122260647171759e-07,
+          "violation": 0.00012050259094631421,
+          "dilation": 1.000111530701699,
+          "safe_side": 29.818519302465642,
+          "safe_violation": 1.000088900582341e-11
+        }
+      ],
+      "elapsed_seconds": 255.71460320799815
+    },
+    {
+      "n": 747,
+      "incumbent_side": 27.810663458507218,
+      "maps": 12,
+      "screened_starts": 27000,
+      "repaired_starts": 5,
+      "attempts": [
+        {
+          "penalty": 0.06427749464716064,
+          "schedule": [
+            1,
+            2,
+            0.5,
+            0.75,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 27.81065345850722,
+          "transport_value": 0.039190795585445845,
+          "final_penalty": 2.0929472466885173e-07,
+          "violation": 5.757993046007215e-05,
+          "dilation": 1.000049167380819,
+          "safe_side": 27.812061907137192,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.06431459579121745,
+          "schedule": [
+            1,
+            2,
+            0.5,
+            0.75,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0001,
+          "alpha": 0.04,
+          "target_side": 27.810563458507218,
+          "transport_value": 0.039190795585445845,
+          "final_penalty": 2.917062717375618e-07,
+          "violation": 6.700287802297034e-05,
+          "dilation": 1.0000572139193245,
+          "safe_side": 27.812205730836574,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.06463718407226518,
+          "schedule": [
+            1,
+            2,
+            0.65,
+            0.75,
+            "x"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 27.81065345850722,
+          "transport_value": 0.03882235434315957,
+          "final_penalty": 3.257216906785234e-07,
+          "violation": 7.885224769310639e-05,
+          "dilation": 1.0000673340006987,
+          "safe_side": 27.812555818626276,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.06439713304955075,
+          "schedule": [
+            1,
+            2,
+            0.5,
+            0.75,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0003,
+          "alpha": 0.04,
+          "target_side": 27.81036345850722,
+          "transport_value": 0.039190795585445845,
+          "final_penalty": 5.092566285976444e-07,
+          "violation": 8.942215127016873e-05,
+          "dilation": 1.0000764112356528,
+          "safe_side": 27.812552674851002,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.06452117308989899,
+          "schedule": [
+            1,
+            2,
+            0.5,
+            0.75,
+            "d-"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0006,
+          "alpha": 0.04,
+          "target_side": 27.81006345850722,
+          "transport_value": 0.039190795585445845,
+          "final_penalty": 1.0008258191833595e-06,
+          "violation": 0.00013406852536501646,
+          "dilation": 1.0001282437056507,
+          "safe_side": 27.813713230507183,
+          "safe_violation": 1.000088900582341e-11
+        }
+      ],
+      "elapsed_seconds": 254.96697050000148
+    },
+    {
+      "n": 804,
+      "incumbent_side": 28.827155380556654,
+      "maps": 12,
+      "screened_starts": 27000,
+      "repaired_starts": 4,
+      "attempts": [
+        {
+          "penalty": 0.03185903995043027,
+          "schedule": [
+            2,
+            3,
+            0.25,
+            1.5,
+            "d+"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 28.827145380556654,
+          "transport_value": 0.026175984230027587,
+          "final_penalty": 3.764991215602851e-07,
+          "violation": 8.080791302988999e-05,
+          "dilation": 1.0000808145117086,
+          "safe_side": 28.82948602213017,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.03183009524145915,
+          "schedule": [
+            2,
+            3,
+            0.25,
+            2.5,
+            "d+"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 28.827145380556654,
+          "transport_value": 0.02618240792915588,
+          "final_penalty": 3.9922232980143995e-07,
+          "violation": 8.485740495056682e-05,
+          "dilation": 1.0000840444482981,
+          "safe_side": 28.829576659576507,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.03187199369452074,
+          "schedule": [
+            2,
+            3,
+            0.25,
+            0.75,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 28.827145380556654,
+          "transport_value": 0.026173623710786312,
+          "final_penalty": 5.59045727490798e-07,
+          "violation": 9.850256642285338e-05,
+          "dilation": 1.0000982583625684,
+          "safe_side": 28.829992338729202,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.03184952120749823,
+          "schedule": [
+            2,
+            3,
+            0.25,
+            2.5,
+            "d+"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0001,
+          "alpha": 0.04,
+          "target_side": 28.827055380556654,
+          "transport_value": 0.02618240792915588,
+          "final_penalty": 6.542292581588996e-07,
+          "violation": 0.00010761283065829907,
+          "dilation": 1.000106817099272,
+          "safe_side": 28.830144977866308,
+          "safe_violation": 1.000088900582341e-11
+        }
+      ],
+      "elapsed_seconds": 245.26681299999836
+    },
+    {
+      "n": 848,
+      "incumbent_side": 29.6230652120617,
+      "maps": 12,
+      "screened_starts": 27000,
+      "repaired_starts": 5,
+      "attempts": [
+        {
+          "penalty": 0.051990676192217346,
+          "schedule": [
+            3,
+            4,
+            0.4,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 1e-05,
+          "alpha": 0.04,
+          "target_side": 29.6230552120617,
+          "transport_value": 0.03496987386487533,
+          "final_penalty": 2.5510865573978005e-07,
+          "violation": 5.5908333313259284e-05,
+          "dilation": 1.0000559115592322,
+          "safe_side": 29.624721042794693,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.052020126734579106,
+          "schedule": [
+            3,
+            4,
+            0.4,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0001,
+          "alpha": 0.04,
+          "target_side": 29.6229652120617,
+          "transport_value": 0.03496987386487533,
+          "final_penalty": 3.305735132783524e-07,
+          "violation": 6.252050332655745e-05,
+          "dilation": 1.000062524512209,
+          "safe_side": 29.624828910244165,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.05208566449759913,
+          "schedule": [
+            3,
+            4,
+            0.4,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0003,
+          "alpha": 0.04,
+          "target_side": 29.6227652120617,
+          "transport_value": 0.03496987386487533,
+          "final_penalty": 6.860539341400539e-07,
+          "violation": 8.330390265198773e-05,
+          "dilation": 1.000083310938463,
+          "safe_side": 29.625259379402745,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.05218421064257379,
+          "schedule": [
+            3,
+            4,
+            0.4,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.0006,
+          "alpha": 0.04,
+          "target_side": 29.6224652120617,
+          "transport_value": 0.03496987386487533,
+          "final_penalty": 1.1242332085497466e-06,
+          "violation": 0.00010585867847279218,
+          "dilation": 1.0001058699857284,
+          "safe_side": 29.625641519011594,
+          "safe_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 0.052316055292860736,
+          "schedule": [
+            3,
+            4,
+            0.4,
+            1.5,
+            "y"
+          ],
+          "epsilon": 0.0125,
+          "delta": 0.001,
+          "alpha": 0.04,
+          "target_side": 29.6220652120617,
+          "transport_value": 0.03496987386487533,
+          "final_penalty": 2.4871885999133284e-06,
+          "violation": 0.00014975610181233723,
+          "dilation": 1.000149778632072,
+          "safe_side": 29.626563932925507,
+          "safe_violation": 1.000088900582341e-11
+        }
+      ],
+      "elapsed_seconds": 254.61147583300044
+    }
+  ],
+  "wins": {}
+}
