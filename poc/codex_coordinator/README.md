@@ -385,3 +385,8 @@ rewrite; high-entropy conflicts are rejected before expensive repair.
   dominant component. Twenty-four separated patches per target changed the
   residual by at most about 1%, leaving it thousands of times above local
   feasibility. Failure commit: `216616b`.
+- **H18 `oriented_mass_transport`: negative.** Joint center/folded-angle
+  transport screened 90 maps and 1,800 starts per target, but every best
+  candidate used the center-only control (`lambda_angle=0`). Orientation mass
+  increased residual to `8.59e-4/3.40e-5/4.13e-4` and safe dilation exceeded
+  the incumbent at all three targets. Failure commit: `6902bb6`.
