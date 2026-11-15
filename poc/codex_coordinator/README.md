@@ -132,3 +132,10 @@ staircase families.
 Cycle 1 launched after the `b5ad536` sync. Outcomes are appended here as agents
 return. A negative result must have its README, header-only `final.csv`, and a
 commit before its experiment folder is removed from the working tree.
+
+- **H1 `heterogeneous_lattice_mip`: negative.** The quick probe at
+  `incumbent_L - 0.0002` reached only 756/803, 756/791, and 872/908 squares.
+  The global candidate pool for 803 reduced to the ordinary `28 x 28` grid;
+  the short HiGHS run did not find a competitive basin. This sampled variant is
+  closed because it has no one-square near miss. Failure commit: `ac278b6`
+  (preserved through `3e0d974`).
