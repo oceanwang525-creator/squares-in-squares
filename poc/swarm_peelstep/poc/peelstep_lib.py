@@ -38,6 +38,13 @@ from cpp_wrap import cpp_eval_sat_pen_bbox  # noqa: E402
 
 WORKTREES_ROOT = Path("/home/lucas/.gemini/antigravity-cli/worktrees/a4fb0b93-b63b-426d-aa12-67454e99bc08")
 DONOR_BRICK_DIRS = [
+    REPO_ROOT / "poc" / "swarm_cleanpeel2" / "data",
+    REPO_ROOT / "poc" / "swarm_stepdown" / "data",
+    REPO_ROOT / "poc" / "swarm_gstep" / "data",
+    REPO_ROOT / "poc" / "swarm_band3" / "data",
+    REPO_ROOT / "poc" / "swarm_b7xplant" / "data",
+    REPO_ROOT / "poc" / "swarm_b8xplant" / "data",
+    REPO_ROOT / "poc" / "swarm_pocketpeel" / "data" / "bricks",
     WORKTREES_ROOT / "swarm-cleanpeel2-8a77ac94" / "poc" / "swarm_cleanpeel2" / "data",
     WORKTREES_ROOT / "swarm-stepdown-9d2222ea" / "poc" / "swarm_stepdown" / "data",
     WORKTREES_ROOT / "swarm-gstep-6d3db1b1" / "poc" / "swarm_gstep" / "data",
@@ -88,7 +95,9 @@ def load_all_pooled_bricks(top_per_shape: int = 2) -> list[dict]:
     for d in dirs:
         if not d.exists():
             continue
-        for p in sorted(d.glob("brick_*.json")):
+        for p in sorted(d.glob("*.json")):
+            if p.name.startswith("win_"):
+                continue
             try:
                 raw.append(load_brick_json(p))
             except Exception:

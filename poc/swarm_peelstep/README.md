@@ -1,14 +1,21 @@
 # H109 (`peelstep`): Unified Cross-Donor Pinwheel & Masked C++ Melt
 
-Pools sub-bricks from `cleanpeel2`, `stepdown`, `gstep`, `band3`, plus newly extracted and 1-row/1-column peeled+compressed (`compress_brick_slp` + `brick_mechwalk`) sub-bricks from `win_n974` (`31.700187`), `win_n912` (`30.692988` / `30.692586`), and `n=852` (`29.688527`), and sweeps 2-brick pinwheels across `kx, ky in {-1, 0, +1}` with masked C++ corner/seam melt, `joint_xytheta_slp_tight`, and `lpslack`.
+Pools sub-bricks from `cleanpeel2`, `stepdown`, `gstep`, `band3`, `b7xplant`, `b8xplant`, `pocketpeel`, plus newly extracted and 1-row/1-column peeled+compressed (`compress_brick_slp` + `brick_mechwalk`) sub-bricks from `win_n974` (`31.700187`), `win_n912` (`30.692988` / `30.692586`), and `n=852` (`29.688527`), and sweeps 2-brick pinwheels across `kx, ky in {-1, 0, +1}` with masked C++ corner/seam melt, `joint_xytheta_slp_tight`, and `lpslack`.
 
-## Scale-Up Result (PR3, vs `origin/main` `0e74cfc`)
+## Scale-Up Result (PR4, vs `origin/main` `ccdac8f`)
 
 | `n` | `m, r` | Incumbent (`origin/main`) | `peelstep` `L` | `dL` | Mechanism |
 |---:|:---:|---:|---:|---:|---|
-| **640** | `25, +15` | `25.789768629139171` (`merged.csv`) | **`25.785289212668162`** | **`-4.479416e-03`** | `B7_7x17_n543_BRT` (`7x17+7`) + `B8_8x18_n691_BR_T` (`18x8+8`), `kx=0, ky=0`, `id_id`, masked C++ melt + SLP + `lpslack` |
+| **971** | `31, +10` | `31.641871370426644` (`merged.csv`) | **`31.638664886500045`** | **`-3.206484e-03`** | `H60_B5_20x11_n970s6_T` (`11x20+5`) + `H60_B5_20x11_n970s6` (`20x11+5`), `kx=0, ky=0`, `rot180_id`, masked C++ melt + SLP + `lpslack` |
+| **637** | `25, +12` | `25.744394485251975` (`merged.csv`) | **`25.743494025569961`** | **`-9.004597e-04`** | `p_n915_7x18_g6` (`7x18+6`) + `p_n915_7x18_g6_T` (`18x7+6`), `kx=0, ky=0`, `id_id`, masked C++ melt + SLP + `lpslack` |
 
-(PR1's `n=913` and PR2's `{795, 854, 973}` are preserved in `origin/main` `merged.csv`.)
+(PR1 `n=913`, PR2 `{795, 854, 973}`, and PR3 `n=640` are preserved/superseded in `origin/main` `merged.csv`.)
+
+## Scale-Up Result (PR3, Merged)
+
+| `n` | `m, r` | Incumbent (PR3 base) | `peelstep` `L` | `dL` | Mechanism |
+|---:|:---:|---:|---:|---:|---|
+| **640** | `25, +15` | `25.789768629139171` (`merged.csv`) | **`25.785289212668162`** | **`-4.479416e-03`** | `B7_7x17_n543_BRT` (`7x17+7`) + `B8_8x18_n691_BR_T` (`18x8+8`), `kx=0, ky=0`, `id_id`, masked C++ melt + SLP + `lpslack` |
 
 ## Scale-Up Result (PR2, Merged)
 
