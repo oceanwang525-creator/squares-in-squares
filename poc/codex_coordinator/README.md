@@ -222,3 +222,11 @@ Represent a packing by its contact graph and orientation labels, evolve graph
 rewrite operations under exact non-overlap penalties, then realize the best
 graphs as coordinates and compact them. The search is over topology families,
 not coordinate mutation alone.
+
+### Cycle 2 outcome
+
+- **H6 `parametric_frontier_continuation`: negative.** No shared rational-band
+  `(p,q,W)` template reached any tested `D=7/8` row below its incumbent; the
+  closest screen was still 2-7 squares short and expanded to 98 overlaps at
+  `n=791`. The `328/365` pair also required different parameters and remained
+  4/5 squares short. Failure commit: `9c580f5` (preserved through `eacd46c`).
