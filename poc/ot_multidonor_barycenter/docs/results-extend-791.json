@@ -1,0 +1,414 @@
+{
+  "method": "multi-donor Sinkhorn mass barycenter plus fixed-side repair",
+  "targets": [
+    791
+  ],
+  "results": [
+    {
+      "n": 791,
+      "incumbent_side": 28.627434433035795,
+      "donor_offsets": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "maps": 24,
+      "weight_schedules": 78,
+      "screened_starts": 19656,
+      "repaired_starts": 80,
+      "attempts": [
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              2,
+              0.5
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 2e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.1170445846911073,
+          "transport_value": 0.024039501578371508,
+          "final_penalty": 3.1187839254888546e-15,
+          "max_violation": 2.163034562574495e-08,
+          "dilation": 1.0000000217303457,
+          "dilated_side": 28.627414999640727,
+          "fixed_angle_lp_side": 28.627402728535408,
+          "small_dilation": 1.0000000217303457,
+          "small_dilation_side": 28.627414999640727
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 2e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.1170445846911073,
+          "transport_value": 0.024039501578371508,
+          "final_penalty": 3.1187839254888546e-15,
+          "max_violation": 2.163034562574495e-08,
+          "dilation": 1.0000000217303457,
+          "dilated_side": 28.627414999640727,
+          "fixed_angle_lp_side": 28.627402728535408,
+          "small_dilation": 1.0000000217303457,
+          "small_dilation_side": 28.627414999640727
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.75
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.10106641010508932,
+          "transport_value": 0.02457366871610498,
+          "final_penalty": 6.340668624747206e-15,
+          "max_violation": 2.6232600980335974e-08,
+          "dilation": 1.0000000263325963,
+          "dilated_side": 28.627430135842303,
+          "fixed_angle_lp_side": 28.627430135842303,
+          "small_dilation": 1.0000000263325963,
+          "small_dilation_side": 28.627430135842303
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 2e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.09916373509776932,
+          "transport_value": 0.025639549502838935,
+          "final_penalty": 7.32334055917182e-15,
+          "max_violation": 3.834657813506226e-08,
+          "dilation": 1.0000000384465422,
+          "dilated_side": 28.62741549159279,
+          "fixed_angle_lp_side": 28.627381116724802,
+          "small_dilation": 1.0000000384465422,
+          "small_dilation_side": 28.62741549159279
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.09915755268729678,
+          "transport_value": 0.025639549502838935,
+          "final_penalty": 7.70598875475567e-15,
+          "max_violation": 2.9067886209155347e-08,
+          "dilation": 1.000000025190838,
+          "dilated_side": 28.62743014576847,
+          "fixed_angle_lp_side": 28.627400785807602,
+          "small_dilation": 1.000000025190838,
+          "small_dilation_side": 28.62743014576847
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.1050953353049624,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 8.0211847714268e-15,
+          "max_violation": 3.7072485969957825e-08,
+          "dilation": 1.0000000370062243,
+          "dilated_side": 28.627425425731985,
+          "fixed_angle_lp_side": 28.627411744227672,
+          "small_dilation": 1.0000000370062243,
+          "small_dilation_side": 28.627425425731985
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.1050953353049624,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 8.0211847714268e-15,
+          "max_violation": 3.7072485969957825e-08,
+          "dilation": 1.0000000370062243,
+          "dilated_side": 28.627425425731985,
+          "fixed_angle_lp_side": 28.627411744227672,
+          "small_dilation": 1.0000000370062243,
+          "small_dilation_side": 28.627425425731985
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              1,
+              0.5
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.11460857447688906,
+          "transport_value": 0.023085578569673484,
+          "final_penalty": 8.263099159009957e-15,
+          "max_violation": 3.142708138170747e-08,
+          "dilation": 1.000000030363682,
+          "dilated_side": 28.62743429079296,
+          "fixed_angle_lp_side": 28.627411188307082,
+          "small_dilation": 1.000000030363682,
+          "small_dilation_side": 28.62743429079296
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.11460857447688906,
+          "transport_value": 0.023085578569673484,
+          "final_penalty": 8.263099159009957e-15,
+          "max_violation": 3.142708138170747e-08,
+          "dilation": 1.000000030363682,
+          "dilated_side": 28.62743429079296,
+          "fixed_angle_lp_side": 28.627411188307082,
+          "small_dilation": 1.000000030363682,
+          "small_dilation_side": 28.62743429079296
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.5
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 2e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.09404063770833382,
+          "transport_value": 0.025170561956675996,
+          "final_penalty": 1.035707790104965e-14,
+          "max_violation": 4.2705586622560077e-08,
+          "dilation": 1.0000000428055535,
+          "dilated_side": 28.62743362269447,
+          "fixed_angle_lp_side": 28.62740166989627,
+          "small_dilation": 1.0000000428055535,
+          "small_dilation_side": 28.62743362269447
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              1.5
+            ]
+          ],
+          "delta": 5e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.11068310322702579,
+          "transport_value": 0.023981747021529217,
+          "final_penalty": 1.063309415287581e-14,
+          "max_violation": 3.613247967493294e-08,
+          "dilation": 1.0000000362324792,
+          "dilated_side": 28.62738544521991,
+          "fixed_angle_lp_side": 28.627361454798546,
+          "small_dilation": 1.0000000362324792,
+          "small_dilation_side": 28.62738544521991
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              1,
+              0.5
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.11461231414907395,
+          "transport_value": 0.023085578569673484,
+          "final_penalty": 1.1115852617904724e-14,
+          "max_violation": 4.2750387896361985e-08,
+          "dilation": 1.0000000428502427,
+          "dilated_side": 28.627425613419096,
+          "fixed_angle_lp_side": 28.62740366700819,
+          "small_dilation": 1.0000000428502427,
+          "small_dilation_side": 28.627425613419096
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.11461231414907395,
+          "transport_value": 0.023085578569673484,
+          "final_penalty": 1.1115852617904724e-14,
+          "max_violation": 4.2750387896361985e-08,
+          "dilation": 1.0000000428502427,
+          "dilated_side": 28.627425613419096,
+          "fixed_angle_lp_side": 28.62740366700819,
+          "small_dilation": 1.0000000428502427,
+          "small_dilation_side": 28.627425613419096
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.25
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.1,
+          "initial_penalty": 0.10304374315211348,
+          "transport_value": 0.025900098139596126,
+          "final_penalty": 1.1960855964457005e-14,
+          "max_violation": 4.512690476854431e-08,
+          "dilation": 1.0000000445820234,
+          "dilated_side": 28.62742567052276,
+          "fixed_angle_lp_side": 28.62739033374981,
+          "small_dilation": 1.0000000445820234,
+          "small_dilation_side": 28.62742567052276
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 2e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.09915631629386307,
+          "transport_value": 0.025639549502838935,
+          "final_penalty": 1.2995807171559484e-14,
+          "max_violation": 4.481830506719575e-08,
+          "dilation": 1.0000000449183064,
+          "dilated_side": 28.627433681375816,
+          "fixed_angle_lp_side": 28.627401939589255,
+          "small_dilation": 1.0000000449183064,
+          "small_dilation_side": 28.627433681375816
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              2,
+              0.5
+            ],
+            [
+              3,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.1,
+          "initial_penalty": 0.11703544346428028,
+          "transport_value": 0.024039501578371508,
+          "final_penalty": 1.6670134710429622e-14,
+          "max_violation": 4.2200253735913407e-08,
+          "dilation": 1.0000000349622347,
+          "dilated_side": 28.62743445186173,
+          "small_dilation": 1.0000000349622347,
+          "small_dilation_side": 28.62743445186173
+        }
+      ],
+      "elapsed_seconds": 203.18342712499907
+    }
+  ],
+  "wins": {
+    "791": {
+      "literal_side": "28.62736145479854657129750604102087756884517390279902",
+      "pandas_side": "28.62736145479854657129750604102087756884517390279902"
+    }
+  }
+}

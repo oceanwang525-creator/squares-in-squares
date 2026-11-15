@@ -1,0 +1,414 @@
+{
+  "method": "multi-donor Sinkhorn mass barycenter plus fixed-side repair",
+  "targets": [
+    791
+  ],
+  "results": [
+    {
+      "n": 791,
+      "incumbent_side": 28.627361454798546,
+      "donor_offsets": [
+        2,
+        3,
+        4
+      ],
+      "maps": 12,
+      "weight_schedules": 18,
+      "screened_starts": 2592,
+      "repaired_starts": 64,
+      "attempts": [
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 0.00015,
+          "alpha": 0.075,
+          "initial_penalty": 0.05884251932366007,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 7.423651308574035e-15,
+          "max_violation": 3.1273550527011196e-08,
+          "dilation": 1.0000000254404773,
+          "dilated_side": 28.627212189494447,
+          "fixed_angle_lp_side": 28.62718926142267,
+          "small_dilation": 1.0000000254404773,
+          "small_dilation_side": 28.627212189494447
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.06317763507755081,
+          "transport_value": 0.01927452792217843,
+          "final_penalty": 8.162740774724613e-15,
+          "max_violation": 4.4369929508292216e-08,
+          "dilation": 1.000000044469925,
+          "dilated_side": 28.627352586178976,
+          "fixed_angle_lp_side": 28.62731313150021,
+          "small_dilation": 1.000000044469925,
+          "small_dilation_side": 28.627352586178976
+        },
+        {
+          "epsilon": 0.015,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.075,
+          "initial_penalty": 0.05953184745867028,
+          "transport_value": 0.031157556861256278,
+          "final_penalty": 1.2484320506089829e-14,
+          "max_violation": 5.1506493736752645e-08,
+          "dilation": 1.0000000516064917,
+          "dilated_side": 28.62735789850795,
+          "fixed_angle_lp_side": 28.627334689113784,
+          "small_dilation": 1.0000000516064917,
+          "small_dilation_side": 28.62735789850795
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 2e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.05530109551164775,
+          "transport_value": 0.020681870089079544,
+          "final_penalty": 1.252725975079471e-14,
+          "max_violation": 3.1287964108450694e-08,
+          "dilation": 1.000000031387965,
+          "dilated_side": 28.62734233812528,
+          "fixed_angle_lp_side": 28.62732327165727,
+          "small_dilation": 1.000000031387965,
+          "small_dilation_side": 28.62734233812528
+        },
+        {
+          "epsilon": 0.015,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.05954677706424513,
+          "transport_value": 0.031157556861256278,
+          "final_penalty": 1.2635521885770909e-14,
+          "max_violation": 6.545731379148378e-08,
+          "dilation": 1.0000000401234805,
+          "dilated_side": 28.627312624512694,
+          "fixed_angle_lp_side": 28.627294723698725,
+          "small_dilation": 1.0000000401234805,
+          "small_dilation_side": 28.627312624512694
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 0.00015,
+          "alpha": 0.075,
+          "initial_penalty": 0.0553385406687843,
+          "transport_value": 0.020681870089079544,
+          "final_penalty": 1.2884981690906715e-14,
+          "max_violation": 3.968793993447406e-08,
+          "dilation": 1.0000000397879403,
+          "dilated_side": 28.62721256269098,
+          "fixed_angle_lp_side": 28.62719222879395,
+          "small_dilation": 1.0000000397879403,
+          "small_dilation_side": 28.62721256269098
+        },
+        {
+          "epsilon": 0.015,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 5e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.059890119099596045,
+          "transport_value": 0.029590062641060264,
+          "final_penalty": 1.4508996144079093e-14,
+          "max_violation": 4.26944291032072e-08,
+          "dilation": 1.0000000427937283,
+          "dilated_side": 28.627312667073515,
+          "fixed_angle_lp_side": 28.627286122765433,
+          "small_dilation": 1.0000000427937283,
+          "small_dilation_side": 28.627312667073515
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 0.0003,
+          "alpha": 0.075,
+          "initial_penalty": 0.05888749077173858,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 1.494275334058934e-14,
+          "max_violation": 4.1661557981242936e-08,
+          "dilation": 1.0000000417615587,
+          "dilated_side": 28.62706260321452,
+          "fixed_angle_lp_side": 28.62703502660808,
+          "small_dilation": 1.0000000417615587,
+          "small_dilation_side": 28.62706260321452
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              2,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 5e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.06319102514888685,
+          "transport_value": 0.01927452792217843,
+          "final_penalty": 1.528105881293632e-14,
+          "max_violation": 4.098708328292844e-08,
+          "dilation": 1.000000041087042,
+          "dilated_side": 28.62731258483616,
+          "fixed_angle_lp_side": 28.627282985578407,
+          "small_dilation": 1.000000041087042,
+          "small_dilation_side": 28.62731258483616
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.055309731586348825,
+          "transport_value": 0.020681870089079544,
+          "final_penalty": 1.7656420622000524e-14,
+          "max_violation": 4.375270790113461e-08,
+          "dilation": 1.000000043852695,
+          "dilated_side": 28.627312655444687,
+          "fixed_angle_lp_side": 28.627284929480734,
+          "small_dilation": 1.000000043852695,
+          "small_dilation_side": 28.627312655444687
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 2e-05,
+          "alpha": 0.075,
+          "initial_penalty": 0.058803601850845946,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 1.9672660325529635e-14,
+          "max_violation": 4.015078403085681e-08,
+          "dilation": 1.0000000362636066,
+          "dilated_side": 28.62734249952136,
+          "fixed_angle_lp_side": 28.62732340948874,
+          "small_dilation": 1.0000000362636066,
+          "small_dilation_side": 28.62734249952136
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.075,
+          "initial_penalty": 0.055620857202691276,
+          "transport_value": 0.025639549502838935,
+          "final_penalty": 2.0096821856617136e-14,
+          "max_violation": 6.752876191562507e-08,
+          "dilation": 1.0000000675778609,
+          "dilated_side": 28.627358342215647,
+          "fixed_angle_lp_side": 28.62734278741542,
+          "small_dilation": 1.0000000675778609,
+          "small_dilation_side": 28.627358342215647
+        },
+        {
+          "epsilon": 0.015,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.075,
+          "initial_penalty": 0.05990637396389034,
+          "transport_value": 0.029590062641060264,
+          "final_penalty": 2.038406132149293e-14,
+          "max_violation": 3.141216620150544e-08,
+          "dilation": 1.000000031512157,
+          "dilated_side": 28.627262341938597,
+          "fixed_angle_lp_side": 28.627243821152582,
+          "small_dilation": 1.000000031512157,
+          "small_dilation_side": 28.627262341938597
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.075,
+          "initial_penalty": 0.05529677862320944,
+          "transport_value": 0.020681870089079544,
+          "final_penalty": 2.2483262547351737e-14,
+          "max_violation": 4.205315096150741e-08,
+          "dilation": 1.0000000421530961,
+          "dilated_side": 28.62735762678737,
+          "fixed_angle_lp_side": 28.62734245392038,
+          "small_dilation": 1.0000000421530961,
+          "small_dilation_side": 28.62735762678737
+        },
+        {
+          "epsilon": 0.01,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.75
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.075,
+          "initial_penalty": 0.05532413186180408,
+          "transport_value": 0.020681870089079544,
+          "final_penalty": 2.3614944981169145e-14,
+          "max_violation": 5.013809289966531e-08,
+          "dilation": 1.0000000502380946,
+          "dilated_side": 28.627262867994663,
+          "fixed_angle_lp_side": 28.627241682256322,
+          "small_dilation": 1.0000000502380946,
+          "small_dilation_side": 28.627262867994663
+        },
+        {
+          "epsilon": 0.0125,
+          "schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              0.5
+            ]
+          ],
+          "delta": 5e-06,
+          "alpha": 0.075,
+          "initial_penalty": 0.05879911481370087,
+          "transport_value": 0.024076257682295803,
+          "final_penalty": 2.401316536111097e-14,
+          "max_violation": 5.431604321870509e-08,
+          "dilation": 1.0000000525068404,
+          "dilated_side": 28.627357989319623,
+          "fixed_angle_lp_side": 28.62733086084589,
+          "small_dilation": 1.0000000525068404,
+          "small_dilation_side": 28.627357989319623
+        }
+      ],
+      "elapsed_seconds": 167.30756345799819
+    }
+  ],
+  "wins": {
+    "791": {
+      "literal_side": "28.62703502660808297845548387224203153000512759567271",
+      "pandas_side": "28.62703502660808297845548387224203153000512759567271"
+    }
+  }
+}
