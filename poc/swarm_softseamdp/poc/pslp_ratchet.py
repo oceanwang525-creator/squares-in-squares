@@ -15,7 +15,6 @@ for _var in (
 
 import argparse
 import concurrent.futures
-import importlib.util
 import itertools
 import json
 import math
@@ -33,10 +32,13 @@ DATA_DIR = SOFT_DIR / "data"
 WORK_DIR = DATA_DIR / "ratchet_work"
 CKPT_DIR = SOFT_DIR / "docs" / "ckpt"
 
+# Import mechwalk's run_gate BEFORE build_and_polish/highd appends to sys.path, so mp.Pool pickles cleanly
+sys.path.insert(0, str(REPO / "poc" / "swarm_mechwalk" / "poc"))
+import run_gate  # noqa: E402
+
 for p in (
     REPO / "poc" / "swarm_softseamdp" / "poc",
     REPO / "poc" / "row_ratchet_980" / "poc",
-    REPO / "poc" / "swarm_mechwalk" / "poc",
     REPO / "poc" / "swarm_highd" / "poc",
     REPO / "poc" / "pocket_lift_scan3" / "poc",
     REPO / "poc" / "swarm_lpslack" / "poc",
@@ -52,11 +54,6 @@ import build_cert as bc  # noqa: E402
 import mechwalk_lib as ml  # noqa: E402
 import pslp  # noqa: E402
 from cpp_wrap import get_cpp_lib  # noqa: E402
-
-_RG_SPEC = importlib.util.spec_from_file_location("mechwalk_run_gate", REPO / "poc" / "swarm_mechwalk" / "poc" / "run_gate.py")
-assert _RG_SPEC and _RG_SPEC.loader
-run_gate = importlib.util.module_from_spec(_RG_SPEC)
-_RG_SPEC.loader.exec_module(run_gate)
 
 _G_BY_KEY = None
 _G_ROWS_ALL = None

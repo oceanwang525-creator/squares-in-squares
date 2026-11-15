@@ -121,10 +121,17 @@ def main() -> None:
                 cands_by_n[n].append((s, rel, groups[n]))
 
     # Certify merged.csv if updated vs report_now, plus strictly better poc/*/final.csv challengers
+    prev_report = {}
+    if (DATA_DIR / "union_report.json").exists():
+        try:
+            prev_report = {int(r["n"]): Decimal(r["L"]) for r in json.loads((DATA_DIR / "union_report.json").read_text())["results"]}
+        except Exception:
+            prev_report = {}
+
     to_cert = []
     for n in range(1, 1001):
         m_side, m_src, m_rows = cands_by_n[n][0]
-        if m_side < float(rep_now[n]) - 1e-10:
+        if m_side < float(rep_now[n]) - 1e-13:
             to_cert.append((n, m_src, m_rows))
         if len(cands_by_n[n]) > 1:
             challengers = sorted(cands_by_n[n][1:], key=lambda t: t[0])[:3]
@@ -193,7 +200,18 @@ def main() -> None:
                 rid += 1
 
     # Write donors_rescan.csv (for key improved / high-gap ns using src=4000+n so no collision)
-    rescan_ns = [492, 686, 748, 793, 852, 863, 910, 911, 912, 914, 915, 924, 972, 974, 975, 980]
+    base_rescan = {
+        270, 305, 379, 419, 420, 492, 495, 535, 585, 604, 634, 640, 650, 654,
+        686, 703, 706, 743, 748, 758, 761, 793, 795, 800, 818, 852, 854, 857,
+        863, 873, 874, 875, 910, 911, 912, 914, 915, 924, 934, 972, 973, 974,
+        975, 978, 980, 983, 990, 996,
+    }
+    newly_changed = {
+        int(r["n"]) for r in report_results
+        if int(r["n"]) in prev_report and Decimal(r["L"]) < prev_report[int(r["n"])] - Decimal("1e-12")
+    }
+    rescan_ns = sorted(base_rescan | newly_changed)
+    print(f"rescan_ns={len(rescan_ns)} (newly_changed_vs_prev_union={sorted(newly_changed)})", flush=True)
     with (DATA_DIR / "donors_rescan.csv").open("w", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["id", "n", "square_id", "x", "y", "angle"])
@@ -225,8 +243,13 @@ def main() -> None:
                 w.writerow([rid, 2006, r["square_id"], r["x"], r["y"], r["angle"]])
                 rid += 1
 
-        # Add bricks from poc/swarm_gstep/data/brick_*.json
-        for bi, bp in enumerate(sorted(glob.glob(str(REPO / "poc" / "swarm_gstep" / "data" / "brick_*.json")))):
+        # Add bricks from swarm_gstep, swarm_pocketpeel, swarm_b7xplant
+        brick_paths = sorted(
+            glob.glob(str(REPO / "poc" / "swarm_gstep" / "data" / "brick_*.json"))
+            + glob.glob(str(REPO / "poc" / "swarm_pocketpeel" / "data" / "bricks" / "brick_*.json"))
+            + glob.glob(str(REPO / "poc" / "swarm_b7xplant" / "data" / "brick_*.json"))
+        )
+        for bi, bp in enumerate(brick_paths):
             d = json.loads(Path(bp).read_text())
             bn = 3000 + bi
             xs = np.array(d["x"], dtype=np.float64)
