@@ -4,7 +4,15 @@
 
 Peeling constant-`r` `(m+1, r) -> (m, r)` (`dn = 2m+1`) often fails because the donor's tilted arm extends into the outer 1-unit L-border, leaving `k in {1, 2, 3}` protruding tilted squares (`2m+1+k` total intersecting squares). Mapping **diagonally `(m+1, r+k) -> (m, r)`** (`dn = 2m+1+k`) removes the outer 1-unit L-border **plus** the protruding arm-tip square(s), then applies C++ masked penalty melt (`batch_masked_melt_solve`), `joint_xytheta_slp`, SVD `mechwalk_compress`, and `lpslack`.
 
-### PR3 Scale-Up Result (`1` Big-Move Certified Win vs `origin/main` `b3ac0d7`)
+### PR4 Scale-Up Result (`1` Certified Win vs `origin/main` `fb533ce`)
+
+| Target `n` <- Donor `n_d` | `(m, r, k)` | `L_inc` (`merged.csv`) | `L_new` (`literal == pandas`) | `dL` | Method |
+|---:|---:|:---:|:---:|:---:|:---|
+| **`935 <- 997`** | `(30, 35, 1)` | `30.979882461208` | **`30.979321962288`** | **`-5.604989e-04`** | `diag_997_L_TL_bbox_raw_R7.5_s0` |
+
+- PR3 (`n=815 <- 873`, `28.964263069216`, `dL = -1.702615e-03`) merged in PR #122 (`8439375`); `win_n815.json` was removed from PR4 so `poc/swarm_corrcasc/final.csv` exports strictly `n=935`.
+
+### PR3 Scale-Up Result (`8439375`, PR #122)
 
 | Target `n` <- Donor `n_d` | `(m, r, k)` | `L_inc` (`merged.csv`) | `L_new` (`literal == pandas`) | `dL` | Method |
 |---:|---:|:---:|:---:|:---:|:---|
@@ -43,5 +51,5 @@ Peeling constant-`r` `(m+1, r) -> (m, r)` (`dn = 2m+1`) often fails because the 
 - `2,358` pairs satisfy `dL_raw <= +0.005`; `2,267` also have boundary/seam protrusion/overlap `score <= 0.12`, including **`224` pairs with `dL_raw < -1e-4`**.
 
 ### Verification
-- `poc/swarm_corrcasc/final.csv` (`n=815`) passes dual certification (`literal == pandas == kaggle_roundtrip`).
+- `poc/swarm_corrcasc/final.csv` (`n=935`) passes dual certification (`literal == pandas == kaggle_roundtrip`).
 - Structure & tests: `.github/scripts/check_final_csv.py` PASS; `pytest poc/swarm_corrcasc/tests/test_corrcasc.py -v` PASS.

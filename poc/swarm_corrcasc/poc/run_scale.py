@@ -138,6 +138,9 @@ def select_scale_pairs(limit: int = 28) -> list[tuple[int, int, int]]:
         874, 873, 875, 870, 929, 814,
         703, 857, 816, 556, 597, 759, 690, 811, 423, 762,
         757, 603, 755, 604, 555,
+        818, 930, 381, 465, 601, 308, 506, 505, 866, 274,
+        815, 596, 241, 810, 463, 552, 553, 460, 868, 812,
+        935, 211, 809, 705, 752,
     }
     by_nt: dict[int, tuple[tuple, tuple[int, int, int]]] = {}
 
@@ -237,7 +240,17 @@ def main() -> None:
 
     need = {n for nt, nd, _ in pairs for n in (nt, nd)}
     loaded = cc.load_portfolio(need)
-    targets, donors = loaded["targets"], loaded["donors"]
+    targets, donors = loaded["targets"], dict(loaded["donors"])
+    for wp in sorted(cc.DATA_DIR.glob("win_n*.json")):
+        try:
+            d = json.loads(wp.read_text())
+            dn = int(d["n"])
+            if dn in need:
+                dx, dy, dth, dL = cc._rows_to_arrays(d["rows"])
+                if dn not in donors or dL < donors[dn]["L"]:
+                    donors[dn] = {"x": dx, "y": dy, "th": dth, "L": dL, "rows": d["rows"], "source": wp.name}
+        except Exception:
+            continue
 
     specs = [
         (nt, nd, step, donors[nd]["x"], donors[nd]["y"], donors[nd]["th"], donors[nd]["L"], targets[nt]["L_dec"], 20281070 + i)
