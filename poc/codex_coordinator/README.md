@@ -390,6 +390,12 @@ rewrite; high-entropy conflicts are rejected before expensive repair.
   `dL=-9.931531524e-5` versus H7 and `-2.013255495746e-4` versus the
   upstream row. H16 adds about `-3.5326e-6` score on top of H7. It was folded
   into existing PR #134. Commit: `fc8aab4`.
+- **H16 extended: POSITIVE, converged.** Four focused waves lowered the same
+  791 row to `28.626523948339571162...`, a total `dL=-1.111810191976e-3`
+  against upstream and about `-3.953141948e-5` score. The final wave was
+  tie-only after 1,050 screened and 53 repaired starts. A six-row neighbor
+  wave screened 211,680 starts and found no second row. Commit: `f6285f4`;
+  folded into PR #134.
 - **H17 `ot_residual_patch`: negative.** H7's near-feasible rows are globally
   distributed failures, not small end defects. At 328/365/367 the initial
   violations `9.51e-6/2.05e-5/1.63e-6` affected 767/726/593 pairs in one
