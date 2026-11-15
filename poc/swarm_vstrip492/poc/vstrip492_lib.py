@@ -51,6 +51,7 @@ EXTERNAL_BRICK_DIRS = [
     REPO_ROOT / "poc" / "swarm_cleanpeel2" / "data",
     REPO_ROOT / "poc" / "swarm_peelstep" / "data",
     REPO_ROOT / "poc" / "swarm_pocketpeel" / "data" / "bricks",
+    REPO_ROOT / "poc" / "swarm_watchxplant" / "data" / "bricks",
     REPO_ROOT / "poc" / "swarm_stepdown" / "data",
     REPO_ROOT / "poc" / "swarm_b7xplant" / "data",
     REPO_ROOT / "poc" / "swarm_b8xplant" / "data",
