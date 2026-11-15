@@ -451,6 +451,11 @@ H18 showed is counterproductive.
   `28.626523948339...` to `28.626213659843...`, a further
   `dL=-3.102884960217e-4` and about `-1.103258882e-5` score. A 45,000-start
   extended wave was tie-only. Commit: `8880f33`; folded into PR #134.
+- **H27 `localized_neighbor_band`: negative.** Localized donor maps at
+  790/792/907 reached only `5.36e-5`, `4.63e-5`, and `3.23e-5` residual.
+  Minimum safe dilation exceeded the incumbent by about `1.0e-3..1.5e-3`,
+  so there was no one-square/near-feasible sign for the remaining neighbors.
+  Failure commit: `42e4ac0`.
 - **H23 `near_plateau_source_selection`: POSITIVE.** Selecting donors by
   side-length/contact similarity chose 790 and 792 for `n=791` and produced
   a complete group at `28.626405023313754301...`. It improves the certified
