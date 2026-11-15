@@ -1,0 +1,7 @@
+ext/
+__pycache__/
+*.pyc
+.pytest_cache/
+data/.final.lock
+data/harvest/
+docs/*.log
