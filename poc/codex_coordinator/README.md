@@ -139,3 +139,10 @@ commit before its experiment folder is removed from the working tree.
   the short HiGHS run did not find a competitive basin. This sampled variant is
   closed because it has no one-square near miss. Failure commit: `ac278b6`
   (preserved through `3e0d974`).
+- **H2 `rigid_cluster_crossover`: negative at the structural gate.** The
+  largest incumbent contact components at 803/791/908 are 37/10/8 squares.
+  Adjacent and same-`n` parents did not contain matching replaceable large
+  components; the 803 alternative has the same 37-square bounding box.
+  A 4.4-5.1M-placement completion probe also failed to place the missing
+  square. Repairing with the known local stack would have violated the
+  hypothesis. Failure commit: `732a2b3` (preserved through `8d74bba`).
