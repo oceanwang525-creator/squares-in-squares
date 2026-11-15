@@ -424,6 +424,16 @@ minimum-cost matching, then rebuild only interfaces between orientation
 classes. This avoids putting angle directly into the Sinkhorn metric, which
 H18 showed is counterproductive.
 
+### Operational outcome
+
+- **OT top-gap fanout (`poc/ot_gap_fanout`): negative.** Twenty top-gap rows
+  found no strict win in the first wave. Focused repair reduced `n=330` to only
+  `8.36e-10` above incumbent, so a parameter-grid continuation was run. Its
+  best zero-margin side was `18.692388155424336`, just `8.56e-13` below the
+  incumbent, below the `-1e-9` win threshold; the next shrink retained
+  `7.4e-11` to `1.6e-10` overlap. The row is locally closed for this family.
+  Commits: `147ea03`, `f9188bf`. Folder removed after preserving both.
+
 ### Cycle 4 outcome
 
 - **H7 extended scale-up: POSITIVE, second row.** A 3,528-start sweep across
