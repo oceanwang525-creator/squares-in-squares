@@ -7,7 +7,20 @@ Why it works:
 - In multi-pocket assemblies (e.g., `n=852` pairing `(9,17,+5)<739>` with `f=0.6841436` and `(20,11,+6)<3007T>` with `f=0.6862194`), freeing angles across the boundary allows the wider sub-pocket to compress right down to the narrower sub-pocket's bounding span (`29.686219 -> 29.6841436094`), yielding an extra `-2.075e-3` compression beyond rigid staircase composition.
 - Furthermore, even positive-slack DP seams like `n=793` (`dL_rigid = +1.707e-3`, `(9,16,+4)<684T> + (19,10,+5)<793T>`) unlock a `-2.673e-3` big-move drop (`4.380e-3` total compression below rigid!) once `lpslack` is followed by `mechwalk_compress`.
 
-## PR2 Certified Wins (vs `origin/main` `cfe8f77`, `literal == pandas`)
+## PR3 Certified Wins (vs `origin/main` `0e74cfc`, `literal == pandas`)
+
+After rescanning 117 donors updated through `cc58c7e` (`67,183` gadgets -> `245` qualifying DP cells, including `32` new non-self negative-`dL_rigid` compositions) and integrating kink-safe `pslp.squeeze` (`poc/row_ratchet_980/poc/pslp.py`) into `pslp_ratchet.py`, Batch A1 landed 5 strict wins (`literal == pandas`):
+
+| `n` | `K` | `D` | Seam Composition | `L_inc` (`origin/main` `0e74cfc`) | `L_new` (`softseamdp`) | `dL` | `ds_L2n` (`L^2/n`) |
+| ---: | ---: | ---: | :--- | :--- | :--- | ---: | ---: |
+| **683** | 26 | 7 | `(9,14,+3)<683> + (16,12,+4)<849>` | `26.636881731629920577` (`merged.csv`) | `26.636881539888010148` | **`-1.917419e-07`** | `-1.495580e-08` |
+| **796** | 28 | 12 | `(10,18,+6)<585> + (18,9,+6)<740>` | `28.705882375792044354` (`poc/swarm_lpslack/final.csv`) | `28.705882352943943156` | **`-2.284810e-08`** | `-1.647927e-09` |
+| **849** | 29 | 8 | `(16,13,+4)<535> + (12,16,+4)<849>` | `29.636881726566983479` (`merged.csv`) | `29.636881713372210169` | **`-1.319477e-08`** | `-9.212060e-10` |
+| **736** | 27 | 7 | `(16,13,+4)<535> + (10,14,+3)<736>` | `27.634362446166717285` (`merged.csv`) | `27.634362441139806626` | **`-5.026911e-09`** | `-3.774877e-10` |
+| **642** | 25 | 17 | `(7,16,+8)<592> + (18,8,+9)<642>` | `25.817265879748838000` (`merged.csv`) | `25.817265878688882111` | **`-1.059956e-09`** | `-8.524973e-11` |
+| **Total (5)** | | | | | | **`-2.338717e-07`** | **`-1.798767e-08`** |
+
+## PR2 Merged Wins (PR #92, `b4e9208`, already in `origin/main` `0e74cfc`)
 
 | `n` | `K` | `D` | Seam Composition | `L_inc` (`origin/main` `cfe8f77`) | `L_new` (`softseamdp`) | `dL` | `ds` (`L/sqrt(n)-1`) | `ds_L2n` (`L^2/n`) |
 | ---: | ---: | ---: | :--- | :--- | :--- | ---: | ---: | ---: |

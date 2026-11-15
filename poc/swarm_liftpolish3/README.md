@@ -1,8 +1,21 @@
-# H99 (`liftpolish3`): 2-Pocket Seam Polish + Step-`0.0625` Sub-Pocket Scan & DP Re-Lift
+# H99 / H118 (`liftpolish3`): 2-Pocket Seam Polish + Step-`0.0625` Sub-Pocket Scan & DP Re-Lift
 
-## Summary
+## Round 2 Summary (Part C Step-`0.0625` Scan on `origin/main` `0e74cfc` Champions)
 
-Hypothesis H99 (`poc/swarm_liftpolish3/`) produced **15 dual-certified (`literal == pandas`) strict wins** against `origin/main` (`cf838aa`, `dL <= -1e-9`) exported to [`final.csv`](final.csv) and audited in [`docs/verification.json`](docs/verification.json):
+Round 2 scanned **109** newly merged rows (`poc/public_watch_nov14/final.csv`, `poc/row_ratchet_980/final.csv`, and recent PR champions `n >= 200`) at `--step 0.0625 --fmax 1.15 --cap 3000` across both phases `(0.015625, 0.015625)` and `(0.046875, 0.046875)` (`244,504` gadgets -> `2,811` distinct oriented scanned pockets, `2,267` new shapes), ran `dp.py` -> `build_cert.py` -> `border_prop.py`, and polished built/slack-tolerant seams with `lpslack` + `pslp.squeeze` + 3-round SVD `mechwalk_compress`.
+
+Result against `origin/main` (`0e74cfc`): **4 dual-certified (`literal == pandas`) strict wins** exported to [`final.csv`](final.csv) (`total_ds = -2.147473e-06`, `total_ds_L2n = -1.000198e-04`, audited in [`docs/r2_verification.json`](docs/r2_verification.json)):
+
+| `n` | Incumbent `L` (`merged.csv`) | New `L` (`literal == pandas`) | `dL` | Source |
+| --- | --- | --- | --- | --- |
+| 447 | `21.656420959282579...` | `21.656348991778850...` | `-7.196750e-05` | `(12,21,+6)<n=910>` DP + `lpslack` + `mechwalk` |
+| 485 | `22.525743824399685...` | `22.525361324493114...` | `-3.824999e-04` | `(18,22,+1)<n=530>` DP + `lpslack` + `pslp` + `mechwalk` |
+| 530 | `23.525695710243514...` | `23.525367766747620...` | `-3.279435e-04` | `border_prop` of `n=485` + `lpslack` + `pslp` + `mechwalk` |
+| 577 | `24.525695695797765...` | `24.525361583661812...` | `-3.341121e-04` | `(18,22,+1)<n=530>` DP + `lpslack` + `pslp` + `mechwalk` |
+
+## Round 1 Summary (PR #86, Merged into `origin/main`)
+
+Round 1 (`poc/swarm_liftpolish3/`) produced **15 dual-certified (`literal == pandas`) strict wins** against `origin/main` (`cf838aa`, `dL <= -1e-9`) audited in [`docs/verification.json`](docs/verification.json):
 
 - **Part B Headline Win (`n=852`)**: **`29.6885273895` -> `29.684143610175023`** (**`dL = -4.383779e-3`**), realized by combining `(11, 20, +6)` (`src=2007`, from `poc/swarm_gstep/data/brick_*.json`) with `(17, 9, +5)` (`n=852`) via `dp.py` + `build_cert.py` (`29.6862194285`) and polishing the seam with `lpslack` (`-2.0758e-3` additional drop).
 - **Part A Headline Win (`n=799`)**: **`28.7553277454` -> `28.754294804672018`** (**`dL = -1.032941e-3`**), via `lpslack` (`-9.7605e-4`) + 4-round SVD `mechwalk_compress` (`-5.6888e-5`).
