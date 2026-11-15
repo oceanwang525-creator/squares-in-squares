@@ -438,6 +438,10 @@ H18 showed is counterproductive.
   reached low residual (e.g. `1.35e-8` at 791), but stage two destroyed the
   useful wall placement; all best safe sides exceeded incumbents. Failure
   commit: `8425350`.
+- **H24 `transport_masked_melt`: negative.** Transport-seeded contact-ring
+  melts reduced local penetrations to `8.8e-8..3.0e-7`, but the residual
+  networks were large enough that safe dilation exceeded the target side on
+  all tested rows, including 791/908 controls. Failure commit: `9f3b2e2`.
 
 ### Cycle 4 outcome
 
