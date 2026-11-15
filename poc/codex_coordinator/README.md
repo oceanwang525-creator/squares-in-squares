@@ -290,3 +290,12 @@ Enumerate short sequences of already-measured feasible topology moves and treat
 them as directed basin edges. Search two- and three-move paths whose
 intermediate penetrations are nonzero but decreasing, then certify only the
 endpoint. The search is a DAG over mechanisms rather than a fresh random walk.
+
+### Cycle 3 outcome
+
+- **H11 `crossn_graph_motif_alignment`: negative.** Across 208/280/200
+  motif re-jam attempts for 803/791/908, the best 803 penetration was
+  `3.846e-4`; the other targets returned to their incumbent side (only a
+  `2.3e-15` apparent difference at 791). Shared star motifs largely encode
+  repeated local lattice symmetry rather than portable capacity. Failure
+  commit: `5015828` (preserved through `6e18afa`).
