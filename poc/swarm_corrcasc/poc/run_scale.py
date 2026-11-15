@@ -119,8 +119,8 @@ def _prioritize(seeds, max_keep: int = 12):
     return sorted(seeds, key=score)[:max_keep]
 
 
-def select_scale_pairs(limit: int = 28) -> list[tuple[int, int]]:
-    """Select top qualifying diagonal pairs (m+1, r+k) -> (m, r) excluding already-tested gate targets."""
+def select_scale_pairs(limit: int = 28) -> list[tuple[int, int, int]]:
+    """Select top qualifying 1-step/2-step diagonal pairs (m+s, r+k) -> (m, r) excluding tested targets."""
     merged = cc.load_merged_fast()
     for wp in sorted(cc.DATA_DIR.glob("win_n*.json")):
         try:
@@ -131,48 +131,57 @@ def select_scale_pairs(limit: int = 28) -> list[tuple[int, int]]:
                 merged[n] = {"x": x, "y": y, "th": th, "L": L, "rows": d["rows"], "source": wp.name}
         except Exception:
             continue
+    donors = targets = merged
 
-    already_tested_nt = {758, 420, 650, 687, 602, 931, 383, 876, 936, 934}
-    by_nt: dict[int, tuple[tuple, tuple[int, int]]] = {}
+    already_tested_nt = {
+        758, 420, 650, 687, 602, 931, 383, 876, 936, 934,
+        874, 873, 875, 870, 929, 814,
+        703, 857, 816, 556, 597, 759, 690, 811, 423, 762,
+        757, 603, 755, 604, 555,
+    }
+    by_nt: dict[int, tuple[tuple, tuple[int, int, int]]] = {}
 
     for m in range(12, 31):
         for r in range(1, 2 * m + 1):
             nt = m * m + r
-            if nt in already_tested_nt:
+            if nt in already_tested_nt or nt not in targets:
                 continue
-            L_inc = merged[nt]["L"]
-            for k in (1, 2, 3):
-                nd = (m + 1) ** 2 + r + k
-                if nd > 1000:
-                    continue
-                Ld = merged[nd]["L"]
-                dL_raw = (Ld - 1.0) - L_inc
-                if dL_raw > -5e-4:
-                    continue
-                res = adp.audit_l_borders(merged[nd]["x"], merged[nd]["y"], merged[nd]["th"], Ld, 1.0, nd - nt)
-                best = res[0]
-                if best["score"] > 0.08:
-                    continue
-                rank_key = (best["score"] > 0.05, dL_raw + 0.05 * best["score"])
-                if nt not in by_nt or rank_key < by_nt[nt][0]:
-                    by_nt[nt] = (rank_key, (nt, nd))
+            L_inc = targets[nt]["L"]
+            for step, ks in ((1, (1, 2, 3)), (2, (2, 3, 4))):
+                for k in ks:
+                    nd = (m + step) ** 2 + r + k
+                    if nd > 1000 or nd not in donors:
+                        continue
+                    Ld = donors[nd]["L"]
+                    dL_raw = (Ld - float(step)) - L_inc
+                    if dL_raw > -5e-4:
+                        continue
+                    res = adp.audit_l_borders(donors[nd]["x"], donors[nd]["y"], donors[nd]["th"], Ld, float(step), nd - nt)
+                    best = res[0]
+                    if best["score"] > 0.08:
+                        continue
+                    rank_key = (best["score"] > 0.05, dL_raw + 0.05 * best["score"])
+                    if nt not in by_nt or rank_key < by_nt[nt][0]:
+                        by_nt[nt] = (rank_key, (nt, nd, step))
 
     ranked = sorted(by_nt.values(), key=lambda item: item[0])
     return [pair for _, pair in ranked[:limit]]
 
 
 def _run_scale_pair(args: tuple) -> dict:
-    nt, nd, xd, yd, td, Ld, L_inc_dec, seed_int = args
+    nt, nd, step, xd, yd, td, Ld, L_inc_dec, seed_int = args
     rng = np.random.default_rng(seed_int)
     L_inc = float(L_inc_dec)
     t0 = time.time()
 
-    seeds = diagonal_seeds(nt, nd, xd, yd, td, Ld, L_inc, max_seeds=6)
-    seeds += ce.generate_peel_seeds(nt, nd, xd, yd, td, Ld, L_inc, rng, layers=1, max_prot=20, max_rem_tilt=20)
+    seeds = diagonal_seeds(nt, nd, xd, yd, td, Ld, L_inc, step=float(step), max_seeds=5)
+    if step == 1:
+        seeds += ce.generate_peel_seeds(nt, nd, xd, yd, td, Ld, L_inc, rng, layers=1, max_prot=20, max_rem_tilt=20)
+        seeds += ce.generate_interior_cross_seeds(nt, nd, xd, yd, td, Ld, L_inc, max_seeds=4, max_rem_tilt=8)
     seeds = _prioritize(seeds, max_keep=10)
-    print(f"[SCALE {nt}<-{nd}] L_inc={L_inc:.9f} Lt={Ld-1.0:.9f} dL_raw={(Ld-1.0)-L_inc:+.6f} seeds={len(seeds)} prep={time.time()-t0:.1f}s", flush=True)
+    print(f"[SCALE {nt}<-{nd} s={step}] L_inc={L_inc:.9f} Lt={Ld-step:.9f} dL_raw={(Ld-step)-L_inc:+.6f} seeds={len(seeds)} prep={time.time()-t0:.1f}s", flush=True)
     if not seeds:
-        return {"n": nt, "donor": nd, "L_inc": L_inc, "win": False, "n_seeds": 0}
+        return {"n": nt, "donor": nd, "step": step, "L_inc": L_inc, "win": False, "n_seeds": 0}
 
     res = ce.solve_target(
         nt,
@@ -188,10 +197,11 @@ def _run_scale_pair(args: tuple) -> dict:
     )
     best_pack = res.get("best_pack")
     best_seen_L = res.get("best_seen_L")
-    if best_pack is not None and best_seen_L is not None and best_seen_L < L_inc + 0.012:
+    if best_pack is not None and best_seen_L is not None and best_seen_L < L_inc + 0.0075:
         bx, by, bt, bL = best_pack
-        print(f"[{nt}] Running 3-round mechwalk_compress + lpslack from best_seen_L={bL:.12f}...", flush=True)
-        mw_cert, mw_pack = cc.mechwalk_compress(nt, bx, by, bt, L_inc_dec, rng, rounds=3, threads=1)
+        mw_rounds = 3 if best_seen_L < L_inc + 0.004 else 2
+        print(f"[{nt}] Running {mw_rounds}-round mechwalk_compress + lpslack from best_seen_L={bL:.12f}...", flush=True)
+        mw_cert, mw_pack = cc.mechwalk_compress(nt, bx, by, bt, L_inc_dec, rng, rounds=mw_rounds, threads=1)
         if mw_pack is not None and mw_pack[3] < best_seen_L:
             best_seen_L = mw_pack[3]
             res["best_seen_L"] = best_seen_L
@@ -207,7 +217,8 @@ def _run_scale_pair(args: tuple) -> dict:
                 print(f"[{nt}] *** SCALE WIN (mechwalk+lpslack) *** {lbl} L={mw_cert['L_lit'][:20]} dL={mw_cert['dL']:+.6e}", flush=True)
 
     res["donor"] = nd
-    res["dL_raw"] = (Ld - 1.0) - L_inc
+    res["step"] = step
+    res["dL_raw"] = (Ld - step) - L_inc
     res["elapsed_s"] = round(time.time() - t0, 1)
     return res
 
@@ -224,13 +235,13 @@ def main() -> None:
     pairs = select_scale_pairs(limit=args.limit)
     print(f"Selected {len(pairs)} scale pairs: {pairs}", flush=True)
 
-    need = {n for p in pairs for n in p}
+    need = {n for nt, nd, _ in pairs for n in (nt, nd)}
     loaded = cc.load_portfolio(need)
     targets, donors = loaded["targets"], loaded["donors"]
 
     specs = [
-        (nt, nd, donors[nd]["x"], donors[nd]["y"], donors[nd]["th"], donors[nd]["L"], targets[nt]["L_dec"], 20281070 + i)
-        for i, (nt, nd) in enumerate(pairs)
+        (nt, nd, step, donors[nd]["x"], donors[nd]["y"], donors[nd]["th"], donors[nd]["L"], targets[nt]["L_dec"], 20281070 + i)
+        for i, (nt, nd, step) in enumerate(pairs)
     ]
 
     t_start = time.time()
