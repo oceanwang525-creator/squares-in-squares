@@ -152,3 +152,61 @@ commit before its experiment folder is removed from the working tree.
   phase did not overcome the fractional side-ribbon clipping. This is a
   defensible structural stop, not a general proof against all row-state models.
   Failure commit: `e64f8f5` (preserved through `ad53584`).
+
+## Cycle 2 hypotheses
+
+These are opened while H4/H5 finish so the worker pool stays occupied. None is
+a rename of a failed local method: each asks for a different shared-state or
+multi-move search mechanism.
+
+### H6 `parametric_frontier_continuation`
+
+**Rank:** 1. **Expected gain:** 0.004-0.012 through reusable family wins.
+
+For a fixed `D = n-K^2` family, treat the incumbent sides and construction
+parameters as samples along `K` and fit a shared parametric geometry across
+several adjacent `K`. Re-opt phase, angle, wall ownership, and end-cap lengths
+together, preferably forcing a nested/monotone family. The unit of success is
+a construction that improves multiple family members, not a one-off polish.
+
+Quick targets: `D=7/8` high-K members and the `328/365` pair.
+
+### H7 `optimal_transport_basin_transfer`
+
+**Rank:** 2. **Expected gain:** 0.001-0.005 from nonlocal basin transport.
+
+Use an unbalanced optimal-transport map between packings at related `n` to
+move whole center/angle mass into a lower-side basin while inserting or
+removing the cardinality difference at the largest geometric voids. This is a
+smooth many-square continuation, not a donor crop, single-parent deletion, or
+rigid-cluster exchange.
+
+Quick targets: `803, 791, 908` with adjacent-`n` and same-family parents.
+
+### H8 `dual_cycle_compensation`
+
+**Rank:** 3. **Expected gain:** 0.001-0.004.
+
+Search pairs of contact-face cycle flips whose individual vacancies are
+infeasible but whose combined ownership swap is feasible. Require the two
+cycles to share a seam and replace the resulting combined topology with a
+certified local solve. H8 starts only if H4 shows a near-feasible single flip.
+
+### H9 `void_density_triage`
+
+**Rank:** 4. **Expected gain:** 0.001-0.006 in aggregate.
+
+Run an all-gap audit for exact placements of the next one or two squares into
+the current box, including rotated and fractional-position placements. Rank
+rows by certified multi-square insertion potential before attempting repair.
+This targets many small wins across the remaining mass rather than a single
+large family.
+
+### H10 `contact_graph_evolution`
+
+**Rank:** 5. **Expected gain:** 0.002-0.008 if a new basin is found.
+
+Represent a packing by its contact graph and orientation labels, evolve graph
+rewrite operations under exact non-overlap penalties, then realize the best
+graphs as coordinates and compact them. The search is over topology families,
+not coordinate mutation alone.
