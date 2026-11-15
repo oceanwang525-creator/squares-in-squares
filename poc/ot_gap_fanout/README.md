@@ -94,3 +94,43 @@ PYTHONPATH=poc/baseline/poc/src $PY \
 Per-target raw evidence is in `docs/result-<n>.json`,
 `docs/refine-result-<n>.json`, and the first wave's captured child outputs in
 `docs/results.json`.
+
+### n=330 near-miss continuation
+
+The focused result was close enough to justify a separate continuation. The
+base case is reproduced exactly from donors `n-1` and `n+1`, weight schedule
+`2:1`, Sinkhorn `epsilon=0.018`, target side reduction `1e-6`, and
+interpolation `alpha=0.05`.
+
+`poc/near330.py` adds zero-margin fixed-angle LP and repeated exact-Jacobian
+joint SLP. `poc/near330_sweep.py` performs two deterministic parameter grids
+around the best seed. The best tightened geometry reached
+`18.692388155424336`, only `8.56e-13` below the incumbent and therefore
+below the `dL <= -1e-9` win threshold.
+
+The remaining `1e-9` cannot be obtained by a uniform contraction. At the
+nearest target, the shrunk geometry has a `7.4e-11` to `1.6e-10` overlap;
+the exact metric rejects it. Zero-margin LP, joint SLP, and a focused
+nonlinear re-jam either return to the incumbent scale or expand the side.
+The constrained fixed-side SLP also accepts no correcting step from the
+contracted states.
+
+Consequently this continuation has no exportable win. `final.csv` remains
+header-only. Evidence:
+
+- `docs/near330-best.json`
+- `docs/near330-best-tight.json`
+- `docs/near330-grid.json`
+
+Reproduce:
+
+```sh
+PY=/Users/ocean/Documents/Squares/Squares_in_Squares_Claude_handoff_20261111/.venv/bin/python
+PYTHONPATH=poc/baseline/poc/src $PY \
+  poc/ot_gap_fanout/poc/near330.py \
+  --iterations 30000 --alpha 0.05 --delta 7.5e-7 \
+  --epsilon 0.0185 --schedule=-1:2.2,1:1
+
+PYTHONPATH=poc/baseline/poc/src $PY \
+  poc/ot_gap_fanout/poc/near330_sweep.py
+```
