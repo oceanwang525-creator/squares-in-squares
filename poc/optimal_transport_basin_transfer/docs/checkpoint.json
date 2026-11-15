@@ -1,0 +1,18 @@
+{
+  "hypothesis": "optimal_transport_basin_transfer",
+  "incumbent_side_n791": "28.627635758531547",
+  "certified_literal_side_n791": "28.62753374831589705670429064973889809731966994229864",
+  "certified_pandas_side_n791": "28.62753374831589705670429064973889809731966994229864",
+  "dL": -0.00010201021564881785,
+  "score_gain": -3.627065712783888e-06,
+  "donor_n": 789,
+  "sinkhorn_epsilon": 0.025,
+  "requested_delta": 0.0001,
+  "interpolation_alpha": 0.2,
+  "minimum_repair_dilation": 1.0000000739140318,
+  "final_csv_sha256": "bf7f2ba8a5901bebf1b071b31d4f4aece8911af96892360844bc88eb06bad71a",
+  "scaled_cohorts_no_win": [
+    [790, 792, 804, 848, 861, 969],
+    [328, 365, 367, 456, 747, 982]
+  ]
+}
