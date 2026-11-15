@@ -235,3 +235,9 @@ not coordinate mutation alone.
   The best penetration at `L_inc - 2e-5` was only `1.16e-8` and `7.34e-9`;
   no pair produced a complementary vacancy or a lower valid side. Failure
   commit: `d1066bd` (preserved through `8eec198`).
+- **H9 `void_density_triage`: negative for direct card-add.** At
+  `L_inc - 1e-7`, 24.7-70.0M angle/position checks per target found no legal
+  insertion into the canonical `n-1` row for 803/328/791. For 803, the first
+  step of the `n-2 + 2` route also failed after 64.3M checks. This closes the
+  direct insertion audit, not arbitrary rearrangement. Failure commit:
+  `50f11d1` (preserved through `17baee8`).
