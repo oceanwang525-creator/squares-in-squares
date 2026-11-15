@@ -6,7 +6,18 @@
 2. **Periodic-strip splicing & peeling (`run_synth_bricks.py`)**: Synthesizes 93 relaxed bricks in `poc/swarm_vstrip492/data/brick_*.json` via `vstrip` insertion (`g -> g+1`), `vstrip` removal (`remove_vertical_strip`, `g -> g-1`), `hcol` splicing, and 1-row/1-column outer peeling (`peel_outer_unit_layer`), compressing each with `compress_brick_slp` and `brick_mechwalk`.
 3. **Pinwheel Assembly & Polishing (`run_gate_probe.py`, `run_scale.py`, `run_phase2.py`)**: Composes zero-overlap (`ov=0, ct=0`) and corner/seam-melted (`max_ov=1`) pinwheels across `K = 20..31, D = 7..16`, polishing with `joint_xytheta_slp_tight`, `lpslack`, `pslp` (`squeeze` + `shake_squeeze`), and `mechwalk_compress`.
 
-## Certified PR2 Wins (vs `origin/main` `ccdac8f`, `literal == pandas`)
+## Certified PR3 Wins (vs `origin/main` `10a15e8`, `literal == pandas`)
+
+| `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
+|---:|:---:|---:|---:|---:|---:|:---|
+| **800** | `(28, +16)` | `28.77457810035783470455` | **`28.77450261627168216271`** | **`-7.548409e-05`** | `-5.430050e-06` | `18x9(n=800)` + `10x18(NEW)` + `lpslack` + `pslp` |
+| **849** | `(29, +8)` | `29.63688171337221016936` | **`29.63688154086398901216`** | **`-1.725082e-07`** | `-1.204383e-08` | `12x16(n=849)` + `12x16(n=849)` + `lpslack` + `pslp` |
+| **970** | `(31, +9)` | `31.63768686499829017102` | **`31.63768686184327810742`** | **`-3.155012e-09`** | `-2.058088e-10` | `16x11(g=+4, n=490)` + `20x11(n=970s6)` + `lpslack` + `pslp` |
+| **538** | `(23, +9)` | `23.70588235542379963937` | **`23.70588235377292491020`** | **`-1.650875e-09`** | `-1.454849e-10` | `5x13(n=492)` + `9x18(g=+6, n=538)` + `lpslack` + `pslp` |
+
+**Total across 4 strict PR3 wins**: `d(L^2/n) = -5.442445e-06` (prior PR1/PR2 wins `{585, 686, 739, 795, 796, 852}` are preserved/improved in `origin/main` `merged.csv`).
+
+## Certified PR2 Wins (Merged in PR #114)
 
 | `n` | `(m, r)` | Incumbent `L` (`merged.csv`) | New `L` | `dL` | `d(L^2/n)` | Brick Pair & Method |
 |---:|:---:|---:|---:|---:|---:|:---|
