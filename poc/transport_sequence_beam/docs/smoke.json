@@ -1,0 +1,253 @@
+{
+  "method": "two-stage Sinkhorn transport/repair beam",
+  "targets": [
+    803
+  ],
+  "results": [
+    {
+      "n": 803,
+      "incumbent_side": 28.81726587682309,
+      "stage1_maps": 24,
+      "stage1_screened": 192,
+      "stage1_repaired": 4,
+      "beam_width": 2,
+      "stage2_screened": 576,
+      "stage2_repaired": 8,
+      "beam": [
+        {
+          "penalty": 1.061791711507137e-08,
+          "violation": 2.8435099963530774e-05,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ]
+          ],
+          "side": 28.82226587682309,
+          "transport_value": 0.021588454081724606
+        },
+        {
+          "penalty": 6.224505553467456e-07,
+          "violation": 0.0002039086466145701,
+          "path": [
+            [
+              "transport",
+              804,
+              0.0125,
+              0.05
+            ]
+          ],
+          "side": 28.82226587682309,
+          "transport_value": 0.02040071139688111
+        }
+      ],
+      "attempts": [
+        {
+          "penalty": 2.8031140962229677e-06,
+          "violation": 0.00021891836323062464,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0001
+            ]
+          ],
+          "side": 28.81716587682309,
+          "parent": 0,
+          "transport_value": 0.020401052236965433,
+          "dilation": 1.000206190313781,
+          "dilated_side": 28.82319443406327,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 2.0776716473281933e-06,
+          "violation": 0.0002193584371927848,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              801,
+              0.0125,
+              0.04,
+              0.0001
+            ]
+          ],
+          "side": 28.81716587682309,
+          "parent": 0,
+          "transport_value": 0.02151275724828631,
+          "dilation": 1.000207480989324,
+          "dilated_side": 28.82321855874696,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 2.1818832432188328e-06,
+          "violation": 0.0002247765802255719,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              801,
+              0.0125,
+              0.04,
+              0.0002
+            ]
+          ],
+          "side": 28.81706587682309,
+          "parent": 0,
+          "transport_value": 0.02151275724828631,
+          "dilation": 1.0002237715276476,
+          "dilated_side": 28.823567498015148,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 3.138367958989674e-06,
+          "violation": 0.00024962551288876256,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0002
+            ]
+          ],
+          "side": 28.81706587682309,
+          "parent": 0,
+          "transport_value": 0.020401052236965433,
+          "dilation": 1.0002496861727423,
+          "dilated_side": 28.824296092715368,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 3.8576322604541035e-06,
+          "violation": 0.00025208513397245724,
+          "path": [
+            [
+              "transport",
+              801,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0005
+            ]
+          ],
+          "side": 28.81676587682309,
+          "parent": 0,
+          "transport_value": 0.020401052236965433,
+          "dilation": 1.0002521358773822,
+          "dilated_side": 28.82407570891854,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 2.8970225166578574e-06,
+          "violation": 0.00025229487276590135,
+          "path": [
+            [
+              "transport",
+              804,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0001
+            ]
+          ],
+          "side": 28.81716587682309,
+          "parent": 1,
+          "transport_value": 0.020454442026971102,
+          "dilation": 1.0002436894030735,
+          "dilated_side": 28.82422393314256,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 3.1645687777903214e-06,
+          "violation": 0.000265423857685132,
+          "path": [
+            [
+              "transport",
+              804,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0002
+            ]
+          ],
+          "side": 28.81706587682309,
+          "parent": 1,
+          "transport_value": 0.020454442026971102,
+          "dilation": 1.0002543024079111,
+          "dilated_side": 28.8244337486933,
+          "dilated_violation": 1.000088900582341e-11
+        },
+        {
+          "penalty": 4.081902214308322e-06,
+          "violation": 0.00028141276408333304,
+          "path": [
+            [
+              "transport",
+              804,
+              0.0125,
+              0.05
+            ],
+            [
+              "transport",
+              804,
+              0.0125,
+              0.04,
+              0.0005
+            ]
+          ],
+          "side": 28.81676587682309,
+          "parent": 1,
+          "transport_value": 0.020454442026971102,
+          "dilation": 1.0002748137312818,
+          "dilated_side": 28.82473285042831,
+          "dilated_violation": 1.000088900582341e-11
+        }
+      ],
+      "realizations": [],
+      "elapsed_seconds": 9.986821457998303
+    }
+  ],
+  "wins": {}
+}
