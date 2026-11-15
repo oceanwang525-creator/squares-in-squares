@@ -1,0 +1,1330 @@
+{
+  "method": "angle-class reassignment after centre transport",
+  "targets": [
+    803,
+    328,
+    791
+  ],
+  "results": [
+    {
+      "n": 803,
+      "incumbent_side": 28.81726587682309,
+      "transport_maps": 24,
+      "screened_starts": 36288,
+      "repaired_starts": 24,
+      "best": [
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.81726487682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              222,
+              581
+            ],
+            "representatives": [
+              -0.3891708548834961,
+              0.06521598004242127
+            ]
+          },
+          "initial_penalty": 0.3356340028600549,
+          "final_penalty": 1.981073260355747e-05,
+          "max_violation": 0.0008575883766426262,
+          "dilation": 1.0008373293883182,
+          "dilated_side": 28.841676260082775
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.81725587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              222,
+              581
+            ],
+            "representatives": [
+              -0.3891708548834961,
+              0.06521598004242127
+            ]
+          },
+          "initial_penalty": 0.33564003012021193,
+          "final_penalty": 1.9928679841784013e-05,
+          "max_violation": 0.0008727972020010633,
+          "dilation": 1.0008474016022102,
+          "dilated_side": 28.841952783115048
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.81725587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              257,
+              546
+            ],
+            "representatives": [
+              -0.3571467896386376,
+              0.04311786752906369
+            ]
+          },
+          "initial_penalty": 0.2865053598892793,
+          "final_penalty": 2.0098530442884393e-05,
+          "max_violation": 0.0008568883892967616,
+          "dilation": 1.0008332521530878,
+          "dilated_side": 28.841514814226425
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.81726487682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 1.0,
+            "class_counts": [
+              261,
+              530,
+              12
+            ],
+            "representatives": [
+              -0.3621917987455107,
+              0.002300047094362593,
+              0.459397698930141
+            ]
+          },
+          "initial_penalty": 0.32800463091655374,
+          "final_penalty": 2.0281112727047367e-05,
+          "max_violation": 0.0008660069329671227,
+          "dilation": 1.0008480029324418,
+          "dilated_side": 28.841818674171822
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.81726487682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              229,
+              574
+            ],
+            "representatives": [
+              -0.39690466805558355,
+              0.06113912094277464
+            ]
+          },
+          "initial_penalty": 0.3350559484031801,
+          "final_penalty": 2.028960235268789e-05,
+          "max_violation": 0.0008568691897927749,
+          "dilation": 1.000842517612425,
+          "dilated_side": 28.84180918831479
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 28.81716587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              222,
+              581
+            ],
+            "representatives": [
+              -0.3891708548834961,
+              0.06521598004242127
+            ]
+          },
+          "initial_penalty": 0.3357003124616933,
+          "final_penalty": 2.0720817475584758e-05,
+          "max_violation": 0.0008741600467705446,
+          "dilation": 1.0008398144464299,
+          "dilated_side": 28.841670358631198
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 28.81716587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              229,
+              574
+            ],
+            "representatives": [
+              -0.39690466805558355,
+              0.06113912094277464
+            ]
+          },
+          "initial_penalty": 0.33512167505413615,
+          "final_penalty": 2.077783579263002e-05,
+          "max_violation": 0.0008625756631976955,
+          "dilation": 1.0008492980074024,
+          "dilated_side": 28.84190468495338
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.81726487682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              257,
+              546
+            ],
+            "representatives": [
+              -0.3571467896386376,
+              0.04311786752906369
+            ]
+          },
+          "initial_penalty": 0.2864998605015099,
+          "final_penalty": 2.0864983397111266e-05,
+          "max_violation": 0.0008555940421022257,
+          "dilation": 1.0008443625394794,
+          "dilated_side": 28.84183539547796
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.81725587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              229,
+              574
+            ],
+            "representatives": [
+              -0.39690466805558355,
+              0.06113912094277464
+            ]
+          },
+          "initial_penalty": 0.335061922665466,
+          "final_penalty": 2.098812878169015e-05,
+          "max_violation": 0.0008498695989282989,
+          "dilation": 1.0008361992355008,
+          "dilated_side": 28.84161599059228
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              1.0
+            ],
+            [
+              4,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.81706587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              222,
+              581
+            ],
+            "representatives": [
+              -0.3891708548834961,
+              0.06521598004242127
+            ]
+          },
+          "initial_penalty": 0.3357673136384752,
+          "final_penalty": 2.1191467246596924e-05,
+          "max_violation": 0.0008969927831739,
+          "dilation": 1.0008757920889517,
+          "dilated_side": 28.8425778415291
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.81706587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              257,
+              546
+            ],
+            "representatives": [
+              -0.3571467896386376,
+              0.04311786752906369
+            ]
+          },
+          "initial_penalty": 0.2866214980147267,
+          "final_penalty": 2.1738815761566297e-05,
+          "max_violation": 0.0008660368199326918,
+          "dilation": 1.0008544860948043,
+          "dilated_side": 28.841925072299876
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.81706587682309,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              229,
+              574
+            ],
+            "representatives": [
+              -0.39690466805558355,
+              0.06113912094277464
+            ]
+          },
+          "initial_penalty": 0.3351880874463473,
+          "final_penalty": 2.324130439514871e-05,
+          "max_violation": 0.0008905159774608151,
+          "dilation": 1.000873951025442,
+          "dilated_side": 28.842529350925204
+        }
+      ],
+      "realized": 0,
+      "elapsed_seconds": 206.1270169999989
+    },
+    {
+      "n": 328,
+      "incumbent_side": 18.614368938490983,
+      "transport_maps": 24,
+      "screened_starts": 36288,
+      "repaired_starts": 24,
+      "best": [
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 18.614358938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              37,
+              265,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869525446e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12637959873790386,
+          "final_penalty": 6.414203452076515e-06,
+          "max_violation": 0.0004360222689212545,
+          "dilation": 1.0003613456282894,
+          "dilated_side": 18.62128598187017
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 18.614367938490982,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              37,
+              265,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869525446e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12637541921127146,
+          "final_penalty": 6.487294800611462e-06,
+          "max_violation": 0.0004370053840041521,
+          "dilation": 1.0003621605132094,
+          "dilated_side": 18.621313718655415
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 18.614367938490982,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              37,
+              265,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100262388e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12637224600628674,
+          "final_penalty": 6.54214509369185e-06,
+          "max_violation": 0.0004351487673581733,
+          "dilation": 1.000360621568491,
+          "dilated_side": 18.62127943214998
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -3,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 18.614358938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              37,
+              265,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100262388e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12637642545334632,
+          "final_penalty": 6.61359968115084e-06,
+          "max_violation": 0.00043676298288941595,
+          "dilation": 1.0003619596953301,
+          "dilated_side": 18.62130203110785
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 18.614367938490982,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869535692e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12322608072125119,
+          "final_penalty": 3.6457117059724314e-05,
+          "max_violation": 0.0012772351988546982,
+          "dilation": 1.001278868714979,
+          "dilated_side": 18.638553462514118
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 18.614268938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869535692e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12325974029842784,
+          "final_penalty": 3.6826705395990984e-05,
+          "max_violation": 0.001276467538737558,
+          "dilation": 1.0012780990905492,
+          "dilated_side": 18.638455029848384
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 18.614358938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100261371e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12322602929622614,
+          "final_penalty": 3.711480586888748e-05,
+          "max_violation": 0.0013166127314241383,
+          "dilation": 1.0013183485857629,
+          "dilated_side": 18.639032925071017
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 18.614168938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100261371e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12329063831341197,
+          "final_penalty": 3.830996276276856e-05,
+          "max_violation": 0.001306290558056089,
+          "dilation": 1.0013073582482521,
+          "dilated_side": 18.638872958618048
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 18.614168938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869535692e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12329375161881284,
+          "final_penalty": 3.853700698163433e-05,
+          "max_violation": 0.001309714847014809,
+          "dilation": 1.0013114325490413,
+          "dilated_side": 18.638949815224677
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 18.614358938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              0,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              -1.3563695869535692e-05,
+              0.009832877974382039,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12322914020464806,
+          "final_penalty": 3.923250447609503e-05,
+          "max_violation": 0.0013679271383314484,
+          "dilation": 1.001369801026273,
+          "dilated_side": 18.640009115461954
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 18.614367938490982,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100261371e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.123222969926371,
+          "final_penalty": 3.9477437860024715e-05,
+          "max_violation": 0.0013861217132064008,
+          "dilation": 1.0013880458136422,
+          "dilated_side": 18.640343225600823
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              -4,
+              1.0
+            ],
+            [
+              3,
+              2.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 18.614268938490984,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 0.45,
+            "class_counts": [
+              38,
+              264,
+              26
+            ],
+            "representatives": [
+              -0.7739533894391253,
+              6.159998100261371e-05,
+              0.7733309216845964
+            ]
+          },
+          "initial_penalty": 0.12325662825459167,
+          "final_penalty": 4.178484965746697e-05,
+          "max_violation": 0.0014450374290653212,
+          "dilation": 1.0014471282101303,
+          "dilated_side": 18.6414991792592
+        }
+      ],
+      "realized": 0,
+      "elapsed_seconds": 72.39760587499768
+    },
+    {
+      "n": 791,
+      "incumbent_side": 28.62652394833957,
+      "transport_maps": 24,
+      "screened_starts": 36288,
+      "repaired_starts": 24,
+      "best": [
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.62652294833957,
+          "angle_classes": {
+            "mode": "region",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              335,
+              456
+            ],
+            "representatives": [
+              -0.2973925853500348,
+              0.07694107977795371
+            ]
+          },
+          "initial_penalty": 0.2895821734248059,
+          "final_penalty": 2.982051755204381e-07,
+          "max_violation": 5.7001075619789177e-05,
+          "dilation": 1.0000563013561936,
+          "dilated_side": 28.628154430610614
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 28.62642394833957,
+          "angle_classes": {
+            "mode": "region",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              335,
+              456
+            ],
+            "representatives": [
+              -0.2973925853500348,
+              0.07694107977795371
+            ]
+          },
+          "initial_penalty": 0.28965731030662467,
+          "final_penalty": 7.372837571861126e-07,
+          "max_violation": 7.182406687744614e-05,
+          "dilation": 1.00006959278155,
+          "dilated_side": 28.628448487178968
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.62632394833957,
+          "angle_classes": {
+            "mode": "region",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              335,
+              456
+            ],
+            "representatives": [
+              -0.2973925853500348,
+              0.07694107977795371
+            ]
+          },
+          "initial_penalty": 0.2897332348281294,
+          "final_penalty": 1.668343154633682e-06,
+          "max_violation": 0.00013046920276260643,
+          "dilation": 1.000121441356691,
+          "dilated_side": 28.62984687916796
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              1,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.62651394833957,
+          "angle_classes": {
+            "mode": "region",
+            "classes": 2,
+            "smoothing": 1.0,
+            "class_counts": [
+              335,
+              456
+            ],
+            "representatives": [
+              -0.2973925853500348,
+              0.07694107977795371
+            ]
+          },
+          "initial_penalty": 0.28958900288299433,
+          "final_penalty": 1.8348194951632858e-06,
+          "max_violation": 0.00013012575209492283,
+          "dilation": 1.0001206074009499,
+          "dilated_side": 28.63001670439023
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.62651394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 1.0,
+            "class_counts": [
+              146,
+              532,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              0.002882641274109074,
+              0.4514199438938361
+            ]
+          },
+          "initial_penalty": 0.25304921451740137,
+          "final_penalty": 4.323709081428393e-06,
+          "max_violation": 0.0002217805399435946,
+          "dilation": 1.000221564884841,
+          "dilated_side": 28.632967514115474
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.62652294833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 1.0,
+            "class_counts": [
+              146,
+              532,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              0.002882641274109074,
+              0.4514199438938361
+            ]
+          },
+          "initial_penalty": 0.2530439421211097,
+          "final_penalty": 4.4605228569674105e-06,
+          "max_violation": 0.0002269985507089567,
+          "dilation": 1.0002270501884292,
+          "dilated_side": 28.633137820014472
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 28.62642394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 1.0,
+            "class_counts": [
+              146,
+              532,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              0.002882641274109074,
+              0.4514199438938361
+            ]
+          },
+          "initial_penalty": 0.25310195110388267,
+          "final_penalty": 4.767225041735702e-06,
+          "max_violation": 0.0002339096243288985,
+          "dilation": 1.000233203033599,
+          "dilated_side": 28.63321354324937
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.62632394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 3,
+            "smoothing": 1.0,
+            "class_counts": [
+              146,
+              532,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              0.002882641274109074,
+              0.4514199438938361
+            ]
+          },
+          "initial_penalty": 0.25316057424308264,
+          "final_penalty": 5.070791796368611e-06,
+          "max_violation": 0.000244830984859723,
+          "dilation": 1.0002448910352357,
+          "dilated_side": 28.63345572697197
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-05,
+          "alpha": 0.2,
+          "target_side": 28.62651394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 1.0,
+            "class_counts": [
+              151,
+              527,
+              0,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              -0.001889513984755982,
+              0.22041215987012766,
+              0.46144825478574664
+            ]
+          },
+          "initial_penalty": 0.24727001787856964,
+          "final_penalty": 1.76324605541676e-05,
+          "max_violation": 0.00044229136226314747,
+          "dilation": 1.0004424869539756,
+          "dilated_side": 28.639326177740436
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 1e-06,
+          "alpha": 0.2,
+          "target_side": 28.62652294833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 1.0,
+            "class_counts": [
+              151,
+              527,
+              0,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              -0.001889513984755982,
+              0.22041215987012766,
+              0.46144825478574664
+            ]
+          },
+          "initial_penalty": 0.24726478172885338,
+          "final_penalty": 1.789999888588408e-05,
+          "max_violation": 0.0004371192455183692,
+          "dilation": 1.0004373104751747,
+          "dilated_side": 28.639244956681726
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0001,
+          "alpha": 0.2,
+          "target_side": 28.62642394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 1.0,
+            "class_counts": [
+              151,
+              527,
+              0,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              -0.001889513984755982,
+              0.22041215987012766,
+              0.46144825478574664
+            ]
+          },
+          "initial_penalty": 0.24732239252525337,
+          "final_penalty": 1.836842609255393e-05,
+          "max_violation": 0.00043404416432202275,
+          "dilation": 1.0004335354747413,
+          "dilated_side": 28.639052594806493
+        },
+        {
+          "epsilon": 0.012,
+          "donor_schedule": [
+            [
+              3,
+              2.0
+            ],
+            [
+              4,
+              1.0
+            ]
+          ],
+          "delta": 0.0002,
+          "alpha": 0.2,
+          "target_side": 28.62632394833957,
+          "angle_classes": {
+            "mode": "pointwise",
+            "classes": 4,
+            "smoothing": 1.0,
+            "class_counts": [
+              151,
+              527,
+              0,
+              113
+            ],
+            "representatives": [
+              1.17973550862349,
+              -0.001889513984755982,
+              0.22041215987012766,
+              0.46144825478574664
+            ]
+          },
+          "initial_penalty": 0.2473806146595871,
+          "final_penalty": 2.641575374140955e-05,
+          "max_violation": 0.0005003850551629219,
+          "dilation": 1.000500635665098,
+          "dilated_side": 28.64084768823039
+        }
+      ],
+      "realized": 0,
+      "elapsed_seconds": 189.25088154200057
+    }
+  ],
+  "wins": {}
+}
